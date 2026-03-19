@@ -12,7 +12,17 @@ inherit F_DBASE;
 int wiz_lock_level = WIZ_LOCK_LEVEL;
 
 string *user_race = ({
-    "human"
+    "human",
+    "xingtian",
+    "yenhold",
+    "yaksha",
+    "malik",
+    "woochan",
+    "jiaojao",
+    "dingling",
+    "asura",
+    "rainnar",
+    "blackteeth",
 });
 
 string *banned_name = ({
