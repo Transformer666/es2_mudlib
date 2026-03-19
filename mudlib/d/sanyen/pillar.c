@@ -14,7 +14,7 @@ LONG
 	);
 	set("outdoors", "village");
 	set("exits", ([
-		"south" : __DIR__"entrance",
+		"west" : __DIR__"entrance",
 	]));
 
 	setup();

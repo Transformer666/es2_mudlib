@@ -16,7 +16,7 @@ LONG
 		__DIR__"npc/bandit" : 2,
 	]));
 	set("exits", ([
-		"south" : __DIR__"road2",
+		"east" : __DIR__"road2",
 	]));
 
 	setup();
