@@ -15,6 +15,7 @@ LONG
 	set("outdoors", "wild");
 	set("exits", ([
 		"north" : __DIR__"crossroad",
+		"south" : "/d/lijun/entrance",
 	]));
 
 	setup();
