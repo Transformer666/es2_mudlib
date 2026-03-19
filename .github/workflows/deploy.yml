@@ -9,13 +9,14 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    environment: GCP
     steps:
       - name: Deploy via SSH
         uses: appleboy/ssh-action@v1
         with:
-          host: ${{ secrets.GCP_HOST }}
-          username: ${{ secrets.GCP_USER }}
-          key: ${{ secrets.GCP_SSH_KEY }}
+          host: ${{ vars.GCP_HOST }}        # secrets → vars
+          username: ${{ vars.GCP_USER }}    # secrets → vars
+          key: ${{ vars.GCP_SSH_KEY }}      # secrets → vars
           script: |
-            cd ${{ secrets.MUD_PATH }}
+            cd ${{ vars.MUD_PATH }}         # secrets → vars
             git pull origin main
