@@ -17,7 +17,7 @@ create()
     set("skills", ({
         "staff",
     }));
-    set("location", "/d/wutang/temple");
+    set("location", "/d/baolian/hall");
 
     DAEMON_D->register_object_daemon("sect:baolian");
 }

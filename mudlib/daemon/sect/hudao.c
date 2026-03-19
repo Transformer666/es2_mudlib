@@ -18,7 +18,7 @@ create()
     set("skills", ({
         "tiger blade",
     }));
-    set("location", "/d/hudao/gate");
+    set("location", "/d/hudao/hall");
 
     DAEMON_D->register_object_daemon("sect:hudao");
 }

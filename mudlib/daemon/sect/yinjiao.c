@@ -17,7 +17,7 @@ create()
     set("skills", ({
         "dagger",
     }));
-    set("location", "/d/wutang/wushan_cave");
+    set("location", "/d/yinjiao/hall");
 
     DAEMON_D->register_object_daemon("sect:yinjiao");
 }

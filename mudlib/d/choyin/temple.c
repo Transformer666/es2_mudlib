@@ -17,7 +17,8 @@ LONG
 	]));
 	set("no_fight", 1);
 	set("exits", ([
-		"east" : __DIR__"square",
+		"east"  : __DIR__"square",
+		"north" : "/d/baolian/mountain_path",
 	]));
 
 	setup();

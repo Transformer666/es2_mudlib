@@ -17,7 +17,7 @@ create()
     set("skills", ({
         "sword",
     }));
-    set("location", "/d/wutang/temple");
+    set("location", "/d/xuantian/hall");
 
     DAEMON_D->register_object_daemon("sect:xuantian");
 }

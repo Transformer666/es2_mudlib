@@ -17,7 +17,7 @@ create()
     set("skills", ({
         "phantom sword",
     }));
-    set("location", 0);
+    set("location", "/d/tianxie/hall");
 
     DAEMON_D->register_object_daemon("sect:tianxie");
 }

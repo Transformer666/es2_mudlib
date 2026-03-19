@@ -15,6 +15,10 @@ LONG
         "south" : __DIR__"gate",
     ]));
 
+    set("objects", ([
+        __DIR__"npc/elder" : 1,
+    ]));
+
     setup();
     replace_program(ROOM);
 }

@@ -18,7 +18,7 @@ create()
     set("skills", ({
         "fengshan sword",
     }));
-    set("location", "/d/fengshan/gate");
+    set("location", "/d/fengshan/main_hall");
 
     DAEMON_D->register_object_daemon("sect:fengshan");
 }

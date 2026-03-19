@@ -20,7 +20,9 @@ LONG
 	"香爐" : "一座銅鑄的大香爐﹐裊裊的青煙從香爐中升起﹐瀰漫在整座大殿之中。\n",
     ]));
     set("exits", ([
-	"west" : __DIR__"wushan_path3",
+	"west"  : __DIR__"wushan_path3",
+	"east"  : "/d/tianshi/path",
+	"north" : "/d/xuantian/path",
     ]));
 
     setup();

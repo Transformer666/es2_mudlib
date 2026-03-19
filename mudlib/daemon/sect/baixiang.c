@@ -18,7 +18,7 @@ create()
         "diamond hammer",
         "staff",
     }));
-    set("location", "/d/baixiang/gate");
+    set("location", "/d/baixiang/main_hall");
 
     DAEMON_D->register_object_daemon("sect:baixiang");
 }

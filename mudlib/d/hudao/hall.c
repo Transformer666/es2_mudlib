@@ -17,6 +17,10 @@ LONG
         "east"  : __DIR__"training",
     ]));
 
+    set("objects", ([
+        __DIR__"npc/hanxiao" : 1,
+    ]));
+
     setup();
     replace_program(ROOM);
 }

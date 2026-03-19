@@ -17,6 +17,7 @@ LONG
     ]));
     set("exits", ([
 	"south" : __DIR__"lane1",
+	"east"  : "/d/wutuo/entrance",
     ]));
 
     setup();

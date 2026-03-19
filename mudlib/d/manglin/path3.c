@@ -15,6 +15,7 @@ LONG
 	set("outdoors", "forest");
 	set("exits", ([
 		"south" : __DIR__"path2",
+		"north" : "/d/tianxie/hidden_path",
 	]));
 
 	setup();

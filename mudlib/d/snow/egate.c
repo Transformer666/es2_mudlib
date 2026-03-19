@@ -16,9 +16,10 @@ LONG
 	"小橋" : "一座巨檜木切削搭成的木橋.\n",
   ]));
   set("outdoors", "snow");
-  set("exits", ([ /* sizeof() == 1 */
+  set("exits", ([
 	"west" : __DIR__"ruin1",
 	"northeast" : "/d/lee/r1",
+	"east" : "/d/lengmei/road",
   ]));
 
   setup();

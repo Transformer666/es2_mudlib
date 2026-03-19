@@ -20,7 +20,7 @@ create()
         "taiyi sword",
         "ziwei neigong",
     }));
-    set("location", "/d/wutang/wushan_path3");
+    set("location", "/d/tianshi/hall");
 
     DAEMON_D->register_object_daemon("sect:tianshi");
 }

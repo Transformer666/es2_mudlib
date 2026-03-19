@@ -11,13 +11,14 @@ void create()
 道。
 LONG
 	);
-	set("exits", ([ /* sizeof() == 2 */
-		"north" : __DIR__"nstreet1",
-		"south" : __DIR__"square",
+	set("exits", ([
+		"north"     : __DIR__"nstreet1",
+		"south"     : __DIR__"square",
+		"northeast" : "/d/kuxiao/alley",
 	]));
 	set("objects", ([
 		__DIR__"npc/child1" : 1,
-		__DIR__"npc/child2" : 1
+		__DIR__"npc/child2" : 1,
 	]) );
 	set("outdoors", "snow");
 

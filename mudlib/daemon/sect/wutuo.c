@@ -17,7 +17,7 @@ create()
         "five defeat needle",
         "amazing needle",
     }));
-    set("location", "/d/wutang/herb_shop");
+    set("location", "/d/wutuo/hall");
 
     DAEMON_D->register_object_daemon("sect:wutuo");
 }

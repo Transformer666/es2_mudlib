@@ -18,7 +18,7 @@ create()
     set("skills", ({
         "sword",
     }));
-    set("location", "/d/snow/ebridge");
+    set("location", "/d/xueyin/hall");
 
     DAEMON_D->register_object_daemon("sect:xueyin");
 }

@@ -18,7 +18,7 @@ create()
     set("skills", ({
         "lengmei sword",
     }));
-    set("location", "/d/snow/egate");
+    set("location", "/d/lengmei/hall");
 
     DAEMON_D->register_object_daemon("sect:lengmei");
 }

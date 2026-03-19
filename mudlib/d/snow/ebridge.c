@@ -14,13 +14,13 @@ create()
 LONG
   );
   set("no_clean_up", 0);
-  set("objects", ([ /* sizeof() == 1 */
+  set("objects", ([
 	__DIR__"npc/guard" : 2,
   ]));
   set("outdoors", "snow");
-  set("exits", ([ /* sizeof() == 2 */
+  set("exits", ([
 	"west" : __DIR__"npath3",
-//	"east" : "/d/snowkeep/entrance",
+	"east" : "/d/xueyin/entrance",
   ]));
 
   setup();

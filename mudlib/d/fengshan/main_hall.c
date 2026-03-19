@@ -17,6 +17,10 @@ LONG
         "west"  : __DIR__"quarters",
     ]));
 
+    set("objects", ([
+        __DIR__"npc/liudonglu" : 1,
+    ]));
+
     setup();
     replace_program(ROOM);
 }

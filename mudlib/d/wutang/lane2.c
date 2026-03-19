@@ -15,6 +15,7 @@ LONG
 	set("exits", ([
 		"west" : __DIR__"square_n",
 		"east" : __DIR__"wushan_foot",
+		"down" : "/d/langyi/tunnel",
 	]));
 
 	setup();

@@ -17,7 +17,7 @@ create()
         "longttu neigong",
         "needle",
     }));
-    set("location", "/d/snow/herb_shop");
+    set("location", "/d/longttu/study");
 
     DAEMON_D->register_object_daemon("sect:longttu");
 }

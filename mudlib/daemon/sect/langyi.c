@@ -17,7 +17,7 @@ create()
     set("skills", ({
         "dagger",
     }));
-    set("location", "/d/wutang/lane2");
+    set("location", "/d/langyi/hall");
 
     DAEMON_D->register_object_daemon("sect:langyi");
 }

@@ -17,6 +17,7 @@ LONG
     ]));
     set("exits", ([
 	"north" : __DIR__"street1",
+	"east"  : "/d/jianjia/entrance",
     ]));
 
     setup();

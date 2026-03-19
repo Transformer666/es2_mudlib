@@ -18,7 +18,7 @@ create()
         "tactic",
         "pike",
     }));
-    set("location", "/d/zhenwu/gate");
+    set("location", "/d/zhenwu/command");
 
     DAEMON_D->register_object_daemon("sect:zhenwu");
 }

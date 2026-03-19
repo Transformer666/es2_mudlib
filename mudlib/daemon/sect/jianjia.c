@@ -17,7 +17,7 @@ create()
         "sword",
         "needle",
     }));
-    set("location", "/d/wutang/smithy");
+    set("location", "/d/jianjia/hall");
 
     DAEMON_D->register_object_daemon("sect:jianjia");
 }

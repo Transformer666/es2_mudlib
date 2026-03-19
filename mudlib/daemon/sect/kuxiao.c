@@ -18,7 +18,7 @@ create()
     set("skills", ({
         "sword",
     }));
-    set("location", "/d/snow/square_n");
+    set("location", "/d/kuxiao/hall");
 
     DAEMON_D->register_object_daemon("sect:kuxiao");
 }

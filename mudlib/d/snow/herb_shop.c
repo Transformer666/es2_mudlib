@@ -13,8 +13,9 @@ void create()
 草替代。
 LONG
 	);
-	set("exits", ([ /* sizeof() == 1 */
+	set("exits", ([
 		"north" : __DIR__"epath",
+		"east"  : "/d/longttu/entrance",
 	]));
 	set("objects", ([
 		__DIR__"npc/herbalist": 1,

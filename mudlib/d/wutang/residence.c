@@ -17,6 +17,7 @@ LONG
     ]));
     set("exits", ([
 	"west" : __DIR__"court",
+	"east" : "/d/buxuan/entrance",
     ]));
 
     setup();

@@ -17,7 +17,7 @@ create()
     set("skills", ({
         "three rotations",
     }));
-    set("location", "/d/wutang/court");
+    set("location", "/d/buxuan/study");
 
     DAEMON_D->register_object_daemon("sect:buxuan");
 }

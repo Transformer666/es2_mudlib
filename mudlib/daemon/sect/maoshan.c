@@ -21,7 +21,7 @@ create()
         "maoshan neigong",
         "taoshan milu",
     }));
-    set("location", "/d/maoshan/gate");
+    set("location", "/d/maoshan/lingyun");
 
     DAEMON_D->register_object_daemon("sect:maoshan");
 }
