@@ -124,17 +124,17 @@ bash automation/run_pipeline.sh 3
 ```bash
 # Run a single task file directly
 claude -p "$(cat automation/01_analyze_missing.md)" \
-    --allowedTools "Read,Write,Edit,Glob,Grep,Bash,WebFetch" \
+    --allowedTools "Read" "Write" "Edit" "Glob" "Grep" "Bash" "WebFetch" \
     --max-turns 30
 
 # Run with restricted permissions (read-only analysis)
 claude -p "$(cat automation/01_analyze_missing.md)" \
-    --allowedTools "Read,Glob,Grep,WebFetch" \
+    --allowedTools "Read" "Glob" "Grep" "WebFetch" \
     --max-turns 20
 
 # Run with JSON output for logging
 claude -p "$(cat automation/03_implement_rooms.md)" \
-    --allowedTools "Read,Write,Edit,Glob,Grep,Bash" \
+    --allowedTools "Read" "Write" "Edit" "Glob" "Grep" "Bash" \
     --max-turns 50 \
     --output-format json > docs/task03_result.json
 ```
@@ -156,8 +156,8 @@ bash automation/run_tests.sh exits    # Test bidirectional exits only
 | Flag | Description | Example |
 |------|-------------|---------|
 | `-p` | Headless/print mode (non-interactive) | `claude -p "task"` |
-| `--allowedTools` | Auto-approve tools without prompting | `"Read,Write,Edit,Bash"` |
-| `--disallowedTools` | Deny specific tools | `"Bash(rm *),Bash(sudo *)"` |
+| `--allowedTools` | Auto-approve tools without prompting | `"Read" "Write" "Edit" "Bash"` |
+| `--disallowedTools` | Deny specific tools | `"Bash(rm *)" "Bash(sudo *)"` |
 | `--max-turns` | Limit agent iterations | `--max-turns 30` |
 | `--output-format` | Output format: text/json/stream-json | `--output-format json` |
 | `--model` | Override model | `--model claude-sonnet-4-5-20250929` |
@@ -167,18 +167,18 @@ bash automation/run_tests.sh exits    # Test bidirectional exits only
 
 ```bash
 # Full development (create/edit files + run commands)
---allowedTools "Read,Write,Edit,Glob,Grep,Bash"
+--allowedTools "Read" "Write" "Edit" "Glob" "Grep" "Bash"
 
 # Read-only analysis
---allowedTools "Read,Glob,Grep"
+--allowedTools "Read" "Glob" "Grep"
 
 # Development without network access
---allowedTools "Read,Write,Edit,Glob,Grep,Bash" \
---disallowedTools "WebFetch,Bash(curl *),Bash(wget *)"
+--allowedTools "Read" "Write" "Edit" "Glob" "Grep" "Bash" \
+--disallowedTools "WebFetch" "Bash(curl *)" "Bash(wget *)"
 
 # Safe mode (no destructive commands)
---allowedTools "Read,Write,Edit,Glob,Grep,Bash(ls *),Bash(git status *),Bash(git diff *)" \
---disallowedTools "Bash(rm *),Bash(sudo *),Bash(git push *)"
+--allowedTools "Read" "Write" "Edit" "Glob" "Grep" "Bash(ls *)" "Bash(git status *)" "Bash(git diff *)" \
+--disallowedTools "Bash(rm *)" "Bash(sudo *)" "Bash(git push *)"
 ```
 
 ---
@@ -199,7 +199,7 @@ bash automation/run_tests.sh exits    # Test bidirectional exits only
 # Override model to Sonnet (cheaper, still capable)
 claude -p "$(cat automation/03_implement_rooms.md)" \
     --model claude-sonnet-4-5-20250929 \
-    --allowedTools "Read,Write,Edit,Glob,Grep,Bash" \
+    --allowedTools "Read" "Write" "Edit" "Glob" "Grep" "Bash" \
     --max-turns 30
 ```
 
@@ -244,8 +244,8 @@ run_task() {
     log "Running task: $task_desc"
 
     if claude -p "$(cat $task_path)" \
-        --allowedTools "Read,Write,Edit,Glob,Grep,Bash" \
-        --disallowedTools "Bash(rm -rf *),Bash(sudo *),Bash(git push *)" \
+        --allowedTools "Read" "Write" "Edit" "Glob" "Grep" "Bash" \
+        --disallowedTools "Bash(rm -rf *)" "Bash(sudo *)" "Bash(git push *)" \
         --max-turns 40 \
         --model claude-sonnet-4-5-20250929 \
         2>&1 | tee -a $LOG_FILE; then
