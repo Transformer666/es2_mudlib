@@ -14,9 +14,9 @@ LONG
   );
   set("outdoors", "snow");
   set("connect-p", 1);
-  set("exits", ([ /* sizeof() == 1 */
+  set("exits", ([ /* sizeof() == 2 */
 	"south" : __DIR__"nstreet2",
-//	"north" : "/d/goat/sroad1",
+	"north" : "/d/road/road1",
   ]));
   set("objects", ([
 	__DIR__"npc/garrison": 4,
