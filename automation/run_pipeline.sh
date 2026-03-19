@@ -63,7 +63,7 @@ run_task() {
     echo "--- Task: $task_desc ---" >> $LOG_FILE
 
     if claude -p "$(cat $task_path)" \
-        --allowedTools "Read,Write,Edit,Glob,Grep,Bash,WebFetch" \
+        --allowedTools "Read" "Write" "Edit" "Glob" "Grep" "Bash" "WebFetch" \
         --max-turns 40 \
         2>&1 | tee -a $LOG_FILE; then
         success "Task done: $task_desc"
