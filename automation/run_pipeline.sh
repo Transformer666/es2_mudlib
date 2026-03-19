@@ -105,6 +105,39 @@ fi
 END_TIME=$(date +"%Y-%m-%d %H:%M:%S")
 log "All tasks completed."
 
+# Auto-commit and push changes
+log "Checking for changes to commit..."
+
+CHANGED=$(git status --porcelain mudlib/ docs/ | wc -l)
+if [ "$CHANGED" -gt "0" ]; then
+    # Stage only game content and docs
+    git add mudlib/d/ mudlib/daemon/ mudlib/obj/ mudlib/doc/ docs/ 2>/dev/null || true
+
+    STAGED=$(git diff --cached --name-only | wc -l)
+    if [ "$STAGED" -gt "0" ]; then
+        # Generate commit message from completed tasks
+        TASK_LIST=""
+        for task_entry in "${TASKS[@]}"; do
+            task_desc="${task_entry##*:}"
+            TASK_LIST="$TASK_LIST\n- $task_desc"
+        done
+
+        git commit -m "feat: auto-implement content via agent pipeline [$END_TIME]
+
+Tasks completed:
+$(echo -e "$TASK_LIST")
+
+Co-Authored-By: Claude Code Agent <noreply@anthropic.com>"
+
+        git push origin main
+        success "Changes committed and pushed to origin."
+    else
+        warn "No relevant files to commit."
+    fi
+else
+    warn "No changes detected."
+fi
+
 echo ""
 echo "========================================="
 echo "  Pipeline complete!"
