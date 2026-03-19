@@ -16,7 +16,8 @@ LONG
 	set("valid_startroom", 1);
 	set("no_fight", 1);
 	set("exits", ([
-		"south" : __DIR__"entrance",
+		"west" : __DIR__"entrance",
+		"north" : __DIR__"shrine",
 	]));
 
 	setup();

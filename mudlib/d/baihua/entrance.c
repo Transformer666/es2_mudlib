@@ -11,8 +11,13 @@ void create()
 坊兩側攀爬著盛開的薔薇。一條碎石小路穿過村莊，通往村子深處。
 LONG
 	);
+	set("objects", ([
+		__DIR__"npc/stone_lion" : 1,
+	]));
 	set("exits", ([
-		"north" : __DIR__"inn",
+		"north" : __DIR__"road",
+		"south" : __DIR__"street",
+		"east" : __DIR__"inn",
 	]));
 
 	setup();

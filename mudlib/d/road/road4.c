@@ -15,6 +15,7 @@ LONG
 	set("exits", ([
 		"west" : __DIR__"road3",
 		"east" : __DIR__"road5",
+		"south" : "/d/baihua/road",
 	]));
 
 	setup();

@@ -17,6 +17,7 @@ LONG
 	]));
 	set("exits", ([
 		"south" : __DIR__"street2",
+		"north" : "/d/manglin/entrance",
 	]));
 
 	setup();

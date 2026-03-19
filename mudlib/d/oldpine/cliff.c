@@ -1,0 +1,22 @@
+// Room: /d/oldpine/cliff.c
+
+inherit ROOM;
+
+void create()
+{
+	set("short", "斷崖");
+	set("long", @LONG
+一面陡峭的斷崖橫亙在眼前﹐崖下是一條湍急的溪流﹐發出嘩嘩
+的水聲。崖邊生長著幾棵歪斜的松樹﹐根部死死地扒住岩石﹐在山風
+中搖搖欲墜。從這裡可以遠眺四周的山林﹐景色壯麗﹐但腳下卻是萬
+丈深淵﹐令人不寒而慄。
+LONG
+	);
+	set("outdoors", "mountain");
+	set("exits", ([
+		"southwest" : __DIR__"road3",
+	]));
+
+	setup();
+	replace_program(ROOM);
+}

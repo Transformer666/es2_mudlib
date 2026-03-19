@@ -12,7 +12,7 @@ void create()
 LONG
     );
     set("exits", ([
-        "south" : "/d/road/road1",
+        "south" : "/d/road/mountain_road1",
         "north" : __DIR__"path",
     ]));
 

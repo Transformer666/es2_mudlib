@@ -17,6 +17,7 @@ LONG
 	]));
 	set("exits", ([
 		"north" : __DIR__"square_s",
+		"south" : "/d/choyin/choyin_road",
 	]));
 
 	setup();

@@ -17,6 +17,7 @@ LONG
 	]));
 	set("exits", ([
 		"west" : __DIR__"square_e",
+		"east" : "/d/heifeng/road1",
 	]));
 
 	setup();

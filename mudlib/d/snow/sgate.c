@@ -19,7 +19,7 @@ LONG
   set("connect-p", 1);
   set("exits", ([ /* sizeof() == 1 */
 	"north" : __DIR__"sstreet1",
-//	"southeast" : "/d/oldpine/road1",
+	"southeast" : "/d/oldpine/road1",
 //	"west" : "/d/newcamp/gate",
   ]));
 
