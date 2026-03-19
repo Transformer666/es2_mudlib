@@ -62,7 +62,10 @@ run_task() {
     log "Running task: $task_desc"
     echo "--- Task: $task_desc ---" >> $LOG_FILE
 
-    if claude -p "$(cat $task_path)" 2>&1 | tee -a $LOG_FILE; then
+    if claude -p "$(cat $task_path)" \
+        --allowedTools "Read,Write,Edit,Glob,Grep,Bash,WebFetch" \
+        --max-turns 40 \
+        2>&1 | tee -a $LOG_FILE; then
         success "Task done: $task_desc"
     else
         error "Task failed: $task_desc"
