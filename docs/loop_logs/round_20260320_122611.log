@@ -1,0 +1,36 @@
+Round 18 - Fri Mar 20 12:26:11 UTC 2026
+[0;34m[12:26:11][0m Using git remote: origin
+[0;34m[12:26:11][0m Pulling latest changes...
+From github.com:Transformer666/es2_mudlib
+ * branch            main       -> FETCH_HEAD
+Already up to date.
+
+=========================================
+  ES2 Agent Pipeline v2
+  Phase: all
+  Start: 2026-03-20 12:26:11
+=========================================
+
+[0;34m[12:26:14][0m === Phase: Analyze ===
+[0;34m[12:26:14][0m Step: Scan existing content
+Updated timestamp. Here's the scan summary:
+
+**Content Scan Results — `docs/missing_content.json`**
+
+| Category | Required | Implemented | Missing |
+|----------|----------|-------------|---------|
+| Races | 11 | 11 | 0 |
+| Classes | 7 | 9 (+ commoner, fighter) | 0 |
+| Sects | 18 | 18 | 1 (tianyue 天月庵 — area exists but sect daemon missing) |
+| Skills | — | 75 | — |
+| Areas | — | 54 | 22 map locations not built |
+| Rooms | — | 459 | — |
+| NPCs | — | 268 | — |
+| Quests | — | 0 | 15 (雪亭7謎 + 五堂6謎 + 十三靈2) |
+
+**Key gaps:**
+1. **Sect daemon**: `tianyue` (天月庵) — area `d/tianyue/` has 6 rooms & 4 NPCs but no `daemon/sect/tianyue.c`
+2. **Quest system**: Not implemented (0 quests)
+3. **8 stub towns** need expansion: longan, jingji, kangping, sanyen, lee, choyin, baihua, weiguo
+4. **22 map locations** from the official map have no corresponding areas yet
+[0;32m[OK][0m Scan existing content

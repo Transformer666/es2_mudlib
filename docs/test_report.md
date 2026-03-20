@@ -1,0 +1,3570 @@
+# ES2 MUD Static Validation Report
+Run time: Fri Mar 20 16:57:48 UTC 2026
+
+
+## Room Validation
+- PASS: Room inherit: d/xueyin/yard
+- PASS: Room short desc: d/xueyin/yard
+- PASS: Room setup(): d/xueyin/yard
+- PASS: Room inherit: d/xueyin/quarters
+- PASS: Room short desc: d/xueyin/quarters
+- PASS: Room setup(): d/xueyin/quarters
+- PASS: Room inherit: d/xueyin/hall
+- PASS: Room short desc: d/xueyin/hall
+- PASS: Room setup(): d/xueyin/hall
+- PASS: Room inherit: d/xueyin/garden
+- PASS: Room short desc: d/xueyin/garden
+- PASS: Room setup(): d/xueyin/garden
+- PASS: Room inherit: d/xueyin/entrance
+- PASS: Room short desc: d/xueyin/entrance
+- PASS: Room setup(): d/xueyin/entrance
+- PASS: Room inherit: d/xueyin/training
+- PASS: Room short desc: d/xueyin/training
+- PASS: Room setup(): d/xueyin/training
+- PASS: Room inherit: d/temple/inner_sanctum
+- PASS: Room short desc: d/temple/inner_sanctum
+- PASS: Room setup(): d/temple/inner_sanctum
+- PASS: Room inherit: d/temple/outer_hall
+- PASS: Room short desc: d/temple/outer_hall
+- PASS: Room setup(): d/temple/outer_hall
+- PASS: Room inherit: d/temple/main_hall
+- PASS: Room short desc: d/temple/main_hall
+- PASS: Room setup(): d/temple/main_hall
+- PASS: Room inherit: d/temple/garden
+- PASS: Room short desc: d/temple/garden
+- PASS: Room setup(): d/temple/garden
+- PASS: Room inherit: d/temple/entrance
+- PASS: Room short desc: d/temple/entrance
+- PASS: Room setup(): d/temple/entrance
+- PASS: Room inherit: d/temple/bell_tower
+- PASS: Room short desc: d/temple/bell_tower
+- PASS: Room setup(): d/temple/bell_tower
+- PASS: Room inherit: d/longan/market
+- PASS: Room short desc: d/longan/market
+- PASS: Room setup(): d/longan/market
+- PASS: Room inherit: d/longan/back_street
+- PASS: Room short desc: d/longan/back_street
+- PASS: Room setup(): d/longan/back_street
+- PASS: Room inherit: d/longan/square
+- PASS: Room short desc: d/longan/square
+- PASS: Room setup(): d/longan/square
+- PASS: Room inherit: d/longan/smithy
+- PASS: Room short desc: d/longan/smithy
+- PASS: Room setup(): d/longan/smithy
+- PASS: Room inherit: d/longan/weapon_shop
+- PASS: Room short desc: d/longan/weapon_shop
+- PASS: Room setup(): d/longan/weapon_shop
+- PASS: Room inherit: d/longan/teahouse
+- PASS: Room short desc: d/longan/teahouse
+- PASS: Room setup(): d/longan/teahouse
+- PASS: Room inherit: d/longan/lake_cave
+- PASS: Room short desc: d/longan/lake_cave
+- PASS: Room setup(): d/longan/lake_cave
+- PASS: Room inherit: d/longan/inn
+- PASS: Room short desc: d/longan/inn
+- PASS: Room setup(): d/longan/inn
+- PASS: Room inherit: d/longan/street
+- PASS: Room short desc: d/longan/street
+- PASS: Room setup(): d/longan/street
+- PASS: Room inherit: d/longan/garden
+- PASS: Room short desc: d/longan/garden
+- PASS: Room setup(): d/longan/garden
+- PASS: Room inherit: d/longan/alley
+- PASS: Room short desc: d/longan/alley
+- PASS: Room setup(): d/longan/alley
+- FAIL: Room inherit missing: d/longan/temple
+- PASS: Room short desc: d/longan/temple
+- PASS: Room setup(): d/longan/temple
+- PASS: Room inherit: d/longan/entrance
+- PASS: Room short desc: d/longan/entrance
+- PASS: Room setup(): d/longan/entrance
+- PASS: Room inherit: d/longttu/storehouse
+- PASS: Room short desc: d/longttu/storehouse
+- PASS: Room setup(): d/longttu/storehouse
+- PASS: Room inherit: d/longttu/quarters
+- PASS: Room short desc: d/longttu/quarters
+- PASS: Room setup(): d/longttu/quarters
+- PASS: Room inherit: d/longttu/garden
+- PASS: Room short desc: d/longttu/garden
+- PASS: Room setup(): d/longttu/garden
+- PASS: Room inherit: d/longttu/entrance
+- PASS: Room short desc: d/longttu/entrance
+- PASS: Room setup(): d/longttu/entrance
+- PASS: Room inherit: d/longttu/study
+- PASS: Room short desc: d/longttu/study
+- PASS: Room setup(): d/longttu/study
+- PASS: Room inherit: d/longttu/lab
+- PASS: Room short desc: d/longttu/lab
+- PASS: Room setup(): d/longttu/lab
+- PASS: Room inherit: d/yinjiao/quarters
+- PASS: Room short desc: d/yinjiao/quarters
+- PASS: Room setup(): d/yinjiao/quarters
+- PASS: Room inherit: d/yinjiao/hall
+- PASS: Room short desc: d/yinjiao/hall
+- PASS: Room setup(): d/yinjiao/hall
+- PASS: Room inherit: d/yinjiao/cell
+- PASS: Room short desc: d/yinjiao/cell
+- PASS: Room setup(): d/yinjiao/cell
+- PASS: Room inherit: d/yinjiao/gate
+- PASS: Room short desc: d/yinjiao/gate
+- PASS: Room setup(): d/yinjiao/gate
+- PASS: Room inherit: d/yinjiao/secret_passage
+- PASS: Room short desc: d/yinjiao/secret_passage
+- PASS: Room setup(): d/yinjiao/secret_passage
+- PASS: Room inherit: d/yinjiao/training
+- PASS: Room short desc: d/yinjiao/training
+- PASS: Room setup(): d/yinjiao/training
+- PASS: Room inherit: d/wutang/wushan_path2
+- PASS: Room short desc: d/wutang/wushan_path2
+- PASS: Room setup(): d/wutang/wushan_path2
+- PASS: Room inherit: d/wutang/inn_hall
+- PASS: Room short desc: d/wutang/inn_hall
+- PASS: Room setup(): d/wutang/inn_hall
+- PASS: Room inherit: d/wutang/wgate
+- PASS: Room short desc: d/wutang/wgate
+- PASS: Room setup(): d/wutang/wgate
+- PASS: Room inherit: d/wutang/egate
+- PASS: Room short desc: d/wutang/egate
+- PASS: Room setup(): d/wutang/egate
+- PASS: Room inherit: d/wutang/court
+- PASS: Room short desc: d/wutang/court
+- PASS: Room setup(): d/wutang/court
+- PASS: Room inherit: d/wutang/lane1
+- PASS: Room short desc: d/wutang/lane1
+- PASS: Room setup(): d/wutang/lane1
+- FAIL: Room inherit missing: d/wutang/ferry
+- PASS: Room short desc: d/wutang/ferry
+- PASS: Room setup(): d/wutang/ferry
+- PASS: Room inherit: d/wutang/street1
+- PASS: Room short desc: d/wutang/street1
+- PASS: Room setup(): d/wutang/street1
+- PASS: Room inherit: d/wutang/store
+- PASS: Room short desc: d/wutang/store
+- PASS: Room setup(): d/wutang/store
+- FAIL: Room inherit missing: d/wutang/ferry_back
+- PASS: Room short desc: d/wutang/ferry_back
+- PASS: Room setup(): d/wutang/ferry_back
+- PASS: Room inherit: d/wutang/square_e
+- PASS: Room short desc: d/wutang/square_e
+- PASS: Room setup(): d/wutang/square_e
+- PASS: Room inherit: d/wutang/square
+- PASS: Room short desc: d/wutang/square
+- PASS: Room setup(): d/wutang/square
+- PASS: Room inherit: d/wutang/street2
+- PASS: Room short desc: d/wutang/street2
+- PASS: Room setup(): d/wutang/street2
+- PASS: Room inherit: d/wutang/herb_shop
+- PASS: Room short desc: d/wutang/herb_shop
+- PASS: Room setup(): d/wutang/herb_shop
+- PASS: Room inherit: d/wutang/smithy
+- PASS: Room short desc: d/wutang/smithy
+- PASS: Room setup(): d/wutang/smithy
+- PASS: Room inherit: d/wutang/wushan_cave
+- PASS: Room short desc: d/wutang/wushan_cave
+- PASS: Room setup(): d/wutang/wushan_cave
+- PASS: Room inherit: d/wutang/wushan_path1
+- PASS: Room short desc: d/wutang/wushan_path1
+- PASS: Room setup(): d/wutang/wushan_path1
+- PASS: Room inherit: d/wutang/lane2
+- PASS: Room short desc: d/wutang/lane2
+- PASS: Room setup(): d/wutang/lane2
+- PASS: Room inherit: d/wutang/wushan_path3
+- PASS: Room short desc: d/wutang/wushan_path3
+- PASS: Room setup(): d/wutang/wushan_path3
+- PASS: Room inherit: d/wutang/square_n
+- PASS: Room short desc: d/wutang/square_n
+- PASS: Room setup(): d/wutang/square_n
+- PASS: Room inherit: d/wutang/residence
+- PASS: Room short desc: d/wutang/residence
+- PASS: Room setup(): d/wutang/residence
+- PASS: Room inherit: d/wutang/inn_2f
+- PASS: Room short desc: d/wutang/inn_2f
+- PASS: Room setup(): d/wutang/inn_2f
+- PASS: Room inherit: d/wutang/square_w
+- PASS: Room short desc: d/wutang/square_w
+- PASS: Room setup(): d/wutang/square_w
+- PASS: Room inherit: d/wutang/square_s
+- PASS: Room short desc: d/wutang/square_s
+- PASS: Room setup(): d/wutang/square_s
+- FAIL: Room inherit missing: d/wutang/temple
+- PASS: Room short desc: d/wutang/temple
+- PASS: Room setup(): d/wutang/temple
+- PASS: Room inherit: d/wutang/wushan_secret
+- PASS: Room short desc: d/wutang/wushan_secret
+- PASS: Room setup(): d/wutang/wushan_secret
+- PASS: Room inherit: d/wutang/river_bend
+- PASS: Room short desc: d/wutang/river_bend
+- PASS: Room setup(): d/wutang/river_bend
+- PASS: Room inherit: d/wutang/wushan_foot
+- PASS: Room short desc: d/wutang/wushan_foot
+- PASS: Room setup(): d/wutang/wushan_foot
+- PASS: Room inherit: d/wutang/street3
+- PASS: Room short desc: d/wutang/street3
+- PASS: Room setup(): d/wutang/street3
+- PASS: Room inherit: d/wutang/ngate
+- PASS: Room short desc: d/wutang/ngate
+- PASS: Room setup(): d/wutang/ngate
+- PASS: Room inherit: d/wutang/temple_inner
+- PASS: Room short desc: d/wutang/temple_inner
+- PASS: Room setup(): d/wutang/temple_inner
+- PASS: Room inherit: d/wutang/inn_3f
+- PASS: Room short desc: d/wutang/inn_3f
+- PASS: Room setup(): d/wutang/inn_3f
+- PASS: Room inherit: d/wutang/dock
+- PASS: Room short desc: d/wutang/dock
+- PASS: Room setup(): d/wutang/dock
+- PASS: Room inherit: d/wutang/sgate
+- PASS: Room short desc: d/wutang/sgate
+- PASS: Room setup(): d/wutang/sgate
+- PASS: Room inherit: d/lengmei/yard
+- PASS: Room short desc: d/lengmei/yard
+- PASS: Room setup(): d/lengmei/yard
+- PASS: Room inherit: d/lengmei/quarters
+- PASS: Room short desc: d/lengmei/quarters
+- PASS: Room setup(): d/lengmei/quarters
+- PASS: Room inherit: d/lengmei/hall
+- PASS: Room short desc: d/lengmei/hall
+- PASS: Room setup(): d/lengmei/hall
+- PASS: Room inherit: d/lengmei/road
+- PASS: Room short desc: d/lengmei/road
+- PASS: Room setup(): d/lengmei/road
+- PASS: Room inherit: d/lengmei/gate
+- PASS: Room short desc: d/lengmei/gate
+- PASS: Room setup(): d/lengmei/gate
+- PASS: Room inherit: d/lengmei/plum_garden
+- PASS: Room short desc: d/lengmei/plum_garden
+- PASS: Room setup(): d/lengmei/plum_garden
+- PASS: Room inherit: d/oldpine/road3
+- PASS: Room short desc: d/oldpine/road3
+- PASS: Room setup(): d/oldpine/road3
+- PASS: Room inherit: d/oldpine/road2
+- PASS: Room short desc: d/oldpine/road2
+- PASS: Room setup(): d/oldpine/road2
+- PASS: Room inherit: d/oldpine/cliff
+- PASS: Room short desc: d/oldpine/cliff
+- PASS: Room setup(): d/oldpine/cliff
+- PASS: Room inherit: d/oldpine/cave_inner
+- PASS: Room short desc: d/oldpine/cave_inner
+- PASS: Room setup(): d/oldpine/cave_inner
+- PASS: Room inherit: d/oldpine/road1
+- PASS: Room short desc: d/oldpine/road1
+- PASS: Room setup(): d/oldpine/road1
+- PASS: Room inherit: d/oldpine/camp
+- PASS: Room short desc: d/oldpine/camp
+- PASS: Room setup(): d/oldpine/camp
+- PASS: Room inherit: d/oldpine/road4
+- PASS: Room short desc: d/oldpine/road4
+- PASS: Room setup(): d/oldpine/road4
+- PASS: Room inherit: d/oldpine/cave
+- PASS: Room short desc: d/oldpine/cave
+- PASS: Room setup(): d/oldpine/cave
+- PASS: Room inherit: d/fengshan/library
+- PASS: Room short desc: d/fengshan/library
+- PASS: Room setup(): d/fengshan/library
+- PASS: Room inherit: d/fengshan/kitchen
+- PASS: Room short desc: d/fengshan/kitchen
+- PASS: Room setup(): d/fengshan/kitchen
+- PASS: Room inherit: d/fengshan/quarters
+- PASS: Room short desc: d/fengshan/quarters
+- PASS: Room setup(): d/fengshan/quarters
+- PASS: Room inherit: d/fengshan/main_hall
+- PASS: Room short desc: d/fengshan/main_hall
+- PASS: Room setup(): d/fengshan/main_hall
+- PASS: Room inherit: d/fengshan/cliff
+- PASS: Room short desc: d/fengshan/cliff
+- PASS: Room setup(): d/fengshan/cliff
+- PASS: Room inherit: d/fengshan/gate
+- PASS: Room short desc: d/fengshan/gate
+- PASS: Room setup(): d/fengshan/gate
+- PASS: Room inherit: d/fengshan/path
+- PASS: Room short desc: d/fengshan/path
+- PASS: Room setup(): d/fengshan/path
+- PASS: Room inherit: d/fengshan/sword_arena
+- PASS: Room short desc: d/fengshan/sword_arena
+- PASS: Room setup(): d/fengshan/sword_arena
+- PASS: Room inherit: d/fengshan/waterfall
+- PASS: Room short desc: d/fengshan/waterfall
+- PASS: Room setup(): d/fengshan/waterfall
+- PASS: Room inherit: d/jail/guard_room
+- PASS: Room short desc: d/jail/guard_room
+- PASS: Room setup(): d/jail/guard_room
+- PASS: Room inherit: d/jail/corridor
+- PASS: Room short desc: d/jail/corridor
+- PASS: Room setup(): d/jail/corridor
+- PASS: Room inherit: d/jail/entrance
+- PASS: Room short desc: d/jail/entrance
+- PASS: Room setup(): d/jail/entrance
+- PASS: Room inherit: d/jail/cell1
+- PASS: Room short desc: d/jail/cell1
+- PASS: Room setup(): d/jail/cell1
+- PASS: Room inherit: d/jail/dungeon
+- PASS: Room short desc: d/jail/dungeon
+- PASS: Room setup(): d/jail/dungeon
+- PASS: Room inherit: d/jail/cell2
+- PASS: Room short desc: d/jail/cell2
+- PASS: Room setup(): d/jail/cell2
+- PASS: Room inherit: d/manglin/entrance
+- PASS: Room short desc: d/manglin/entrance
+- PASS: Room setup(): d/manglin/entrance
+- PASS: Room inherit: d/manglin/pond
+- PASS: Room short desc: d/manglin/pond
+- PASS: Room setup(): d/manglin/pond
+- PASS: Room inherit: d/manglin/clearing
+- PASS: Room short desc: d/manglin/clearing
+- PASS: Room setup(): d/manglin/clearing
+- PASS: Room inherit: d/manglin/path1
+- PASS: Room short desc: d/manglin/path1
+- PASS: Room setup(): d/manglin/path1
+- PASS: Room inherit: d/manglin/path2
+- PASS: Room short desc: d/manglin/path2
+- PASS: Room setup(): d/manglin/path2
+- PASS: Room inherit: d/manglin/path3
+- PASS: Room short desc: d/manglin/path3
+- PASS: Room setup(): d/manglin/path3
+- PASS: Room inherit: d/tianxie/back_hall
+- PASS: Room short desc: d/tianxie/back_hall
+- PASS: Room setup(): d/tianxie/back_hall
+- PASS: Room inherit: d/tianxie/yard
+- PASS: Room short desc: d/tianxie/yard
+- PASS: Room setup(): d/tianxie/yard
+- PASS: Room inherit: d/tianxie/quarters
+- PASS: Room short desc: d/tianxie/quarters
+- PASS: Room setup(): d/tianxie/quarters
+- PASS: Room inherit: d/tianxie/hall
+- PASS: Room short desc: d/tianxie/hall
+- PASS: Room setup(): d/tianxie/hall
+- PASS: Room inherit: d/tianxie/hidden_path
+- PASS: Room short desc: d/tianxie/hidden_path
+- PASS: Room setup(): d/tianxie/hidden_path
+- PASS: Room inherit: d/tianxie/gate
+- PASS: Room short desc: d/tianxie/gate
+- PASS: Room setup(): d/tianxie/gate
+- PASS: Room inherit: d/tianxie/training
+- PASS: Room short desc: d/tianxie/training
+- PASS: Room setup(): d/tianxie/training
+- PASS: Room inherit: d/buxuan/quarters
+- PASS: Room short desc: d/buxuan/quarters
+- PASS: Room setup(): d/buxuan/quarters
+- PASS: Room inherit: d/buxuan/hall
+- PASS: Room short desc: d/buxuan/hall
+- PASS: Room setup(): d/buxuan/hall
+- PASS: Room inherit: d/buxuan/garden
+- PASS: Room short desc: d/buxuan/garden
+- PASS: Room setup(): d/buxuan/garden
+- PASS: Room inherit: d/buxuan/entrance
+- PASS: Room short desc: d/buxuan/entrance
+- PASS: Room setup(): d/buxuan/entrance
+- PASS: Room inherit: d/buxuan/study
+- PASS: Room short desc: d/buxuan/study
+- PASS: Room setup(): d/buxuan/study
+- PASS: Room inherit: d/buxuan/training
+- PASS: Room short desc: d/buxuan/training
+- PASS: Room setup(): d/buxuan/training
+- PASS: Room inherit: d/lee/back_street
+- PASS: Room short desc: d/lee/back_street
+- PASS: Room setup(): d/lee/back_street
+- PASS: Room inherit: d/lee/farm
+- PASS: Room short desc: d/lee/farm
+- PASS: Room setup(): d/lee/farm
+- PASS: Room inherit: d/lee/inn
+- PASS: Room short desc: d/lee/inn
+- PASS: Room setup(): d/lee/inn
+- PASS: Room inherit: d/lee/street
+- PASS: Room short desc: d/lee/street
+- PASS: Room setup(): d/lee/street
+- PASS: Room inherit: d/lee/r1
+- PASS: Room short desc: d/lee/r1
+- PASS: Room setup(): d/lee/r1
+- PASS: Room inherit: d/lee/r2
+- PASS: Room short desc: d/lee/r2
+- PASS: Room setup(): d/lee/r2
+- FAIL: Room inherit missing: d/lee/ancestral_hall
+- PASS: Room short desc: d/lee/ancestral_hall
+- PASS: Room setup(): d/lee/ancestral_hall
+- PASS: Room inherit: d/sanyen/market
+- PASS: Room short desc: d/sanyen/market
+- PASS: Room setup(): d/sanyen/market
+- PASS: Room inherit: d/sanyen/pillar
+- PASS: Room short desc: d/sanyen/pillar
+- PASS: Room setup(): d/sanyen/pillar
+- PASS: Room inherit: d/sanyen/weapon_shop
+- PASS: Room short desc: d/sanyen/weapon_shop
+- PASS: Room setup(): d/sanyen/weapon_shop
+- PASS: Room inherit: d/sanyen/inner_temple
+- PASS: Room short desc: d/sanyen/inner_temple
+- PASS: Room setup(): d/sanyen/inner_temple
+- PASS: Room inherit: d/sanyen/inn
+- PASS: Room short desc: d/sanyen/inn
+- PASS: Room setup(): d/sanyen/inn
+- PASS: Room inherit: d/sanyen/street
+- PASS: Room short desc: d/sanyen/street
+- PASS: Room setup(): d/sanyen/street
+- FAIL: Room inherit missing: d/sanyen/temple
+- PASS: Room short desc: d/sanyen/temple
+- PASS: Room setup(): d/sanyen/temple
+- PASS: Room inherit: d/sanyen/entrance
+- PASS: Room short desc: d/sanyen/entrance
+- PASS: Room setup(): d/sanyen/entrance
+- PASS: Room inherit: d/sanyen/back_alley
+- PASS: Room short desc: d/sanyen/back_alley
+- PASS: Room setup(): d/sanyen/back_alley
+- PASS: Room inherit: d/jianjia/quarters
+- PASS: Room short desc: d/jianjia/quarters
+- PASS: Room setup(): d/jianjia/quarters
+- PASS: Room inherit: d/jianjia/hall
+- PASS: Room short desc: d/jianjia/hall
+- PASS: Room setup(): d/jianjia/hall
+- PASS: Room inherit: d/jianjia/entrance
+- PASS: Room short desc: d/jianjia/entrance
+- PASS: Room setup(): d/jianjia/entrance
+- PASS: Room inherit: d/jianjia/forge
+- PASS: Room short desc: d/jianjia/forge
+- PASS: Room setup(): d/jianjia/forge
+- PASS: Room inherit: d/jianjia/training
+- PASS: Room short desc: d/jianjia/training
+- PASS: Room setup(): d/jianjia/training
+- PASS: Room inherit: d/ice/glacier
+- PASS: Room short desc: d/ice/glacier
+- PASS: Room setup(): d/ice/glacier
+- PASS: Room inherit: d/ice/entrance
+- PASS: Room short desc: d/ice/entrance
+- PASS: Room setup(): d/ice/entrance
+- PASS: Room inherit: d/ice/frozen_lake
+- PASS: Room short desc: d/ice/frozen_lake
+- PASS: Room setup(): d/ice/frozen_lake
+- PASS: Room inherit: d/ice/ice_cave
+- PASS: Room short desc: d/ice/ice_cave
+- PASS: Room setup(): d/ice/ice_cave
+- PASS: Room inherit: d/ice/ice_field
+- PASS: Room short desc: d/ice/ice_field
+- PASS: Room setup(): d/ice/ice_field
+- PASS: Room inherit: d/ice/summit
+- PASS: Room short desc: d/ice/summit
+- PASS: Room setup(): d/ice/summit
+- PASS: Room inherit: d/baiyao/herb_garden
+- PASS: Room short desc: d/baiyao/herb_garden
+- PASS: Room setup(): d/baiyao/herb_garden
+- PASS: Room inherit: d/baiyao/deep_cave
+- PASS: Room short desc: d/baiyao/deep_cave
+- PASS: Room setup(): d/baiyao/deep_cave
+- PASS: Room inherit: d/baiyao/stone_cave
+- PASS: Room short desc: d/baiyao/stone_cave
+- PASS: Room setup(): d/baiyao/stone_cave
+- PASS: Room inherit: d/baiyao/entrance
+- PASS: Room short desc: d/baiyao/entrance
+- PASS: Room setup(): d/baiyao/entrance
+- PASS: Room inherit: d/baiyao/valley_path
+- PASS: Room short desc: d/baiyao/valley_path
+- PASS: Room setup(): d/baiyao/valley_path
+- PASS: Room inherit: d/baiyao/waterfall
+- PASS: Room short desc: d/baiyao/waterfall
+- PASS: Room setup(): d/baiyao/waterfall
+- PASS: Room inherit: d/snow/inn_hall
+- PASS: Room short desc: d/snow/inn_hall
+- PASS: Room setup(): d/snow/inn_hall
+- PASS: Room inherit: d/snow/wgate
+- PASS: Room short desc: d/snow/wgate
+- PASS: Room setup(): d/snow/wgate
+- PASS: Room inherit: d/snow/egate
+- PASS: Room short desc: d/snow/egate
+- PASS: Room setup(): d/snow/egate
+- PASS: Room inherit: d/snow/river1
+- PASS: Room short desc: d/snow/river1
+- PASS: Room setup(): d/snow/river1
+- PASS: Room inherit: d/snow/court
+- PASS: Room short desc: d/snow/court
+- PASS: Room setup(): d/snow/court
+- PASS: Room inherit: d/snow/lane1
+- PASS: Room short desc: d/snow/lane1
+- PASS: Room setup(): d/snow/lane1
+- PASS: Room inherit: d/snow/npath1
+- PASS: Room short desc: d/snow/npath1
+- PASS: Room setup(): d/snow/npath1
+- PASS: Room inherit: d/snow/nstreet1
+- PASS: Room short desc: d/snow/nstreet1
+- PASS: Room setup(): d/snow/nstreet1
+- PASS: Room inherit: d/snow/kitchen
+- PASS: Room short desc: d/snow/kitchen
+- PASS: Room setup(): d/snow/kitchen
+- PASS: Room inherit: d/snow/school
+- PASS: Room short desc: d/snow/school
+- PASS: Room setup(): d/snow/school
+- PASS: Room inherit: d/snow/npath3
+- PASS: Room short desc: d/snow/npath3
+- PASS: Room setup(): d/snow/npath3
+- PASS: Room inherit: d/snow/store
+- PASS: Room short desc: d/snow/store
+- PASS: Room setup(): d/snow/store
+- PASS: Room inherit: d/snow/square_sw
+- PASS: Room short desc: d/snow/square_sw
+- PASS: Room setup(): d/snow/square_sw
+- PASS: Room inherit: d/snow/square_e
+- PASS: Room short desc: d/snow/square_e
+- PASS: Room setup(): d/snow/square_e
+- PASS: Room inherit: d/snow/square
+- PASS: Room short desc: d/snow/square
+- PASS: Room setup(): d/snow/square
+- PASS: Room inherit: d/snow/manor_hall
+- PASS: Room short desc: d/snow/manor_hall
+- PASS: Room setup(): d/snow/manor_hall
+- PASS: Room inherit: d/snow/mill
+- PASS: Room short desc: d/snow/mill
+- PASS: Room setup(): d/snow/mill
+- PASS: Room inherit: d/snow/herb_shop
+- PASS: Room short desc: d/snow/herb_shop
+- PASS: Room setup(): d/snow/herb_shop
+- PASS: Room inherit: d/snow/smithy
+- PASS: Room short desc: d/snow/smithy
+- PASS: Room setup(): d/snow/smithy
+- PASS: Room inherit: d/snow/wstreet1
+- PASS: Room short desc: d/snow/wstreet1
+- PASS: Room setup(): d/snow/wstreet1
+- PASS: Room inherit: d/snow/bug_room
+- PASS: Room short desc: d/snow/bug_room
+- PASS: Room setup(): d/snow/bug_room
+- PASS: Room inherit: d/snow/manor_cellar
+- PASS: Room short desc: d/snow/manor_cellar
+- PASS: Room setup(): d/snow/manor_cellar
+- PASS: Room inherit: d/snow/ebridge
+- PASS: Room short desc: d/snow/ebridge
+- PASS: Room setup(): d/snow/ebridge
+- PASS: Room inherit: d/snow/post_office
+- PASS: Room short desc: d/snow/post_office
+- PASS: Room setup(): d/snow/post_office
+- PASS: Room inherit: d/snow/lane2
+- PASS: Room short desc: d/snow/lane2
+- PASS: Room setup(): d/snow/lane2
+- PASS: Room inherit: d/snow/ruin1
+- PASS: Room short desc: d/snow/ruin1
+- PASS: Room setup(): d/snow/ruin1
+- PASS: Room inherit: d/snow/square_n
+- PASS: Room short desc: d/snow/square_n
+- PASS: Room setup(): d/snow/square_n
+- PASS: Room inherit: d/snow/warehouse
+- PASS: Room short desc: d/snow/warehouse
+- PASS: Room setup(): d/snow/warehouse
+- FAIL: Room inherit missing: d/snow/bazar
+- PASS: Room short desc: d/snow/bazar
+- PASS: Room setup(): d/snow/bazar
+- PASS: Room inherit: d/snow/epath
+- PASS: Room short desc: d/snow/epath
+- PASS: Room setup(): d/snow/epath
+- PASS: Room inherit: d/snow/square_w
+- PASS: Room short desc: d/snow/square_w
+- PASS: Room setup(): d/snow/square_w
+- PASS: Room inherit: d/snow/wstreet2
+- PASS: Room short desc: d/snow/wstreet2
+- PASS: Room setup(): d/snow/wstreet2
+- PASS: Room inherit: d/snow/square_s
+- PASS: Room short desc: d/snow/square_s
+- PASS: Room setup(): d/snow/square_s
+- PASS: Room inherit: d/snow/dilapidated_manor
+- PASS: Room short desc: d/snow/dilapidated_manor
+- PASS: Room setup(): d/snow/dilapidated_manor
+- PASS: Room inherit: d/snow/sstreet1
+- PASS: Room short desc: d/snow/sstreet1
+- PASS: Room setup(): d/snow/sstreet1
+- PASS: Room inherit: d/snow/ruin2
+- PASS: Room short desc: d/snow/ruin2
+- PASS: Room setup(): d/snow/ruin2
+- PASS: Room inherit: d/snow/nstreet2
+- PASS: Room short desc: d/snow/nstreet2
+- PASS: Room setup(): d/snow/nstreet2
+- PASS: Room inherit: d/snow/old_house
+- PASS: Room short desc: d/snow/old_house
+- PASS: Room setup(): d/snow/old_house
+- PASS: Room inherit: d/snow/fireplace
+- PASS: Room short desc: d/snow/fireplace
+- PASS: Room setup(): d/snow/fireplace
+- PASS: Room inherit: d/snow/ngate
+- PASS: Room short desc: d/snow/ngate
+- PASS: Room setup(): d/snow/ngate
+- PASS: Room inherit: d/snow/military_camp
+- PASS: Room short desc: d/snow/military_camp
+- PASS: Room setup(): d/snow/military_camp
+- PASS: Room inherit: d/snow/inn_kitchen
+- PASS: Room short desc: d/snow/inn_kitchen
+- PASS: Room setup(): d/snow/inn_kitchen
+- PASS: Room inherit: d/snow/tree
+- PASS: Room short desc: d/snow/tree
+- PASS: Room setup(): d/snow/tree
+- PASS: Room inherit: d/snow/npath2
+- PASS: Room short desc: d/snow/npath2
+- PASS: Room setup(): d/snow/npath2
+- PASS: Room inherit: d/snow/riverbank
+- PASS: Room short desc: d/snow/riverbank
+- PASS: Room setup(): d/snow/riverbank
+- FAIL: Room inherit missing: d/snow/small_temple
+- PASS: Room short desc: d/snow/small_temple
+- PASS: Room setup(): d/snow/small_temple
+- PASS: Room inherit: d/snow/sgate
+- PASS: Room short desc: d/snow/sgate
+- PASS: Room setup(): d/snow/sgate
+- PASS: Room inherit: d/snow/wstreet3
+- PASS: Room short desc: d/snow/wstreet3
+- PASS: Room setup(): d/snow/wstreet3
+- PASS: Room inherit: d/lijun/market
+- PASS: Room short desc: d/lijun/market
+- PASS: Room setup(): d/lijun/market
+- PASS: Room inherit: d/lijun/teahouse_2f
+- PASS: Room short desc: d/lijun/teahouse_2f
+- PASS: Room setup(): d/lijun/teahouse_2f
+- PASS: Room inherit: d/lijun/riverside_w
+- PASS: Room short desc: d/lijun/riverside_w
+- PASS: Room setup(): d/lijun/riverside_w
+- FAIL: Room inherit missing: d/lijun/ferry
+- PASS: Room short desc: d/lijun/ferry
+- PASS: Room setup(): d/lijun/ferry
+- FAIL: Room inherit missing: d/lijun/ferry_back
+- PASS: Room short desc: d/lijun/ferry_back
+- PASS: Room setup(): d/lijun/ferry_back
+- PASS: Room inherit: d/lijun/teahouse
+- PASS: Room short desc: d/lijun/teahouse
+- PASS: Room setup(): d/lijun/teahouse
+- PASS: Room inherit: d/lijun/street
+- PASS: Room short desc: d/lijun/street
+- PASS: Room setup(): d/lijun/street
+- PASS: Room inherit: d/lijun/entrance
+- PASS: Room short desc: d/lijun/entrance
+- PASS: Room setup(): d/lijun/entrance
+- PASS: Room inherit: d/lijun/riverbank
+- PASS: Room short desc: d/lijun/riverbank
+- PASS: Room setup(): d/lijun/riverbank
+- PASS: Room inherit: d/lijun/dock
+- PASS: Room short desc: d/lijun/dock
+- PASS: Room setup(): d/lijun/dock
+- PASS: Room inherit: d/lijun/riverside_e
+- PASS: Room short desc: d/lijun/riverside_e
+- PASS: Room setup(): d/lijun/riverside_e
+- PASS: Room inherit: d/lijun/ferry_south
+- PASS: Room short desc: d/lijun/ferry_south
+- PASS: Room setup(): d/lijun/ferry_south
+- PASS: Room inherit: d/green/hill
+- PASS: Room short desc: d/green/hill
+- PASS: Room setup(): d/green/hill
+- PASS: Room inherit: d/green/grassland_n
+- PASS: Room short desc: d/green/grassland_n
+- PASS: Room setup(): d/green/grassland_n
+- PASS: Room inherit: d/green/entrance
+- PASS: Room short desc: d/green/entrance
+- PASS: Room setup(): d/green/entrance
+- PASS: Room inherit: d/green/pond
+- PASS: Room short desc: d/green/pond
+- PASS: Room setup(): d/green/pond
+- PASS: Room inherit: d/green/stream
+- PASS: Room short desc: d/green/stream
+- PASS: Room setup(): d/green/stream
+- PASS: Room inherit: d/green/campsite
+- PASS: Room short desc: d/green/campsite
+- PASS: Room setup(): d/green/campsite
+- PASS: Room inherit: d/green/grassland_s
+- PASS: Room short desc: d/green/grassland_s
+- PASS: Room setup(): d/green/grassland_s
+- PASS: Room inherit: d/weiguo/stable
+- PASS: Room short desc: d/weiguo/stable
+- PASS: Room setup(): d/weiguo/stable
+- PASS: Room inherit: d/weiguo/back_street
+- PASS: Room short desc: d/weiguo/back_street
+- PASS: Room setup(): d/weiguo/back_street
+- PASS: Room inherit: d/weiguo/barracks
+- PASS: Room short desc: d/weiguo/barracks
+- PASS: Room setup(): d/weiguo/barracks
+- PASS: Room inherit: d/weiguo/square
+- PASS: Room short desc: d/weiguo/square
+- PASS: Room setup(): d/weiguo/square
+- PASS: Room inherit: d/weiguo/smithy
+- PASS: Room short desc: d/weiguo/smithy
+- PASS: Room setup(): d/weiguo/smithy
+- PASS: Room inherit: d/weiguo/inn
+- PASS: Room short desc: d/weiguo/inn
+- PASS: Room setup(): d/weiguo/inn
+- PASS: Room inherit: d/weiguo/street
+- PASS: Room short desc: d/weiguo/street
+- PASS: Room setup(): d/weiguo/street
+- PASS: Room inherit: d/weiguo/watchtower
+- PASS: Room short desc: d/weiguo/watchtower
+- PASS: Room setup(): d/weiguo/watchtower
+- PASS: Room inherit: d/weiguo/armory
+- PASS: Room short desc: d/weiguo/armory
+- PASS: Room setup(): d/weiguo/armory
+- FAIL: Room inherit missing: d/weiguo/temple
+- PASS: Room short desc: d/weiguo/temple
+- PASS: Room setup(): d/weiguo/temple
+- PASS: Room inherit: d/weiguo/entrance
+- PASS: Room short desc: d/weiguo/entrance
+- PASS: Room setup(): d/weiguo/entrance
+- PASS: Room inherit: d/tianshi/courtyard
+- PASS: Room short desc: d/tianshi/courtyard
+- PASS: Room setup(): d/tianshi/courtyard
+- PASS: Room inherit: d/tianshi/quarters
+- PASS: Room short desc: d/tianshi/quarters
+- PASS: Room setup(): d/tianshi/quarters
+- PASS: Room inherit: d/tianshi/hall
+- PASS: Room short desc: d/tianshi/hall
+- PASS: Room setup(): d/tianshi/hall
+- PASS: Room inherit: d/tianshi/talisman_room
+- PASS: Room short desc: d/tianshi/talisman_room
+- PASS: Room setup(): d/tianshi/talisman_room
+- PASS: Room inherit: d/tianshi/altar
+- PASS: Room short desc: d/tianshi/altar
+- PASS: Room setup(): d/tianshi/altar
+- PASS: Room inherit: d/tianshi/gate
+- PASS: Room short desc: d/tianshi/gate
+- PASS: Room setup(): d/tianshi/gate
+- PASS: Room inherit: d/tianshi/path
+- PASS: Room short desc: d/tianshi/path
+- PASS: Room setup(): d/tianshi/path
+- PASS: Room inherit: d/baihua/back_street
+- PASS: Room short desc: d/baihua/back_street
+- PASS: Room setup(): d/baihua/back_street
+- PASS: Room inherit: d/baihua/melon_farm
+- PASS: Room short desc: d/baihua/melon_farm
+- PASS: Room setup(): d/baihua/melon_farm
+- PASS: Room inherit: d/baihua/square
+- PASS: Room short desc: d/baihua/square
+- PASS: Room setup(): d/baihua/square
+- PASS: Room inherit: d/baihua/road
+- PASS: Room short desc: d/baihua/road
+- PASS: Room setup(): d/baihua/road
+- PASS: Room inherit: d/baihua/inn
+- PASS: Room short desc: d/baihua/inn
+- PASS: Room setup(): d/baihua/inn
+- FAIL: Room inherit missing: d/baihua/shrine
+- PASS: Room short desc: d/baihua/shrine
+- PASS: Room setup(): d/baihua/shrine
+- PASS: Room inherit: d/baihua/street
+- PASS: Room short desc: d/baihua/street
+- PASS: Room setup(): d/baihua/street
+- PASS: Room inherit: d/baihua/garden
+- PASS: Room short desc: d/baihua/garden
+- PASS: Room setup(): d/baihua/garden
+- PASS: Room inherit: d/baihua/entrance
+- PASS: Room short desc: d/baihua/entrance
+- PASS: Room setup(): d/baihua/entrance
+- PASS: Room inherit: d/baihua/lake
+- PASS: Room short desc: d/baihua/lake
+- PASS: Room setup(): d/baihua/lake
+- PASS: Room inherit: d/road/mountain_road2
+- PASS: Room short desc: d/road/mountain_road2
+- PASS: Room setup(): d/road/mountain_road2
+- PASS: Room inherit: d/road/south_road1
+- PASS: Room short desc: d/road/south_road1
+- PASS: Room setup(): d/road/south_road1
+- PASS: Room inherit: d/road/mountain_road1
+- PASS: Room short desc: d/road/mountain_road1
+- PASS: Room setup(): d/road/mountain_road1
+- PASS: Room inherit: d/road/road3
+- PASS: Room short desc: d/road/road3
+- PASS: Room setup(): d/road/road3
+- PASS: Room inherit: d/road/road2
+- PASS: Room short desc: d/road/road2
+- PASS: Room setup(): d/road/road2
+- PASS: Room inherit: d/road/road1
+- PASS: Room short desc: d/road/road1
+- PASS: Room setup(): d/road/road1
+- PASS: Room inherit: d/road/wild_path2
+- PASS: Room short desc: d/road/wild_path2
+- PASS: Room setup(): d/road/wild_path2
+- PASS: Room inherit: d/road/crossroad
+- PASS: Room short desc: d/road/crossroad
+- PASS: Room setup(): d/road/crossroad
+- PASS: Room inherit: d/road/road4
+- PASS: Room short desc: d/road/road4
+- PASS: Room setup(): d/road/road4
+- PASS: Room inherit: d/road/wild_path1
+- PASS: Room short desc: d/road/wild_path1
+- PASS: Room setup(): d/road/wild_path1
+- PASS: Room inherit: d/road/south_road2
+- PASS: Room short desc: d/road/south_road2
+- PASS: Room setup(): d/road/south_road2
+- PASS: Room inherit: d/road/road5
+- PASS: Room short desc: d/road/road5
+- PASS: Room setup(): d/road/road5
+- PASS: Room inherit: d/goathill/hillside
+- PASS: Room short desc: d/goathill/hillside
+- PASS: Room setup(): d/goathill/hillside
+- PASS: Room inherit: d/goathill/peak
+- PASS: Room short desc: d/goathill/peak
+- PASS: Room setup(): d/goathill/peak
+- PASS: Room inherit: d/goathill/cliff
+- PASS: Room short desc: d/goathill/cliff
+- PASS: Room setup(): d/goathill/cliff
+- PASS: Room inherit: d/goathill/entrance
+- PASS: Room short desc: d/goathill/entrance
+- PASS: Room setup(): d/goathill/entrance
+- PASS: Room inherit: d/goathill/ravine
+- PASS: Room short desc: d/goathill/ravine
+- PASS: Room setup(): d/goathill/ravine
+- PASS: Room inherit: d/goathill/cave
+- PASS: Room short desc: d/goathill/cave
+- PASS: Room setup(): d/goathill/cave
+- PASS: Room inherit: d/village/farm
+- PASS: Room short desc: d/village/farm
+- PASS: Room setup(): d/village/farm
+- PASS: Room inherit: d/village/inn
+- PASS: Room short desc: d/village/inn
+- PASS: Room setup(): d/village/inn
+- PASS: Room inherit: d/village/street
+- PASS: Room short desc: d/village/street
+- PASS: Room setup(): d/village/street
+- PASS: Room inherit: d/village/well
+- PASS: Room short desc: d/village/well
+- PASS: Room setup(): d/village/well
+- FAIL: Room inherit missing: d/village/temple
+- PASS: Room short desc: d/village/temple
+- PASS: Room setup(): d/village/temple
+- PASS: Room inherit: d/village/entrance
+- PASS: Room short desc: d/village/entrance
+- PASS: Room setup(): d/village/entrance
+- PASS: Room inherit: d/hudao/inner_hall
+- PASS: Room short desc: d/hudao/inner_hall
+- PASS: Room setup(): d/hudao/inner_hall
+- PASS: Room inherit: d/hudao/kitchen
+- PASS: Room short desc: d/hudao/kitchen
+- PASS: Room setup(): d/hudao/kitchen
+- PASS: Room inherit: d/hudao/hall
+- PASS: Room short desc: d/hudao/hall
+- PASS: Room setup(): d/hudao/hall
+- PASS: Room inherit: d/hudao/disciple_quarters
+- PASS: Room short desc: d/hudao/disciple_quarters
+- PASS: Room setup(): d/hudao/disciple_quarters
+- PASS: Room inherit: d/hudao/garden
+- PASS: Room short desc: d/hudao/garden
+- PASS: Room setup(): d/hudao/garden
+- PASS: Room inherit: d/hudao/treasury
+- PASS: Room short desc: d/hudao/treasury
+- PASS: Room setup(): d/hudao/treasury
+- PASS: Room inherit: d/hudao/armory
+- PASS: Room short desc: d/hudao/armory
+- PASS: Room setup(): d/hudao/armory
+- PASS: Room inherit: d/hudao/gate
+- PASS: Room short desc: d/hudao/gate
+- PASS: Room setup(): d/hudao/gate
+- PASS: Room inherit: d/hudao/training
+- PASS: Room short desc: d/hudao/training
+- PASS: Room setup(): d/hudao/training
+- PASS: Room inherit: d/heifeng/yard
+- PASS: Room short desc: d/heifeng/yard
+- PASS: Room setup(): d/heifeng/yard
+- PASS: Room inherit: d/heifeng/buddha
+- PASS: Room short desc: d/heifeng/buddha
+- PASS: Room setup(): d/heifeng/buddha
+- PASS: Room inherit: d/heifeng/hall
+- PASS: Room short desc: d/heifeng/hall
+- PASS: Room setup(): d/heifeng/hall
+- PASS: Room inherit: d/heifeng/road2
+- PASS: Room short desc: d/heifeng/road2
+- PASS: Room setup(): d/heifeng/road2
+- PASS: Room inherit: d/heifeng/cell
+- PASS: Room short desc: d/heifeng/cell
+- PASS: Room setup(): d/heifeng/cell
+- PASS: Room inherit: d/heifeng/road1
+- PASS: Room short desc: d/heifeng/road1
+- PASS: Room setup(): d/heifeng/road1
+- PASS: Room inherit: d/heifeng/gate
+- PASS: Room short desc: d/heifeng/gate
+- PASS: Room setup(): d/heifeng/gate
+- PASS: Room inherit: d/graveyard/grave1
+- PASS: Room short desc: d/graveyard/grave1
+- PASS: Room setup(): d/graveyard/grave1
+- PASS: Room inherit: d/graveyard/tomb_inner
+- PASS: Room short desc: d/graveyard/tomb_inner
+- PASS: Room setup(): d/graveyard/tomb_inner
+- PASS: Room inherit: d/graveyard/tomb
+- PASS: Room short desc: d/graveyard/tomb
+- PASS: Room setup(): d/graveyard/tomb
+- PASS: Room inherit: d/graveyard/grave2
+- PASS: Room short desc: d/graveyard/grave2
+- PASS: Room setup(): d/graveyard/grave2
+- PASS: Room inherit: d/graveyard/shrine
+- PASS: Room short desc: d/graveyard/shrine
+- PASS: Room setup(): d/graveyard/shrine
+- PASS: Room inherit: d/graveyard/grave3
+- PASS: Room short desc: d/graveyard/grave3
+- PASS: Room setup(): d/graveyard/grave3
+- PASS: Room inherit: d/baolian/courtyard
+- PASS: Room short desc: d/baolian/courtyard
+- PASS: Room setup(): d/baolian/courtyard
+- PASS: Room inherit: d/baolian/quarters
+- PASS: Room short desc: d/baolian/quarters
+- PASS: Room setup(): d/baolian/quarters
+- PASS: Room inherit: d/baolian/mountain_path
+- PASS: Room short desc: d/baolian/mountain_path
+- PASS: Room setup(): d/baolian/mountain_path
+- PASS: Room inherit: d/baolian/hall
+- PASS: Room short desc: d/baolian/hall
+- PASS: Room setup(): d/baolian/hall
+- PASS: Room inherit: d/baolian/meditation
+- PASS: Room short desc: d/baolian/meditation
+- PASS: Room setup(): d/baolian/meditation
+- PASS: Room inherit: d/baolian/gate
+- PASS: Room short desc: d/baolian/gate
+- PASS: Room setup(): d/baolian/gate
+- PASS: Room inherit: d/maoshan/yinfeng
+- PASS: Room short desc: d/maoshan/yinfeng
+- PASS: Room setup(): d/maoshan/yinfeng
+- PASS: Room inherit: d/maoshan/huanwu
+- PASS: Room short desc: d/maoshan/huanwu
+- PASS: Room setup(): d/maoshan/huanwu
+- PASS: Room inherit: d/maoshan/altar
+- PASS: Room short desc: d/maoshan/altar
+- PASS: Room setup(): d/maoshan/altar
+- PASS: Room inherit: d/maoshan/gate
+- PASS: Room short desc: d/maoshan/gate
+- PASS: Room setup(): d/maoshan/gate
+- PASS: Room inherit: d/maoshan/lingyun
+- PASS: Room short desc: d/maoshan/lingyun
+- PASS: Room setup(): d/maoshan/lingyun
+- PASS: Room inherit: d/jingji/market
+- PASS: Room short desc: d/jingji/market
+- PASS: Room setup(): d/jingji/market
+- PASS: Room inherit: d/jingji/library
+- PASS: Room short desc: d/jingji/library
+- PASS: Room setup(): d/jingji/library
+- PASS: Room inherit: d/jingji/square
+- PASS: Room short desc: d/jingji/square
+- PASS: Room setup(): d/jingji/square
+- PASS: Room inherit: d/jingji/weapon_shop
+- PASS: Room short desc: d/jingji/weapon_shop
+- PASS: Room setup(): d/jingji/weapon_shop
+- FAIL: Room inherit missing: d/jingji/bank
+- PASS: Room short desc: d/jingji/bank
+- PASS: Room setup(): d/jingji/bank
+- PASS: Room inherit: d/jingji/inn
+- PASS: Room short desc: d/jingji/inn
+- PASS: Room setup(): d/jingji/inn
+- PASS: Room inherit: d/jingji/street
+- PASS: Room short desc: d/jingji/street
+- PASS: Room setup(): d/jingji/street
+- PASS: Room inherit: d/jingji/garden
+- PASS: Room short desc: d/jingji/garden
+- PASS: Room setup(): d/jingji/garden
+- PASS: Room inherit: d/jingji/yamen
+- PASS: Room short desc: d/jingji/yamen
+- PASS: Room setup(): d/jingji/yamen
+- FAIL: Room inherit missing: d/jingji/temple
+- PASS: Room short desc: d/jingji/temple
+- PASS: Room setup(): d/jingji/temple
+- PASS: Room inherit: d/jingji/entrance
+- PASS: Room short desc: d/jingji/entrance
+- PASS: Room setup(): d/jingji/entrance
+- PASS: Room inherit: d/jingji/back_alley
+- PASS: Room short desc: d/jingji/back_alley
+- PASS: Room setup(): d/jingji/back_alley
+- PASS: Room inherit: d/green_n/highland
+- PASS: Room short desc: d/green_n/highland
+- PASS: Room setup(): d/green_n/highland
+- PASS: Room inherit: d/green_n/cliff
+- PASS: Room short desc: d/green_n/cliff
+- PASS: Room setup(): d/green_n/cliff
+- PASS: Room inherit: d/green_n/windswept
+- PASS: Room short desc: d/green_n/windswept
+- PASS: Room setup(): d/green_n/windswept
+- PASS: Room inherit: d/green_n/entrance
+- PASS: Room short desc: d/green_n/entrance
+- PASS: Room setup(): d/green_n/entrance
+- PASS: Room inherit: d/green_n/stream
+- PASS: Room short desc: d/green_n/stream
+- PASS: Room setup(): d/green_n/stream
+- PASS: Room inherit: d/green_n/rock_formation
+- PASS: Room short desc: d/green_n/rock_formation
+- PASS: Room setup(): d/green_n/rock_formation
+- PASS: Room inherit: d/force/arena
+- PASS: Room short desc: d/force/arena
+- PASS: Room setup(): d/force/arena
+- PASS: Room inherit: d/force/cliff_edge
+- PASS: Room short desc: d/force/cliff_edge
+- PASS: Room setup(): d/force/cliff_edge
+- PASS: Room inherit: d/force/training_ground
+- PASS: Room short desc: d/force/training_ground
+- PASS: Room setup(): d/force/training_ground
+- PASS: Room inherit: d/force/entrance
+- PASS: Room short desc: d/force/entrance
+- PASS: Room setup(): d/force/entrance
+- PASS: Room inherit: d/force/meditation
+- PASS: Room short desc: d/force/meditation
+- PASS: Room setup(): d/force/meditation
+- PASS: Room inherit: d/force/waterfall
+- PASS: Room short desc: d/force/waterfall
+- PASS: Room setup(): d/force/waterfall
+- PASS: Room inherit: d/baixiang/courtyard
+- PASS: Room short desc: d/baixiang/courtyard
+- PASS: Room setup(): d/baixiang/courtyard
+- PASS: Room inherit: d/baixiang/kitchen
+- PASS: Room short desc: d/baixiang/kitchen
+- PASS: Room setup(): d/baixiang/kitchen
+- PASS: Room inherit: d/baixiang/guest_room
+- PASS: Room short desc: d/baixiang/guest_room
+- PASS: Room setup(): d/baixiang/guest_room
+- PASS: Room inherit: d/baixiang/main_hall
+- PASS: Room short desc: d/baixiang/main_hall
+- PASS: Room setup(): d/baixiang/main_hall
+- PASS: Room inherit: d/baixiang/garden
+- PASS: Room short desc: d/baixiang/garden
+- PASS: Room setup(): d/baixiang/garden
+- PASS: Room inherit: d/baixiang/meditation
+- PASS: Room short desc: d/baixiang/meditation
+- PASS: Room setup(): d/baixiang/meditation
+- PASS: Room inherit: d/baixiang/sutra_hall
+- PASS: Room short desc: d/baixiang/sutra_hall
+- PASS: Room setup(): d/baixiang/sutra_hall
+- PASS: Room inherit: d/baixiang/gate
+- PASS: Room short desc: d/baixiang/gate
+- PASS: Room setup(): d/baixiang/gate
+- PASS: Room inherit: d/baixiang/bell_tower
+- PASS: Room short desc: d/baixiang/bell_tower
+- PASS: Room setup(): d/baixiang/bell_tower
+- PASS: Room inherit: d/hell/tower_mid
+- PASS: Room short desc: d/hell/tower_mid
+- PASS: Room setup(): d/hell/tower_mid
+- PASS: Room inherit: d/hell/tower_base
+- PASS: Room short desc: d/hell/tower_base
+- PASS: Room setup(): d/hell/tower_base
+- PASS: Room inherit: d/hell/tower_top
+- PASS: Room short desc: d/hell/tower_top
+- PASS: Room setup(): d/hell/tower_top
+- PASS: Room inherit: d/hell/entrance
+- PASS: Room short desc: d/hell/entrance
+- PASS: Room setup(): d/hell/entrance
+- PASS: Room inherit: d/hell/path
+- PASS: Room short desc: d/hell/path
+- PASS: Room setup(): d/hell/path
+- PASS: Room inherit: d/death/dark_path
+- PASS: Room short desc: d/death/dark_path
+- PASS: Room setup(): d/death/dark_path
+- PASS: Room inherit: d/death/abyss
+- PASS: Room short desc: d/death/abyss
+- PASS: Room setup(): d/death/abyss
+- PASS: Room inherit: d/death/entrance
+- PASS: Room short desc: d/death/entrance
+- PASS: Room setup(): d/death/entrance
+- PASS: Room inherit: d/death/throne
+- PASS: Room short desc: d/death/throne
+- PASS: Room setup(): d/death/throne
+- PASS: Room inherit: d/death/bone_field
+- PASS: Room short desc: d/death/bone_field
+- PASS: Room setup(): d/death/bone_field
+- PASS: Room inherit: d/death/soul_river
+- PASS: Room short desc: d/death/soul_river
+- PASS: Room setup(): d/death/soul_river
+- PASS: Room inherit: d/tianyue/courtyard
+- PASS: Room short desc: d/tianyue/courtyard
+- PASS: Room setup(): d/tianyue/courtyard
+- PASS: Room inherit: d/tianyue/quarters
+- PASS: Room short desc: d/tianyue/quarters
+- PASS: Room setup(): d/tianyue/quarters
+- PASS: Room inherit: d/tianyue/mountain_path
+- PASS: Room short desc: d/tianyue/mountain_path
+- PASS: Room setup(): d/tianyue/mountain_path
+- PASS: Room inherit: d/tianyue/hall
+- PASS: Room short desc: d/tianyue/hall
+- PASS: Room setup(): d/tianyue/hall
+- PASS: Room inherit: d/tianyue/meditation
+- PASS: Room short desc: d/tianyue/meditation
+- PASS: Room setup(): d/tianyue/meditation
+- PASS: Room inherit: d/tianyue/gate
+- PASS: Room short desc: d/tianyue/gate
+- PASS: Room setup(): d/tianyue/gate
+- PASS: Room inherit: d/latemoon/ruins
+- PASS: Room short desc: d/latemoon/ruins
+- PASS: Room setup(): d/latemoon/ruins
+- PASS: Room inherit: d/latemoon/entrance
+- PASS: Room short desc: d/latemoon/entrance
+- PASS: Room setup(): d/latemoon/entrance
+- PASS: Room inherit: d/latemoon/altar
+- PASS: Room short desc: d/latemoon/altar
+- PASS: Room setup(): d/latemoon/altar
+- PASS: Room inherit: d/latemoon/pavilion
+- PASS: Room short desc: d/latemoon/pavilion
+- PASS: Room setup(): d/latemoon/pavilion
+- PASS: Room inherit: d/latemoon/lake
+- PASS: Room short desc: d/latemoon/lake
+- PASS: Room setup(): d/latemoon/lake
+- PASS: Room inherit: d/latemoon/moonlight_path
+- PASS: Room short desc: d/latemoon/moonlight_path
+- PASS: Room setup(): d/latemoon/moonlight_path
+- PASS: Room inherit: d/choyin/sstreet
+- PASS: Room short desc: d/choyin/sstreet
+- PASS: Room setup(): d/choyin/sstreet
+- PASS: Room inherit: d/choyin/square
+- PASS: Room short desc: d/choyin/square
+- PASS: Room setup(): d/choyin/square
+- PASS: Room inherit: d/choyin/choyin_road
+- PASS: Room short desc: d/choyin/choyin_road
+- PASS: Room setup(): d/choyin/choyin_road
+- PASS: Room inherit: d/choyin/bookshop
+- PASS: Room short desc: d/choyin/bookshop
+- PASS: Room setup(): d/choyin/bookshop
+- PASS: Room inherit: d/choyin/nstreet
+- PASS: Room short desc: d/choyin/nstreet
+- PASS: Room setup(): d/choyin/nstreet
+- PASS: Room inherit: d/choyin/inn
+- PASS: Room short desc: d/choyin/inn
+- PASS: Room setup(): d/choyin/inn
+- PASS: Room inherit: d/choyin/yamen
+- PASS: Room short desc: d/choyin/yamen
+- PASS: Room setup(): d/choyin/yamen
+- FAIL: Room inherit missing: d/choyin/temple
+- PASS: Room short desc: d/choyin/temple
+- PASS: Room setup(): d/choyin/temple
+- PASS: Room inherit: d/choyin/ngate
+- PASS: Room short desc: d/choyin/ngate
+- PASS: Room setup(): d/choyin/ngate
+- PASS: Room inherit: d/choyin/sgate
+- PASS: Room short desc: d/choyin/sgate
+- PASS: Room setup(): d/choyin/sgate
+- PASS: Room inherit: d/kuxiao/yard
+- PASS: Room short desc: d/kuxiao/yard
+- PASS: Room setup(): d/kuxiao/yard
+- PASS: Room inherit: d/kuxiao/quarters
+- PASS: Room short desc: d/kuxiao/quarters
+- PASS: Room setup(): d/kuxiao/quarters
+- PASS: Room inherit: d/kuxiao/hall
+- PASS: Room short desc: d/kuxiao/hall
+- PASS: Room setup(): d/kuxiao/hall
+- PASS: Room inherit: d/kuxiao/alley
+- PASS: Room short desc: d/kuxiao/alley
+- PASS: Room setup(): d/kuxiao/alley
+- PASS: Room inherit: d/kuxiao/gate
+- PASS: Room short desc: d/kuxiao/gate
+- PASS: Room setup(): d/kuxiao/gate
+- PASS: Room inherit: d/kuxiao/training
+- PASS: Room short desc: d/kuxiao/training
+- PASS: Room setup(): d/kuxiao/training
+- PASS: Room inherit: d/tianhan/cottage
+- PASS: Room short desc: d/tianhan/cottage
+- PASS: Room setup(): d/tianhan/cottage
+- PASS: Room inherit: d/tianhan/inn_2f
+- PASS: Room short desc: d/tianhan/inn_2f
+- PASS: Room setup(): d/tianhan/inn_2f
+- PASS: Room inherit: d/tianhan/inn
+- PASS: Room short desc: d/tianhan/inn
+- PASS: Room setup(): d/tianhan/inn
+- PASS: Room inherit: d/tianhan/street
+- PASS: Room short desc: d/tianhan/street
+- PASS: Room setup(): d/tianhan/street
+- PASS: Room inherit: d/tianhan/well
+- PASS: Room short desc: d/tianhan/well
+- PASS: Room setup(): d/tianhan/well
+- PASS: Room inherit: d/tianhan/entrance
+- PASS: Room short desc: d/tianhan/entrance
+- PASS: Room setup(): d/tianhan/entrance
+- PASS: Room inherit: d/tianhan/clearing
+- PASS: Room short desc: d/tianhan/clearing
+- PASS: Room setup(): d/tianhan/clearing
+- PASS: Room inherit: d/kangping/cottage
+- PASS: Room short desc: d/kangping/cottage
+- PASS: Room setup(): d/kangping/cottage
+- PASS: Room inherit: d/kangping/back_street
+- PASS: Room short desc: d/kangping/back_street
+- PASS: Room setup(): d/kangping/back_street
+- PASS: Room inherit: d/kangping/square
+- PASS: Room short desc: d/kangping/square
+- PASS: Room setup(): d/kangping/square
+- PASS: Room inherit: d/kangping/herb_garden
+- PASS: Room short desc: d/kangping/herb_garden
+- PASS: Room setup(): d/kangping/herb_garden
+- PASS: Room inherit: d/kangping/stone_cave
+- PASS: Room short desc: d/kangping/stone_cave
+- PASS: Room setup(): d/kangping/stone_cave
+- PASS: Room inherit: d/kangping/inn
+- PASS: Room short desc: d/kangping/inn
+- PASS: Room setup(): d/kangping/inn
+- PASS: Room inherit: d/kangping/street
+- PASS: Room short desc: d/kangping/street
+- PASS: Room setup(): d/kangping/street
+- PASS: Room inherit: d/kangping/shop
+- PASS: Room short desc: d/kangping/shop
+- PASS: Room setup(): d/kangping/shop
+- PASS: Room inherit: d/kangping/well
+- PASS: Room short desc: d/kangping/well
+- PASS: Room setup(): d/kangping/well
+- FAIL: Room inherit missing: d/kangping/temple
+- PASS: Room short desc: d/kangping/temple
+- PASS: Room setup(): d/kangping/temple
+- PASS: Room inherit: d/kangping/entrance
+- PASS: Room short desc: d/kangping/entrance
+- PASS: Room setup(): d/kangping/entrance
+- PASS: Room inherit: d/kangping/path
+- PASS: Room short desc: d/kangping/path
+- PASS: Room setup(): d/kangping/path
+- PASS: Room inherit: d/kangping/thatched_hall
+- PASS: Room short desc: d/kangping/thatched_hall
+- PASS: Room setup(): d/kangping/thatched_hall
+- PASS: Room inherit: d/wutuo/needle_room
+- PASS: Room short desc: d/wutuo/needle_room
+- PASS: Room setup(): d/wutuo/needle_room
+- PASS: Room inherit: d/wutuo/quarters
+- PASS: Room short desc: d/wutuo/quarters
+- PASS: Room setup(): d/wutuo/quarters
+- PASS: Room inherit: d/wutuo/hall
+- PASS: Room short desc: d/wutuo/hall
+- PASS: Room setup(): d/wutuo/hall
+- PASS: Room inherit: d/wutuo/garden
+- PASS: Room short desc: d/wutuo/garden
+- PASS: Room setup(): d/wutuo/garden
+- PASS: Room inherit: d/wutuo/entrance
+- PASS: Room short desc: d/wutuo/entrance
+- PASS: Room setup(): d/wutuo/entrance
+- PASS: Room inherit: d/canyon/bottom
+- PASS: Room short desc: d/canyon/bottom
+- PASS: Room setup(): d/canyon/bottom
+- PASS: Room inherit: d/canyon/cliff_face
+- PASS: Room short desc: d/canyon/cliff_face
+- PASS: Room setup(): d/canyon/cliff_face
+- PASS: Room inherit: d/canyon/bridge
+- PASS: Room short desc: d/canyon/bridge
+- PASS: Room setup(): d/canyon/bridge
+- PASS: Room inherit: d/canyon/narrow_pass
+- PASS: Room short desc: d/canyon/narrow_pass
+- PASS: Room setup(): d/canyon/narrow_pass
+- PASS: Room inherit: d/canyon/entrance
+- PASS: Room short desc: d/canyon/entrance
+- PASS: Room setup(): d/canyon/entrance
+- PASS: Room inherit: d/canyon/ledge
+- PASS: Room short desc: d/canyon/ledge
+- PASS: Room setup(): d/canyon/ledge
+- PASS: Room inherit: d/canyon/cave
+- PASS: Room short desc: d/canyon/cave
+- PASS: Room setup(): d/canyon/cave
+- PASS: Room inherit: d/babao/floor3
+- PASS: Room short desc: d/babao/floor3
+- PASS: Room setup(): d/babao/floor3
+- PASS: Room inherit: d/babao/hall
+- PASS: Room short desc: d/babao/hall
+- PASS: Room setup(): d/babao/hall
+- PASS: Room inherit: d/babao/floor7
+- PASS: Room short desc: d/babao/floor7
+- PASS: Room setup(): d/babao/floor7
+- PASS: Room inherit: d/babao/floor4
+- PASS: Room short desc: d/babao/floor4
+- PASS: Room setup(): d/babao/floor4
+- PASS: Room inherit: d/babao/floor5
+- PASS: Room short desc: d/babao/floor5
+- PASS: Room setup(): d/babao/floor5
+- PASS: Room inherit: d/babao/floor2
+- PASS: Room short desc: d/babao/floor2
+- PASS: Room setup(): d/babao/floor2
+- PASS: Room inherit: d/babao/entrance
+- PASS: Room short desc: d/babao/entrance
+- PASS: Room setup(): d/babao/entrance
+- PASS: Room inherit: d/babao/floor6
+- PASS: Room short desc: d/babao/floor6
+- PASS: Room setup(): d/babao/floor6
+- PASS: Room inherit: d/babao/floor1
+- PASS: Room short desc: d/babao/floor1
+- PASS: Room setup(): d/babao/floor1
+- PASS: Room inherit: d/babao/floor8
+- PASS: Room short desc: d/babao/floor8
+- PASS: Room setup(): d/babao/floor8
+- PASS: Room inherit: d/xuantian/library
+- PASS: Room short desc: d/xuantian/library
+- PASS: Room setup(): d/xuantian/library
+- PASS: Room inherit: d/xuantian/quarters
+- PASS: Room short desc: d/xuantian/quarters
+- PASS: Room setup(): d/xuantian/quarters
+- PASS: Room inherit: d/xuantian/hall
+- PASS: Room short desc: d/xuantian/hall
+- PASS: Room setup(): d/xuantian/hall
+- PASS: Room inherit: d/xuantian/meditation
+- PASS: Room short desc: d/xuantian/meditation
+- PASS: Room setup(): d/xuantian/meditation
+- PASS: Room inherit: d/xuantian/gate
+- PASS: Room short desc: d/xuantian/gate
+- PASS: Room setup(): d/xuantian/gate
+- PASS: Room inherit: d/xuantian/path
+- PASS: Room short desc: d/xuantian/path
+- PASS: Room setup(): d/xuantian/path
+- PASS: Room inherit: d/zhenwu/stable
+- PASS: Room short desc: d/zhenwu/stable
+- PASS: Room setup(): d/zhenwu/stable
+- PASS: Room inherit: d/zhenwu/yard
+- PASS: Room short desc: d/zhenwu/yard
+- PASS: Room setup(): d/zhenwu/yard
+- PASS: Room inherit: d/zhenwu/barracks
+- PASS: Room short desc: d/zhenwu/barracks
+- PASS: Room setup(): d/zhenwu/barracks
+- PASS: Room inherit: d/zhenwu/mess_hall
+- PASS: Room short desc: d/zhenwu/mess_hall
+- PASS: Room setup(): d/zhenwu/mess_hall
+- PASS: Room inherit: d/zhenwu/watchtower
+- PASS: Room short desc: d/zhenwu/watchtower
+- PASS: Room setup(): d/zhenwu/watchtower
+- PASS: Room inherit: d/zhenwu/armory
+- PASS: Room short desc: d/zhenwu/armory
+- PASS: Room setup(): d/zhenwu/armory
+- PASS: Room inherit: d/zhenwu/gate
+- PASS: Room short desc: d/zhenwu/gate
+- PASS: Room setup(): d/zhenwu/gate
+- PASS: Room inherit: d/zhenwu/command
+- PASS: Room short desc: d/zhenwu/command
+- PASS: Room setup(): d/zhenwu/command
+- PASS: Room inherit: d/zhenwu/training
+- PASS: Room short desc: d/zhenwu/training
+- PASS: Room setup(): d/zhenwu/training
+- PASS: Room inherit: d/langyi/tunnel
+- PASS: Room short desc: d/langyi/tunnel
+- PASS: Room setup(): d/langyi/tunnel
+- PASS: Room inherit: d/langyi/quarters
+- PASS: Room short desc: d/langyi/quarters
+- PASS: Room setup(): d/langyi/quarters
+- PASS: Room inherit: d/langyi/hall
+- PASS: Room short desc: d/langyi/hall
+- PASS: Room setup(): d/langyi/hall
+- PASS: Room inherit: d/langyi/vault
+- PASS: Room short desc: d/langyi/vault
+- PASS: Room setup(): d/langyi/vault
+- PASS: Room inherit: d/langyi/training
+- PASS: Room short desc: d/langyi/training
+- PASS: Room setup(): d/langyi/training
+- PASS: Room inherit: d/langyi/passage
+- PASS: Room short desc: d/langyi/passage
+- PASS: Room setup(): d/langyi/passage
+- PASS: Room inherit: d/chuenyu/hot_spring
+- PASS: Room short desc: d/chuenyu/hot_spring
+- PASS: Room setup(): d/chuenyu/hot_spring
+- PASS: Room inherit: d/chuenyu/spring_path
+- PASS: Room short desc: d/chuenyu/spring_path
+- PASS: Room setup(): d/chuenyu/spring_path
+- PASS: Room inherit: d/chuenyu/shrine
+- PASS: Room short desc: d/chuenyu/shrine
+- PASS: Room setup(): d/chuenyu/shrine
+- PASS: Room inherit: d/chuenyu/entrance
+- PASS: Room short desc: d/chuenyu/entrance
+- PASS: Room setup(): d/chuenyu/entrance
+- PASS: Room inherit: d/chuenyu/pool
+- PASS: Room short desc: d/chuenyu/pool
+- PASS: Room setup(): d/chuenyu/pool
+- PASS: Room inherit: d/chuenyu/waterfall
+- PASS: Room short desc: d/chuenyu/waterfall
+- PASS: Room setup(): d/chuenyu/waterfall
+- PASS: Room inherit: d/waterfog/deep_fog
+- PASS: Room short desc: d/waterfog/deep_fog
+- PASS: Room setup(): d/waterfog/deep_fog
+- PASS: Room inherit: d/waterfog/bridge
+- PASS: Room short desc: d/waterfog/bridge
+- PASS: Room setup(): d/waterfog/bridge
+- PASS: Room inherit: d/waterfog/island
+- PASS: Room short desc: d/waterfog/island
+- PASS: Room setup(): d/waterfog/island
+- PASS: Room inherit: d/waterfog/entrance
+- PASS: Room short desc: d/waterfog/entrance
+- PASS: Room setup(): d/waterfog/entrance
+- PASS: Room inherit: d/waterfog/clearing
+- PASS: Room short desc: d/waterfog/clearing
+- PASS: Room setup(): d/waterfog/clearing
+- PASS: Room inherit: d/waterfog/fog_path
+- PASS: Room short desc: d/waterfog/fog_path
+- PASS: Room setup(): d/waterfog/fog_path
+- PASS: Room inherit: d/city/market
+- PASS: Room short desc: d/city/market
+- PASS: Room setup(): d/city/market
+- PASS: Room inherit: d/city/square
+- PASS: Room short desc: d/city/square
+- PASS: Room setup(): d/city/square
+- PASS: Room inherit: d/city/weapon_shop
+- PASS: Room short desc: d/city/weapon_shop
+- PASS: Room setup(): d/city/weapon_shop
+- PASS: Room inherit: d/city/pawnshop
+- PASS: Room short desc: d/city/pawnshop
+- PASS: Room setup(): d/city/pawnshop
+- PASS: Room inherit: d/city/inn
+- PASS: Room short desc: d/city/inn
+- PASS: Room setup(): d/city/inn
+- PASS: Room inherit: d/city/main_street
+- PASS: Room short desc: d/city/main_street
+- PASS: Room setup(): d/city/main_street
+- PASS: Room inherit: d/city/garden
+- PASS: Room short desc: d/city/garden
+- PASS: Room setup(): d/city/garden
+- PASS: Room inherit: d/city/yamen
+- PASS: Room short desc: d/city/yamen
+- PASS: Room setup(): d/city/yamen
+- PASS: Room inherit: d/city/alley
+- PASS: Room short desc: d/city/alley
+- PASS: Room setup(): d/city/alley
+- PASS: Room inherit: d/city/temple
+- PASS: Room short desc: d/city/temple
+- PASS: Room setup(): d/city/temple
+- PASS: Room inherit: d/city/entrance
+- PASS: Room short desc: d/city/entrance
+- PASS: Room setup(): d/city/entrance
+- PASS: Room inherit: d/city/armor_shop
+- PASS: Room short desc: d/city/armor_shop
+- PASS: Room setup(): d/city/armor_shop
+- PASS: Room inherit: d/chixiao/back_street
+- PASS: Room short desc: d/chixiao/back_street
+- PASS: Room setup(): d/chixiao/back_street
+- PASS: Room inherit: d/chixiao/inn
+- PASS: Room short desc: d/chixiao/inn
+- PASS: Room setup(): d/chixiao/inn
+- PASS: Room inherit: d/chixiao/street
+- PASS: Room short desc: d/chixiao/street
+- PASS: Room setup(): d/chixiao/street
+- PASS: Room inherit: d/chixiao/shop
+- PASS: Room short desc: d/chixiao/shop
+- PASS: Room setup(): d/chixiao/shop
+- FAIL: Room inherit missing: d/chixiao/temple
+- PASS: Room short desc: d/chixiao/temple
+- PASS: Room setup(): d/chixiao/temple
+- PASS: Room inherit: d/chixiao/entrance
+- PASS: Room short desc: d/chixiao/entrance
+- PASS: Room setup(): d/chixiao/entrance
+- PASS: Room inherit: d/chixiao/wishing_pool
+- PASS: Room short desc: d/chixiao/wishing_pool
+- PASS: Room setup(): d/chixiao/wishing_pool
+- PASS: Room inherit: d/chixiao/village_square
+- PASS: Room short desc: d/chixiao/village_square
+- PASS: Room setup(): d/chixiao/village_square
+
+## NPC Validation
+- PASS: NPC include: d/xueyin/npc/renegade
+- PASS: NPC inherit: d/xueyin/npc/renegade
+- PASS: NPC set_name: d/xueyin/npc/renegade
+- PASS: NPC setup(): d/xueyin/npc/renegade
+- PASS: NPC include: d/xueyin/npc/yutieshan
+- PASS: NPC inherit: d/xueyin/npc/yutieshan
+- PASS: NPC set_name: d/xueyin/npc/yutieshan
+- PASS: NPC setup(): d/xueyin/npc/yutieshan
+- PASS: NPC include: d/xueyin/npc/servant
+- PASS: NPC inherit: d/xueyin/npc/servant
+- PASS: NPC set_name: d/xueyin/npc/servant
+- PASS: NPC setup(): d/xueyin/npc/servant
+- PASS: NPC include: d/temple/npc/bell_keeper
+- PASS: NPC inherit: d/temple/npc/bell_keeper
+- PASS: NPC set_name: d/temple/npc/bell_keeper
+- PASS: NPC setup(): d/temple/npc/bell_keeper
+- PASS: NPC include: d/temple/npc/high_priest
+- PASS: NPC inherit: d/temple/npc/high_priest
+- PASS: NPC set_name: d/temple/npc/high_priest
+- PASS: NPC setup(): d/temple/npc/high_priest
+- PASS: NPC include: d/temple/npc/temple_guard
+- PASS: NPC inherit: d/temple/npc/temple_guard
+- PASS: NPC set_name: d/temple/npc/temple_guard
+- PASS: NPC setup(): d/temple/npc/temple_guard
+- PASS: NPC include: d/longan/npc/black_dragon
+- PASS: NPC inherit: d/longan/npc/black_dragon
+- PASS: NPC set_name: d/longan/npc/black_dragon
+- PASS: NPC setup(): d/longan/npc/black_dragon
+- PASS: NPC include: d/longan/npc/innkeeper
+- PASS: NPC inherit: d/longan/npc/innkeeper
+- PASS: NPC set_name: d/longan/npc/innkeeper
+- PASS: NPC setup(): d/longan/npc/innkeeper
+- PASS: NPC include: d/longan/npc/old_gardener
+- PASS: NPC inherit: d/longan/npc/old_gardener
+- PASS: NPC set_name: d/longan/npc/old_gardener
+- PASS: NPC setup(): d/longan/npc/old_gardener
+- PASS: NPC include: d/longan/npc/merchant
+- PASS: NPC inherit: d/longan/npc/merchant
+- PASS: NPC set_name: d/longan/npc/merchant
+- PASS: NPC setup(): d/longan/npc/merchant
+- PASS: NPC include: d/longan/npc/temple_monk
+- PASS: NPC inherit: d/longan/npc/temple_monk
+- PASS: NPC set_name: d/longan/npc/temple_monk
+- PASS: NPC setup(): d/longan/npc/temple_monk
+- PASS: NPC include: d/longan/npc/weaponsmith
+- PASS: NPC inherit: d/longan/npc/weaponsmith
+- PASS: NPC set_name: d/longan/npc/weaponsmith
+- PASS: NPC setup(): d/longan/npc/weaponsmith
+- PASS: NPC include: d/longan/npc/beggar
+- PASS: NPC inherit: d/longan/npc/beggar
+- PASS: NPC set_name: d/longan/npc/beggar
+- PASS: NPC setup(): d/longan/npc/beggar
+- PASS: NPC include: d/longan/npc/guard
+- PASS: NPC inherit: d/longan/npc/guard
+- PASS: NPC set_name: d/longan/npc/guard
+- PASS: NPC setup(): d/longan/npc/guard
+- PASS: NPC include: d/longan/npc/blacksmith
+- PASS: NPC inherit: d/longan/npc/blacksmith
+- PASS: NPC set_name: d/longan/npc/blacksmith
+- PASS: NPC setup(): d/longan/npc/blacksmith
+- PASS: NPC include: d/longan/npc/storyteller
+- PASS: NPC inherit: d/longan/npc/storyteller
+- PASS: NPC set_name: d/longan/npc/storyteller
+- PASS: NPC setup(): d/longan/npc/storyteller
+- PASS: NPC include: d/longan/npc/tea_vendor
+- PASS: NPC inherit: d/longan/npc/tea_vendor
+- PASS: NPC set_name: d/longan/npc/tea_vendor
+- PASS: NPC setup(): d/longan/npc/tea_vendor
+- PASS: NPC include: d/longan/npc/peddler
+- PASS: NPC inherit: d/longan/npc/peddler
+- PASS: NPC set_name: d/longan/npc/peddler
+- PASS: NPC setup(): d/longan/npc/peddler
+- PASS: NPC include: d/longttu/npc/jiang_shuren
+- PASS: NPC inherit: d/longttu/npc/jiang_shuren
+- PASS: NPC set_name: d/longttu/npc/jiang_shuren
+- PASS: NPC setup(): d/longttu/npc/jiang_shuren
+- PASS: NPC include: d/longttu/npc/elder
+- PASS: NPC inherit: d/longttu/npc/elder
+- PASS: NPC set_name: d/longttu/npc/elder
+- PASS: NPC setup(): d/longttu/npc/elder
+- PASS: NPC include: d/longttu/npc/apprentice_npc
+- PASS: NPC inherit: d/longttu/npc/apprentice_npc
+- PASS: NPC set_name: d/longttu/npc/apprentice_npc
+- PASS: NPC setup(): d/longttu/npc/apprentice_npc
+- PASS: NPC include: d/yinjiao/npc/master
+- PASS: NPC inherit: d/yinjiao/npc/master
+- PASS: NPC set_name: d/yinjiao/npc/master
+- PASS: NPC setup(): d/yinjiao/npc/master
+- PASS: NPC include: d/yinjiao/npc/herald
+- PASS: NPC inherit: d/yinjiao/npc/herald
+- PASS: NPC set_name: d/yinjiao/npc/herald
+- PASS: NPC setup(): d/yinjiao/npc/herald
+- PASS: NPC include: d/yinjiao/npc/dark_guard
+- PASS: NPC inherit: d/yinjiao/npc/dark_guard
+- PASS: NPC set_name: d/yinjiao/npc/dark_guard
+- PASS: NPC setup(): d/yinjiao/npc/dark_guard
+- PASS: NPC include: d/wutang/npc/temple_master
+- PASS: NPC inherit: d/wutang/npc/temple_master
+- PASS: NPC set_name: d/wutang/npc/temple_master
+- PASS: NPC setup(): d/wutang/npc/temple_master
+- PASS: NPC include: d/wutang/npc/shi_yu
+- PASS: NPC inherit: d/wutang/npc/shi_yu
+- PASS: NPC set_name: d/wutang/npc/shi_yu
+- PASS: NPC setup(): d/wutang/npc/shi_yu
+- PASS: NPC include: d/wutang/npc/ferryman
+- PASS: NPC inherit: d/wutang/npc/ferryman
+- PASS: NPC set_name: d/wutang/npc/ferryman
+- PASS: NPC setup(): d/wutang/npc/ferryman
+- PASS: NPC include: d/wutang/npc/shen
+- PASS: NPC inherit: d/wutang/npc/shen
+- PASS: NPC set_name: d/wutang/npc/shen
+- PASS: NPC setup(): d/wutang/npc/shen
+- PASS: NPC include: d/wutang/npc/waiter
+- PASS: NPC inherit: d/wutang/npc/waiter
+- PASS: NPC set_name: d/wutang/npc/waiter
+- PASS: NPC setup(): d/wutang/npc/waiter
+- PASS: NPC include: d/wutang/npc/yongtai
+- PASS: NPC inherit: d/wutang/npc/yongtai
+- PASS: NPC set_name: d/wutang/npc/yongtai
+- PASS: NPC setup(): d/wutang/npc/yongtai
+- PASS: NPC include: d/wutang/npc/gongsun_wei
+- PASS: NPC inherit: d/wutang/npc/gongsun_wei
+- PASS: NPC set_name: d/wutang/npc/gongsun_wei
+- PASS: NPC setup(): d/wutang/npc/gongsun_wei
+- PASS: NPC include: d/wutang/npc/chong_baihu
+- PASS: NPC inherit: d/wutang/npc/chong_baihu
+- PASS: NPC set_name: d/wutang/npc/chong_baihu
+- PASS: NPC setup(): d/wutang/npc/chong_baihu
+- PASS: NPC include: d/wutang/npc/sima_lei
+- PASS: NPC inherit: d/wutang/npc/sima_lei
+- PASS: NPC set_name: d/wutang/npc/sima_lei
+- PASS: NPC setup(): d/wutang/npc/sima_lei
+- PASS: NPC include: d/wutang/npc/haidafu
+- PASS: NPC inherit: d/wutang/npc/haidafu
+- PASS: NPC set_name: d/wutang/npc/haidafu
+- PASS: NPC setup(): d/wutang/npc/haidafu
+- PASS: NPC include: d/wutang/npc/xuanyuan
+- PASS: NPC inherit: d/wutang/npc/xuanyuan
+- PASS: NPC set_name: d/wutang/npc/xuanyuan
+- PASS: NPC setup(): d/wutang/npc/xuanyuan
+- PASS: NPC include: d/wutang/npc/baiyu
+- PASS: NPC inherit: d/wutang/npc/baiyu
+- PASS: NPC set_name: d/wutang/npc/baiyu
+- PASS: NPC setup(): d/wutang/npc/baiyu
+- PASS: NPC include: d/wutang/npc/villager
+- PASS: NPC inherit: d/wutang/npc/villager
+- PASS: NPC set_name: d/wutang/npc/villager
+- PASS: NPC setup(): d/wutang/npc/villager
+- PASS: NPC include: d/wutang/npc/guobu
+- PASS: NPC inherit: d/wutang/npc/guobu
+- PASS: NPC set_name: d/wutang/npc/guobu
+- PASS: NPC setup(): d/wutang/npc/guobu
+- PASS: NPC include: d/wutang/npc/patrol
+- PASS: NPC inherit: d/wutang/npc/patrol
+- PASS: NPC set_name: d/wutang/npc/patrol
+- PASS: NPC setup(): d/wutang/npc/patrol
+- PASS: NPC include: d/wutang/npc/huhuo
+- PASS: NPC inherit: d/wutang/npc/huhuo
+- PASS: NPC set_name: d/wutang/npc/huhuo
+- PASS: NPC setup(): d/wutang/npc/huhuo
+- PASS: NPC include: d/wutang/npc/ouyang_zhi
+- PASS: NPC inherit: d/wutang/npc/ouyang_zhi
+- PASS: NPC set_name: d/wutang/npc/ouyang_zhi
+- PASS: NPC setup(): d/wutang/npc/ouyang_zhi
+- PASS: NPC include: d/wutang/npc/inspector
+- PASS: NPC inherit: d/wutang/npc/inspector
+- PASS: NPC set_name: d/wutang/npc/inspector
+- PASS: NPC setup(): d/wutang/npc/inspector
+- PASS: NPC include: d/wutang/npc/guard
+- PASS: NPC inherit: d/wutang/npc/guard
+- PASS: NPC set_name: d/wutang/npc/guard
+- PASS: NPC setup(): d/wutang/npc/guard
+- PASS: NPC include: d/wutang/npc/storyteller
+- PASS: NPC inherit: d/wutang/npc/storyteller
+- PASS: NPC set_name: d/wutang/npc/storyteller
+- PASS: NPC setup(): d/wutang/npc/storyteller
+- PASS: NPC include: d/wutang/npc/ma_zhongsheng
+- PASS: NPC inherit: d/wutang/npc/ma_zhongsheng
+- PASS: NPC set_name: d/wutang/npc/ma_zhongsheng
+- PASS: NPC setup(): d/wutang/npc/ma_zhongsheng
+- PASS: NPC include: d/lengmei/npc/meiyingfeng
+- PASS: NPC inherit: d/lengmei/npc/meiyingfeng
+- PASS: NPC set_name: d/lengmei/npc/meiyingfeng
+- PASS: NPC setup(): d/lengmei/npc/meiyingfeng
+- PASS: NPC include: d/lengmei/npc/disciple
+- PASS: NPC inherit: d/lengmei/npc/disciple
+- PASS: NPC set_name: d/lengmei/npc/disciple
+- PASS: NPC setup(): d/lengmei/npc/disciple
+- PASS: NPC include: d/lengmei/npc/servant
+- PASS: NPC inherit: d/lengmei/npc/servant
+- PASS: NPC set_name: d/lengmei/npc/servant
+- PASS: NPC setup(): d/lengmei/npc/servant
+- PASS: NPC include: d/oldpine/npc/bandit_chief
+- PASS: NPC inherit: d/oldpine/npc/bandit_chief
+- PASS: NPC set_name: d/oldpine/npc/bandit_chief
+- PASS: NPC setup(): d/oldpine/npc/bandit_chief
+- PASS: NPC include: d/oldpine/npc/bandit
+- PASS: NPC inherit: d/oldpine/npc/bandit
+- PASS: NPC set_name: d/oldpine/npc/bandit
+- PASS: NPC setup(): d/oldpine/npc/bandit
+- PASS: NPC include: d/oldpine/npc/charming_bird
+- PASS: NPC inherit: d/oldpine/npc/charming_bird
+- PASS: NPC set_name: d/oldpine/npc/charming_bird
+- PASS: NPC setup(): d/oldpine/npc/charming_bird
+- PASS: NPC include: d/oldpine/npc/wolf
+- PASS: NPC inherit: d/oldpine/npc/wolf
+- PASS: NPC set_name: d/oldpine/npc/wolf
+- PASS: NPC setup(): d/oldpine/npc/wolf
+- PASS: NPC include: d/oldpine/npc/snake
+- PASS: NPC inherit: d/oldpine/npc/snake
+- PASS: NPC set_name: d/oldpine/npc/snake
+- PASS: NPC setup(): d/oldpine/npc/snake
+- PASS: NPC include: d/fengshan/npc/librarian
+- PASS: NPC inherit: d/fengshan/npc/librarian
+- PASS: NPC set_name: d/fengshan/npc/librarian
+- PASS: NPC setup(): d/fengshan/npc/librarian
+- PASS: NPC include: d/fengshan/npc/disciple
+- PASS: NPC inherit: d/fengshan/npc/disciple
+- PASS: NPC set_name: d/fengshan/npc/disciple
+- PASS: NPC setup(): d/fengshan/npc/disciple
+- PASS: NPC include: d/fengshan/npc/cook
+- PASS: NPC inherit: d/fengshan/npc/cook
+- PASS: NPC set_name: d/fengshan/npc/cook
+- PASS: NPC setup(): d/fengshan/npc/cook
+- PASS: NPC include: d/fengshan/npc/liudonglu
+- PASS: NPC inherit: d/fengshan/npc/liudonglu
+- PASS: NPC set_name: d/fengshan/npc/liudonglu
+- PASS: NPC setup(): d/fengshan/npc/liudonglu
+- PASS: NPC include: d/jail/npc/prisoner
+- PASS: NPC inherit: d/jail/npc/prisoner
+- PASS: NPC set_name: d/jail/npc/prisoner
+- PASS: NPC setup(): d/jail/npc/prisoner
+- PASS: NPC include: d/jail/npc/jailer
+- PASS: NPC inherit: d/jail/npc/jailer
+- PASS: NPC set_name: d/jail/npc/jailer
+- PASS: NPC setup(): d/jail/npc/jailer
+- PASS: NPC include: d/manglin/npc/wild_boar
+- PASS: NPC inherit: d/manglin/npc/wild_boar
+- PASS: NPC set_name: d/manglin/npc/wild_boar
+- PASS: NPC setup(): d/manglin/npc/wild_boar
+- PASS: NPC include: d/manglin/npc/evil_hydra
+- PASS: NPC inherit: d/manglin/npc/evil_hydra
+- PASS: NPC set_name: d/manglin/npc/evil_hydra
+- PASS: NPC setup(): d/manglin/npc/evil_hydra
+- PASS: NPC include: d/manglin/npc/qiyong
+- PASS: NPC inherit: d/manglin/npc/qiyong
+- PASS: NPC set_name: d/manglin/npc/qiyong
+- PASS: NPC setup(): d/manglin/npc/qiyong
+- PASS: NPC include: d/manglin/npc/devilish_tiger
+- PASS: NPC inherit: d/manglin/npc/devilish_tiger
+- PASS: NPC set_name: d/manglin/npc/devilish_tiger
+- PASS: NPC setup(): d/manglin/npc/devilish_tiger
+- PASS: NPC include: d/manglin/npc/hunter
+- PASS: NPC inherit: d/manglin/npc/hunter
+- PASS: NPC set_name: d/manglin/npc/hunter
+- PASS: NPC setup(): d/manglin/npc/hunter
+- PASS: NPC include: d/manglin/npc/black_bear
+- PASS: NPC inherit: d/manglin/npc/black_bear
+- PASS: NPC set_name: d/manglin/npc/black_bear
+- PASS: NPC setup(): d/manglin/npc/black_bear
+- PASS: NPC include: d/tianxie/npc/master
+- PASS: NPC inherit: d/tianxie/npc/master
+- PASS: NPC set_name: d/tianxie/npc/master
+- PASS: NPC setup(): d/tianxie/npc/master
+- PASS: NPC include: d/tianxie/npc/evil_daoist
+- PASS: NPC inherit: d/tianxie/npc/evil_daoist
+- PASS: NPC set_name: d/tianxie/npc/evil_daoist
+- PASS: NPC setup(): d/tianxie/npc/evil_daoist
+- PASS: NPC include: d/tianxie/npc/daxiedaoren
+- PASS: NPC inherit: d/tianxie/npc/daxiedaoren
+- PASS: NPC set_name: d/tianxie/npc/daxiedaoren
+- PASS: NPC setup(): d/tianxie/npc/daxiedaoren
+- PASS: NPC include: d/tianxie/npc/lidongling
+- PASS: NPC inherit: d/tianxie/npc/lidongling
+- PASS: NPC set_name: d/tianxie/npc/lidongling
+- PASS: NPC setup(): d/tianxie/npc/lidongling
+- PASS: NPC include: d/tianxie/npc/disciple
+- PASS: NPC inherit: d/tianxie/npc/disciple
+- PASS: NPC set_name: d/tianxie/npc/disciple
+- PASS: NPC setup(): d/tianxie/npc/disciple
+- PASS: NPC include: d/tianxie/npc/shadow_guard
+- PASS: NPC inherit: d/tianxie/npc/shadow_guard
+- PASS: NPC set_name: d/tianxie/npc/shadow_guard
+- PASS: NPC setup(): d/tianxie/npc/shadow_guard
+- PASS: NPC include: d/buxuan/npc/master
+- PASS: NPC inherit: d/buxuan/npc/master
+- PASS: NPC set_name: d/buxuan/npc/master
+- PASS: NPC setup(): d/buxuan/npc/master
+- PASS: NPC include: d/buxuan/npc/disciple
+- PASS: NPC inherit: d/buxuan/npc/disciple
+- PASS: NPC set_name: d/buxuan/npc/disciple
+- PASS: NPC setup(): d/buxuan/npc/disciple
+- PASS: NPC include: d/buxuan/npc/maid
+- PASS: NPC inherit: d/buxuan/npc/maid
+- PASS: NPC set_name: d/buxuan/npc/maid
+- PASS: NPC setup(): d/buxuan/npc/maid
+- PASS: NPC include: d/lee/npc/farmer
+- PASS: NPC inherit: d/lee/npc/farmer
+- PASS: NPC set_name: d/lee/npc/farmer
+- PASS: NPC setup(): d/lee/npc/farmer
+- PASS: NPC include: d/lee/npc/innkeeper
+- PASS: NPC inherit: d/lee/npc/innkeeper
+- PASS: NPC set_name: d/lee/npc/innkeeper
+- PASS: NPC setup(): d/lee/npc/innkeeper
+- PASS: NPC include: d/lee/npc/elder
+- PASS: NPC inherit: d/lee/npc/elder
+- PASS: NPC set_name: d/lee/npc/elder
+- PASS: NPC setup(): d/lee/npc/elder
+- PASS: NPC include: d/lee/npc/guard
+- PASS: NPC inherit: d/lee/npc/guard
+- PASS: NPC set_name: d/lee/npc/guard
+- PASS: NPC setup(): d/lee/npc/guard
+- PASS: NPC include: d/sanyen/npc/innkeeper
+- PASS: NPC inherit: d/sanyen/npc/innkeeper
+- PASS: NPC set_name: d/sanyen/npc/innkeeper
+- PASS: NPC setup(): d/sanyen/npc/innkeeper
+- PASS: NPC include: d/sanyen/npc/pilgrim
+- PASS: NPC inherit: d/sanyen/npc/pilgrim
+- PASS: NPC set_name: d/sanyen/npc/pilgrim
+- PASS: NPC setup(): d/sanyen/npc/pilgrim
+- PASS: NPC include: d/sanyen/npc/temple_monk
+- PASS: NPC inherit: d/sanyen/npc/temple_monk
+- PASS: NPC set_name: d/sanyen/npc/temple_monk
+- PASS: NPC setup(): d/sanyen/npc/temple_monk
+- PASS: NPC include: d/sanyen/npc/villager
+- PASS: NPC inherit: d/sanyen/npc/villager
+- PASS: NPC set_name: d/sanyen/npc/villager
+- PASS: NPC setup(): d/sanyen/npc/villager
+- PASS: NPC include: d/sanyen/npc/beggar
+- PASS: NPC inherit: d/sanyen/npc/beggar
+- PASS: NPC set_name: d/sanyen/npc/beggar
+- PASS: NPC setup(): d/sanyen/npc/beggar
+- PASS: NPC include: d/sanyen/npc/guard
+- PASS: NPC inherit: d/sanyen/npc/guard
+- PASS: NPC set_name: d/sanyen/npc/guard
+- PASS: NPC setup(): d/sanyen/npc/guard
+- PASS: NPC include: d/sanyen/npc/weapon_vendor
+- PASS: NPC inherit: d/sanyen/npc/weapon_vendor
+- PASS: NPC set_name: d/sanyen/npc/weapon_vendor
+- PASS: NPC setup(): d/sanyen/npc/weapon_vendor
+- PASS: NPC include: d/jianjia/npc/master
+- PASS: NPC inherit: d/jianjia/npc/master
+- PASS: NPC set_name: d/jianjia/npc/master
+- PASS: NPC setup(): d/jianjia/npc/master
+- PASS: NPC include: d/jianjia/npc/smith
+- PASS: NPC inherit: d/jianjia/npc/smith
+- PASS: NPC set_name: d/jianjia/npc/smith
+- PASS: NPC setup(): d/jianjia/npc/smith
+- PASS: NPC include: d/ice/npc/ice_guardian
+- PASS: NPC inherit: d/ice/npc/ice_guardian
+- PASS: NPC set_name: d/ice/npc/ice_guardian
+- PASS: NPC setup(): d/ice/npc/ice_guardian
+- PASS: NPC include: d/ice/npc/frost_frog
+- PASS: NPC inherit: d/ice/npc/frost_frog
+- PASS: NPC set_name: d/ice/npc/frost_frog
+- PASS: NPC setup(): d/ice/npc/frost_frog
+- PASS: NPC include: d/baiyao/npc/chilong
+- PASS: NPC inherit: d/baiyao/npc/chilong
+- PASS: NPC set_name: d/baiyao/npc/chilong
+- PASS: NPC setup(): d/baiyao/npc/chilong
+- PASS: NPC include: d/snow/npc/foreman
+- PASS: NPC inherit: d/snow/npc/foreman
+- PASS: NPC set_name: d/snow/npc/foreman
+- PASS: NPC setup(): d/snow/npc/foreman
+- PASS: NPC include: d/snow/npc/worker
+- PASS: NPC inherit: d/snow/npc/worker
+- PASS: NPC set_name: d/snow/npc/worker
+- PASS: NPC setup(): d/snow/npc/worker
+- PASS: NPC include: d/snow/npc/smith
+- PASS: NPC inherit: d/snow/npc/smith
+- PASS: NPC set_name: d/snow/npc/smith
+- PASS: NPC setup(): d/snow/npc/smith
+- PASS: NPC include: d/snow/npc/innkeeper
+- PASS: NPC inherit: d/snow/npc/innkeeper
+- PASS: NPC set_name: d/snow/npc/innkeeper
+- PASS: NPC setup(): d/snow/npc/innkeeper
+- PASS: NPC include: d/snow/npc/waiter
+- PASS: NPC inherit: d/snow/npc/waiter
+- PASS: NPC set_name: d/snow/npc/waiter
+- PASS: NPC setup(): d/snow/npc/waiter
+- PASS: NPC include: d/snow/npc/child1
+- PASS: NPC inherit: d/snow/npc/child1
+- PASS: NPC set_name: d/snow/npc/child1
+- PASS: NPC setup(): d/snow/npc/child1
+- PASS: NPC include: d/snow/npc/child3
+- PASS: NPC inherit: d/snow/npc/child3
+- PASS: NPC set_name: d/snow/npc/child3
+- PASS: NPC setup(): d/snow/npc/child3
+- PASS: NPC include: d/snow/npc/gammer
+- PASS: NPC inherit: d/snow/npc/gammer
+- PASS: NPC set_name: d/snow/npc/gammer
+- PASS: NPC setup(): d/snow/npc/gammer
+- PASS: NPC include: d/snow/npc/darkrobe
+- PASS: NPC inherit: d/snow/npc/darkrobe
+- PASS: NPC set_name: d/snow/npc/darkrobe
+- PASS: NPC setup(): d/snow/npc/darkrobe
+- PASS: NPC include: d/snow/npc/luoyi
+- PASS: NPC inherit: d/snow/npc/luoyi
+- PASS: NPC set_name: d/snow/npc/luoyi
+- PASS: NPC setup(): d/snow/npc/luoyi
+- PASS: NPC include: d/snow/npc/junkman
+- PASS: NPC inherit: d/snow/npc/junkman
+- PASS: NPC set_name: d/snow/npc/junkman
+- PASS: NPC setup(): d/snow/npc/junkman
+- PASS: NPC include: d/snow/npc/girl
+- PASS: NPC inherit: d/snow/npc/girl
+- PASS: NPC set_name: d/snow/npc/girl
+- PASS: NPC setup(): d/snow/npc/girl
+- PASS: NPC include: d/snow/npc/liuyi
+- PASS: NPC inherit: d/snow/npc/liuyi
+- PASS: NPC set_name: d/snow/npc/liuyi
+- PASS: NPC setup(): d/snow/npc/liuyi
+- PASS: NPC include: d/snow/npc/child4
+- PASS: NPC inherit: d/snow/npc/child4
+- PASS: NPC set_name: d/snow/npc/child4
+- PASS: NPC setup(): d/snow/npc/child4
+- PASS: NPC include: d/snow/npc/yutieshan
+- PASS: NPC inherit: d/snow/npc/yutieshan
+- PASS: NPC set_name: d/snow/npc/yutieshan
+- PASS: NPC setup(): d/snow/npc/yutieshan
+- PASS: NPC include: d/snow/npc/child2
+- PASS: NPC inherit: d/snow/npc/child2
+- PASS: NPC set_name: d/snow/npc/child2
+- PASS: NPC setup(): d/snow/npc/child2
+- PASS: NPC include: d/snow/npc/child
+- PASS: NPC inherit: d/snow/npc/child
+- PASS: NPC set_name: d/snow/npc/child
+- PASS: NPC setup(): d/snow/npc/child
+- PASS: NPC include: d/snow/npc/herbalist
+- PASS: NPC inherit: d/snow/npc/herbalist
+- PASS: NPC set_name: d/snow/npc/herbalist
+- PASS: NPC setup(): d/snow/npc/herbalist
+- PASS: NPC include: d/snow/npc/patrol
+- PASS: NPC inherit: d/snow/npc/patrol
+- PASS: NPC set_name: d/snow/npc/patrol
+- PASS: NPC setup(): d/snow/npc/patrol
+- PASS: NPC include: d/snow/npc/yu
+- PASS: NPC inherit: d/snow/npc/yu
+- PASS: NPC set_name: d/snow/npc/yu
+- PASS: NPC setup(): d/snow/npc/yu
+- PASS: NPC include: d/snow/npc/alchemist
+- PASS: NPC inherit: d/snow/npc/alchemist
+- PASS: NPC set_name: d/snow/npc/alchemist
+- PASS: NPC setup(): d/snow/npc/alchemist
+- PASS: NPC include: d/snow/npc/old_beggar
+- PASS: NPC inherit: d/snow/npc/old_beggar
+- PASS: NPC set_name: d/snow/npc/old_beggar
+- PASS: NPC setup(): d/snow/npc/old_beggar
+- PASS: NPC include: d/snow/npc/arbao
+- PASS: NPC inherit: d/snow/npc/arbao
+- PASS: NPC set_name: d/snow/npc/arbao
+- PASS: NPC setup(): d/snow/npc/arbao
+- PASS: NPC include: d/snow/npc/meiyingfeng
+- PASS: NPC inherit: d/snow/npc/meiyingfeng
+- PASS: NPC set_name: d/snow/npc/meiyingfeng
+- PASS: NPC setup(): d/snow/npc/meiyingfeng
+- PASS: NPC include: d/snow/npc/teacher
+- PASS: NPC inherit: d/snow/npc/teacher
+- PASS: NPC set_name: d/snow/npc/teacher
+- PASS: NPC setup(): d/snow/npc/teacher
+- PASS: NPC include: d/snow/npc/oldman
+- PASS: NPC inherit: d/snow/npc/oldman
+- PASS: NPC set_name: d/snow/npc/oldman
+- PASS: NPC setup(): d/snow/npc/oldman
+- PASS: NPC include: d/snow/npc/garrison
+- PASS: NPC inherit: d/snow/npc/garrison
+- PASS: NPC set_name: d/snow/npc/garrison
+- PASS: NPC setup(): d/snow/npc/garrison
+- PASS: NPC include: d/snow/npc/woman
+- PASS: NPC inherit: d/snow/npc/woman
+- PASS: NPC set_name: d/snow/npc/woman
+- PASS: NPC setup(): d/snow/npc/woman
+- PASS: NPC include: d/snow/npc/postman
+- PASS: NPC inherit: d/snow/npc/postman
+- PASS: NPC set_name: d/snow/npc/postman
+- PASS: NPC setup(): d/snow/npc/postman
+- PASS: NPC include: d/snow/npc/guard
+- PASS: NPC inherit: d/snow/npc/guard
+- PASS: NPC set_name: d/snow/npc/guard
+- PASS: NPC setup(): d/snow/npc/guard
+- PASS: NPC include: d/snow/npc/ritual_monkey
+- PASS: NPC inherit: d/snow/npc/ritual_monkey
+- PASS: NPC set_name: d/snow/npc/ritual_monkey
+- PASS: NPC setup(): d/snow/npc/ritual_monkey
+- PASS: NPC include: d/snow/npc/escort
+- PASS: NPC inherit: d/snow/npc/escort
+- PASS: NPC set_name: d/snow/npc/escort
+- PASS: NPC setup(): d/snow/npc/escort
+- PASS: NPC include: d/snow/npc/recruiter
+- PASS: NPC inherit: d/snow/npc/recruiter
+- PASS: NPC set_name: d/snow/npc/recruiter
+- PASS: NPC setup(): d/snow/npc/recruiter
+- PASS: NPC include: d/snow/npc/heiyilaoren
+- PASS: NPC inherit: d/snow/npc/heiyilaoren
+- PASS: NPC set_name: d/snow/npc/heiyilaoren
+- PASS: NPC setup(): d/snow/npc/heiyilaoren
+- PASS: NPC include: d/snow/npc/lieutenant
+- PASS: NPC inherit: d/snow/npc/lieutenant
+- PASS: NPC set_name: d/snow/npc/lieutenant
+- PASS: NPC setup(): d/snow/npc/lieutenant
+- PASS: NPC include: d/snow/npc/miller
+- PASS: NPC inherit: d/snow/npc/miller
+- PASS: NPC set_name: d/snow/npc/miller
+- PASS: NPC setup(): d/snow/npc/miller
+- PASS: NPC include: d/lijun/npc/bandit
+- PASS: NPC inherit: d/lijun/npc/bandit
+- PASS: NPC set_name: d/lijun/npc/bandit
+- PASS: NPC setup(): d/lijun/npc/bandit
+- PASS: NPC include: d/lijun/npc/ferryman
+- PASS: NPC inherit: d/lijun/npc/ferryman
+- PASS: NPC set_name: d/lijun/npc/ferryman
+- PASS: NPC setup(): d/lijun/npc/ferryman
+- PASS: NPC include: d/lijun/npc/fisherman
+- PASS: NPC inherit: d/lijun/npc/fisherman
+- PASS: NPC set_name: d/lijun/npc/fisherman
+- PASS: NPC setup(): d/lijun/npc/fisherman
+- PASS: NPC include: d/lijun/npc/trader
+- PASS: NPC inherit: d/lijun/npc/trader
+- PASS: NPC set_name: d/lijun/npc/trader
+- PASS: NPC setup(): d/lijun/npc/trader
+- PASS: NPC include: d/lijun/npc/river_guard
+- PASS: NPC inherit: d/lijun/npc/river_guard
+- PASS: NPC set_name: d/lijun/npc/river_guard
+- PASS: NPC setup(): d/lijun/npc/river_guard
+- PASS: NPC include: d/lijun/npc/tea_lady
+- PASS: NPC inherit: d/lijun/npc/tea_lady
+- PASS: NPC set_name: d/lijun/npc/tea_lady
+- PASS: NPC setup(): d/lijun/npc/tea_lady
+- PASS: NPC include: d/green/npc/celestial_bull
+- PASS: NPC inherit: d/green/npc/celestial_bull
+- PASS: NPC set_name: d/green/npc/celestial_bull
+- PASS: NPC setup(): d/green/npc/celestial_bull
+- PASS: NPC include: d/green/npc/shepherd
+- PASS: NPC inherit: d/green/npc/shepherd
+- PASS: NPC set_name: d/green/npc/shepherd
+- PASS: NPC setup(): d/green/npc/shepherd
+- PASS: NPC include: d/green/npc/godly_dog
+- PASS: NPC inherit: d/green/npc/godly_dog
+- PASS: NPC set_name: d/green/npc/godly_dog
+- PASS: NPC setup(): d/green/npc/godly_dog
+- PASS: NPC include: d/weiguo/npc/smith
+- PASS: NPC inherit: d/weiguo/npc/smith
+- PASS: NPC set_name: d/weiguo/npc/smith
+- PASS: NPC setup(): d/weiguo/npc/smith
+- PASS: NPC include: d/weiguo/npc/innkeeper
+- PASS: NPC inherit: d/weiguo/npc/innkeeper
+- PASS: NPC set_name: d/weiguo/npc/innkeeper
+- PASS: NPC setup(): d/weiguo/npc/innkeeper
+- PASS: NPC include: d/weiguo/npc/sentry
+- PASS: NPC inherit: d/weiguo/npc/sentry
+- PASS: NPC set_name: d/weiguo/npc/sentry
+- PASS: NPC setup(): d/weiguo/npc/sentry
+- PASS: NPC include: d/weiguo/npc/soldier
+- PASS: NPC inherit: d/weiguo/npc/soldier
+- PASS: NPC set_name: d/weiguo/npc/soldier
+- PASS: NPC setup(): d/weiguo/npc/soldier
+- PASS: NPC include: d/weiguo/npc/temple_keeper
+- PASS: NPC inherit: d/weiguo/npc/temple_keeper
+- PASS: NPC set_name: d/weiguo/npc/temple_keeper
+- PASS: NPC setup(): d/weiguo/npc/temple_keeper
+- PASS: NPC include: d/weiguo/npc/armorer
+- PASS: NPC inherit: d/weiguo/npc/armorer
+- PASS: NPC set_name: d/weiguo/npc/armorer
+- PASS: NPC setup(): d/weiguo/npc/armorer
+- PASS: NPC include: d/weiguo/npc/stablehand
+- PASS: NPC inherit: d/weiguo/npc/stablehand
+- PASS: NPC set_name: d/weiguo/npc/stablehand
+- PASS: NPC setup(): d/weiguo/npc/stablehand
+- PASS: NPC include: d/weiguo/npc/quartermaster
+- PASS: NPC inherit: d/weiguo/npc/quartermaster
+- PASS: NPC set_name: d/weiguo/npc/quartermaster
+- PASS: NPC setup(): d/weiguo/npc/quartermaster
+- PASS: NPC include: d/tianshi/npc/master
+- PASS: NPC inherit: d/tianshi/npc/master
+- PASS: NPC set_name: d/tianshi/npc/master
+- PASS: NPC setup(): d/tianshi/npc/master
+- PASS: NPC include: d/tianshi/npc/acolyte
+- PASS: NPC inherit: d/tianshi/npc/acolyte
+- PASS: NPC set_name: d/tianshi/npc/acolyte
+- PASS: NPC setup(): d/tianshi/npc/acolyte
+- PASS: NPC include: d/tianshi/npc/talisman_maker
+- PASS: NPC inherit: d/tianshi/npc/talisman_maker
+- PASS: NPC set_name: d/tianshi/npc/talisman_maker
+- PASS: NPC setup(): d/tianshi/npc/talisman_maker
+- PASS: NPC include: d/baihua/npc/stone_lion
+- PASS: NPC inherit: d/baihua/npc/stone_lion
+- PASS: NPC set_name: d/baihua/npc/stone_lion
+- PASS: NPC setup(): d/baihua/npc/stone_lion
+- PASS: NPC include: d/baihua/npc/flowergirl
+- PASS: NPC inherit: d/baihua/npc/flowergirl
+- PASS: NPC set_name: d/baihua/npc/flowergirl
+- PASS: NPC setup(): d/baihua/npc/flowergirl
+- PASS: NPC include: d/baihua/npc/innkeeper
+- PASS: NPC inherit: d/baihua/npc/innkeeper
+- PASS: NPC set_name: d/baihua/npc/innkeeper
+- PASS: NPC setup(): d/baihua/npc/innkeeper
+- PASS: NPC include: d/baihua/npc/melon_farmer
+- PASS: NPC inherit: d/baihua/npc/melon_farmer
+- PASS: NPC set_name: d/baihua/npc/melon_farmer
+- PASS: NPC setup(): d/baihua/npc/melon_farmer
+- PASS: NPC include: d/baihua/npc/student
+- PASS: NPC inherit: d/baihua/npc/student
+- PASS: NPC set_name: d/baihua/npc/student
+- PASS: NPC setup(): d/baihua/npc/student
+- PASS: NPC include: d/baihua/npc/guard
+- PASS: NPC inherit: d/baihua/npc/guard
+- PASS: NPC set_name: d/baihua/npc/guard
+- PASS: NPC setup(): d/baihua/npc/guard
+- PASS: NPC include: d/road/npc/inferno_dog
+- PASS: NPC inherit: d/road/npc/inferno_dog
+- PASS: NPC set_name: d/road/npc/inferno_dog
+- PASS: NPC setup(): d/road/npc/inferno_dog
+- PASS: NPC include: d/goathill/npc/wild_goat
+- PASS: NPC inherit: d/goathill/npc/wild_goat
+- PASS: NPC set_name: d/goathill/npc/wild_goat
+- PASS: NPC setup(): d/goathill/npc/wild_goat
+- PASS: NPC include: d/goathill/npc/mountain_hermit
+- PASS: NPC inherit: d/goathill/npc/mountain_hermit
+- PASS: NPC set_name: d/goathill/npc/mountain_hermit
+- PASS: NPC setup(): d/goathill/npc/mountain_hermit
+- PASS: NPC include: d/village/npc/beggar_crone
+- PASS: NPC inherit: d/village/npc/beggar_crone
+- PASS: NPC set_name: d/village/npc/beggar_crone
+- PASS: NPC setup(): d/village/npc/beggar_crone
+- PASS: NPC include: d/village/npc/village_elder
+- PASS: NPC inherit: d/village/npc/village_elder
+- PASS: NPC set_name: d/village/npc/village_elder
+- PASS: NPC setup(): d/village/npc/village_elder
+- PASS: NPC include: d/village/npc/village_innkeeper
+- PASS: NPC inherit: d/village/npc/village_innkeeper
+- PASS: NPC set_name: d/village/npc/village_innkeeper
+- PASS: NPC setup(): d/village/npc/village_innkeeper
+- PASS: NPC include: d/hudao/npc/hanxiao
+- PASS: NPC inherit: d/hudao/npc/hanxiao
+- PASS: NPC set_name: d/hudao/npc/hanxiao
+- PASS: NPC setup(): d/hudao/npc/hanxiao
+- PASS: NPC include: d/hudao/npc/sunyi
+- PASS: NPC inherit: d/hudao/npc/sunyi
+- PASS: NPC set_name: d/hudao/npc/sunyi
+- PASS: NPC setup(): d/hudao/npc/sunyi
+- PASS: NPC include: d/hudao/npc/elder
+- PASS: NPC inherit: d/hudao/npc/elder
+- PASS: NPC set_name: d/hudao/npc/elder
+- PASS: NPC setup(): d/hudao/npc/elder
+- PASS: NPC include: d/hudao/npc/disciple
+- PASS: NPC inherit: d/hudao/npc/disciple
+- PASS: NPC set_name: d/hudao/npc/disciple
+- PASS: NPC setup(): d/hudao/npc/disciple
+- PASS: NPC include: d/hudao/npc/cook
+- PASS: NPC inherit: d/hudao/npc/cook
+- PASS: NPC set_name: d/hudao/npc/cook
+- PASS: NPC setup(): d/hudao/npc/cook
+- PASS: NPC include: d/hudao/npc/guard
+- PASS: NPC inherit: d/hudao/npc/guard
+- PASS: NPC set_name: d/hudao/npc/guard
+- PASS: NPC setup(): d/hudao/npc/guard
+- PASS: NPC include: d/heifeng/npc/bandit
+- PASS: NPC inherit: d/heifeng/npc/bandit
+- PASS: NPC set_name: d/heifeng/npc/bandit
+- PASS: NPC setup(): d/heifeng/npc/bandit
+- PASS: NPC include: d/heifeng/npc/bandit_leader
+- PASS: NPC inherit: d/heifeng/npc/bandit_leader
+- PASS: NPC set_name: d/heifeng/npc/bandit_leader
+- PASS: NPC setup(): d/heifeng/npc/bandit_leader
+- PASS: NPC include: d/heifeng/npc/prisoner
+- PASS: NPC inherit: d/heifeng/npc/prisoner
+- PASS: NPC set_name: d/heifeng/npc/prisoner
+- PASS: NPC setup(): d/heifeng/npc/prisoner
+- PASS: NPC include: d/heifeng/npc/guard
+- PASS: NPC inherit: d/heifeng/npc/guard
+- PASS: NPC set_name: d/heifeng/npc/guard
+- PASS: NPC setup(): d/heifeng/npc/guard
+- PASS: NPC include: d/graveyard/npc/ghost
+- PASS: NPC inherit: d/graveyard/npc/ghost
+- PASS: NPC set_name: d/graveyard/npc/ghost
+- PASS: NPC setup(): d/graveyard/npc/ghost
+- PASS: NPC include: d/graveyard/npc/zombie
+- PASS: NPC inherit: d/graveyard/npc/zombie
+- PASS: NPC set_name: d/graveyard/npc/zombie
+- PASS: NPC setup(): d/graveyard/npc/zombie
+- PASS: NPC include: d/graveyard/npc/grave_keeper
+- PASS: NPC inherit: d/graveyard/npc/grave_keeper
+- PASS: NPC set_name: d/graveyard/npc/grave_keeper
+- PASS: NPC setup(): d/graveyard/npc/grave_keeper
+- PASS: NPC include: d/baolian/npc/master
+- PASS: NPC inherit: d/baolian/npc/master
+- PASS: NPC set_name: d/baolian/npc/master
+- PASS: NPC setup(): d/baolian/npc/master
+- PASS: NPC include: d/baolian/npc/novice
+- PASS: NPC inherit: d/baolian/npc/novice
+- PASS: NPC set_name: d/baolian/npc/novice
+- PASS: NPC setup(): d/baolian/npc/novice
+- PASS: NPC include: d/baolian/npc/greeter
+- PASS: NPC inherit: d/baolian/npc/greeter
+- PASS: NPC set_name: d/baolian/npc/greeter
+- PASS: NPC setup(): d/baolian/npc/greeter
+- PASS: NPC include: d/maoshan/npc/ouyang_wuji2
+- PASS: NPC inherit: d/maoshan/npc/ouyang_wuji2
+- PASS: NPC set_name: d/maoshan/npc/ouyang_wuji2
+- PASS: NPC setup(): d/maoshan/npc/ouyang_wuji2
+- PASS: NPC include: d/maoshan/npc/elder
+- PASS: NPC inherit: d/maoshan/npc/elder
+- PASS: NPC set_name: d/maoshan/npc/elder
+- PASS: NPC setup(): d/maoshan/npc/elder
+- PASS: NPC include: d/maoshan/npc/disciple
+- PASS: NPC inherit: d/maoshan/npc/disciple
+- PASS: NPC set_name: d/maoshan/npc/disciple
+- PASS: NPC setup(): d/maoshan/npc/disciple
+- PASS: NPC include: d/maoshan/npc/ouyang_wuji
+- PASS: NPC inherit: d/maoshan/npc/ouyang_wuji
+- PASS: NPC set_name: d/maoshan/npc/ouyang_wuji
+- PASS: NPC setup(): d/maoshan/npc/ouyang_wuji
+- PASS: NPC include: d/jingji/npc/passerby
+- PASS: NPC inherit: d/jingji/npc/passerby
+- PASS: NPC set_name: d/jingji/npc/passerby
+- PASS: NPC setup(): d/jingji/npc/passerby
+- PASS: NPC include: d/jingji/npc/innkeeper
+- PASS: NPC inherit: d/jingji/npc/innkeeper
+- PASS: NPC set_name: d/jingji/npc/innkeeper
+- PASS: NPC setup(): d/jingji/npc/innkeeper
+- PASS: NPC include: d/jingji/npc/silk_merchant
+- PASS: NPC inherit: d/jingji/npc/silk_merchant
+- PASS: NPC set_name: d/jingji/npc/silk_merchant
+- PASS: NPC setup(): d/jingji/npc/silk_merchant
+- PASS: NPC include: d/jingji/npc/temple_monk
+- PASS: NPC inherit: d/jingji/npc/temple_monk
+- PASS: NPC set_name: d/jingji/npc/temple_monk
+- PASS: NPC setup(): d/jingji/npc/temple_monk
+- PASS: NPC include: d/jingji/npc/bank_guard
+- PASS: NPC inherit: d/jingji/npc/bank_guard
+- PASS: NPC set_name: d/jingji/npc/bank_guard
+- PASS: NPC setup(): d/jingji/npc/bank_guard
+- PASS: NPC include: d/jingji/npc/scholar
+- PASS: NPC inherit: d/jingji/npc/scholar
+- PASS: NPC set_name: d/jingji/npc/scholar
+- PASS: NPC setup(): d/jingji/npc/scholar
+- PASS: NPC include: d/jingji/npc/gate_guard
+- PASS: NPC inherit: d/jingji/npc/gate_guard
+- PASS: NPC set_name: d/jingji/npc/gate_guard
+- PASS: NPC setup(): d/jingji/npc/gate_guard
+- PASS: NPC include: d/jingji/npc/official
+- PASS: NPC inherit: d/jingji/npc/official
+- PASS: NPC set_name: d/jingji/npc/official
+- PASS: NPC setup(): d/jingji/npc/official
+- PASS: NPC include: d/jingji/npc/guard
+- PASS: NPC inherit: d/jingji/npc/guard
+- PASS: NPC set_name: d/jingji/npc/guard
+- PASS: NPC setup(): d/jingji/npc/guard
+- PASS: NPC include: d/jingji/npc/weapon_vendor
+- PASS: NPC inherit: d/jingji/npc/weapon_vendor
+- PASS: NPC set_name: d/jingji/npc/weapon_vendor
+- PASS: NPC setup(): d/jingji/npc/weapon_vendor
+- PASS: NPC include: d/green_n/npc/wild_wolf
+- PASS: NPC inherit: d/green_n/npc/wild_wolf
+- PASS: NPC set_name: d/green_n/npc/wild_wolf
+- PASS: NPC setup(): d/green_n/npc/wild_wolf
+- PASS: NPC include: d/green_n/npc/wild_boar
+- PASS: NPC inherit: d/green_n/npc/wild_boar
+- PASS: NPC set_name: d/green_n/npc/wild_boar
+- PASS: NPC setup(): d/green_n/npc/wild_boar
+- PASS: NPC include: d/green_n/npc/wild_horse
+- PASS: NPC inherit: d/green_n/npc/wild_horse
+- PASS: NPC set_name: d/green_n/npc/wild_horse
+- PASS: NPC setup(): d/green_n/npc/wild_horse
+- PASS: NPC include: d/force/npc/weapon_master
+- PASS: NPC inherit: d/force/npc/weapon_master
+- PASS: NPC set_name: d/force/npc/weapon_master
+- PASS: NPC setup(): d/force/npc/weapon_master
+- PASS: NPC include: d/force/npc/training_dummy
+- PASS: NPC inherit: d/force/npc/training_dummy
+- PASS: NPC set_name: d/force/npc/training_dummy
+- PASS: NPC setup(): d/force/npc/training_dummy
+- PASS: NPC include: d/baixiang/npc/abbot
+- PASS: NPC inherit: d/baixiang/npc/abbot
+- PASS: NPC set_name: d/baixiang/npc/abbot
+- PASS: NPC setup(): d/baixiang/npc/abbot
+- PASS: NPC include: d/baixiang/npc/sutra_monk
+- PASS: NPC inherit: d/baixiang/npc/sutra_monk
+- PASS: NPC set_name: d/baixiang/npc/sutra_monk
+- PASS: NPC setup(): d/baixiang/npc/sutra_monk
+- PASS: NPC include: d/baixiang/npc/gardener
+- PASS: NPC inherit: d/baixiang/npc/gardener
+- PASS: NPC set_name: d/baixiang/npc/gardener
+- PASS: NPC setup(): d/baixiang/npc/gardener
+- PASS: NPC include: d/baixiang/npc/monk
+- PASS: NPC inherit: d/baixiang/npc/monk
+- PASS: NPC set_name: d/baixiang/npc/monk
+- PASS: NPC setup(): d/baixiang/npc/monk
+- PASS: NPC include: d/baixiang/npc/cook
+- PASS: NPC inherit: d/baixiang/npc/cook
+- PASS: NPC set_name: d/baixiang/npc/cook
+- PASS: NPC setup(): d/baixiang/npc/cook
+- PASS: NPC include: d/hell/npc/wandering_ghost
+- PASS: NPC inherit: d/hell/npc/wandering_ghost
+- PASS: NPC set_name: d/hell/npc/wandering_ghost
+- PASS: NPC setup(): d/hell/npc/wandering_ghost
+- PASS: NPC include: d/hell/npc/tower_guard
+- PASS: NPC inherit: d/hell/npc/tower_guard
+- PASS: NPC set_name: d/hell/npc/tower_guard
+- PASS: NPC setup(): d/hell/npc/tower_guard
+- PASS: NPC include: d/hell/npc/white_agent
+- PASS: NPC inherit: d/hell/npc/white_agent
+- PASS: NPC set_name: d/hell/npc/white_agent
+- PASS: NPC setup(): d/hell/npc/white_agent
+- PASS: NPC include: d/hell/npc/black_agent
+- PASS: NPC inherit: d/hell/npc/black_agent
+- PASS: NPC set_name: d/hell/npc/black_agent
+- PASS: NPC setup(): d/hell/npc/black_agent
+- PASS: NPC include: d/hell/npc/diling
+- PASS: NPC inherit: d/hell/npc/diling
+- PASS: NPC set_name: d/hell/npc/diling
+- PASS: NPC setup(): d/hell/npc/diling
+- PASS: NPC include: d/death/npc/soul_judge
+- PASS: NPC inherit: d/death/npc/soul_judge
+- PASS: NPC set_name: d/death/npc/soul_judge
+- PASS: NPC setup(): d/death/npc/soul_judge
+- PASS: NPC include: d/death/npc/skeleton_guard
+- PASS: NPC inherit: d/death/npc/skeleton_guard
+- PASS: NPC set_name: d/death/npc/skeleton_guard
+- PASS: NPC setup(): d/death/npc/skeleton_guard
+- PASS: NPC include: d/death/npc/wandering_soul
+- PASS: NPC inherit: d/death/npc/wandering_soul
+- PASS: NPC set_name: d/death/npc/wandering_soul
+- PASS: NPC setup(): d/death/npc/wandering_soul
+- PASS: NPC include: d/death/npc/hundunshou
+- PASS: NPC inherit: d/death/npc/hundunshou
+- PASS: NPC set_name: d/death/npc/hundunshou
+- PASS: NPC setup(): d/death/npc/hundunshou
+- PASS: NPC include: d/tianyue/npc/master
+- PASS: NPC inherit: d/tianyue/npc/master
+- PASS: NPC set_name: d/tianyue/npc/master
+- PASS: NPC setup(): d/tianyue/npc/master
+- PASS: NPC include: d/tianyue/npc/canyi
+- PASS: NPC inherit: d/tianyue/npc/canyi
+- PASS: NPC set_name: d/tianyue/npc/canyi
+- PASS: NPC setup(): d/tianyue/npc/canyi
+- PASS: NPC include: d/tianyue/npc/novice
+- PASS: NPC inherit: d/tianyue/npc/novice
+- PASS: NPC set_name: d/tianyue/npc/novice
+- PASS: NPC setup(): d/tianyue/npc/novice
+- PASS: NPC include: d/tianyue/npc/greeter
+- PASS: NPC inherit: d/tianyue/npc/greeter
+- PASS: NPC set_name: d/tianyue/npc/greeter
+- PASS: NPC setup(): d/tianyue/npc/greeter
+- PASS: NPC include: d/latemoon/npc/moon_priestess
+- PASS: NPC inherit: d/latemoon/npc/moon_priestess
+- PASS: NPC set_name: d/latemoon/npc/moon_priestess
+- PASS: NPC setup(): d/latemoon/npc/moon_priestess
+- PASS: NPC include: d/latemoon/npc/mieyu
+- PASS: NPC inherit: d/latemoon/npc/mieyu
+- PASS: NPC set_name: d/latemoon/npc/mieyu
+- PASS: NPC setup(): d/latemoon/npc/mieyu
+- PASS: NPC include: d/latemoon/npc/wind_god
+- PASS: NPC inherit: d/latemoon/npc/wind_god
+- PASS: NPC set_name: d/latemoon/npc/wind_god
+- PASS: NPC setup(): d/latemoon/npc/wind_god
+- PASS: NPC include: d/latemoon/npc/miexin
+- PASS: NPC inherit: d/latemoon/npc/miexin
+- PASS: NPC set_name: d/latemoon/npc/miexin
+- PASS: NPC setup(): d/latemoon/npc/miexin
+- PASS: NPC include: d/latemoon/npc/shenwei
+- PASS: NPC inherit: d/latemoon/npc/shenwei
+- PASS: NPC set_name: d/latemoon/npc/shenwei
+- PASS: NPC setup(): d/latemoon/npc/shenwei
+- PASS: NPC include: d/latemoon/npc/mieming
+- PASS: NPC inherit: d/latemoon/npc/mieming
+- PASS: NPC set_name: d/latemoon/npc/mieming
+- PASS: NPC setup(): d/latemoon/npc/mieming
+- PASS: NPC include: d/choyin/npc/innkeeper
+- PASS: NPC inherit: d/choyin/npc/innkeeper
+- PASS: NPC set_name: d/choyin/npc/innkeeper
+- PASS: NPC setup(): d/choyin/npc/innkeeper
+- PASS: NPC include: d/choyin/npc/cityguard
+- PASS: NPC inherit: d/choyin/npc/cityguard
+- PASS: NPC set_name: d/choyin/npc/cityguard
+- PASS: NPC setup(): d/choyin/npc/cityguard
+- PASS: NPC include: d/choyin/npc/zhang_xiaoqian
+- PASS: NPC inherit: d/choyin/npc/zhang_xiaoqian
+- PASS: NPC set_name: d/choyin/npc/zhang_xiaoqian
+- PASS: NPC setup(): d/choyin/npc/zhang_xiaoqian
+- PASS: NPC include: d/choyin/npc/fortune_teller
+- PASS: NPC inherit: d/choyin/npc/fortune_teller
+- PASS: NPC set_name: d/choyin/npc/fortune_teller
+- PASS: NPC setup(): d/choyin/npc/fortune_teller
+- PASS: NPC include: d/choyin/npc/beggar
+- PASS: NPC inherit: d/choyin/npc/beggar
+- PASS: NPC set_name: d/choyin/npc/beggar
+- PASS: NPC setup(): d/choyin/npc/beggar
+- PASS: NPC include: d/choyin/npc/bookshop_owner
+- PASS: NPC inherit: d/choyin/npc/bookshop_owner
+- PASS: NPC set_name: d/choyin/npc/bookshop_owner
+- PASS: NPC setup(): d/choyin/npc/bookshop_owner
+- PASS: NPC include: d/choyin/npc/monk
+- PASS: NPC inherit: d/choyin/npc/monk
+- PASS: NPC set_name: d/choyin/npc/monk
+- PASS: NPC setup(): d/choyin/npc/monk
+- PASS: NPC include: d/kuxiao/npc/liuyi
+- PASS: NPC inherit: d/kuxiao/npc/liuyi
+- PASS: NPC set_name: d/kuxiao/npc/liuyi
+- PASS: NPC setup(): d/kuxiao/npc/liuyi
+- PASS: NPC include: d/kuxiao/npc/disciple
+- PASS: NPC inherit: d/kuxiao/npc/disciple
+- PASS: NPC set_name: d/kuxiao/npc/disciple
+- PASS: NPC setup(): d/kuxiao/npc/disciple
+- PASS: NPC include: d/kuxiao/npc/lieutenant
+- PASS: NPC inherit: d/kuxiao/npc/lieutenant
+- PASS: NPC set_name: d/kuxiao/npc/lieutenant
+- PASS: NPC setup(): d/kuxiao/npc/lieutenant
+- PASS: NPC include: d/tianhan/npc/waiter
+- PASS: NPC inherit: d/tianhan/npc/waiter
+- PASS: NPC set_name: d/tianhan/npc/waiter
+- PASS: NPC setup(): d/tianhan/npc/waiter
+- PASS: NPC include: d/tianhan/npc/guard
+- PASS: NPC inherit: d/tianhan/npc/guard
+- PASS: NPC set_name: d/tianhan/npc/guard
+- PASS: NPC setup(): d/tianhan/npc/guard
+- PASS: NPC include: d/kangping/npc/farmer
+- PASS: NPC inherit: d/kangping/npc/farmer
+- PASS: NPC set_name: d/kangping/npc/farmer
+- PASS: NPC setup(): d/kangping/npc/farmer
+- PASS: NPC include: d/kangping/npc/innkeeper
+- PASS: NPC inherit: d/kangping/npc/innkeeper
+- PASS: NPC set_name: d/kangping/npc/innkeeper
+- PASS: NPC setup(): d/kangping/npc/innkeeper
+- PASS: NPC include: d/kangping/npc/red_dragon
+- PASS: NPC inherit: d/kangping/npc/red_dragon
+- PASS: NPC set_name: d/kangping/npc/red_dragon
+- PASS: NPC setup(): d/kangping/npc/red_dragon
+- PASS: NPC include: d/kangping/npc/merchant
+- PASS: NPC inherit: d/kangping/npc/merchant
+- PASS: NPC set_name: d/kangping/npc/merchant
+- PASS: NPC setup(): d/kangping/npc/merchant
+- PASS: NPC include: d/kangping/npc/villager
+- PASS: NPC inherit: d/kangping/npc/villager
+- PASS: NPC set_name: d/kangping/npc/villager
+- PASS: NPC setup(): d/kangping/npc/villager
+- PASS: NPC include: d/kangping/npc/herbalist
+- PASS: NPC inherit: d/kangping/npc/herbalist
+- PASS: NPC set_name: d/kangping/npc/herbalist
+- PASS: NPC setup(): d/kangping/npc/herbalist
+- PASS: NPC include: d/kangping/npc/taoist
+- PASS: NPC inherit: d/kangping/npc/taoist
+- PASS: NPC set_name: d/kangping/npc/taoist
+- PASS: NPC setup(): d/kangping/npc/taoist
+- PASS: NPC include: d/kangping/npc/old_woman
+- PASS: NPC inherit: d/kangping/npc/old_woman
+- PASS: NPC set_name: d/kangping/npc/old_woman
+- PASS: NPC setup(): d/kangping/npc/old_woman
+- PASS: NPC include: d/kangping/npc/agui
+- PASS: NPC inherit: d/kangping/npc/agui
+- PASS: NPC set_name: d/kangping/npc/agui
+- PASS: NPC setup(): d/kangping/npc/agui
+- PASS: NPC include: d/kangping/npc/guard
+- PASS: NPC inherit: d/kangping/npc/guard
+- PASS: NPC set_name: d/kangping/npc/guard
+- PASS: NPC setup(): d/kangping/npc/guard
+- PASS: NPC include: d/kangping/npc/temple_keeper
+- PASS: NPC inherit: d/kangping/npc/temple_keeper
+- PASS: NPC set_name: d/kangping/npc/temple_keeper
+- PASS: NPC setup(): d/kangping/npc/temple_keeper
+- PASS: NPC include: d/wutuo/npc/master
+- PASS: NPC inherit: d/wutuo/npc/master
+- PASS: NPC set_name: d/wutuo/npc/master
+- PASS: NPC setup(): d/wutuo/npc/master
+- PASS: NPC include: d/wutuo/npc/apprentice
+- PASS: NPC inherit: d/wutuo/npc/apprentice
+- PASS: NPC set_name: d/wutuo/npc/apprentice
+- PASS: NPC setup(): d/wutuo/npc/apprentice
+- PASS: NPC include: d/canyon/npc/hermit
+- PASS: NPC inherit: d/canyon/npc/hermit
+- PASS: NPC set_name: d/canyon/npc/hermit
+- PASS: NPC setup(): d/canyon/npc/hermit
+- PASS: NPC include: d/canyon/npc/canyon_bat
+- PASS: NPC inherit: d/canyon/npc/canyon_bat
+- PASS: NPC set_name: d/canyon/npc/canyon_bat
+- PASS: NPC setup(): d/canyon/npc/canyon_bat
+- PASS: NPC include: d/canyon/npc/jing_yutao
+- PASS: NPC inherit: d/canyon/npc/jing_yutao
+- PASS: NPC set_name: d/canyon/npc/jing_yutao
+- PASS: NPC setup(): d/canyon/npc/jing_yutao
+- PASS: NPC include: d/xuantian/npc/master
+- PASS: NPC inherit: d/xuantian/npc/master
+- PASS: NPC set_name: d/xuantian/npc/master
+- PASS: NPC setup(): d/xuantian/npc/master
+- PASS: NPC include: d/xuantian/npc/attendant
+- PASS: NPC inherit: d/xuantian/npc/attendant
+- PASS: NPC set_name: d/xuantian/npc/attendant
+- PASS: NPC setup(): d/xuantian/npc/attendant
+- PASS: NPC include: d/zhenwu/npc/luxinian
+- PASS: NPC inherit: d/zhenwu/npc/luxinian
+- PASS: NPC set_name: d/zhenwu/npc/luxinian
+- PASS: NPC setup(): d/zhenwu/npc/luxinian
+- PASS: NPC include: d/zhenwu/npc/sentry
+- PASS: NPC inherit: d/zhenwu/npc/sentry
+- PASS: NPC set_name: d/zhenwu/npc/sentry
+- PASS: NPC setup(): d/zhenwu/npc/sentry
+- PASS: NPC include: d/zhenwu/npc/mipei
+- PASS: NPC inherit: d/zhenwu/npc/mipei
+- PASS: NPC set_name: d/zhenwu/npc/mipei
+- PASS: NPC setup(): d/zhenwu/npc/mipei
+- PASS: NPC include: d/zhenwu/npc/soldier
+- PASS: NPC inherit: d/zhenwu/npc/soldier
+- PASS: NPC set_name: d/zhenwu/npc/soldier
+- PASS: NPC setup(): d/zhenwu/npc/soldier
+- PASS: NPC include: d/zhenwu/npc/cook
+- PASS: NPC inherit: d/zhenwu/npc/cook
+- PASS: NPC set_name: d/zhenwu/npc/cook
+- PASS: NPC setup(): d/zhenwu/npc/cook
+- PASS: NPC include: d/zhenwu/npc/guard
+- PASS: NPC inherit: d/zhenwu/npc/guard
+- PASS: NPC set_name: d/zhenwu/npc/guard
+- PASS: NPC setup(): d/zhenwu/npc/guard
+- PASS: NPC include: d/zhenwu/npc/armorer
+- PASS: NPC inherit: d/zhenwu/npc/armorer
+- PASS: NPC set_name: d/zhenwu/npc/armorer
+- PASS: NPC setup(): d/zhenwu/npc/armorer
+- PASS: NPC include: d/zhenwu/npc/stablehand
+- PASS: NPC inherit: d/zhenwu/npc/stablehand
+- PASS: NPC set_name: d/zhenwu/npc/stablehand
+- PASS: NPC setup(): d/zhenwu/npc/stablehand
+- PASS: NPC include: d/zhenwu/npc/biyong
+- PASS: NPC inherit: d/zhenwu/npc/biyong
+- PASS: NPC set_name: d/zhenwu/npc/biyong
+- PASS: NPC setup(): d/zhenwu/npc/biyong
+- PASS: NPC include: d/langyi/npc/master
+- PASS: NPC inherit: d/langyi/npc/master
+- PASS: NPC set_name: d/langyi/npc/master
+- PASS: NPC setup(): d/langyi/npc/master
+- PASS: NPC include: d/langyi/npc/spy
+- PASS: NPC inherit: d/langyi/npc/spy
+- PASS: NPC set_name: d/langyi/npc/spy
+- PASS: NPC setup(): d/langyi/npc/spy
+- PASS: NPC include: d/langyi/npc/assassin
+- PASS: NPC inherit: d/langyi/npc/assassin
+- PASS: NPC set_name: d/langyi/npc/assassin
+- PASS: NPC setup(): d/langyi/npc/assassin
+- PASS: NPC include: d/chuenyu/npc/pilgrim
+- PASS: NPC inherit: d/chuenyu/npc/pilgrim
+- PASS: NPC set_name: d/chuenyu/npc/pilgrim
+- PASS: NPC setup(): d/chuenyu/npc/pilgrim
+- PASS: NPC include: d/chuenyu/npc/spring_keeper
+- PASS: NPC inherit: d/chuenyu/npc/spring_keeper
+- PASS: NPC set_name: d/chuenyu/npc/spring_keeper
+- PASS: NPC setup(): d/chuenyu/npc/spring_keeper
+- PASS: NPC include: d/waterfog/npc/fog_hermit
+- PASS: NPC inherit: d/waterfog/npc/fog_hermit
+- PASS: NPC set_name: d/waterfog/npc/fog_hermit
+- PASS: NPC setup(): d/waterfog/npc/fog_hermit
+- PASS: NPC include: d/waterfog/npc/centipede
+- PASS: NPC inherit: d/waterfog/npc/centipede
+- PASS: NPC set_name: d/waterfog/npc/centipede
+- PASS: NPC setup(): d/waterfog/npc/centipede
+- PASS: NPC include: d/city/npc/innkeeper
+- PASS: NPC inherit: d/city/npc/innkeeper
+- PASS: NPC set_name: d/city/npc/innkeeper
+- PASS: NPC setup(): d/city/npc/innkeeper
+- PASS: NPC include: d/city/npc/merchant
+- PASS: NPC inherit: d/city/npc/merchant
+- PASS: NPC set_name: d/city/npc/merchant
+- PASS: NPC setup(): d/city/npc/merchant
+- PASS: NPC include: d/city/npc/temple_monk
+- PASS: NPC inherit: d/city/npc/temple_monk
+- PASS: NPC set_name: d/city/npc/temple_monk
+- PASS: NPC setup(): d/city/npc/temple_monk
+- PASS: NPC include: d/city/npc/weaponsmith
+- PASS: NPC inherit: d/city/npc/weaponsmith
+- PASS: NPC set_name: d/city/npc/weaponsmith
+- PASS: NPC setup(): d/city/npc/weaponsmith
+- PASS: NPC include: d/city/npc/pawnbroker
+- PASS: NPC inherit: d/city/npc/pawnbroker
+- PASS: NPC set_name: d/city/npc/pawnbroker
+- PASS: NPC setup(): d/city/npc/pawnbroker
+- PASS: NPC include: d/city/npc/beggar
+- PASS: NPC inherit: d/city/npc/beggar
+- PASS: NPC set_name: d/city/npc/beggar
+- PASS: NPC setup(): d/city/npc/beggar
+- PASS: NPC include: d/city/npc/guard
+- PASS: NPC inherit: d/city/npc/guard
+- PASS: NPC set_name: d/city/npc/guard
+- PASS: NPC setup(): d/city/npc/guard
+- PASS: NPC include: d/city/npc/armorer
+- PASS: NPC inherit: d/city/npc/armorer
+- PASS: NPC set_name: d/city/npc/armorer
+- PASS: NPC setup(): d/city/npc/armorer
+- PASS: NPC include: d/city/npc/peddler
+- PASS: NPC inherit: d/city/npc/peddler
+- PASS: NPC set_name: d/city/npc/peddler
+- PASS: NPC setup(): d/city/npc/peddler
+- PASS: NPC include: d/chixiao/npc/innkeeper
+- PASS: NPC inherit: d/chixiao/npc/innkeeper
+- PASS: NPC set_name: d/chixiao/npc/innkeeper
+- PASS: NPC setup(): d/chixiao/npc/innkeeper
+- PASS: NPC include: d/chixiao/npc/merchant
+- PASS: NPC inherit: d/chixiao/npc/merchant
+- PASS: NPC set_name: d/chixiao/npc/merchant
+- PASS: NPC setup(): d/chixiao/npc/merchant
+- PASS: NPC include: d/chixiao/npc/tianling
+- PASS: NPC inherit: d/chixiao/npc/tianling
+- PASS: NPC set_name: d/chixiao/npc/tianling
+- PASS: NPC setup(): d/chixiao/npc/tianling
+- PASS: NPC include: d/chixiao/npc/guard
+- PASS: NPC inherit: d/chixiao/npc/guard
+- PASS: NPC set_name: d/chixiao/npc/guard
+- PASS: NPC setup(): d/chixiao/npc/guard
+- PASS: NPC include: d/chixiao/npc/temple_keeper
+- PASS: NPC inherit: d/chixiao/npc/temple_keeper
+- PASS: NPC set_name: d/chixiao/npc/temple_keeper
+- PASS: NPC setup(): d/chixiao/npc/temple_keeper
+- PASS: NPC include: d/chixiao/npc/diling
+- PASS: NPC inherit: d/chixiao/npc/diling
+- PASS: NPC set_name: d/chixiao/npc/diling
+- PASS: NPC setup(): d/chixiao/npc/diling
+
+## Daemon Validation
+- PASS: Race daemon inherit: asura
+- PASS: Race daemon register: asura
+- PASS: Race daemon inherit: blackteeth
+- PASS: Race daemon register: blackteeth
+- PASS: Race daemon inherit: dingling
+- PASS: Race daemon register: dingling
+- PASS: Race daemon inherit: human
+- PASS: Race daemon register: human
+- PASS: Race daemon inherit: jiaojao
+- PASS: Race daemon register: jiaojao
+- PASS: Race daemon inherit: malik
+- PASS: Race daemon register: malik
+- PASS: Race daemon inherit: rainnar
+- PASS: Race daemon register: rainnar
+- PASS: Race daemon inherit: woochan
+- PASS: Race daemon register: woochan
+- PASS: Race daemon inherit: xingtian
+- PASS: Race daemon register: xingtian
+- PASS: Race daemon inherit: yaksha
+- PASS: Race daemon register: yaksha
+- PASS: Race daemon inherit: yenhold
+- PASS: Race daemon register: yenhold
+- PASS: Skill daemon inherit: amazing_needle
+- PASS: Skill daemon register: amazing_needle
+- PASS: Skill daemon inherit: axe
+- PASS: Skill daemon register: axe
+- PASS: Skill daemon inherit: blade
+- PASS: Skill daemon register: blade
+- PASS: Skill daemon inherit: bloodystrike
+- PASS: Skill daemon register: bloodystrike
+- PASS: Skill daemon inherit: bolomiduo
+- PASS: Skill daemon register: bolomiduo
+- PASS: Skill daemon inherit: buddhism
+- PASS: Skill daemon register: buddhism
+- PASS: Skill daemon inherit: celestial
+- PASS: Skill daemon register: celestial
+- PASS: Skill daemon inherit: celestrike
+- PASS: Skill daemon register: celestrike
+- PASS: Skill daemon inherit: chanting
+- PASS: Skill daemon register: chanting
+- PASS: Skill daemon inherit: chaos_steps
+- PASS: Skill daemon register: chaos_steps
+- PASS: Skill daemon inherit: cloudstaff
+- PASS: Skill daemon register: cloudstaff
+- PASS: Skill daemon inherit: dagger
+- PASS: Skill daemon register: dagger
+- PASS: Skill daemon inherit: deisword
+- PASS: Skill daemon register: deisword
+- PASS: Skill daemon inherit: diamond_hammer
+- PASS: Skill daemon register: diamond_hammer
+- PASS: Skill daemon inherit: dodge
+- PASS: Skill daemon register: dodge
+- PASS: Skill daemon inherit: essencemagic
+- PASS: Skill daemon register: essencemagic
+- PASS: Skill daemon inherit: fall_steps
+- PASS: Skill daemon register: fall_steps
+- PASS: Skill daemon inherit: fengshan_sword
+- PASS: Skill daemon register: fengshan_sword
+- PASS: Skill daemon inherit: five_defeat_needle
+- PASS: Skill daemon register: five_defeat_needle
+- PASS: Skill daemon inherit: fonxanforce
+- PASS: Skill daemon register: fonxanforce
+- PASS: Skill daemon inherit: fonxansword
+- PASS: Skill daemon register: fonxansword
+- PASS: Skill daemon inherit: force
+- PASS: Skill daemon register: force
+- PASS: Skill daemon inherit: fork
+- PASS: Skill daemon register: fork
+- PASS: Skill daemon inherit: gouyee
+- PASS: Skill daemon register: gouyee
+- PASS: Skill daemon inherit: iceforce
+- PASS: Skill daemon register: iceforce
+- PASS: Skill daemon inherit: instruments
+- PASS: Skill daemon register: instruments
+- PASS: Skill daemon inherit: iron_cloth
+- PASS: Skill daemon register: iron_cloth
+- PASS: Skill daemon inherit: jin_gang
+- PASS: Skill daemon register: jin_gang
+- PASS: Skill daemon inherit: jingang_staff
+- PASS: Skill daemon register: jingang_staff
+- PASS: Skill daemon inherit: juechen_force
+- PASS: Skill daemon register: juechen_force
+- PASS: Skill daemon inherit: lengmei_sword
+- PASS: Skill daemon register: lengmei_sword
+- PASS: Skill daemon inherit: linbo_steps
+- PASS: Skill daemon register: linbo_steps
+- PASS: Skill daemon inherit: literate
+- PASS: Skill daemon register: literate
+- PASS: Skill daemon inherit: liuh_ken
+- PASS: Skill daemon register: liuh_ken
+- PASS: Skill daemon inherit: longttu_neigong
+- PASS: Skill daemon register: longttu_neigong
+- PASS: Skill daemon inherit: maoshan_neigong
+- PASS: Skill daemon register: maoshan_neigong
+- PASS: Skill daemon inherit: maoshan_sword
+- PASS: Skill daemon register: maoshan_sword
+- PASS: Skill daemon inherit: needle
+- PASS: Skill daemon register: needle
+- PASS: Skill daemon inherit: notraces
+- PASS: Skill daemon register: notraces
+- PASS: Skill daemon inherit: parry
+- PASS: Skill daemon register: parry
+- PASS: Skill daemon inherit: perception
+- PASS: Skill daemon register: perception
+- PASS: Skill daemon inherit: phantom_sword
+- PASS: Skill daemon register: phantom_sword
+- PASS: Skill daemon inherit: pike
+- PASS: Skill daemon register: pike
+- PASS: Skill daemon inherit: pyrobat_steps
+- PASS: Skill daemon register: pyrobat_steps
+- PASS: Skill daemon inherit: qidaoforce
+- PASS: Skill daemon register: qidaoforce
+- PASS: Skill daemon inherit: scratching
+- PASS: Skill daemon register: scratching
+- PASS: Skill daemon inherit: serpentforce
+- PASS: Skill daemon register: serpentforce
+- PASS: Skill daemon inherit: shortsong_blade
+- PASS: Skill daemon register: shortsong_blade
+- PASS: Skill daemon inherit: six_chaos_sword
+- PASS: Skill daemon register: six_chaos_sword
+- PASS: Skill daemon inherit: snowshade_force
+- PASS: Skill daemon register: snowshade_force
+- PASS: Skill daemon inherit: snowshade_sword
+- PASS: Skill daemon register: snowshade_sword
+- PASS: Skill daemon inherit: snowwhip
+- PASS: Skill daemon register: snowwhip
+- PASS: Skill daemon inherit: spells
+- PASS: Skill daemon register: spells
+- PASS: Skill daemon inherit: spicyclaw
+- PASS: Skill daemon register: spicyclaw
+- PASS: Skill daemon inherit: spider_array
+- PASS: Skill daemon register: spider_array
+- PASS: Skill daemon inherit: spring_blade
+- PASS: Skill daemon register: spring_blade
+- PASS: Skill daemon inherit: staff
+- PASS: Skill daemon register: staff
+- PASS: Skill daemon inherit: stealing
+- PASS: Skill daemon register: stealing
+- PASS: Skill daemon inherit: stormdance
+- PASS: Skill daemon register: stormdance
+- PASS: Skill daemon inherit: sword
+- PASS: Skill daemon register: sword
+- PASS: Skill daemon inherit: tactic
+- PASS: Skill daemon register: tactic
+- PASS: Skill daemon inherit: taiyi_sword
+- PASS: Skill daemon register: taiyi_sword
+- PASS: Skill daemon inherit: tao_mystery
+- PASS: Skill daemon register: tao_mystery
+- PASS: Skill daemon inherit: taoism
+- PASS: Skill daemon register: taoism
+- PASS: Skill daemon inherit: taoshan_milu
+- PASS: Skill daemon register: taoshan_milu
+- PASS: Skill daemon inherit: tenderzhi
+- PASS: Skill daemon register: tenderzhi
+- PASS: Skill daemon inherit: three_rotations
+- PASS: Skill daemon register: three_rotations
+- PASS: Skill daemon inherit: throwing
+- PASS: Skill daemon register: throwing
+- PASS: Skill daemon inherit: tiger_blade
+- PASS: Skill daemon register: tiger_blade
+- PASS: Skill daemon inherit: ts_fist
+- PASS: Skill daemon register: ts_fist
+- PASS: Skill daemon inherit: unarmed
+- PASS: Skill daemon register: unarmed
+- PASS: Skill daemon inherit: whip
+- PASS: Skill daemon register: whip
+- PASS: Skill daemon inherit: wu_shun
+- PASS: Skill daemon register: wu_shun
+- PASS: Skill daemon inherit: yirong
+- PASS: Skill daemon register: yirong
+- PASS: Skill daemon inherit: ziwei_neigong
+- PASS: Skill daemon register: ziwei_neigong
+- PASS: Sect daemon inherit: baixiang
+- PASS: Sect daemon register: baixiang
+- PASS: Sect daemon inherit: baolian
+- PASS: Sect daemon register: baolian
+- PASS: Sect daemon inherit: buxuan
+- PASS: Sect daemon register: buxuan
+- PASS: Sect daemon inherit: fengshan
+- PASS: Sect daemon register: fengshan
+- PASS: Sect daemon inherit: hudao
+- PASS: Sect daemon register: hudao
+- PASS: Sect daemon inherit: jianjia
+- PASS: Sect daemon register: jianjia
+- PASS: Sect daemon inherit: kuxiao
+- PASS: Sect daemon register: kuxiao
+- PASS: Sect daemon inherit: langyi
+- PASS: Sect daemon register: langyi
+- PASS: Sect daemon inherit: lengmei
+- PASS: Sect daemon register: lengmei
+- PASS: Sect daemon inherit: longttu
+- PASS: Sect daemon register: longttu
+- PASS: Sect daemon inherit: maoshan
+- PASS: Sect daemon register: maoshan
+- PASS: Sect daemon inherit: tianshi
+- PASS: Sect daemon register: tianshi
+- PASS: Sect daemon inherit: tianxie
+- PASS: Sect daemon register: tianxie
+- PASS: Sect daemon inherit: wutuo
+- PASS: Sect daemon register: wutuo
+- PASS: Sect daemon inherit: xuantian
+- PASS: Sect daemon register: xuantian
+- PASS: Sect daemon inherit: xueyin
+- PASS: Sect daemon register: xueyin
+- PASS: Sect daemon inherit: yinjiao
+- PASS: Sect daemon register: yinjiao
+- PASS: Sect daemon inherit: zhenwu
+- PASS: Sect daemon register: zhenwu
+- PASS: Class daemon inherit: alchemist
+- PASS: Class daemon query_rank: alchemist
+- PASS: Class daemon inherit: commoner
+- PASS: Class daemon query_rank: commoner
+- PASS: Class daemon inherit: fighter
+- PASS: Class daemon query_rank: fighter
+- PASS: Class daemon inherit: monk
+- PASS: Class daemon query_rank: monk
+- PASS: Class daemon inherit: scholar
+- PASS: Class daemon query_rank: scholar
+- PASS: Class daemon inherit: soldier
+- PASS: Class daemon query_rank: soldier
+- PASS: Class daemon inherit: taoist
+- PASS: Class daemon query_rank: taoist
+- PASS: Class daemon inherit: thief
+- PASS: Class daemon query_rank: thief
+- PASS: Class daemon inherit: warrior
+- PASS: Class daemon query_rank: warrior
+
+## Equipment Validation
+- PASS: Weapon include: d/xueyin/npc/obj/xueyin_sword
+- PASS: Weapon inherit: d/xueyin/npc/obj/xueyin_sword
+- PASS: Equipment setup(): d/xueyin/npc/obj/xueyin_sword
+- PASS: Armor include: d/longan/npc/obj/leather_vest
+- PASS: Armor inherit: d/longan/npc/obj/leather_vest
+- PASS: Equipment setup(): d/longan/npc/obj/leather_vest
+- PASS: Weapon include: d/longan/npc/obj/iron_sword
+- PASS: Weapon inherit: d/longan/npc/obj/iron_sword
+- PASS: Equipment setup(): d/longan/npc/obj/iron_sword
+- PASS: Armor include: d/longttu/npc/obj/alchemy_robe
+- PASS: Armor inherit: d/longttu/npc/obj/alchemy_robe
+- PASS: Equipment setup(): d/longttu/npc/obj/alchemy_robe
+- PASS: Weapon include: d/longttu/npc/obj/silver_needle
+- PASS: Weapon inherit: d/longttu/npc/obj/silver_needle
+- PASS: Equipment setup(): d/longttu/npc/obj/silver_needle
+- PASS: Armor include: d/yinjiao/npc/obj/night_boots
+- PASS: Armor inherit: d/yinjiao/npc/obj/night_boots
+- PASS: Equipment setup(): d/yinjiao/npc/obj/night_boots
+- PASS: Armor include: d/yinjiao/npc/obj/eagle_glove
+- PASS: Armor inherit: d/yinjiao/npc/obj/eagle_glove
+- PASS: Equipment setup(): d/yinjiao/npc/obj/eagle_glove
+- PASS: Armor include: d/wutang/npc/obj/amulet
+- PASS: Armor inherit: d/wutang/npc/obj/amulet
+- PASS: Equipment setup(): d/wutang/npc/obj/amulet
+- WARN: No weapon/armor include: d/wutang/npc/obj/waterskin (may be a generic item)
+- PASS: Equipment setup(): d/wutang/npc/obj/waterskin
+- WARN: No weapon/armor include: d/wutang/npc/obj/manto (may be a generic item)
+- PASS: Equipment setup(): d/wutang/npc/obj/manto
+- WARN: No weapon/armor include: d/wutang/npc/obj/white_wine (may be a generic item)
+- PASS: Equipment setup(): d/wutang/npc/obj/white_wine
+- WARN: No weapon/armor include: d/wutang/npc/obj/beef_dumpling (may be a generic item)
+- PASS: Equipment setup(): d/wutang/npc/obj/beef_dumpling
+- WARN: No weapon/armor include: d/wutang/npc/obj/beef (may be a generic item)
+- PASS: Equipment setup(): d/wutang/npc/obj/beef
+- PASS: Weapon include: d/lengmei/npc/obj/hanmei_sword
+- PASS: Weapon inherit: d/lengmei/npc/obj/hanmei_sword
+- PASS: Equipment setup(): d/lengmei/npc/obj/hanmei_sword
+- PASS: Weapon include: d/oldpine/npc/obj/bandit_blade
+- PASS: Weapon inherit: d/oldpine/npc/obj/bandit_blade
+- PASS: Equipment setup(): d/oldpine/npc/obj/bandit_blade
+- WARN: No weapon/armor include: d/oldpine/npc/obj/snakeskin (may be a generic item)
+- PASS: Equipment setup(): d/oldpine/npc/obj/snakeskin
+- PASS: Armor include: d/fengshan/npc/obj/fengshan_robe
+- PASS: Armor inherit: d/fengshan/npc/obj/fengshan_robe
+- PASS: Equipment setup(): d/fengshan/npc/obj/fengshan_robe
+- PASS: Weapon include: d/fengshan/npc/obj/fengshan_blade
+- PASS: Weapon inherit: d/fengshan/npc/obj/fengshan_blade
+- PASS: Equipment setup(): d/fengshan/npc/obj/fengshan_blade
+- WARN: No weapon/armor include: d/manglin/npc/obj/bear_paw (may be a generic item)
+- PASS: Equipment setup(): d/manglin/npc/obj/bear_paw
+- WARN: No weapon/armor include: d/tianxie/npc/obj/blood_blade (may be a generic item)
+- PASS: Equipment setup(): d/tianxie/npc/obj/blood_blade
+- PASS: Weapon include: d/tianxie/npc/obj/dark_blade
+- PASS: Weapon inherit: d/tianxie/npc/obj/dark_blade
+- PASS: Equipment setup(): d/tianxie/npc/obj/dark_blade
+- PASS: Armor include: d/tianxie/npc/obj/shadow_cloak
+- PASS: Armor inherit: d/tianxie/npc/obj/shadow_cloak
+- PASS: Equipment setup(): d/tianxie/npc/obj/shadow_cloak
+- PASS: Armor include: d/buxuan/npc/obj/buxuan_cloth
+- PASS: Armor inherit: d/buxuan/npc/obj/buxuan_cloth
+- PASS: Equipment setup(): d/buxuan/npc/obj/buxuan_cloth
+- PASS: Weapon include: d/buxuan/npc/obj/wind_blade
+- PASS: Weapon inherit: d/buxuan/npc/obj/wind_blade
+- PASS: Equipment setup(): d/buxuan/npc/obj/wind_blade
+- PASS: Weapon include: d/lee/npc/obj/hoe
+- PASS: Weapon inherit: d/lee/npc/obj/hoe
+- PASS: Equipment setup(): d/lee/npc/obj/hoe
+- WARN: No weapon/armor include: d/lee/npc/obj/tofu (may be a generic item)
+- PASS: Equipment setup(): d/lee/npc/obj/tofu
+- PASS: Armor include: d/sanyen/npc/obj/prayer_beads
+- PASS: Armor inherit: d/sanyen/npc/obj/prayer_beads
+- PASS: Equipment setup(): d/sanyen/npc/obj/prayer_beads
+- WARN: No weapon/armor include: d/sanyen/npc/obj/incense (may be a generic item)
+- PASS: Equipment setup(): d/sanyen/npc/obj/incense
+- PASS: Weapon include: d/jianjia/npc/obj/forge_hammer
+- PASS: Weapon inherit: d/jianjia/npc/obj/forge_hammer
+- PASS: Equipment setup(): d/jianjia/npc/obj/forge_hammer
+- PASS: Weapon include: d/jianjia/npc/obj/jianjia_sword
+- PASS: Weapon inherit: d/jianjia/npc/obj/jianjia_sword
+- PASS: Equipment setup(): d/jianjia/npc/obj/jianjia_sword
+- WARN: No weapon/armor include: d/snow/npc/obj/coin (may be a generic item)
+- PASS: Equipment setup(): d/snow/npc/obj/coin
+- PASS: Armor include: d/snow/npc/obj/blue_cloth
+- PASS: Armor inherit: d/snow/npc/obj/blue_cloth
+- PASS: Equipment setup(): d/snow/npc/obj/blue_cloth
+- PASS: Armor include: d/snow/npc/obj/smock
+- PASS: Armor inherit: d/snow/npc/obj/smock
+- PASS: Equipment setup(): d/snow/npc/obj/smock
+- WARN: No weapon/armor include: d/snow/npc/obj/invitation (may be a generic item)
+- FAIL: Equipment setup() missing: d/snow/npc/obj/invitation
+- PASS: Weapon include: d/snow/npc/obj/silversword
+- PASS: Weapon inherit: d/snow/npc/obj/silversword
+- PASS: Equipment setup(): d/snow/npc/obj/silversword
+- WARN: No weapon/armor include: d/snow/npc/obj/note (may be a generic item)
+- PASS: Equipment setup(): d/snow/npc/obj/note
+- WARN: No weapon/armor include: d/snow/npc/obj/wagon (may be a generic item)
+- PASS: Equipment setup(): d/snow/npc/obj/wagon
+- PASS: Weapon include: d/snow/npc/obj/hoe
+- PASS: Weapon inherit: d/snow/npc/obj/hoe
+- PASS: Equipment setup(): d/snow/npc/obj/hoe
+- WARN: No weapon/armor include: d/snow/npc/obj/recruiter_reply (may be a generic item)
+- PASS: Equipment setup(): d/snow/npc/obj/recruiter_reply
+- PASS: Weapon include: d/snow/npc/obj/shovel
+- PASS: Weapon inherit: d/snow/npc/obj/shovel
+- PASS: Equipment setup(): d/snow/npc/obj/shovel
+- PASS: Armor include: d/snow/npc/obj/rosary
+- PASS: Armor inherit: d/snow/npc/obj/rosary
+- PASS: Equipment setup(): d/snow/npc/obj/rosary
+- WARN: No weapon/armor include: d/snow/npc/obj/arbao_letter (may be a generic item)
+- PASS: Equipment setup(): d/snow/npc/obj/arbao_letter
+- PASS: Armor include: d/snow/npc/obj/maro
+- PASS: Armor inherit: d/snow/npc/obj/maro
+- PASS: Equipment setup(): d/snow/npc/obj/maro
+- PASS: Armor include: d/snow/npc/obj/clothboot
+- PASS: Armor inherit: d/snow/npc/obj/clothboot
+- PASS: Equipment setup(): d/snow/npc/obj/clothboot
+- PASS: Armor include: d/snow/npc/obj/blue_jacket
+- PASS: Armor inherit: d/snow/npc/obj/blue_jacket
+- PASS: Equipment setup(): d/snow/npc/obj/blue_jacket
+- PASS: Armor include: d/snow/npc/obj/white_dress
+- PASS: Armor inherit: d/snow/npc/obj/white_dress
+- PASS: Equipment setup(): d/snow/npc/obj/white_dress
+- PASS: Armor include: d/snow/npc/obj/helmet
+- PASS: Armor inherit: d/snow/npc/obj/helmet
+- PASS: Equipment setup(): d/snow/npc/obj/helmet
+- WARN: No weapon/armor include: d/snow/npc/obj/pot (may be a generic item)
+- PASS: Equipment setup(): d/snow/npc/obj/pot
+- WARN: No weapon/armor include: d/snow/npc/obj/crate (may be a generic item)
+- PASS: Equipment setup(): d/snow/npc/obj/crate
+- WARN: No weapon/armor include: d/snow/npc/obj/quest_letter (may be a generic item)
+- PASS: Equipment setup(): d/snow/npc/obj/quest_letter
+- WARN: No weapon/armor include: d/snow/npc/obj/roast_chicken (may be a generic item)
+- PASS: Equipment setup(): d/snow/npc/obj/roast_chicken
+- WARN: No weapon/armor include: d/snow/npc/obj/arrow (may be a generic item)
+- PASS: Equipment setup(): d/snow/npc/obj/arrow
+- PASS: Weapon include: d/snow/npc/obj/woodblade
+- PASS: Weapon inherit: d/snow/npc/obj/woodblade
+- PASS: Equipment setup(): d/snow/npc/obj/woodblade
+- WARN: No weapon/armor include: d/snow/npc/obj/comb (may be a generic item)
+- PASS: Equipment setup(): d/snow/npc/obj/comb
+- PASS: Armor include: d/snow/npc/obj/hairpin
+- PASS: Armor inherit: d/snow/npc/obj/hairpin
+- PASS: Equipment setup(): d/snow/npc/obj/hairpin
+- PASS: Weapon include: d/snow/npc/obj/woodsword
+- PASS: Weapon inherit: d/snow/npc/obj/woodsword
+- PASS: Equipment setup(): d/snow/npc/obj/woodsword
+- PASS: Armor include: d/snow/npc/obj/white_robe
+- PASS: Armor inherit: d/snow/npc/obj/white_robe
+- PASS: Equipment setup(): d/snow/npc/obj/white_robe
+- PASS: Weapon include: d/snow/npc/obj/slasher_sword
+- PASS: Weapon inherit: d/snow/npc/obj/slasher_sword
+- PASS: Equipment setup(): d/snow/npc/obj/slasher_sword
+- WARN: No weapon/armor include: d/snow/npc/obj/wine_pot (may be a generic item)
+- PASS: Equipment setup(): d/snow/npc/obj/wine_pot
+- WARN: No weapon/armor include: d/snow/npc/obj/old_journal (may be a generic item)
+- PASS: Equipment setup(): d/snow/npc/obj/old_journal
+- PASS: Armor include: d/snow/npc/obj/fur_hat
+- PASS: Armor inherit: d/snow/npc/obj/fur_hat
+- PASS: Equipment setup(): d/snow/npc/obj/fur_hat
+- PASS: Armor include: d/snow/npc/obj/tummy_cover
+- PASS: Armor inherit: d/snow/npc/obj/tummy_cover
+- PASS: Equipment setup(): d/snow/npc/obj/tummy_cover
+- PASS: Weapon include: d/snow/npc/obj/syndicator
+- PASS: Weapon inherit: d/snow/npc/obj/syndicator
+- PASS: Equipment setup(): d/snow/npc/obj/syndicator
+- PASS: Armor include: d/snow/npc/obj/leather_armor
+- PASS: Armor inherit: d/snow/npc/obj/leather_armor
+- PASS: Equipment setup(): d/snow/npc/obj/leather_armor
+- PASS: Weapon include: d/snow/npc/obj/broadsword
+- PASS: Weapon inherit: d/snow/npc/obj/broadsword
+- PASS: Equipment setup(): d/snow/npc/obj/broadsword
+- PASS: Weapon include: d/snow/npc/obj/cane
+- PASS: Weapon inherit: d/snow/npc/obj/cane
+- PASS: Equipment setup(): d/snow/npc/obj/cane
+- WARN: No weapon/armor include: d/lijun/npc/obj/dried_fish (may be a generic item)
+- PASS: Equipment setup(): d/lijun/npc/obj/dried_fish
+- WARN: No weapon/armor include: d/lijun/npc/obj/rice_cake (may be a generic item)
+- PASS: Equipment setup(): d/lijun/npc/obj/rice_cake
+- PASS: Armor include: d/lijun/npc/obj/straw_hat
+- PASS: Armor inherit: d/lijun/npc/obj/straw_hat
+- PASS: Equipment setup(): d/lijun/npc/obj/straw_hat
+- PASS: Weapon include: d/lijun/npc/obj/bamboo_pole
+- PASS: Weapon inherit: d/lijun/npc/obj/bamboo_pole
+- PASS: Equipment setup(): d/lijun/npc/obj/bamboo_pole
+- WARN: No weapon/armor include: d/lijun/npc/obj/green_tea (may be a generic item)
+- PASS: Equipment setup(): d/lijun/npc/obj/green_tea
+- PASS: Weapon include: d/weiguo/npc/obj/military_pike
+- PASS: Weapon inherit: d/weiguo/npc/obj/military_pike
+- PASS: Equipment setup(): d/weiguo/npc/obj/military_pike
+- PASS: Armor include: d/weiguo/npc/obj/military_armor
+- PASS: Armor inherit: d/weiguo/npc/obj/military_armor
+- PASS: Equipment setup(): d/weiguo/npc/obj/military_armor
+- PASS: Weapon include: d/weiguo/npc/obj/military_blade
+- PASS: Weapon inherit: d/weiguo/npc/obj/military_blade
+- PASS: Equipment setup(): d/weiguo/npc/obj/military_blade
+- PASS: Weapon include: d/tianshi/npc/obj/taiyi_sword
+- PASS: Weapon inherit: d/tianshi/npc/obj/taiyi_sword
+- PASS: Equipment setup(): d/tianshi/npc/obj/taiyi_sword
+- PASS: Armor include: d/tianshi/npc/obj/taoist_robe
+- PASS: Armor inherit: d/tianshi/npc/obj/taoist_robe
+- PASS: Equipment setup(): d/tianshi/npc/obj/taoist_robe
+- WARN: No weapon/armor include: d/baihua/npc/obj/flower_bundle (may be a generic item)
+- PASS: Equipment setup(): d/baihua/npc/obj/flower_bundle
+- PASS: Armor include: d/baihua/npc/obj/wreath
+- PASS: Armor inherit: d/baihua/npc/obj/wreath
+- PASS: Equipment setup(): d/baihua/npc/obj/wreath
+- WARN: No weapon/armor include: d/baihua/npc/obj/watermelon (may be a generic item)
+- PASS: Equipment setup(): d/baihua/npc/obj/watermelon
+- PASS: Armor include: d/hudao/npc/obj/hudao_vest
+- PASS: Armor inherit: d/hudao/npc/obj/hudao_vest
+- PASS: Equipment setup(): d/hudao/npc/obj/hudao_vest
+- PASS: Armor include: d/hudao/npc/obj/tiger_bracer
+- PASS: Armor inherit: d/hudao/npc/obj/tiger_bracer
+- PASS: Equipment setup(): d/hudao/npc/obj/tiger_bracer
+- PASS: Weapon include: d/hudao/npc/obj/hudao_blade
+- PASS: Weapon inherit: d/hudao/npc/obj/hudao_blade
+- PASS: Equipment setup(): d/hudao/npc/obj/hudao_blade
+- PASS: Weapon include: d/heifeng/npc/obj/iron_axe
+- PASS: Weapon inherit: d/heifeng/npc/obj/iron_axe
+- PASS: Equipment setup(): d/heifeng/npc/obj/iron_axe
+- PASS: Armor include: d/heifeng/npc/obj/bandit_armor
+- PASS: Armor inherit: d/heifeng/npc/obj/bandit_armor
+- PASS: Equipment setup(): d/heifeng/npc/obj/bandit_armor
+- PASS: Weapon include: d/graveyard/npc/obj/rusty_sword
+- PASS: Weapon inherit: d/graveyard/npc/obj/rusty_sword
+- PASS: Equipment setup(): d/graveyard/npc/obj/rusty_sword
+- WARN: No weapon/armor include: d/graveyard/npc/obj/ghost_lantern (may be a generic item)
+- PASS: Equipment setup(): d/graveyard/npc/obj/ghost_lantern
+- PASS: Weapon include: d/baolian/npc/obj/zen_staff
+- PASS: Weapon inherit: d/baolian/npc/obj/zen_staff
+- PASS: Equipment setup(): d/baolian/npc/obj/zen_staff
+- PASS: Armor include: d/baolian/npc/obj/monk_robe
+- PASS: Armor inherit: d/baolian/npc/obj/monk_robe
+- PASS: Equipment setup(): d/baolian/npc/obj/monk_robe
+- WARN: No weapon/armor include: d/maoshan/npc/obj/xiantian_charm (may be a generic item)
+- PASS: Equipment setup(): d/maoshan/npc/obj/xiantian_charm
+- PASS: Armor include: d/jingji/npc/obj/jade_pendant
+- PASS: Armor inherit: d/jingji/npc/obj/jade_pendant
+- PASS: Equipment setup(): d/jingji/npc/obj/jade_pendant
+- PASS: Armor include: d/jingji/npc/obj/official_robe
+- PASS: Armor inherit: d/jingji/npc/obj/official_robe
+- PASS: Equipment setup(): d/jingji/npc/obj/official_robe
+- PASS: Weapon include: d/jingji/npc/obj/guard_blade
+- PASS: Weapon inherit: d/jingji/npc/obj/guard_blade
+- PASS: Equipment setup(): d/jingji/npc/obj/guard_blade
+- PASS: Armor include: d/baixiang/npc/obj/monk_kasaya
+- PASS: Armor inherit: d/baixiang/npc/obj/monk_kasaya
+- PASS: Equipment setup(): d/baixiang/npc/obj/monk_kasaya
+- PASS: Armor include: d/baixiang/npc/obj/jade_beads
+- PASS: Armor inherit: d/baixiang/npc/obj/jade_beads
+- PASS: Equipment setup(): d/baixiang/npc/obj/jade_beads
+- PASS: Weapon include: d/baixiang/npc/obj/zen_staff
+- PASS: Weapon inherit: d/baixiang/npc/obj/zen_staff
+- PASS: Equipment setup(): d/baixiang/npc/obj/zen_staff
+- WARN: No weapon/armor include: d/hell/npc/obj/jinwu_pill (may be a generic item)
+- PASS: Equipment setup(): d/hell/npc/obj/jinwu_pill
+- PASS: Weapon include: d/hell/npc/obj/sun_pike
+- PASS: Weapon inherit: d/hell/npc/obj/sun_pike
+- PASS: Equipment setup(): d/hell/npc/obj/sun_pike
+- WARN: No weapon/armor include: d/hell/npc/obj/dahuan_pill (may be a generic item)
+- PASS: Equipment setup(): d/hell/npc/obj/dahuan_pill
+- PASS: Weapon include: d/hell/npc/obj/flame_arrow
+- PASS: Weapon inherit: d/hell/npc/obj/flame_arrow
+- PASS: Equipment setup(): d/hell/npc/obj/flame_arrow
+- WARN: No weapon/armor include: d/hell/npc/obj/sacred_root (may be a generic item)
+- PASS: Equipment setup(): d/hell/npc/obj/sacred_root
+- PASS: Armor include: d/tianyue/npc/obj/nun_robe
+- PASS: Armor inherit: d/tianyue/npc/obj/nun_robe
+- PASS: Equipment setup(): d/tianyue/npc/obj/nun_robe
+- PASS: Weapon include: d/tianyue/npc/obj/moon_staff
+- PASS: Weapon inherit: d/tianyue/npc/obj/moon_staff
+- PASS: Equipment setup(): d/tianyue/npc/obj/moon_staff
+- WARN: No weapon/armor include: d/choyin/npc/obj/book_erta2 (may be a generic item)
+- PASS: Equipment setup(): d/choyin/npc/obj/book_erta2
+- WARN: No weapon/armor include: d/choyin/npc/obj/meat_bun (may be a generic item)
+- PASS: Equipment setup(): d/choyin/npc/obj/meat_bun
+- WARN: No weapon/armor include: d/choyin/npc/obj/rice_wine (may be a generic item)
+- PASS: Equipment setup(): d/choyin/npc/obj/rice_wine
+- WARN: No weapon/armor include: d/choyin/npc/obj/book_erta (may be a generic item)
+- PASS: Equipment setup(): d/choyin/npc/obj/book_erta
+- PASS: Weapon include: d/kuxiao/npc/obj/qisun_blade
+- PASS: Weapon inherit: d/kuxiao/npc/obj/qisun_blade
+- PASS: Equipment setup(): d/kuxiao/npc/obj/qisun_blade
+- WARN: No weapon/armor include: d/kangping/npc/obj/herb_tea (may be a generic item)
+- PASS: Equipment setup(): d/kangping/npc/obj/herb_tea
+- PASS: Armor include: d/kangping/npc/obj/straw_sandal
+- PASS: Armor inherit: d/kangping/npc/obj/straw_sandal
+- PASS: Equipment setup(): d/kangping/npc/obj/straw_sandal
+- PASS: Weapon include: d/wutuo/npc/obj/gold_needle
+- PASS: Weapon inherit: d/wutuo/npc/obj/gold_needle
+- PASS: Equipment setup(): d/wutuo/npc/obj/gold_needle
+- WARN: No weapon/armor include: d/wutuo/npc/obj/medicine_box (may be a generic item)
+- PASS: Equipment setup(): d/wutuo/npc/obj/medicine_box
+- PASS: Armor include: d/xuantian/npc/obj/xuan_cloth
+- PASS: Armor inherit: d/xuantian/npc/obj/xuan_cloth
+- PASS: Equipment setup(): d/xuantian/npc/obj/xuan_cloth
+- PASS: Weapon include: d/xuantian/npc/obj/xuantian_sword
+- PASS: Weapon inherit: d/xuantian/npc/obj/xuantian_sword
+- PASS: Equipment setup(): d/xuantian/npc/obj/xuantian_sword
+- PASS: Weapon include: d/zhenwu/npc/obj/zhenwu_blade
+- PASS: Weapon inherit: d/zhenwu/npc/obj/zhenwu_blade
+- PASS: Equipment setup(): d/zhenwu/npc/obj/zhenwu_blade
+- PASS: Armor include: d/zhenwu/npc/obj/zhenwu_armor
+- PASS: Armor inherit: d/zhenwu/npc/obj/zhenwu_armor
+- PASS: Equipment setup(): d/zhenwu/npc/obj/zhenwu_armor
+- PASS: Weapon include: d/zhenwu/npc/obj/zhenwu_pike
+- PASS: Weapon inherit: d/zhenwu/npc/obj/zhenwu_pike
+- PASS: Equipment setup(): d/zhenwu/npc/obj/zhenwu_pike
+- PASS: Armor include: d/langyi/npc/obj/night_suit
+- PASS: Armor inherit: d/langyi/npc/obj/night_suit
+- PASS: Equipment setup(): d/langyi/npc/obj/night_suit
+- PASS: Weapon include: d/langyi/npc/obj/viper_dagger
+- PASS: Weapon inherit: d/langyi/npc/obj/viper_dagger
+- PASS: Equipment setup(): d/langyi/npc/obj/viper_dagger
+- PASS: Weapon include: d/chixiao/npc/obj/tianling_dagger
+- PASS: Weapon inherit: d/chixiao/npc/obj/tianling_dagger
+- PASS: Equipment setup(): d/chixiao/npc/obj/tianling_dagger
+- PASS: Weapon include: d/chixiao/npc/obj/wind_weapon
+- PASS: Weapon inherit: d/chixiao/npc/obj/wind_weapon
+- PASS: Equipment setup(): d/chixiao/npc/obj/wind_weapon
+- PASS: Weapon include: d/chixiao/npc/obj/rain_weapon
+- PASS: Weapon inherit: d/chixiao/npc/obj/rain_weapon
+- PASS: Equipment setup(): d/chixiao/npc/obj/rain_weapon
+- PASS: Weapon include: d/chixiao/npc/obj/thunder_weapon
+- PASS: Weapon inherit: d/chixiao/npc/obj/thunder_weapon
+- PASS: Equipment setup(): d/chixiao/npc/obj/thunder_weapon
+- PASS: Weapon include: d/chixiao/npc/obj/diling_axe
+- PASS: Weapon inherit: d/chixiao/npc/obj/diling_axe
+- PASS: Equipment setup(): d/chixiao/npc/obj/diling_axe
+- PASS: Weapon include: d/chixiao/npc/obj/sigui_charm
+- PASS: Weapon inherit: d/chixiao/npc/obj/sigui_charm
+- PASS: Equipment setup(): d/chixiao/npc/obj/sigui_charm
+- PASS: Armor include: d/chixiao/npc/obj/diling_heart
+- PASS: Armor inherit: d/chixiao/npc/obj/diling_heart
+- PASS: Equipment setup(): d/chixiao/npc/obj/diling_heart
+- WARN: No weapon/armor include: d/chixiao/npc/obj/spirit_wine (may be a generic item)
+- PASS: Equipment setup(): d/chixiao/npc/obj/spirit_wine
+- PASS: Armor include: d/chixiao/npc/obj/tianling_eye
+- PASS: Armor inherit: d/chixiao/npc/obj/tianling_eye
+- PASS: Equipment setup(): d/chixiao/npc/obj/tianling_eye
+- PASS: Weapon include: d/chixiao/npc/obj/fire_weapon
+- PASS: Weapon inherit: d/chixiao/npc/obj/fire_weapon
+- PASS: Equipment setup(): d/chixiao/npc/obj/fire_weapon
+- WARN: No weapon/armor include: d/chixiao/npc/obj/talisman (may be a generic item)
+- PASS: Equipment setup(): d/chixiao/npc/obj/talisman
+- PASS: Weapon include: obj/weapon/thunder_bomb
+- PASS: Weapon inherit: obj/weapon/thunder_bomb
+- PASS: Equipment setup(): obj/weapon/thunder_bomb
+- PASS: Weapon include: obj/weapon/wushou_sword
+- PASS: Weapon inherit: obj/weapon/wushou_sword
+- PASS: Equipment setup(): obj/weapon/wushou_sword
+- PASS: Weapon include: obj/weapon/fenglei_blade
+- PASS: Weapon inherit: obj/weapon/fenglei_blade
+- PASS: Equipment setup(): obj/weapon/fenglei_blade
+- PASS: Weapon include: obj/weapon/suinao_blunt
+- PASS: Weapon inherit: obj/weapon/suinao_blunt
+- PASS: Equipment setup(): obj/weapon/suinao_blunt
+- PASS: Weapon include: obj/weapon/strange_copper_staff
+- PASS: Weapon inherit: obj/weapon/strange_copper_staff
+- PASS: Equipment setup(): obj/weapon/strange_copper_staff
+- WARN: No weapon/armor include: obj/weapon/fish_belly_pearl (may be a generic item)
+- PASS: Equipment setup(): obj/weapon/fish_belly_pearl
+- PASS: Weapon include: obj/weapon/zijin_pike
+- PASS: Weapon inherit: obj/weapon/zijin_pike
+- PASS: Equipment setup(): obj/weapon/zijin_pike
+- PASS: Weapon include: obj/weapon/meteor_sword
+- PASS: Weapon inherit: obj/weapon/meteor_sword
+- PASS: Equipment setup(): obj/weapon/meteor_sword
+- PASS: Weapon include: obj/weapon/white_sword
+- PASS: Weapon inherit: obj/weapon/white_sword
+- PASS: Equipment setup(): obj/weapon/white_sword
+- PASS: Weapon include: obj/weapon/dragon_needle
+- PASS: Weapon inherit: obj/weapon/dragon_needle
+- PASS: Equipment setup(): obj/weapon/dragon_needle
+- PASS: Weapon include: obj/weapon/black_steel_dagger
+- PASS: Weapon inherit: obj/weapon/black_steel_dagger
+- PASS: Equipment setup(): obj/weapon/black_steel_dagger
+- WARN: No weapon/armor include: obj/weapon/nine_turn_pearl (may be a generic item)
+- PASS: Equipment setup(): obj/weapon/nine_turn_pearl
+- PASS: Weapon include: obj/weapon/jiaogu_blade
+- PASS: Weapon inherit: obj/weapon/jiaogu_blade
+- PASS: Equipment setup(): obj/weapon/jiaogu_blade
+- PASS: Weapon include: obj/weapon/yiluo_greatsword
+- PASS: Weapon inherit: obj/weapon/yiluo_greatsword
+- PASS: Equipment setup(): obj/weapon/yiluo_greatsword
+- PASS: Weapon include: obj/weapon/goddess_sword
+- PASS: Weapon inherit: obj/weapon/goddess_sword
+- PASS: Equipment setup(): obj/weapon/goddess_sword
+- PASS: Weapon include: obj/weapon/mirror_of_gods
+- PASS: Weapon inherit: obj/weapon/mirror_of_gods
+- PASS: Equipment setup(): obj/weapon/mirror_of_gods
+- PASS: Weapon include: obj/weapon/ancient_dagger
+- PASS: Weapon inherit: obj/weapon/ancient_dagger
+- PASS: Equipment setup(): obj/weapon/ancient_dagger
+- PASS: Weapon include: obj/weapon/bloody_dagger
+- PASS: Weapon inherit: obj/weapon/bloody_dagger
+- PASS: Equipment setup(): obj/weapon/bloody_dagger
+- PASS: Weapon include: obj/weapon/spirit_staff
+- PASS: Weapon inherit: obj/weapon/spirit_staff
+- PASS: Equipment setup(): obj/weapon/spirit_staff
+- PASS: Weapon include: obj/weapon/qingfeng_blade
+- PASS: Weapon inherit: obj/weapon/qingfeng_blade
+- PASS: Equipment setup(): obj/weapon/qingfeng_blade
+- PASS: Weapon include: obj/weapon/heitie_blunt
+- PASS: Weapon inherit: obj/weapon/heitie_blunt
+- PASS: Equipment setup(): obj/weapon/heitie_blunt
+- PASS: Weapon include: obj/weapon/tailor_needle
+- PASS: Weapon inherit: obj/weapon/tailor_needle
+- PASS: Equipment setup(): obj/weapon/tailor_needle
+- PASS: Weapon include: obj/weapon/mingmo_staff
+- PASS: Weapon inherit: obj/weapon/mingmo_staff
+- PASS: Equipment setup(): obj/weapon/mingmo_staff
+- PASS: Weapon include: obj/weapon/evil_blade_yanling
+- PASS: Weapon inherit: obj/weapon/evil_blade_yanling
+- PASS: Equipment setup(): obj/weapon/evil_blade_yanling
+- PASS: Weapon include: obj/weapon/xuanmang
+- PASS: Weapon inherit: obj/weapon/xuanmang
+- PASS: Equipment setup(): obj/weapon/xuanmang
+- PASS: Weapon include: obj/weapon/jade_ruler
+- PASS: Weapon inherit: obj/weapon/jade_ruler
+- PASS: Equipment setup(): obj/weapon/jade_ruler
+- PASS: Weapon include: obj/weapon/tianming_blade
+- PASS: Weapon inherit: obj/weapon/tianming_blade
+- PASS: Equipment setup(): obj/weapon/tianming_blade
+- PASS: Weapon include: obj/weapon/manlong_sword
+- PASS: Weapon inherit: obj/weapon/manlong_sword
+- PASS: Equipment setup(): obj/weapon/manlong_sword
+- PASS: Weapon include: obj/weapon/jade_rod
+- PASS: Weapon inherit: obj/weapon/jade_rod
+- PASS: Equipment setup(): obj/weapon/jade_rod
+- PASS: Weapon include: obj/weapon/shishi_axe
+- PASS: Weapon inherit: obj/weapon/shishi_axe
+- PASS: Equipment setup(): obj/weapon/shishi_axe
+- PASS: Weapon include: obj/weapon/ancient_blade_xuanmang
+- PASS: Weapon inherit: obj/weapon/ancient_blade_xuanmang
+- PASS: Equipment setup(): obj/weapon/ancient_blade_xuanmang
+- PASS: Weapon include: obj/weapon/loving_sword
+- PASS: Weapon inherit: obj/weapon/loving_sword
+- PASS: Equipment setup(): obj/weapon/loving_sword
+- PASS: Weapon include: obj/weapon/shuiyue_sword
+- PASS: Weapon inherit: obj/weapon/shuiyue_sword
+- PASS: Equipment setup(): obj/weapon/shuiyue_sword
+- PASS: Weapon include: obj/weapon/liuling_whip
+- PASS: Weapon inherit: obj/weapon/liuling_whip
+- PASS: Equipment setup(): obj/weapon/liuling_whip
+- PASS: Weapon include: obj/weapon/tiandu_sword
+- PASS: Weapon inherit: obj/weapon/tiandu_sword
+- PASS: Equipment setup(): obj/weapon/tiandu_sword
+- PASS: Weapon include: obj/weapon/bashe_pike
+- PASS: Weapon inherit: obj/weapon/bashe_pike
+- PASS: Equipment setup(): obj/weapon/bashe_pike
+- PASS: Weapon include: obj/weapon/tiger_blade
+- PASS: Weapon inherit: obj/weapon/tiger_blade
+- PASS: Equipment setup(): obj/weapon/tiger_blade
+- WARN: No weapon/armor include: obj/weapon/seal_of_chaos (may be a generic item)
+- PASS: Equipment setup(): obj/weapon/seal_of_chaos
+- PASS: Weapon include: obj/weapon/lengyu_sword
+- PASS: Weapon inherit: obj/weapon/lengyu_sword
+- PASS: Equipment setup(): obj/weapon/lengyu_sword
+- PASS: Weapon include: obj/weapon/erotic_staff
+- PASS: Weapon inherit: obj/weapon/erotic_staff
+- PASS: Equipment setup(): obj/weapon/erotic_staff
+- PASS: Weapon include: obj/weapon/bawang_pike
+- PASS: Weapon inherit: obj/weapon/bawang_pike
+- PASS: Equipment setup(): obj/weapon/bawang_pike
+- PASS: Weapon include: obj/weapon/ancient_snow_staff
+- PASS: Weapon inherit: obj/weapon/ancient_snow_staff
+- PASS: Equipment setup(): obj/weapon/ancient_snow_staff
+- PASS: Weapon include: obj/weapon/coldblood_dagger
+- PASS: Weapon inherit: obj/weapon/coldblood_dagger
+- PASS: Equipment setup(): obj/weapon/coldblood_dagger
+- PASS: Weapon include: obj/weapon/qilongyuan
+- PASS: Weapon inherit: obj/weapon/qilongyuan
+- PASS: Equipment setup(): obj/weapon/qilongyuan
+- PASS: Weapon include: obj/weapon/snow_soul_dagger
+- PASS: Weapon inherit: obj/weapon/snow_soul_dagger
+- PASS: Equipment setup(): obj/weapon/snow_soul_dagger
+- PASS: Weapon include: obj/weapon/medicine_king_sword
+- PASS: Weapon inherit: obj/weapon/medicine_king_sword
+- PASS: Equipment setup(): obj/weapon/medicine_king_sword
+- PASS: Weapon include: obj/weapon/zuiya_dagger
+- PASS: Weapon inherit: obj/weapon/zuiya_dagger
+- PASS: Equipment setup(): obj/weapon/zuiya_dagger
+- PASS: Weapon include: obj/weapon/mietianjian
+- PASS: Weapon inherit: obj/weapon/mietianjian
+- PASS: Equipment setup(): obj/weapon/mietianjian
+- PASS: Weapon include: obj/weapon/xiangyu_sword
+- PASS: Weapon inherit: obj/weapon/xiangyu_sword
+- PASS: Equipment setup(): obj/weapon/xiangyu_sword
+- PASS: Weapon include: obj/weapon/iron_tiger
+- PASS: Weapon inherit: obj/weapon/iron_tiger
+- PASS: Equipment setup(): obj/weapon/iron_tiger
+- PASS: Weapon include: obj/weapon/golden_lance
+- PASS: Weapon inherit: obj/weapon/golden_lance
+- PASS: Equipment setup(): obj/weapon/golden_lance
+- PASS: Weapon include: obj/weapon/ghost_head_axe
+- PASS: Weapon inherit: obj/weapon/ghost_head_axe
+- PASS: Equipment setup(): obj/weapon/ghost_head_axe
+- PASS: Weapon include: obj/weapon/thunder_claw
+- PASS: Weapon inherit: obj/weapon/thunder_claw
+- PASS: Equipment setup(): obj/weapon/thunder_claw
+- PASS: Weapon include: obj/weapon/psychic_sword
+- PASS: Weapon inherit: obj/weapon/psychic_sword
+- PASS: Equipment setup(): obj/weapon/psychic_sword
+- PASS: Weapon include: obj/weapon/zidian_pike
+- PASS: Weapon inherit: obj/weapon/zidian_pike
+- PASS: Equipment setup(): obj/weapon/zidian_pike
+- PASS: Weapon include: obj/weapon/fury_whip
+- PASS: Weapon inherit: obj/weapon/fury_whip
+- PASS: Equipment setup(): obj/weapon/fury_whip
+- PASS: Weapon include: obj/weapon/silk_fishing_rod
+- PASS: Weapon inherit: obj/weapon/silk_fishing_rod
+- PASS: Equipment setup(): obj/weapon/silk_fishing_rod
+- PASS: Weapon include: obj/weapon/xuanyao
+- PASS: Weapon inherit: obj/weapon/xuanyao
+- PASS: Equipment setup(): obj/weapon/xuanyao
+- PASS: Weapon include: obj/weapon/yumo_axe
+- PASS: Weapon inherit: obj/weapon/yumo_axe
+- PASS: Equipment setup(): obj/weapon/yumo_axe
+- PASS: Weapon include: obj/weapon/chuanling
+- PASS: Weapon inherit: obj/weapon/chuanling
+- PASS: Equipment setup(): obj/weapon/chuanling
+- PASS: Weapon include: obj/weapon/equalizer
+- PASS: Weapon inherit: obj/weapon/equalizer
+- PASS: Equipment setup(): obj/weapon/equalizer
+- PASS: Weapon include: obj/weapon/warlord_blade
+- PASS: Weapon inherit: obj/weapon/warlord_blade
+- PASS: Equipment setup(): obj/weapon/warlord_blade
+- PASS: Weapon include: obj/weapon/blue_saliva_blade
+- PASS: Weapon inherit: obj/weapon/blue_saliva_blade
+- PASS: Equipment setup(): obj/weapon/blue_saliva_blade
+- PASS: Weapon include: obj/weapon/wind_god_feather
+- PASS: Weapon inherit: obj/weapon/wind_god_feather
+- PASS: Equipment setup(): obj/weapon/wind_god_feather
+- PASS: Weapon include: obj/weapon/zhuifeng_sword
+- PASS: Weapon inherit: obj/weapon/zhuifeng_sword
+- PASS: Equipment setup(): obj/weapon/zhuifeng_sword
+- PASS: Weapon include: obj/weapon/rapid_sword
+- PASS: Weapon inherit: obj/weapon/rapid_sword
+- PASS: Equipment setup(): obj/weapon/rapid_sword
+- PASS: Weapon include: obj/weapon/dragon_whip
+- PASS: Weapon inherit: obj/weapon/dragon_whip
+- PASS: Equipment setup(): obj/weapon/dragon_whip
+- PASS: Weapon include: obj/weapon/yinxue
+- PASS: Weapon inherit: obj/weapon/yinxue
+- PASS: Equipment setup(): obj/weapon/yinxue
+- PASS: Weapon include: obj/weapon/xuanfeng_blunt
+- PASS: Weapon inherit: obj/weapon/xuanfeng_blunt
+- PASS: Equipment setup(): obj/weapon/xuanfeng_blunt
+- PASS: Weapon include: obj/weapon/celestial_bull_cane
+- PASS: Weapon inherit: obj/weapon/celestial_bull_cane
+- PASS: Equipment setup(): obj/weapon/celestial_bull_cane
+- PASS: Weapon include: obj/weapon/black_spark
+- PASS: Weapon inherit: obj/weapon/black_spark
+- PASS: Equipment setup(): obj/weapon/black_spark
+- PASS: Weapon include: obj/weapon/evil_crooked_blade
+- PASS: Weapon inherit: obj/weapon/evil_crooked_blade
+- PASS: Equipment setup(): obj/weapon/evil_crooked_blade
+- PASS: Weapon include: obj/weapon/royal_sword
+- PASS: Weapon inherit: obj/weapon/royal_sword
+- PASS: Equipment setup(): obj/weapon/royal_sword
+- PASS: Weapon include: obj/weapon/xueyue_axe
+- PASS: Weapon inherit: obj/weapon/xueyue_axe
+- PASS: Equipment setup(): obj/weapon/xueyue_axe
+- PASS: Armor include: obj/armor/jinggang_armor
+- PASS: Armor inherit: obj/armor/jinggang_armor
+- PASS: Equipment setup(): obj/armor/jinggang_armor
+- PASS: Armor include: obj/armor/yenhold_gauntlets
+- PASS: Armor inherit: obj/armor/yenhold_gauntlets
+- PASS: Equipment setup(): obj/armor/yenhold_gauntlets
+- PASS: Armor include: obj/armor/blessed_jade
+- PASS: Armor inherit: obj/armor/blessed_jade
+- PASS: Equipment setup(): obj/armor/blessed_jade
+- PASS: Armor include: obj/armor/bujun_helm
+- PASS: Armor inherit: obj/armor/bujun_helm
+- PASS: Equipment setup(): obj/armor/bujun_helm
+- PASS: Armor include: obj/armor/seal_ice_ring
+- PASS: Armor inherit: obj/armor/seal_ice_ring
+- PASS: Equipment setup(): obj/armor/seal_ice_ring
+- PASS: Armor include: obj/armor/aowei_belt
+- PASS: Armor inherit: obj/armor/aowei_belt
+- PASS: Equipment setup(): obj/armor/aowei_belt
+- PASS: Armor include: obj/armor/corrosive_hands
+- PASS: Armor inherit: obj/armor/corrosive_hands
+- PASS: Equipment setup(): obj/armor/corrosive_hands
+- PASS: Armor include: obj/armor/jushou_helm
+- PASS: Armor inherit: obj/armor/jushou_helm
+- PASS: Equipment setup(): obj/armor/jushou_helm
+- PASS: Armor include: obj/armor/dragon_bone
+- PASS: Armor inherit: obj/armor/dragon_bone
+- PASS: Equipment setup(): obj/armor/dragon_bone
+- PASS: Armor include: obj/armor/bawang_helm
+- PASS: Armor inherit: obj/armor/bawang_helm
+- PASS: Equipment setup(): obj/armor/bawang_helm
+- PASS: Armor include: obj/armor/malik_necklace
+- PASS: Armor inherit: obj/armor/malik_necklace
+- PASS: Equipment setup(): obj/armor/malik_necklace
+- PASS: Armor include: obj/armor/tielin_legs
+- PASS: Armor inherit: obj/armor/tielin_legs
+- PASS: Equipment setup(): obj/armor/tielin_legs
+- PASS: Armor include: obj/armor/fire_scale_cloth
+- PASS: Armor inherit: obj/armor/fire_scale_cloth
+- PASS: Equipment setup(): obj/armor/fire_scale_cloth
+- PASS: Armor include: obj/armor/manniu_boots
+- PASS: Armor inherit: obj/armor/manniu_boots
+- PASS: Equipment setup(): obj/armor/manniu_boots
+- PASS: Armor include: obj/armor/bloodstained_armor
+- PASS: Armor inherit: obj/armor/bloodstained_armor
+- PASS: Equipment setup(): obj/armor/bloodstained_armor
+- PASS: Armor include: obj/armor/crocodile_god_armor
+- PASS: Armor inherit: obj/armor/crocodile_god_armor
+- PASS: Equipment setup(): obj/armor/crocodile_god_armor
+- PASS: Armor include: obj/armor/fire_scale_helm
+- PASS: Armor inherit: obj/armor/fire_scale_helm
+- PASS: Equipment setup(): obj/armor/fire_scale_helm
+- PASS: Armor include: obj/armor/panlong_robe
+- PASS: Armor inherit: obj/armor/panlong_robe
+- PASS: Equipment setup(): obj/armor/panlong_robe
+- PASS: Armor include: obj/armor/shuijing_ring
+- PASS: Armor inherit: obj/armor/shuijing_ring
+- PASS: Equipment setup(): obj/armor/shuijing_ring
+- PASS: Armor include: obj/armor/tiefo_necklace
+- PASS: Armor inherit: obj/armor/tiefo_necklace
+- PASS: Equipment setup(): obj/armor/tiefo_necklace
+- PASS: Armor include: obj/armor/chainmail
+- PASS: Armor inherit: obj/armor/chainmail
+- PASS: Equipment setup(): obj/armor/chainmail
+- PASS: Armor include: obj/armor/wuzin_ring
+- PASS: Armor inherit: obj/armor/wuzin_ring
+- PASS: Equipment setup(): obj/armor/wuzin_ring
+- PASS: Armor include: obj/armor/cloud_silk_robe
+- PASS: Armor inherit: obj/armor/cloud_silk_robe
+- PASS: Equipment setup(): obj/armor/cloud_silk_robe
+- PASS: Armor include: obj/armor/jiaolong_belt
+- PASS: Armor inherit: obj/armor/jiaolong_belt
+- PASS: Equipment setup(): obj/armor/jiaolong_belt
+- PASS: Armor include: obj/armor/evil_bone_ring
+- PASS: Armor inherit: obj/armor/evil_bone_ring
+- PASS: Equipment setup(): obj/armor/evil_bone_ring
+- PASS: Armor include: obj/armor/bujun_armor
+- PASS: Armor inherit: obj/armor/bujun_armor
+- PASS: Equipment setup(): obj/armor/bujun_armor
+- PASS: Armor include: obj/armor/shuiyu_cloth
+- PASS: Armor inherit: obj/armor/shuiyu_cloth
+- PASS: Equipment setup(): obj/armor/shuiyu_cloth
+- PASS: Armor include: obj/armor/jibu_boots
+- PASS: Armor inherit: obj/armor/jibu_boots
+- PASS: Equipment setup(): obj/armor/jibu_boots
+- PASS: Armor include: obj/armor/longqi_armor
+- PASS: Armor inherit: obj/armor/longqi_armor
+- PASS: Equipment setup(): obj/armor/longqi_armor
+- PASS: Armor include: obj/armor/fire_scale_leggings
+- PASS: Armor inherit: obj/armor/fire_scale_leggings
+- PASS: Equipment setup(): obj/armor/fire_scale_leggings
+- PASS: Armor include: obj/armor/hunyuan_bag
+- PASS: Armor inherit: obj/armor/hunyuan_bag
+- PASS: Equipment setup(): obj/armor/hunyuan_bag
+- PASS: Armor include: obj/armor/skull_rosary
+- PASS: Armor inherit: obj/armor/skull_rosary
+- PASS: Equipment setup(): obj/armor/skull_rosary
+- PASS: Armor include: obj/armor/dingling_legs
+- PASS: Armor inherit: obj/armor/dingling_legs
+- PASS: Equipment setup(): obj/armor/dingling_legs
+- PASS: Armor include: obj/armor/cold_snow_gauntlet
+- PASS: Armor inherit: obj/armor/cold_snow_gauntlet
+- PASS: Equipment setup(): obj/armor/cold_snow_gauntlet
+- PASS: Armor include: obj/armor/fire_scale_belt
+- PASS: Armor inherit: obj/armor/fire_scale_belt
+- PASS: Equipment setup(): obj/armor/fire_scale_belt
+- PASS: Armor include: obj/armor/dragon_feather
+- PASS: Armor inherit: obj/armor/dragon_feather
+- PASS: Equipment setup(): obj/armor/dragon_feather
+- PASS: Armor include: obj/armor/fire_scale_boots
+- PASS: Armor inherit: obj/armor/fire_scale_boots
+- PASS: Equipment setup(): obj/armor/fire_scale_boots
+- PASS: Armor include: obj/armor/hanyu_ring
+- PASS: Armor inherit: obj/armor/hanyu_ring
+- PASS: Equipment setup(): obj/armor/hanyu_ring
+- PASS: Armor include: obj/armor/seal_thunder_ring
+- PASS: Armor inherit: obj/armor/seal_thunder_ring
+- PASS: Equipment setup(): obj/armor/seal_thunder_ring
+- PASS: Armor include: obj/armor/dragon_boots
+- PASS: Armor inherit: obj/armor/dragon_boots
+- PASS: Equipment setup(): obj/armor/dragon_boots
+- PASS: Armor include: obj/armor/jinggang_boots
+- PASS: Armor inherit: obj/armor/jinggang_boots
+- PASS: Equipment setup(): obj/armor/jinggang_boots
+- PASS: Armor include: obj/armor/silky_gloves
+- PASS: Armor inherit: obj/armor/silky_gloves
+- PASS: Equipment setup(): obj/armor/silky_gloves
+- PASS: Armor include: obj/armor/ashura_mask
+- PASS: Armor inherit: obj/armor/ashura_mask
+- PASS: Equipment setup(): obj/armor/ashura_mask
+- PASS: Armor include: obj/armor/dragon_ring
+- PASS: Armor inherit: obj/armor/dragon_ring
+- PASS: Equipment setup(): obj/armor/dragon_ring
+- PASS: Armor include: obj/armor/huxiao_armor
+- PASS: Armor inherit: obj/armor/huxiao_armor
+- PASS: Equipment setup(): obj/armor/huxiao_armor
+- PASS: Armor include: obj/armor/yehuang_gloves
+- PASS: Armor inherit: obj/armor/yehuang_gloves
+- PASS: Equipment setup(): obj/armor/yehuang_gloves
+- PASS: Armor include: obj/armor/qingbu_robe
+- PASS: Armor inherit: obj/armor/qingbu_robe
+- PASS: Equipment setup(): obj/armor/qingbu_robe
+- PASS: Armor include: obj/armor/soul_crystal_plate
+- PASS: Armor inherit: obj/armor/soul_crystal_plate
+- PASS: Equipment setup(): obj/armor/soul_crystal_plate
+- PASS: Armor include: obj/armor/jinggang_wrist
+- PASS: Armor inherit: obj/armor/jinggang_wrist
+- PASS: Equipment setup(): obj/armor/jinggang_wrist
+- PASS: Armor include: obj/armor/lvyu_hat
+- PASS: Armor inherit: obj/armor/lvyu_hat
+- PASS: Equipment setup(): obj/armor/lvyu_hat
+- PASS: Armor include: obj/armor/topaz_belt
+- PASS: Armor inherit: obj/armor/topaz_belt
+- PASS: Equipment setup(): obj/armor/topaz_belt
+- PASS: Armor include: obj/armor/bawang_ring
+- PASS: Armor inherit: obj/armor/bawang_ring
+- PASS: Equipment setup(): obj/armor/bawang_ring
+- PASS: Armor include: obj/armor/symbol_of_dao
+- PASS: Armor inherit: obj/armor/symbol_of_dao
+- PASS: Equipment setup(): obj/armor/symbol_of_dao
+- PASS: Armor include: obj/armor/cloth
+- PASS: Armor inherit: obj/armor/cloth
+- PASS: Equipment setup(): obj/armor/cloth
+- PASS: Armor include: obj/armor/copper_helm
+- PASS: Armor inherit: obj/armor/copper_helm
+- PASS: Equipment setup(): obj/armor/copper_helm
+- PASS: Armor include: obj/armor/thunder_wolf_helm
+- PASS: Armor inherit: obj/armor/thunder_wolf_helm
+- PASS: Equipment setup(): obj/armor/thunder_wolf_helm
+- PASS: Armor include: obj/armor/jiaojao_boots
+- PASS: Armor inherit: obj/armor/jiaojao_boots
+- PASS: Equipment setup(): obj/armor/jiaojao_boots
+- PASS: Armor include: obj/armor/jinsi_robe
+- PASS: Armor inherit: obj/armor/jinsi_robe
+- PASS: Equipment setup(): obj/armor/jinsi_robe
+- PASS: Armor include: obj/armor/woochan_ring
+- PASS: Armor inherit: obj/armor/woochan_ring
+- PASS: Equipment setup(): obj/armor/woochan_ring
+- PASS: Armor include: obj/armor/rainnar_cloth
+- PASS: Armor inherit: obj/armor/rainnar_cloth
+- PASS: Equipment setup(): obj/armor/rainnar_cloth
+- PASS: Armor include: obj/armor/girdle_of_headless
+- PASS: Armor inherit: obj/armor/girdle_of_headless
+- PASS: Equipment setup(): obj/armor/girdle_of_headless
+- PASS: Armor include: obj/armor/fire_scale_gloves
+- PASS: Armor inherit: obj/armor/fire_scale_gloves
+- PASS: Equipment setup(): obj/armor/fire_scale_gloves
+- PASS: Armor include: obj/armor/fur_hat
+- PASS: Armor inherit: obj/armor/fur_hat
+- PASS: Equipment setup(): obj/armor/fur_hat
+- PASS: Armor include: obj/armor/white_bear_armor
+- PASS: Armor inherit: obj/armor/white_bear_armor
+- PASS: Equipment setup(): obj/armor/white_bear_armor
+- PASS: Armor include: obj/armor/xincan_claw
+- PASS: Armor inherit: obj/armor/xincan_claw
+- PASS: Equipment setup(): obj/armor/xincan_claw
+- PASS: Armor include: obj/armor/fire_scale_plate
+- PASS: Armor inherit: obj/armor/fire_scale_plate
+- PASS: Equipment setup(): obj/armor/fire_scale_plate
+- PASS: Armor include: obj/armor/dragon_armor
+- PASS: Armor inherit: obj/armor/dragon_armor
+- PASS: Equipment setup(): obj/armor/dragon_armor
+- PASS: Armor include: obj/armor/iron_helm
+- PASS: Armor inherit: obj/armor/iron_helm
+- PASS: Equipment setup(): obj/armor/iron_helm
+- PASS: Armor include: obj/armor/jingtie_belt
+- PASS: Armor inherit: obj/armor/jingtie_belt
+- PASS: Equipment setup(): obj/armor/jingtie_belt
+- PASS: Armor include: obj/armor/runshen_ring
+- PASS: Armor inherit: obj/armor/runshen_ring
+- PASS: Equipment setup(): obj/armor/runshen_ring
+- PASS: Armor include: obj/armor/bawang_armor
+- PASS: Armor inherit: obj/armor/bawang_armor
+- PASS: Equipment setup(): obj/armor/bawang_armor
+- PASS: Armor include: obj/armor/hanchan_ring
+- PASS: Armor inherit: obj/armor/hanchan_ring
+- PASS: Equipment setup(): obj/armor/hanchan_ring
+- PASS: Armor include: obj/armor/zaobu_boots
+- PASS: Armor inherit: obj/armor/zaobu_boots
+- PASS: Equipment setup(): obj/armor/zaobu_boots
+- PASS: Armor include: obj/armor/xuanzhu_boots
+- PASS: Armor inherit: obj/armor/xuanzhu_boots
+- PASS: Equipment setup(): obj/armor/xuanzhu_boots
+- PASS: Armor include: obj/armor/jiutian_pearl
+- PASS: Armor inherit: obj/armor/jiutian_pearl
+- PASS: Equipment setup(): obj/armor/jiutian_pearl
+- PASS: Armor include: obj/armor/wuli_ring
+- PASS: Armor inherit: obj/armor/wuli_ring
+- PASS: Equipment setup(): obj/armor/wuli_ring
+- WARN: No weapon/armor include: obj/armor/lightning_bomb (may be a generic item)
+- PASS: Equipment setup(): obj/armor/lightning_bomb
+
+## Exit Bidirectional Validation
+- FAIL: Exit northwest -> entrance has no southeast exit back (from ngate)
+- FAIL: Exit down -> square has no up exit back (from tree)
+- FAIL: Exit west -> mountain_path has no east exit back (from mountain_road2)
+- FAIL: Exit west -> entrance has no east exit back (from road2)
+- FAIL: Exit west -> watchtower has no east exit back (from gate)
+
+## Summary
+| Result | Count |
+|--------|-------|
+| PASS | 3480 |
+| FAIL | 24 |
+| WARN | 46 |

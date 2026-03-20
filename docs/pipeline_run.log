@@ -1691,3 +1691,1865 @@ All completion conditions for Task 07 are met. The quest system uses the existin
 [0;32m[OK][0m Task done: Implement quest system
 [0;34m[09:57:40][0m All tasks completed.
 [0;34m[09:57:40][0m Checking for changes to commit...
+[1;33m[WARN][0m Push failed.
+[0;32m[OK][0m Changes committed and pushed to origin.
+[0;34m[10:05:56][0m Using git remote: origin
+[0;34m[10:05:56][0m Pulling latest changes...
+From github.com:Transformer666/es2_mudlib
+ * branch            main       -> FETCH_HEAD
+Already up to date.
+
+Pipeline start: 2026-03-20 10:05:56 (phase: all)
+==============================
+[0;34m[10:05:59][0m === Phase: Analyze ===
+[0;34m[10:05:59][0m Step: Scan existing content
+--- Step: Scan existing content ---
+[0;34m[10:09:55][0m Using git remote: origin
+[0;34m[10:09:55][0m Pulling latest changes...
+From github.com:Transformer666/es2_mudlib
+ * branch            main       -> FETCH_HEAD
+Already up to date.
+
+Pipeline start: 2026-03-20 10:09:55 (phase: all)
+==============================
+[0;34m[10:09:57][0m === Phase: Analyze ===
+[0;34m[10:09:57][0m Step: Scan existing content
+--- Step: Scan existing content ---
+`docs/missing_content.json` 已更新。掃描摘要：
+
+| 類別 | 需求 | 已實作 | 缺少 |
+|------|------|--------|------|
+| 種族 | 11 | 11 | 0 |
+| 職業 | 7 | 9 | 0 |
+| 門派 | 18 | 18 | 0 |
+| 技能 | ~87 | 75 | 12 |
+| 區域 | - | 54 | 21 個地圖位置未建 |
+| 房間 | - | 457 | - |
+| NPC | - | 268 | - |
+| 任務 | 13+ | 0 | 13+ |
+
+**主要缺口：**
+- **任務系統**：0 個已實作（雪亭七謎 + 五堂六謎 + 主線）
+- **12 個技能**：hammer, move, magic 等通用技能未建
+- **8 個 stub 城鎮**待擴展（龍安、京畿、康平等）
+- **21 個地圖位置**未建（真郡大山、太乙殿、風城等）
+- 茅山三觀 / 天師四衣派的子門派特化未實作
+[0;32m[OK][0m Scan existing content
+[0;34m[10:25:09][0m Using git remote: origin
+[0;34m[10:25:09][0m Pulling latest changes...
+From github.com:Transformer666/es2_mudlib
+ * branch            main       -> FETCH_HEAD
+Already up to date.
+
+Pipeline start: 2026-03-20 10:25:09 (phase: all)
+==============================
+[0;34m[10:25:11][0m === Phase: Analyze ===
+[0;34m[10:25:11][0m Step: Scan existing content
+--- Step: Scan existing content ---
+[0;34m[10:26:34][0m Using git remote: origin
+[0;34m[10:26:34][0m Pulling latest changes...
+From github.com:Transformer666/es2_mudlib
+ * branch            main       -> FETCH_HEAD
+   2cfee97..1fd583a  main       -> origin/main
+Updating 2cfee97..1fd583a
+Fast-forward
+ automation/run_loop.sh | 7 ++++---
+ 1 file changed, 4 insertions(+), 3 deletions(-)
+
+Pipeline start: 2026-03-20 10:26:34 (phase: all)
+==============================
+[0;34m[10:26:36][0m === Phase: Analyze ===
+[0;34m[10:26:36][0m Step: Scan existing content
+--- Step: Scan existing content ---
+掃描完成。摘要如下：
+
+| 類別 | 應有 | 已實作 | 缺少 |
+|------|------|--------|------|
+| 種族 daemon | 11 | 11 | 0 |
+| 職業 daemon | 7 | 9 (含 commoner/fighter) | 0 |
+| 門派 daemon | 18 | 18 | **1** (tianyue 天月庵 — 區域已建但缺 sect daemon) |
+| 技能 daemon | — | 75 | — |
+| 區域 | — | 54 | 21 個地圖地點未建 |
+| 房間 | — | 459 | — |
+| NPC | — | 268 | — |
+| NPC 裝備 | — | 124 | — |
+| 任務 | 13+ | **0** | 雪亭七謎 + 五堂六謎全缺 |
+
+主要缺口：
+- **tianyue (天月庵)** 門派 daemon 不存在（`d/tianyue/` 區域有 6 房間 4 NPC，但 `daemon/sect/tianyue.c` 缺失）
+- **任務系統完全未實作**（13 個城鎮謎題 + 主線任務）
+- **8 個 stub 城鎮**需要擴充（龍安、京畿、康平、喬陰、三掩、衛國、百花、離）
+- **21 個地圖地點**尚未建立（真郡大山、太乙殿、風城等）
+[0;32m[OK][0m Scan existing content
+[0;34m[10:34:00][0m Using git remote: origin
+[0;34m[10:34:00][0m Pulling latest changes...
+From github.com:Transformer666/es2_mudlib
+ * branch            main       -> FETCH_HEAD
+Already up to date.
+
+Pipeline start: 2026-03-20 10:34:00 (phase: all)
+==============================
+[0;34m[10:34:02][0m === Phase: Analyze ===
+[0;34m[10:34:02][0m Step: Scan existing content
+--- Step: Scan existing content ---
+`docs/missing_content.json` 已更新。摘要：
+
+| 類別 | 應有 | 已實作 | 缺少 |
+|------|------|--------|------|
+| 種族 | 11 | 11 | 0 |
+| 職業 | 7 | 7+2 | 0 |
+| 門派 | 18 | 18 | 1 (tianyue 有區域但缺 daemon) |
+| 技能 | — | 75 | — |
+| 區域 | — | 54 目錄 | 21 個地圖地點未建 |
+| 房間 | — | 459 | — |
+| NPC | — | 268 | — |
+| 裝備 | — | 124 | — |
+| 任務 | 13+ | 0 | 全部 (雪亭7謎 + 五堂6謎) |
+
+主要缺口：
+- **tianyue (天月庵)** — 區域已有 6 房間 4 NPC，但缺門派 daemon
+- **任務系統** — 完全未實作 (0/13+)
+- **21 個地圖地點未建** — 真郡大山、太乙殿、風城、水月村等
+- **茅山/天師子派系統** — 靈雲觀/隱風觀/幻霧觀、四衣派尚未實作
+[0;32m[OK][0m Scan existing content
+[0;34m[10:42:09][0m Using git remote: origin
+[0;34m[10:42:09][0m Pulling latest changes...
+From github.com:Transformer666/es2_mudlib
+ * branch            main       -> FETCH_HEAD
+Already up to date.
+
+Pipeline start: 2026-03-20 10:42:09 (phase: all)
+==============================
+[0;34m[10:42:12][0m === Phase: Analyze ===
+[0;34m[10:42:12][0m Step: Scan existing content
+--- Step: Scan existing content ---
+The existing file is already accurate — all counts match the fresh scan (11 races, 9 classes, 18 sects, 75 skills, 459 rooms, 268 NPCs, 124 NPC equipment, 54 areas, 0 quests). No changes needed.
+
+Here's the summary:
+
+| Category | Required | Implemented | Missing |
+|----------|----------|-------------|---------|
+| Races | 11 | 11 | 0 |
+| Classes | 7 | 9 (+commoner, fighter) | 0 |
+| Sects | 18 | 18 | 1 (tianyue daemon; tianxie is extra) |
+| Skills | — | 75 | — |
+| Areas | — | 54 | 21 map locations not built |
+| Rooms | — | 459 | — |
+| NPCs | — | 268 | — |
+| Quests | 13+ | 0 | All (7 雪亭謎 + 6 五堂謎) |
+
+**Key gaps:**
+1. **tianyue (天月庵)** — area exists (6 rooms, 4 NPCs) but sect daemon missing
+2. **Quest system** — 0 quests implemented; 13+ defined in wiki
+3. **21 map locations** not yet built (真郡大山, 太乙殿, 風城, 水月村, etc.)
+4. **8 stub towns** (longan, jingji, kangping, choyin, sanyen, weiguo, baihua, lee) have basic rooms but need expansion
+[0;32m[OK][0m Scan existing content
+[0;34m[10:48:34][0m Using git remote: origin
+[0;34m[10:48:34][0m Pulling latest changes...
+From github.com:Transformer666/es2_mudlib
+ * branch            main       -> FETCH_HEAD
+Already up to date.
+
+Pipeline start: 2026-03-20 10:48:34 (phase: all)
+==============================
+[0;34m[10:48:37][0m === Phase: Analyze ===
+[0;34m[10:48:37][0m Step: Scan existing content
+--- Step: Scan existing content ---
+`docs/missing_content.json` 已更新。掃描摘要：
+
+| 類別 | 應有 | 已實作 | 缺少 |
+|------|------|--------|------|
+| 種族 daemon | 11 | 11 | 0 |
+| 職業 daemon | 7 | 9 (含 commoner/fighter) | 0 |
+| 門派 daemon | 18 | 18 (缺 tianyue，多 tianxie) | 1 |
+| 技能 daemon | — | 75 | — |
+| 區域 | — | 54 | 21 個地圖地點未建 |
+| 房間 | — | 459 | — |
+| NPC | — | 268 | — |
+| NPC 裝備 | — | 124 | — |
+| 任務 | 13+ | 0 | 13+ |
+
+主要缺口：
+- **天月庵 (tianyue)** 門派 daemon 不存在（區域有 6 房間 4 NPC 但無 `daemon/sect/tianyue.c`）
+- **任務系統** 完全未實作（雪亭七謎 + 五堂六謎 = 13 個任務）
+- **8 個 stub 城鎮** 需要擴展（龍安、京畿、康平、喬陰、三掩、衛國、百花、離）
+- **21 個地圖地點** 尚未建造
+[0;32m[OK][0m Scan existing content
+[0;34m[10:55:42][0m Using git remote: origin
+[0;34m[10:55:42][0m Pulling latest changes...
+From github.com:Transformer666/es2_mudlib
+ * branch            main       -> FETCH_HEAD
+Already up to date.
+
+Pipeline start: 2026-03-20 10:55:42 (phase: all)
+==============================
+[0;34m[10:55:45][0m === Phase: Analyze ===
+[0;34m[10:55:45][0m Step: Scan existing content
+--- Step: Scan existing content ---
+`docs/missing_content.json` 已更新。掃描摘要：
+
+| 類別 | 需求 | 已實作 | 缺少 |
+|------|------|--------|------|
+| 種族 | 11 | 11 | 0 |
+| 職業 | 7 | 7 (+2 系統) | 0 |
+| 門派 | 18 | 18 (含 tianxie) | 1 (天月庵 sect daemon) |
+| 技能 | — | 75 | — |
+| 區域 | — | 55 (459 rooms, 268 NPCs) | 21 地圖地點未建 |
+| 任務 | 13+ | 0 | 13 (雪亭7謎 + 五堂6謎) |
+| Stub 城鎮 | — | 8 | 需擴充內容 |
+
+主要缺口：
+- **天月庵 (tianyue)** 區域已有 6 房間 + 4 NPC，但缺 sect daemon
+- **任務系統**完全未實作（0/13+）
+- **8 個 stub 城鎮**需要擴充（龍安、京畿、康平、喬陰、三掩、衛國、百花、離）
+- **21 個地圖地點**尚未建置
+[0;32m[OK][0m Scan existing content
+[0;34m[11:03:06][0m Using git remote: origin
+[0;34m[11:03:06][0m Pulling latest changes...
+From github.com:Transformer666/es2_mudlib
+ * branch            main       -> FETCH_HEAD
+Already up to date.
+
+Pipeline start: 2026-03-20 11:03:06 (phase: all)
+==============================
+[0;34m[11:03:08][0m === Phase: Analyze ===
+[0;34m[11:03:08][0m Step: Scan existing content
+--- Step: Scan existing content ---
+File updated. Here's the scan summary:
+
+### Mudlib 內容掃描摘要
+
+| 類別 | 需要 | 已實作 | 缺少 |
+|------|------|--------|------|
+| 種族 | 11 | 11 | 0 |
+| 職業 | 7 | 7 (+2 utility) | 0 |
+| 門派 | 18 | 17 (+tianxie) | 1 (tianyue 天月庵) |
+| 技能 | — | 75 | 無明確清單 |
+| 區域 | — | 54 | 21 地圖地點未建 |
+| 房間 | — | 459 | — |
+| NPC | — | 268 | — |
+| NPC 裝備 | — | 124 | — |
+| 任務 | 13+ | 0 | 雪亭七謎 + 五堂六謎 |
+
+**主要缺口：**
+- **tianyue (天月庵)** — 區域已有 6 房間 + 4 NPC，但缺 `daemon/sect/tianyue.c`
+- **任務系統** — 完全未實作（wiki 列出至少 13 個任務）
+- **8 個 stub 城鎮** 需要擴展（longan, jingji, kangping, sanyen, lee, choyin, baihua, weiguo）
+- **21 個地圖地點** 尚未建置
+
+已更新 `docs/missing_content.json`。
+[0;32m[OK][0m Scan existing content
+[0;34m[11:10:18][0m Using git remote: origin
+[0;34m[11:10:18][0m Pulling latest changes...
+From github.com:Transformer666/es2_mudlib
+ * branch            main       -> FETCH_HEAD
+Already up to date.
+
+Pipeline start: 2026-03-20 11:10:18 (phase: all)
+==============================
+[0;34m[11:10:20][0m === Phase: Analyze ===
+[0;34m[11:10:20][0m Step: Scan existing content
+--- Step: Scan existing content ---
+掃描完成。摘要如下：
+
+| 類別 | 應有 | 已實作 | 缺少 |
+|------|------|--------|------|
+| 種族 | 11 | 11 | 0 |
+| 職業 | 7 | 9 (含 commoner/fighter) | 0 |
+| 門派 | 18 | 18 | 1 (tianyue 天月庵缺 sect daemon，但區域已有) |
+| 技能 | — | 75 | 無參考清單 |
+| 區域 | — | 54 目錄 / 459 房間 / 268 NPC | 21 地圖地點未建 |
+| 任務 | 13+ | 0 | 雪亭七謎 + 五堂六謎全未實作 |
+
+主要缺口：
+- **tianyue (天月庵)** 缺少 `daemon/sect/tianyue.c`
+- **任務系統** 完全未建（13+ 個任務）
+- **8 個 stub 城鎮** 需要擴展（龍安、京畿、康平、喬陰、三掩、衛國、百花、離）
+- **21 個地圖地點** 尚未建立（真郡大山、太乙殿、風城等）
+
+結果已寫入 `docs/missing_content.json`。
+[0;32m[OK][0m Scan existing content
+[0;34m[11:16:54][0m Using git remote: origin
+[0;34m[11:16:54][0m Pulling latest changes...
+From github.com:Transformer666/es2_mudlib
+ * branch            main       -> FETCH_HEAD
+Already up to date.
+
+Pipeline start: 2026-03-20 11:16:54 (phase: all)
+==============================
+[0;34m[11:16:57][0m === Phase: Analyze ===
+[0;34m[11:16:57][0m Step: Scan existing content
+--- Step: Scan existing content ---
+掃描完成，以下是摘要：
+
+### 內容統計
+
+| 類別 | 需求 | 已實作 | 缺少 |
+|------|------|--------|------|
+| 種族 | 11 | 11 | 0 |
+| 職業 | 7 | 9 (含 commoner, fighter) | 0 |
+| 門派 | 18 | 17/18 + 1 extra | **tianyue 天月庵** 缺 sect daemon |
+| 技能 | - | 75 | - |
+| 區域 | - | 54 (459 rooms, 268 NPCs) | 21 地圖地點未建 |
+| 任務 | 13+ | 0 | **全部缺少** (雪亭7謎 + 五堂6謎) |
+
+### 主要缺口
+1. **天月庵 sect daemon** — `d/tianyue/` 有 6 房間 4 NPC，但 `daemon/sect/tianyue.c` 不存在
+2. **任務系統** — 0 個 quest daemon，雪亭鎮七謎 + 五堂鎮六謎 均未實作
+3. **8 個 stub 城鎮**需擴展（龍安、京畿、康平、喬陰、三掩、衛國、百花、離）
+4. **21 個地圖地點**尚未建設（真郡大山、太乙殿、風城等）
+
+已更新 `docs/missing_content.json`。
+[0;32m[OK][0m Scan existing content
+[0;34m[11:23:30][0m Using git remote: origin
+[0;34m[11:23:30][0m Pulling latest changes...
+From github.com:Transformer666/es2_mudlib
+ * branch            main       -> FETCH_HEAD
+Already up to date.
+
+Pipeline start: 2026-03-20 11:23:30 (phase: all)
+==============================
+[0;34m[11:23:33][0m === Phase: Analyze ===
+[0;34m[11:23:33][0m Step: Scan existing content
+--- Step: Scan existing content ---
+`docs/missing_content.json` 已更新。摘要：
+
+| 類別 | 應有 | 已實作 | 缺少 |
+|------|------|--------|------|
+| 種族 | 11 | 11 | 0 |
+| 職業 | 7 | 9 (含 commoner/fighter) | 0 |
+| 門派 | 18 | 18 | 0 |
+| 技能 | — | 75 | — |
+| 區域 | — | 54 (459 房間, 268 NPC) | — |
+| 任務 | 13+ | 0 | 13+ |
+
+**主要缺口：**
+- **任務系統**：0 個任務實作（雪亭七謎 + 五堂六謎 = 13 個待建）
+- **8 個 stub 城鎮**需擴展（龍安、京畿、康平、喬陰、三掩、衛國、百花、離）
+- **21 個地圖地點**尚未建置
+- 修正：舊檔案誤報 tianyue 門派 daemon 缺失，實際已存在
+[0;32m[OK][0m Scan existing content
+[0;34m[11:30:36][0m Using git remote: origin
+[0;34m[11:30:36][0m Pulling latest changes...
+From github.com:Transformer666/es2_mudlib
+ * branch            main       -> FETCH_HEAD
+Already up to date.
+
+Pipeline start: 2026-03-20 11:30:36 (phase: all)
+==============================
+[0;34m[11:30:38][0m === Phase: Analyze ===
+[0;34m[11:30:38][0m Step: Scan existing content
+--- Step: Scan existing content ---
+`docs/missing_content.json` 已更新。摘要：
+
+| 類別 | 需求 | 已實作 | 缺少 |
+|------|------|--------|------|
+| 種族 | 11 | 11 | 0 |
+| 職業 | 7 | 7+2 | 0 |
+| 門派 daemon | 18 | 17 | 1 (`tianyue` 天月庵) |
+| 技能 | — | 75 | — |
+| 區域 | — | 54 | 21 個地圖地點未建 |
+| 房間 | — | 459 | — |
+| NPC | — | 268 | — |
+| 任務 | 13+ | 0 | 全部 |
+
+主要缺口：
+- **tianyue (天月庵)** — 區域目錄存在（6 房間 4 NPC），但缺 `daemon/sect/tianyue.c`
+- **任務系統** — 完全未實作（雪亭七謎 + 五堂六謎 = 13 個任務）
+- **8 個 stub 城鎮** 規模偏小，需擴展
+- **21 個地圖地點** 尚未建置（真郡大山、太乙殿、風城等）
+[0;32m[OK][0m Scan existing content
+[0;34m[11:37:33][0m Using git remote: origin
+[0;34m[11:37:33][0m Pulling latest changes...
+From github.com:Transformer666/es2_mudlib
+ * branch            main       -> FETCH_HEAD
+Already up to date.
+
+Pipeline start: 2026-03-20 11:37:33 (phase: all)
+==============================
+[0;34m[11:37:36][0m === Phase: Analyze ===
+[0;34m[11:37:36][0m Step: Scan existing content
+--- Step: Scan existing content ---
+掃描完成，結果與上次一致。摘要如下：
+
+| 類別 | 應有 | 已實作 | 缺少 |
+|------|------|--------|------|
+| 種族 | 11 | 11 | 0 |
+| 職業 | 7 | 9 (+commoner, fighter) | 0 |
+| 門派 | 18 | 17 | **1** (天月庵 tianyue) |
+| 技能 | — | 75 | — |
+| 區域 | — | 54 (459 rooms, 268 NPCs) | — |
+| 任務 | 13+ | 0 | **全部** |
+
+主要缺口：
+- **天月庵 (tianyue)** — 區域已建 (6 rooms, 4 NPCs)，但 `daemon/sect/tianyue.c` 不存在
+- **任務系統** — 雪亭七謎 + 五堂六謎共 13 個任務均未實作
+- **8 個 stub 城鎮**需擴展（龍安、京畿、康平、喬陰、三掩、衛國、百花、離）
+- **21 個地圖地點**尚未建設（真郡大山、太乙殿、風城等）
+[0;32m[OK][0m Scan existing content
+[0;34m[11:44:32][0m Using git remote: origin
+[0;34m[11:44:32][0m Pulling latest changes...
+From github.com:Transformer666/es2_mudlib
+ * branch            main       -> FETCH_HEAD
+Already up to date.
+
+Pipeline start: 2026-03-20 11:44:32 (phase: all)
+==============================
+[0;34m[11:44:34][0m === Phase: Analyze ===
+[0;34m[11:44:34][0m Step: Scan existing content
+--- Step: Scan existing content ---
+Scan complete. Here's the summary:
+
+| Category | Required | Implemented | Missing |
+|----------|----------|-------------|---------|
+| Races | 11 | 11 | 0 |
+| Classes | 7 | 9 (7+2 utility) | 0 |
+| Sects | 18 | 17 matching | 1 (`tianyue` 天月庵 — area exists, daemon missing) |
+| Skills | — | 75 | — |
+| Areas | — | 54 dirs, 459 rooms | 21 map locations not built |
+| NPCs | — | 268 | — |
+| NPC Equipment | — | 124 | — |
+| Quests | — | 0 | 13 (雪亭7 + 五堂6) |
+| Stub Towns | — | 8 | Need expansion (longan, jingji, kangping, choyin, sanyen, weiguo, baihua, lee) |
+
+Key gaps:
+1. **Sect daemon**: `tianyue` (天月庵) — rooms/NPCs exist in `d/tianyue/` but no `daemon/sect/tianyue.c`
+2. **Quests**: 0 implemented, 13 documented in wiki
+3. **21 world map locations** not yet built (真郡大山, 太乙殿, 風城, etc.)
+4. **8 stub towns** need expansion
+
+`docs/missing_content.json` updated.
+[0;32m[OK][0m Scan existing content
+[0;34m[11:50:53][0m Using git remote: origin
+[0;34m[11:50:53][0m Pulling latest changes...
+From github.com:Transformer666/es2_mudlib
+ * branch            main       -> FETCH_HEAD
+Already up to date.
+
+Pipeline start: 2026-03-20 11:50:53 (phase: all)
+==============================
+[0;34m[11:50:56][0m === Phase: Analyze ===
+[0;34m[11:50:56][0m Step: Scan existing content
+--- Step: Scan existing content ---
+掃描完成，`docs/missing_content.json` 已更新。摘要如下：
+
+| 類別 | 應有 | 已實作 | 缺少 |
+|------|------|--------|------|
+| 種族 daemon | 11 | 11 | 0 |
+| 職業 daemon | 7 | 9 (含 commoner/fighter) | 0 |
+| 門派 daemon | 18 | 18 (缺 tianyue，多 tianxie) | 1 |
+| 技能 daemon | — | 75 | — |
+| 區域 | — | 54 | — |
+| 房間 | — | 459 | — |
+| NPC | — | 268 | — |
+| NPC 裝備 | — | 124 | — |
+| 任務 (Quest) | 13+ | 0 | 全部 |
+
+**主要缺口：**
+- **天月庵 (tianyue)** 門派 daemon 未建立（區域和 NPC 已存在）
+- **任務系統**完全未實作（雪亭七謎 + 五堂六謎 = 13 個任務）
+- **8 個 stub 城鎮**需擴充：龍安、京畿、康平、喬陰、三掩、衛國、百花、離
+- **21 個地圖地點**尚未建造（真郡大山、太乙殿、風城等）
+[0;32m[OK][0m Scan existing content
+[0;34m[11:57:39][0m Using git remote: origin
+[0;34m[11:57:39][0m Pulling latest changes...
+From github.com:Transformer666/es2_mudlib
+ * branch            main       -> FETCH_HEAD
+Already up to date.
+
+Pipeline start: 2026-03-20 11:57:39 (phase: all)
+==============================
+[0;34m[11:57:41][0m === Phase: Analyze ===
+[0;34m[11:57:41][0m Step: Scan existing content
+--- Step: Scan existing content ---
+`docs/missing_content.json` 已更新。摘要：
+
+| 類別 | 需要 | 已實作 | 缺少 |
+|------|------|--------|------|
+| 種族 | 11 | 11 | 0 |
+| 職業 | 7 | 7+2 | 0 |
+| 門派 | 18 | 17 | 1 (天月庵 tianyue — 區域已建但缺 sect daemon) |
+| 技能 | — | 75 | — |
+| 區域 | — | 54 | 21 個地圖位置未建 |
+| 房間 | — | 459 | — |
+| NPC | — | 268 | — |
+| 任務 | 13+ | 0 | 雪亭七謎 + 五堂六謎皆未實作 |
+
+主要缺口：
+1. **門派 daemon**: `daemon/sect/tianyue.c` 未建立（天月庵，和尚系治療門派）
+2. **任務系統**: 完全未實作（0 quests）
+3. **未建地圖位置**: 21 處（真郡大山、太乙殿、風城、水月村等）
+4. **子門派分支**: 茅山三觀、天師四衣派尚未細分
+[0;32m[OK][0m Scan existing content
+[0;34m[12:04:35][0m Using git remote: origin
+[0;34m[12:04:35][0m Pulling latest changes...
+From github.com:Transformer666/es2_mudlib
+ * branch            main       -> FETCH_HEAD
+Already up to date.
+
+Pipeline start: 2026-03-20 12:04:35 (phase: all)
+==============================
+[0;34m[12:04:38][0m === Phase: Analyze ===
+[0;34m[12:04:38][0m Step: Scan existing content
+--- Step: Scan existing content ---
+`docs/missing_content.json` 已更新。掃描摘要：
+
+| 類別 | 應有 | 已實作 | 缺少 |
+|------|------|--------|------|
+| 種族 | 11 | 11 | 0 |
+| 職業 | 7 | 9 (含 commoner/fighter) | 0 |
+| 門派 | 18 | 18 (但 tianyue daemon 缺) | 1 daemon |
+| 技能 | — | 75 | — |
+| 區域 | — | 55 (459 rooms, 268 NPCs) | 22 地圖地點未建 |
+| 任務 | 15+ | 0 | 全部 |
+
+主要缺口：
+- **天月庵 sect daemon** — 區域已有 6 房間 4 NPC，但 `daemon/sect/tianyue.c` 不存在
+- **任務系統** — 雪亭七謎、五堂六謎、十三靈任務全未實作
+- **22 個地圖地點** — 真郡大山、太乙殿、風城、水月村、羅城等尚未建置
+- **8 個 stub 城鎮** — longan/jingji/kangping/sanyen/lee/choyin/baihua/weiguo 有基礎框架但內容較薄
+[0;32m[OK][0m Scan existing content
+[0;34m[12:11:16][0m Using git remote: origin
+[0;34m[12:11:16][0m Pulling latest changes...
+From github.com:Transformer666/es2_mudlib
+ * branch            main       -> FETCH_HEAD
+Already up to date.
+
+Pipeline start: 2026-03-20 12:11:16 (phase: all)
+==============================
+[0;34m[12:11:18][0m === Phase: Analyze ===
+[0;34m[12:11:18][0m Step: Scan existing content
+--- Step: Scan existing content ---
+`docs/missing_content.json` 已更新。掃描摘要：
+
+| 類別 | 需求 | 已實作 | 缺少 |
+|------|------|--------|------|
+| 種族 | 11 | 11 | 0 |
+| 職業 | 7 | 9 (含 commoner/fighter) | 0 |
+| 門派 | 18 | 18 (缺 tianyue daemon) | 1 |
+| 技能 | — | 75 | — |
+| 區域 | — | 54 | — |
+| 房間 | — | 459 | — |
+| NPC | — | 268 | — |
+| 任務 | 15 | 0 | 15 |
+
+**主要缺口：**
+- **天月庵 (tianyue)** — 區域已有 6 房間 + 4 NPC，但 `daemon/sect/tianyue.c` 不存在
+- **任務系統** — 0 個任務實作（雪亭七謎、五堂六謎、十三靈任務共 15 個）
+- **未建地圖位置** — 22 個（真郡大山、太乙殿、風城等）
+- **門派子系統** — 茅山三觀、天師四衣派特化未實作
+[0;32m[OK][0m Scan existing content
+[0;34m[12:19:25][0m Using git remote: origin
+[0;34m[12:19:25][0m Pulling latest changes...
+From github.com:Transformer666/es2_mudlib
+ * branch            main       -> FETCH_HEAD
+Already up to date.
+
+Pipeline start: 2026-03-20 12:19:25 (phase: all)
+==============================
+[0;34m[12:19:27][0m === Phase: Analyze ===
+[0;34m[12:19:27][0m Step: Scan existing content
+--- Step: Scan existing content ---
+`docs/missing_content.json` 已更新。摘要如下：
+
+| 類別 | 應有 | 已實作 | 缺少 |
+|------|------|--------|------|
+| 種族 | 11 | 11 | 0 |
+| 職業 | 7 | 9 (含 commoner/fighter) | 0 |
+| 門派 daemon | 18 | 18 | 1 (天月庵 area 存在但缺 sect daemon) |
+| 技能 | — | 75 | — |
+| 區域 | — | 54 (459 rooms, 268 NPCs) | — |
+| 任務 | 15+ | 0 | 全部 |
+
+**主要缺口：**
+- **天月庵 sect daemon** — `daemon/sect/tianyue.c` 不存在
+- **任務系統** — 0 個任務（雪亭七謎、五堂六謎、十三靈任務皆未實作）
+- **22 個地圖地點未建** — 真郡大山、太乙殿、風城等
+- **8 個 stub 城鎮待擴展** — 龍安、京畿、康平、三掩、離、喬陰、百花、衛國
+- **門派子系統未實作** — 茅山三觀、天師四衣派
+[0;32m[OK][0m Scan existing content
+[0;34m[12:26:11][0m Using git remote: origin
+[0;34m[12:26:11][0m Pulling latest changes...
+From github.com:Transformer666/es2_mudlib
+ * branch            main       -> FETCH_HEAD
+Already up to date.
+
+Pipeline start: 2026-03-20 12:26:11 (phase: all)
+==============================
+[0;34m[12:26:14][0m === Phase: Analyze ===
+[0;34m[12:26:14][0m Step: Scan existing content
+--- Step: Scan existing content ---
+Updated timestamp. Here's the scan summary:
+
+**Content Scan Results — `docs/missing_content.json`**
+
+| Category | Required | Implemented | Missing |
+|----------|----------|-------------|---------|
+| Races | 11 | 11 | 0 |
+| Classes | 7 | 9 (+ commoner, fighter) | 0 |
+| Sects | 18 | 18 | 1 (tianyue 天月庵 — area exists but sect daemon missing) |
+| Skills | — | 75 | — |
+| Areas | — | 54 | 22 map locations not built |
+| Rooms | — | 459 | — |
+| NPCs | — | 268 | — |
+| Quests | — | 0 | 15 (雪亭7謎 + 五堂6謎 + 十三靈2) |
+
+**Key gaps:**
+1. **Sect daemon**: `tianyue` (天月庵) — area `d/tianyue/` has 6 rooms & 4 NPCs but no `daemon/sect/tianyue.c`
+2. **Quest system**: Not implemented (0 quests)
+3. **8 stub towns** need expansion: longan, jingji, kangping, sanyen, lee, choyin, baihua, weiguo
+4. **22 map locations** from the official map have no corresponding areas yet
+[0;32m[OK][0m Scan existing content
+[0;34m[12:32:36][0m Using git remote: origin
+[0;34m[12:32:36][0m Pulling latest changes...
+From github.com:Transformer666/es2_mudlib
+ * branch            main       -> FETCH_HEAD
+Already up to date.
+
+Pipeline start: 2026-03-20 12:32:36 (phase: all)
+==============================
+[0;34m[12:32:39][0m === Phase: Analyze ===
+[0;34m[12:32:39][0m Step: Scan existing content
+--- Step: Scan existing content ---
+掃描完成，`docs/missing_content.json` 已更新。摘要：
+
+| 類別 | 應有 | 已實作 | 缺少 |
+|------|------|--------|------|
+| 種族 | 11 | 11 | 0 |
+| 職業 | 7 | 7 (+2 系統) | 0 |
+| 門派 | 18 | 18 | **1** (tianyue 天月庵 — 區域存在但缺 sect daemon) |
+| 技能 | — | 75 | — |
+| 區域 | — | 54 | **22** 地圖地點未建 |
+| 房間 | — | 459 | — |
+| NPC | — | 268 | — |
+| 任務 | 15+ | **0** | 雪亭七謎 + 五堂六謎 + 十三靈任務 |
+| Stub 城鎮 | 8 | 8 (需擴展) | 龍安/京畿/康平/三掩/離/喬陰/百花/衛國 |
+
+主要缺口：
+1. **tianyue (天月庵)** sect daemon 檔案缺失
+2. **任務系統**完全未實作 (0/15+)
+3. **22 個地圖地點**尚未建置（真郡大山、風城、水月村等）
+[0;32m[OK][0m Scan existing content
+[0;34m[12:39:14][0m Using git remote: origin
+[0;34m[12:39:14][0m Pulling latest changes...
+From github.com:Transformer666/es2_mudlib
+ * branch            main       -> FETCH_HEAD
+Already up to date.
+
+Pipeline start: 2026-03-20 12:39:14 (phase: all)
+==============================
+[0;34m[12:39:17][0m === Phase: Analyze ===
+[0;34m[12:39:17][0m Step: Scan existing content
+--- Step: Scan existing content ---
+掃描完成，`docs/missing_content.json` 已更新。摘要如下：
+
+| 類別 | 需要 | 已實作 | 缺少 |
+|------|------|--------|------|
+| 種族 | 11 | 11 | 0 |
+| 職業 | 7 | 7+2 | 0 |
+| 門派 | 18 | 18 | **1** (天月庵 tianyue — 有區域但缺 sect daemon) |
+| 技能 | — | 75 | — |
+| 區域 | — | 54 | 22 個地圖位置未建 |
+| 房間 | — | 459 | — |
+| NPC | — | 268 | — |
+| 任務 | 15+ | **0** | 雪亭七謎 + 五堂六謎 + 十三靈任務 |
+| Stub 城鎮 | 8 | 8 | 需擴展（龍安/京畿/康平/三掩/離/喬陰/百花/衛國） |
+
+主要缺口：
+- **天月庵 sect daemon** — 區域已有 6 房間 4 NPC，但 `daemon/sect/tianyue.c` 不存在
+- **任務系統** — 完全未實作（0 個任務）
+- **22 個地圖地點** 尚未建設（真郡大山、太乙殿、風城等）
+[0;32m[OK][0m Scan existing content
+[0;34m[12:46:36][0m Using git remote: origin
+[0;34m[12:46:36][0m Pulling latest changes...
+From github.com:Transformer666/es2_mudlib
+ * branch            main       -> FETCH_HEAD
+Already up to date.
+
+Pipeline start: 2026-03-20 12:46:36 (phase: all)
+==============================
+[0;34m[12:46:39][0m === Phase: Analyze ===
+[0;34m[12:46:39][0m Step: Scan existing content
+--- Step: Scan existing content ---
+File is up to date. Here's the summary:
+
+## 掃描結果摘要
+
+| 類別 | 需要 | 已實作 | 缺少 |
+|------|------|--------|------|
+| 種族 | 11 | 11 | 0 |
+| 職業 | 7 | 7 (+2 系統) | 0 |
+| 門派 | 18 | 18 (daemon) | **1** (天月庵 tianyue) |
+| 技能 | — | 75 | — |
+| 區域 | — | 54 | 22 地圖地點 |
+| 房間 | — | 459 | — |
+| NPC | — | 268 | — |
+| 任務 | 15+ | **0** | 全部 |
+
+### 關鍵缺口
+
+1. **天月庵 (tianyue) 門派 daemon** — 區域有 6 房間 + 4 NPC，但 `daemon/sect/tianyue.c` 不存在
+2. **任務系統** — 完全未實作（雪亭鎮七謎、五堂鎮六謎、十三靈任務）
+3. **8 個 stub 城鎮** 需要擴展（龍安、京畿、康平、三掩、離、喬陰、百花、衛國）
+4. **22 個地圖地點** 尚未建立（真郡大山、太乙殿、風城等）
+
+JSON 已更新至 `docs/missing_content.json`。
+[0;32m[OK][0m Scan existing content
+[0;34m[12:55:19][0m Using git remote: origin
+[0;34m[12:55:19][0m Pulling latest changes...
+From github.com:Transformer666/es2_mudlib
+ * branch            main       -> FETCH_HEAD
+Already up to date.
+
+Pipeline start: 2026-03-20 12:55:19 (phase: all)
+==============================
+[0;34m[12:55:22][0m === Phase: Analyze ===
+[0;34m[12:55:22][0m Step: Scan existing content
+--- Step: Scan existing content ---
+`docs/missing_content.json` 已更新。摘要：
+
+| 類別 | 需要 | 已實作 | 缺少 |
+|------|------|--------|------|
+| 種族 | 11 | 11 | 0 |
+| 職業 | 7 | 9 (含 commoner/fighter) | 0 |
+| 門派 | 18 | 18 (但 tianxie 是額外的) | 1 (天月庵 sect daemon) |
+| 技能 | — | 75 | — |
+| 區域 | — | 54 (459 rooms, 268 NPCs) | 22 個地圖地點未建 |
+| 任務 | 15 | 0 | 15 (雪亭7謎 + 五堂6謎 + 十三靈2) |
+| Stub 城鎮 | 8 | 8 (已有基礎框架) | 需擴展 |
+
+主要缺口：
+- **天月庵 (tianyue)** 區域已有 6 rooms/4 NPCs，但缺 `daemon/sect/tianyue.c`
+- **任務系統** 完全未實作 (0/15)
+- **22 個世界地圖地點** 尚未建立
+[0;32m[OK][0m Scan existing content
+[0;34m[13:02:44][0m Using git remote: origin
+[0;34m[13:02:44][0m Pulling latest changes...
+From github.com:Transformer666/es2_mudlib
+ * branch            main       -> FETCH_HEAD
+Already up to date.
+
+Pipeline start: 2026-03-20 13:02:44 (phase: all)
+==============================
+[0;34m[13:02:46][0m === Phase: Analyze ===
+[0;34m[13:02:46][0m Step: Scan existing content
+--- Step: Scan existing content ---
+掃描完成，摘要如下：
+
+| 類別 | 應有 | 已實作 | 缺少 |
+|------|------|--------|------|
+| 種族 | 11 | 11 | 0 |
+| 職業 | 7 | 9 (含 commoner/fighter) | 0 |
+| 門派 | 18 | 18 | 0 |
+| 技能 | — | 75 | — |
+| 區域 | — | 54 | 22 個地圖地點未建 |
+| 房間 | — | 459 | — |
+| NPC | — | 268 | — |
+| 任務 | 15 | 0 | 15 |
+
+主要缺口：
+- **任務系統**：0/15 — 雪亭鎮七謎、五堂鎮六謎、十三靈任務全部未實作
+- **8 個 stub 城鎮**待擴展：龍安、京畿、康平、三掩、離、喬陰、百花、衛國
+- **22 個地圖地點**未建（真郡大山、太乙殿、風城等）
+- **門派子系統**未實作：茅山三觀、天師四衣派
+
+修正了舊版中 tianyue 門派 daemon 標記為缺失的錯誤（實際已存在）。
+[0;32m[OK][0m Scan existing content
+[0;34m[13:09:48][0m Using git remote: origin
+[0;34m[13:09:48][0m Pulling latest changes...
+From github.com:Transformer666/es2_mudlib
+ * branch            main       -> FETCH_HEAD
+Already up to date.
+
+Pipeline start: 2026-03-20 13:09:48 (phase: all)
+==============================
+[0;34m[13:09:50][0m === Phase: Analyze ===
+[0;34m[13:09:50][0m Step: Scan existing content
+--- Step: Scan existing content ---
+掃描完成。摘要：
+
+| 類別 | 應有 | 已實作 | 缺少 |
+|------|------|--------|------|
+| 種族 | 11 | 11 | 0 |
+| 職業 | 7 | 9 (含 commoner/fighter) | 0 |
+| 門派 daemon | 18 | 18 檔案 | **tianyue (天月庵)** — 有區域但缺 sect daemon |
+| 技能 | — | 75 | — |
+| 區域 | — | 54 | 22 個地圖地點未建置 |
+| 房間 | — | 459 | — |
+| NPC | — | 268 | — |
+| 任務 | 15 | 0 | **全部** (雪亭7謎 + 五堂6謎 + 十三靈2) |
+
+主要發現：
+- **修正前版錯誤**：舊 JSON 誤報 tianyue sect daemon 存在，實際上 `mudlib/daemon/sect/tianyue.c` 不存在（tianxie 存在但 tianyue 缺失）
+- 8 個 stub 城鎮待擴展（龍安、京畿、康平、三掩、離、喬陰、百花、衛國）
+- 任務系統完全未實作（0/15）
+- 茅山三觀、天師四衣派的子門派特化尚未實作
+[0;32m[OK][0m Scan existing content
+[0;34m[13:17:07][0m Using git remote: origin
+[0;34m[13:17:07][0m Pulling latest changes...
+From github.com:Transformer666/es2_mudlib
+ * branch            main       -> FETCH_HEAD
+Already up to date.
+
+Pipeline start: 2026-03-20 13:17:07 (phase: all)
+==============================
+[0;34m[13:17:09][0m === Phase: Analyze ===
+[0;34m[13:17:09][0m Step: Scan existing content
+--- Step: Scan existing content ---
+`docs/missing_content.json` 已更新。摘要：
+
+| 類別 | 需要 | 已實作 | 缺少 |
+|------|------|--------|------|
+| 種族 | 11 | 11 | 0 |
+| 職業 | 7 | 9 (+commoner, fighter) | 0 |
+| 門派 daemon | 18 | 18 (tianxie 額外) | 1 (tianyue 天月庵) |
+| 技能 | — | 75 | — |
+| 區域 | — | 54 | 22 地圖位置未建 |
+| 房間 | — | 459 | — |
+| NPC | — | 268 | — |
+| NPC 裝備 | — | 124 | — |
+| 任務 | 15 | 0 | 15 |
+
+主要缺口：
+- **tianyue (天月庵)** — 區域/房間/NPC 已存在，但缺 sect daemon (`daemon/sect/tianyue.c`)
+- **任務系統** — 0 個任務實作（雪亭七謎 + 五堂六謎 + 十三靈共 15 個）
+- **8 個 stub 城鎮** 需要擴展（龍安、京畿、康平、三掩、離、喬陰、百花、衛國）
+- **22 個地圖位置** 尚未建造
+[0;32m[OK][0m Scan existing content
+[0;34m[13:24:37][0m Using git remote: origin
+[0;34m[13:24:37][0m Pulling latest changes...
+From github.com:Transformer666/es2_mudlib
+ * branch            main       -> FETCH_HEAD
+Already up to date.
+
+Pipeline start: 2026-03-20 13:24:37 (phase: all)
+==============================
+[0;34m[13:24:39][0m === Phase: Analyze ===
+[0;34m[13:24:39][0m Step: Scan existing content
+--- Step: Scan existing content ---
+掃描完成，結果與現有資料一致。摘要：
+
+| 類別 | 應有 | 已有 | 缺少 |
+|------|------|------|------|
+| 種族 | 11 | 11 | 0 |
+| 職業 | 7 | 9 (含 commoner/fighter) | 0 |
+| 門派 daemon | 19 | 18 | 1 (天月庵 tianyue) |
+| 技能 | — | 75 | — |
+| 區域 | — | 54 | 22 個地圖地點未建 |
+| 房間 | — | 459 | — |
+| NPC | — | 268 | — |
+| 任務 | 15 | 0 | 15 |
+| Stub 城鎮 | — | 8 | 需擴展 |
+
+主要缺口：
+- **天月庵 (tianyue)** 有區域/房間/NPC，但缺少 `daemon/sect/tianyue.c`
+- **任務系統** 完全未實作（雪亭七謎 + 五堂六謎 + 十三靈任務）
+- **22 個地圖地點** 尚未建立（真郡大山、太乙殿、風城等）
+- **8 個 stub 城鎮** 需要內容擴展
+[0;32m[OK][0m Scan existing content
+[0;34m[13:32:59][0m Using git remote: origin
+[0;34m[13:32:59][0m Pulling latest changes...
+From github.com:Transformer666/es2_mudlib
+ * branch            main       -> FETCH_HEAD
+Already up to date.
+
+Pipeline start: 2026-03-20 13:32:59 (phase: all)
+==============================
+[0;34m[13:33:01][0m === Phase: Analyze ===
+[0;34m[13:33:01][0m Step: Scan existing content
+--- Step: Scan existing content ---
+`docs/missing_content.json` 已更新。摘要：
+
+| 類別 | 應有 | 已實作 | 缺少 |
+|------|------|--------|------|
+| 種族 | 11 | 11 | 0 |
+| 職業 | 7 | 7+2 | 0 |
+| 門派 daemon | 18 | 18 | 1 (天月庵 tianyue — 區域已存在但缺 sect daemon) |
+| 技能 | — | 75 | — |
+| 區域 | — | 54 | 22 個地圖地點未建 |
+| 房間 | — | 459 | — |
+| NPC | — | 268 | — |
+| NPC 裝備 | — | 124 | — |
+| 任務 | 15 | 0 | 全部（雪亭七謎 + 五堂六謎 + 十三靈×2） |
+| Stub 城鎮 | 8 | 8 | 需擴展（龍安、京畿、康平、三掩、離、喬陰、百花、衛國） |
+[0;32m[OK][0m Scan existing content
+[0;34m[13:39:40][0m Using git remote: origin
+[0;34m[13:39:40][0m Pulling latest changes...
+From github.com:Transformer666/es2_mudlib
+ * branch            main       -> FETCH_HEAD
+Already up to date.
+
+Pipeline start: 2026-03-20 13:39:40 (phase: all)
+==============================
+[0;34m[13:39:42][0m === Phase: Analyze ===
+[0;34m[13:39:42][0m Step: Scan existing content
+--- Step: Scan existing content ---
+JSON 已更新。掃描摘要：
+
+| 類別 | 應有 | 已實作 | 缺少 |
+|------|------|--------|------|
+| 種族 | 11 | 11 | 0 |
+| 職業 | 7 | 9 (含 commoner/fighter) | 0 |
+| 門派 daemon | 18 | 18 | 1 (tianyue 天月庵有區域但缺 daemon) |
+| 技能 | — | 75 | — |
+| 區域 | — | 54 | 22 個地圖位置未建 |
+| 房間 | — | 459 | — |
+| NPC | — | 268 | — |
+| NPC 裝備 | — | 124 | — |
+| 任務 | 15 | 0 | 15 (雪亭7謎 + 五堂6謎 + 十三靈2) |
+| Stub 城鎮 | 8 | 8 (需擴展) | 龍安/京畿/康平/三掩/離/喬陰/百花/衛國 |
+
+主要缺口：
+- **tianyue (天月庵)** sect daemon 缺失（區域和 NPC 已存在）
+- **任務系統**完全未實作（0/15）
+- **22 個地圖位置**尚未建設
+- **8 個 stub 城鎮**需要內容擴展
+[0;32m[OK][0m Scan existing content
+[0;34m[13:45:55][0m Using git remote: origin
+[0;34m[13:45:55][0m Pulling latest changes...
+From github.com:Transformer666/es2_mudlib
+ * branch            main       -> FETCH_HEAD
+Already up to date.
+
+Pipeline start: 2026-03-20 13:45:55 (phase: all)
+==============================
+[0;34m[13:45:57][0m === Phase: Analyze ===
+[0;34m[13:45:57][0m Step: Scan existing content
+--- Step: Scan existing content ---
+`docs/missing_content.json` 已更新。掃描摘要：
+
+| 類別 | 應有 | 已實作 | 缺少 |
+|------|------|--------|------|
+| 種族 | 11 | 11 | 0 |
+| 職業 | 7 | 9 (含 commoner/fighter) | 0 |
+| 門派 daemon | 18 | 18 | 1 (tianyue 天月庵 — 區域已建但缺 sect daemon) |
+| 技能 | — | 75 | — |
+| 區域 | — | 54 (459 rooms, 268 NPCs, 124 裝備) | — |
+| 任務 | 15 | 0 | 雪亭七謎(7) + 五堂六謎(6) + 十三靈(2) |
+| 地圖未建地點 | 22 | — | 真郡大山、風城、水月村等 |
+| Stub 城鎮 | 8 | — | 龍安、京畿、康平、三掩、離、喬陰、百花、衛國 |
+[0;32m[OK][0m Scan existing content
+[0;34m[13:53:01][0m Using git remote: origin
+[0;34m[13:53:01][0m Pulling latest changes...
+From github.com:Transformer666/es2_mudlib
+ * branch            main       -> FETCH_HEAD
+Already up to date.
+
+Pipeline start: 2026-03-20 13:53:01 (phase: all)
+==============================
+[0;34m[13:53:03][0m === Phase: Analyze ===
+[0;34m[13:53:03][0m Step: Scan existing content
+--- Step: Scan existing content ---
+`docs/missing_content.json` 已更新。掃描摘要：
+
+| 類別 | 需要 | 已實作 | 缺少 |
+|------|------|--------|------|
+| 種族 | 11 | 11 | 0 |
+| 職業 | 7 | 7+2 | 0 |
+| 門派 | 18 | 18 | 1 (tianyue daemon 缺，tianxie 多出) |
+| 技能 | — | 75 | — |
+| 區域 | — | 54 (459 rooms, 268 NPCs) | 22 地圖位置未建 |
+| 任務 | 15 | 0 | 15 |
+| Stub 城鎮 | 8 | 8 (已有骨架) | 需擴展 |
+
+主要缺口：
+- **tianyue (天月庵)** — 區域/房間/NPC 都有，但缺 sect daemon
+- **任務系統** — 0/15，雪亭七謎、五堂六謎、十三靈任務均未實作
+- **22 個地圖位置**未建（真郡大山、太乙殿、風城等）
+- **茅山/天師子派系**特化未實作
+[0;32m[OK][0m Scan existing content
+[0;34m[14:00:31][0m Using git remote: origin
+[0;34m[14:00:31][0m Pulling latest changes...
+From github.com:Transformer666/es2_mudlib
+ * branch            main       -> FETCH_HEAD
+Already up to date.
+
+Pipeline start: 2026-03-20 14:00:31 (phase: all)
+==============================
+[0;34m[14:00:33][0m === Phase: Analyze ===
+[0;34m[14:00:33][0m Step: Scan existing content
+--- Step: Scan existing content ---
+掃描完成，`docs/missing_content.json` 已更新。摘要：
+
+| 類別 | 需要 | 已實作 | 缺少 |
+|------|------|--------|------|
+| 種族 | 11 | 11 | 0 |
+| 職業 | 7 | 9 (含 commoner/fighter) | 0 |
+| 門派 daemon | 18 | 18 | 1 (tianyue 天月庵 — 區域已有，daemon 缺) |
+| 技能 | — | 75 | — |
+| 區域 | — | 54 | 22 個地圖地點未建 |
+| 房間 | — | 459 | — |
+| NPC | — | 268 | — |
+| NPC 裝備 | — | 124 | — |
+| 任務 | 15+ | 0 | 雪亭七謎(7) + 五堂六謎(6) + 十三靈(2) |
+| Stub 城鎮 | 8 | 8 | 需擴充（龍安/京畿/康平/三掩/離/喬陰/百花/衛國） |
+[0;32m[OK][0m Scan existing content
+[0;34m[14:07:33][0m Using git remote: origin
+[0;34m[14:07:33][0m Pulling latest changes...
+From github.com:Transformer666/es2_mudlib
+ * branch            main       -> FETCH_HEAD
+Already up to date.
+
+Pipeline start: 2026-03-20 14:07:33 (phase: all)
+==============================
+[0;34m[14:07:36][0m === Phase: Analyze ===
+[0;34m[14:07:36][0m Step: Scan existing content
+--- Step: Scan existing content ---
+`docs/missing_content.json` 已更新。掃描摘要：
+
+| 類別 | 應有 | 已有 | 缺少 |
+|------|------|------|------|
+| 種族 | 11 | 11 | 0 |
+| 職業 | 7 | 7+2 | 0 |
+| 門派 daemon | 18 | 18 | 1 (天月庵 daemon 缺，區域已有；天邪派為額外) |
+| 技能 | — | 75 | — |
+| 區域 | — | 54 | 22 個地圖標記未建 |
+| 房間 | — | 459 | 8 個 stub 城鎮待擴充 |
+| NPC | — | 268 | — |
+| 任務 | 15 | 0 | 15 (雪亭7 + 五堂6 + 十三靈2) |
+
+主要缺口：
+- **任務系統**完全未實作（0/15）
+- **天月庵** sect daemon 缺失（區域和 NPC 已存在）
+- **22 個地圖地點**尚無對應區域目錄
+- **8 個 stub 城鎮**已有基本框架，需擴充內容
+[0;32m[OK][0m Scan existing content
+[0;34m[14:15:07][0m Using git remote: origin
+[0;34m[14:15:07][0m Pulling latest changes...
+From github.com:Transformer666/es2_mudlib
+ * branch            main       -> FETCH_HEAD
+Already up to date.
+
+Pipeline start: 2026-03-20 14:15:07 (phase: all)
+==============================
+[0;34m[14:15:09][0m === Phase: Analyze ===
+[0;34m[14:15:09][0m Step: Scan existing content
+--- Step: Scan existing content ---
+`docs/missing_content.json` 已更新。掃描摘要：
+
+| 類別 | 需求 | 已實作 | 缺少 |
+|------|------|--------|------|
+| 種族 | 11 | 11 | 0 |
+| 職業 | 7 | 9 (含 commoner/fighter) | 0 |
+| 門派 | 18 | 18 (但 tianyue 缺 daemon，tianxie 為額外) | 1 |
+| 技能 | — | 75 | — |
+| 區域 | — | 54 (459 rooms, 268 NPCs, 124 裝備) | — |
+| 任務 | 15 | 0 | 15 |
+| 地圖未建地點 | 22 | — | 22 |
+| Stub 城鎮 | 8 | 8 (需擴展) | — |
+
+主要缺口：
+- **tianyue (天月庵)** — 區域已存在但缺 sect daemon (`daemon/sect/tianyue.c`)
+- **任務系統** — 0/15 任務已實作（雪亭七謎、五堂六謎、十三靈任務）
+- **22 個地圖地點** 尚未建立（真郡大山、太乙殿、風城等）
+[0;32m[OK][0m Scan existing content
+[0;34m[14:22:23][0m Using git remote: origin
+[0;34m[14:22:23][0m Pulling latest changes...
+From github.com:Transformer666/es2_mudlib
+ * branch            main       -> FETCH_HEAD
+Already up to date.
+
+Pipeline start: 2026-03-20 14:22:23 (phase: all)
+==============================
+[0;34m[14:22:25][0m === Phase: Analyze ===
+[0;34m[14:22:25][0m Step: Scan existing content
+--- Step: Scan existing content ---
+`docs/missing_content.json` 已更新。摘要如下：
+
+**總覽**
+| 類別 | 需求 | 已實作 | 缺少 |
+|------|------|--------|------|
+| 種族 | 11 | 11 | 0 |
+| 職業 | 7 | 7 (+2 系統) | 0 |
+| 門派 | 18 | 18 (但 tianyue 缺 daemon) | 1 |
+| 技能 | — | 75 | — |
+| 區域 | — | 54 | 22 地圖地點未建 |
+| 房間 | — | 459 | — |
+| NPC | — | 268 | — |
+| 任務 | 15+ | 0 | 全部 |
+
+**關鍵缺口：**
+- **天月庵 (tianyue)** — 區域/房間/NPC 都有，但缺少 `daemon/sect/tianyue.c`（天邪派 tianxie 為額外）
+- **任務系統** — 完全未實作（雪亭七謎 7 個、五堂六謎 6 個、十三靈 2 個）
+- **8 個 stub 城鎮**需要擴展：龍安、京畿、康平、三掩、離、喬陰、百花、衛國
+- **22 個世界地圖地點**尚未建造（真郡大山、太乙殿、風城等）
+[0;32m[OK][0m Scan existing content
+[0;34m[14:31:07][0m Using git remote: origin
+[0;34m[14:31:07][0m Pulling latest changes...
+From github.com:Transformer666/es2_mudlib
+ * branch            main       -> FETCH_HEAD
+Already up to date.
+
+Pipeline start: 2026-03-20 14:31:07 (phase: all)
+==============================
+[0;34m[14:31:10][0m === Phase: Analyze ===
+[0;34m[14:31:10][0m Step: Scan existing content
+--- Step: Scan existing content ---
+掃描完成，結果與現有 `docs/missing_content.json` 一致，已更新時間戳。摘要：
+
+| 類別 | 需求 | 已實作 | 缺少 |
+|------|------|--------|------|
+| 種族 | 11 | 11 | 0 |
+| 職業 | 7 | 7+2 | 0 |
+| 門派 daemon | 18 | 18 | 1 (tianyue 天月庵缺 daemon，但有區域) |
+| 技能 | — | 75 | — |
+| 區域 | — | 54 | 22 個地圖位置未建 |
+| 房間 | — | 459 | — |
+| NPC | — | 268 | — |
+| NPC 裝備 | — | 124 | — |
+| 任務 | 15+ | 0 | 全部（雪亭七謎、五堂六謎、十三靈） |
+| Stub 城鎮 | 8 | 8 | 需擴展（龍安、京畿、康平、三掩、離、喬陰、百花、衛國） |
+[0;32m[OK][0m Scan existing content
+[0;34m[14:37:41][0m Using git remote: origin
+[0;34m[14:37:41][0m Pulling latest changes...
+From github.com:Transformer666/es2_mudlib
+ * branch            main       -> FETCH_HEAD
+Already up to date.
+
+Pipeline start: 2026-03-20 14:37:41 (phase: all)
+==============================
+[0;34m[14:37:44][0m === Phase: Analyze ===
+[0;34m[14:37:44][0m Step: Scan existing content
+--- Step: Scan existing content ---
+`docs/missing_content.json` 已更新。掃描摘要：
+
+| 類別 | 需要 | 已實作 | 缺少 |
+|------|------|--------|------|
+| 種族 | 11 | 11 | 0 |
+| 職業 | 7 | 7+2 | 0 |
+| 門派 daemon | 18 | 18 | 1 (天月庵有區域但缺 sect daemon) |
+| 技能 | — | 75 | — |
+| 區域 | — | 54 | 22 個地圖地點未建 |
+| 房間 | — | 459 | — |
+| NPC | — | 268 | — |
+| 任務 | 15 | 0 | 15 (雪亭7謎 + 五堂6謎 + 十三靈2) |
+
+主要缺口：
+- **天月庵** (`tianyue`) — 區域已有 6 房間 + 4 NPC，但缺 `daemon/sect/tianyue.c`
+- **任務系統** — 完全未實作（0/15）
+- **22 個地圖地點** 尚未建立（真郡大山、太乙殿、風城等）
+- **8 個 stub 城鎮** 需擴展（龍安、京畿、康平等）
+[0;32m[OK][0m Scan existing content
+[0;34m[14:45:44][0m Using git remote: origin
+[0;34m[14:45:44][0m Pulling latest changes...
+From github.com:Transformer666/es2_mudlib
+ * branch            main       -> FETCH_HEAD
+Already up to date.
+
+Pipeline start: 2026-03-20 14:45:44 (phase: all)
+==============================
+[0;34m[14:45:46][0m === Phase: Analyze ===
+[0;34m[14:45:46][0m Step: Scan existing content
+--- Step: Scan existing content ---
+掃描完成，摘要如下：
+
+| 類別 | 需要 | 已有 | 缺少 |
+|------|------|------|------|
+| 種族 daemon | 11 | 11 | 0 |
+| 職業 daemon | 7 | 9 (含 commoner/fighter) | 0 |
+| 門派 daemon | 18 | 18 (tianyue 缺, tianxie 多) | 1 |
+| 技能 daemon | — | 75 | — |
+| 區域目錄 | — | 54 | — |
+| 房間 | — | 459 | — |
+| NPC | — | 268 | — |
+| 任務 (Quest) | 15 | 0 | 15 |
+| 未建地圖地點 | 22 | 0 | 22 |
+| Stub 城鎮待擴展 | 8 | — | — |
+
+主要缺口：
+- **tianyue（天月庵）** 有區域但無 sect daemon
+- **任務系統** 完全未實作（雪亭七謎 + 五堂六謎 + 十三靈任務）
+- **22 個地圖地點** 尚未建置
+- **8 個 stub 城鎮** 需要擴展內容
+[0;32m[OK][0m Scan existing content
+[0;34m[14:52:24][0m Using git remote: origin
+[0;34m[14:52:24][0m Pulling latest changes...
+From github.com:Transformer666/es2_mudlib
+ * branch            main       -> FETCH_HEAD
+Already up to date.
+
+Pipeline start: 2026-03-20 14:52:24 (phase: all)
+==============================
+[0;34m[14:52:26][0m === Phase: Analyze ===
+[0;34m[14:52:26][0m Step: Scan existing content
+--- Step: Scan existing content ---
+`docs/missing_content.json` 已更新。摘要：
+
+| 類別 | 需求 | 已實作 | 缺少 |
+|------|------|--------|------|
+| 種族 | 11 | 11 | 0 |
+| 職業 | 7 | 9 (含 commoner/fighter) | 0 |
+| 門派 daemon | 18 | 18 (缺 tianyue, 多 tianxie) | 1 |
+| 技能 | — | 75 | — |
+| 區域 | — | 54 (459 房間, 268 NPC) | — |
+| 任務 | 15 | 0 | 15 |
+| 地圖未建地點 | 22 | 0 | 22 |
+| Stub 城鎮 | 8 | 8 (需擴充) | — |
+
+主要缺口：
+- **天月庵 (tianyue)** sect daemon 未建立（區域已存在）
+- **任務系統**完全未實作（雪亭七謎 + 五堂六謎 + 十三靈任務）
+- **22 個地圖地點**尚未建造（真郡大山、太乙殿、風城等）
+[0;32m[OK][0m Scan existing content
+[0;34m[14:59:52][0m Using git remote: origin
+[0;34m[14:59:52][0m Pulling latest changes...
+From github.com:Transformer666/es2_mudlib
+ * branch            main       -> FETCH_HEAD
+Already up to date.
+
+Pipeline start: 2026-03-20 14:59:52 (phase: all)
+==============================
+[0;34m[14:59:55][0m === Phase: Analyze ===
+[0;34m[14:59:55][0m Step: Scan existing content
+--- Step: Scan existing content ---
+`docs/missing_content.json` 已更新。掃描摘要：
+
+| 類別 | 需要 | 已實作 | 缺少 |
+|------|------|--------|------|
+| 種族 | 11 | 11 | 0 |
+| 職業 | 7 | 9 (含 commoner/fighter) | 0 |
+| 門派 daemon | 18 | 18 | 1 (tianyue 天月庵有區域但缺 sect daemon；tianxie 天邪派為額外) |
+| 技能 | — | 75 | — |
+| 區域 | — | 54 | 22 個地圖地點未建 |
+| 房間 | — | 459 | — |
+| NPC | — | 268 | — |
+| 任務 | 15 | 0 | 15 (雪亭七謎 + 五堂六謎 + 十三靈×2) |
+| Stub 城鎮 | — | 8 | 龍安/京畿/康平/三掩/離/喬陰/百花/衛國需擴展 |
+[0;32m[OK][0m Scan existing content
+[0;34m[15:06:08][0m Using git remote: origin
+[0;34m[15:06:08][0m Pulling latest changes...
+From github.com:Transformer666/es2_mudlib
+ * branch            main       -> FETCH_HEAD
+Already up to date.
+
+Pipeline start: 2026-03-20 15:06:08 (phase: all)
+==============================
+[0;34m[15:06:11][0m === Phase: Analyze ===
+[0;34m[15:06:11][0m Step: Scan existing content
+--- Step: Scan existing content ---
+`docs/missing_content.json` 已更新。掃描摘要：
+
+| 類別 | 應有 | 已實作 | 缺少 |
+|------|------|--------|------|
+| 種族 | 11 | 11 | 0 |
+| 職業 | 7 | 9 (+commoner, fighter) | 0 |
+| 門派 | 18 | 18 (tianxie extra) | 1 (tianyue daemon) |
+| 技能 | — | 75 | — |
+| 區域 | — | 54 (459 rooms) | 22 地圖位置 |
+| NPC | — | 268 | — |
+| 任務 | 15 | 0 | 15 |
+
+主要缺口：
+- **天月庵 (tianyue)** — 區域/房間/NPC 都有，但缺 `daemon/sect/tianyue.c`
+- **任務系統** — 0 個任務實作（雪亭七謎 + 五堂六謎 + 十三靈任務共 15 個）
+- **22 個地圖位置** 尚未建置（真郡大山、太乙殿、風城等）
+- **8 個 stub 城鎮** 需要擴展內容
+[0;32m[OK][0m Scan existing content
+[0;34m[15:13:49][0m Using git remote: origin
+[0;34m[15:13:49][0m Pulling latest changes...
+From github.com:Transformer666/es2_mudlib
+ * branch            main       -> FETCH_HEAD
+Already up to date.
+
+Pipeline start: 2026-03-20 15:13:49 (phase: all)
+==============================
+[0;34m[15:13:51][0m === Phase: Analyze ===
+[0;34m[15:13:51][0m Step: Scan existing content
+--- Step: Scan existing content ---
+掃描完成，`docs/missing_content.json` 已更新。摘要：
+
+| 類別 | 需要 | 已實作 | 缺少 |
+|------|------|--------|------|
+| 種族 | 11 | 11 | 0 |
+| 職業 | 7 | 7+2 | 0 |
+| 門派 daemon | 18 | 18 | 1 (天月庵 tianyue — 區域已有，daemon 缺) |
+| 技能 | — | 75 | — |
+| 區域 | — | 54 | 22 個地圖地點未建 |
+| 房間 | — | 459 | — |
+| NPC | — | 268 | — |
+| NPC 裝備 | — | 124 | — |
+| 任務 | 15 | 0 | 15 (雪亭7+五堂6+十三靈2) |
+| Stub 城鎮 | 8 | 8 | 需擴展 (龍安/京畿/康平/三掩/離/喬陰/百花/衛國) |
+[0;32m[OK][0m Scan existing content
+[0;34m[15:21:50][0m Using git remote: origin
+[0;34m[15:21:50][0m Pulling latest changes...
+From github.com:Transformer666/es2_mudlib
+ * branch            main       -> FETCH_HEAD
+Already up to date.
+
+Pipeline start: 2026-03-20 15:21:50 (phase: all)
+==============================
+[0;34m[15:21:52][0m === Phase: Analyze ===
+[0;34m[15:21:52][0m Step: Scan existing content
+--- Step: Scan existing content ---
+掃描完成。摘要：
+
+| 類別 | 需求 | 已實作 | 缺少 |
+|------|------|--------|------|
+| 種族 | 11 | 11 | 0 |
+| 職業 | 7 | 7+2 | 0 |
+| 門派 daemon | 18 | 18 | 1 (天月庵有區域但無 sect daemon) |
+| 技能 | - | 75 | - |
+| 區域 | - | 54 | 22 個地圖位置未建 |
+| 房間 | - | 459 | - |
+| NPC | - | 268 | - |
+| NPC 裝備 | - | 124 | - |
+| 任務 | 15 | 0 | 15 (雪亭7謎 + 五堂6謎 + 十三靈2) |
+
+主要缺口：
+- **天月庵** sect daemon 不存在（區域 `d/tianyue/` 已建好，僅缺 `daemon/sect/tianyue.c`）
+- **任務系統**完全未實作（0/15）
+- **8 個 stub 城鎮**需要擴展（龍安、京畿、康平、三掩、離、喬陰、百花、衛國）
+- **22 個地圖位置**未建（真郡大山、太乙殿、風城、閩島等）
+[0;32m[OK][0m Scan existing content
+[0;34m[15:29:14][0m Using git remote: origin
+[0;34m[15:29:14][0m Pulling latest changes...
+From github.com:Transformer666/es2_mudlib
+ * branch            main       -> FETCH_HEAD
+Already up to date.
+
+Pipeline start: 2026-03-20 15:29:14 (phase: all)
+==============================
+[0;34m[15:29:16][0m === Phase: Analyze ===
+[0;34m[15:29:16][0m Step: Scan existing content
+--- Step: Scan existing content ---
+`docs/missing_content.json` 已更新。摘要：
+
+| 類別 | 需求 | 已實作 | 缺少 |
+|------|------|--------|------|
+| 種族 | 11 | 11 | 0 |
+| 職業 | 7 | 9 (含 commoner/fighter) | 0 |
+| 門派 daemon | 18 | 18 (tianxie 額外, tianyue 缺) | 1 |
+| 技能 | — | 75 | — |
+| 區域 | — | 54 | 22 地圖地點未建 |
+| 房間 | — | 459 | — |
+| NPC | — | 268 | — |
+| 任務 | 15 | 0 | 15 |
+
+主要缺口：
+- **天月庵 (tianyue)** sect daemon 不存在（區域/房間/NPC 都有）
+- **任務系統**完全未實作（雪亭七謎 + 五堂六謎 + 十三靈任務）
+- **22 個地圖地點**尚未建置（真郡大山、太乙殿、風城等）
+- **8 個 stub 城鎮**需要擴展（龍安、京畿、康平、三掩、離、喬陰、百花、衛國）
+[0;32m[OK][0m Scan existing content
+[0;34m[15:36:07][0m Using git remote: origin
+[0;34m[15:36:07][0m Pulling latest changes...
+From github.com:Transformer666/es2_mudlib
+ * branch            main       -> FETCH_HEAD
+Already up to date.
+
+Pipeline start: 2026-03-20 15:36:07 (phase: all)
+==============================
+[0;34m[15:36:10][0m === Phase: Analyze ===
+[0;34m[15:36:10][0m Step: Scan existing content
+--- Step: Scan existing content ---
+The existing `docs/missing_content.json` is already up-to-date — all counts match the current scan:
+
+| Category | Required | Implemented | Missing |
+|----------|----------|-------------|---------|
+| Races | 11 | 11 | 0 |
+| Classes | 7 | 9 (7+2 utility) | 0 |
+| Sects | 18 | 18 (tianyue daemon missing, tianxie extra) | 1 |
+| Skills | — | 75 | — |
+| Areas | — | 54 | 22 map locations |
+| Rooms | — | 459 | — |
+| NPCs | — | 268 | — |
+| NPC Equipment | — | 124 | — |
+| Quests | — | 0 | 15 planned |
+| Stub Towns | — | 8 | need expansion |
+
+The file is already current — no changes needed. Key gaps remain:
+- **1 sect daemon missing**: tianyue (天月庵) — area exists but no `daemon/sect/tianyue.c`
+- **0 quests implemented**: 7 雪亭鎮謎 + 6 五堂鎮謎 + 2 十三靈任務 planned
+- **22 map locations** not yet built (真郡大山, 太乙殿, 風城, etc.)
+- **8 stub towns** need expansion (longan, jingji, kangping, sanyen, lee, choyin, baihua, weiguo)
+[0;32m[OK][0m Scan existing content
+[0;34m[15:43:08][0m Using git remote: origin
+[0;34m[15:43:08][0m Pulling latest changes...
+From github.com:Transformer666/es2_mudlib
+ * branch            main       -> FETCH_HEAD
+Already up to date.
+
+Pipeline start: 2026-03-20 15:43:08 (phase: all)
+==============================
+[0;34m[15:43:10][0m === Phase: Analyze ===
+[0;34m[15:43:10][0m Step: Scan existing content
+--- Step: Scan existing content ---
+掃描完成。以下是摘要：
+
+| 類別 | 需求 | 已有 | 缺少 |
+|------|------|------|------|
+| 種族 | 11 | 11 | 0 |
+| 職業 | 7 | 7+2 | 0 |
+| 門派 daemon | 18 | 18 | tianyue (天月庵) daemon 未建 |
+| 技能 | — | 75 | — |
+| 區域 | — | 54 | 22 個地圖地點未建 |
+| 房間 | — | 459 | — |
+| NPC | — | 268 | — |
+| NPC 裝備 | — | 124 | — |
+| 任務 | 15 | 0 | 全部（雪亭7謎 + 五堂6謎 + 十三靈2） |
+
+主要缺口：
+- **tianyue 門派 daemon** — 區域和 NPC 都存在，只缺 `daemon/sect/tianyue.c`
+- **任務系統** — 0/15 任務已實作
+- **8 個 stub 城鎮**需要擴充（longan, jingji, kangping, sanyen, lee, choyin, baihua, weiguo）
+- **22 個地圖地點**尚未建置（真郡大山、太乙殿、風城等）
+[0;32m[OK][0m Scan existing content
+[0;34m[15:49:46][0m Using git remote: origin
+[0;34m[15:49:46][0m Pulling latest changes...
+From github.com:Transformer666/es2_mudlib
+ * branch            main       -> FETCH_HEAD
+Already up to date.
+
+Pipeline start: 2026-03-20 15:49:46 (phase: all)
+==============================
+[0;34m[15:49:49][0m === Phase: Analyze ===
+[0;34m[15:49:49][0m Step: Scan existing content
+--- Step: Scan existing content ---
+`docs/missing_content.json` 已更新。掃描摘要：
+
+| 類別 | 需求 | 已實作 | 缺少 |
+|------|------|--------|------|
+| 種族 | 11 | 11 | 0 |
+| 職業 | 7 | 7 (+2 utility) | 0 |
+| 門派 | 18 | 17/18 | **tianyue 天月庵** (區域已有，sect daemon 缺) |
+| 技能 | — | 75 | — |
+| 區域 | — | 54 | 22 個地圖地點未建 |
+| 房間 | — | 459 | — |
+| NPC | — | 268 | — |
+| 任務 | 15 | **0** | 雪亭7謎 + 五堂6謎 + 十三靈2任務 |
+| Stub城鎮 | 8 | 8 (待擴展) | longan/jingji/kangping/sanyen/lee/choyin/baihua/weiguo |
+
+主要缺口：
+1. **天月庵 sect daemon** — 區域和 NPC 已存在，但 `daemon/sect/tianyue.c` 不存在
+2. **任務系統** — 完全未實作（0/15）
+3. **22 個地圖地點** 尚未建立（真郡大山、太乙殿、風城等）
+4. **8 個 stub 城鎮** 需要擴展內容
+[0;32m[OK][0m Scan existing content
+[0;34m[15:56:11][0m Using git remote: origin
+[0;34m[15:56:11][0m Pulling latest changes...
+From github.com:Transformer666/es2_mudlib
+ * branch            main       -> FETCH_HEAD
+Already up to date.
+
+Pipeline start: 2026-03-20 15:56:11 (phase: all)
+==============================
+[0;34m[15:56:13][0m === Phase: Analyze ===
+[0;34m[15:56:13][0m Step: Scan existing content
+--- Step: Scan existing content ---
+掃描完成，所有數字與現有檔案一致，已更新時間戳。摘要：
+
+| 類別 | 需要 | 已實作 | 缺少 |
+|------|------|--------|------|
+| 種族 | 11 | 11 | 0 |
+| 職業 | 7 | 7+2 | 0 |
+| 門派 | 18 | 18 | 1 (天月庵 daemon) |
+| 技能 | — | 75 | — |
+| 區域 | — | 54 | 22 地圖位置未建 |
+| 房間 | — | 459 | — |
+| NPC | — | 268 | — |
+| NPC裝備 | — | 124 | — |
+| 任務 | 15 | 0 | 15 |
+
+重點缺口：
+- **天月庵** (`tianyue`) 有區域和 NPC 但缺 sect daemon
+- **任務系統**完全未實作（雪亭七謎 + 五堂六謎 + 十三靈任務）
+- **8 個 stub 城鎮**需要擴展
+- **22 個地圖位置**尚未建置
+[0;32m[OK][0m Scan existing content
+[0;34m[16:02:40][0m Using git remote: origin
+[0;34m[16:02:40][0m Pulling latest changes...
+From github.com:Transformer666/es2_mudlib
+ * branch            main       -> FETCH_HEAD
+Already up to date.
+
+Pipeline start: 2026-03-20 16:02:40 (phase: all)
+==============================
+[0;34m[16:02:43][0m === Phase: Analyze ===
+[0;34m[16:02:43][0m Step: Scan existing content
+--- Step: Scan existing content ---
+`docs/missing_content.json` 已更新。摘要：
+
+| 類別 | 需求 | 已實作 | 缺少 |
+|------|------|--------|------|
+| 種族 | 11 | 11 | 0 |
+| 職業 | 7 | 9 (含 commoner/fighter) | 0 |
+| 門派 daemon | 18 | 18 | 1 (tianyue 有區域但無 daemon) |
+| 技能 | — | 75 | — |
+| 區域 | — | 54 | 22 個地圖地點未建 |
+| 房間 | — | 459 | — |
+| NPC | — | 268 | — |
+| 任務 | 15 | 0 | 15 (雪亭七謎 + 五堂六謎 + 十三靈×2) |
+
+主要缺口：
+- **tianyue (天月庵)** — 區域和 NPC 都有，但缺 `daemon/sect/tianyue.c`
+- **任務系統** — 完全未實作（0/15）
+- **22 個地圖地點** 尚未建置（真郡大山、太乙殿、風城等）
+- **8 個 stub 城鎮** 需要擴充（龍安、京畿、康平等）
+[0;32m[OK][0m Scan existing content
+[0;34m[16:10:09][0m Using git remote: origin
+[0;34m[16:10:09][0m Pulling latest changes...
+From github.com:Transformer666/es2_mudlib
+ * branch            main       -> FETCH_HEAD
+Already up to date.
+
+Pipeline start: 2026-03-20 16:10:09 (phase: all)
+==============================
+[0;34m[16:10:12][0m === Phase: Analyze ===
+[0;34m[16:10:12][0m Step: Scan existing content
+--- Step: Scan existing content ---
+掃描完成，所有數據與現有檔案一致，已更新時間戳。摘要如下：
+
+| 類別 | 應有 | 已實作 | 缺少 |
+|------|------|--------|------|
+| 種族 | 11 | 11 | 0 |
+| 職業 | 7 | 9 (含 commoner, fighter) | 0 |
+| 門派 | 18 | 18 (tianxie 多出, tianyue daemon 缺) | 1 |
+| 技能 | — | 75 | — |
+| 區域 | — | 54 | 22 個地圖地點未建 |
+| 房間 | — | 459 | — |
+| NPC | — | 268 | — |
+| 任務 | 15+ | 0 | 全部 |
+
+主要缺口：
+- **tianyue (天月庵)** — 區域和 NPC 已存在，但缺少 `daemon/sect/tianyue.c`
+- **任務系統** — 完全未實作（雪亭七謎、五堂六謎、十三靈任務）
+- **8 個 stub 城鎮** 需要擴展內容
+- **22 個世界地圖地點** 尚未建立（真郡大山、太乙殿、風城等）
+[0;32m[OK][0m Scan existing content
+[0;34m[16:17:22][0m Using git remote: origin
+[0;34m[16:17:22][0m Pulling latest changes...
+From github.com:Transformer666/es2_mudlib
+ * branch            main       -> FETCH_HEAD
+Already up to date.
+
+Pipeline start: 2026-03-20 16:17:22 (phase: all)
+==============================
+[0;34m[16:17:24][0m === Phase: Analyze ===
+[0;34m[16:17:24][0m Step: Scan existing content
+--- Step: Scan existing content ---
+掃描完成。摘要如下：
+
+| 類別 | 需求 | 已實作 | 缺少 |
+|------|------|--------|------|
+| 種族 | 11 | 11 | 0 |
+| 職業 | 7 | 7+2 | 0 |
+| 門派 | 18 | 18 daemon | 1（天月庵 tianyue 有區域但缺 sect daemon） |
+| 技能 | — | 75 | — |
+| 區域 | — | 54 | 22 個地圖位置未建 |
+| 房間 | — | 459 | — |
+| NPC | — | 268 | — |
+| 任務 | 15+ | 0 | 雪亭七謎(7) + 五堂六謎(6) + 十三靈(2) |
+
+**主要缺口：**
+- **任務系統**：完全未實作（0/15+）
+- **天月庵 sect daemon**：區域存在但缺 `daemon/sect/tianyue.c`
+- **22 個地圖城鎮/區域**未建（真郡大山、風城、水月村、羅城等）
+- **8 個 stub 城鎮**需擴展（龍安、京畿、康平、三掩、離、喬陰、百花、衛國）
+- **茅山/天師子門派**特化未實作
+[0;32m[OK][0m Scan existing content
+[0;34m[16:26:04][0m Using git remote: origin
+[0;34m[16:26:04][0m Pulling latest changes...
+From github.com:Transformer666/es2_mudlib
+ * branch            main       -> FETCH_HEAD
+   1fd583a..39c3fc8  main       -> origin/main
+Updating 1fd583a..39c3fc8
+Fast-forward
+ automation/run_pipeline.sh | 101 +++++++++++++++++++++++++++++++++++----------
+ 1 file changed, 79 insertions(+), 22 deletions(-)
+
+Pipeline start: 2026-03-20 16:26:04 (phase: all)
+==============================
+[0;34m[16:26:07][0m === Phase: Analyze ===
+[0;34m[16:26:07][0m Step: Scan existing content
+--- Step: Scan existing content ---
+`docs/missing_content.json` 已更新。掃描摘要：
+
+| 類別 | 需要 | 已實作 | 缺少 |
+|------|------|--------|------|
+| 種族 | 11 | 11 | 0 |
+| 職業 | 7 | 7 (+2 系統) | 0 |
+| 門派 daemon | 18 | 18 | 1 (tianyue 天月庵無 daemon，tianxie 為額外) |
+| 技能 | - | 75 | - |
+| 區域 | - | 54 | 22 個地圖地點未建 |
+| 房間 | - | 459 | - |
+| NPC | - | 268 | - |
+| NPC 裝備 | - | 124 | - |
+| 任務 | 15+ | 0 | 雪亭7謎 + 五堂6謎 + 十三靈2 |
+| Stub 城鎮 | - | 8 | 龍安/京畿/康平/三掩/離/喬陰/百花/衛國 需擴展 |
+
+主要缺口：
+1. **tianyue (天月庵)** — 區域已有 6 房間 + 4 NPC，但缺 sect daemon
+2. **任務系統** — 完全未實作（15 個已規劃任務）
+3. **22 個地圖地點** — 尚未建置（真郡大山、太乙殿、風城等）
+4. **8 個 stub 城鎮** — 需要內容擴展
+[0;32m[OK][0m Scan existing content
+[0;34m[16:32:18][0m Using git remote: origin
+[0;34m[16:32:18][0m Pulling latest changes...
+From github.com:Transformer666/es2_mudlib
+ * branch            main       -> FETCH_HEAD
+   39c3fc8..081da87  main       -> origin/main
+Updating 39c3fc8..081da87
+Fast-forward
+ automation/run_loop.sh     | 10 ++++++----
+ automation/run_pipeline.sh | 32 +++++++++++++++++++++++---------
+ 2 files changed, 29 insertions(+), 13 deletions(-)
+
+Pipeline start: 2026-03-20 16:32:18 (phase: all)
+==============================
+[0;34m[16:32:21][0m === Phase: Analyze (bash-native, no agent) ===
+[0;34m[16:32:22][0m Analyze complete:
+[0;34m[16:32:22][0m   Races: 11/11 | Classes: 9/7 | Sects: 18/18
+[0;34m[16:32:22][0m   Skills: 75 (missing: 40) | Rooms: 459 | NPCs: 268
+[0;34m[16:32:22][0m   Quests: 6 | Equipment: 275
+[0;34m[16:32:22][0m   Total missing: 40
+[0;32m[OK][0m Analyze phase
+[0;34m[16:34:55][0m Using git remote: origin
+[0;34m[16:34:55][0m Pulling latest changes...
+From github.com:Transformer666/es2_mudlib
+ * branch            main       -> FETCH_HEAD
+Already up to date.
+
+Pipeline start: 2026-03-20 16:34:55 (phase: all)
+==============================
+[0;34m[16:34:58][0m === Phase: Analyze (bash-native, no agent) ===
+[0;34m[16:34:59][0m Analyze complete:
+[0;34m[16:34:59][0m   Races: 11/11 | Classes: 9/7 | Sects: 18/18
+[0;34m[16:34:59][0m   Skills: 75 (missing: 40) | Rooms: 459 | NPCs: 268
+[0;34m[16:34:59][0m   Quests: 6 | Equipment: 275
+[0;34m[16:34:59][0m   Total missing: 40
+[0;32m[OK][0m Analyze phase
+[0;34m[16:36:33][0m Using git remote: origin
+[0;34m[16:36:33][0m Pulling latest changes...
+From github.com:Transformer666/es2_mudlib
+ * branch            main       -> FETCH_HEAD
+Already up to date.
+
+Pipeline start: 2026-03-20 16:36:33 (phase: all)
+==============================
+[0;34m[16:36:36][0m === Phase: Analyze (bash-native, no agent) ===
+[0;34m[16:36:37][0m Analyze complete:
+[0;34m[16:36:37][0m   Races: 11/11 | Classes: 9/7 | Sects: 18/18
+[0;34m[16:36:37][0m   Skills: 75 (missing: 40) | Rooms: 459 | NPCs: 268
+[0;34m[16:36:37][0m   Quests: 6 | Equipment: 275
+[0;34m[16:36:37][0m   Total missing: 40
+[0;32m[OK][0m Analyze phase
+[0;34m[16:36:37][0m === Phase: Build ===
+[0;34m[16:36:37][0m Step: Audit area: stub_towns
+--- Step: Audit area: stub_towns ---
+Error: Reached max turns (25)[0;32m[OK][0m Audit area: stub_towns
+[0;34m[16:44:16][0m Step: Audit area: chixiao
+--- Step: Audit area: chixiao ---
+驗證全部通過。以下是完整結果：
+
+## 驗證結果：38 PASS, 0 FAIL
+
+所有房間、NPC、出口雙向連結、物件參照、aggressive 屬性、vision_of_ghost 全部正確。
+
+---
+
+## 建立的檔案清單
+
+**新增房間 (4)：**
+| 檔案 | 說明 |
+|---|---|
+| `mudlib/d/chixiao/street.c` | 赤魈村小路 |
+| `mudlib/d/chixiao/back_street.c` | 赤魈村後巷 |
+| `mudlib/d/chixiao/shop.c` | 赤魈村雜貨鋪 |
+| `mudlib/d/chixiao/temple.c` | 赤魈村城隍廟 (inherit TEMPLE, no_fight) |
+
+**新增 NPC (4)：**
+| 檔案 | 說明 |
+|---|---|
+| `mudlib/d/chixiao/npc/innkeeper.c` | 客棧老闆娘 (F_VILLAGER + F_VENDOR) |
+| `mudlib/d/chixiao/npc/guard.c` | 赤魈守衛 (F_SOLDIER, lv12) |
+| `mudlib/d/chixiao/npc/merchant.c` | 雜貨攤主 (F_VILLAGER + F_VENDOR) |
+| `mudlib/d/chixiao/npc/temple_keeper.c` | 老廟祝 (F_VILLAGER) |
+
+**新增商品 (2)：**
+| 檔案 | 說明 |
+|---|---|
+| `mudlib/d/chixiao/npc/obj/spirit_wine.c` | 靈酒 (15 coin) |
+| `mudlib/d/chixiao/npc/obj/talisman.c` | 符紙 (10 coin) |
+
+**修改的既有檔案 (3)：**
+- `entrance.c` — 加入 guard NPC
+- `inn.c` — 加入 innkeeper NPC
+- `village_square.c` — 加入 east 出口至 street
+
+## 最終地圖
+
+```
+                    wishing_pool (天靈)
+                         |
+wild_path2 -- entrance -- village_square (地靈) -- street -- back_street
+              (守衛)          |                     |            |
+                             inn (客棧老闆娘)       shop(攤主)   temple(廟祝)
+```
+[0;32m[OK][0m Audit area: chixiao
+[0;34m[16:48:25][0m Step: Audit skills
+--- Step: Audit skills ---
+審查結果如下：
+
+## 技能 Daemon 完整性報告
+
+### 1. 門派引用的技能（20 個唯一技能名）
+
+| 門派 | 引用技能 |
+|------|----------|
+| 白象寺 | diamond hammer, staff |
+| 寶蓮寺 | staff |
+| 步玄派 | three rotations |
+| 封山派 | fengshan sword |
+| 虎刀門 | tiger blade |
+| 劍甲門 | sword, needle |
+| 哭笑門 | sword |
+| 瑯夷 | dagger |
+| 冷梅莊 | lengmei sword |
+| 龍圖 | longttu neigong, needle |
+| 茅山派 | maoshan sword, maoshan neigong, taoshan milu |
+| 天師派 | taiyi sword, ziwei neigong |
+| 天邪派 | phantom sword |
+| 武陀 | five defeat needle, amazing needle |
+| 玄天教 | sword |
+| 雪吟莊 | sword |
+| 隱教 | dagger |
+| 振武軍營 | tactic, pike |
+
+### 2. 對應 daemon 檔案檢查
+
+**全部 20 個技能都有對應的 `mudlib/daemon/skill/<name>.c` 檔案。** 缺少 0 個。
+
+### 3. skill_improved / skill_advanced 檢查
+
+**全部 78 個 skill daemon 都有 `skill_improved` 和 `skill_advanced`。** 無遺漏。
+
+### 4. 戰鬥技能 actions 數量檢查
+
+所有含 actions 的戰鬥技能都有 >= 6 個招式，無不足。`sword`、`blade`、`unarmed` 各有 8 招，`pike` 有 7 招，其餘戰鬥技能均為 6 招。
+
+### 5. 總結
+
+- **缺少的技能：0 個**
+- **不完整的技能：0 個**
+- **本次需建立：0 個**
+- **剩餘待處理：0 個**
+
+所有門派 `set("skills")` 引用的技能都已有完整的 daemon 實作，且每個 daemon 都包含 `skill_improved`、`skill_advanced`，戰鬥技能的 actions 數量也都符合規範（>= 6 招）。技能系統完整，無需修補。
+[0;32m[OK][0m Audit skills
+[0;34m[16:49:39][0m Step: Audit quests
+--- Step: Audit quests ---
+## 驗證結果總覽
+
+| 類別 | 檔案數 | PASS | FAIL |
+|------|--------|------|------|
+| Rooms | 471 | 471 | 0 |
+| NPCs | 278 | 278 | 0 |
+| Race Daemons | 11 | 11 | 0 |
+| Skill Daemons | 75 | 75 | 0 |
+| Sect Daemons | 18 | 18 | 0 |
+| Class Daemons | 9 | 9 | 0 |
+| **Exits (雙向)** | **936** | **922** | **14** |
+| **總計** | | **1842** | **14** |
+
+### 出口雙向連結問題 (14 FAIL)
+
+**方向錯配（A→B 但 B 的反向出口指向 C）：**
+1. `/d/city/entrance` [south] → road5，但 road5 north → temple/entrance
+2. `/d/road/road5` [south] → city/entrance，但 city/entrance north → city/main_street
+3. `/d/longan/entrance` [south] → road2，但 road2 north → road3
+4. `/d/manglin/entrance` [south] → wutang/ngate，但 ngate north → zhenwu/gate
+5. `/d/tianyue/mountain_path` [south] → mountain_road2，但其 north → ice/entrance
+6. `/d/zhenwu/watchtower` [west] → zhenwu/gate，但 gate east → road/south_road2
+
+**缺少反向出口：**
+7. `/d/hell/entrance` [up] → graveyard/shrine — shrine 無 down
+8. `/d/road/mountain_road2` [west] → tianyue/mountain_path — 無 east
+9. `/d/road/road2` [west] → longan/entrance — 無 east
+10. `/d/snow/fireplace` [out] → inn_kitchen — 無 enter
+11. `/d/snow/mill` [out] → lane2 — 無 enter
+12. `/d/snow/tree` [down] → square — 無 up
+13. `/d/wutang/ngate` [northwest] → manglin/entrance — 無 southeast
+14. `/d/zhenwu/gate` [west] → watchtower — 無 east
+
+---
+
+Now back to the quest audit. Here's the complete report:
+
+## 任務系統審查結果
+
+### 雪亭鎮 7 謎
+
+| # | 謎題 | 狀態 | NPC | quest flag | 獎勵 |
+|---|------|------|-----|-----------|------|
+| 1 | 阿寶在老榕樹等的人是誰？ | **本次新增** | arbao.c | quest/arbao_letter_done | 80分 |
+| 2 | 瞎眼婆婆的真實身分？ | ✅ 已有 | old_beggar.c | quest/old_beggar_done | 200分 |
+| 3 | 貨棧搬箱子算不算勞動？ | ✅ 已有 | foreman.c | quest/foreman_crate_done | 50分 |
+| 4 | 驛站遺失了幾封信？ | ✅ 已有 | postman.c | quest/postman_delivery_done | 100分 |
+| 5 | 想不想加入振武軍營？ | ✅ 已有 | escort.c | quest/escort_guide_done | 30分 |
+| 6 | 破舊的老宅裡藏了什麼？ | **本次新增** | manor_cellar.c | quest/manor_secret_done | 60分 |
+| 7 | 黑袍老人的女兒去了哪裡？ | ✅ 已有 | darkrobe.c | quest/darkrobe_daughter_done | 150分 |
+
+### 五堂鎮 6 謎
+
+| # | 謎題 | 狀態 |
+|---|------|------|
+| 1 | 飲血丟在了哪裡？ | ❌ 尚缺 |
+| 2 | 巫山之中神秘雕像有何秘密？ | ❌ 尚缺 |
+| 3 | 郭布要收的徒弟在哪裡？ | ❌ 尚缺 |
+| 4 | 鎮天神廟內藏著誰？ | ❌ 尚缺 |
+| 5 | 別館內的欽差來五堂要做甚麼？ | ❌ 尚缺 |
+| 6 | 過河的船在哪裡？ | ❌ 尚缺 |
+
+### 總結
+
+- **已有任務：5 個**（雪亭鎮 old_beggar、foreman、postman、escort、darkrobe）
+- **本次新增：2 個**
+  - **阿寶的心事** — 玩家對阿寶說「等人」→ 收到信件 → 送到軍營招兵官 → 帶回回信給阿寶 → 80 quest 分 + 50 文錢
+  - **老宅秘密** — 玩家在大宅地窖 `search 符號` → 發現暗格 → 獲得破舊手札 + 3 兩銀子 → 60 quest 分
+
+### 新增/修改的檔案
+
+| 檔案 | 動作 |
+|------|------|
+| `d/snow/npc/arbao.c` | 修改：加入送信任務邏輯 |
+| `d/snow/npc/recruiter.c` | 修改：加入 accept_object 接收阿寶的信 |
+| `d/snow/manor_cellar.c` | 修改：加入 search 符號暗格任務 |
+| `d/snow/npc/obj/arbao_letter.c` | 新增：阿寶的信（任務物品）|
+| `d/snow/npc/obj/recruiter_reply.c` | 新增：招兵官回信（任務物品）|
+| `d/snow/npc/obj/old_journal.c` | 新增：破舊手札（任務獎勵）|
+[0;32m[OK][0m Audit quests
+[0;34m[16:57:02][0m === Phase: Validate ===
+[0;34m[16:57:02][0m Step: Static validation
+--- Step: Static validation ---
+## 驗證結果總覽
+
+### 主測試套件
+| 項目 | 數量 |
+|------|------|
+| **PASS** | 3480 |
+| **FAIL** | 24 |
+| **WARN** | 46 |
+
+### 額外檢查
+
+**1. `set("aggressive", 1)` 誤用** — **PASS** (0 matches, 全部正確使用 `attitude`)
+
+**2. skill daemon 有 `skill_improved`** — **PASS** (75/75 全部有)
+
+**3. lv50+ 掌門有 `vision_of_ghost`** — **FAIL** (2 個缺失)
+
+| NPC 檔案 | 等級 | vision_of_ghost |
+|-----------|------|-----------------|
+| `d/tianxie/npc/daxiedaoren.c` | 75 | **缺失** |
+| `d/hudao/npc/sunyi.c` | 55 | **缺失** |
+
+### 主要 FAIL 項目 (摘要)
+
+- **Room inherit missing** (4): `d/longan/temple`, `d/snow/bazar`, `d/snow/small_temple`, `d/lijun/ferry` — 這些是城隍廟/渡口，可能需要 `inherit TEMPLE` 或特殊 inherit
+- **Bidirectional exit missing** (5): `ngate→entrance`, `tree→square`, `mountain_road2→mountain_path`, `road2→entrance`, `gate→watchtower` — 出口缺少反向連結
+- 其餘 FAIL 分佈在 NPC 和裝備驗證中
+
+完整報告已寫入 `docs/test_report.md`。
+[0;32m[OK][0m Static validation
+[0;34m[16:58:49][0m Pipeline complete: 6 ok, 0 warnings.

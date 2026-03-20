@@ -1,0 +1,33 @@
+Round 17 - Fri Mar 20 12:19:25 UTC 2026
+[0;34m[12:19:25][0m Using git remote: origin
+[0;34m[12:19:25][0m Pulling latest changes...
+From github.com:Transformer666/es2_mudlib
+ * branch            main       -> FETCH_HEAD
+Already up to date.
+
+=========================================
+  ES2 Agent Pipeline v2
+  Phase: all
+  Start: 2026-03-20 12:19:25
+=========================================
+
+[0;34m[12:19:27][0m === Phase: Analyze ===
+[0;34m[12:19:27][0m Step: Scan existing content
+`docs/missing_content.json` 已更新。摘要如下：
+
+| 類別 | 應有 | 已實作 | 缺少 |
+|------|------|--------|------|
+| 種族 | 11 | 11 | 0 |
+| 職業 | 7 | 9 (含 commoner/fighter) | 0 |
+| 門派 daemon | 18 | 18 | 1 (天月庵 area 存在但缺 sect daemon) |
+| 技能 | — | 75 | — |
+| 區域 | — | 54 (459 rooms, 268 NPCs) | — |
+| 任務 | 15+ | 0 | 全部 |
+
+**主要缺口：**
+- **天月庵 sect daemon** — `daemon/sect/tianyue.c` 不存在
+- **任務系統** — 0 個任務（雪亭七謎、五堂六謎、十三靈任務皆未實作）
+- **22 個地圖地點未建** — 真郡大山、太乙殿、風城等
+- **8 個 stub 城鎮待擴展** — 龍安、京畿、康平、三掩、離、喬陰、百花、衛國
+- **門派子系統未實作** — 茅山三觀、天師四衣派
+[0;32m[OK][0m Scan existing content

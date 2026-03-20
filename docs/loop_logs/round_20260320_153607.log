@@ -1,0 +1,36 @@
+Round 44 - Fri Mar 20 15:36:07 UTC 2026
+[0;34m[15:36:07][0m Using git remote: origin
+[0;34m[15:36:07][0m Pulling latest changes...
+From github.com:Transformer666/es2_mudlib
+ * branch            main       -> FETCH_HEAD
+Already up to date.
+
+=========================================
+  ES2 Agent Pipeline v2
+  Phase: all
+  Start: 2026-03-20 15:36:07
+=========================================
+
+[0;34m[15:36:10][0m === Phase: Analyze ===
+[0;34m[15:36:10][0m Step: Scan existing content
+The existing `docs/missing_content.json` is already up-to-date — all counts match the current scan:
+
+| Category | Required | Implemented | Missing |
+|----------|----------|-------------|---------|
+| Races | 11 | 11 | 0 |
+| Classes | 7 | 9 (7+2 utility) | 0 |
+| Sects | 18 | 18 (tianyue daemon missing, tianxie extra) | 1 |
+| Skills | — | 75 | — |
+| Areas | — | 54 | 22 map locations |
+| Rooms | — | 459 | — |
+| NPCs | — | 268 | — |
+| NPC Equipment | — | 124 | — |
+| Quests | — | 0 | 15 planned |
+| Stub Towns | — | 8 | need expansion |
+
+The file is already current — no changes needed. Key gaps remain:
+- **1 sect daemon missing**: tianyue (天月庵) — area exists but no `daemon/sect/tianyue.c`
+- **0 quests implemented**: 7 雪亭鎮謎 + 6 五堂鎮謎 + 2 十三靈任務 planned
+- **22 map locations** not yet built (真郡大山, 太乙殿, 風城, etc.)
+- **8 stub towns** need expansion (longan, jingji, kangping, sanyen, lee, choyin, baihua, weiguo)
+[0;32m[OK][0m Scan existing content

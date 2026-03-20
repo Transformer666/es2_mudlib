@@ -1,0 +1,40 @@
+Round 1 - Fri Mar 20 16:26:04 UTC 2026
+[0;34m[16:26:04][0m Using git remote: origin
+[0;34m[16:26:04][0m Pulling latest changes...
+From github.com:Transformer666/es2_mudlib
+ * branch            main       -> FETCH_HEAD
+   1fd583a..39c3fc8  main       -> origin/main
+Updating 1fd583a..39c3fc8
+Fast-forward
+ automation/run_pipeline.sh | 101 +++++++++++++++++++++++++++++++++++----------
+ 1 file changed, 79 insertions(+), 22 deletions(-)
+
+=========================================
+  ES2 Agent Pipeline v2
+  Phase: all
+  Start: 2026-03-20 16:26:04
+=========================================
+
+[0;34m[16:26:07][0m === Phase: Analyze ===
+[0;34m[16:26:07][0m Step: Scan existing content
+`docs/missing_content.json` 已更新。掃描摘要：
+
+| 類別 | 需要 | 已實作 | 缺少 |
+|------|------|--------|------|
+| 種族 | 11 | 11 | 0 |
+| 職業 | 7 | 7 (+2 系統) | 0 |
+| 門派 daemon | 18 | 18 | 1 (tianyue 天月庵無 daemon，tianxie 為額外) |
+| 技能 | - | 75 | - |
+| 區域 | - | 54 | 22 個地圖地點未建 |
+| 房間 | - | 459 | - |
+| NPC | - | 268 | - |
+| NPC 裝備 | - | 124 | - |
+| 任務 | 15+ | 0 | 雪亭7謎 + 五堂6謎 + 十三靈2 |
+| Stub 城鎮 | - | 8 | 龍安/京畿/康平/三掩/離/喬陰/百花/衛國 需擴展 |
+
+主要缺口：
+1. **tianyue (天月庵)** — 區域已有 6 房間 + 4 NPC，但缺 sect daemon
+2. **任務系統** — 完全未實作（15 個已規劃任務）
+3. **22 個地圖地點** — 尚未建置（真郡大山、太乙殿、風城等）
+4. **8 個 stub 城鎮** — 需要內容擴展
+[0;32m[OK][0m Scan existing content

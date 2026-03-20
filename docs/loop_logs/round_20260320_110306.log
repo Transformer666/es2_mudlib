@@ -1,0 +1,39 @@
+Round 6 - Fri Mar 20 11:03:06 UTC 2026
+[0;34m[11:03:06][0m Using git remote: origin
+[0;34m[11:03:06][0m Pulling latest changes...
+From github.com:Transformer666/es2_mudlib
+ * branch            main       -> FETCH_HEAD
+Already up to date.
+
+=========================================
+  ES2 Agent Pipeline v2
+  Phase: all
+  Start: 2026-03-20 11:03:06
+=========================================
+
+[0;34m[11:03:08][0m === Phase: Analyze ===
+[0;34m[11:03:08][0m Step: Scan existing content
+File updated. Here's the scan summary:
+
+### Mudlib 內容掃描摘要
+
+| 類別 | 需要 | 已實作 | 缺少 |
+|------|------|--------|------|
+| 種族 | 11 | 11 | 0 |
+| 職業 | 7 | 7 (+2 utility) | 0 |
+| 門派 | 18 | 17 (+tianxie) | 1 (tianyue 天月庵) |
+| 技能 | — | 75 | 無明確清單 |
+| 區域 | — | 54 | 21 地圖地點未建 |
+| 房間 | — | 459 | — |
+| NPC | — | 268 | — |
+| NPC 裝備 | — | 124 | — |
+| 任務 | 13+ | 0 | 雪亭七謎 + 五堂六謎 |
+
+**主要缺口：**
+- **tianyue (天月庵)** — 區域已有 6 房間 + 4 NPC，但缺 `daemon/sect/tianyue.c`
+- **任務系統** — 完全未實作（wiki 列出至少 13 個任務）
+- **8 個 stub 城鎮** 需要擴展（longan, jingji, kangping, sanyen, lee, choyin, baihua, weiguo）
+- **21 個地圖地點** 尚未建置
+
+已更新 `docs/missing_content.json`。
+[0;32m[OK][0m Scan existing content
