@@ -87,3 +87,36 @@ valid_enable (string usage)
 {
   return 0;
 }
+
+void skill_improved(object me, string sk)
+{
+    int skill, learn;
+
+    skill = me->query_skill("blade", 1);
+    learn = me->query_learn("blade");
+
+    if( !skill ) {
+	if( learn >= 500 ) {
+	    tell_object(me,
+		HIY "你覺得自己的刀法已有所領悟﹗\n" NOR);
+	    me->advance_skill("blade", 1);
+	}
+	return;
+    }
+
+    if( (skill < 120) && (skill) * (skill) * 100 < learn - 500 ) {
+	me->advance_skill("blade", 1);
+	me->gain_score("martial art", (skill+1) * 5);
+    }
+}
+
+void skill_advanced(object me, string sk)
+{
+    int level;
+
+    level = me->query_skill(sk, 1);
+    if( level % 10 == 9 && me->query_attr("str") < level / 4 ) {
+	tell_object(me, HIW "由於你勤練刀法﹐你的膂力提高了。\n" NOR);
+	me->add("str", 1);
+    }
+}

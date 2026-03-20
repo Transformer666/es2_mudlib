@@ -5,6 +5,7 @@
 #        bash automation/run_pipeline.sh    （跑全部）
 
 set -e
+set -o pipefail
 
 TASK_DIR="automation"
 LOG_FILE="docs/pipeline_run.log"
@@ -67,15 +68,19 @@ run_task() {
     log "Running task: $task_desc"
     echo "--- Task: $task_desc ---" >> $LOG_FILE
 
-    if claude -p "$(cat $task_path)" \
+    set +e
+    claude -p "$(cat $task_path)" \
         --allowedTools "Read" "Write" "Edit" "Glob" "Grep" "Bash" "WebFetch" \
         --max-turns 40 \
-        2>&1 | tee -a $LOG_FILE; then
+        2>&1 | tee -a $LOG_FILE
+    local exit_code=${PIPESTATUS[0]}
+    set -e
+
+    if [ "$exit_code" -eq 0 ]; then
         success "Task done: $task_desc"
     else
-        error "Task failed: $task_desc"
-        echo "Pipeline halted at $task_desc. See $LOG_FILE for details."
-        exit 1
+        warn "Task exited with code $exit_code: $task_desc (max-turns or error)"
+        warn "Continuing pipeline — review $LOG_FILE for details."
     fi
 }
 

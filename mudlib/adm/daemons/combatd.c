@@ -267,6 +267,11 @@ fight (object me, object victim, string skill, mapping action, object weapon)
                 damage = me->inflict_damage(strength, victim);
                 me->gain_score("unarmed mastery", random(me->query_attr("int")/3));
             }
+
+            /* 戰鬥中有機會提升攻擊技能 */
+            if( userp(me) && random(me->query_attr("int")) > 5 ) {
+                me->improve_skill(skill, 1);
+            }
         }
         else damage = 0;
     }
