@@ -20,6 +20,9 @@ LONG
 		"油燈" : "一盞簡陋的油燈﹐燈芯已經快燃盡了﹐發出微弱的光芒。\n",
 		"桌椅" : "幾張粗糙的木桌和凳子﹐表面坑坑窪窪的﹐看起來用了很久了。\n",
 	]));
+	set("objects", ([
+		__DIR__"npc/innkeeper" : 1,
+	]));
 	set("exits", ([
 		"north" : __DIR__"village_square",
 	]));

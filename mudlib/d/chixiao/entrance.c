@@ -17,6 +17,9 @@ LONG
 		"老槐樹" : "幾棵枝幹彎曲的老槐樹﹐葉子稀稀落落的﹐看起來已經有不少年頭了。\n",
 	]));
 	set("outdoors", "wild");
+	set("objects", ([
+		__DIR__"npc/guard" : 1,
+	]));
 	set("exits", ([
 		"west"  : "/d/road/wild_path2",
 		"east"  : __DIR__"village_square",

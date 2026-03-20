@@ -23,6 +23,7 @@ LONG
 		"west"  : __DIR__"entrance",
 		"north" : __DIR__"wishing_pool",
 		"south" : __DIR__"inn",
+		"east"  : __DIR__"street",
 	]));
 
 	setup();
