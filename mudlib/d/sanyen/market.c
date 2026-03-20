@@ -13,6 +13,7 @@ LONG
 	);
 	set("objects", ([
 		__DIR__"npc/pilgrim" : 1,
+		__DIR__"npc/merchant" : 1,
 	]));
 	set("exits", ([
 		"east" : __DIR__"back_alley",
