@@ -50,6 +50,8 @@
 /d/baihua/street	student	/d/baihua/npc/student
 /d/baihua/entrance	stone_lion	/d/baihua/npc/stone_lion
 /d/baihua/melon_farm	melon_farmer	/d/baihua/npc/melon_farmer
+/d/zhenwu/gate	guard	/d/zhenwu/npc/guard
+/d/zhenwu/yard	soldier	/d/zhenwu/npc/soldier
 /d/zhenwu/command	mipei	/d/zhenwu/npc/mipei
 /d/choyin/sgate	cityguard	/d/choyin/npc/cityguard
 /d/choyin/square	fortune_teller	/d/choyin/npc/fortune_teller
@@ -59,9 +61,17 @@
 /d/choyin/temple	monk	/d/choyin/npc/monk
 /d/choyin/bookshop	bookshop_owner	/d/choyin/npc/bookshop_owner
 /d/baixiang/main_hall	abbot	/d/baixiang/npc/abbot
+/d/baixiang/courtyard	monk	/d/baixiang/npc/monk
+/d/tianyue/hall	master	/d/tianyue/npc/master
+/d/tianyue/quarters	novice	/d/tianyue/npc/novice
+/d/tianyue/courtyard	greeter	/d/tianyue/npc/greeter
 /d/maoshan/lingyun	elder	/d/maoshan/npc/elder
+/d/maoshan/yinfeng	disciple	/d/maoshan/npc/disciple
 /d/wutuo/garden	apprentice	/d/wutuo/npc/apprentice
 /d/wutuo/hall	master	/d/wutuo/npc/master
+/d/jingji/yamen	official	/d/jingji/npc/official
+/d/jingji/square	guard	/d/jingji/npc/guard
+/d/jingji/inn	innkeeper	/d/jingji/npc/innkeeper
 /d/graveyard/grave2	ghost	/d/graveyard/npc/ghost
 /d/graveyard/grave2	zombie	/d/graveyard/npc/zombie
 /d/graveyard/tomb_inner	zombie	/d/graveyard/npc/zombie
@@ -71,7 +81,10 @@
 /d/kangping/street	villager	/d/kangping/npc/villager
 /d/kangping/inn	innkeeper	/d/kangping/npc/innkeeper
 /d/kangping/thatched_hall	taoist	/d/kangping/npc/taoist
+/d/fengshan/quarters	disciple	/d/fengshan/npc/disciple
 /d/fengshan/main_hall	liudonglu	/d/fengshan/npc/liudonglu
+/d/fengshan/sword_arena	disciple	/d/fengshan/npc/disciple
+/d/lengmei/gate	servant	/d/lengmei/npc/servant
 /d/lengmei/yard	disciple	/d/lengmei/npc/disciple
 /d/lengmei/hall	meiyingfeng	/d/lengmei/npc/meiyingfeng
 /d/sanyen/street	villager	/d/sanyen/npc/villager
@@ -89,6 +102,9 @@
 /d/yinjiao/gate	dark_guard	/d/yinjiao/npc/dark_guard
 /d/yinjiao/gate	herald	/d/yinjiao/npc/herald
 /d/yinjiao/hall	master	/d/yinjiao/npc/master
+/d/weiguo/barracks	quartermaster	/d/weiguo/npc/quartermaster
+/d/weiguo/square	soldier	/d/weiguo/npc/soldier
+/d/weiguo/inn	innkeeper	/d/weiguo/npc/innkeeper
 /d/chixiao/wishing_pool	tianling	/d/chixiao/npc/tianling
 /d/chixiao/village_square	diling	/d/chixiao/npc/diling
 /d/hudao/hall	hanxiao	/d/hudao/npc/hanxiao
@@ -134,3 +150,9 @@
 /d/tianxie/yard	disciple	/d/tianxie/npc/disciple
 /d/tianxie/hall	master	/d/tianxie/npc/master
 /d/tianxie/hall	shadow_guard	/d/tianxie/npc/shadow_guard
+/d/longan/square	storyteller	/d/longan/npc/storyteller
+/d/longan/inn	innkeeper	/d/longan/npc/innkeeper
+/d/longan/market	merchant	/d/longan/npc/merchant
+/d/hell/tower_base	tower_guard	/d/hell/npc/tower_guard
+/d/hell/tower_mid	tower_guard	/d/hell/npc/tower_guard
+/d/hell/path	wandering_ghost	/d/hell/npc/wandering_ghost

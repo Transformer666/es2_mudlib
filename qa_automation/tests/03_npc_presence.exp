@@ -2,6 +2,9 @@
 # 03_npc_presence.exp — Test NPC loading via DFS walking
 # Walks all reachable rooms from the starting room, and at rooms that
 # should contain NPCs (per npc_rooms.txt), checks if the NPCs are present.
+#
+# Safety: only traverses exits where the reverse direction exists,
+# ensuring backtracking always works and the DFS stays in sync.
 
 set script_dir [file dirname [file normalize [info script]]]
 source "$script_dir/../lib/mud_connect.exp"
@@ -45,7 +48,7 @@ if {$report_file ne ""} {
 }
 
 # --------------------------------------------------------------------------
-# Parse room_paths.txt → build adjacency graph
+# Parse room_paths.txt → build adjacency graph (safe exits only)
 # --------------------------------------------------------------------------
 set data_file "$script_dir/../data/room_paths.txt"
 if {![file exists $data_file]} {
@@ -58,9 +61,8 @@ set fh [open $data_file r]
 set room_data [read $fh]
 close $fh
 
-# exits_list(room) = list of {dir dest} pairs
-array set exits_list {}
-array set reverse_cmd {}
+array set graph {}
+array set raw_exits {}
 set all_graph_rooms {}
 
 foreach line [split $room_data "\n"] {
@@ -72,52 +74,33 @@ foreach line [split $room_data "\n"] {
         set dir [lindex $parts 1]
         set dest [lindex $parts 2]
 
-        if {![info exists exits_list($src)]} {
-            set exits_list($src) {}
-        }
-        lappend exits_list($src) [list $dir $dest]
+        set graph($src,$dir) $dest
+        if {![info exists raw_exits($src)]} { set raw_exits($src) {} }
+        lappend raw_exits($src) [list $dir $dest]
 
-        if {[lsearch -exact $all_graph_rooms $src] == -1} {
-            lappend all_graph_rooms $src
-        }
-        if {[lsearch -exact $all_graph_rooms $dest] == -1} {
-            lappend all_graph_rooms $dest
-        }
+        if {[lsearch -exact $all_graph_rooms $src] == -1} { lappend all_graph_rooms $src }
+        if {[lsearch -exact $all_graph_rooms $dest] == -1} { lappend all_graph_rooms $dest }
     }
 }
 
-# --------------------------------------------------------------------------
-# Parse hidden_paths.txt → add action-based exits to graph
-# --------------------------------------------------------------------------
-set hidden_file "$script_dir/../data/hidden_paths.txt"
-if {[file exists $hidden_file]} {
-    set fh [open $hidden_file r]
-    set hidden_data [read $fh]
-    close $fh
+# Filter to safe (bidirectional) exits only
+array set exits_list {}
 
-    set hidden_count 0
-    foreach line [split $hidden_data "\n"] {
-        set line [string trim $line]
-        if {$line eq "" || [string index $line 0] eq "#"} continue
-        set parts [split $line "\t"]
-        if {[llength $parts] >= 4} {
-            set src [lindex $parts 0]
-            set action [lindex $parts 1]
-            set dest [lindex $parts 2]
-            set rev [lindex $parts 3]
-
-            if {![info exists exits_list($src)]} {
-                set exits_list($src) {}
+foreach src [array names raw_exits] {
+    set safe {}
+    foreach exit_info $raw_exits($src) {
+        set dir [lindex $exit_info 0]
+        set dest [lindex $exit_info 1]
+        if {[info exists opposite($dir)]} {
+            set rev $opposite($dir)
+            if {[info exists graph($dest,$rev)] && $graph($dest,$rev) eq $src} {
+                lappend safe $exit_info
             }
-            lappend exits_list($src) [list $action $dest]
-            set reverse_cmd($src,$action) $rev
-
-            if {[lsearch -exact $all_graph_rooms $src] == -1} { lappend all_graph_rooms $src }
-            if {[lsearch -exact $all_graph_rooms $dest] == -1} { lappend all_graph_rooms $dest }
-            incr hidden_count
         }
     }
-    puts "Loaded $hidden_count hidden/action-based exits"
+    if {[llength $safe] > 0} {
+        set exits_list($src) $safe
+    }
 }
 
 # --------------------------------------------------------------------------
@@ -199,20 +182,16 @@ if {[info exists npc_list($start_room)]} {
     }
 }
 
-# Stack entries: {room exit_index backtrack_dir}
-set stack [list [list $start_room 0 ""]]
+set stack [list [list $start_room 0]]
 
 puts "\nStarting DFS from $start_room ..."
 
 while {[llength $stack] > 0} {
-    # Peek at top of stack
     set top_idx [expr {[llength $stack] - 1}]
     set top [lindex $stack $top_idx]
     set room [lindex $top 0]
     set idx [lindex $top 1]
-    set backtrack [lindex $top 2]
 
-    # Get exits for this room
     if {[info exists exits_list($room)]} {
         set room_exits $exits_list($room)
     } else {
@@ -220,30 +199,39 @@ while {[llength $stack] > 0} {
     }
 
     if {$idx >= [llength $room_exits]} {
-        # All exits from this room explored — backtrack
+        # All exits explored — pop and backtrack
         set stack [lreplace $stack $top_idx $top_idx]
 
-        if {$backtrack ne ""} {
-            set bt_output [mud_cmd "$backtrack"]
-            after 500
+        if {[llength $stack] > 0} {
+            set parent [lindex $stack end]
+            set parent_room [lindex $parent 0]
+            set parent_idx [expr {[lindex $parent 1] - 1}]
 
-            if {[string match "*沒有這個方向*" $bt_output] || [string match "*沒有出路*" $bt_output] || [string match "*什麼*" $bt_output]} {
-                log_warn "Backtrack: $room via $backtrack" "Could not backtrack — DFS may be out of sync"
+            if {[info exists exits_list($parent_room)]} {
+                set parent_exits $exits_list($parent_room)
+                if {$parent_idx >= 0 && $parent_idx < [llength $parent_exits]} {
+                    set last_exit [lindex $parent_exits $parent_idx]
+                    set fwd_dir [lindex $last_exit 0]
+                    if {[info exists opposite($fwd_dir)]} {
+                        set back_dir $opposite($fwd_dir)
+                        set bt_output [mud_cmd "$back_dir"]
+                        after 500
+                    }
+                }
             }
         }
         continue
     }
 
     # Advance the exit index
-    set new_top [list $room [expr {$idx + 1}] $backtrack]
+    set new_top [list $room [expr {$idx + 1}]]
     set stack [lreplace $stack $top_idx $top_idx $new_top]
 
-    # Get the exit to try
     set exit_info [lindex $room_exits $idx]
     set dir [lindex $exit_info 0]
     set dest [lindex $exit_info 1]
 
-    # Skip if destination already visited
+    # Skip if already visited
     if {[info exists visited($dest)]} {
         continue
     }
@@ -282,17 +270,8 @@ while {[llength $stack] > 0} {
         }
     }
 
-    # Compute backtrack direction — use explicit reverse_cmd if available
-    if {[info exists reverse_cmd($room,$dir)]} {
-        set back_dir $reverse_cmd($room,$dir)
-    } elseif {[info exists opposite($dir)]} {
-        set back_dir $opposite($dir)
-    } else {
-        set back_dir ""
-    }
-
-    # Push new room onto stack
-    lappend stack [list $dest 0 $back_dir]
+    # Push dest onto stack
+    lappend stack [list $dest 0]
 }
 
 # --------------------------------------------------------------------------
@@ -302,10 +281,9 @@ set unreachable_npc_rooms {}
 foreach room $npc_rooms_set {
     if {![info exists visited($room)]} {
         lappend unreachable_npc_rooms $room
-        # Count the NPCs in unreachable rooms
         foreach npc_entry $npc_list($room) {
             set npc_id [lindex $npc_entry 0]
-            log_warn "Unreachable NPC: $npc_id in $room" "Room not reachable from $start_room"
+            log_warn "Unreachable NPC: $npc_id in $room" "Room not reachable via safe path from $start_room"
         }
     }
 }

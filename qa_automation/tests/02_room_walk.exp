@@ -2,6 +2,9 @@
 # 02_room_walk.exp — Test room connectivity via DFS walking
 # Walks all reachable rooms from the starting room using movement commands,
 # verifies exits work, and reports unreachable rooms.
+#
+# Safety: only traverses exits where the reverse direction exists,
+# ensuring backtracking always works and the DFS stays in sync.
 
 set script_dir [file dirname [file normalize [info script]]]
 source "$script_dir/../lib/mud_connect.exp"
@@ -59,11 +62,12 @@ set room_data [read $fh]
 close $fh
 
 # graph(room,dir) = destination room
-# exits_list(room) = list of {dir dest} pairs
+# exits_list(room) = list of {dir dest} pairs (safe exits only)
 array set graph {}
-array set exits_list {}
+array set raw_exits {}
 set all_rooms {}
 
+# First pass: build the raw graph
 foreach line [split $room_data "\n"] {
     set line [string trim $line]
     if {$line eq "" || [string index $line 0] eq "#"} continue
@@ -75,12 +79,11 @@ foreach line [split $room_data "\n"] {
 
         set graph($src,$dir) $dest
 
-        if {![info exists exits_list($src)]} {
-            set exits_list($src) {}
+        if {![info exists raw_exits($src)]} {
+            set raw_exits($src) {}
         }
-        lappend exits_list($src) [list $dir $dest]
+        lappend raw_exits($src) [list $dir $dest]
 
-        # Track all rooms mentioned in the data
         if {[lsearch -exact $all_rooms $src] == -1} {
             lappend all_rooms $src
         }
@@ -90,24 +93,49 @@ foreach line [split $room_data "\n"] {
     }
 }
 
+# Second pass: filter to only safe exits (reverse path exists)
+array set exits_list {}
+set skipped_oneway {}
+
+foreach src [array names raw_exits] {
+    set safe {}
+    foreach exit_info $raw_exits($src) {
+        set dir [lindex $exit_info 0]
+        set dest [lindex $exit_info 1]
+
+        # Check if reverse direction exists
+        if {[info exists opposite($dir)]} {
+            set rev $opposite($dir)
+            if {[info exists graph($dest,$rev)] && $graph($dest,$rev) eq $src} {
+                lappend safe $exit_info
+            } else {
+                lappend skipped_oneway [list $src $dir $dest]
+            }
+        } else {
+            # Unknown direction — skip
+            lappend skipped_oneway [list $src $dir $dest]
+        }
+    }
+    if {[llength $safe] > 0} {
+        set exits_list($src) $safe
+    }
+}
+
 set total_rooms [llength $all_rooms]
 set total_exits [array size graph]
 puts "Loaded graph: $total_rooms rooms, $total_exits exits"
+puts "Safe (bidirectional) exits for DFS: [llength [array names exits_list]] rooms"
+puts "Skipped one-way exits: [llength $skipped_oneway]"
 
 # --------------------------------------------------------------------------
-# Parse hidden_paths.txt → add action-based exits to graph
+# Log hidden paths as info-only (Chinese commands don't work over telnet)
 # --------------------------------------------------------------------------
-# Format: source_room	action_command	destination_room	reverse_command
-# These exits use add_action() and aren't in room_paths.txt.
-array set reverse_cmd {}
-
 set hidden_file "$script_dir/../data/hidden_paths.txt"
 if {[file exists $hidden_file]} {
     set fh [open $hidden_file r]
     set hidden_data [read $fh]
     close $fh
 
-    set hidden_count 0
     foreach line [split $hidden_data "\n"] {
         set line [string trim $line]
         if {$line eq "" || [string index $line 0] eq "#"} continue
@@ -116,26 +144,9 @@ if {[file exists $hidden_file]} {
             set src [lindex $parts 0]
             set action [lindex $parts 1]
             set dest [lindex $parts 2]
-            set rev [lindex $parts 3]
-
-            set graph($src,$action) $dest
-            if {![info exists exits_list($src)]} {
-                set exits_list($src) {}
-            }
-            lappend exits_list($src) [list $action $dest]
-
-            # Store the explicit reverse command for backtracking
-            set reverse_cmd($src,$action) $rev
-
-            if {[lsearch -exact $all_rooms $src] == -1} { lappend all_rooms $src }
-            if {[lsearch -exact $all_rooms $dest] == -1} { lappend all_rooms $dest }
-            incr hidden_count
+            log_warn "Hidden path: $src → $action → $dest" "Skipped — Chinese commands not supported over telnet"
         }
     }
-
-    set total_rooms [llength $all_rooms]
-    puts "Loaded $hidden_count hidden/action-based exits"
-    puts "Total graph: $total_rooms rooms"
 }
 
 # --------------------------------------------------------------------------
@@ -154,11 +165,6 @@ set output [mud_cmd "look"]
 # --------------------------------------------------------------------------
 # Iterative DFS walk
 # --------------------------------------------------------------------------
-# Stack entries: {room exit_index backtrack_dir}
-#   room: current room path
-#   exit_index: next exit index to try from this room
-#   backtrack_dir: direction to send to return to parent (empty for start)
-
 array set visited {}
 set visited($start_room) 1
 set rooms_visited 1
@@ -167,20 +173,17 @@ set exits_passed 0
 set exits_broken 0
 set broken_exits_list {}
 
-# Stack: list of {room exit_index backtrack_dir}
-set stack [list [list $start_room 0 ""]]
+set stack [list [list $start_room 0]]
 
 puts "\nStarting DFS from $start_room ..."
 
 while {[llength $stack] > 0} {
-    # Peek at top of stack
     set top_idx [expr {[llength $stack] - 1}]
     set top [lindex $stack $top_idx]
     set room [lindex $top 0]
     set idx [lindex $top 1]
-    set backtrack [lindex $top 2]
 
-    # Get exits for this room
+    # Get safe exits for this room
     if {[info exists exits_list($room)]} {
         set room_exits $exits_list($room)
     } else {
@@ -188,37 +191,46 @@ while {[llength $stack] > 0} {
     }
 
     if {$idx >= [llength $room_exits]} {
-        # All exits from this room explored — backtrack
+        # All exits explored — pop and backtrack
         set stack [lreplace $stack $top_idx $top_idx]
 
-        if {$backtrack ne ""} {
-            # Walk back to parent
-            set bt_output [mud_cmd "$backtrack"]
-            after 500
+        # Backtrack: the direction we used to get here is stored
+        # We need to look at the parent's last used direction
+        if {[llength $stack] > 0} {
+            set parent [lindex $stack end]
+            set parent_room [lindex $parent 0]
+            set parent_idx [expr {[lindex $parent 1] - 1}]
 
-            # Check if backtrack worked
-            if {[string match "*沒有這個方向*" $bt_output] || [string match "*沒有出路*" $bt_output] || [string match "*什麼*" $bt_output]} {
-                log_warn "Backtrack: $room via $backtrack" "Could not backtrack — DFS may be out of sync"
+            if {[info exists exits_list($parent_room)]} {
+                set parent_exits $exits_list($parent_room)
+                if {$parent_idx >= 0 && $parent_idx < [llength $parent_exits]} {
+                    set last_exit [lindex $parent_exits $parent_idx]
+                    set fwd_dir [lindex $last_exit 0]
+                    if {[info exists opposite($fwd_dir)]} {
+                        set back_dir $opposite($fwd_dir)
+                        set bt_output [mud_cmd "$back_dir"]
+                        after 500
+                    }
+                }
             }
         }
         continue
     }
 
-    # Advance the exit index for this stack entry
-    set new_top [list $room [expr {$idx + 1}] $backtrack]
+    # Advance the exit index
+    set new_top [list $room [expr {$idx + 1}]]
     set stack [lreplace $stack $top_idx $top_idx $new_top]
 
-    # Get the exit to try
     set exit_info [lindex $room_exits $idx]
     set dir [lindex $exit_info 0]
     set dest [lindex $exit_info 1]
 
-    # Skip if destination already visited
+    # Skip if already visited
     if {[info exists visited($dest)]} {
         continue
     }
 
-    # Try walking in this direction
+    # Try walking
     incr exits_tested
     set output [mud_cmd "$dir"]
     after 500
@@ -228,33 +240,36 @@ while {[llength $stack] > 0} {
         log_fail "Exit: $room → $dir → $dest" "Exit does not work"
         incr exits_broken
         lappend broken_exits_list "$room → $dir → $dest"
-        # Don't recurse — we didn't actually move
         continue
     }
 
-    # Check for timeout/eof
     if {$output eq "TIMEOUT" || $output eq "EOF"} {
         log_warn "Exit: $room → $dir → $dest" "Command timed out or connection lost"
         continue
     }
 
-    # Success — we moved to dest
+    # Success
     log_pass "Exit: $room → $dir → $dest"
     incr exits_passed
     set visited($dest) 1
     incr rooms_visited
 
-    # Compute backtrack direction — use explicit reverse_cmd if available
-    if {[info exists reverse_cmd($room,$dir)]} {
-        set back_dir $reverse_cmd($room,$dir)
-    } elseif {[info exists opposite($dir)]} {
-        set back_dir $opposite($dir)
-    } else {
-        set back_dir ""
-    }
+    # Push dest onto stack
+    lappend stack [list $dest 0]
+}
 
-    # Push new room onto stack
-    lappend stack [list $dest 0 $back_dir]
+# --------------------------------------------------------------------------
+# Report one-way exits (skipped for safety)
+# --------------------------------------------------------------------------
+if {[llength $skipped_oneway] > 0} {
+    puts "\n--- One-Way Exits (skipped, [llength $skipped_oneway]) ---"
+    foreach entry $skipped_oneway {
+        set src [lindex $entry 0]
+        set dir [lindex $entry 1]
+        set dest [lindex $entry 2]
+        puts "  ONE-WAY: $src → $dir → $dest"
+        log_warn "One-way exit: $src → $dir → $dest" "Reverse path missing — skipped to prevent desync"
+    }
 }
 
 # --------------------------------------------------------------------------
@@ -271,7 +286,7 @@ if {[llength $unreachable] > 0} {
     puts "\n--- Unreachable Rooms ([llength $unreachable]) ---"
     foreach room $unreachable {
         puts "  UNREACHABLE: $room"
-        log_warn "Unreachable: $room" "No path from $start_room"
+        log_warn "Unreachable: $room" "No safe path from $start_room"
     }
 }
 
@@ -290,6 +305,7 @@ puts "  Rooms visited: $rooms_visited / $total_rooms"
 puts "  Exits tested:  $exits_tested"
 puts "  Exits passed:  $exits_passed"
 puts "  Exits broken:  $exits_broken"
+puts "  One-way (skipped): [llength $skipped_oneway]"
 puts "  Unreachable:   [llength $unreachable]"
 
 mud_logout
