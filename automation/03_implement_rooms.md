@@ -10,6 +10,7 @@
 
 房間存放於 `mudlib/d/<area_name>/`，參考 `automation/CLAUDE.md` 範本。
 **重要：所有出口必須雙向連結！**
+**重要：新增區域時必須參考 `automation/CLAUDE.md` 的世界地圖，確保位置正確！**
 
 核心模式：
 ```lpc

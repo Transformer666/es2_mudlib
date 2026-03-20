@@ -893,9 +893,68 @@ refactor: 重構 NPC 對話格式
 
 ---
 
+## 世界地圖（來源：es2tips blog 2014/03）
+
+新增區域或道路時，必須參考此地圖的相對位置關係。
+
+```
+【北方 — 天山山脈】
+                        天山  天山  天山
+                   青雲觀       桃花林/棄劍石
+              孟家莊          榮府/神域（神之心）
+                        將軍府(八寶樓)
+
+【中北 — 雪亭鎮周邊】
+                   天靈山
+              野羊山(goathill)    水月村
+ 青邪宮                                    雪吟莊(xueyin)     羅城
+    太乙觀  亂葬崗(graveyard)  雪亭鎮(snow)      李家村(lee)
+ 草原(green)                                                    蘆葦叢
+                              老松林(oldpine)    康平(kangping)
+              振武軍營(zhenwu)                         靈雲觀
+                        五堂鎮(wutang)
+
+【中部 — 喬陰・鯉君渡】
+                        喬陰(choyin)
+              百花(baihua)              黑風嶺(heifeng)
+                        鯉君渡(lijun) ← 船
+              ═══════════ 羿水(河) ═══════════
+
+【南方 — 羿水南岸】
+              京畿(jingji)    羿水南岸(ferry_south)    龍安(longan)
+                                    ↓ southeast
+                              冷梅莊(lengmei)
+              三掩(sanyen)                        妖塔
+                        衛國(weiguo)/鬼洞
+              村莊(village)
+                                    檒城(船)/天龍島
+```
+
+### 交通系統
+
+| 路線 | 方式 | 連接 |
+|------|------|------|
+| 雪亭鎮 ↔ 五堂鎮 | 陸路(road) | snow/ngate → road1..road5 → wutang/wgate |
+| 雪亭鎮 ↔ 老松林 | 陸路 | snow/sgate → oldpine/road1 |
+| 五堂鎮 ↔ 鯉君渡 | 渡船(board) | wutang/dock → ferry → lijun/ferry_south |
+| 鯉君渡碼頭 ↔ 南岸 | 渡船(board) | lijun/dock → ferry → lijun/ferry_south |
+| 羿水南岸 → 冷梅莊 | 陸路 | ferry_south → southeast → lengmei/road |
+| 羿水南岸 → 鯉君渡 | 渡船 | board lijun |
+| 羿水南岸 → 五堂鎮 | 渡船 | board wutang |
+| 五堂鎮 ↔ 喬陰 | 陸路 | wutang/sgate → choyin/choyin_road |
+| 古松林 → 喬陰 | 陸路 | oldpine/road4 → choyin/ngate |
+
+### 渡船系統（JOURNEY 基類）
+
+碼頭房間用 `board` 指令搭船，搭船後自動延遲到達（5-8秒）。
+渡船房間 inherit JOURNEY，設定 `from_room`、`to_room`、`distance`。
+
+---
+
 ## 參考資料
 
 - Wiki 資料來源：`https://sites.google.com/site/es2mud/`
+- Blog 地圖：`https://es2tips.blogspot.com/2014/03/blog-post_7114.html`
 - 現有 room 範例：`mudlib/d/snow/square.c`
 - 現有 NPC 範例：`mudlib/d/snow/npc/child.c`
 - 拜師系統範例：`mudlib/d/snow/npc/alchemist.c`
@@ -903,6 +962,7 @@ refactor: 重構 NPC 對話格式
 - 現有防具範例：`mudlib/obj/area/obj/cloth.c`
 - 現有商人範例：`mudlib/d/baihua/npc/flowergirl.c`
 - 客棧範例：`mudlib/d/snow/inn_hall.c`
+- 渡船範例：`mudlib/d/lijun/dock.c`（碼頭）+ `mudlib/d/lijun/ferry.c`（JOURNEY 渡船）
 - 種族範例：`mudlib/daemon/race/human.c`
 - 技能範例：`mudlib/daemon/skill/dagger.c`
 - 職業範例：`mudlib/daemon/class/warrior.c`
