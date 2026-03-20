@@ -58,6 +58,13 @@ void create()
 	set_temp("apply/vision_of_ghost", 1);
 }
 
+private void give_identity_reward(object player)
+{
+	if( !player || environment(player) != environment() ) return;
+	player->set("quest/gammer_identity_done", 1);
+	player->gain_score("quest", 120);
+}
+
 private void give_coin(object who)
 {
 	object ob;
@@ -92,6 +99,37 @@ void relay_say(object ob, string arg)
 			}
 		}
 	}
+	// Quest: 瞎眼婆婆的真實身分
+	if( userp(ob) && !ob->query("quest/gammer_identity_done") ) {
+		int qstage = ob->query_temp("pending/gammer_identity");
+		if( !qstage || qstage == 0 ) {
+			if( strsrch(arg, "身份") >= 0 || strsrch(arg, "你是誰") >= 0
+			||  strsrch(arg, "真") >= 0 || strsrch(arg, "來歷") >= 0 ) {
+				do_chat(({
+					"瞎眼老太婆哼了一聲﹐說道﹕老婆子就是個瞎了眼的老太婆﹐有什麼好問的。\n",
+					"瞎眼老太婆嘟囔道﹕不過 ... 年輕的時候倒也不是沒見過世面。\n",
+				}));
+				ob->set_temp("pending/gammer_identity", 1);
+				return;
+			}
+		}
+		if( qstage == 1 ) {
+			if( strsrch(arg, "武功") >= 0 || strsrch(arg, "厲害") >= 0
+			||  strsrch(arg, "世面") >= 0 || strsrch(arg, "年輕") >= 0
+			||  strsrch(arg, "偷") >= 0 || strsrch(arg, "盜") >= 0 ) {
+				do_chat(({
+					"瞎眼老太婆側了側頭﹐嘴角微微上揚。\n",
+					"瞎眼老太婆低聲道﹕老婆子當年 ... 嘿嘿﹐當年江湖上誰不知道「鬼手」趙嫂的名號﹖\n",
+					"瞎眼老太婆說道﹕偷遍天下﹐從未失手 ... 只可惜老頭子死後﹐一切都不一樣了。\n",
+					"瞎眼老太婆嘆了口氣﹐說道﹕你既然有心打聽﹐老婆子便告訴你 — 我就是當年的鬼手趙嫂。\n",
+					"你心中一驚﹐沒想到這個瞎了眼的老太婆﹐竟然就是江湖上赫赫有名的鬼手趙嫂﹗\n",
+					(: give_identity_reward, $1 :),
+				}));
+				return;
+			}
+		}
+	}
+
 	if( !tmp || tmp==0 ){
 		if( arg=="祖奶奶" && ob->query_temp("thief_qualified") ) {
 			command("giggle");
@@ -169,6 +207,13 @@ void init()
         this_object()->move("/d/snow/square");
         return;
     }
+	// Quest greeting
+	if( userp(this_player()) && !is_chatting() ) {
+		if( this_player()->query("quest/gammer_identity_done") )
+			do_chat("瞎眼老太婆側了側頭﹐似乎認出了你的腳步聲。\n");
+		else if( this_player()->query_temp("pending/gammer_identity") )
+			do_chat("瞎眼老太婆嘟囔道﹕還想知道什麼﹖\n");
+	}
 	// Dont call original init() to check autofight.
 	if( !is_chatting() && this_player()->query_temp("try/fon")==43 ){
 		do_chat(({
