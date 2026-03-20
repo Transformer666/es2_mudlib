@@ -17,6 +17,9 @@ LONG
 	set("exits", ([
 		"south" : __DIR__"inn",
 	]));
+	set("objects", ([
+		__DIR__"npc/shrine_keeper" : 1,
+	]));
 
 	setup();
 	replace_program(TEMPLE);

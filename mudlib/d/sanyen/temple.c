@@ -19,6 +19,9 @@ LONG
 		"west" : __DIR__"street",
 		"north" : __DIR__"inner_temple",
 	]));
+	set("objects", ([
+		__DIR__"npc/temple_monk" : 1,
+	]));
 
 	setup();
 	replace_program(TEMPLE);

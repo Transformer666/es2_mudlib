@@ -18,6 +18,9 @@ LONG
 	set("exits", ([
 		"west" : __DIR__"street",
 	]));
+	set("objects", ([
+		__DIR__"npc/hall_keeper" : 1,
+	]));
 
 	setup();
 	replace_program(TEMPLE);
