@@ -14,6 +14,7 @@ LONG
     );
     set("exits", ([
         "east" : __DIR__"street",
+        "south" : __DIR__"west_street",
     ]));
     set("no_fight", 1);
     set("objects", ([

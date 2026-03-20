@@ -16,6 +16,7 @@ LONG
 		"north" : __DIR__"entrance",
 		"south" : __DIR__"street",
 		"east" : __DIR__"market",
+		"west" : __DIR__"west_street",
 	]));
 
 	setup();
