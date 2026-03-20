@@ -1,5 +1,5 @@
 # ES2 MUD Static Validation Report
-Run time: Fri Mar 20 19:51:32 UTC 2026
+Run time: Fri Mar 20 20:06:30 UTC 2026
 
 
 ## Room Validation
@@ -1750,6 +1750,10 @@ Run time: Fri Mar 20 19:51:32 UTC 2026
 - PASS: NPC inherit: d/lee/npc/innkeeper
 - PASS: NPC set_name: d/lee/npc/innkeeper
 - PASS: NPC setup(): d/lee/npc/innkeeper
+- PASS: NPC include: d/lee/npc/hall_keeper
+- PASS: NPC inherit: d/lee/npc/hall_keeper
+- PASS: NPC set_name: d/lee/npc/hall_keeper
+- PASS: NPC setup(): d/lee/npc/hall_keeper
 - PASS: NPC include: d/lee/npc/elder
 - PASS: NPC inherit: d/lee/npc/elder
 - PASS: NPC set_name: d/lee/npc/elder
@@ -2054,6 +2058,10 @@ Run time: Fri Mar 20 19:51:32 UTC 2026
 - PASS: NPC inherit: d/baihua/npc/melon_farmer
 - PASS: NPC set_name: d/baihua/npc/melon_farmer
 - PASS: NPC setup(): d/baihua/npc/melon_farmer
+- PASS: NPC include: d/baihua/npc/shrine_keeper
+- PASS: NPC inherit: d/baihua/npc/shrine_keeper
+- PASS: NPC set_name: d/baihua/npc/shrine_keeper
+- PASS: NPC setup(): d/baihua/npc/shrine_keeper
 - PASS: NPC include: d/baihua/npc/shopkeeper
 - PASS: NPC inherit: d/baihua/npc/shopkeeper
 - PASS: NPC set_name: d/baihua/npc/shopkeeper
@@ -3610,6 +3618,6 @@ Run time: Fri Mar 20 19:51:32 UTC 2026
 ## Summary
 | Result | Count |
 |--------|-------|
-| PASS | 3526 |
+| PASS | 3534 |
 | FAIL | 23 |
 | WARN | 46 |

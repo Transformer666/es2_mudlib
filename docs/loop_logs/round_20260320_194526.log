@@ -176,3 +176,15 @@ All checks pass. Here's the complete audit result:
 這兩個 NPC 等級 ≥50 且含「掌門/堂主」等頭銜，但缺少 `set_temp("apply/vision_of_ghost", 1)`。需要修復。
 [0;32m[OK][0m Static validation
 [0;34m[19:52:23][0m Pipeline complete: 5 ok, 0 warnings.
+[main dce757c] feat: auto-implement content via pipeline v2 [2026-03-20 19:52:23]
+ 4 files changed, 369 insertions(+), 1 deletion(-)
+ create mode 100644 docs/loop_logs/round_20260320_194526.log
+To github.com:Transformer666/es2_mudlib.git
+   c5ced0a..dce757c  main -> main
+[0;32m[OK][0m Final commit pushed to origin.
+
+=========================================
+  Pipeline complete!
+  Completed: 6 | Warnings: 0
+  End: 2026-03-20 19:52:23
+=========================================
