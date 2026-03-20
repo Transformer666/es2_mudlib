@@ -225,7 +225,7 @@ while {[llength $stack] > 0} {
 
         if {$backtrack ne ""} {
             set bt_output [mud_cmd "$backtrack"]
-            after 150
+            after 500
 
             if {[string match "*沒有這個方向*" $bt_output] || [string match "*沒有出路*" $bt_output] || [string match "*什麼*" $bt_output]} {
                 log_warn "Backtrack: $room via $backtrack" "Could not backtrack — DFS may be out of sync"
@@ -250,7 +250,7 @@ while {[llength $stack] > 0} {
 
     # Try walking
     set output [mud_cmd "$dir"]
-    after 150
+    after 500
 
     # Check for errors — if we can't move, skip
     if {[string match "*沒有這個方向*" $output] || [string match "*沒有出路*" $output] || [string match "*什麼*" $output]} {
@@ -266,7 +266,7 @@ while {[llength $stack] > 0} {
     # Check NPCs in this room if any are expected
     if {[info exists npc_list($dest)]} {
         set look_output [mud_cmd "look"]
-        after 150
+        after 500
 
         foreach npc_entry $npc_list($dest) {
             set npc_id [lindex $npc_entry 0]

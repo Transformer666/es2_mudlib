@@ -194,7 +194,7 @@ while {[llength $stack] > 0} {
         if {$backtrack ne ""} {
             # Walk back to parent
             set bt_output [mud_cmd "$backtrack"]
-            after 150
+            after 500
 
             # Check if backtrack worked
             if {[string match "*沒有這個方向*" $bt_output] || [string match "*沒有出路*" $bt_output] || [string match "*什麼*" $bt_output]} {
@@ -221,7 +221,7 @@ while {[llength $stack] > 0} {
     # Try walking in this direction
     incr exits_tested
     set output [mud_cmd "$dir"]
-    after 150
+    after 500
 
     # Check for errors
     if {[string match "*沒有這個方向*" $output] || [string match "*沒有出路*" $output] || [string match "*什麼*" $output]} {
