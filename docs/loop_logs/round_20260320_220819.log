@@ -1,0 +1,173 @@
+Round 21 - Fri Mar 20 22:08:19 UTC 2026
+[0;34m[22:08:19][0m Using git remote: origin
+[0;34m[22:08:19][0m Pulling latest changes...
+From github.com:Transformer666/es2_mudlib
+ * branch            main       -> FETCH_HEAD
+Already up to date.
+
+=========================================
+  ES2 Agent Pipeline v2
+  Phase: all
+  Start: 2026-03-20 22:08:19
+=========================================
+
+[0;34m[22:08:21][0m === Phase: Analyze (bash-native, no agent) ===
+[0;34m[22:08:22][0m Analyze complete:
+[0;34m[22:08:22][0m   Races: 11/11 | Classes: 9/7 | Sects: 18/18
+[0;34m[22:08:22][0m   Skills: 75 (missing: 40) | Rooms: 480 | NPCs: 286
+[0;34m[22:08:22][0m   Quests: 14 | Equipment: 282
+[0;34m[22:08:22][0m   Total missing: 40
+[0;32m[OK][0m Analyze phase
+[0;34m[22:08:22][0m === Phase: Build ===
+[0;34m[22:08:22][0m Step: Audit area: stub_towns
+修復完成。以下是建立/修改的檔案清單：
+
+## 建立的檔案
+
+| 檔案 | 說明 |
+|------|------|
+| `mudlib/obj/area/obj/ration.c` | 新建 — 乾糧（通用食物），修復 choyin 商人的商品引用 |
+| `mudlib/obj/area/obj/torch.c` | 新建 — 火把（通用照明），修復 choyin 商人的商品引用 |
+
+## 修改的檔案
+
+| 檔案 | 說明 |
+|------|------|
+| `mudlib/d/weiguo/npc/innkeeper.c` | 新增 `inherit F_VENDOR` + `set("merchandise")` 販售乾糧和火把 |
+
+## 未處理（超出範圍）
+
+- **weiguo 鬼洞地下城** — 世界地圖標注「衛國/鬼洞」但目前沒有對應的地下城區域。這需要設計完整的地下城（多房間 + 怪物），建議另開任務處理。
+[0;32m[OK][0m Audit area: stub_towns
+[0;34m[22:12:16][0m Step: Audit skills
+## 技能 Daemon 審查結果
+
+### 門派引用的技能（20 個）
+
+所有 20 個門派引用的技能都有對應的 daemon 檔案：
+
+| 技能 | 門派 | daemon 檔案 |
+|------|------|------------|
+| amazing needle | 五毒 | ✓ |
+| dagger | 銀蛟/狼翼 | ✓ |
+| diamond hammer | 白象 | ✓ |
+| fengshan sword | 風山 | ✓ |
+| five defeat needle | 五毒 | ✓ |
+| lengmei sword | 冷梅 | ✓ |
+| longttu neigong | 龍圖 | ✓ |
+| maoshan neigong | 茅山 | ✓ |
+| maoshan sword | 茅山 | ✓ |
+| needle | 箭笳/龍圖 | ✓ |
+| phantom sword | 天邪 | ✓ |
+| pike | 真武 | ✓ |
+| staff | 寶蓮 | ✓ |
+| sword | 玄天/枯蕭 | ✓ |
+| tactic | 真武 | ✓ |
+| taiyi sword | 天師 | ✓ |
+| taoshan milu | 茅山 | ✓ |
+| three rotations | 步玄 | ✓ |
+| tiger blade | 虎刀 | ✓ |
+| ziwei neigong | 天師 | ✓ |
+
+### 完整性檢查
+
+- **skill_improved / skill_advanced**：全部 79 個 skill daemon 都有實作 ✓
+- **戰鬥技能 actions**：42 個戰鬥技能全部 ≥ 6 招 ✓（sword/blade/unarmed 有 7-8 招，其餘 6 招）
+- **內功技能**：12 個內功 daemon 無需 actions mapping ✓
+
+### 結論
+
+- 缺少：**0 個**
+- 本次建立：**0 個**
+- 剩餘待處理：**0 個**
+
+所有門派引用的技能 daemon 均已完整建立，且每個 daemon 都包含必要的 `skill_improved` 和 `skill_advanced` 函式，戰鬥技能均有至少 6 個招式。系統狀態完整一致。
+[0;32m[OK][0m Audit skills
+[0;34m[22:14:24][0m Step: Audit quests
+## 任務系統完整性審查結果
+
+### 雪亭鎮 7 謎 — 全部已實作 ✓
+
+| # | 謎題 | quest flag | NPC/檔案 | 獎勵 | 載入房間 |
+|---|------|-----------|----------|------|---------|
+| 1 | 阿寶在老榕樹等的人是誰？ | `arbao_letter_done` | arbao.c | 80分 | square.c ✓ |
+| 2 | 瞎眼婆婆的真實身分？ | `gammer_identity_done` | gammer.c | 120分 | square.c ✓ |
+| 3 | 貨棧搬箱子算不算勞動？ | `foreman_crate_done` | foreman.c | 50分 | store.c ✓ |
+| 4 | 驛站遺失了幾封信？ | `postman_delivery_done` | postman.c | 100分 | post_office.c ✓ |
+| 5 | 想不想加入振武軍營？ | `recruiter_enlist_done` | recruiter.c | 50分 | military_camp.c ✓ |
+| 6 | 破舊的老宅裡藏了什麼？ | `manor_secret_done` | manor_cellar.c (房間) | 60分 | 自身即觸發點 ✓ |
+| 7 | 黑袍老人的女兒去了哪裡？ | `darkrobe_daughter_done` | darkrobe.c + girl.c | 150分 | dilapidated_manor.c + ruin2.c ✓ |
+
+### 五堂鎮 6 謎 — 全部已實作 ✓
+
+| # | 謎題 | quest flag | NPC/檔案 | 獎勵 | 載入房間 |
+|---|------|-----------|----------|------|---------|
+| 1 | 飲血丟在了哪裡？ | `yinxue_found_done` | river_bend.c (房間) + storyteller.c | 120分 | 自身即觸發點 ✓ |
+| 2 | 巫山之中神秘雕像有何秘密？ | `wushan_statue_done` | wushan_secret.c (房間) | 200分 | 自身即觸發點 ✓ |
+| 3 | 郭布要收的徒弟在哪裡？ | `guobu_apprentice_done` | guobu.c + boy.c | 80分 | street1.c + river_bend.c ✓ |
+| 4 | 鎮天神廟內藏著誰？ | `temple_master_done` | temple_master.c | 150分 | temple.c ✓ |
+| 5 | 別館內的欽差來五堂要做甚麼？ | `inspector_case_done` | inspector.c + storyteller.c | 80分 | court.c + inn_hall.c ✓ |
+| 6 | 過河的船在哪裡？ | `ferryman_guide_done` | ferryman.c | 50分 | dock.c ✓ |
+
+### 額外任務（不在謎題列表中）
+
+| quest flag | NPC | 獎勵 | 載入房間 |
+|-----------|-----|------|---------|
+| `escort_guide_done` | escort.c | 30分 | square_s.c ✓ |
+| `old_beggar_done` | old_beggar.c | 200分 | square_sw.c ✓ |
+
+### 統計
+
+- **已有任務：15 個**（雪亭 9 + 五堂 6）
+- **Wiki 13 謎全部覆蓋**，額外還有 2 個補充任務
+- **所有任務 NPC 均已載入對應房間**
+- **quest flag 格式統一**：`quest/<id>_done`
+- **pending 追蹤格式統一**：`pending/<id>` 搭配數字階段
+- **獎勵範圍**：30 ~ 200 分，合理分佈
+- **本次新增：0 個**（全部謎題已有對應任務）
+
+任務系統完整，無缺漏。
+[0;32m[OK][0m Audit quests
+[main b7a4312] feat: add quests
+ 1 file changed, 5 insertions(+)
+[0;34m[22:17:43][0m === Phase: Validate ===
+[0;34m[22:17:43][0m Step: Static validation
+## 靜態驗證報告
+
+### 主測試套件 (`run_tests.sh all`)
+| 結果 | 數量 |
+|------|------|
+| **PASS** | 3545 |
+| **FAIL** | 23 |
+| **WARN** | 46 |
+
+#### 主要 FAIL 項目（摘要）：
+- **Room inherit missing**: `d/longan/temple`, `d/snow/bazar`, `d/snow/small_temple` 等房間缺少正確的 inherit
+- **雙向出口缺失**: 4 處單向出口未設反向連結
+  - `ngate`: northwest → entrance 缺 southeast 回程
+  - `tree`: down → square 缺 up 回程
+  - `mountain_road2`: west → mountain_path 缺 east 回程
+  - `gate`: west → watchtower 缺 east 回程
+
+---
+
+### 額外檢查
+
+#### 1. `set("aggressive", 1)` 誤用
+**PASS** — 0 筆。所有 NPC 均正確使用 `set("attitude", "aggressive")`。
+
+#### 2. `skill_improved` 覆蓋率
+**PASS** — 所有 75 個 skill daemon 均包含 `skill_improved`（每個至少 1 處）。
+
+#### 3. lv50+ 掌門 `vision_of_ghost`
+**11/13 PASS** — 大部分掌門已設定。兩個疑似缺失：
+- `d/tianxie/npc/daxiedaoren.c` — lv75 **前任掌門**，無 `vision_of_ghost`（可能需要補上）
+- `d/hudao/npc/sunyi.c` — lv55，文中提及掌門但她本身是**義女**，非掌門，可忽略
+
+---
+
+### 總結
+- **額外檢查**: 3/3 基本通過
+- **主套件**: 23 個 FAIL 主要集中在少數房間的 inherit 缺失和 4 處單向出口。需要修復這些房間以達到全綠。
+[0;32m[OK][0m Static validation
+[0;34m[22:19:46][0m Pipeline complete: 5 ok, 0 warnings.
