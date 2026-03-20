@@ -48,6 +48,7 @@ void create()
 
 	setup();
 	carry_object(STOCK_WEAPON("axe"))->wield();
+	set_temp("apply/vision_of_ghost", 1);
 }
 
 void die(object killer)

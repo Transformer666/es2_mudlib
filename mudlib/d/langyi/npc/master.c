@@ -29,6 +29,7 @@ void create()
     carry_object(__DIR__"obj/viper_dagger")->wield();
     carry_object(__DIR__"obj/night_suit")->wear();
     carry_money("silver", 80);
+    set_temp("apply/vision_of_ghost", 1);
 }
 
 void set_flag(object me)

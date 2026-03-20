@@ -56,6 +56,7 @@ void create()
 	setup();
 	carry_object(__DIR__"obj/blood_blade")->wield();
 	carry_money("gold", 200);
+	set_temp("apply/vision_of_ghost", 1);
 }
 
 void die(object killer)

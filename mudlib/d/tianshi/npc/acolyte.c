@@ -24,4 +24,5 @@ void create()
     setup();
     carry_object( STOCK_ARMOR("cloth") )->wear();
     carry_money("coin", 20);
+    set_temp("apply/vision_of_ghost", 1);
 }

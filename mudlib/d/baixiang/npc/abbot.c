@@ -33,6 +33,7 @@ void create()
     }));
     setup();
     carry_money("coin", 100);
+    set_temp("apply/vision_of_ghost", 1);
 }
 
 void set_flag(object me)

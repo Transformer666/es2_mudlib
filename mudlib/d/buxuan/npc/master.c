@@ -30,6 +30,7 @@ void create()
     carry_object(__DIR__"obj/wind_blade")->wield();
     carry_object(__DIR__"obj/buxuan_cloth")->wear();
     carry_money("silver", 60);
+    set_temp("apply/vision_of_ghost", 1);
 }
 
 void set_flag(object me)

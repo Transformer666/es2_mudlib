@@ -29,6 +29,7 @@ void create()
     carry_object(__DIR__"obj/dark_blade")->wield();
     carry_object(__DIR__"obj/shadow_cloak")->wear();
     carry_money("silver", 100);
+    set_temp("apply/vision_of_ghost", 1);
 }
 
 void set_flag(object me)

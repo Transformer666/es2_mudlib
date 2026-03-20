@@ -29,6 +29,7 @@ void create()
     carry_object( STOCK_ARMOR("cloth") )->wear();
     carry_object( STOCK_WEAPON("longsword") )->wield();
     carry_money("silver", 45);
+    set_temp("apply/vision_of_ghost", 1);
 }
 
 void set_flag(object me)

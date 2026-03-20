@@ -55,6 +55,7 @@ void create()
 	carry_object("/obj/area/obj/cloth")->wear();
 	carry_object(__DIR__"obj/cane")->wield();
 	carry_object(__DIR__"obj/syndicator")->wield("secondhand dagger");
+	set_temp("apply/vision_of_ghost", 1);
 }
 
 private void give_coin(object who)

@@ -28,6 +28,7 @@ void create()
     carry_object(__DIR__"obj/silver_needle")->wield();
     carry_object(__DIR__"obj/alchemy_robe")->wear();
     carry_money("coin", 200);
+    set_temp("apply/vision_of_ghost", 1);
 }
 
 void set_flag(object me)

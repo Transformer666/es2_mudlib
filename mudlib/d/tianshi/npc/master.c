@@ -30,6 +30,7 @@ void create()
     carry_object(__DIR__"obj/taiyi_sword")->wield();
     carry_object(__DIR__"obj/taoist_robe")->wear();
     carry_money("silver", 60);
+    set_temp("apply/vision_of_ghost", 1);
 }
 
 void set_flag(object me)

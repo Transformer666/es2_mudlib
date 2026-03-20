@@ -32,4 +32,5 @@ void create()
 	setup();
 	carry_object( STOCK_ARMOR("cloth") )->wear();
 	carry_object( STOCK_WEAPON("blade") )->wield();
+	set_temp("apply/vision_of_ghost", 1);
 }

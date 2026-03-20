@@ -38,4 +38,5 @@ void create()
 	setup();
 	carry_object(STOCK_WEAPON("staff"))->wield();
 	carry_object(STOCK_ARMOR("cloth"))->wear();
+	set_temp("apply/vision_of_ghost", 1);
 }

@@ -32,4 +32,5 @@ void create()
 	}));
 	setup();
 	carry_money("coin", 200);
+	set_temp("apply/vision_of_ghost", 1);
 }

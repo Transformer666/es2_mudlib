@@ -49,6 +49,7 @@ void create()
 	carry_object(STOCK_WEAPON("staff"))->wield();
 	carry_object(STOCK_ARMOR("cloth"))->wear();
 	carry_money("coin", 300);
+	set_temp("apply/vision_of_ghost", 1);
 }
 
 int acquire_skill(object ob, string skill)

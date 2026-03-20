@@ -41,6 +41,7 @@ void create()
     setup();
     carry_object(__DIR__"obj/white_dress")->wear();
     carry_object(__DIR__"obj/slasher_sword")->wield();
+    set_temp("apply/vision_of_ghost", 1);
 }
 
 void relay_emote(object ob, string verb)
