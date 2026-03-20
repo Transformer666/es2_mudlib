@@ -1,6 +1,8 @@
 // vim: syntax=lpc
 
-inherit ROOM;
+#include <room.h>
+
+inherit TEMPLE;
 
 void create()
 {
@@ -20,4 +22,5 @@ LONG
     set("objects", ([ __DIR__"npc/temple_monk" : 1 ]));
 
     setup();
+    replace_program(TEMPLE);
 }

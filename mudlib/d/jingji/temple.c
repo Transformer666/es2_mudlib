@@ -1,6 +1,8 @@
 // vim: syntax=lpc
 
-inherit ROOM;
+#include <room.h>
+
+inherit TEMPLE;
 
 void create()
 {
@@ -21,4 +23,5 @@ LONG
     ]));
 
     setup();
+    replace_program(TEMPLE);
 }
