@@ -7,11 +7,28 @@
 
 ---
 
+## 前置參考
+
+**必讀**：`automation/wiki_reference.md` — 已整理的 Wiki 完整資料，包含：
+- 神話設定（十三靈、宇宙賭約）
+- 歷史時間線（5000 年 → 現在）
+- 11 種族完整數據（業力/屬性上限/精氣神/被動主動能力）
+- 7 職業 × 18 門派完整對應表（含路線/推薦種族）
+- 城鎮謎題（雪亭 7 謎 + 五堂 6 謎）
+- 主線任務線索 + 天地靈任務攻略
+- PvP 戰鬥紀錄
+
+先讀取 `automation/wiki_reference.md` 取得結構化資料，
+再爬取以下頁面補充細節或確認最新內容。
+
+---
+
 ## 執行步驟
 
 ### Step 1：爬取 Wiki 及外部資料
 
-爬取以下所有頁面，儲存到 `docs/wiki_content.json`：
+先讀取 `automation/wiki_reference.md` 作為基礎資料。
+再爬取以下頁面補充或更新，儲存到 `docs/wiki_content.json`：
 
 #### 1A. 官方 Wiki（Google Sites）
 
