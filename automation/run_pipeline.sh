@@ -6,8 +6,8 @@
 #        bash automation/run_pipeline.sh build
 #        bash automation/run_pipeline.sh validate
 
-set -e
-set -o pipefail
+# No set -e: pipeline must continue even if individual steps fail
+# No set -o pipefail: grep in pipes may return 1 when no matches
 
 LOG_FILE="docs/pipeline_run.log"
 START_TIME=$(date +"%Y-%m-%d %H:%M:%S")
