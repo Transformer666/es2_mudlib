@@ -10,7 +10,7 @@ void create()
 漫著灰濛濛的霧氣。腳下的地面由黑色的石板鋪成﹐石板上刻滿了奇
 異的符文﹐隱隱散發著暗淡的紅光。頭頂上方是一片虛無的黑暗﹐看
 不到天空﹐也感受不到風。遠處隱約可以看到一條蜿蜒的石路通往更
-深處。這裡便是傳說中的陰間了。
+深處。這裡便是傳說中的陰間了。往上方的裂縫可以回到人間。
 LONG
     );
     set("detail", ([
@@ -28,5 +28,15 @@ LONG
     ]));
 
     setup();
-    replace_program(ROOM);
+    // 不使用 replace_program — 有自訂 receive_object
+}
+
+// 只有鬼魂能進入陰間
+int receive_object(object ob, int from_inventory)
+{
+    if( ob->is_character() && ob->query("life_form") != "ghost" ) {
+        tell_object(ob, "一股無形的力量將你彈了回去﹐活人不得進入陰間。\n");
+        return 0;
+    }
+    return 1;
 }
