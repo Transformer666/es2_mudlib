@@ -1,33 +1,39 @@
 {
   "summary": {
     "scan_date": "2026-03-20",
-    "total_required": 112,
-    "total_implemented": 78,
-    "total_missing": 34,
-    "completion_percentage": "69.6%",
+    "total_required": 110,
+    "total_implemented": 79,
+    "total_missing": 31,
+    "completion_percentage": "71.8%",
     "categories": {
       "races": {"required": 11, "implemented": 11, "missing": 0},
       "classes": {"required": 7, "implemented": 7, "missing": 0},
-      "sects": {"required": 20, "implemented": 18, "missing": 2},
+      "sects": {"required": 21, "implemented": 18, "missing": 3},
       "towns": {"required": 2, "implemented": 2, "missing": 0},
-      "areas_misc": {"required": 36, "implemented": 36, "missing": 0},
+      "areas_misc": {"required": 37, "implemented": 37, "missing": 0},
       "quests": {"required": 5, "implemented": 2, "missing": 3},
       "advanced_class_paths": {"required": 6, "implemented": 0, "missing": 6},
       "help_files_races": {"required": 11, "implemented": 11, "missing": 0},
       "help_files_classes": {"required": 7, "implemented": 0, "missing": 7},
       "help_files_general": {"required": 5, "implemented": 0, "missing": 5},
-      "special_areas": {"required": 1, "implemented": 0, "missing": 1},
       "equipment_system": {"required": 1, "implemented": 1, "missing": 0}
-    }
+    },
+    "changes_since_last_scan": [
+      "地獄/陰間區域已實作 (d/hell/ - 6個房間)",
+      "天月庵區域已建立 (d/tianyue/ - 11個檔案) 但仍缺 daemon/sect/tianyue.c",
+      "雪亭鎮新增多個房間和NPC (bazar, court, school, post_office, warehouse 等)",
+      "五堂鎮新增巫山區域 (wushan_foot, wushan_path1-3, wushan_cave)"
+    ]
   },
   "missing_sects": [
     {
       "id": "tianyue",
       "name": "天月庵",
       "class": "monk",
-      "description": "與寶蓮寺類似，以濟世度人為己任的門派",
-      "priority": "medium",
-      "needs": ["daemon/sect/tianyue.c", "d/tianyue/ area directory"]
+      "description": "與寶蓮寺類似，以濟世度人為己任的尼姑庵門派",
+      "priority": "high",
+      "status": "區域已建立 (d/tianyue/)，但缺少 daemon 定義",
+      "needs": ["daemon/sect/tianyue.c"]
     },
     {
       "id": "jinshe",
@@ -37,6 +43,15 @@
       "priority": "low",
       "note": "進階專精路線，非獨立門派區域",
       "needs": ["daemon/sect/jinshe.c 或整合至 thief advancement system"]
+    },
+    {
+      "id": "heilong",
+      "name": "黑龍使者",
+      "class": "thief",
+      "description": "小偷進階專精：龍爪和毒術專家，擅長操控對手",
+      "priority": "low",
+      "note": "進階專精路線，非獨立門派區域",
+      "needs": ["daemon/sect/heilong.c 或整合至 thief advancement system"]
     }
   ],
   "missing_quests": [
@@ -86,7 +101,6 @@
       "base_sect": "buxuan",
       "description": "步玄派進階路線，增強生存能力",
       "priority": "medium",
-      "note": "牙山居士 NPC 存在但非正式轉職系統",
       "needs": ["advancement daemon", "轉職條件", "專屬能力"]
     },
     {
@@ -111,7 +125,6 @@
       "base_sect": "wutuo",
       "description": "武陀進階路線",
       "priority": "medium",
-      "note": "武陀香主 NPC 存在但非正式轉職系統",
       "needs": ["advancement daemon", "轉職條件", "專屬能力"]
     }
   ],
@@ -143,22 +156,23 @@
       "priority": "medium"
     }
   ],
-  "missing_areas": [
-    {
-      "id": "hell",
-      "name": "地獄/陰間",
-      "description": "地靈任務所需的地氣塔頂區域，也是世界觀中陰間的實作",
-      "priority": "high",
-      "needs": ["d/hell/ 區域目錄", "地氣塔房間系列", "地靈 Boss 戰鬥房間"],
-      "note": "地靈 NPC 已存在於 d/chixiao/npc/diling.c 但缺少完整戰鬥區域"
-    }
-  ],
+  "missing_rooms": [],
+  "missing_npcs": [],
   "existing_content_summary": {
     "races_implemented": ["human", "xingtian", "yenhold", "yaksha", "malik", "woochan", "jiaojao", "dingling", "asura", "rainnar", "blackteeth"],
     "classes_implemented": ["warrior", "scholar", "monk", "thief", "taoist", "alchemist", "soldier", "commoner", "fighter"],
     "sects_implemented": ["fengshan", "lengmei", "kuxiao", "xueyin", "hudao", "buxuan", "xuantian", "baolian", "baixiang", "langyi", "yinjiao", "tianshi", "maoshan", "longttu", "wutuo", "jianjia", "zhenwu", "tianxie"],
-    "areas_implemented": ["snow", "wutang", "baihua", "baixiang", "baolian", "buxuan", "chixiao", "choyin", "fengshan", "graveyard", "heifeng", "hudao", "jianjia", "jingji", "kangping", "kuxiao", "langyi", "lee", "lengmei", "lijun", "longan", "longttu", "manglin", "maoshan", "oldpine", "road", "sanyen", "tianshi", "tianxie", "weiguo", "wutuo", "xuantian", "xueyin", "yinjiao", "zhenwu"],
+    "areas_implemented": ["baihua", "baixiang", "baolian", "buxuan", "chixiao", "choyin", "fengshan", "graveyard", "heifeng", "hell", "hudao", "jianjia", "jingji", "kangping", "kuxiao", "langyi", "lee", "lengmei", "lijun", "longan", "longttu", "manglin", "maoshan", "oldpine", "road", "sanyen", "snow", "tianshi", "tianxie", "tianyue", "weiguo", "wutang", "wutuo", "xuantian", "xueyin", "yinjiao", "zhenwu"],
     "quests_implemented": ["tianling (天靈任務)", "diling (地靈任務)"],
-    "help_files_implemented": ["races/asura", "races/blackteeth", "races/dingling", "races/human", "races/jiaojao", "races/malik", "races/rainnar", "races/woochan", "races/xingtian", "races/yaksha", "races/yenhold"]
+    "help_files_implemented": ["races/asura", "races/blackteeth", "races/dingling", "races/human", "races/jiaojao", "races/malik", "races/rainnar", "races/woochan", "races/xingtian", "races/yaksha", "races/yenhold"],
+    "file_counts": {
+      "total_d_files": 530,
+      "rooms": 289,
+      "npcs": 144,
+      "npc_objects": 93,
+      "daemon_files": 70,
+      "obj_files": 129,
+      "total_areas": 37
+    }
   }
 }

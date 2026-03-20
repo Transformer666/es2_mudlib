@@ -10,7 +10,7 @@
       "passive": "防禦力10，萬分之一機率變異為人類亞種",
       "active": "誘發驚人的救生力量恢復大量形體和氣",
       "description": "平衡型種族，具有生存導向的機制",
-      "lore": "人類亞種：所有職業70級，初始精30氣30神30，屬性上限提升至20"
+      "lore": "人類亞種：所有職業70級，初始精30氣30神30，屬性上限提升至20，可透過祈禱獲得太陽祝福恢復狀態"
     },
     {
       "id": "xingtian",
@@ -34,7 +34,7 @@
       "passive": "防禦力20，火焰抗性50",
       "active": "吐出熊熊烈火燒傷所有對手",
       "description": "火焰戰鬥型種族，增強防禦",
-      "lore": "善於操控火焰的種族"
+      "lore": "善於操控火焰的種族，結合防禦火焰免疫與攻擊火焰能力"
     },
     {
       "id": "yaksha",
@@ -43,10 +43,10 @@
       "classes": ["書生(60)", "武者(65)", "小偷(70)", "道士(65)", "方士(60)"],
       "initial_stats": {"精": 140, "氣": 70, "神": 70},
       "stat_caps": {"膂力": 25, "膽識": 25, "悟性": 20, "靈性": 25, "定力": 20, "機敏": 25, "根骨": 25, "慧根": 25},
-      "passive": "防禦50，攻擊25，陰陽眼，通天眼",
+      "passive": "防禦50，攻擊25，陰陽眼，天眼通",
       "active": "吞食其他生物的靈魂精華",
       "description": "高階多職業種族",
-      "lore": "具有陰陽眼和通天眼的強大種族"
+      "lore": "具有陰陽眼和天眼通的強大種族"
     },
     {
       "id": "malik",
@@ -68,7 +68,7 @@
       "initial_stats": {"精": 30, "氣": 20, "神": 60},
       "stat_caps": {"膂力": 15, "膽識": 15, "悟性": 20, "靈性": 20, "定力": 18, "機敏": 20, "根骨": 15, "慧根": 22},
       "passive": "防禦力5，護衛25，不需進食",
-      "active": "消化環境中的水氣恢復內在狀態",
+      "active": "消化體內水氣恢復狀態",
       "description": "低成本法術型種族",
       "lore": "不需要進食的奇特種族"
     },
@@ -115,7 +115,7 @@
       "classes": ["方士(60)", "道士(60)", "小偷(60)", "書生(60)", "和尚(65)"],
       "initial_stats": {"精": 40, "氣": 30, "神": 70},
       "stat_caps": {"膂力": 9, "膽識": 9, "悟性": 22, "靈性": 24, "定力": 20, "機敏": 13, "根骨": 13, "慧根": 28},
-      "passive": "防禦力20，四種元素傷害10",
+      "passive": "防禦力20，四種元素減傷各10",
       "active": "養育最多五條小蛇作為裝備",
       "description": "法術型種族，獨特蛇裝備系統",
       "lore": "可養蛇作為裝備的神秘種族"
@@ -137,160 +137,104 @@
     {
       "id": "warrior",
       "name": "武者",
-      "description": "武者是致力於武藝修練和遵守武德的修行者，在江湖中擔任各組織的核心力量。天朝大部分武者源自五大門派。"
+      "description": "武者是致力於武藝修練和遵守武德的修行者，在江湖中擔任各組織的核心力量。天朝大部分武者源自五大門派。",
+      "sects": ["fengshan", "lengmei", "kuxiao", "xueyin", "hudao"],
+      "advancement_paths": {
+        "fengshan": ["劍靈", "山修", "劍師"],
+        "lengmei": ["劍客", "古劍傳人", "虎統領"],
+        "kuxiao": ["守衛者", "苦行防者", "刀使"],
+        "xueyin": ["流浪者", "防禦型戰士", "天邪門徒"],
+        "hudao": ["護衛", "鬼才", "太守"]
+      }
     },
     {
       "id": "scholar",
       "name": "書生",
-      "description": "十年寒窗苦的書生，文質彬彬頗有氣質，但並不具有出眾的戰鬥力。書生擔任幫會長老可查看幫眾招收、升遷、離開記錄。"
+      "description": "十年寒窗苦的書生，文質彬彬頗有氣質，但並不具有出眾的戰鬥力。書生擔任幫會長老可查看幫眾招收、升遷、離開記錄。",
+      "sects": ["buxuan", "xuantian"],
+      "advancement_paths": {
+        "buxuan": ["居士"],
+        "xuantian": ["散人"],
+        "shared": ["皇家情報員"]
+      }
     },
     {
       "id": "monk",
       "name": "和尚",
-      "description": "和尚通過禪修和佛學修行達到精神修煉，尋求內心平靜並引導三界的靈力。天朝佛教信眾眾多，主要屬於禪宗。嚴禁飲酒，違者有致命後果。"
+      "description": "和尚通過禪修和佛學修行達到精神修煉，尋求內心平靜並引導三界的靈力。天朝佛教信眾眾多，主要屬於禪宗。嚴禁飲酒，違者有致命後果。",
+      "sects": ["baolian", "tianyue", "baixiang"],
+      "advancement_paths": {
+        "baixiang": ["禪師（防禦型）", "羅漢（攻擊型）"]
+      }
     },
     {
       "id": "thief",
       "name": "小偷",
-      "description": "小偷/盜賊作為天朝的隱藏力量運作。自黃樵失蹤後影響力下降。所有小偷最終可獲得暗器。分兩大門派。"
+      "description": "小偷/盜賊作為天朝的隱藏力量運作。自黃樵失蹤後影響力下降。所有小偷最終可獲得暗器。分兩大門派。",
+      "sects": ["langyi", "yinjiao"],
+      "advancement_paths": {
+        "langyi": ["金蛇門"],
+        "yinjiao": ["黑龍使者"]
+      }
     },
     {
       "id": "taoist",
       "name": "道士",
-      "description": "追求清淨自然天地合一的修行者，擅長元素法術、狀態效果、治療法術、鬼魂控制，可選修劍術。"
+      "description": "追求清淨自然天地合一的修行者，擅長元素法術、狀態效果、治療法術、鬼魂控制，可選修劍術。",
+      "sects": ["tianshi", "maoshan"],
+      "advancement_paths": {
+        "tianshi": ["雙元素大師"],
+        "maoshan": {
+          "lingyun": "靈雲觀 - 最強狀態影響能力",
+          "yinfeng": "隱風觀 - 治療和醫療法術",
+          "huanwu": "幻霧觀 - 高爆發鬼魂操控",
+          "sword": "茅山劍師 - 劍術戰鬥專家"
+        }
+      }
     },
     {
       "id": "alchemist",
       "name": "方士",
-      "description": "追求長生不老的獨特職業，通常居住在偏遠地區。專精煉丹和修煉，受武林中人尊重。"
+      "description": "追求長生不老的獨特職業，通常居住在偏遠地區。專精煉丹和修煉，受武林中人尊重。",
+      "sects": ["longttu", "wutuo"],
+      "advancement_paths": {
+        "longttu": ["醫師"],
+        "wutuo": ["香主"],
+        "shared": ["劍甲門弟子"]
+      }
     },
     {
       "id": "soldier",
       "name": "軍人",
-      "description": "每個國家都需要軍隊維持秩序。在天朝，軍人通過戰鬥經驗和消滅盜匪累積軍功來晉升。振武軍營是目前唯一的招兵中心。"
+      "description": "每個國家都需要軍隊維持秩序。在天朝，軍人通過戰鬥經驗和消滅盜匪累積軍功來晉升。振武軍營是目前唯一的招兵中心。",
+      "sects": ["zhenwu"],
+      "advancement_paths": {
+        "zhenwu": ["軍事統領（暴力型）", "軍事策略家（道術型）"]
+      }
     }
   ],
   "sects": [
-    {
-      "id": "fengshan",
-      "name": "封山派",
-      "class": "warrior",
-      "description": "內功、輕功和獨特劍法。可晉升為輕靈、山人或劍客。擅長持久戰但爆發力較低。推薦種族：夜叉、刑天。"
-    },
-    {
-      "id": "lengmei",
-      "name": "冷梅莊",
-      "class": "warrior",
-      "description": "快劍技法。可晉升為劍士、古劍門傳人或虎督。高爆發但耐久較低。推薦種族：刑天/阿修羅(劍士/虎督)；人類(古劍)。"
-    },
-    {
-      "id": "kuxiao",
-      "name": "哭笑門",
-      "class": "warrior",
-      "description": "最強防禦力和獨特刀法。可晉升為護法、素衣衛或使者。推薦種族：刑天、夜叉、厭火。"
-    },
-    {
-      "id": "xueyin",
-      "name": "雪吟莊",
-      "class": "warrior",
-      "description": "來自天邪國的強力內功技法。可晉升為浪人、棄徒或天邪派弟子。不建議新手。推薦種族：夜叉、阿修羅、焦僥、刑天、人類。"
-    },
-    {
-      "id": "hudao",
-      "name": "虎刀門",
-      "class": "warrior",
-      "description": "最具爆發力的武功，壓倒性刀法。可晉升為護衛、鬼才或太守。推薦種族：刑天、阿修羅。"
-    },
-    {
-      "id": "buxuan",
-      "name": "步玄派",
-      "class": "scholar",
-      "description": "雙劍流配合輕盈步法。可晉升為居士。"
-    },
-    {
-      "id": "xuantian",
-      "name": "玄天教",
-      "class": "scholar",
-      "description": "手動控制式群控戰鬥，對NPC效果有限但PvP優勢大。可晉升為散人。"
-    },
-    {
-      "id": "baolian",
-      "name": "寶蓮寺",
-      "class": "monk",
-      "description": "以濟世度人為己任，擅長治療，對修練和戰鬥都有幫助。"
-    },
-    {
-      "id": "tianyue",
-      "name": "天月庵",
-      "class": "monk",
-      "description": "與寶蓮寺類似，以濟世度人為己任的門派。"
-    },
-    {
-      "id": "baixiang",
-      "name": "護國白象寺",
-      "class": "monk",
-      "description": "武僧門派，在武林中地位崇高。可專精為禪師(防禦型)或羅漢(攻擊型)。"
-    },
-    {
-      "id": "langyi",
-      "name": "瑯夷",
-      "class": "thief",
-      "description": "號稱最大地下組織。戰鬥技法無顯著特色但人脈廣泛，弟子可學習多種特殊技能。"
-    },
-    {
-      "id": "yinjiao",
-      "name": "隱教",
-      "class": "thief",
-      "description": "擅長輕功、內功和武技。弟子偏好閃避而非正面對抗。"
-    },
-    {
-      "id": "jinshe",
-      "name": "金蛇門",
-      "class": "thief",
-      "description": "小偷進階專精：劍法搭配暗器的戰鬥風格。"
-    },
-    {
-      "id": "heilongshizhe",
-      "name": "黑龍使者",
-      "class": "thief",
-      "description": "小偷進階專精：龍爪和毒術專家，擅長操控對手。"
-    },
-    {
-      "id": "tianshi",
-      "name": "天師派",
-      "class": "taoist",
-      "description": "專精冰、火、風、雷元素操控。玩家可修煉精通兩種元素。"
-    },
-    {
-      "id": "maoshan",
-      "name": "茅山派",
-      "class": "taoist",
-      "description": "分為三個分支：靈雲觀(最強狀態效果)、隱風觀(治療法術)、幻霧觀(高爆發鬼魂操控)。另可學茅山劍術。"
-    },
-    {
-      "id": "longttu",
-      "name": "龍圖",
-      "class": "alchemist",
-      "description": "專精煉丹修仙之道。可晉升為醫師。無直接戰鬥能力。"
-    },
-    {
-      "id": "wutuo",
-      "name": "武陀",
-      "class": "alchemist",
-      "description": "出神入化的針灸能力。可晉升為香主。支援和戰鬥兼備。"
-    },
-    {
-      "id": "jianjia",
-      "name": "劍甲門",
-      "class": "alchemist",
-      "description": "方士跨派可修煉路線，獲得戰鬥力和裝備強化能力。"
-    },
-    {
-      "id": "zhenwu",
-      "name": "振武軍營",
-      "class": "soldier",
-      "description": "天朝唯一招兵中心。可發展為暴力的軍隊統領或類似道士戰法的軍師。"
-    }
+    {"id": "fengshan", "name": "封山派", "class": "warrior", "description": "內功、輕功和獨特劍法。可晉升為劍靈、山修或劍師。擅長持久戰但爆發力較低。推薦種族：夜叉、刑天。"},
+    {"id": "lengmei", "name": "冷梅莊", "class": "warrior", "description": "快劍技法。可晉升為劍客、古劍門傳人或虎督。高爆發但耐久較低。推薦種族：刑天/阿修羅(劍客/虎督)；人類(古劍)。"},
+    {"id": "kuxiao", "name": "哭笑門", "class": "warrior", "description": "最強防禦力和獨特刀法。可晉升為護法、素衣衛或使者。推薦種族：刑天、夜叉、厭火。"},
+    {"id": "xueyin", "name": "雪吟莊", "class": "warrior", "description": "來自天邪國的強力內功技法。可晉升為浪人、棄徒或天邪派弟子。不建議新手。推薦種族：夜叉、阿修羅、焦僥、刑天、人類。"},
+    {"id": "hudao", "name": "虎刀門", "class": "warrior", "description": "最具爆發力的武功，壓倒性刀法。可晉升為護衛、鬼才或太守。推薦種族：刑天、阿修羅。"},
+    {"id": "buxuan", "name": "步玄派", "class": "scholar", "description": "雙劍流配合輕盈步法。可晉升為居士。"},
+    {"id": "xuantian", "name": "玄天教", "class": "scholar", "description": "手動控制式群控戰鬥，對NPC效果有限但PvP優勢大。可晉升為散人。"},
+    {"id": "baolian", "name": "寶蓮寺", "class": "monk", "description": "以濟世度人為己任，擅長治療，對修練和戰鬥都有幫助。"},
+    {"id": "tianyue", "name": "天月庵", "class": "monk", "description": "與寶蓮寺類似，以濟世度人為己任的尼姑庵門派。"},
+    {"id": "baixiang", "name": "護國白象寺", "class": "monk", "description": "武僧門派，在武林中地位崇高。可專精為禪師(防禦型)或羅漢(攻擊型)。"},
+    {"id": "langyi", "name": "瑯夷", "class": "thief", "description": "號稱最大地下組織。戰鬥技法無顯著特色但人脈廣泛，弟子可學習多種特殊技能。"},
+    {"id": "yinjiao", "name": "隱教", "class": "thief", "description": "擅長輕功、內功和武技。弟子偏好閃避而非正面對抗。"},
+    {"id": "jinshe", "name": "金蛇門", "class": "thief", "description": "小偷進階專精：劍法搭配暗器的戰鬥風格。來自瑯夷。"},
+    {"id": "heilong", "name": "黑龍使者", "class": "thief", "description": "小偷進階專精：龍爪和毒術專家，擅長操控對手。來自隱教。"},
+    {"id": "tianshi", "name": "天師派", "class": "taoist", "description": "專精冰、火、風、雷元素操控。玩家可修煉精通兩種元素。"},
+    {"id": "maoshan", "name": "茅山派", "class": "taoist", "description": "分為三個分支：靈雲觀(最強狀態效果)、隱風觀(治療法術)、幻霧觀(高爆發鬼魂操控)。另可學茅山劍術。"},
+    {"id": "longttu", "name": "龍圖", "class": "alchemist", "description": "專精煉丹修仙之道。可晉升為醫師。無直接戰鬥能力。"},
+    {"id": "wutuo", "name": "武陀", "class": "alchemist", "description": "出神入化的針灸能力。可晉升為香主。支援和戰鬥兼備。"},
+    {"id": "jianjia", "name": "劍甲門", "class": "alchemist", "description": "方士跨派可修煉路線，獲得戰鬥力和裝備強化能力。"},
+    {"id": "zhenwu", "name": "振武軍營", "class": "soldier", "description": "天朝唯一招兵中心。可發展為暴力的軍隊統領或類似道士戰法的軍師。"},
+    {"id": "tianxie", "name": "天邪門", "class": "warrior", "description": "雪吟莊的進階路線之一，暗系門派。"}
   ],
   "towns": [
     {
@@ -306,25 +250,25 @@
         "破舊大宅裡面躲著甚麼？",
         "黑衣老人的閨女跑去了哪裡？"
       ],
-      "rooms": ["square", "street", "inn", "market", "shop", "yamen", "relay_station", "warehouse", "military_camp", "old_mansion", "banyan_tree"],
-      "npcs": ["阿寶", "瞎眼老太婆", "黑衣老人"],
-      "quests": ["搬箱子", "送信", "參軍"]
+      "rooms": ["square", "square_e", "square_w", "square_s", "square_n", "square_sw", "nstreet1", "nstreet2", "wstreet1", "wstreet2", "wstreet3", "sstreet1", "lane1", "lane2", "npath1", "npath2", "npath3", "epath", "river1", "riverbank", "ngate", "sgate", "egate", "wgate", "ebridge", "ruin1", "ruin2", "tree", "small_temple", "kitchen", "mill", "fireplace", "inn_hall", "inn_kitchen", "store", "smithy", "herb_shop", "bazar", "court", "school", "post_office", "warehouse", "military_camp", "dilapidated_manor", "bug_room"],
+      "npcs": ["innkeeper", "foreman", "gammer", "junkman", "girl", "herbalist", "alchemist", "garrison", "guard", "lieutenant", "miller", "smith", "waiter", "patrol", "yu", "teacher", "oldman", "woman", "child", "child1", "child2", "child3", "child4", "luoyi", "postman", "recruiter", "worker", "darkrobe", "liuyi", "meiyingfeng", "yutieshan"],
+      "quests": ["搬箱子", "送信", "參軍", "破舊大宅秘密"]
     },
     {
       "id": "wutang",
       "name": "五堂鎮",
       "description": "天朝主要城鎮",
       "mysteries": [
-        "飲血的下落",
-        "巫山神像內的秘密",
-        "郭不要招的徒弟",
-        "城隍廟內不知名的住客",
-        "來訪的朝廷巡察使目的",
-        "渡口的船在哪裡"
+        "飲血丟在哪裡？",
+        "巫山之中神秘雕像有何秘密？",
+        "郭布要收的徒弟在哪裡？",
+        "鎮天神廟內藏著誰？",
+        "別館內的欽差來五堂要做甚麼？",
+        "過河的船在哪裡？"
       ],
-      "rooms": ["square", "street", "temple", "inn", "market", "dock"],
-      "npcs": ["飲血", "郭不", "巡察使"],
-      "quests": []
+      "rooms": ["square", "square_e", "square_w", "square_s", "square_n", "lane1", "lane2", "street1", "street2", "street3", "ngate", "egate", "sgate", "wgate", "dock", "court", "inn_hall", "inn_2f", "inn_3f", "herb_shop", "smithy", "store", "residence", "temple", "wushan_foot", "wushan_path1", "wushan_path2", "wushan_path3", "wushan_cave"],
+      "npcs": ["ferryman", "haidafu", "guobu", "inspector", "guard", "patrol", "shen", "storyteller", "temple_master", "villager", "waiter", "yongtai"],
+      "quests": ["飲血之謎", "巫山雕像秘密", "郭布收徒", "鎮天神廟", "欽差來訪", "渡河之船"]
     }
   ],
   "quests": [
@@ -350,7 +294,7 @@
       "name": "天靈任務",
       "description": "前往赤魈村許願池投入任意3樣火雷風雨四神武器，天靈出現並與玩家對戰",
       "location": "赤魈村許願池",
-      "reward": "匕首(思歸符效果)、Eye(隨機提升精力/智力/承受力/悟性1點)",
+      "reward": "匕首(思歸符效果、無限使用無需裝備)、天靈之眼(隨機提升靈/智/速/慧1點)",
       "boss_mechanics": "使用隱神篇武功，依據防禦力造成傷害，會降低攻勢等級，補血4次"
     },
     {
@@ -358,7 +302,7 @@
       "name": "地靈任務",
       "description": "需依序獲得聖木殘根→大環丹→金屋內丹→炎日箭→太陽槍，在地獄地氣塔頂insert開啟",
       "location": "地獄地氣塔頂",
-      "reward": "雙手斧(傷害12-99，力量修正165%)、Heart(隨機提升體質/堅毅/敏捷/力量1點)",
+      "reward": "雙手斧(傷害12-99、傷害+50)、地靈之心(隨機提升體/蝕/敏/力1點)",
       "boss_mechanics": "房間內無法使用exert和perform，只能直接攻擊，補血4次"
     }
   ],
@@ -374,10 +318,10 @@
     "阿寶在榕樹上的等待目標"
   ],
   "equipment": {
-    "note": "裝備資料存放在 Google Spreadsheet 中，無法直接爬取詳細內容",
+    "note": "裝備資料存放在 Google Spreadsheet 中 (ID: 0AuX-wOBQ9N62dEFBTThBOHZpMWFzSkVBYktKcDdRbEE)，無法直接爬取詳細內容",
     "source_url": "https://sites.google.com/site/es2mud/home/wan-jia-yuan-chuang/equipment"
   },
-  "mythology": "盤古開天闢地，分出凡間與混沌界。天神與侮天鬼分別掌控兩界。人類到來時，兩界充滿濁氣。天神欲助人類繁衍，侮天鬼視人類為食物。兩者衝突持續至韓玉氏誕生——天朝第一位統治者，獲賜聖袍和穿靈、旋光二刃。韓玉氏在十七天最終聖戰後逝世，天神將其精華化為十三靈：日神金烏、月神銀蟾、風神大鵬、雨神天龍、雷神澤獸、火神鳳凰、山鬼、林鬼、河鬼、原鬼，及天地人三靈。十三靈淨化凡間濁氣，天神封印剩餘威脅於混沌界，形成陰間。侮天鬼與天神打賭：每六百年，若人靈兩次轉世為善則入混沌界，若兩次轉世為惡則兩界屏障開啟。",
+  "mythology": "盤古開天闢地，分出凡間與混沌界。天神與侮天鬼分別掌控兩界。人類到來時，兩界充滿濁氣。天神欲助人類繁衍，侮天鬼視人類為食物。兩者衝突持續至韓宇——天朝第一位統治者出現。天神賜予韓宇聖袍和穿靈、旋光二刃。韓宇在十七天最終聖戰後逝世，天神將其精華化為十三靈：日神金烏、月神銀蟾、風神大鵬、雨神天龍、雷神澤獸、火神鳳凰，加上六個地靈（山鬼、林鬼、河鬼、原鬼等），及天地人三靈——渠雲（天）、玉馬（地）、渠民南（人）。前十二靈不死，但渠民南需每百年轉世為人，再沉睡兩百年。侮天鬼與天神打賭：若渠民南兩次轉世皆為善則入混沌界，若兩次轉世皆為惡則兩界屏障開啟。三百年前封印古樹破裂，釋放出超自然干擾，當前時代正處於這個宇宙性的十字路口。",
   "geography": {
     "world_map": "國家地圖（含多個種族領地）",
     "tianchao_map": "天朝地圖",
