@@ -13,10 +13,11 @@ LONG
 	);
 	set("objects", ([
 		__DIR__"npc/stone_lion" : 1,
+		__DIR__"npc/guard" : 1,
 	]));
 	set("exits", ([
 		"north" : __DIR__"road",
-		"south" : __DIR__"street",
+		"south" : __DIR__"square",
 		"east" : __DIR__"inn",
 	]));
 

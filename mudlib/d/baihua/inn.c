@@ -13,6 +13,9 @@ void create()
 季的鮮花。窗外便是一望無際的花田，景色宜人，令人心曠神怡。
 LONG
 	);
+	set("objects", ([
+		__DIR__"npc/innkeeper" : 1,
+	]));
 	set("valid_startroom", 1);
 	set("no_fight", 1);
 	set("exits", ([

@@ -1,6 +1,8 @@
 // Room: /d/baihua/shrine.c
 
-inherit ROOM;
+#include <room.h>
+
+inherit TEMPLE;
 
 void create()
 {
@@ -17,5 +19,5 @@ LONG
 	]));
 
 	setup();
-	replace_program(ROOM);
+	replace_program(TEMPLE);
 }

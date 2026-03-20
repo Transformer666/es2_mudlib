@@ -16,6 +16,7 @@ LONG
 	set("exits", ([
 		"east"  : "/d/road/wild_path1",
 		"north" : __DIR__"street",
+		"west"  : __DIR__"back_street",
 	]));
 
 	setup();

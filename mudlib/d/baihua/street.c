@@ -16,7 +16,7 @@ LONG
 		__DIR__"npc/student" : 1,
 	]));
 	set("exits", ([
-		"north" : __DIR__"entrance",
+		"north" : __DIR__"square",
 		"south" : __DIR__"lake",
 		"west" : __DIR__"garden",
 	]));

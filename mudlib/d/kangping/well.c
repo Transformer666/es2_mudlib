@@ -19,6 +19,7 @@ LONG
 	]));
 	set("exits", ([
 		"north" : __DIR__"square",
+		"east"  : __DIR__"temple",
 	]));
 
 	setup();

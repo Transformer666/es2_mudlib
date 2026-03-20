@@ -122,3 +122,26 @@ int acquire_skill(object ob, string skill)
 
 	return 1;
 }
+
+int accept_object(object player, object ob)
+{
+	object reply;
+
+	if( !userp(player) ) return 0;
+	if( !ob->id("arbao letter") && !ob->id("abao letter") ) return 0;
+	if( !player->query_temp("pending/arbao_deliver") ) return 0;
+
+	reply = new(__DIR__"obj/recruiter_reply");
+	reply->move(player);
+	player->delete_temp("pending/arbao_deliver");
+	player->set_temp("pending/arbao_reply", 1);
+
+	do_chat(({
+		"招兵官接過信件﹐拆開看了看。\n",
+		"招兵官皺了皺眉﹐說道﹕阿明﹖我記得這小子﹐年初隨著部隊調去南邊了。\n",
+		"招兵官說道﹕他在軍中表現不錯﹐你放心﹐人好好的。\n",
+		"招兵官提筆寫了幾行字﹐蓋上軍營的印鑑﹐遞給你。\n",
+		"招兵官說道﹕這封回信你帶回去給那姑娘吧﹐省得她擔心。\n",
+	}));
+	return 1;
+}
