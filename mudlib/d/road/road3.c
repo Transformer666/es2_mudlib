@@ -15,7 +15,7 @@ LONG
 	set("outdoors", "road");
 	set("exits", ([
 		"south" : __DIR__"road2",
-		"north" : "/d/zhenwu/gate",
+		"northwest" : "/d/zhenwu/gate",
 		"east"  : __DIR__"crossroad",
 		"west"  : "/d/green/entrance",
 	]));

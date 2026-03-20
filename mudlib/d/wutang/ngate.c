@@ -17,8 +17,9 @@ LONG
 	]));
 	set("exits", ([
 		"south" : __DIR__"court",
-		"north" : "/d/manglin/entrance",
+		"north" : "/d/zhenwu/gate",
 		"northeast" : "/d/babao/entrance",
+		"northwest" : "/d/manglin/entrance",
 	]));
 
 	setup();

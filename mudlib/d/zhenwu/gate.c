@@ -15,9 +15,11 @@ LONG
         __DIR__"npc/guard" : 2,
     ]));
     set("exits", ([
-        "south" : "/d/road/road3",
-        "north" : __DIR__"yard",
-        "east"  : __DIR__"watchtower",
+        "south"     : "/d/wutang/ngate",
+        "east"      : "/d/road/south_road2",
+        "southeast" : "/d/road/road3",
+        "north"     : __DIR__"yard",
+        "west"      : __DIR__"watchtower",
     ]));
 
     setup();
