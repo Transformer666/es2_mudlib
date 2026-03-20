@@ -34,6 +34,11 @@ warn() {
 
 mkdir -p docs
 
+# Pull latest changes before starting
+log "Pulling latest changes from origin..."
+git pull origin main 2>&1 | tee -a $LOG_FILE
+success "Repository updated."
+
 echo "" >> $LOG_FILE
 echo "==============================" >> $LOG_FILE
 echo "Pipeline start: $START_TIME" >> $LOG_FILE
