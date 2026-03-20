@@ -11,6 +11,9 @@ void create()
 ，在風中獵獵作響。營門兩側的石墩上插著長戟，散發出一股肅殺之氣。
 LONG
     );
+    set("objects", ([
+        __DIR__"npc/guard" : 2,
+    ]));
     set("exits", ([
         "south" : "/d/road/road3",
         "north" : __DIR__"yard",

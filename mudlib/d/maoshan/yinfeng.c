@@ -11,6 +11,9 @@ void create()
 獵獵作響。觀中的道士們在風中打坐修煉，神態自若。
 LONG
     );
+    set("objects", ([
+        __DIR__"npc/disciple" : 2,
+    ]));
     set("exits", ([
         "west" : __DIR__"gate",
     ]));

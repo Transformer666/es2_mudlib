@@ -15,6 +15,7 @@ LONG
 	set("exits", ([
 		"south" : __DIR__"crossroad",
 		"east" : "/d/baixiang/gate",
+		"west" : "/d/tianyue/mountain_path",
 	]));
 
 	setup();

@@ -11,6 +11,9 @@ void create()
 ，摒棄繁華，追求純粹。石壁上偶爾可見弟子以劍尖刻下的練功心得。
 LONG
     );
+    set("objects", ([
+        __DIR__"npc/disciple" : 1,
+    ]));
     set("exits", ([
         "east" : __DIR__"main_hall",
     ]));

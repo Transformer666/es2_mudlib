@@ -467,3 +467,135 @@ All other equipment referenced by NPCs (via `STOCK_WEAPON()`/`STOCK_ARMOR()` and
 [0;32m[OK][0m Task done: Implement equipment
 [0;34m[02:25:23][0m All tasks completed.
 [0;34m[02:25:23][0m Checking for changes to commit...
+[0;32m[OK][0m Changes committed and pushed to origin.
+[0;34m[02:35:34][0m Pulling latest changes from origin...
+From github.com:Transformer666/es2_mudlib
+ * branch            main       -> FETCH_HEAD
+Already up to date.
+[0;32m[OK][0m Repository updated.
+
+==============================
+Pipeline start: 2026-03-20 02:35:34
+==============================
+[0;34m[02:35:37][0m Running task: Analyze missing content
+--- Task: Analyze missing content ---
+All files generated. Here's the summary:
+
+---
+
+## ES2 MUD 實作進度總結
+
+**整體完成率：69.6%** (78/112 項目已實作)
+
+### 已完成 (100%)
+- **11/11 種族** — 全部實作含說明檔
+- **7/7 職業** — 全部 daemon 已實作
+- **2/2 城鎮** — 雪亭鎮(46房間)、五堂鎮(28房間)
+- **36 個區域** — 含所有門派總部
+- **18/20 門派** — 僅缺天月庵、金蛇門
+
+### 缺少的 34 項內容
+
+| 類別 | 缺少數 | 優先度 |
+|------|--------|--------|
+| 職業說明檔 | 7 | 高 |
+| 通用說明檔 | 5 | 高 |
+| 進階轉職路線 | 6 | 中 |
+| 任務系統 | 3 (十三靈/侮天鬼/主線) | 高 |
+| 門派 | 2 (天月庵/金蛇門) | 中 |
+| 特殊區域 | 1 (地獄/陰間) | 高 |
+
+### 產出檔案
+- `docs/wiki_content.json` — Wiki 完整資料 (11種族、7職業、20門派、神話、地理)
+- `docs/missing_content.json` — 差異分析與待實作清單
+- `docs/implementation_log.md` — 進度報告含優先順序建議
+[0;32m[OK][0m Task done: Analyze missing content
+[0;34m[02:45:09][0m Running task: Implement race daemons
+--- Task: Implement race daemons ---
+The implementation log already shows races at 100% completion with all entries marked done.
+
+**Summary: Task 02 is already complete.** All 4 completion conditions are met:
+
+- [x] All 11 race daemon `.c` files exist and pass static validation
+- [x] All 11 race help files exist with content
+- [x] Static verification passes (include, inherit, register, setup, initialize)
+- [x] `docs/implementation_log.md` already reflects 100% completion
+
+No work is needed for this task.
+[0;32m[OK][0m Task done: Implement race daemons
+[0;34m[02:46:12][0m Running task: Implement rooms
+--- Task: Implement rooms ---
+Error: Reached max turns (40)[0;32m[OK][0m Task done: Implement rooms
+[0;34m[02:54:48][0m Running task: Implement NPCs
+--- Task: Implement NPCs ---
+All tasks complete. Here's a summary:
+
+## NPC Implementation Summary
+
+### New NPCs Created (6)
+
+| NPC | Area | File | Type | Level |
+|-----|------|------|------|-------|
+| 封山弟子 | fengshan | `npc/disciple.c` | F_FIGHTER/warrior | 20 |
+| 營門衛兵 | zhenwu | `npc/guard.c` | F_SOLDIER/soldier | 20 |
+| 操練士兵 | zhenwu | `npc/soldier.c` | F_SOLDIER/soldier | 15 |
+| 茅山弟子 | maoshan | `npc/disciple.c` | F_SCHOLAR/taoist | 15 |
+| 灰袍僧人 | baixiang | `npc/monk.c` | F_VILLAGER/monk | 12 |
+| 陰魂守衛 | hell | `npc/tower_guard.c` | F_FIGHTER | 35 |
+
+### Room Loading Updates (9 rooms)
+
+| Room | NPC Loaded | Count |
+|------|-----------|-------|
+| fengshan/quarters.c | disciple | 1 |
+| fengshan/sword_arena.c | disciple | 2 |
+| zhenwu/gate.c | guard | 2 |
+| zhenwu/yard.c | soldier | 3 |
+| maoshan/yinfeng.c | disciple | 2 |
+| baixiang/courtyard.c | monk | 2 |
+| hell/tower_base.c | tower_guard | 1 |
+| hell/tower_mid.c | tower_guard | 2 |
+| lengmei/gate.c | servant (existing, was unloaded) | 1 |
+
+### Existing NPCs Verified
+
+- **Tianyue (天月庵)**: 3 NPCs (greeter, master, novice) + equipment (moon_staff, nun_robe) - all complete
+- **Tianyue master**: Full apprentice system with `set_flag`, `accept_apprentice`, `init_apprentice`, `acquire_skill` - sets class to "monk" and title "天月庵弟子"
+- **Hell (地獄)**: wandering_ghost in path.c - complete
+- **All 19 sect masters**: Have complete apprentice systems
+
+### Static Validation: All PASS
+- All NPCs have `#include <npc.h>`, valid inheritance, `set_name()`, `set_race()`, `set_level()`, `setup()`
+- All room loadings confirmed
+- Apprentice system methods verified
+[0;32m[OK][0m Task done: Implement NPCs
+[0;34m[03:05:42][0m Running task: Implement equipment
+--- Task: Implement equipment ---
+Now let me check — the armor.c file doesn't use `setup_<type>(min, max, wc, reach)` since armor uses a different pattern (`setup_armor()` with no args, and armor value set via `apply_armor`). That's consistent with how cloth.c works. Good.
+
+Both files are done. Here's a summary:
+
+## Created Equipment Files
+
+### 1. `mudlib/obj/area/obj/staff.c` — Stock Staff (木棍)
+- Type: `F_STAFF` weapon
+- Stats: `setup_staff(1, 12, 3, 4)` — within range (min 1-13, max 12-70, wc 1-8, reach 3-7)
+- Weight: 5000g, Value: 800
+- Referenced by: `d/maoshan/npc/disciple.c` via `STOCK_WEAPON("staff")`
+
+### 2. `mudlib/obj/area/obj/armor.c` — Stock Armor (軍甲)
+- Type: `F_ARMOR` 
+- Stats: `setup_armor()`, armor value 5
+- Weight: 8000g, Value: 3000
+- Referenced by: `d/snow/npc/recruiter.c` via `STOCK_ARMOR("armor")`
+
+### Static Validation
+- `#include` and `inherit` correct for both files
+- `setup_staff()` / `setup_armor()` calls present
+- `setup()` called at end
+- `!clonep()` wrapping description properties
+- Weapon stats within documented ranges
+- Pattern matches existing stock equipment (pike.c, cloth.c, rod.c)
+[0;32m[OK][0m Task done: Implement equipment
+[0;34m[03:07:59][0m All tasks completed.
+[0;34m[03:07:59][0m Checking for changes to commit...

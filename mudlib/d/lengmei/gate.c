@@ -8,6 +8,9 @@ void create()
 三個銀鉤鐵劃的大字。門前種著兩株老梅﹐枝幹蒼勁如鐵。
 LONG
     );
+    set("objects", ([
+        __DIR__"npc/servant" : 1,
+    ]));
     set("exits", ([
         "west"  : __DIR__"road",
         "north" : __DIR__"yard",

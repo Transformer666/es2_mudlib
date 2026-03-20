@@ -11,6 +11,9 @@ void create()
 喊殺聲震天。校場北面是帥帳，東面通往營房，西面是練武場。
 LONG
     );
+    set("objects", ([
+        __DIR__"npc/soldier" : 3,
+    ]));
     set("exits", ([
         "south" : __DIR__"gate",
         "north" : __DIR__"command",

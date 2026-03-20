@@ -1,136 +1,164 @@
 {
   "summary": {
     "scan_date": "2026-03-20",
-    "total_required": 95,
-    "total_implemented": 62,
-    "total_missing": 33,
-    "completion_percentage": "65%",
-    "breakdown": {
-      "races": { "required": 11, "implemented": 11, "missing": 0 },
-      "classes": { "required": 7, "implemented": 7, "missing": 0 },
-      "sects": { "required": 18, "implemented": 18, "missing": 0 },
-      "towns": { "required": 2, "implemented": 2, "missing": 0 },
-      "areas": { "required": 35, "implemented": 35, "missing": 0 },
-      "help_files_race": { "required": 11, "implemented": 11, "missing": 0 },
-      "help_files_class": { "required": 7, "implemented": 0, "missing": 7 },
-      "help_files_sect": { "required": 18, "implemented": 0, "missing": 18 },
-      "advanced_classes": { "required": 26, "implemented": 0, "missing": 26, "note": "進階職業系統尚未實作" },
-      "quest_system": { "required": 1, "implemented": 0, "missing": 1, "note": "主線任務系統與十三靈任務鏈未實作" },
-      "thirteen_spirits_quest": { "required": 13, "implemented": 0, "missing": 13, "note": "十三靈任務鏈各個精靈的相關任務" }
+    "total_required": 112,
+    "total_implemented": 78,
+    "total_missing": 34,
+    "completion_percentage": "69.6%",
+    "categories": {
+      "races": {"required": 11, "implemented": 11, "missing": 0},
+      "classes": {"required": 7, "implemented": 7, "missing": 0},
+      "sects": {"required": 20, "implemented": 18, "missing": 2},
+      "towns": {"required": 2, "implemented": 2, "missing": 0},
+      "areas_misc": {"required": 36, "implemented": 36, "missing": 0},
+      "quests": {"required": 5, "implemented": 2, "missing": 3},
+      "advanced_class_paths": {"required": 6, "implemented": 0, "missing": 6},
+      "help_files_races": {"required": 11, "implemented": 11, "missing": 0},
+      "help_files_classes": {"required": 7, "implemented": 0, "missing": 7},
+      "help_files_general": {"required": 5, "implemented": 0, "missing": 5},
+      "special_areas": {"required": 1, "implemented": 0, "missing": 1},
+      "equipment_system": {"required": 1, "implemented": 1, "missing": 0}
     }
   },
-  "missing_help_texts": [
-    { "type": "class", "id": "warrior", "name": "武者", "expected_path": "mudlib/doc/help/player/classes/warrior" },
-    { "type": "class", "id": "taoist", "name": "道士", "expected_path": "mudlib/doc/help/player/classes/taoist" },
-    { "type": "class", "id": "monk", "name": "和尚", "expected_path": "mudlib/doc/help/player/classes/monk" },
-    { "type": "class", "id": "scholar", "name": "書生", "expected_path": "mudlib/doc/help/player/classes/scholar" },
-    { "type": "class", "id": "thief", "name": "小偷", "expected_path": "mudlib/doc/help/player/classes/thief" },
-    { "type": "class", "id": "soldier", "name": "軍人", "expected_path": "mudlib/doc/help/player/classes/soldier" },
-    { "type": "class", "id": "alchemist", "name": "方士", "expected_path": "mudlib/doc/help/player/classes/alchemist" },
-    { "type": "sect", "id": "fengshan", "name": "封山派", "expected_path": "mudlib/doc/help/player/sects/fengshan" },
-    { "type": "sect", "id": "lengmei", "name": "冷梅莊", "expected_path": "mudlib/doc/help/player/sects/lengmei" },
-    { "type": "sect", "id": "kuxiao", "name": "哭笑門", "expected_path": "mudlib/doc/help/player/sects/kuxiao" },
-    { "type": "sect", "id": "xueyin", "name": "雪吟莊", "expected_path": "mudlib/doc/help/player/sects/xueyin" },
-    { "type": "sect", "id": "hudao", "name": "虎刀門", "expected_path": "mudlib/doc/help/player/sects/hudao" },
-    { "type": "sect", "id": "tianshi", "name": "天師派", "expected_path": "mudlib/doc/help/player/sects/tianshi" },
-    { "type": "sect", "id": "maoshan", "name": "茅山派", "expected_path": "mudlib/doc/help/player/sects/maoshan" },
-    { "type": "sect", "id": "baolian", "name": "寶蓮寺", "expected_path": "mudlib/doc/help/player/sects/baolian" },
-    { "type": "sect", "id": "baixiang", "name": "白象寺", "expected_path": "mudlib/doc/help/player/sects/baixiang" },
-    { "type": "sect", "id": "buxuan", "name": "步玄派", "expected_path": "mudlib/doc/help/player/sects/buxuan" },
-    { "type": "sect", "id": "xuantian", "name": "玄天教", "expected_path": "mudlib/doc/help/player/sects/xuantian" },
-    { "type": "sect", "id": "langyi", "name": "瑯夷", "expected_path": "mudlib/doc/help/player/sects/langyi" },
-    { "type": "sect", "id": "yinjiao", "name": "隱教", "expected_path": "mudlib/doc/help/player/sects/yinjiao" },
-    { "type": "sect", "id": "zhenwu", "name": "振武軍營", "expected_path": "mudlib/doc/help/player/sects/zhenwu" },
-    { "type": "sect", "id": "longttu", "name": "龍圖派", "expected_path": "mudlib/doc/help/player/sects/longttu" },
-    { "type": "sect", "id": "wutuo", "name": "武陀堂", "expected_path": "mudlib/doc/help/player/sects/wutuo" },
-    { "type": "sect", "id": "jianjia", "name": "劍甲門", "expected_path": "mudlib/doc/help/player/sects/jianjia" },
-    { "type": "sect", "id": "tianxie", "name": "天邪派", "expected_path": "mudlib/doc/help/player/sects/tianxie" }
-  ],
-  "missing_advanced_classes": [
-    { "name": "劍靈", "base_sect": "fengshan", "type": "warrior進階" },
-    { "name": "山人", "base_sect": "fengshan", "type": "warrior進階" },
-    { "name": "劍客", "base_sect": "fengshan", "type": "warrior進階" },
-    { "name": "劍士", "base_sect": "lengmei", "type": "warrior進階" },
-    { "name": "古劍門傳人", "base_sect": "lengmei", "type": "warrior進階" },
-    { "name": "虎督", "base_sect": "lengmei", "type": "warrior進階" },
-    { "name": "護法", "base_sect": "kuxiao", "type": "warrior進階" },
-    { "name": "素衣衛", "base_sect": "kuxiao", "type": "warrior進階" },
-    { "name": "使者", "base_sect": "kuxiao", "type": "warrior進階" },
-    { "name": "浪人", "base_sect": "xueyin", "type": "warrior進階" },
-    { "name": "棄徒", "base_sect": "xueyin", "type": "warrior進階" },
-    { "name": "天邪派弟子", "base_sect": "xueyin", "type": "warrior進階" },
-    { "name": "護衛", "base_sect": "hudao", "type": "warrior進階" },
-    { "name": "鬼才", "base_sect": "hudao", "type": "warrior進階" },
-    { "name": "太守", "base_sect": "hudao", "type": "warrior進階" },
-    { "name": "禪師", "base_sect": "baixiang", "type": "monk進階" },
-    { "name": "羅漢", "base_sect": "baixiang", "type": "monk進階" },
-    { "name": "居士", "base_sect": "buxuan", "type": "scholar進階" },
-    { "name": "散人", "base_sect": "xuantian", "type": "scholar進階" },
-    { "name": "金蛇門", "base_sect": "thief", "type": "thief進階" },
-    { "name": "黑龍使者", "base_sect": "thief", "type": "thief進階" },
-    { "name": "軍隊統領", "base_sect": "zhenwu", "type": "soldier進階" },
-    { "name": "軍師", "base_sect": "zhenwu", "type": "soldier進階" },
-    { "name": "醫師", "base_sect": "longttu", "type": "alchemist進階" },
-    { "name": "香主", "base_sect": "wutuo", "type": "alchemist進階" },
-    { "name": "茅山劍士", "base_sect": "maoshan", "type": "taoist進階" }
+  "missing_sects": [
+    {
+      "id": "tianyue",
+      "name": "天月庵",
+      "class": "monk",
+      "description": "與寶蓮寺類似，以濟世度人為己任的門派",
+      "priority": "medium",
+      "needs": ["daemon/sect/tianyue.c", "d/tianyue/ area directory"]
+    },
+    {
+      "id": "jinshe",
+      "name": "金蛇門",
+      "class": "thief",
+      "description": "小偷進階專精：劍法搭配暗器的戰鬥風格",
+      "priority": "low",
+      "note": "進階專精路線，非獨立門派區域",
+      "needs": ["daemon/sect/jinshe.c 或整合至 thief advancement system"]
+    }
   ],
   "missing_quests": [
     {
-      "id": "main_quest",
-      "name": "主線任務系統",
-      "description": "圍繞侮天鬼的謎團展開的主線任務，包含9個主要謎團",
-      "priority": "high"
-    },
-    {
       "id": "thirteen_spirits",
-      "name": "十三靈任務鏈",
-      "description": "最高難度任務，提供天賦重置機會。包含天靈和地靈兩個Boss戰",
+      "name": "十三靈任務",
+      "description": "解開十三靈的任務可獲得重置天賦的機會，難度為天朝帝國諸多任務中最高",
+      "reward": "重置天賦機會",
+      "priority": "high",
+      "needs": ["quest daemon", "十三靈 NPC 系列", "觸發機制", "獎勵系統"]
+    },
+    {
+      "id": "wutiangui",
+      "name": "侮天鬼任務",
+      "description": "十三靈任務為其一部份，目前仍在逐步展開中，與主線神話劇情連結",
+      "priority": "high",
+      "needs": ["quest daemon", "侮天鬼相關 NPC", "主線劇情系統", "混沌界區域"]
+    },
+    {
+      "id": "main_storyline",
+      "name": "主線任務系統",
+      "description": "江湖疑雲系列：大邪道人與殘蟻師太、魚鐵山與劉乙忘玄、武林盟主失蹤等",
+      "priority": "medium",
+      "needs": ["quest tracking daemon", "故事線 NPC 系列", "線索物品系統"]
+    }
+  ],
+  "missing_advanced_class_paths": [
+    {
+      "id": "chanshi",
+      "name": "禪師",
+      "base_sect": "baixiang",
+      "description": "白象寺防禦型進階路線",
+      "priority": "medium",
+      "needs": ["advancement daemon", "專屬技能", "轉職任務"]
+    },
+    {
+      "id": "luohan",
+      "name": "羅漢",
+      "base_sect": "baixiang",
+      "description": "白象寺攻擊型進階路線",
+      "priority": "medium",
+      "needs": ["advancement daemon", "專屬技能", "轉職任務"]
+    },
+    {
+      "id": "jushi",
+      "name": "居士",
+      "base_sect": "buxuan",
+      "description": "步玄派進階路線，增強生存能力",
+      "priority": "medium",
+      "note": "牙山居士 NPC 存在但非正式轉職系統",
+      "needs": ["advancement daemon", "轉職條件", "專屬能力"]
+    },
+    {
+      "id": "sanren",
+      "name": "散人",
+      "base_sect": "xuantian",
+      "description": "玄天教進階路線，增強生存能力",
+      "priority": "medium",
+      "needs": ["advancement daemon", "轉職條件", "專屬能力"]
+    },
+    {
+      "id": "yishi",
+      "name": "醫師",
+      "base_sect": "longttu",
+      "description": "龍圖進階路線，簡化煉丹流程",
+      "priority": "medium",
+      "needs": ["advancement daemon", "轉職條件", "專屬能力"]
+    },
+    {
+      "id": "xiangzhu",
+      "name": "香主",
+      "base_sect": "wutuo",
+      "description": "武陀進階路線",
+      "priority": "medium",
+      "note": "武陀香主 NPC 存在但非正式轉職系統",
+      "needs": ["advancement daemon", "轉職條件", "專屬能力"]
+    }
+  ],
+  "missing_help_files": [
+    {
+      "category": "classes",
+      "files": [
+        {"id": "warrior", "name": "武者"},
+        {"id": "scholar", "name": "書生"},
+        {"id": "monk", "name": "和尚"},
+        {"id": "thief", "name": "小偷"},
+        {"id": "taoist", "name": "道士"},
+        {"id": "alchemist", "name": "方士"},
+        {"id": "soldier", "name": "軍人"}
+      ],
+      "target_path": "doc/help/player/classes/",
       "priority": "high"
     },
     {
-      "id": "snow_mysteries",
-      "name": "雪亭鎮支線任務",
-      "description": "7個雪亭鎮謎題：阿寶之謎、瞎眼老太婆、搬箱子、驛站送信、招兵、破舊大宅、黑衣老人之女",
-      "priority": "medium"
-    },
-    {
-      "id": "wutang_mysteries",
-      "name": "五堂鎮支線任務",
-      "description": "6個五堂鎮謎題：飲血下落、巫山雕像、郭布徒弟、鎮天神廟、欽差目的、過河船隻",
+      "category": "general",
+      "files": [
+        {"id": "newbie_guide", "name": "新手指南"},
+        {"id": "combat", "name": "戰鬥系統"},
+        {"id": "quest_guide", "name": "任務指南"},
+        {"id": "sect_guide", "name": "門派總覽"},
+        {"id": "mythology", "name": "世界觀與神話"}
+      ],
+      "target_path": "doc/help/player/",
       "priority": "medium"
     }
   ],
-  "missing_rooms": [],
-  "missing_npcs": [],
-  "existing_content_summary": {
-    "areas": {
-      "count": 35,
-      "list": [
-        "baihua (百花)", "baixiang (白象寺)", "baolian (寶蓮寺)", "buxuan (步玄派)",
-        "chixiao (赤魈村)", "choyin (朝陽城)", "fengshan (封山派)", "graveyard (墓地)",
-        "heifeng (黑風寨)", "hudao (虎刀門)", "jianjia (劍甲門)", "jingji (京畿)",
-        "kangping (康平)", "kuxiao (哭笑門)", "langyi (瑯夷)", "lee (李村)",
-        "lengmei (冷梅莊)", "lijun (利郡)", "longan (龍安)", "longttu (龍圖派)",
-        "manglin (莽林)", "maoshan (茅山派)", "oldpine (古松)", "road (道路)",
-        "sanyen (三焰)", "snow (雪亭鎮)", "tianshi (天師派)", "tianxie (天邪派)",
-        "weiguo (衛國)", "wutang (五堂鎮)", "wutuo (武陀堂)", "xuantian (玄天教)",
-        "xueyin (雪吟莊)", "yinjiao (隱教)", "zhenwu (振武軍營)"
-      ]
-    },
-    "total_c_files": {
-      "d_directory": 489,
-      "daemon_directory": 67,
-      "obj_directory": 125,
-      "grand_total": 681
-    },
-    "races_implemented": ["human", "xingtian", "yenhold", "yaksha", "malik", "woochan", "jiaojao", "dingling", "asura", "rainnar", "blackteeth"],
-    "classes_implemented": ["alchemist", "commoner", "fighter", "monk", "scholar", "soldier", "taoist", "thief", "warrior"],
-    "sects_implemented": ["baixiang", "baolian", "buxuan", "fengshan", "hudao", "jianjia", "kuxiao", "langyi", "lengmei", "longttu", "maoshan", "tianshi", "tianxie", "wutuo", "xuantian", "xueyin", "yinjiao", "zhenwu"],
-    "skills_implemented": ["amazing_needle", "axe", "blade", "dagger", "diamond_hammer", "fengshan_sword", "five_defeat_needle", "lengmei_sword", "longttu_neigong", "maoshan_neigong", "maoshan_sword", "needle", "phantom_sword", "pike", "staff", "sword", "tactic", "taiyi_sword", "taoshan_milu", "three_rotations", "tiger_blade", "unarmed", "whip", "ziwei_neigong"],
-    "help_files": {
-      "race_help": ["asura", "blackteeth", "dingling", "human", "jiaojao", "malik", "rainnar", "woochan", "xingtian", "yaksha", "yenhold"],
-      "class_help": [],
-      "sect_help": []
+  "missing_areas": [
+    {
+      "id": "hell",
+      "name": "地獄/陰間",
+      "description": "地靈任務所需的地氣塔頂區域，也是世界觀中陰間的實作",
+      "priority": "high",
+      "needs": ["d/hell/ 區域目錄", "地氣塔房間系列", "地靈 Boss 戰鬥房間"],
+      "note": "地靈 NPC 已存在於 d/chixiao/npc/diling.c 但缺少完整戰鬥區域"
     }
+  ],
+  "existing_content_summary": {
+    "races_implemented": ["human", "xingtian", "yenhold", "yaksha", "malik", "woochan", "jiaojao", "dingling", "asura", "rainnar", "blackteeth"],
+    "classes_implemented": ["warrior", "scholar", "monk", "thief", "taoist", "alchemist", "soldier", "commoner", "fighter"],
+    "sects_implemented": ["fengshan", "lengmei", "kuxiao", "xueyin", "hudao", "buxuan", "xuantian", "baolian", "baixiang", "langyi", "yinjiao", "tianshi", "maoshan", "longttu", "wutuo", "jianjia", "zhenwu", "tianxie"],
+    "areas_implemented": ["snow", "wutang", "baihua", "baixiang", "baolian", "buxuan", "chixiao", "choyin", "fengshan", "graveyard", "heifeng", "hudao", "jianjia", "jingji", "kangping", "kuxiao", "langyi", "lee", "lengmei", "lijun", "longan", "longttu", "manglin", "maoshan", "oldpine", "road", "sanyen", "tianshi", "tianxie", "weiguo", "wutuo", "xuantian", "xueyin", "yinjiao", "zhenwu"],
+    "quests_implemented": ["tianling (天靈任務)", "diling (地靈任務)"],
+    "help_files_implemented": ["races/asura", "races/blackteeth", "races/dingling", "races/human", "races/jiaojao", "races/malik", "races/rainnar", "races/woochan", "races/xingtian", "races/yaksha", "races/yenhold"]
   }
 }

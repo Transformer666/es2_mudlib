@@ -11,6 +11,9 @@ void create()
 小路行走，神態安詳。東邊矗立著一座鐘樓，北面是大雄寶殿。
 LONG
     );
+    set("objects", ([
+        __DIR__"npc/monk" : 2,
+    ]));
     set("exits", ([
         "south" : __DIR__"gate",
         "north" : __DIR__"main_hall",

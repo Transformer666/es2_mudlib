@@ -11,6 +11,9 @@ void create()
 邊緣豎立著數根石柱，柱身上刻著劍痕，是弟子們以劍氣刻寫的心得。
 LONG
     );
+    set("objects", ([
+        __DIR__"npc/disciple" : 2,
+    ]));
     set("exits", ([
         "west" : __DIR__"main_hall",
     ]));
