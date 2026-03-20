@@ -9,6 +9,7 @@
 /mudlib/data/daemon.o
 /mudlib/adm/etc/visitor.cnt
 /mudlib/adm/etc/wizlist
+/adm/etc/wizlist
 
 # vim
 *.swp
