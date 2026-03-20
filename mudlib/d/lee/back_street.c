@@ -13,6 +13,7 @@ LONG
 	);
 	set("exits", ([
 		"south" : __DIR__"r2",
+		"north" : __DIR__"shop",
 	]));
 
 	setup();

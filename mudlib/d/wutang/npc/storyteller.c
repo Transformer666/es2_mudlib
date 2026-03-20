@@ -1,4 +1,5 @@
 // storyteller.c
+// Supports quest: 別館內的欽差來五堂要做甚麼？
 
 #include <npc.h>
 
@@ -26,4 +27,39 @@ void create()
     }));
     setup();
     carry_money("coin", 50);
+}
+
+void relay_say(object ob, string msg)
+{
+    if( !userp(ob) ) return;
+    if( is_fighting() || is_chatting() ) return;
+
+    if( strsrch(msg, "失蹤") >= 0 || strsrch(msg, "案件") >= 0
+    ||  strsrch(msg, "調查") >= 0 || strsrch(msg, "欽差") >= 0
+    ||  strsrch(msg, "御史") >= 0 ) {
+	if( ob->query("quest/inspector_case_done") ) {
+	    do_chat("說書先生壓低聲音道﹕聽說那件案子已經有了眉目﹐多虧了你呀。\n");
+	    return;
+	}
+	if( ob->query_temp("pending/inspector_case") >= 1 ) {
+	    do_chat(({
+		"說書先生四下張望了一下﹐壓低聲音道﹕你也聽說了﹖\n",
+		"說書先生說道﹕近來武山一帶確實有好幾個人莫名其妙地失蹤了。\n",
+		"說書先生說道﹕有個樵夫跟我說﹐他有一次上山砍柴﹐在那座山洞裡看到一尊石雕像。\n",
+		"說書先生壓低聲音道﹕他說那雕像下面好像有條密道﹐通往不知什麼地方。\n",
+		"說書先生說道﹕從那以後他再也不敢上山了。你要是有膽量﹐可以去巫山洞窟裡看看。\n",
+		"說書先生說道﹕對了﹐這事兒你跟御史大人說一聲﹐也許對他的案子有用。\n",
+	    }));
+	    ob->set_temp("pending/inspector_case", 2);
+	    return;
+	}
+	do_chat("說書先生搖搖頭道﹕什麼失蹤不失蹤的﹐我可什麼都不知道。\n");
+	return;
+    }
+
+    if( strsrch(msg, "巫山") >= 0 || strsrch(msg, "武山") >= 0
+    ||  strsrch(msg, "洞窟") >= 0 ) {
+	do_chat("說書先生壓低聲音道﹕武山上的洞窟﹖那地方可不簡單﹐聽說裡面有座古老的石雕像﹐還有些奇怪的符號。\n");
+	return;
+    }
 }
