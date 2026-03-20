@@ -4512,3 +4512,176 @@ Pipeline start: 2026-03-20 18:50:27 (phase: all)
 | vision_of_ghost | FAIL (2 缺失) |
 [0;32m[OK][0m Static validation
 [0;34m[18:57:07][0m Pipeline complete: 5 ok, 0 warnings.
+[0;32m[OK][0m Final commit pushed to origin.
+[0;34m[19:02:10][0m Using git remote: origin
+[0;34m[19:02:10][0m Pulling latest changes...
+From github.com:Transformer666/es2_mudlib
+ * branch            main       -> FETCH_HEAD
+Already up to date.
+
+Pipeline start: 2026-03-20 19:02:10 (phase: all)
+==============================
+[0;34m[19:02:12][0m === Phase: Analyze (bash-native, no agent) ===
+[0;34m[19:02:13][0m Analyze complete:
+[0;34m[19:02:13][0m   Races: 11/11 | Classes: 9/7 | Sects: 18/18
+[0;34m[19:02:13][0m   Skills: 75 (missing: 40) | Rooms: 475 | NPCs: 281
+[0;34m[19:02:13][0m   Quests: 13 | Equipment: 282
+[0;34m[19:02:13][0m   Total missing: 40
+[0;32m[OK][0m Analyze phase
+[0;34m[19:02:13][0m === Phase: Build ===
+[0;34m[19:02:13][0m Step: Audit area: stub_towns
+--- Step: Audit area: stub_towns ---
+All stub town exits are now clean. Here's the final summary:
+
+## 審查結果
+
+### 完整的城鎮 (無需修改)
+| Town | 中文名 |
+|------|--------|
+| kangping | 康平 |
+| lee | 離/李家村 |
+| choyin | 喬陰 |
+| baihua | 百花 |
+
+### 已修復的問題
+
+**新建檔案 (5):**
+| 檔案 | 說明 |
+|------|------|
+| `d/longan/west_street.c` | 龍安第二條街道，連接後街↔小巷 |
+| `d/jingji/west_street.c` | 京畿第二條街道，連接書院↔後巷 |
+| `d/sanyen/west_street.c` | 三掩第二條街道，從廣場向西延伸 |
+| `d/weiguo/shop.c` | 衛國軍需舖（商店房間） |
+| `d/weiguo/npc/shopkeeper.c` | 軍需掌櫃 NPC (F_VENDOR，賣布衣/匕首/包袱) |
+
+**修改檔案 (7，加入雙向出口):**
+| 檔案 | 新增出口 |
+|------|---------|
+| `d/longan/back_street.c` | east → west_street |
+| `d/longan/alley.c` | west → west_street |
+| `d/longan/entrance.c` | south→road2 改為 east→road2 (修正方向) |
+| `d/jingji/library.c` | south → west_street |
+| `d/jingji/back_alley.c` | west → west_street |
+| `d/sanyen/square.c` | west → west_street |
+| `d/weiguo/back_street.c` | north → shop |
+
+**驗證結果:** Rooms 479 PASS / NPCs 282 PASS / Stub town exits 187 PASS, 0 FAIL
+[0;32m[OK][0m Audit area: stub_towns
+[0;34m[19:08:06][0m Step: Audit skills
+--- Step: Audit skills ---
+## 技能 Daemon 審查報告
+
+### 1. 門派引用的技能（20 個）
+
+| # | 技能名稱 | 門派 | Daemon 檔案 |
+|---|---------|------|------------|
+| 1 | tiger blade | 虎刀門 | tiger_blade.c |
+| 2 | staff | 寶蓮寺/白象寺 | staff.c |
+| 3 | fengshan sword | 封山派 | fengshan_sword.c |
+| 4 | sword | 哭笑門/劍甲門/玄天教/雪吟莊 | sword.c |
+| 5 | needle | 劍甲門/龍圖 | needle.c |
+| 6 | longttu neigong | 龍圖丹派 | longttu_neigong.c |
+| 7 | diamond hammer | 白象寺 | diamond_hammer.c |
+| 8 | lengmei sword | 冷梅莊 | lengmei_sword.c |
+| 9 | dagger | 瑯夷/隱教 | dagger.c |
+| 10 | three rotations | 步玄派 | three_rotations.c |
+| 11 | tactic | 振武軍營 | tactic.c |
+| 12 | pike | 振武軍營 | pike.c |
+| 13 | maoshan sword | 茅山派 | maoshan_sword.c |
+| 14 | maoshan neigong | 茅山派 | maoshan_neigong.c |
+| 15 | taoshan milu | 茅山派 | taoshan_milu.c |
+| 16 | taiyi sword | 天師派 | taiyi_sword.c |
+| 17 | ziwei neigong | 天師派 | ziwei_neigong.c |
+| 18 | phantom sword | 天邪派 | phantom_sword.c |
+| 19 | five defeat needle | 武陀 | five_defeat_needle.c |
+| 20 | amazing needle | 武陀 | amazing_needle.c |
+
+### 2-4. 完整性檢查結果
+
+- **所有 20 個技能都有對應的 daemon 檔案** — 缺少 0 個
+- **所有 20 個都有 `skill_improved` 和 `skill_advanced`**
+- **所有 16 個戰鬥技能都有 >= 6 個 actions**（範圍 6-8）
+- **所有 4 個內功技能都有 `do_exercise` + `exert_function`**
+
+### 5. 結論
+
+| 項目 | 數量 |
+|------|------|
+| 缺少的技能 | **0 個** |
+| 不完整的技能 | **0 個** |
+| 本次需建立 | **0 個** |
+| 剩餘待處理 | **0 個** |
+
+所有門派引用的技能 daemon 均已完整實作，無需額外建立。
+[0;32m[OK][0m Audit skills
+[0;34m[19:09:22][0m Step: Audit quests
+--- Step: Audit quests ---
+## 任務系統審查結果
+
+### 雪亭鎮 7 謎 — 全部已實作
+
+| # | 謎題 | quest flag | 檔案 | 獎勵 |
+|---|------|-----------|------|------|
+| 1 | 阿寶在老榕樹等的人是誰？ | `quest/arbao_letter_done` | `snow/npc/arbao.c` | 80 |
+| 2 | 瞎眼婆婆的真實身分？ | `quest/old_beggar_done` | `snow/npc/old_beggar.c` | 200 |
+| 3 | 貨棧搬箱子算不算勞動？ | `quest/foreman_crate_done` | `snow/npc/foreman.c` | 50 |
+| 4 | 驛站遺失了幾封信？ | `quest/postman_delivery_done` | `snow/npc/postman.c` | 100 |
+| 5 | 想不想加入振武軍營？ | `quest/recruiter_enlist_done` | `snow/npc/recruiter.c` | 50 |
+| 6 | 破舊的老宅裡藏了什麼？ | `quest/manor_secret_done` | `snow/manor_cellar.c` | 60 |
+| 7 | 黑袍老人的女兒去了哪裡？ | `quest/darkrobe_daughter_done` | `snow/npc/darkrobe.c` + `girl.c` | 150 |
+
+額外任務：`quest/escort_guide_done`（`snow/npc/escort.c`，獎勵 30）
+
+### 五堂鎮 6 謎 — 全部已實作
+
+| # | 謎題 | quest flag | 檔案 | 獎勵 |
+|---|------|-----------|------|------|
+| 1 | 飲血丟在了哪裡？ | `quest/yinxue_found_done` | `wutang/river_bend.c` | 120 |
+| 2 | 巫山之中神秘雕像有何秘密？ | `quest/wushan_statue_done` | `wutang/wushan_secret.c` | 200 |
+| 3 | 郭布要收的徒弟在哪裡？ | `quest/guobu_apprentice_done` | `wutang/npc/guobu.c` + `boy.c` | 80 |
+| 4 | 鎮天神廟內藏著誰？ | `quest/temple_master_done` | `wutang/npc/temple_master.c` | 150 |
+| 5 | 別館內的欽差來五堂要做甚麼？ | `quest/inspector_case_done` | `wutang/npc/inspector.c` + `storyteller.c` | 80 |
+| 6 | 過河的船在哪裡？ | `quest/ferryman_guide_done` | `wutang/npc/ferryman.c` | 50 |
+
+### 結論
+
+- **已有 14 個任務**（雪亭鎮 8 個 + 五堂鎮 6 個）
+- **本次新增 0 個** — 所有 13 個謎題均已有完整對應任務
+- 每個任務都有完整的三要素：`pending/` 進度追蹤、`quest/` 完成標記、`gain_score("quest", N)` 獎勵
+- 獎勵分數範圍 30～200，與任務複雜度成正比
+[0;32m[OK][0m Audit quests
+[0;34m[19:10:14][0m === Phase: Validate ===
+[0;34m[19:10:14][0m Step: Static validation
+--- Step: Static validation ---
+## 靜態驗證報告
+
+### 主測試套件 (`run_tests.sh all`)
+- **PASS: 3526** / **FAIL: 23** / **WARN: 46**
+
+主要失敗項目包含：
+- 若干房間缺少 Room inherit（如 `d/longan/temple`、`d/snow/bazar`、`d/snow/small_temple`）
+- 4 個雙向出口不匹配：
+  - `ngate`: northwest → entrance 缺少 southeast 回程
+  - `tree`: down → square 缺少 up 回程
+  - `mountain_road2`: west → mountain_path 缺少 east 回程
+  - `gate`: west → watchtower 缺少 east 回程
+
+### 額外檢查
+
+| 檢查項目 | 結果 |
+|---|---|
+| `set("aggressive", 1)` 誤用 | **PASS** — 0 筆，全部正確使用 `attitude` |
+| `skill_improved` 存在性 | **PASS** — 全部 75 個 skill daemon 皆有 `skill_improved` |
+| lv50+ 掌門 `vision_of_ghost` | **FAIL** — 2 個缺失 |
+
+缺少 `vision_of_ghost` 的 lv50+ NPC：
+1. `d/tianxie/npc/daxiedaoren.c` (lv75)
+2. `d/hudao/npc/sunyi.c` (lv55)
+
+### 總結
+- 主測試：23 FAIL / 3526 PASS
+- 額外檢查：2 項 PASS、1 項 FAIL（2 個 NPC 缺少 `vision_of_ghost`）
+
+需要我修復這些問題嗎？
+[0;32m[OK][0m Static validation
+[0;34m[19:12:02][0m Pipeline complete: 5 ok, 0 warnings.

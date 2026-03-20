@@ -1,5 +1,5 @@
 # ES2 MUD Static Validation Report
-Run time: Fri Mar 20 18:56:13 UTC 2026
+Run time: Fri Mar 20 19:10:58 UTC 2026
 
 
 ## Room Validation
@@ -78,6 +78,9 @@ Run time: Fri Mar 20 18:56:13 UTC 2026
 - PASS: Room inherit: d/longan/entrance
 - PASS: Room short desc: d/longan/entrance
 - PASS: Room setup(): d/longan/entrance
+- PASS: Room inherit: d/longan/west_street
+- PASS: Room short desc: d/longan/west_street
+- PASS: Room setup(): d/longan/west_street
 - PASS: Room inherit: d/longttu/storehouse
 - PASS: Room short desc: d/longttu/storehouse
 - PASS: Room setup(): d/longttu/storehouse
@@ -417,6 +420,9 @@ Run time: Fri Mar 20 18:56:13 UTC 2026
 - PASS: Room inherit: d/sanyen/back_alley
 - PASS: Room short desc: d/sanyen/back_alley
 - PASS: Room setup(): d/sanyen/back_alley
+- PASS: Room inherit: d/sanyen/west_street
+- PASS: Room short desc: d/sanyen/west_street
+- PASS: Room setup(): d/sanyen/west_street
 - PASS: Room inherit: d/jianjia/quarters
 - PASS: Room short desc: d/jianjia/quarters
 - PASS: Room setup(): d/jianjia/quarters
@@ -693,6 +699,9 @@ Run time: Fri Mar 20 18:56:13 UTC 2026
 - PASS: Room inherit: d/weiguo/watchtower
 - PASS: Room short desc: d/weiguo/watchtower
 - PASS: Room setup(): d/weiguo/watchtower
+- PASS: Room inherit: d/weiguo/shop
+- PASS: Room short desc: d/weiguo/shop
+- PASS: Room setup(): d/weiguo/shop
 - PASS: Room inherit: d/weiguo/armory
 - PASS: Room short desc: d/weiguo/armory
 - PASS: Room setup(): d/weiguo/armory
@@ -963,6 +972,9 @@ Run time: Fri Mar 20 18:56:13 UTC 2026
 - PASS: Room inherit: d/jingji/back_alley
 - PASS: Room short desc: d/jingji/back_alley
 - PASS: Room setup(): d/jingji/back_alley
+- PASS: Room inherit: d/jingji/west_street
+- PASS: Room short desc: d/jingji/west_street
+- PASS: Room setup(): d/jingji/west_street
 - PASS: Room inherit: d/green_n/highland
 - PASS: Room short desc: d/green_n/highland
 - PASS: Room setup(): d/green_n/highland
@@ -1994,6 +2006,10 @@ Run time: Fri Mar 20 18:56:13 UTC 2026
 - PASS: NPC inherit: d/weiguo/npc/soldier
 - PASS: NPC set_name: d/weiguo/npc/soldier
 - PASS: NPC setup(): d/weiguo/npc/soldier
+- PASS: NPC include: d/weiguo/npc/shopkeeper
+- PASS: NPC inherit: d/weiguo/npc/shopkeeper
+- PASS: NPC set_name: d/weiguo/npc/shopkeeper
+- PASS: NPC setup(): d/weiguo/npc/shopkeeper
 - PASS: NPC include: d/weiguo/npc/temple_keeper
 - PASS: NPC inherit: d/weiguo/npc/temple_keeper
 - PASS: NPC set_name: d/weiguo/npc/temple_keeper
@@ -3589,12 +3605,11 @@ Run time: Fri Mar 20 18:56:13 UTC 2026
 - FAIL: Exit northwest -> entrance has no southeast exit back (from ngate)
 - FAIL: Exit down -> square has no up exit back (from tree)
 - FAIL: Exit west -> mountain_path has no east exit back (from mountain_road2)
-- FAIL: Exit west -> entrance has no east exit back (from road2)
 - FAIL: Exit west -> watchtower has no east exit back (from gate)
 
 ## Summary
 | Result | Count |
 |--------|-------|
-| PASS | 3510 |
-| FAIL | 24 |
+| PASS | 3526 |
+| FAIL | 23 |
 | WARN | 46 |
