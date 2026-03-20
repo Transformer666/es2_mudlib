@@ -43,6 +43,8 @@ echo "==============================" >> $LOG_FILE
 
 # --- Helper: run a focused claude task ---
 # Usage: run_step "description" "prompt" [max_turns]
+STYLE_GUIDE="automation/style_guide.md"
+
 run_step() {
     local desc="$1"
     local prompt="$2"
@@ -51,8 +53,10 @@ run_step() {
     log "Step: $desc"
     echo "--- Step: $desc ---" >> $LOG_FILE
 
+    # Inject style guide as system prompt so every step follows conventions
     set +e
     claude -p "$prompt" \
+        --append-system-prompt "$(cat $STYLE_GUIDE)" \
         --allowedTools "Read" "Write" "Edit" "Glob" "Grep" "Bash" \
         --max-turns "$max_turns" \
         2>&1 | tee -a $LOG_FILE
