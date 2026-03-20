@@ -19,4 +19,5 @@ LONG
     set("objects", ([ __DIR__"npc/smith" : 1 ]));
 
     setup();
+    replace_program(ROOM);
 }

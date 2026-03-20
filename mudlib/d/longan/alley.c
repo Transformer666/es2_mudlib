@@ -21,4 +21,5 @@ LONG
     set("objects", ([ __DIR__"npc/beggar" : 1 ]));
 
     setup();
+    replace_program(ROOM);
 }

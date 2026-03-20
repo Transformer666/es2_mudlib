@@ -21,4 +21,5 @@ LONG
 	]));
 
 	setup();
+	replace_program(BANK);
 }

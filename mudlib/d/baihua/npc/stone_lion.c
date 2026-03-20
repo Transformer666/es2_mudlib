@@ -18,6 +18,7 @@ void create()
 	set_skill("parry", 50);
 
 	set("age", 100);
+	set("gender", "male");
 	set("long",
 		"村口牌坊旁蹲著一隻石獅子﹐通體由青石雕成﹐造型威武。歲\n"
 		"月的侵蝕讓它的面容有些模糊﹐但那雙圓瞪的石眼仍然散發著一\n"

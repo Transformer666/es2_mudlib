@@ -19,4 +19,5 @@ LONG
     set("objects", ([ __DIR__"npc/stablehand" : 1 ]));
 
     setup();
+    replace_program(ROOM);
 }
