@@ -48,9 +48,11 @@ echo "==============================" >> $LOG_FILE
 TASKS=(
     "01_analyze_missing.md:Analyze missing content"
     "02_implement_races.md:Implement race daemons"
-    "03_implement_rooms.md:Implement rooms"
+    "03_implement_rooms.md:Implement rooms and areas"
     "04_implement_npcs.md:Implement NPCs"
     "05_implement_equipment.md:Implement equipment"
+    "06_implement_skills.md:Implement skill daemons"
+    "07_implement_quests.md:Implement quest system"
 )
 
 SINGLE_TASK=${1:-""}
