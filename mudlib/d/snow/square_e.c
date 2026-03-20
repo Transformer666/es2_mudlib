@@ -10,6 +10,9 @@ void create()
 的榕樹﹐南邊是一家打鐵鋪子﹐不過店門不在這一邊。
 LONG
 	);
+	set("objects", ([
+		__DIR__"npc/heiyilaoren" : 1,
+	]));
 	set("exits", ([ /* sizeof() == 2 */
 		"east" : __DIR__"epath",
 		"west" : __DIR__"square",

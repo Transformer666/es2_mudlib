@@ -10,6 +10,12 @@ void create()
 LONG
 	);
 	set("outdoors", "wilderness");
+	set("objects", ([
+		__DIR__"npc/miexin" : 1,
+		__DIR__"npc/mieming" : 1,
+		__DIR__"npc/mieyu" : 1,
+		__DIR__"npc/shenwei" : 1,
+	]));
 	set("exits", ([
 		"south" : __DIR__"moonlight_path",
 		"north" : __DIR__"ruins",

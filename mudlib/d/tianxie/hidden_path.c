@@ -10,6 +10,9 @@ void create()
 LONG
     );
     set("outdoors", "forest");
+    set("objects", ([
+        __DIR__"npc/daxiedaoren" : 1,
+    ]));
     set("exits", ([
         "south" : "/d/manglin/path3",
         "north" : __DIR__"gate",

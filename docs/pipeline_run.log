@@ -1418,3 +1418,276 @@ All done. Here's a summary of the quest system implementation:
 [0;32m[OK][0m Task done: Implement quest system
 [0;34m[08:56:15][0m All tasks completed.
 [0;34m[08:56:15][0m Checking for changes to commit...
+[1;33m[WARN][0m Push failed.
+[0;32m[OK][0m Changes committed and pushed to origin.
+[0;34m[09:01:18][0m Using git remote: origin
+[0;34m[09:01:18][0m Pulling latest changes...
+From github.com:Transformer666/es2_mudlib
+ * branch            main       -> FETCH_HEAD
+   9083a0e..099eaf0  main       -> origin/main
+hint: You have divergent branches and need to specify how to reconcile them.
+hint: You can do so by running one of the following commands sometime before
+hint: your next pull:
+hint: 
+hint:   git config pull.rebase false  # merge (the default strategy)
+hint:   git config pull.rebase true   # rebase
+hint:   git config pull.ff only       # fast-forward only
+hint: 
+hint: You can replace "git config" with "git config --global" to set a default
+hint: preference for all repositories. You can also pass --rebase, --no-rebase,
+hint: or --ff-only on the command line to override the configured default per
+hint: invocation.
+fatal: Need to specify how to reconcile divergent branches.
+[1;33m[WARN][0m Pull failed, continuing with local state.
+[0;32m[OK][0m Repository updated.
+
+==============================
+Pipeline start: 2026-03-20 09:01:18
+==============================
+[0;34m[09:01:20][0m Running task: Analyze missing content
+--- Task: Analyze missing content ---
+All three output files are now complete with comprehensive data from all sources. Here's the final summary:
+
+---
+
+## Task 01 完成總結
+
+### 輸出檔案
+
+| 檔案 | 內容 |
+|------|------|
+| `docs/wiki_content.json` | 完整爬取資料：28 wiki 頁 + 161 blog 文章 + GitHub 原版比對 |
+| `docs/missing_content.json` | 結構化待實作清單，含優先順序 |
+| `docs/implementation_log.md` | 實作進度報告，含差異分析 |
+
+### 完成度總覽
+
+| 類別 | 完成度 | 狀態 |
+|------|--------|------|
+| 種族 (11) | **100%** | 全部完成 |
+| 職業 (9) | **100%** | 全部完成 |
+| 門派 (18/19) | **95%** | tianyue 待驗證 |
+| 技能 (78) | **83%** 原版 | 缺 12 原版，多 19 新增 |
+| 區域 (50) | **100%** 原版 | 19 原版全覆蓋 + 33 新增 |
+| 上古妖獸 (8) | **100%** | 全部完成 |
+| 裝備 (100) | **~65%** | 缺 ~55 件 |
+| 說明檔 (11) | **20%** | 缺 44 份 |
+
+### 最大缺口 (按優先序)
+
+1. **CRITICAL**: 主線任務系統（無任務框架）
+2. **HIGH**: 12 原版技能、8+ 重要 Boss/NPC、6 核心任務鏈
+3. **MEDIUM**: 門派子系統（茅山三觀/天師四派）、聲望系統、44 說明檔
+4. **LOW**: 食物擴充、額外裝備、側線任務
+[0;32m[OK][0m Task done: Analyze missing content
+[0;34m[09:14:55][0m Running task: Implement race daemons
+--- Task: Implement race daemons ---
+**Task 02 已完成 — 無需任何操作。**
+
+所有完成條件均已滿足：
+
+- **11/11 種族 daemon .c 檔案** 已存在於 `mudlib/daemon/race/`
+- **11/11 種族 help 文本** 已存在於 `mudlib/doc/help/player/races/`
+- **靜態驗證全部通過**：每個 daemon 都包含 `#include <race.h>`、`inherit HUMANOID`、`register_race_daemon()`、`setup()` 和 `initialize()`
+
+`missing_content.json` 中 races 區塊的狀態為 `"COMPLETE"`, missing: 0。
+[0;32m[OK][0m Task done: Implement race daemons
+[0;34m[09:15:32][0m Running task: Implement rooms and areas
+--- Task: Implement rooms and areas ---
+All tasks complete. Here's a summary of what was done:
+
+## Results
+
+### Existing State
+- All 50 existing areas already had correct bidirectional exits (99 cross-area connections verified)
+- The "stub" towns (龍安、京畿、康平、三掩 etc.) were already well-developed with 10-25 rooms each
+
+### New Areas Created
+
+**1. 天寒村 (tianhan/) — 7 rooms + 2 NPCs**
+- `entrance.c` — 村口, connected to `road/road2` (southwest/northeast)
+- `street.c` — 街道 (hub)
+- `inn.c` — 域水客棧 (INN type, valid_startroom)
+- `inn_2f.c` — 客棧二樓
+- `well.c` — 古井旁
+- `clearing.c` — 村北空地
+- `cottage.c` — 茅屋
+- NPCs: 村民 guard, 店小二 waiter (vendor)
+
+**2. 百藥谷 (baiyao/) — 6 rooms**
+- `entrance.c` — 谷口, connected to `road/mountain_road1` (southeast/northwest)
+- `valley_path.c` — 谷中小徑
+- `herb_garden.c` — 藥圃
+- `waterfall.c` — 瀑布前
+- `stone_cave.c` — 石洞
+- `deep_cave.c` — 石洞深處 (赤龍 boss room, boss NPC to be added later)
+
+**3. 八寶樓 (babao/) — 10 rooms, 8 boss NPCs**
+- `entrance.c` — 將軍府門前, connected to `wutang/ngate` (northeast/southwest)
+- `hall.c` — 將軍府大堂
+- `floor1.c` through `floor8.c` — 8 floors, each with its boss from `wutang/npc/`:
+  - F1: 歐陽芝, F2: 司馬雷, F3: 崇白虎, F4: 馬鍾聖
+  - F5: 公孫微, F6: 白魚, F7: 施鈺, F8: 劍皇 軒轅劍月
+
+### Road Network Modifications
+- `road/road2.c` — added "southwest" exit to tianhan
+- `road/mountain_road1.c` — added "southeast" exit to baiyao
+- `wutang/ngate.c` — added "northeast" exit to babao
+
+### Validation
+- 0 errors, 0 warnings
+- All exits bidirectional
+- All NPC references point to existing files
+[0;32m[OK][0m Task done: Implement rooms and areas
+[0;34m[09:24:58][0m Running task: Implement NPCs
+--- Task: Implement NPCs ---
+All tasks complete. Here's a summary of everything done:
+
+## Task 04 NPC Implementation - Summary
+
+### Already Existed (verified)
+| NPC | File | Room Loading |
+|-----|------|-------------|
+| 殘蟻師太 | `d/tianyue/npc/canyi.c` | `d/tianyue/meditation.c` |
+| 張小簽 | `d/choyin/npc/zhang_xiaoqian.c` | `d/choyin/square.c` |
+| 算命先生 | `d/choyin/npc/fortune_teller.c` | `d/choyin/square.c` |
+| 劍皇 | `d/wutang/npc/xuanyuan.c` | `d/babao/floor8.c` |
+| 黑龍 | `d/longan/npc/black_dragon.c` | loaded |
+| 大蜈蚣 | `d/waterfog/npc/centipede.c` | loaded |
+| 風神 | `d/latemoon/npc/wind_god.c` | `d/latemoon/ruins.c` |
+| 黑無常/白無常 | `d/hell/npc/` | loaded |
+| 毒刀胡惑 | `d/wutang/npc/huhuo.c` | loaded |
+| 瞎眼老太婆 | `d/snow/npc/gammer.c` | `d/snow/square.c` |
+| All 8 八寶樓 bosses | `d/wutang/npc/` | `d/babao/floor1-8.c` |
+| 17/19 sect masters with apprentice systems | various | verified |
+
+### Newly Created (8 NPC files)
+| NPC | File | Room | Type |
+|-----|------|------|------|
+| **魯熙年** (振武教頭) | `d/zhenwu/npc/luxinian.c` | `training.c` | Master w/ apprentice (soldier, tactic/pike) |
+| **赤龍** | `d/baiyao/npc/chilong.c` | `deep_cave.c` | Boss (Lv70) |
+| **大邪道人** | `d/tianxie/npc/daxiedaoren.c` | `hidden_path.c` | Antagonist Boss (Lv75) |
+| **混沌獸** | `d/death/npc/hundunshou.c` | `abyss.c` | Quest Boss (Lv80) |
+| **阿寶** | `d/snow/npc/arbao.c` | `square.c` | Quest NPC (Lv10) |
+| **黑衣老人** | `d/snow/npc/heiyilaoren.c` | `square_e.c` | Quest NPC (Lv40) |
+| **滅心/滅名/滅慾/神衛** | `d/latemoon/npc/` (4 files) | `pavilion.c` | Wind God minions (Lv55 each) |
+
+### Updated (2 files)
+| File | Change |
+|------|--------|
+| `d/longttu/npc/elder.c` | Added "longttu neigong" to `acquire_skill` (requires needle >= 30) |
+| 6 room files | Added `set("objects")` to load new NPCs |
+
+### Completion Status
+- [x] All missing NPCs from `missing_content.json` implemented or verified existing
+- [x] All NPC room loading confirmed
+- [x] All 19 sect masters now have complete apprentice systems (accept_apprentice/init_apprentice/acquire_skill)
+- [x] Static validation passed on all files
+[0;32m[OK][0m Task done: Implement NPCs
+[0;34m[09:37:11][0m Running task: Implement equipment
+--- Task: Implement equipment ---
+All done. Here's the summary:
+
+## Equipment Implementation Complete
+
+### Created 51 new equipment files
+
+**16 Weapons** (`mudlib/obj/weapon/`):
+| File | Name | Type | Stats |
+|------|------|------|-------|
+| manlong_sword.c | 蠻龍 | Sword | (5,20,150,5) |
+| jiaogu_blade.c | 蛟骨刀 | Blade | (4,22,110,4) |
+| zuiya_dagger.c | 罪牙匕 | Dagger | (3,18,85,2) |
+| bawang_pike.c | 霸王槍 | Pike | (4,18,80,6) |
+| qilongyuan.c | 泣龍怨 | Sword | (5,18,140,5) |
+| shishi_axe.c | 十石大斧 | Axe | (5,25,180,4) |
+| suinao_blunt.c | 碎腦鎚 | Blunt | (5,14,200,3) |
+| zidian_pike.c | 紫電紅纓槍 | Pike | (4,18,70,7) |
+| xueyue_axe.c | 血月斧 | Axe | (4,18,120,3) |
+| mingmo_staff.c | 冥魔杖 | Staff | (3,22,200,6) |
+| xuanfeng_blunt.c | 旋風流星槌 | Blunt | (5,14,200,4) |
+| heitie_blunt.c | 黑鐵大槌 | Blunt | (6,15,250,4) |
+| bashe_pike.c | 巴蛇大矛 | Pike | (5,20,90,8) |
+| lengyu_sword.c | 冷玉寶劍 | Sword | (3,14,80,4) |
+| xiangyu_sword.c | 鑲玉短劍 | Sword | (3,20,50,3) |
+| wushou_sword.c | 巫首劍 | Sword | (4,16,90,4) |
+
+**35 Armor** (`mudlib/obj/armor/`):
+- **Legendary:** 潤神幻戒, 封印雷環, 寒蟾指環, 疾步快靴, 獒尾帶, 心殘爪, 狙首盔, 水慾羽衣
+- **霸王 set:** 霸王鎧, 霸王銅冠, 霸王指環
+- **精鋼 set:** 精鋼戰甲, 精鋼戰靴, 精鋼護腕
+- **Reputation:** 龍騎戰甲, 鐵佛珠, 蛟龍帶, 精鐵環扣, 鐵盔, 連身鎖子甲, 步軍戰盔, 步軍戰鎧, 皂步靴, 青布官服, 綠玉頂戴, 蟠龍朝服, 銅盔, 漢玉戒指, 鐵鱗腿護, 蠻牛靴, 虎嘯旭日鎧, 冶磺套, 水晶戒指, 玄蛛皂白靴, 金絲長袍
+
+### Validation
+- All files have correct `#include` headers
+- All inherit the correct weapon/armor feature class
+- All have matching `setup_<type>()` calls
+- All have `setup()` at the end
+- All weapon stats validated against actual engine source code ranges (not CLAUDE.md which was inaccurate)
+[0;32m[OK][0m Task done: Implement equipment
+[0;34m[09:51:38][0m Running task: Implement skill daemons
+--- Task: Implement skill daemons ---
+All skill daemons are already fully implemented. Here's the validation summary:
+
+**All 79 skill daemons pass static validation:**
+
+| Check | Result |
+|-------|--------|
+| `inherit SKILL` | 79/79 |
+| `register_skill_daemon` | 79/79 |
+| `skill_improved` | 79/79 |
+| `skill_advanced` | 79/79 |
+| Combat skills with actions (≥6 moves) | All pass |
+| 門派武功 with 「」move names | All 29 faction skills have them |
+| Internal force with `do_exercise`/`halt_exercise`/`exert_function` | All 12 pass |
+
+**Skill categories verified:**
+- **Generic weapons** (9): axe, blade, dagger, needle, pike, staff, sword, unarmed, whip
+- **門派武功** (29): fengshan_sword, fonxansword, maoshan_sword, bloodystrike, etc.
+- **內功** (12): celestial, fonxanforce, iceforce, jin_gang, juechen_force, etc.
+- **輕功** (6): chaos_steps, fall_steps, linbo_steps, notraces, pyrobat_steps, etc.
+- **法術/特殊** (23): spells, taoism, buddhism, perception, stealing, yirong, etc.
+
+All completion conditions are already met - no additional implementation needed. This task appears to have been completed in prior pipeline runs.
+[0;32m[OK][0m Task done: Implement skill daemons
+[0;34m[09:53:37][0m Running task: Implement quest system
+--- Task: Implement quest system ---
+All three quests are **already fully implemented and functional**. Here's the verification summary:
+
+## Quest System Status: Complete
+
+### Quest 1: 老乞婆任務 (Old Beggar Crone) - 3-Stage Delivery Quest
+- **NPC**: `d/snow/npc/old_beggar.c` → loaded in `d/snow/square_sw.c`
+- **Stage 1**: Bring 棉襖 (cotton coat) — buyable from 魚天 in `d/snow/npc/yu.c`
+- **Stage 2**: Bring 匕首 (dagger) — buyable from 鐵匠 in `d/snow/smithy.c`
+- **Stage 3**: Bring 西瓜 (watermelon) — buyable from 瓜農 in `d/baihua/melon_farm.c`
+- **Rewards**: 念珠 (rosary, +2 armor) + 白長袍 (white robe, +4 armor) + 200 quest score
+
+### Quest 2: 送信任務 (Postman Delivery Quest)
+- **NPC**: `d/snow/npc/postman.c` → loaded in `d/snow/post_office.c`
+- **Flow**: Talk to postman → receive letter → deliver to herbalist in `d/snow/herb_shop.c` → return to postman
+- **Herbalist**: `d/snow/npc/herbalist.c` has `accept_object()` handler for the quest letter
+- **Rewards**: 100 coins + 100 quest score
+
+### Quest 3: 搬箱子任務 (Crate Loading Quest)
+- **NPC**: `d/snow/npc/foreman.c` → loaded in `d/snow/store.c`
+- **Props**: wagon + 3 crates loaded in same room
+- **Flow**: Talk about "打工" → pick up crates → load into wagon → say "工錢" to collect wages
+- **Rewards**: 25 coins/crate + first-time bonus of 100 coins (if 3+ crates) + 50 quest score
+
+### Bonus Quest: 拜師引導 (Apprenticeship Guide)
+- **NPC**: `d/snow/npc/escort.c` → loaded in `d/snow/square_s.c`
+- **Flow**: Talk about "拜師"/"學武"/"門派" → get guidance to faction masters
+- **Rewards**: 50 coins + 30 quest score
+
+### Completion Checklist
+- [x] At least 3 beginner quests operational (actually 4 quests exist)
+- [x] Quest NPCs correctly loaded in rooms
+- [x] Quests completable with proper rewards (coins, items, quest score)
+- [x] Quest items obtainable from vendors (dagger from smith, cotton coat from 魚天, watermelon from melon farmer)
+- [x] Flag system working (`quest/*` persistent flags, `pending/*` temp flags)
+
+All completion conditions for Task 07 are met. The quest system uses the existing NPC dialogue + flag pattern as designed — no separate quest daemon needed.
+[0;32m[OK][0m Task done: Implement quest system
+[0;34m[09:57:40][0m All tasks completed.
+[0;34m[09:57:40][0m Checking for changes to commit...

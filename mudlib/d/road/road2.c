@@ -17,6 +17,7 @@ LONG
 		"north" : __DIR__"road3",
 		"east"  : "/d/hudao/gate",
 		"west"  : "/d/longan/entrance",
+		"southwest" : "/d/tianhan/entrance",
 	]));
 
 	setup();

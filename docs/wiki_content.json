@@ -1,639 +1,474 @@
 {
-  "fetched_date": "2026-03-20",
-  "source": "ES2 MUD Google Sites Wiki",
+  "metadata": {
+    "crawl_date": "2026-03-20",
+    "last_updated": "2026-03-20T10:00:00",
+    "blog_posts_crawled": 161,
+    "sources": [
+      "sites.google.com/site/es2mud (官方 Wiki - 28 pages)",
+      "es2tips.blogspot.com (玩家攻略 Blog - 120+ posts)",
+      "github.com/mudchina/es2 (原版 ES2 mudlib)"
+    ]
+  },
+  "mythology": {
+    "creation": "盤古開天闢地，分為人界與混沌界。天神與侮天鬼分治。寒於為天朝第一統治者，獲神器寶袍及穿靈、旋芒雙刃。5000年前寒於斬侮天鬼頭顱，17日大戰後力竭而亡。其靈魂化為十三靈：金烏(日)、銀蟾(月)、風、雨、雷、火、山、林、川、原、天、地之靈。300年前封印破裂，侮天鬼重現。",
+    "thirteen_spirits": ["金烏(日)", "銀蟾(月)", "風靈", "雨靈", "雷靈", "火靈", "山靈", "林靈", "川靈", "原靈", "天靈", "地靈"],
+    "timeline": [
+      "5000年前：寒於斬侮天鬼",
+      "1000年前：無遲氏族長商句征服沿岔河地區，建立金烏圖騰國",
+      "994年前：於蘭攸嫁君達，建立天朝",
+      "300年前：聖木被毀，封印破裂",
+      "124年前：武貞帝登基",
+      "48年前：至賢帝登基",
+      "30年前：佑聖帝登基"
+    ]
+  },
+  "main_quests": {
+    "unresolved_mysteries": [
+      "大邪道人與殘蟻師太的關係",
+      "魚鐵山與劉乙忘玄的陰謀",
+      "失蹤的武林盟主",
+      "白象寺隱藏的秘密",
+      "封鬼慘案的真兇",
+      "梅影風配偶的病情",
+      "朝廷對預言的知情程度",
+      "虎刀門失蹤的二師父",
+      "阿寶在老榕樹下等待的人"
+    ],
+    "thirteen_spirits_quest": "最困難的內容，需要玩家合作完成，可獲得天賦重置機會"
+  },
   "races": {
     "human": {
-      "chinese_name": "人類",
-      "english_id": "human",
-      "karma_cost": 5,
-      "description": "Humans are an adaptable race suited for multiple professions.",
-      "variants": {
-        "standard": {
-          "starting_stats": { "essence": 35, "qi": 35, "spirit": 35 },
-          "stat_caps": { "strength": 18, "courage": 18, "wisdom": 18, "spirituality": 18, "composure": 18, "agility": 18, "constitution": 18, "insight": 18 },
-          "available_classes": [
-            { "class": "武者 (Warrior)", "min_level": 60 },
-            { "class": "書生 (Scholar)", "min_level": 70 },
-            { "class": "方士 (Fangshi)", "min_level": 60 },
-            { "class": "和尚 (Monk)", "min_level": 65 }
-          ],
-          "passive_ability": "+10 Defense; rare chance to trigger human race status",
-          "active_ability": "When facing dire circumstances, trigger remarkable survival strength to recover significant health and qi"
-        },
-        "advanced": {
-          "starting_stats": { "essence": 30, "qi": 30, "spirit": 30 },
-          "stat_caps": { "strength": 20, "courage": 20, "wisdom": 20, "spirituality": 20, "composure": 20, "agility": 20, "constitution": 20, "insight": 20 },
-          "available_classes": [{ "class": "All professions", "min_level": 70 }],
-          "passive_ability": "+10 Defense",
-          "active_ability": "Through prayer to the sun deity, gain celestial blessing to recover substantial status conditions"
-        }
-      }
+      "chinese_name": "人類", "karma": 5,
+      "classes": {"warrior": 60, "scholar": 70, "taoist": 60, "monk": 65},
+      "starting_stats": {"essence": 35, "qi": 35, "spirit": 35},
+      "attribute_caps": {"str": 18, "cour": 18, "wis": 18, "spi": 18, "comp": 18, "agi": 18, "con": 18, "int": 18},
+      "passive": "防禦+10；0.01%機率轉化為人類亞種",
+      "active": "瀕死時觸發求生本能恢復",
+      "subrace": "所有職業70；所有上限20；起始30/30/30；太陽祈禱祝福"
     },
     "headless": {
-      "chinese_name": "刑天",
-      "english_id": "headless",
-      "karma_cost": 25,
-      "starting_stats": { "essence": 80, "qi": 100, "spirit": 30 },
-      "stat_caps": { "strength": 30, "courage": 20, "perception": 15, "spirituality": 10, "stability": 16, "agility": 24, "constitution": 28, "talent": 18 },
-      "available_classes": [
-        { "class": "武者 (Warrior)", "min_level": 65 },
-        { "class": "軍人 (Soldier)", "min_level": 70 }
-      ],
-      "passive_ability": "Attack power 50, Defense ability 100, Defense 100, Movement 50",
-      "active_ability": "Enhances attributes through ritualistic dance ceremonies, temporarily boosting multiple combat statistics",
-      "role": "Tank-oriented and warrior-focused gameplay"
+      "chinese_name": "刑天", "karma": 25,
+      "classes": {"warrior": 65, "soldier": 70},
+      "starting_stats": {"essence": 80, "qi": 100, "spirit": 30},
+      "attribute_caps": {"str": 30, "cour": 20, "wis": 15, "spi": 10, "comp": 16, "agi": 24, "con": 28, "int": 18},
+      "passive": "攻擊+50，防禦+100，防禦力+100，移動+50",
+      "active": "儀式舞蹈增益"
     },
     "yenhold": {
-      "chinese_name": "厭火",
-      "english_id": "yenhold",
-      "karma_cost": 5,
-      "starting_stats": { "essence": 20, "qi": 30, "spirit": 20 },
-      "stat_caps": { "strength": 20, "courage": 14, "wisdom": 10, "spirituality": 12, "composure": 20, "agility": 14, "constitution": 22, "perception": 15 },
-      "available_classes": [
-        { "class": "武者 (Warrior)", "min_level": 60 },
-        { "class": "軍人 (Soldier)", "min_level": 60 },
-        { "class": "和尚 (Monk)", "min_level": 65 }
-      ],
-      "passive_ability": "Defense +20, Fire Defense +50",
-      "active_ability": "Breathes intense blazing fire to burn all opponents"
+      "chinese_name": "厭火", "karma": 5,
+      "classes": {"warrior": 60, "soldier": 60, "monk": 65},
+      "starting_stats": {"essence": 20, "qi": 30, "spirit": 20},
+      "attribute_caps": {"str": 20, "cour": 14, "wis": 10, "spi": 12, "comp": 20, "agi": 14, "con": 22, "int": 15},
+      "passive": "防禦+20，火抗+50",
+      "active": "吐火燒灼所有對手"
     },
     "yaksa": {
-      "chinese_name": "夜叉",
-      "english_id": "yaksa",
-      "karma_cost": 35,
-      "starting_stats": { "essence": 140, "qi": 70, "spirit": 70 },
-      "stat_caps": { "strength": 25, "courage": 25, "insight": 20, "spirituality": 25, "stability": 20, "agility": 25, "vitality": 25, "wisdom": 25 },
-      "available_classes": [
-        { "class": "書生 (Scholar)", "min_level": 60 },
-        { "class": "武者 (Warrior)", "min_level": 65 },
-        { "class": "小偷 (Thief)", "min_level": 70 },
-        { "class": "道士 (Daoist)", "min_level": 65 },
-        { "class": "方士 (Fangshi)", "min_level": 60 }
-      ],
-      "passive_ability": "Defense +50, Attack +25, Yin-Yang Eye, Celestial Eye",
-      "active_ability": "Can consume the soul essence of other creatures"
+      "chinese_name": "夜叉", "karma": 35,
+      "classes": {"scholar": 60, "warrior": 65, "thief": 70, "taoist": 65, "sorcerer": 60},
+      "starting_stats": {"essence": 140, "qi": 70, "spirit": 70},
+      "attribute_caps": {"str": 25, "cour": 25, "wis": 20, "spi": 25, "comp": 20, "agi": 25, "con": 25, "int": 25},
+      "passive": "防禦+50，攻擊+25，天眼，穿天眼",
+      "active": "吞噬其他生物靈魂"
     },
     "malik": {
-      "chinese_name": "巫首",
-      "english_id": "malik",
-      "karma_cost": 30,
-      "starting_stats": { "essence": 70, "qi": 40, "spirit": 100 },
-      "stat_caps": { "strength": 11, "courage": 11, "comprehension": 30, "spirituality": 30, "stability": 28, "agility": 25, "constitution": 15, "aptitude": 25 },
-      "available_classes": [
-        { "class": "書生 (Scholar)", "min_level": 60 },
-        { "class": "道士 (Daoist)", "min_level": 65 },
-        { "class": "和尚 (Monk)", "min_level": 65 }
-      ],
-      "passive_ability": "Defense capability 50, Defense power 10, Celestial Vision (通天眼)",
-      "active_ability": "Draws upon heaven and earth's essence to recover substantial spirit points",
-      "role": "Caster-focused builds"
+      "chinese_name": "巫首", "karma": 30,
+      "classes": {"scholar": 60, "taoist": 65, "monk": 65},
+      "starting_stats": {"essence": 70, "qi": 40, "spirit": 100},
+      "attribute_caps": {"str": 11, "cour": 11, "wis": 30, "spi": 30, "comp": 28, "agi": 25, "con": 15, "int": 25},
+      "passive": "防禦+50，防禦力+10，天眼",
+      "active": "吸收靈氣恢復精神"
     },
     "woochan": {
-      "chinese_name": "無腸",
-      "english_id": "woochan",
-      "karma_cost": 5,
-      "starting_stats": { "essence": 30, "qi": 20, "spirit": 60 },
-      "stat_caps": { "strength": 15, "courage": 15, "wisdom": 20, "spirituality": 20, "concentration": 18, "agility": 20, "constitution": 15, "aptitude": 22 },
-      "available_classes": [
-        { "class": "道士 (Daoist)", "min_level": 60 },
-        { "class": "書生 (Scholar)", "min_level": 60 },
-        { "class": "方士 (Fangshi)", "min_level": 60 },
-        { "class": "和尚 (Monk)", "min_level": 65 }
-      ],
-      "passive_ability": "Defense 5, Defensive stance level 25, Requires no sustenance",
-      "active_ability": "Recovers status conditions by metabolizing internal moisture/water energy"
+      "chinese_name": "無腸", "karma": 5,
+      "classes": {"taoist": 60, "scholar": 60, "fangshi": 60, "monk": 65},
+      "starting_stats": {"essence": 30, "qi": 20, "spirit": 60},
+      "attribute_caps": {"str": 15, "cour": 15, "wis": 20, "spi": 20, "comp": 18, "agi": 20, "con": 15, "int": 22},
+      "passive": "防禦+5，防禦姿態+25，不需進食",
+      "active": "消化內部水氣恢復狀態"
     },
     "jiaojao": {
-      "chinese_name": "焦僥",
-      "english_id": "jiaojao",
-      "karma_cost": 10,
-      "starting_stats": { "essence": 40, "qi": 25, "spirit": 25 },
-      "stat_caps": { "strength": 14, "courage": 13, "wisdom": 19, "spirituality": 19, "composure": 19, "agility": 24, "constitution": 16, "root_talent": 18 },
-      "available_classes": [
-        { "class": "武者 (Warrior)", "min_level": 60 },
-        { "class": "書生 (Scholar)", "min_level": 65 },
-        { "class": "小偷 (Thief)", "min_level": 65 },
-        { "class": "和尚 (Monk)", "min_level": 65 }
-      ],
-      "passive_ability": "Defense capability 15, Alertness 100",
-      "active_ability": "Can flee combat and hide in place"
+      "chinese_name": "交脛", "karma": 10,
+      "classes": {"warrior": 60, "scholar": 65, "thief": 65, "monk": 65},
+      "starting_stats": {"essence": 40, "qi": 25, "spirit": 25},
+      "attribute_caps": {"str": 14, "cour": 13, "wis": 19, "spi": 19, "comp": 19, "agi": 24, "con": 16, "int": 18},
+      "passive": "防禦+15，警覺+100",
+      "active": "脫離戰鬥並就地隱藏"
     },
     "dingling": {
-      "chinese_name": "釘靈",
-      "english_id": "dingling",
-      "karma_cost": 10,
-      "starting_stats": { "essence": 70, "qi": 40, "spirit": 20 },
-      "stat_caps": { "strength": 20, "courage": 15, "wisdom": 15, "spirituality": 10, "composure": 20, "agility": 25, "constitution": 20, "insight": 15 },
-      "available_classes": [
-        { "class": "武者 (Warrior)", "min_level": 60 },
-        { "class": "軍人 (Soldier)", "min_level": 65 },
-        { "class": "小偷 (Thief)", "min_level": 60 },
-        { "class": "和尚 (Monk)", "min_level": 65 }
-      ],
-      "passive_ability": "Movement speed +50, Damage +10",
-      "active_ability": "Trampling attack targeting enemy prevents adversary from attacking or moving"
+      "chinese_name": "釘靈", "karma": 10,
+      "classes": {"warrior": 60, "soldier": 65, "thief": 60, "monk": 65},
+      "starting_stats": {"essence": 70, "qi": 40, "spirit": 20},
+      "attribute_caps": {"str": 20, "cour": 15, "wis": 15, "spi": 10, "comp": 20, "agi": 25, "con": 20, "int": 15},
+      "passive": "移動+50，傷害+10",
+      "active": "踐踏目標使其無法行動"
     },
     "ashura": {
-      "chinese_name": "阿修羅",
-      "english_id": "ashura",
-      "karma_cost": 30,
-      "starting_stats": { "essence": 80, "qi": 80, "spirit": 80 },
-      "stat_caps": { "strength": 25, "boldness": 40, "insight": 15, "spirituality": 25, "concentration": 10, "agility": 20, "constitution": 20, "aptitude": 20 },
-      "available_classes": [
-        { "class": "武者 (Warrior)", "min_level": 70 },
-        { "class": "軍人 (Soldier)", "min_level": 70 },
-        { "class": "道士 (Daoist)", "min_level": 60 }
-      ],
-      "passive_ability": "Attack Power +30, Offensive Stance +30, Yin-Yang Eye, Chaotic Active Attack",
-      "active_ability": "Corpse consumption restores personal condition (health and status)"
+      "chinese_name": "阿修羅", "karma": 30,
+      "classes": {"warrior": 70, "soldier": 70, "taoist": 60},
+      "starting_stats": {"essence": 80, "qi": 80, "spirit": 80},
+      "attribute_caps": {"str": 25, "cour": 40, "wis": 15, "spi": 25, "comp": 10, "agi": 20, "con": 20, "int": 20},
+      "passive": "攻擊+30，氣勢+30，陰陽眼，混沌主動攻擊",
+      "active": "吞噬屍體恢復狀態"
     },
     "rainnar": {
-      "chinese_name": "雨師妾",
-      "english_id": "rainnar",
-      "karma_cost": 25,
-      "starting_stats": { "essence": 40, "qi": 30, "spirit": 70 },
-      "stat_caps": { "strength": 9, "courage": 9, "comprehension": 22, "spirituality": 24, "stability": 20, "agility": 13, "physique": 13, "wisdom_root": 28 },
-      "available_classes": [
-        { "class": "方士 (Fangshi)", "min_level": 60 },
-        { "class": "道士 (Daoist)", "min_level": 60 },
-        { "class": "小偷 (Thief)", "min_level": 60 },
-        { "class": "書生 (Scholar)", "min_level": 60 },
-        { "class": "和尚 (Monk)", "min_level": 65 }
-      ],
-      "passive_ability": "Defense +20, Elemental damage reduction +10 (four elements)",
-      "active_ability": "Can nurture and equip up to five serpents as equipment"
+      "chinese_name": "雨師妾", "karma": 25,
+      "classes": {"fangshi": 60, "taoist": 60, "thief": 60, "scholar": 60, "monk": 65},
+      "starting_stats": {"essence": 40, "qi": 30, "spirit": 70},
+      "attribute_caps": {"str": 9, "cour": 9, "wis": 22, "spi": 24, "comp": 20, "agi": 13, "con": 13, "int": 28},
+      "passive": "防禦+20，四元素減傷10",
+      "active": "培育最多5條小蛇作為裝備"
     },
     "blackteeth": {
-      "chinese_name": "黑齒",
-      "english_id": "blackteeth",
-      "karma_cost": 3,
-      "starting_stats": { "essence": 35, "qi": 25, "spirit": 10 },
-      "stat_caps": { "strength": 25, "courage": 15, "comprehension": 15, "spirituality": 10, "stability": 15, "agility": 20, "foundation": 20, "wisdom": 10 },
-      "available_classes": [
-        { "class": "武者 (Warrior)", "min_level": 60 },
-        { "class": "小偷 (Thief)", "min_level": 60 },
-        { "class": "和尚 (Monk)", "min_level": 65 }
-      ],
-      "passive_ability": "Defense power +5",
-      "active_ability": "Consume items to restore personal status/conditions"
+      "chinese_name": "黑齒", "karma": 3,
+      "classes": {"warrior": 60, "thief": 60, "monk": 65},
+      "starting_stats": {"essence": 35, "qi": 25, "spirit": 10},
+      "attribute_caps": {"str": 25, "cour": 15, "wis": 15, "spi": 10, "comp": 15, "agi": 20, "con": 20, "int": 10},
+      "passive": "防禦+5",
+      "active": "吞噬物品恢復狀態"
     }
   },
   "classes": {
     "warrior": {
       "chinese_name": "武者",
-      "english_id": "warrior",
-      "description": "A practitioner of martial arts who upholds martial virtue. Warriors form the core strength of organizations throughout the realm.",
-      "sects": {
-        "fengshan": {
-          "chinese_name": "封山派",
-          "english_id": "fengshan",
-          "strengths": "Distinctive internal cultivation, lightness skill, boxing techniques, versatile sword combat",
-          "weakness": "Lower burst damage despite sustained combat excellence",
-          "advancement_paths": [
-            { "chinese_name": "劍靈", "english_name": "Sword Spirit", "description": "Agile sword specialist" },
-            { "chinese_name": "山人", "english_name": "Mountain Recluse", "description": "Boxing-focused variant" },
-            { "chinese_name": "劍客", "english_name": "Swordmaster", "description": "Masters four mystical principles" }
-          ],
-          "recommended_races": ["yaksa", "headless"]
-        },
-        "lengmei": {
-          "chinese_name": "冷梅莊",
-          "english_id": "lengmei",
-          "strengths": "Rapid, elegant swordplay comparable to falling snow and plum blossoms",
-          "weakness": "Inferior hand combat and movement techniques",
-          "advancement_paths": [
-            { "chinese_name": "劍士", "english_name": "Swordsman", "description": "High burst, lower durability" },
-            { "chinese_name": "古劍門傳人", "english_name": "Ancient Sword Heir", "description": "Strong defense and sustain" },
-            { "chinese_name": "虎督", "english_name": "Tiger Commander", "description": "High burst, lower durability" }
-          ],
-          "recommended_races": ["headless", "ashura", "human"]
-        },
-        "kuxiao": {
-          "chinese_name": "哭笑門",
-          "english_id": "kuxiao",
-          "strengths": "Superior defensive capabilities; unconventional blade techniques",
-          "history": "Originally one of four sub-factions of Qingxie Palace",
-          "leader": "劉乙忘玄 (Liu Yi Wang Xuan)",
-          "advancement_paths": [
-            { "chinese_name": "護法", "english_name": "Protector", "description": "Maximum defensive power" },
-            { "chinese_name": "素衣衛", "english_name": "Plain Robe Guardian", "description": "Blends Daoist techniques" },
-            { "chinese_name": "使者", "english_name": "Emissary", "description": "Abandons staff for blade" }
-          ],
-          "recommended_races": ["headless", "yaksa", "yenhold"]
-        },
-        "xueyin": {
-          "chinese_name": "雪吟莊",
-          "english_id": "xueyin",
-          "strengths": "Powerful internal techniques from Tianxie nation",
-          "note": "Not recommended for beginners; demanding cultivation requirements",
-          "master": "魚鐵山 (Yu Tie Shan)",
-          "advancement_paths": [
-            { "chinese_name": "浪人", "english_name": "Wanderer", "description": "Knife specialization" },
-            { "chinese_name": "棄徒", "english_name": "Abandoned Disciple", "description": "Defensive approach" },
-            { "chinese_name": "天邪派弟子", "english_name": "Tianxie Faction Follower", "description": "Palm techniques" }
-          ],
-          "recommended_races": ["yaksa", "ashura", "jiaojao", "headless", "human"]
-        },
-        "hudao": {
-          "chinese_name": "虎刀門",
-          "english_id": "hudao",
-          "strengths": "Unstoppable blade techniques providing highest burst damage potential",
-          "history": "Originally connected to White Elephant Temple; separated due to excessive killing intent",
-          "advancement_paths": [
-            { "chinese_name": "護衛", "english_name": "Guard", "description": "Balanced sustained combat" },
-            { "chinese_name": "鬼才", "english_name": "Phantom Talent", "description": "Dual-blade specialization" },
-            { "chinese_name": "太守", "english_name": "Governor", "description": "Pure, direct approach" }
-          ],
-          "recommended_races": ["headless", "ashura"]
-        }
-      }
+      "sects": ["fengshan", "lengmei", "kuxiao", "xueyin", "hudao"],
+      "description": "近戰物理職業，5個門派各有特色"
     },
     "monk": {
       "chinese_name": "和尚",
-      "english_id": "monk",
-      "description": "Achieves spiritual cultivation through meditation and Buddhist study, seeking inner peace and allowing spiritual power to transcend the three realms and six paths.",
-      "restriction": "Absolutely prohibited from consuming alcohol; violation results in life-threatening consequences",
-      "role": "Essential party support for both leveling and combat",
-      "sects": {
-        "baolian": {
-          "chinese_name": "寶蓮寺",
-          "english_id": "baolian",
-          "english_name": "Baolian Temple",
-          "focus": "Healing, salvation",
-          "role": "Party support via diverse healing methods"
-        },
-        "tianyue": {
-          "chinese_name": "天月庵",
-          "english_id": "tianyue",
-          "english_name": "Tianyue Nunnery",
-          "focus": "Healing, salvation",
-          "role": "Party support via diverse healing methods"
-        },
-        "baixiang": {
-          "chinese_name": "護國白象寺",
-          "english_id": "baixiang",
-          "english_name": "Baixiang Temple (White Elephant Temple)",
-          "focus": "High martial status; dual-path advancement",
-          "advancement_paths": [
-            { "chinese_name": "禪師", "english_name": "Zen Master", "description": "Defense-focused" },
-            { "chinese_name": "羅漢", "english_name": "Arhat", "description": "Attack-focused" }
-          ]
-        }
-      }
+      "sects": ["baolian", "tianyue", "baixiang"],
+      "note": "和尚絕對禁止飲酒（致命）"
     },
     "thief": {
       "chinese_name": "小偷",
-      "english_id": "thief",
-      "alt_name": "盜賊 (Dao Ze / Bandit)",
-      "description": "Operates as a hidden force in the Celestial Dynasty. Access requires connections within criminal networks.",
-      "lore": "Following the disappearance of Huang Qiao, the profession fragmented into two competing factions with declining influence.",
-      "sects": {
-        "langyi": {
-          "chinese_name": "瑯夷",
-          "english_id": "langyi",
-          "description": "Claims status as the largest black society organization",
-          "strengths": "Extensive interpersonal networks enabling disciples to acquire diverse special techniques",
-          "weakness": "No distinctive signature martial arts methods"
-        },
-        "yinjiao": {
-          "chinese_name": "隱教",
-          "english_id": "yinjiao",
-          "strengths": "Exceptional in lightness kung fu, internal cultivation, and unarmed combat",
-          "philosophy": "Most members rejected government amnesty; prefer avoiding direct combat",
-          "weakness": "Reluctance toward straightforward confrontation"
-        }
-      },
-      "advanced_specializations": [
-        { "chinese_name": "暗器", "english_name": "Hidden Weapons", "description": "Supplementary skill" },
-        { "chinese_name": "金蛇門", "english_name": "Jade Snake Sect", "description": "Sword-focused fighting style" },
-        { "chinese_name": "黑龍使者", "english_name": "Black Dragon Messenger", "description": "Dragon claw techniques combined with toxic substances" }
-      ]
+      "sects": ["langyi", "yinjiao"],
+      "advanced": ["金蛇門（劍術）", "黑龍使者（龍爪+毒術）"]
     },
-    "fangshi": {
+    "alchemist": {
       "chinese_name": "方士",
-      "english_id": "fangshi",
-      "english_name": "Daoist Alchemist",
-      "description": "Pursues immortality and longevity, typically dwelling in remote locations. Support/Utility class focused on alchemy and healing.",
-      "sects": {
-        "longtu": {
-          "chinese_name": "龍圖",
-          "english_id": "longtu",
-          "english_name": "Dragon Chart Sect",
-          "specialization": "Pure alchemy and immortality cultivation",
-          "combat_ability": "None",
-          "key_skills": ["Pill refinement", "Daoist techniques"],
-          "advancement": { "chinese_name": "醫師", "english_name": "Physician", "description": "Reduces alchemy complexity" },
-          "economic_role": "Provides essential medicine and remedies to other players"
-        },
-        "wutuo": {
-          "chinese_name": "武陀",
-          "english_id": "wutuo",
-          "english_name": "Martial Cauldron Sect",
-          "specialization": "Acupuncture techniques combined with herbalism",
-          "combat_ability": "Moderate offensive capability",
-          "key_skills": ["Acupuncture mastery", "Healing support"],
-          "advancement": { "chinese_name": "香主", "english_name": "Incense Master", "description": "Proficient practitioner role" },
-          "note": "Cannot independently produce pills but offers auxiliary combat support"
-        }
-      },
-      "cross_sect_option": {
-        "chinese_name": "劍甲門",
-        "english_name": "Jianjia Sect",
-        "description": "Available to both sects. Grants combat capability enhancement and equipment strengthening."
-      }
+      "sects": ["longttu", "wutuo"],
+      "cross_sect": "劍甲門 (jianjia)"
     },
     "scholar": {
       "chinese_name": "書生",
-      "english_id": "scholar",
-      "description": "Refined and cultured demeanor but requires ten years of hard study. A difficult profession to train with no outstanding combat ability. Clan elders can review records of member recruitment, promotions, and departures.",
-      "sects": {
-        "buxuan": {
-          "chinese_name": "步玄派",
-          "english_id": "buxuan",
-          "english_name": "Buxuan Sect",
-          "weapon": "Dual swords",
-          "combat_style": "Light and nimble footwork, resembles a Warrior",
-          "advancement": { "english_name": "Layman", "description": "Higher survival capabilities" }
-        },
-        "xuantian": {
-          "chinese_name": "玄天教",
-          "english_id": "xuantian",
-          "english_name": "Xuantian Sect",
-          "combat_style": "Manual control-based crowd control fighting",
-          "pve_note": "Limited against NPCs",
-          "pvp_note": "Surprising advantages in player-versus-player combat",
-          "advancement": { "english_name": "Recluse", "description": "Higher survival capabilities" }
-        }
-      },
-      "special_mechanic": "Both Scholar sects can serve as imperial intelligence agencies to gain enhanced attack power"
+      "sects": ["buxuan", "xuantian"]
     },
     "soldier": {
       "chinese_name": "軍人",
-      "english_id": "soldier",
-      "description": "Every country's ruler needs troops to maintain order. Advancement requires combat experience and merit through eliminating bandits.",
-      "faction": "振武軍營 (Zhenwu Military Camp)",
-      "recruitment_note": "Currently the only military faction accepting new recruits in Tianzhao",
-      "progression": "Merit earned by eliminating bandits/criminals",
-      "advancement_paths": [
-        { "description": "Powerful military commander" },
-        { "description": "Military strategist with combat methods resembling a Taoist" }
-      ]
+      "sects": ["zhenwu"],
+      "specializations": ["combat_commander", "tactical_strategist"]
     },
-    "daoist": {
+    "taoist": {
       "chinese_name": "道士",
-      "english_id": "daoist",
-      "description": "Practitioners pursuing harmony with nature through Taoist principles. Magic/Elemental Damage class.",
-      "sects": {
-        "tianshi": {
-          "chinese_name": "天師派",
-          "english_id": "tianshi",
-          "english_name": "Tianshi Sect",
-          "focus": "Elemental mastery",
-          "elements": ["ice", "fire", "wind", "lightning"],
-          "mechanic": "Harnesses ice, fire, wind, and lightning through spiritual power. Players master two element types through continued practice."
-        },
-        "maoshan": {
-          "chinese_name": "茅山派",
-          "english_id": "maoshan",
-          "english_name": "Maoshan Sect",
-          "sub_factions": [
-            { "chinese_name": "靈雲觀", "english_name": "Lingyun Temple", "focus": "Strongest status effect abilities" },
-            { "chinese_name": "隱風觀", "english_name": "Yinfeng Temple", "focus": "Healing/medical magic" },
-            { "chinese_name": "幻霧觀", "english_name": "Huanwu Temple", "focus": "High burst damage, spirit manipulation" }
-          ],
-          "special_path": "Maoshan Swordsman variant available through Maoshan ruins training, functioning as magic-sword hybrid class"
-        }
+      "sects": ["tianshi", "maoshan"],
+      "maoshan_branches": {
+        "lingyun": "靈雲觀 — 狀態異常（五雷、幽冥三箭）",
+        "yinfeng": "隱風觀 — 治療（喚雨、算命）",
+        "huanwu": "幻霧觀 — 爆發傷害（噬魂、通靈）"
+      },
+      "tianshi_elements": {
+        "ziyi": "紫衣派 — 雷系",
+        "suyi": "素衣派 — 冰系",
+        "xuanyi": "玄衣派 — 風系",
+        "zhuyi": "朱衣派 — 火系"
       }
     }
   },
-  "mythology": {
-    "divine_beings": [
-      { "chinese_name": "天神", "english_name": "Celestial Deity" },
-      { "chinese_name": "侮天鬼", "english_name": "Demon of Contempt" },
-      { "chinese_name": "寒於氏", "english_name": "First Ruler (founder of Heaven Dynasty)" }
-    ],
-    "thirteen_spirits": [
-      { "number": 1, "chinese_name": "金烏", "english_name": "Sun God" },
-      { "number": 2, "chinese_name": "銀蟾", "english_name": "Moon Goddess" },
-      { "number": 3, "chinese_name": "大鵬", "english_name": "Wind God" },
-      { "number": 4, "chinese_name": "天龍", "english_name": "Rain God" },
-      { "number": 5, "chinese_name": "澤獸", "english_name": "Thunder God" },
-      { "number": 6, "chinese_name": "鳳凰", "english_name": "Fire God" },
-      { "number": 7, "chinese_name": "赤魈", "english_name": "Mountain Ghost" },
-      { "number": 8, "chinese_name": "青蛛", "english_name": "Forest Ghost" },
-      { "number": 9, "chinese_name": "濁魚", "english_name": "River Ghost" },
-      { "number": 10, "chinese_name": "旱魃", "english_name": "Plain Ghost" },
-      { "number": 11, "chinese_name": "穹氤", "english_name": "Heavenly Spirit" },
-      { "number": 12, "chinese_name": "域摩", "english_name": "Earthly Spirit" },
-      { "number": 13, "chinese_name": "區冥", "english_name": "Human Spirit" }
-    ],
-    "artifacts": [
-      { "chinese_name": "穿靈", "english_name": "Spirit-Pierce Blade" },
-      { "chinese_name": "旋芒", "english_name": "Spinning Radiance Blade" },
-      { "chinese_name": "寶衣", "english_name": "Treasure Robe" }
-    ],
-    "locations": [
-      { "chinese_name": "人界", "english_name": "Human Realm" },
-      { "chinese_name": "混沌界", "english_name": "Chaos Realm" },
-      { "chinese_name": "皇城", "english_name": "Imperial Palace" },
-      { "chinese_name": "陰間", "english_name": "Underworld" }
-    ],
-    "cycle_system": "Every 600 years is one cycle; Human Spirit reincarnates every 100 years with 200-year dormancy periods"
-  },
-  "history": {
-    "timeline": [
-      { "period": "5000 years ago", "event": "寒於 (Han Yu) defeated 侮天鬼 (Wu Tian Gui) by severing its head" },
-      { "period": "1000 years ago", "event": "鄔赤族 (Wu Chi clan) leader 商句 (Shang Ju) conquered Yan Che river region; established nation with golden raven totem" },
-      { "period": "994 years ago", "event": "於蘭攸 married 君達 to found Tian Chao" },
-      { "period": "300 years ago", "event": "Sacred tree destroyed; 侮天鬼 reappeared in human realm" },
-      { "period": "270 years ago", "event": "杞庸 (Qi Yong) incarnated as young man teaching martial arts" },
-      { "period": "124 years ago", "event": "武貞 (Wu Zhen) Emperor ascended to throne" },
-      { "period": "48 years ago", "event": "智賢 (Zhi Xian) Emperor ascended to throne" },
-      { "period": "30 years ago", "event": "祐聖 (You Sheng) Emperor ascended to throne (current emperor)" }
-    ],
-    "key_characters": [
-      { "chinese_name": "武貞", "role": "Former emperor" },
-      { "chinese_name": "智賢", "role": "Previous emperor" },
-      { "chinese_name": "祐聖", "role": "Current emperor" },
-      { "chinese_name": "商句", "role": "Wu Chi clan leader, conqueror" },
-      { "chinese_name": "杞庸", "role": "Divine figure teaching martial arts" }
-    ]
-  },
-  "main_quests": {
-    "thirteen_spirits_quest": {
-      "chinese_name": "十三靈",
-      "description": "Part of the broader Insult to Heaven Ghost (侮天鬼) storyline. Highest difficulty content currently available.",
-      "reward": "Talent reset opportunity",
-      "requires_cooperation": true
-    },
-    "skill_system": {
-      "talent_caps": "140-200",
-      "progression": "Experience gained through combat or cultivation"
-    },
-    "plot_npcs": [
-      { "chinese_name": "大邪道人", "english_name": "Great Evil Daoist" },
-      { "chinese_name": "殘蟻師太", "english_name": "Crippled Ant Master" },
-      { "chinese_name": "魚鐵山", "english_name": "Yu Tie Shan" },
-      { "chinese_name": "劉乙忘玄", "english_name": "Liu Yi Wang Xuan" },
-      { "chinese_name": "梅影風", "english_name": "Mei Ying Feng" },
-      { "chinese_name": "阿寶", "english_name": "A Bao" }
-    ],
-    "plot_locations": [
-      "白象寺 (White Elephant Temple)",
-      "榕樹 (Banyan Tree)",
-      "虎刀門 (Tiger Blade Sect)"
-    ]
-  },
-  "special_quests": {
-    "celestial_spirit_quest": {
-      "chinese_name": "天靈任務",
-      "location": "赤魈村許願池 (Chi Xiao Village Wishing Pool)",
-      "activation": "Deposit any 3 fire/thunder/wind/rain deity weapons into the pool",
-      "boss": {
-        "name": "天靈 (Celestial Spirit)",
-        "special_ability": "隱神篇 (Hidden God Technique) - ignores high defense, damage scales with player defense",
-        "mechanics": "Uses skill reduction spell preventing attacks; resurrects 4 times",
-        "strategy": "Cold plum tiger blade combo for burst damage"
-      },
-      "reward": {
-        "type": "Dagger",
-        "chinese_name": "思歸符",
-        "skill": "錐法 (Dagger technique)",
-        "damage": "10-43 (75% STR modifier, multiplier level 3)",
-        "stat_bonuses": { "stability": 5, "spirituality": 1, "wisdom": 1, "insight": 2 },
-        "special": "Unlimited use without equipping",
-        "grants": "Eye (眼) - Randomly increases 1 point (SPR/INT/CPS/WIS); decreases others"
-      }
-    },
-    "earth_spirit_quest": {
-      "chinese_name": "地靈任務",
-      "quest_chain": [
-        "1. Obtain 聖木殘根 (Holy wood remnant) - dig near chaos pearl location",
-        "2. Defeat 大蜈蚣 (Giant centipede) at Back Sea Lake",
-        "3. Trade to sun bird NPC for 金屋內丹 (Gold chamber inner pill)",
-        "4. Obtain 炎日箭 (Blazing sun arrow)",
-        "5. Extract juice from 太陽狼草 plant to get 太陽槍 (Sun lance)",
-        "6. Activate at 地獄黑袍怪人的地氣塔 (Hell tower with insert mechanic)"
-      ],
-      "boss": {
-        "name": "地靈 (Earth Spirit)",
-        "constraints": "No exert, no perform skills allowed; melee only",
-        "mechanics": "Same as celestial spirit; resurrects 4 times"
-      },
-      "reward": {
-        "type": "Axe",
-        "skill": "雙手斧術 (Two-handed axe)",
-        "damage": "12-99 (165% STR modifier, multiplier level 3)",
-        "stat_bonuses": { "damage": 50 },
-        "grants": "Heart (心) - Randomly increases 1 point (CON/COR/DEX/STR); decreases others"
-      }
-    },
-    "quest_item_notes": "If deducted stat falls below 10, Eye/Heart activation fails"
+  "sects": {
+    "fengshan": {"chinese_name": "封山派", "class": "warrior", "skills": ["封山劍法", "封山內功"], "advances": ["劍靈", "修山者", "劍師"]},
+    "lengmei": {"chinese_name": "冷梅莊", "class": "warrior", "skills": ["冷梅劍法"], "advances": ["劍客", "古劍", "虎統領"]},
+    "kuxiao": {"chinese_name": "哭笑門", "class": "warrior", "skills": ["虎刀"], "advances": ["護衛", "肅守衛", "使者"]},
+    "xueyin": {"chinese_name": "雪吟莊", "class": "warrior", "skills": ["天地內功"], "advances": ["浪人", "棄徒", "天邪"]},
+    "hudao": {"chinese_name": "虎刀門", "class": "warrior", "skills": ["虎刀"], "advances": ["護衛", "雙刀師", "統領"], "master": "韓笑"},
+    "baolian": {"chinese_name": "寶蓮寺", "class": "monk", "skills": ["治療系"]},
+    "tianyue": {"chinese_name": "天月庵", "class": "monk", "skills": ["治療系"]},
+    "baixiang": {"chinese_name": "白象寺", "class": "monk", "skills": ["金剛鎚法"], "advances": ["禪師(防禦)", "羅漢(攻擊)"]},
+    "langyi": {"chinese_name": "瑯夷", "class": "thief", "skills": ["奇針術"]},
+    "yinjiao": {"chinese_name": "隱教", "class": "thief", "skills": ["陶山迷路(內功)"]},
+    "longttu": {"chinese_name": "龍圖丹派", "class": "alchemist", "skills": ["龍圖內功", "煉丹"], "master": "江述仁"},
+    "wutuo": {"chinese_name": "武陀堂", "class": "alchemist", "skills": ["五敗針法", "針灸"]},
+    "buxuan": {"chinese_name": "步玄派", "class": "scholar", "skills": ["三轉劍法"]},
+    "xuantian": {"chinese_name": "玄天教", "class": "scholar", "skills": ["控制系"]},
+    "zhenwu": {"chinese_name": "振武軍營", "class": "soldier", "skills": ["兵法戰術"], "npcs": ["必勇(軍師)"]},
+    "tianshi": {"chinese_name": "天師派", "class": "taoist", "skills": ["太乙劍法", "紫微內功", "元素法術", "天師道法素雲書"]},
+    "maoshan": {"chinese_name": "茅山派", "class": "taoist", "skills": ["茅山劍法", "茅山內功"], "branches": ["靈雲觀", "隱風觀", "幻霧觀"]},
+    "jianjia": {"chinese_name": "劍甲門", "class": "cross_sect", "note": "方士可拜入"},
+    "tianxie": {"chinese_name": "天邪派", "class": "cross_sect", "skills": ["幻影劍法"]}
   },
   "maps": {
-    "world_regions": [
-      { "chinese_name": "天朝", "english_name": "Celestial Realm / Tian Chao" },
-      { "chinese_name": "五堂鎮", "english_name": "Wutang District" },
-      { "chinese_name": "雪亭鎮", "english_name": "Xueting District" }
-    ],
-    "map_hierarchy": {
-      "world_map": "世界地圖",
-      "nation_maps": "國家地圖",
-      "celestial_realm_map": {
-        "chinese_name": "天朝地圖",
-        "sub_regions": ["五堂鎮 (Wutang District)", "雪亭鎮 (Xueting District)"]
+    "wutang": {
+      "chinese_name": "五堂鎮",
+      "mysteries": ["飲血的去向", "五山神秘石像的秘密", "郭布想帶走的學徒", "鎮天神廟中隱藏的人物", "朝廷密探在五堂的行動", "渡河的船隻位置"]
+    },
+    "xueting": {
+      "chinese_name": "雪亭鎮",
+      "mysteries": ["阿寶在老榕樹下等的人", "盲眼老婦的真實身份", "貨棧搬箱", "驛站信使失蹤的信件", "駐軍營招募", "破舊宅邸中的隱藏元素", "黑衣人女兒的下落"]
+    },
+    "key_locations": {
+      "tianhancun": "天寒村 — 域水客棧",
+      "mingshan": "名山書肆 — 買書換符紙",
+      "jingji_shrine": "京畿神社 — 功德箱(聲望)",
+      "pawnshops": "各地當鋪",
+      "fishing": "坐船+釣魚地點"
+    }
+  },
+  "special_quests": {
+    "tiandiling": {
+      "tianling": {
+        "chinese_name": "天靈",
+        "summon": "將3件元素神兵投入赤魈村許願池",
+        "strategy": "需950+防禦值，冷梅虎刀+冰凍能力控場",
+        "reward_weapon": {"name": "願望匕首", "damage": "10-43", "str_mod": "75%", "multi": 3, "bonuses": "+5穩定,+1精神,+1智慧,+2洞察"},
+        "eye_effect": "消耗後隨機提升精神/智力/領悟/智慧1點（從其他屬性扣除）"
+      },
+      "diling": {
+        "chinese_name": "地靈",
+        "summon": "聖木殘根→大蜈蚣→太陽鳥內丹→炎日箭→太陽狼草汁→地獄地氣塔啟動",
+        "strategy": "不能使用運功或施法，純近戰。Boss需要4次完整治療才能擊敗",
+        "reward_weapon": {"name": "大斧(玉摩女神)", "damage": "12-99", "str_mod": "165%", "multi": 3, "bonuses": "+50傷害"},
+        "heart_effect": "隨機提升體質/腐蝕/敏捷/力量1點"
       }
     },
-    "note": "Detailed map data is embedded as images on the wiki; text-based location connections not available from page source"
-  },
-  "equipment": {
-    "note": "Equipment data is stored in an embedded Google Spreadsheet on the wiki page. The spreadsheet title is 'ES2 部份裝備列表' (ES2 Partial Equipment List). Detailed stats require direct spreadsheet access.",
-    "quest_equipment": [
-      {
-        "name": "思歸符 (Dagger)",
-        "skill": "錐法",
-        "damage": "10-43",
-        "str_modifier": "75%",
-        "multiplier_level": 3,
-        "bonuses": "+5 Stability, +1 Spirituality, +1 Wisdom, +2 Insight"
-      },
-      {
-        "name": "Earth Spirit Axe",
-        "skill": "雙手斧術",
-        "damage": "12-99",
-        "str_modifier": "165%",
-        "multiplier_level": 3,
-        "bonuses": "+50 Damage"
-      }
+    "babao_tower": {
+      "floors": [
+        {"floor": 1, "boss": "歐陽芝", "source": "blog"},
+        {"floor": 2, "boss": "司馬雷", "source": "blog"},
+        {"floor": 3, "boss": "崇白虎", "source": "blog"},
+        {"floor": 4, "boss": "馬鍾聖", "source": "blog"},
+        {"floor": 5, "boss": "公孫微", "source": "blog"},
+        {"floor": 6, "boss": "天神地鬼", "source": "blog"},
+        {"floor": 7, "boss": "施鈺", "source": "blog"},
+        {"floor": 8, "boss": "劍皇", "source": "blog"}
+      ]
+    },
+    "quest_chains": [
+      {"name": "混沌之印", "boss": "混沌獸", "items": ["混沌之印", "混沌之鏡"]},
+      {"name": "龍安鎮黑龍", "boss": "黑龍", "items": ["九轉異龍珠"]},
+      {"name": "百藥谷赤龍封山", "boss": "赤龍"},
+      {"name": "聖木殘根大蜈蚣", "boss": "大蜈蚣", "items": ["聖木殘根"]},
+      {"name": "風神印記", "boss": "風神", "items": ["風之印記"]},
+      {"name": "神之心", "type": "boss_encounter"},
+      {"name": "八穴鬼徑", "type": "dungeon"},
+      {"name": "老乞婆任務", "npc": "老乞婆"},
+      {"name": "任蕭蕭支線", "npc": "任蕭蕭"},
+      {"name": "四鬼招喚法", "type": "skill_quest"},
+      {"name": "水龍經換奇兵精意", "type": "item_quest"}
     ]
   },
-  "professions_summary": [
-    { "chinese_name": "武者", "english_name": "Warrior", "sect_count": 5 },
-    { "chinese_name": "和尚", "english_name": "Monk", "sect_count": 3 },
-    { "chinese_name": "小偷", "english_name": "Thief", "sect_count": 2 },
-    { "chinese_name": "方士", "english_name": "Fangshi/Alchemist", "sect_count": 2 },
-    { "chinese_name": "書生", "english_name": "Scholar", "sect_count": 2 },
-    { "chinese_name": "軍人", "english_name": "Soldier", "sect_count": 1 },
-    { "chinese_name": "道士", "english_name": "Daoist", "sect_count": 2 }
+  "bosses": {
+    "main_story": ["大邪道人", "殘蟻師太", "劉乙忘玄", "梅影風", "魚鐵山"],
+    "area_bosses": ["駱易", "柳東蘆", "李東靈(大魔頭)", "夜叉吞鬼", "黑無常", "白無常", "風神", "孫漪(虎刀門護衛)"],
+    "babao_tower": ["歐陽芝", "司馬雷", "崇白虎", "馬鍾聖", "公孫微", "天神地鬼", "施鈺", "劍皇"],
+    "ancient_beasts_8": ["天牛", "蠱雀", "厲虎", "窮奇", "寒蟾", "神犬", "火犬", "祭猴"]
+  },
+  "reputation_system": {
+    "types": [
+      {"id": "underworld", "name": "黑道聲望", "equipment_tiers": 3},
+      {"id": "martial", "name": "武林聲望"},
+      {"id": "green_evil", "name": "青邪聲望"},
+      {"id": "battlefield", "name": "戰場聲望"}
+    ],
+    "formula": "(LV-1)^2 聲望值 per level",
+    "hatred_system": {
+      "factions_with_enmity": 5,
+      "resolution_npc": "毒刀胡惑"
+    }
+  },
+  "blog_equipment_summary": {
+    "weapons_documented": [
+      "毒龍鞭", "霹靂雷火彈", "交歡杖", "玉戒尺(蕭尹)", "金龍豹紋槍",
+      "蔑天劍", "疾風劍", "河魚腹珠", "靈通劍", "寒玉藥杵",
+      "清風刀", "血匕封喉", "封神寶鏡", "離玄光熾", "玄烏杖", "饕餮法杖",
+      "歸心似劍", "白色長劍", "萬年雪", "雷熊爪",
+      "藍涎刀", "藥王神劍", "易羅大劍", "鬼頭劈象刀", "雪魂匕",
+      "追月流星劍", "邪門歪刀", "天都劍", "水月劍",
+      "天命刃", "天靈", "穹氤", "風雷刀(等8把)",
+      "盤龍針", "紫金鳳頭錐", "混沌之印",
+      "追風劍", "六靈妖姬鞭", "古刃旋芒"
+    ],
+    "armor_documented": [
+      "怒龍錦冑", "靈魂水晶", "萬福寶玉", "靈骨",
+      "白骨念珠", "龍戒", "腐蝕之手", "邪骨指環", "九天鳳珠",
+      "雨師妾袍", "修羅之面", "形天之怒", "黃玉佩",
+      "巫首項鍊", "冷雪手護", "雲羅絲衣", "無腸寶珠",
+      "釘靈腿護", "焦僥靴", "厭火之拳",
+      "雷火天狼罩", "龍思羽", "封印冰環",
+      "鱷神系列(5件)", "混元一氣袋", "白熊系列(4件)",
+      "青銅/鐵棘等21件", "封印雷環+穿靈等12件", "舞璃戒指"
+    ]
+  },
+  "original_es2_github": {
+    "areas": ["canyon", "choyin", "chuenyu", "city", "death", "force", "goathill", "graveyard", "green", "green.n", "ice", "jail", "latemoon", "oldpine", "sanyen", "snow", "temple", "village", "waterfog"],
+    "skill_daemons_71": [
+      "axe", "blade", "bloodystrike", "bolomiduo", "buddhism", "celestial", "celestrike",
+      "chanting", "chaos-steps", "cloudstaff", "dagger", "deisword", "dodge", "essencemagic",
+      "fall-steps", "fonxanforce", "fonxansword", "force", "fork", "gouyee", "hammer",
+      "iceforce", "instruments", "iron-cloth", "jin-gang", "jingang-staff", "juechen-force",
+      "linbo-steps", "literate", "liuh-ken", "lotusforce", "magic-array", "magic",
+      "meihua-shou", "move", "music", "mysterrier", "mystforce", "mystsword", "necromancy",
+      "nine-moon", "notraces", "parry", "perception", "pyrobat-steps", "qidaoforce",
+      "scratching", "serpentforce", "shortsong-blade", "six-chaos-sword", "snowshade-force",
+      "snowshade-sword", "snowwhip", "spells", "spicyclaw", "spider-array", "spring-blade",
+      "staff", "stealing", "stormdance", "sword", "tao-mystery", "taoism", "tenderzhi",
+      "throwing", "ts-fist", "unarmed", "whip", "wu-shun", "yirong"
+    ],
+    "class_daemons_13": [
+      "assassin", "beggar", "bonze", "dancer", "fighter", "juechen",
+      "lama", "ninja", "nomad", "ronin", "scholar", "swordsman", "taoist"
+    ]
+  },
+  "npc_master_locations": {
+    "warrior": {
+      "fengshan": {"master": "柳東蘆 (Liuh don-lu)", "location": "喬陰東方算命先生旁"},
+      "xueyin": {"master": "魚鐵山 (Yu tieshan)", "location": "雪亭鎮東北"},
+      "lengmei": {"master": "梅影風 (May yin fong)", "location": "水嵐武陵客棧北方"},
+      "hudao": {"master": "高慎 (Kao shen)", "location": "老松林，喬陰北方"},
+      "kuxiao": {"master": "劉乙忘玄 (Liuye)", "location": "青邪宮北方"}
+    },
+    "monk": {
+      "tianyue": {"master": "無慾師太 (Wu-yu nun)", "location": "柳東蘆住所東院"},
+      "baolian": {"master": "無想禪師 (Abbo)", "location": "武陵客棧東東東北"},
+      "baixiang": {"master": "無念大師 (Abbot)", "location": "客棧南方，往西南到兆隱，再到白象寺"}
+    },
+    "taoist_tianshi": {
+      "zhuyi_fire": {"master": "郭布 (Kuo boo)", "location": "五堂鎮交叉路"},
+      "xuanyi_wind": {"master": "安懶道人", "location": "康平村東方老松林", "req": "靈性>=18"},
+      "suyi_ice": {"master": "白齊", "location": "太乙觀"},
+      "ziyi_thunder": {"master": "華子儀 (Hua zi yi)", "location": "青雲觀，天山西方", "req": "慧根>=16"}
+    },
+    "taoist_maoshan": {
+      "huanwu": {"master": "杜風凌 (Du feng ling)", "location": "龍安客棧(紫雲渡路線)"},
+      "yinfeng": {"master": "歐陽無極 (Ou-yan wu ji)", "location": "康平村商店"},
+      "lingyun": {"master": "林正陽 (Lin zheng yang)", "location": "康平村東北山路"}
+    },
+    "thief": {
+      "langyi": {"master": "無常鬼吳長貴", "location": "雪亭鎮西方亂葬崗"},
+      "yinjiao": {"master": "隱教聖女利丰華", "location": "夜陽山北方(需擊敗守衛+令牌)"}
+    },
+    "alchemist": {
+      "wutuo": {"master": "鬼華陀武道通", "location": "無鄉岔路南方，喬陰飛仙路段"},
+      "longttu": {"master": "牙山居士陳維俠", "location": "雪亭鎮私塾"}
+    },
+    "scholar": {
+      "xuantian": {"master": "玄天教主東方孤冥", "location": "春風客棧2F，風城路上"},
+      "buxuan": {"master": "步玄派掌門人駱易", "location": "武陵客棧東方東北"}
+    },
+    "soldier": {
+      "zhenwu": {"master": "徵兵官魯熙年 (Lu xinien)", "location": "振武軍營，五堂鎮西北"},
+      "royal": {"master": "李天剛 (Li tian gang)", "location": "京畿大內巡院"}
+    }
+  },
+  "combat_formulas": {
+    "offensive": {
+      "momentum": "力量 x 膽識/10 + 氣/32",
+      "technique": "力量 x 膽識/10 + 神/32",
+      "power": "力量 x 膽識/7 + 氣/32"
+    },
+    "defensive": {
+      "stance": "降低敵人攻擊頻率",
+      "defense_technique": "閃避能力",
+      "defense_power": "傷害減免"
+    },
+    "spell_maoshan": {
+      "technique": "靈性 x 悟性/10 + 神/32",
+      "power": "靈性^2/7 + 神/32"
+    },
+    "spell_tianshi": {
+      "technique": "靈性 x 慧根/10 + 神/32",
+      "power": "慧根^2/7 + 神/32"
+    },
+    "unconscious_multiplier": "x10 damage, directly reduces 形體"
+  },
+  "tianshi_spell_tables": {
+    "fire": [
+      {"name": "咒火", "cost": 5, "delay": 1, "damage": "50%"},
+      {"name": "地火", "cost": 20, "delay": 1, "damage": "33% + qi restore, ignores resistance"},
+      {"name": "大業火", "cost": 45, "delay": 2, "damage": "50% + 25% current qi"},
+      {"name": "三昧真火", "cost": 75, "delay": 3, "damage": "300%"}
+    ],
+    "wind": [
+      {"name": "疾風", "cost": 10, "delay": 1, "damage": "25%"},
+      {"name": "暴風", "cost": 30, "delay": 1, "damage": "33%, ignores wind resistance"},
+      {"name": "飛戮風", "cost": 50, "delay": 1, "damage": "75%"},
+      {"name": "轉輪大風", "cost": 75, "delay": 3, "damage": "125%"}
+    ],
+    "ice": [
+      {"name": "冰咒", "cost": 5, "delay": 1, "damage": "50%"},
+      {"name": "凶冰", "cost": 20, "delay": 2, "damage": "100% spirit"},
+      {"name": "影冰", "cost": 30, "delay": 3, "damage": "control"},
+      {"name": "極冰", "cost": 50, "delay": 2, "damage": "150%"}
+    ],
+    "thunder": [
+      {"name": "澤雷", "cost": 5, "delay": 1, "damage": "50%"},
+      {"name": "爆雷", "cost": 50, "delay": 1, "damage": "25% + 1/8 divine"},
+      {"name": "神光雷", "cost": 75, "delay": 2, "damage": "33% vs divinity, ignores resistance"},
+      {"name": "六卦熒雷", "cost": 90, "delay": 2, "damage": "175%, triggers overload"}
+    ]
+  },
+  "babao_tower_details": {
+    "floors": [
+      {"floor": 1, "boss": "歐陽芝", "drops": ["長劍", "白長袍", "天朝異事錄"]},
+      {"floor": 2, "boss": "司馬雷", "race": "阿修羅", "drops": ["霸王槍", "霸王銅冠", "霸王鎧", "霸王指環"]},
+      {"floor": 3, "boss": "崇白虎", "race": "夜叉", "drops": ["虎嘯旭日鎧(def+30)", "邪刀焱靈(dmg 9-102, fire+100)"]},
+      {"floor": 4, "boss": "馬鍾聖", "race": "黑齒", "drops": ["精鋼戰靴", "鐵盔", "精鋼護腕", "連身鎖子甲"]},
+      {"floor": 5, "boss": "公孫微", "race": "焦僥", "drops": ["闇之寶靴", "闇之護手", "黑鋼短刃x2"]},
+      {"floor": 6, "boss": "白魚(天神地鬼)", "race": "巫首", "drops": ["怒天鞭(dmg 11-50)", "七星道袍"]},
+      {"floor": 7, "boss": "施鈺(鬼見愁)", "drops": ["百鬒寒鳩劍"]},
+      {"floor": 8, "boss": "軒轅劍月(劍皇)", "drops": ["短劍", "長劍", "龍吟指環(靈性+1,慧根+1)", "飛天靴", "征衣血染"]}
+    ]
+  },
+  "transport_routes": [
+    {"name": "鯉君渡口", "route": "喬陰 <-> 水嵐", "type": "slow boat"},
+    {"name": "羿水官渡", "route": "水嵐 <-> 京畿", "type": "slow boat"},
+    {"name": "安澤碼頭", "route": "兆隱縣南方", "type": "bamboo raft"},
+    {"name": "婁縣碼頭", "route": "婁縣南方", "type": "boatman 老唐"},
+    {"name": "風凌渡", "route": "羿水河畔", "type": "ferry"}
   ],
-  "blog_data_files": {
-    "note": "Detailed blog data extracted from 120+ es2tips.blogspot.com posts, stored in separate files for manageability",
-    "equipment_weapons": "docs/es2_equipment_crawl.json",
-    "equipment_armor_and_sects": "docs/es2tips_crawl_data.json",
-    "quests_bosses_locations": "docs/es2tips_crawled_data.json",
-    "classes_guides_reputation": "docs/es2tips_blog_content.json"
+  "pawnshops": [
+    {"name": "和豐當鋪", "location": "五堂"},
+    {"name": "高陽當舖", "location": "水嵐 五陵客棧"},
+    {"name": "錢記當舖", "location": "斐縣"},
+    {"name": "和豐分店", "location": "兆隱"},
+    {"name": "當鋪", "location": "志縣市集"},
+    {"name": "景隆錢莊", "location": "京畿北大街"},
+    {"name": "舊貨商", "location": "青邪宮"},
+    {"name": "廢棄當鋪", "location": "羅城東大街"}
+  ],
+  "poison_system": {
+    "stages": 9,
+    "progression": ["噁心嘔吐", "傷口麻木暈眩", "吐血生蛆", "萬毒啐骨", "黑血", "蝕骨寒痛", "傷口麻木", "呼吸阻塞", "水銀中毒"]
   },
-  "blog_data_summary": {
-    "total_posts_crawled": 143,
-    "equipment_items_extracted": 95,
-    "quest_chains_documented": 12,
-    "boss_encounters_documented": 15,
-    "npc_locations_indexed": 70,
-    "sect_details": {
-      "tianshi_4_elements": {
-        "紫衣派_thunder": { "spells": ["雷法 4 spells"], "neigong": "九龍神功" },
-        "素衣派_ice": { "spells": ["冰咒 4 spells"], "neigong": "冰蠶奇功" },
-        "玄衣派_wind": { "spells": ["風符 4 spells"], "neigong": "明道心法" },
-        "朱衣派_fire": { "spells": ["火術 4 spells"], "neigong": "丹陽神功" }
-      },
-      "maoshan_3_monasteries": {
-        "隱風觀": { "specialty": "healing/divination", "skills": ["茅山幻術", "遁甲書"] },
-        "靈雲觀": { "specialty": "support/buffs", "skills": ["幽冥三箭", "五雷術"] },
-        "幻霧觀": { "specialty": "burst_damage/necromancy", "skills": ["茅山奇術", "奇門術"] }
-      },
-      "zhenwu_paths": ["Berserker", "Commander", "Strategist", "Underworld"],
-      "royal_soldier_paths": ["Inner Court", "Guard", "Imperial"]
-    },
-    "babao_tower_bosses": [
-      { "floor": 1, "boss": "歐陽芝", "english": "Ouyang Zhi" },
-      { "floor": 2, "boss": "司馬雷", "english": "Sima Lei" },
-      { "floor": 3, "boss": "崇白虎", "english": "Chong Baihu" },
-      { "floor": 4, "boss": "馬鍾聖", "english": "Ma Zhongsheng" },
-      { "floor": 5, "boss": "公孫微", "english": "Gongsun Wei" },
-      { "floor": 6, "boss": "天神地鬼", "english": "Tianshen Digui" },
-      { "floor": 7, "boss": "施鈺", "english": "Shi Yu" },
-      { "floor": 8, "boss": "劍皇 軒轅劍月", "english": "Sword Emperor Xuanyuan Jianyue" }
-    ],
-    "reputation_system": {
-      "types": ["黑道聲望 (Underworld)", "武林聲望 (Martial)", "青邪聲望 (Green Evil)", "戰場聲望 (Battlefield)"],
-      "formula": "(LV-1)^2",
-      "faction_hatred": ["5 factions with enmity mechanics"]
-    },
-    "ancient_beasts_8": ["天牛", "蠱雀", "厲虎", "窮奇", "寒蟾", "神犬", "火犬", "祭猴"],
-    "world_map_locations": "70+ named locations across north/west/central/east/south regions",
-    "key_quest_chains": [
-      "混沌之印 (5 fragments -> 混沌獸 -> 混沌之鏡)",
-      "龍安鎮黑龍 (妖塔 -> 九轉異龍珠)",
-      "百藥谷赤龍 (armor/dagger/whip drops)",
-      "風神 (風神之羽 sword 9-109 dmg)",
-      "八穴鬼徑 (path: n ne w se n sw e s)",
-      "神之心 (滅心 boss - equipment destruction mechanic)",
-      "追風劍 (12-step quest chain)",
-      "古刃旋芒 (food-gathering chain)",
-      "四鬼招喚法 (4 offerings at 丱天樹)",
-      "天地靈任務 (天靈/地靈 quest rewards)",
-      "黃玉佩 quest (full walkthrough)",
-      "邪骨指環 quest chain (翠羽刀/緊身衣/意寒神功)"
-    ]
-  }
+  "fortune_tellers": [
+    {"name": "算命先生", "location": "喬陰 樹王墳", "cost": "5 gold"},
+    {"name": "張半仙", "location": "水嵐 南大街", "cost": "1 gold"},
+    {"name": "神算子", "location": "風城 交叉路口", "cost": "1 gold"}
+  ],
+  "ghost_types": [
+    {"name": "勾魂鬼", "type": "致命鬼", "note": "低HP時直接殺死玩家"},
+    {"name": "冤魂", "type": "怨靈"},
+    {"name": "雲外鏡", "type": "女鬼"},
+    {"name": "淘氣鬼", "type": "童鬼"},
+    {"name": "六道天女鳳盈盈", "type": "Boss鬼", "note": "茅山派第四代祖師，約210歲"},
+    {"name": "狂骨", "type": "骷髏鬼", "note": "殺業>20000時出現"},
+    {"name": "小雨坊", "type": "童鬼"},
+    {"name": "火消婆", "type": "老年女鬼"},
+    {"name": "赤舌", "type": "浮首鬼"},
+    {"name": "否哉", "type": "女鬼"},
+    {"name": "天井嘗", "type": "高柱鬼"},
+    {"name": "長壁", "type": "骨灰鬼"},
+    {"name": "髮鬼", "type": "蛇髮女鬼"}
+  ],
+  "taoism_cloud_transport": [
+    {"command": "snow", "level": 15, "dest": "飲風客棧"},
+    {"command": "month", "level": 30, "dest": "水月瀑布"},
+    {"command": "sptown", "level": 45, "dest": "祭劍臺"},
+    {"command": "fontown", "level": 60, "dest": "天山孤崖"},
+    {"command": "swaylan", "level": 75, "dest": "武陵客棧"},
+    {"command": "yaoy", "level": 90, "dest": "天仁客棧"},
+    {"command": "skysnow", "level": 105, "dest": "丱天樹"},
+    {"command": "flower", "level": 120, "dest": "紅燈客棧"},
+    {"command": "fei", "level": 135, "dest": "錢記酒樓"},
+    {"command": "tomb", "level": 150, "dest": "古墳墓"},
+    {"command": "capital", "level": 165, "dest": "後海湖"},
+    {"command": "dragon", "level": 180, "dest": "天龍島"}
+  ]
 }

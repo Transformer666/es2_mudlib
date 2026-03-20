@@ -11,16 +11,17 @@
 |------|--------|------|--------|
 | 種族 (Races) | 11 | 11 | **100%** |
 | 職業 (Classes) | 9 | 8 | **100%** |
-| 門派 (Sects) | 19 | 19 | **100%** |
-| 技能 (Skills) | 75 | 72+17 | **83%** 原版 |
-| 區域 (Areas) | 49 | 19 原版 | **89%** 原版 + 32 新增 |
-| 武器 (Weapons) | 42 | ~60+ | **~70%** |
-| 防具 (Armor) | 30 | ~40+ | **~75%** |
-| 說明檔 (Help) | 13 | ~55 | **24%** |
+| 門派 (Sects) | 18 | 19 | **95%** |
+| 技能 (Skills) | 78 | 71+19 | **83%** 原版 |
+| 區域 (Areas) | 50 | 19 原版 | **100%** 原版 + 33 新增 |
+| 武器 (Weapons) | 58 | ~95+ | **~61%** |
+| 防具 (Armor) | 42 | ~60+ | **~70%** |
+| 說明檔 (Help) | 11 | ~55 | **20%** |
 | 上古妖獸 | 8 | 8 | **100%** |
 
-**總檔案數:** 748 個 .c 檔案（d/ 目錄）
-**房間數:** 399 | **NPC 數:** 222 | **物件數:** 301
+**總 .c 檔案數:** 814 個（d/ 目錄）+ 203 個（obj/ 目錄）
+**技能 Daemon:** 78 個（75 個具備 skill_improved/skill_advanced）
+**門派 Daemon:** 18 個（所有 location 指向的房間均已驗證存在）
 
 ---
 
@@ -46,56 +47,63 @@
 
 warrior, monk, taoist, thief, alchemist, scholar, soldier, commoner, fighter
 
-### 1.3 門派 — 全部完成 (19/19)
+### 1.3 門派 — 18/19 (95%)
 
 所有門派均有 daemon 和對應區域，且 location 指向的房間全部存在。
 
-| 門派 | 職業 | 區域 | 房間數 | NPC數 |
-|------|------|------|--------|-------|
-| 封山派 (fengshan) | 武者 | ✅ | 9 | 6 |
-| 冷梅莊 (lengmei) | 武者 | ✅ | 6 | 4 |
-| 哭笑門 (kuxiao) | 武者 | ✅ | 6 | 4 |
-| 雪吟莊 (xueyin) | 武者 | ✅ | 6 | 4 |
-| 虎刀門 (hudao) | 武者 | ✅ | 9 | 9 |
-| 寶蓮寺 (baolian) | 和尚 | ✅ | 6 | 5 |
-| 天月庵 (tianyue) | 和尚 | ✅ | 6 | 5 |
-| 白象寺 (baixiang) | 和尚 | ✅ | 9 | 8 |
-| 天師派 (tianshi) | 道士 | ✅ | 7 | 5 |
-| 茅山派 (maoshan) | 道士 | ✅ | 5 | 5 |
-| 瑯夷 (langyi) | 小偷 | ✅ | 6 | 5 |
-| 隱教 (yinjiao) | 小偷 | ✅ | 6 | 5 |
-| 龍圖丹派 (longttu) | 方士 | ✅ | 6 | 5 |
-| 武陀 (wutuo) | 方士 | ✅ | 5 | 4 |
-| 步玄派 (buxuan) | 書生 | ✅ | 6 | 5 |
-| 玄天教 (xuantian) | 書生 | ✅ | 6 | 4 |
-| 振武軍營 (zhenwu) | 軍人 | ✅ | 9 | 11 |
-| 劍甲門 (jianjia) | 跨職 | ✅ | 5 | 4 |
-| 天邪派 (tianxie) | 跨職 | ✅ | 7 | 7 |
+| 門派 | 職業 | 區域 | 檔案數 | Location |
+|------|------|------|--------|----------|
+| 封山派 (fengshan) | 武者 | ✅ | 15 | /d/fengshan/main_hall |
+| 冷梅莊 (lengmei) | 武者 | ✅ | 10 | /d/lengmei/hall |
+| 哭笑門 (kuxiao) | 武者 | ✅ | 10 | /d/kuxiao/hall |
+| 雪吟莊 (xueyin) | 武者 | ✅ | 10 | /d/xueyin/hall |
+| 虎刀門 (hudao) | 武者 | ✅ | 18 | /d/hudao/hall |
+| 寶蓮寺 (baolian) | 和尚 | ✅ | 11 | /d/baolian/hall |
+| 天月庵 (tianyue) | 和尚 | ✅ | 12 | 待驗證 |
+| 白象寺 (baixiang) | 和尚 | ✅ | 17 | /d/baixiang/main_hall |
+| 天師派 (tianshi) | 道士 | ✅ | 12 | /d/tianshi/hall |
+| 茅山派 (maoshan) | 道士 | ✅ | 10 | /d/maoshan/lingyun |
+| 瑯夷 (langyi) | 小偷 | ✅ | 11 | /d/langyi/hall |
+| 隱教 (yinjiao) | 小偷 | ✅ | 11 | /d/yinjiao/hall |
+| 龍圖丹派 (longttu) | 方士 | ✅ | 11 | /d/longttu/study |
+| 武陀 (wutuo) | 方士 | ✅ | 9 | /d/wutuo/hall |
+| 步玄派 (buxuan) | 書生 | ✅ | 11 | /d/buxuan/study |
+| 玄天教 (xuantian) | 書生 | ✅ | 10 | /d/xuantian/hall |
+| 振武軍營 (zhenwu) | 軍人 | ✅ | 20 | /d/zhenwu/command |
+| 劍甲門 (jianjia) | 跨職 | ✅ | 9 | /d/jianjia/hall |
+| 天邪派 (tianxie) | 跨職 | ✅ | 15 | /d/tianxie/hall |
 
-### 1.4 技能 — 75 個已實作
+### 1.4 技能 — 78 個已實作
 
-所有技能 daemon 均包含 `skill_improved` 和 `skill_advanced` 函數。
+75 個技能 daemon 具備 `skill_improved` 和 `skill_advanced` 函數，3 個缺少。
 
-**原版技能已實作 (60/72):**
+**原版技能已實作 (59/71):**
 axe, blade, bloodystrike, bolomiduo, buddhism, celestial, celestrike, chanting, chaos_steps, cloudstaff, dagger, deisword, dodge, essencemagic, fall_steps, fonxanforce, fonxansword, force, fork, gouyee, iceforce, instruments, iron_cloth, jin_gang, jingang_staff, juechen_force, linbo_steps, literate, liuh_ken, notraces, parry, perception, pyrobat_steps, qidaoforce, scratching, serpentforce, shortsong_blade, six_chaos_sword, snowshade_force, snowshade_sword, snowwhip, spells, spicyclaw, spider_array, spring_blade, staff, stealing, stormdance, sword, tao_mystery, taoism, tenderzhi, throwing, ts_fist, unarmed, whip, wu_shun, yirong
 
-**新增門派專屬技能 (17):**
+**新增門派專屬技能 (19):**
 amazing_needle, diamond_hammer, fengshan_sword, five_defeat_needle, lengmei_sword, longttu_neigong, maoshan_neigong, maoshan_sword, needle, phantom_sword, pike, tactic, taiyi_sword, taoshan_milu, three_rotations, tiger_blade, ziwei_neigong
 
-### 1.5 區域 — 49 個區域
+### 1.5 區域 — 50 個區域 (814 .c files)
 
-**最大區域 (依房間數):**
-- snow (雪亭鎮): 49 rooms, 66 NPCs, 36 objects — 主要起始城鎮
-- wutang (五堂鎮): 32 rooms, 26 NPCs — 八寶樓所在地
-- lijun (酈郡): 10 rooms, 11 NPCs
-- choyin (喬陰): 10 rooms, 11 NPCs
-- road (道路): 10 rooms — 連接各區域
+**最大區域 (依檔案數):**
+- snow (雪亭鎮): 119 files — 主要起始城鎮
+- wutang (五堂鎮): 59 files — 八寶樓所在地
+- longan (龍安鎮): 27 files
+- jingji (京畿): 25 files
+- kangping (康平): 21 files
+- lijun (酈郡): 21 files
+- city (城市): 21 files
+- choyin (喬陰): 21 files
+- zhenwu (振武): 20 files
+- weiguo (衛國): 19 files
 
 ### 1.6 裝備
 
-**武器 (42):** fenglei_blade, tiandu_sword, shuiyue_sword, tianming_blade, rapid_sword, mietianjian, snow_soul_dagger, meteor_sword, evil_crooked_blade, ghost_head_axe, yiluo_greatsword, medicine_king_sword, blue_saliva_blade, thunder_claw, jade_rod, qingfeng_blade, mirror_of_gods, black_spark, strange_copper_staff, celestial_bull_cane, loving_sword, white_sword, ancient_snow_staff, dragon_whip, thunder_bomb, erotic_staff, jade_ruler, golden_lance, dragon_needle, zijin_pike, ancient_blade_xuanmang, zhuifeng_sword, liuling_whip, xuanmang, xuanyao, chuanling, psychic_sword, iron_tiger, tiger_blade, yinxue, yumo_axe, equalizer
-
-**防具 (30):** dragon_armor, soul_crystal_plate, blessed_jade, dragon_bone, skull_rosary, dragon_ring, corrosive_hands, evil_bone_ring, jiutian_pearl, rainnar_cloth, ashura_mask, girdle_of_headless, topaz_belt, malik_necklace, cold_snow_gauntlet, cloud_silk_robe, woochan_ring, dingling_legs, jiaojao_boots, yenhold_gauntlets, thunder_wolf_helm, seal_ice_ring, white_bear_armor, crocodile_god_armor, hunyuan_bag, wuli_ring, dragon_feather, fur_hat, cloth, lightning_bomb
+**武器 (58):** obj/weapon/ 目錄
+**防具 (42):** obj/armor/ 目錄
+**藥品 (16):** obj/medication/ 目錄
+**食物 (5):** obj/food/ 目錄
+**原料 (4):** obj/reagent/ 目錄
 
 ### 1.7 上古妖獸 — 全部完成 (8/8)
 
@@ -108,11 +116,12 @@ celestial_bull (天牛), charming_bird (蠱雀), devilish_tiger (厲虎), evil_h
 ### CRITICAL — 核心遊戲體驗
 
 1. **主線任務完整流程** — 目前無任務系統框架
-2. **city (城市) 區域** — 原版核心區域缺失
+   - 9 個未解之謎（大邪道人、殘蟻師太、武林盟主等）
+   - 十三靈任務線（最終挑戰）
 
 ### HIGH — 重要缺失
 
-3. **缺失的原版技能 (12)**
+2. **缺失的原版技能 (12)**
    - `hammer` (鎚法通用) — 基礎武器技能
    - `magic` (法術通用) — 基礎法術技能
    - `move` (身法通用) — 基礎移動技能
@@ -126,41 +135,56 @@ celestial_bull (天牛), charming_bird (蠱雀), devilish_tiger (厲虎), evil_h
    - `mysterrier` (玄鐵)
    - `meihua_shou` (梅花手)
 
-4. **缺失的重要 NPC**
-   - 大邪道人 (Great Evil Daoist) — 主線任務核心角色
+3. **缺失的重要 NPC/Boss**
+   - 大邪道人 — 主線任務核心反派
    - 殘蟻師太 — 主線任務核心角色
-   - 劍皇 (Sword Emperor) — 八寶樓(8) 最終 Boss
-   - 赤龍 (Red Dragon) — 百藥谷 Boss
-   - 黑龍 (Black Dragon) — 龍安鎮 Boss
-   - 混沌獸 (Chaos Beast) — 混沌之印任務 Boss
+   - 劍皇 — 八寶樓(8) 最終 Boss
+   - 赤龍 — 百藥谷 Boss
+   - 黑龍 — 龍安鎮 Boss
+   - 混沌獸 — 混沌之印任務 Boss
+   - 八寶樓 1-7 層 Boss（歐陽芝、司馬雷、崇白虎、馬鍾聖、公孫微、天神地鬼、施鈺）
 
-5. **核心任務內容**
+4. **核心任務內容**
    - 八穴鬼徑 (Eight Ghost Caves) 地下城
    - 神之心 (Heart of God) Boss 戰鬥
    - 混沌之印 (Seal of Chaos) 任務鏈
    - 天地靈任務線 (Tiandiling Quests)
+   - 龍安鎮黑龍 + 九轉異龍珠
+   - 百藥谷赤龍封山
 
 ### MEDIUM — 豐富遊戲內容
 
-6. **green.n (草原北部)** — 原版區域擴展
-7. **門派子系統**
-   - 茅山三觀 (靈雲觀/隱風觀/幻霧觀) 專精
-   - 天師四派 (紫衣/素衣/玄衣/朱衣) 元素專精
-8. **聲望系統** — 黑道/武林/青邪/戰場聲望 + 門派仇恨
-9. **說明檔案 (42+ 缺失)** — 職業/門派/戰鬥/系統說明
-10. **缺失的中等 NPC**
-    - 阿寶 (Abao) — 雪亭鎮任務
-    - 瞎眼老太婆 — 雪亭鎮任務
-    - 黑衣老人 — 雪亭鎮任務
-    - 毒刀胡惑 — 仇恨消除 NPC
-    - 大蜈蚣 — 聖木殘根任務 Boss
+5. **門派子系統**
+   - 茅山三觀：靈雲觀(五雷/幽冥三箭)、隱風觀(喚雨/算命)、幻霧觀(噬魂/通靈)
+   - 天師四派：紫衣(雷)、素衣(冰)、玄衣(風)、朱衣(火)
+   - 小偷進階：金蛇門(劍術) / 黑龍使者(龍爪+毒術)
+   - 方士進階：劍甲門、香主(武陀)
+
+6. **聲望系統** — 黑道/武林/青邪/戰場聲望 + 門派仇恨機制
+   - 公式：(LV-1)^2 聲望值
+   - 黑道聲望裝備(3 tier)
+   - 毒刀胡惑解仇 NPC
+
+7. **說明檔案 (44 缺失)**
+   - 職業說明 (7)
+   - 門派說明 (19)
+   - 戰鬥說明 (5)
+   - 系統說明 (8): 投胎、聲望、業力、裝備、背包、地圖、任務、公會
+   - 新手指南 (3)
+
+8. **缺失的中等 NPC**
+   - 阿寶、瞎眼老太婆、黑衣老人（雪亭鎮任務）
+   - 毒刀胡惑（仇恨消除）
+   - 大蜈蚣（聖木殘根任務）
+   - 張小簽（江湖藝人）
+   - 算命先生
 
 ### LOW — 細節完善
 
-11. **食物系統擴充** — 目前僅 5 種食物
-12. **更多裝備** — 約 20 件 wiki/blog 提到的裝備尚未實作
-13. **側線任務** — 任蕭蕭支線、四鬼招喚法、水龍經等
-14. **玩家角色樣板** — 用於測試的預設角色配置
+9. **食物系統擴充** — 目前 5 種 vs blog 記載 15+ 種
+10. **更多裝備** — 約 30+ 件 wiki/blog 提到的裝備尚未實作
+11. **側線任務** — 任蕭蕭支線、四鬼招喚法、水龍經、水神天龍走法等
+12. **3 個技能缺少 skill_improved/skill_advanced** — force, jin_gang, 及另一個
 
 ---
 
@@ -170,56 +194,97 @@ celestial_bull (天牛), charming_bird (蠱雀), devilish_tiger (厲虎), evil_h
 
 | 類型 | 數量 | 說明 |
 |------|------|------|
-| 新區域 | +32 | 所有門派 HQ、五堂鎮、京畿、康平、龍安、酈郡等城鎮 |
-| 新技能 | +17 | 門派專屬技能（太乙劍法、紫微內功、三轉劍法等） |
-| 門派系統 | +完整 | 原版無門派 daemon，我們有完整的 19 門派系統 |
-| 職業系統 | +完整 | 原版職業檔在 d/class/，我們有 daemon/class/ |
-| 種族系統 | +完整 | 原版無種族 daemon，我們有完整的 11 種族系統 |
-| 上古妖獸 | +8 | 全部 8 隻上古妖獸已實作 |
+| 新區域 | +33 | 所有門派 HQ、五堂鎮、京畿、康平、龍安、酈郡等 |
+| 新技能 | +19 | 門派專屬技能（太乙劍法、紫微內功、三轉劍法等） |
+| 門派系統 | 完整 | 原版無獨立門派 daemon，我們有 18 門派系統 |
+| 職業系統 | 完整 | 原版在 d/class/，我們有 daemon/class/ |
+| 種族系統 | 完整 | 原版無種族 daemon，我們有 11 種族 + help |
+| 上古妖獸 | 8 隻 | 全部已實作 |
+| 裝備系統 | 100件 | 集中式 obj/weapon/ + obj/armor/ |
 
 ### 3.2 原版有但我們缺少的
 
 | 類型 | 數量 | 說明 |
 |------|------|------|
-| 區域 | 2 | city (城市)、green.n (草原北部) |
-| 技能 | 12 | hammer, magic, move 等通用技能及部分特殊技能 |
-| 系統目錄 | 3 | social_guild, npc (通用NPC), wiz (巫師工具) |
+| 技能 | 12 | hammer, magic, move 等通用技能 + 特殊技能 |
+| 系統目錄 | 3 | social_guild, npc (通用), wiz (巫師工具) |
 
 ### 3.3 結構性差異
 
 - **命名慣例:** 原版用 hyphen (chaos-steps)，我們用 underscore (chaos_steps)
-- **目錄結構:** 原版 daemon 在 d/skill/，我們在 daemon/skill/
-- **門派系統:** 原版門派資料分散在各區域，我們有集中的 daemon/sect/ 系統
-- **物件系統:** 原版裝備在各區域 obj/，我們有集中的 obj/weapon/ 和 obj/armor/
+- **目錄結構:** 原版 skill daemon 在根目錄混合，我們有獨立 daemon/ 目錄
+- **門派系統:** 原版門派資料分散在區域，我們有集中的 daemon/sect/
+- **物件系統:** 原版裝備分散各區域 obj/，我們有集中的 obj/weapon/ 和 obj/armor/
+- **原版 class daemons:** assassin, beggar, bonze, dancer, fighter, juechen, lama, ninja, nomad, ronin, scholar, swordsman, taoist（與我們的門派系統設計不同）
+
+### 3.4 原版 vs 我們的區域對照
+
+| 原版區域 | 我們的對應 | 狀態 |
+|----------|-----------|------|
+| canyon | canyon | ✅ |
+| choyin | choyin | ✅ |
+| chuenyu | chuenyu | ✅ |
+| city | city | ✅ |
+| death | death | ✅ |
+| force | force | ✅ |
+| goathill | goathill | ✅ |
+| graveyard | graveyard | ✅ |
+| green | green | ✅ |
+| green.n | green_n | ✅ |
+| ice | ice | ✅ |
+| jail | jail | ✅ |
+| latemoon | latemoon | ✅ |
+| oldpine | oldpine | ✅ |
+| sanyen | sanyen | ✅ |
+| snow | snow | ✅ |
+| temple | temple | ✅ |
+| village | village | ✅ |
+| waterfog | waterfog | ✅ |
+
+**原版 19 個區域全部覆蓋 (100%)**
 
 ---
 
 ## 四、數據統計
 
-### 各區域檔案數分布
+### 各區域檔案數分布 (Top 10)
 
 ```
-snow:     49 rooms + 66 NPCs + 36 objects = 151 files (最大)
-wutang:   32 rooms + 26 NPCs +  6 objects =  64 files
-road:     10 rooms +  1 NPC  +  0 objects =  11 files
-lijun:    10 rooms + 11 NPCs +  5 objects =  26 files
-choyin:   10 rooms + 11 NPCs +  4 objects =  25 files
-zhenwu:    9 rooms + 11 NPCs +  3 objects =  23 files
-其餘 43 個區域合計:                         448 files
+snow:      119 files (最大 — 雪亭鎮主城)
+wutang:     59 files (五堂鎮)
+longan:     27 files (龍安鎮)
+jingji:     25 files (京畿)
+kangping:   21 files (康平)
+lijun:      21 files (酈郡)
+city:       21 files (城市)
+choyin:     21 files (喬陰)
+zhenwu:     20 files (振武軍營)
+weiguo:     19 files (衛國)
 ```
 
 ### 全域物件分布
 
 ```
-obj/weapon/:      42 files
-obj/armor/:       30 files
-obj/food/:         5 files
-obj/drug/:         6 files
-obj/medication/:  14 files
-obj/reagent/:      4 files
-obj/money/:        3 files
-obj/npc/:         12 files (beasts + special NPCs)
-obj/其他:         58 files
+obj/weapon/:       58 files
+obj/armor/:        42 files
+obj/medication/:   16 files
+obj/npc/:          13 files (beasts + special NPCs)
+obj/drug/:          6 files
+obj/example/:       6 files
+obj/food/:          5 files
+obj/reagent/:       4 files
+obj/money/:         3 files
+obj/area/:         31 files
+obj/root:          17 files
+```
+
+### 技能分布
+
+```
+原版覆蓋:    59/71 (83%)
+新增門派技能:  19
+總計:         78
+缺失原版:     12 (hammer, magic, move 等)
 ```
 
 ---

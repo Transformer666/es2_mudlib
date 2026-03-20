@@ -11,6 +11,9 @@ void create()
 的木製假人排列成陣，供士兵們練習實戰技巧。
 LONG
     );
+    set("objects", ([
+        __DIR__"npc/luxinian" : 1,
+    ]));
     set("exits", ([
         "east"  : __DIR__"yard",
         "north" : __DIR__"mess_hall",

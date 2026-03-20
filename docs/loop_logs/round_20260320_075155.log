@@ -243,3 +243,124 @@ All done. Here's a summary of the quest system implementation:
 
 [0;34m[08:56:15][0m All tasks completed.
 [0;34m[08:56:15][0m Checking for changes to commit...
+[main 0765060] feat: auto-implement content via agent pipeline [2026-03-20 08:56:15]
+ 160 files changed, 10109 insertions(+), 2021 deletions(-)
+ create mode 100644 docs/es2_equipment_crawl.json
+ create mode 100644 docs/es2tips_blog_content.json
+ create mode 100644 docs/es2tips_crawl_data.json
+ create mode 100644 docs/es2tips_crawled_data.json
+ rewrite docs/implementation_log.md (99%)
+ create mode 100644 docs/loop_logs/round_20260320_073938.log
+ create mode 100644 docs/loop_logs/round_20260320_075155.log
+ rewrite docs/missing_content.json (96%)
+ rewrite docs/wiki_content.json (99%)
+ create mode 100644 mudlib/d/city/alley.c
+ create mode 100644 mudlib/d/city/armor_shop.c
+ create mode 100644 mudlib/d/city/entrance.c
+ create mode 100644 mudlib/d/city/garden.c
+ create mode 100644 mudlib/d/city/inn.c
+ create mode 100644 mudlib/d/city/main_street.c
+ create mode 100644 mudlib/d/city/market.c
+ create mode 100644 mudlib/d/city/npc/armorer.c
+ create mode 100644 mudlib/d/city/npc/beggar.c
+ create mode 100644 mudlib/d/city/npc/guard.c
+ create mode 100644 mudlib/d/city/npc/innkeeper.c
+ create mode 100644 mudlib/d/city/npc/merchant.c
+ create mode 100644 mudlib/d/city/npc/pawnbroker.c
+ create mode 100644 mudlib/d/city/npc/peddler.c
+ create mode 100644 mudlib/d/city/npc/temple_monk.c
+ create mode 100644 mudlib/d/city/npc/weaponsmith.c
+ create mode 100644 mudlib/d/city/pawnshop.c
+ create mode 100644 mudlib/d/city/square.c
+ create mode 100644 mudlib/d/city/temple.c
+ create mode 100644 mudlib/d/city/weapon_shop.c
+ create mode 100644 mudlib/d/city/yamen.c
+ create mode 100644 mudlib/d/green_n/cliff.c
+ create mode 100644 mudlib/d/green_n/entrance.c
+ create mode 100644 mudlib/d/green_n/highland.c
+ create mode 100644 mudlib/d/green_n/npc/wild_boar.c
+ create mode 100644 mudlib/d/green_n/npc/wild_horse.c
+ create mode 100644 mudlib/d/green_n/npc/wild_wolf.c
+ create mode 100644 mudlib/d/green_n/rock_formation.c
+ create mode 100644 mudlib/d/green_n/stream.c
+ create mode 100644 mudlib/d/green_n/windswept.c
+ create mode 100644 mudlib/d/jingji/back_alley.c
+ create mode 100644 mudlib/d/jingji/bank.c
+ create mode 100644 mudlib/d/jingji/npc/bank_guard.c
+ create mode 100644 mudlib/d/jingji/npc/gate_guard.c
+ create mode 100644 mudlib/d/jingji/npc/passerby.c
+ create mode 100644 mudlib/d/jingji/npc/weapon_vendor.c
+ create mode 100644 mudlib/d/jingji/weapon_shop.c
+ create mode 100644 mudlib/d/kangping/herb_garden.c
+ create mode 100644 mudlib/d/kangping/npc/farmer.c
+ create mode 100644 mudlib/d/kangping/npc/guard.c
+ create mode 100644 mudlib/d/kangping/npc/herbalist.c
+ create mode 100644 mudlib/d/kangping/npc/old_woman.c
+ create mode 100644 mudlib/d/kangping/npc/red_dragon.c
+ create mode 100644 mudlib/d/kangping/path.c
+ create mode 100644 mudlib/d/kangping/stone_cave.c
+ create mode 100644 mudlib/d/kangping/well.c
+ create mode 100644 mudlib/d/longan/back_street.c
+ create mode 100644 mudlib/d/longan/garden.c
+ create mode 100644 mudlib/d/longan/lake_cave.c
+ create mode 100644 mudlib/d/longan/npc/black_dragon.c
+ create mode 100644 mudlib/d/longan/npc/blacksmith.c
+ create mode 100644 mudlib/d/longan/npc/guard.c
+ create mode 100644 mudlib/d/longan/npc/old_gardener.c
+ create mode 100644 mudlib/d/longan/npc/peddler.c
+ create mode 100644 mudlib/d/longan/smithy.c
+ create mode 100644 mudlib/d/sanyen/back_alley.c
+ create mode 100644 mudlib/d/sanyen/market.c
+ create mode 100644 mudlib/d/sanyen/npc/beggar.c
+ create mode 100644 mudlib/d/sanyen/npc/guard.c
+ create mode 100644 mudlib/d/sanyen/npc/pilgrim.c
+ create mode 100644 mudlib/d/sanyen/npc/weapon_vendor.c
+ create mode 100644 mudlib/d/sanyen/weapon_shop.c
+ create mode 100644 mudlib/d/snow/npc/escort.c
+ create mode 100644 mudlib/d/tianxie/npc/evil_daoist.c
+ create mode 100644 mudlib/d/tianyue/npc/canyi.c
+ create mode 100644 mudlib/d/wutang/npc/huhuo.c
+ create mode 100644 mudlib/obj/armor/bloodstained_armor.c
+ create mode 100644 mudlib/obj/armor/dragon_boots.c
+ create mode 100644 mudlib/obj/armor/fire_scale_belt.c
+ create mode 100644 mudlib/obj/armor/fire_scale_boots.c
+ create mode 100644 mudlib/obj/armor/fire_scale_cloth.c
+ create mode 100644 mudlib/obj/armor/fire_scale_gloves.c
+ create mode 100644 mudlib/obj/armor/fire_scale_helm.c
+ create mode 100644 mudlib/obj/armor/fire_scale_leggings.c
+ create mode 100644 mudlib/obj/armor/fire_scale_plate.c
+ create mode 100644 mudlib/obj/armor/silky_gloves.c
+ create mode 100644 mudlib/obj/armor/symbol_of_dao.c
+ create mode 100644 mudlib/obj/armor/wuzin_ring.c
+ create mode 100644 mudlib/obj/npc/chaos_beast.c
+ create mode 100644 mudlib/obj/weapon/ancient_dagger.c
+ create mode 100644 mudlib/obj/weapon/black_steel_dagger.c
+ create mode 100644 mudlib/obj/weapon/bloody_dagger.c
+ create mode 100644 mudlib/obj/weapon/coldblood_dagger.c
+ create mode 100644 mudlib/obj/weapon/evil_blade_yanling.c
+ create mode 100644 mudlib/obj/weapon/fish_belly_pearl.c
+ create mode 100644 mudlib/obj/weapon/fury_whip.c
+ create mode 100644 mudlib/obj/weapon/goddess_sword.c
+ create mode 100644 mudlib/obj/weapon/nine_turn_pearl.c
+ create mode 100644 mudlib/obj/weapon/royal_sword.c
+ create mode 100644 mudlib/obj/weapon/seal_of_chaos.c
+ create mode 100644 mudlib/obj/weapon/silk_fishing_rod.c
+ create mode 100644 mudlib/obj/weapon/spirit_staff.c
+ create mode 100644 mudlib/obj/weapon/tailor_needle.c
+ create mode 100644 mudlib/obj/weapon/warlord_blade.c
+ create mode 100644 mudlib/obj/weapon/wind_god_feather.c
+To github.com:Transformer666/es2_mudlib.git
+ ! [rejected]        main -> main (fetch first)
+error: failed to push some refs to 'github.com:Transformer666/es2_mudlib.git'
+hint: Updates were rejected because the remote contains work that you do
+hint: not have locally. This is usually caused by another repository pushing
+hint: to the same ref. You may want to first integrate the remote changes
+hint: (e.g., 'git pull ...') before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+[1;33m[WARN][0m Push failed.
+[0;32m[OK][0m Changes committed and pushed to origin.
+
+=========================================
+  Pipeline complete!
+  End: 2026-03-20 08:56:15
+=========================================

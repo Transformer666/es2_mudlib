@@ -21,6 +21,7 @@ LONG
 		"north" : "/d/fengshan/gate",
 		"east"  : "/d/canyon/entrance",
 		"west"  : "/d/force/entrance",
+		"southeast" : "/d/baiyao/entrance",
 	]));
 
 	setup();

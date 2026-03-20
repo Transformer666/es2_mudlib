@@ -95,6 +95,14 @@ int acquire_skill(object ob, string skill)
             ob->improve_skill(skill, random(ob->query_attr("wis")) + 1);
         }
         break;
+    case "longttu neigong":
+        if( !ob->query_learn(skill)
+        &&  ob->query_skill("needle") >= 30 ) {
+            say("龍圖長老點了點頭，說道：你針法已有小成，老夫傳你龍圖內功心法。\n");
+            message_vision("$N將龍圖丹派的內功心法傳授給$n。\n", this_object(), ob);
+            ob->improve_skill(skill, random(ob->query_attr("spi")) + 1);
+        }
+        break;
     default:
         return 0;
     }

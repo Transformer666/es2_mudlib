@@ -14,6 +14,7 @@ LONG
 	set("objects", ([ /* sizeof() == 1 */
 		__DIR__"npc/obj/pot" : 1,
 		__DIR__"npc/gammer" : 1,
+		__DIR__"npc/arbao" : 1,
 		__DIR__"npc/junkman": 1,
 		__DIR__"npc/ritual_monkey" : 1,
 	]));

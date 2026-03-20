@@ -18,6 +18,7 @@ LONG
 	set("exits", ([
 		"south" : __DIR__"court",
 		"north" : "/d/manglin/entrance",
+		"northeast" : "/d/babao/entrance",
 	]));
 
 	setup();
