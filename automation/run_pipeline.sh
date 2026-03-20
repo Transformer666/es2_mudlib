@@ -36,8 +36,8 @@ warn() {
 mkdir -p docs
 
 # Pull latest changes before starting
-log "Pulling latest changes from origin..."
-git pull origin main 2>&1 | tee -a $LOG_FILE
+log "Pulling latest changes..."
+git pull mine main 2>&1 | tee -a $LOG_FILE || warn "Pull from mine failed, continuing with local state."
 success "Repository updated."
 
 echo "" >> $LOG_FILE
@@ -141,8 +141,8 @@ $(echo -e "$TASK_LIST")
 
 Co-Authored-By: Claude Code Agent <noreply@anthropic.com>"
 
-        git push origin main
-        success "Changes committed and pushed to origin."
+        git push mine main || warn "Push to mine failed."
+        success "Changes committed and pushed to mine."
     else
         warn "No relevant files to commit."
     fi

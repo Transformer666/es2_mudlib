@@ -59,9 +59,15 @@ while true; do
     fi
 
     # Check if there's more work to do
-    if grep -q '"missing": 0' docs/missing_content.json 2>/dev/null; then
-        echo -e "${GREEN}[$(date +"%H:%M:%S")]${NC} All content implemented! Stopping."
-        break
+    # Only stop if total_missing is 0 (all categories complete)
+    if [ -f docs/missing_content.json ]; then
+        TOTAL_MISSING=$(grep -o '"total_missing":[[:space:]]*[0-9]*' docs/missing_content.json 2>/dev/null | grep -o '[0-9]*$')
+        if [ -n "$TOTAL_MISSING" ] && [ "$TOTAL_MISSING" -eq 0 ]; then
+            echo -e "${GREEN}[$(date +"%H:%M:%S")]${NC} All content implemented (total_missing=0)! Stopping."
+            break
+        else
+            echo -e "${BLUE}[$(date +"%H:%M:%S")]${NC} Remaining missing items: ${TOTAL_MISSING:-unknown}"
+        fi
     fi
 
     if [ "$MAX_ROUNDS" -gt 0 ] && [ "$ROUND" -ge "$MAX_ROUNDS" ]; then
