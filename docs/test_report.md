@@ -1,5 +1,5 @@
 # ES2 MUD Static Validation Report
-Run time: Fri Mar 20 21:10:21 UTC 2026
+Run time: Fri Mar 20 21:30:22 UTC 2026
 
 
 ## Room Validation
@@ -1128,6 +1128,9 @@ Run time: Fri Mar 20 21:10:21 UTC 2026
 - PASS: Room inherit: d/choyin/yamen
 - PASS: Room short desc: d/choyin/yamen
 - PASS: Room setup(): d/choyin/yamen
+- PASS: Room inherit: d/choyin/shop
+- PASS: Room short desc: d/choyin/shop
+- PASS: Room setup(): d/choyin/shop
 - FAIL: Room inherit missing: d/choyin/temple
 - PASS: Room short desc: d/choyin/temple
 - PASS: Room setup(): d/choyin/temple
@@ -1774,6 +1777,10 @@ Run time: Fri Mar 20 21:10:21 UTC 2026
 - PASS: NPC inherit: d/sanyen/npc/pilgrim
 - PASS: NPC set_name: d/sanyen/npc/pilgrim
 - PASS: NPC setup(): d/sanyen/npc/pilgrim
+- PASS: NPC include: d/sanyen/npc/merchant
+- PASS: NPC inherit: d/sanyen/npc/merchant
+- PASS: NPC set_name: d/sanyen/npc/merchant
+- PASS: NPC setup(): d/sanyen/npc/merchant
 - PASS: NPC include: d/sanyen/npc/temple_monk
 - PASS: NPC inherit: d/sanyen/npc/temple_monk
 - PASS: NPC set_name: d/sanyen/npc/temple_monk
@@ -2338,6 +2345,10 @@ Run time: Fri Mar 20 21:10:21 UTC 2026
 - PASS: NPC inherit: d/choyin/npc/innkeeper
 - PASS: NPC set_name: d/choyin/npc/innkeeper
 - PASS: NPC setup(): d/choyin/npc/innkeeper
+- PASS: NPC include: d/choyin/npc/merchant
+- PASS: NPC inherit: d/choyin/npc/merchant
+- PASS: NPC set_name: d/choyin/npc/merchant
+- PASS: NPC setup(): d/choyin/npc/merchant
 - PASS: NPC include: d/choyin/npc/cityguard
 - PASS: NPC inherit: d/choyin/npc/cityguard
 - PASS: NPC set_name: d/choyin/npc/cityguard
@@ -3618,6 +3629,6 @@ Run time: Fri Mar 20 21:10:21 UTC 2026
 ## Summary
 | Result | Count |
 |--------|-------|
-| PASS | 3534 |
+| PASS | 3545 |
 | FAIL | 23 |
 | WARN | 46 |
