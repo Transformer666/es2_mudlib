@@ -169,16 +169,30 @@ phase_build() {
         phase_analyze
     fi
 
-    # --- 2a. Rooms + NPCs: analyze then build per area ---
-    # Let the agent decide what each area needs based on current state
-    for area_dir in mudlib/d/*/; do
-        [ -d "$area_dir" ] || continue
-        area=$(basename "$area_dir")
+    # --- 2a. Rooms + NPCs: only process stub areas from missing_content.json ---
+    # Read stub towns from analyze results
+    local stub_list=""
+    if [ -f docs/missing_content.json ]; then
+        stub_list=$(cat docs/missing_content.json | tr -d ' \n' | grep -o '"stub_towns":\[[^]]*\]' | grep -o '"[a-z_]*"' | tr -d '"')
+    fi
+    # Fallback: check areas with < 6 rooms
+    if [ -z "$stub_list" ]; then
+        for area_dir in mudlib/d/*/; do
+            [ -d "$area_dir" ] || continue
+            area=$(basename "$area_dir")
+            case "$area" in road|npc|obj) continue ;; esac
+            rc=$(find "$area_dir" -maxdepth 1 -name "*.c" 2>/dev/null | wc -l | tr -d ' ')
+            if [ "$rc" -lt 6 ]; then
+                stub_list="$stub_list $area"
+            fi
+        done
+    fi
 
-        # Skip non-area directories and already complete areas
-        case "$area" in
-            road|npc|obj) continue ;;
-        esac
+    # Process max 3 areas per round to stay within context limits
+    local area_count=0
+    for area in $stub_list; do
+        [ "$area_count" -ge 3 ] && break
+        area_count=$((area_count + 1))
 
         run_step "Audit area: $area" \
 "審查 mudlib/d/$area/ 區域的完整性，找出缺少的內容。
