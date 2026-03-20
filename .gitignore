@@ -7,6 +7,9 @@
 /mudlib/data/user
 /mudlib/data/daemon
 /mudlib/data/daemon.o
+/mudlib/data/chinese.o
+/mudlib/data/emoted.o
+/mudlib/data/countuser
 /mudlib/adm/etc/visitor.cnt
 /mudlib/adm/etc/wizlist
 /adm/etc/wizlist
@@ -15,4 +18,5 @@
 *.swp
 
 # local configuration files
+neolith.conf
 neolith.local.conf
