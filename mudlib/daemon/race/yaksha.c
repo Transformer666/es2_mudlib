@@ -28,6 +28,7 @@ void setup(object ob)
     ob->add_temp("apply/armor", 4);
     ob->add_temp("apply/defense", 50);
     ob->add_temp("apply/attack", 25);
+    ob->set_temp("apply/vision_of_ghost", 1);   // 陰陽眼：可看見鬼魂
 }
 
 void initialize(object ob)

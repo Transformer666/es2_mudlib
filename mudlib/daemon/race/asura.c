@@ -27,6 +27,7 @@ void setup(object ob)
         ob->set_weight(BASE_WEIGHT + ((int)ob->query_attr("str", 1) - 14 ) * 5000);
     ob->add_temp("apply/armor", 4);
     ob->add_temp("apply/attack", 20);
+    ob->set_temp("apply/vision_of_ghost", 1);   // 陰陽眼：可看見鬼魂
 }
 
 void initialize(object ob)
