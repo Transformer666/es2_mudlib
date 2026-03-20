@@ -20,6 +20,7 @@ LONG
     set("exits", ([
 	"south" : __DIR__"wushan_path3",
 	"north" : "/d/yinjiao/secret_passage",
+	"down"  : __DIR__"wushan_secret",
     ]));
 
     setup();

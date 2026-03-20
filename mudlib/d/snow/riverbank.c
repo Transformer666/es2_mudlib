@@ -12,9 +12,10 @@ void create()
 LONG
 	);
 	set("outdoors", "snow");
-	set("exits", ([ /* sizeof() == 1 */
+	set("exits", ([
 		"south" : __DIR__"ruin2",
-]));
+		"east"  : __DIR__"old_house",
+	]));
 
 	setup();
 	replace_program(ROOM);

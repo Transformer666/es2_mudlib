@@ -12,7 +12,8 @@ void create()
 LONG
     );
     set("objects", ([
-        __DIR__"npc/disciple" : 2,
+        __DIR__"npc/ouyang_wuji" : 1,
+        __DIR__"npc/disciple" : 1,
     ]));
     set("exits", ([
         "west" : __DIR__"gate",

@@ -1,331 +1,335 @@
 {
-  "races": [
-    {
-      "id": "human",
-      "name": "人類",
-      "karma_cost": 5,
-      "classes": ["武者(60)", "書生(70)", "方士(60)", "和尚(65)"],
-      "initial_stats": {"精": 35, "氣": 35, "神": 35},
-      "stat_caps": {"膂力": 18, "膽識": 18, "悟性": 18, "靈性": 18, "定力": 18, "機敏": 18, "根骨": 18, "慧根": 18},
-      "passive": "防禦力10，萬分之一機率變異為人類亞種",
-      "active": "誘發驚人的救生力量恢復大量形體和氣",
-      "description": "平衡型種族，具有生存導向的機制",
-      "lore": "人類亞種：所有職業70級，初始精30氣30神30，屬性上限提升至20，可透過祈禱獲得太陽祝福恢復狀態"
+  "fetch_date": "2026-03-20",
+  "sources": {
+    "wiki": "https://sites.google.com/site/es2mud/",
+    "blog": "https://es2tips.blogspot.com/",
+    "original_repo": "https://github.com/mudchina/es2"
+  },
+  "main_quests_and_world": {
+    "main_questline": {
+      "url": "https://sites.google.com/site/es2mud/home/zhu-xian-ren-wu",
+      "summary": "主線任務圍繞揭開「侮天鬼」的神秘面紗。玩家選擇種族後選擇七大職業之一。角色透過戰鬥/訓練隨機提升屬性來成長。技能天賦範圍 140-200，可透過「十三靈」任務重置天賦。八條神秘劇情線索驅動探索。侮天鬼主線仍在開發中。"
     },
-    {
-      "id": "xingtian",
-      "name": "刑天",
-      "karma_cost": 25,
-      "classes": ["武者(65)", "軍人(70)"],
-      "initial_stats": {"精": 80, "氣": 100, "神": 30},
-      "stat_caps": {"膂力": 30, "膽識": 20, "悟性": 15, "靈性": 10, "定力": 16, "機敏": 24, "根骨": 28, "慧根": 18},
-      "passive": "攻擊力50，防禦能力100，防禦力100，移動速度50",
-      "active": "透過祭祀舞蹈強化各種能力",
-      "description": "高物理戰鬥型種族",
-      "lore": "無頭戰士，以盾為面、以臍為口"
+    "mythology": {
+      "url": "https://sites.google.com/site/es2mud/home/story-lines/mythology",
+      "summary": "盤古分宇宙為人間與混沌界。天神與侮天鬼控制世界。寒於氏時代，神賜予寒於氏聖衣與雙刃（穿靈、旋芒）。經十七晝夜聖戰，侮天鬼被擊敗封印。寒於氏死後被分為十三靈：金烏、銀蟾、大鵬、天龍等，加上人靈區冥。區冥每百年轉世，沉睡兩百年。侮天鬼與天神約定六百年一輪以人類美德為判定的審判。故事始於侮天鬼靈魂破封三百年後。"
     },
-    {
-      "id": "yenhold",
-      "name": "厭火",
-      "karma_cost": 5,
-      "classes": ["武者(60)", "軍人(60)", "和尚(65)"],
-      "initial_stats": {"精": 20, "氣": 30, "神": 20},
-      "stat_caps": {"膂力": 20, "膽識": 14, "悟性": 10, "靈性": 12, "定力": 20, "機敏": 14, "根骨": 22, "慧根": 15},
-      "passive": "防禦力20，火焰抗性50",
-      "active": "吐出熊熊烈火燒傷所有對手",
-      "description": "火焰戰鬥型種族，增強防禦",
-      "lore": "善於操控火焰的種族，結合防禦火焰免疫與攻擊火焰能力"
-    },
-    {
-      "id": "yaksha",
-      "name": "夜叉",
-      "karma_cost": 35,
-      "classes": ["書生(60)", "武者(65)", "小偷(70)", "道士(65)", "方士(60)"],
-      "initial_stats": {"精": 140, "氣": 70, "神": 70},
-      "stat_caps": {"膂力": 25, "膽識": 25, "悟性": 20, "靈性": 25, "定力": 20, "機敏": 25, "根骨": 25, "慧根": 25},
-      "passive": "防禦50，攻擊25，陰陽眼，天眼通",
-      "active": "吞食其他生物的靈魂精華",
-      "description": "高階多職業種族",
-      "lore": "具有陰陽眼和天眼通的強大種族"
-    },
-    {
-      "id": "malik",
-      "name": "巫首",
-      "karma_cost": 30,
-      "classes": ["書生(60)", "道士(65)", "和尚(65)"],
-      "initial_stats": {"精": 70, "氣": 40, "神": 100},
-      "stat_caps": {"膂力": 11, "膽識": 11, "悟性": 30, "靈性": 30, "定力": 28, "機敏": 25, "根骨": 15, "慧根": 25},
-      "passive": "防禦能力50，防禦力10，通天眼",
-      "active": "採納天地靈氣恢復大量神",
-      "description": "法術型種族",
-      "lore": "精通巫術的種族"
-    },
-    {
-      "id": "woochan",
-      "name": "無腸",
-      "karma_cost": 5,
-      "classes": ["道士(60)", "書生(60)", "方士(60)", "和尚(65)"],
-      "initial_stats": {"精": 30, "氣": 20, "神": 60},
-      "stat_caps": {"膂力": 15, "膽識": 15, "悟性": 20, "靈性": 20, "定力": 18, "機敏": 20, "根骨": 15, "慧根": 22},
-      "passive": "防禦力5，護衛25，不需進食",
-      "active": "消化體內水氣恢復狀態",
-      "description": "低成本法術型種族",
-      "lore": "不需要進食的奇特種族"
-    },
-    {
-      "id": "jiaojao",
-      "name": "焦僥",
-      "karma_cost": 10,
-      "classes": ["武者(60)", "書生(65)", "小偷(65)", "和尚(65)"],
-      "initial_stats": {"精": 40, "氣": 25, "神": 25},
-      "stat_caps": {"膂力": 14, "膽識": 13, "悟性": 19, "靈性": 19, "定力": 19, "機敏": 24, "根骨": 16, "慧根": 18},
-      "passive": "防禦能力15，警覺100",
-      "active": "逃離戰鬥並就地隱藏",
-      "description": "敏捷型種族，善於逃跑",
-      "lore": "矮小靈敏的種族"
-    },
-    {
-      "id": "dingling",
-      "name": "釘靈",
-      "karma_cost": 10,
-      "classes": ["武者(60)", "軍人(65)", "小偷(60)", "和尚(65)"],
-      "initial_stats": {"精": 70, "氣": 40, "神": 20},
-      "stat_caps": {"膂力": 20, "膽識": 15, "悟性": 15, "靈性": 10, "定力": 20, "機敏": 25, "根骨": 20, "慧根": 15},
-      "passive": "移動速度50，傷害10",
-      "active": "踐踏目標使其無法攻擊或行動",
-      "description": "速度型物理種族",
-      "lore": "擁有超快移動速度的種族"
-    },
-    {
-      "id": "asura",
-      "name": "阿修羅",
-      "karma_cost": 30,
-      "classes": ["武者(70)", "軍人(70)", "道士(60)"],
-      "initial_stats": {"精": 80, "氣": 80, "神": 80},
-      "stat_caps": {"膂力": 25, "膽識": 40, "悟性": 15, "靈性": 25, "定力": 10, "機敏": 20, "根骨": 20, "慧根": 20},
-      "passive": "攻擊力30，氣勢30，陰陽眼，混亂主動攻擊",
-      "active": "吞食屍體恢復自身狀態",
-      "description": "高階戰鬥型種族",
-      "lore": "好戰的修羅族，膽識上限極高"
-    },
-    {
-      "id": "rainnar",
-      "name": "雨師妾",
-      "karma_cost": 25,
-      "classes": ["方士(60)", "道士(60)", "小偷(60)", "書生(60)", "和尚(65)"],
-      "initial_stats": {"精": 40, "氣": 30, "神": 70},
-      "stat_caps": {"膂力": 9, "膽識": 9, "悟性": 22, "靈性": 24, "定力": 20, "機敏": 13, "根骨": 13, "慧根": 28},
-      "passive": "防禦力20，四種元素減傷各10",
-      "active": "養育最多五條小蛇作為裝備",
-      "description": "法術型種族，獨特蛇裝備系統",
-      "lore": "可養蛇作為裝備的神秘種族"
-    },
-    {
-      "id": "blackteeth",
-      "name": "黑齒",
-      "karma_cost": 3,
-      "classes": ["武者(60)", "小偷(60)", "和尚(65)"],
-      "initial_stats": {"精": 35, "氣": 25, "神": 10},
-      "stat_caps": {"膂力": 25, "膽識": 15, "悟性": 15, "靈性": 10, "定力": 15, "機敏": 20, "根骨": 20, "慧根": 10},
-      "passive": "防禦力5",
-      "active": "吞食物品恢復自身狀態",
-      "description": "最低成本的物理種族",
-      "lore": "黑齒族，可吞食物品恢復狀態"
+    "history": {
+      "url": "https://sites.google.com/site/es2mud/home/story-lines/li-shi-gu-shi",
+      "summary": "五千年前寒於斬侮天鬼。一千年前鄔赤族首領商句征服煙車河流域，以金烏為圖騰建國。994年前蘭攸與君達建立天朝。300年前聖樹碎裂侮天鬼返人間。270年前杞庸以少年之姿現身傳授武學。124年前武貞大帝登基。48年前智賢大帝登基。30年前祐聖大帝登基。"
     }
-  ],
-  "classes": [
-    {
-      "id": "warrior",
-      "name": "武者",
-      "description": "武者是致力於武藝修練和遵守武德的修行者，在江湖中擔任各組織的核心力量。天朝大部分武者源自五大門派。",
-      "sects": ["fengshan", "lengmei", "kuxiao", "xueyin", "hudao"],
-      "advancement_paths": {
-        "fengshan": ["劍靈", "山修", "劍師"],
-        "lengmei": ["劍客", "古劍傳人", "虎統領"],
-        "kuxiao": ["守衛者", "苦行防者", "刀使"],
-        "xueyin": ["流浪者", "防禦型戰士", "天邪門徒"],
-        "hudao": ["護衛", "鬼才", "太守"]
+  },
+  "races": {
+    "human": {
+      "url": "https://sites.google.com/site/es2mud/home/story-lines/zhong-zu-she-ding/human",
+      "name_zh": "人類",
+      "karma": 5,
+      "professions": {"martial_artist": 60, "scholar": 70, "daoist": 60, "monk": 65},
+      "starting_stats": {"jing": 35, "qi": 35, "shen": 35},
+      "attribute_caps": {"all": 18},
+      "passive": "防禦+10，0.01%機率成為人族族人",
+      "active": "緊急生存力量恢復精氣"
+    },
+    "xingtian": {
+      "url": "https://sites.google.com/site/es2mud/home/story-lines/zhong-zu-she-ding/headless",
+      "name_zh": "刑天",
+      "karma": 25,
+      "professions": {"warrior": 65, "soldier": 70},
+      "starting_stats": {"jing": 80, "qi": 100, "shen": 30},
+      "attribute_caps": {"strength": 30, "courage": 20, "enlightenment": 15, "spirituality": 10, "stability": 16, "agility": 24, "foundation": 28, "wisdom": 18},
+      "passive": "攻擊+50，防禦能力+100，防禦+100，移動+50",
+      "active": "透過祭祀舞蹈增強能力"
+    },
+    "yenhold": {
+      "url": "https://sites.google.com/site/es2mud/home/story-lines/zhong-zu-she-ding/yenhold",
+      "name_zh": "厭火",
+      "karma": 5,
+      "professions": {"warrior": 60, "soldier": 60, "monk": 65},
+      "starting_stats": {"jing": 20, "qi": 30, "shen": 20},
+      "passive": "防禦+20，火防+50",
+      "active": "噴火燃燒所有對手（AOE傷害）"
+    },
+    "yaksha": {
+      "url": "https://sites.google.com/site/es2mud/home/story-lines/zhong-zu-she-ding/yaksa",
+      "name_zh": "夜叉",
+      "karma": 35,
+      "professions": {"scholar": 60, "warrior": 65, "thief": 70, "taoist": 65, "alchemist": 60},
+      "starting_stats": {"jing": 140, "qi": 70, "shen": 70},
+      "attribute_caps": {"strength": 25, "courage": 25, "insight": 20, "spirituality": 25, "composure": 20, "agility": 25, "constitution": 25, "aptitude": 25},
+      "passive": "防禦+50，攻擊+25，陰陽眼，千里眼",
+      "active": "吞噬其他生物靈魂"
+    },
+    "malik": {
+      "url": "https://sites.google.com/site/es2mud/home/story-lines/zhong-zu-she-ding/malik",
+      "name_zh": "巫首",
+      "karma": 30,
+      "professions": {"scholar": 60, "taoist": 65, "monk": 65},
+      "starting_stats": {"jing": 70, "qi": 40, "shen": 100},
+      "attribute_caps": {"strength": 11, "courage": 11, "wisdom": 30, "spirituality": 30, "composure": 28, "agility": 25, "constitution": 15, "aptitude": 25},
+      "passive": "防禦能力+50，防禦+10，天眼通",
+      "active": "吸收靈氣恢復神"
+    },
+    "woochan": {
+      "url": "https://sites.google.com/site/es2mud/home/story-lines/zhong-zu-she-ding/woochan",
+      "name_zh": "無腸",
+      "karma": 5,
+      "professions": {"daoist": 60, "scholar": 60, "wizard": 60, "monk": 65},
+      "starting_stats": {"jing": 30, "qi": 20, "shen": 60},
+      "attribute_caps": {"strength": 15, "courage": 15, "comprehension": 20, "spirituality": 20, "stability": 18, "dexterity": 20, "foundation": 15, "wisdom_root": 22},
+      "passive": "防禦+5，架式+25，不需進食",
+      "active": "消化體內水氣恢復狀態"
+    },
+    "jiaojao": {
+      "url": "https://sites.google.com/site/es2mud/home/story-lines/zhong-zu-she-ding/jiaojao",
+      "name_zh": "焦僥",
+      "karma": 10,
+      "professions": {"martial_artist": 60, "scholar": 65, "thief": 65, "monk": 65},
+      "starting_stats": {"jing": 40, "qi": 25, "shen": 25},
+      "attribute_caps": {"strength": 14, "courage": 13, "enlightenment": 19, "spirituality": 19, "stability": 19, "agility": 24, "foundation": 16, "wisdom_root": 18},
+      "passive": "防禦+15，警覺+100",
+      "active": "脫離戰鬥並隱藏"
+    },
+    "dingling": {
+      "url": "https://sites.google.com/site/es2mud/home/story-lines/zhong-zu-she-ding/dingling",
+      "name_zh": "釘靈",
+      "karma": 10,
+      "professions": {"warrior": 60, "soldier": 65, "thief": 60, "monk": 65},
+      "passive": "提升移動與傷害輸出",
+      "active": "踐踏目標使其無法攻擊或行動（控場）"
+    },
+    "asura": {
+      "url": "https://sites.google.com/site/es2mud/home/story-lines/zhong-zu-she-ding/ashura",
+      "name_zh": "阿修羅",
+      "karma": 30,
+      "professions": {"warrior": 70, "soldier": 70, "taoist": 60},
+      "starting_stats": {"jing": 80, "qi": 80, "shen": 80},
+      "attribute_caps": {"strength": 25, "courage": 40, "insight": 15, "spirituality": 25, "composure": 10, "agility": 20, "constitution": 20, "aptitude": 20},
+      "passive": "攻擊能力+30，攻擊+30，陰陽眼，混亂主動攻擊",
+      "active": "吞噬屍體恢復自身狀態"
+    },
+    "rainnar": {
+      "url": "https://sites.google.com/site/es2mud/home/story-lines/zhong-zu-she-ding/rainnar",
+      "name_zh": "雨師妾",
+      "karma": 25,
+      "professions": {"fangshi": 60, "daoist": 60, "thief": 60, "scholar": 60, "monk": 65},
+      "starting_stats": {"jing": 40, "qi": 30, "shen": 70},
+      "attribute_caps": {"strength": 9, "courage": 9, "comprehension": 22, "spirituality": 24, "stability": 20, "agility": 13, "foundation": 13, "wisdom_root": 28},
+      "passive": "防禦+20，四元素抗性+10",
+      "active": "培養最多5條蛇作為裝備"
+    },
+    "blackteeth": {
+      "url": "https://sites.google.com/site/es2mud/home/story-lines/zhong-zu-she-ding/blackteeth",
+      "name_zh": "黑齒",
+      "karma": 3,
+      "professions": {"warrior": 60, "thief": 60, "monk": 65},
+      "starting_stats": {"jing": 35, "qi": 25, "shen": 10},
+      "attribute_caps": {"strength": 25, "courage": 15, "insight": 15, "spirituality": 10, "stability": 15, "agility": 20, "foundation": 20, "wisdom_root": 10},
+      "passive": "防禦+5",
+      "active": "吞嚥物品恢復狀態"
+    }
+  },
+  "maps": {
+    "national_map": {
+      "url": "https://sites.google.com/site/es2mud/home/story-lines/zhong-zu-she-ding/guo-jia-de-tu",
+      "summary": "國家地圖，以顏色區分不同領地"
+    },
+    "celestial_dynasty_map": {
+      "url": "https://sites.google.com/site/es2mud/home/story-lines/zhong-zu-she-ding/tian-chao-de-tu",
+      "summary": "天朝地理布局圖，連結至世界地圖、雪亭鎮、五堂鎮"
+    },
+    "wutang_town": {
+      "url": "https://sites.google.com/site/es2mud/home/story-lines/zhong-zu-she-ding/tian-chao-de-tu/wutang",
+      "summary": "五堂鎮地點導覽與謎題：飲血在哪、巫山雕像秘密、郭布徒弟、鎮天神廟、別館欽差、渡河船"
+    },
+    "xueting_town": {
+      "url": "https://sites.google.com/site/es2mud/home/story-lines/zhong-zu-she-ding/tian-chao-de-tu/xueting",
+      "summary": "雪亭鎮七個謎題：老榕樹阿寶、瞎眼老太婆、貨棧搬箱、驛站送信、振武軍營招兵、破舊大宅、黑衣老人閨女"
+    }
+  },
+  "classes": {
+    "warrior": {
+      "url": "https://sites.google.com/site/es2mud/home/story-lines/zhi-ye-yu-men-pai/wu-zhe",
+      "name_zh": "武者",
+      "sects": {
+        "fengshan": {"name_zh": "封山派", "focus": "劍法攻守兼備，持久戰強但爆發低", "ranks": ["劍靈", "山人", "劍客"], "recommended_races": ["夜叉", "刑天"]},
+        "lengmei": {"name_zh": "冷梅莊", "focus": "快劍，高爆發低續航", "ranks": ["劍士", "古劍門傳人", "虎督"]},
+        "kuxiao": {"name_zh": "哭笑門", "focus": "全遊戲最強防禦", "ranks": ["護法", "素衣衛", "使者"], "recommended_races": ["刑天", "夜叉", "厭火"]},
+        "xueyin": {"name_zh": "雪吟莊", "focus": "多變分支，修練困難，不推薦新手"},
+        "hudao": {"name_zh": "虎刀門", "focus": "最強爆發刀法", "ranks": ["護衛", "鬼才", "太守"], "recommended_races": ["刑天", "阿修羅"]}
       }
     },
-    {
-      "id": "scholar",
-      "name": "書生",
-      "description": "十年寒窗苦的書生，文質彬彬頗有氣質，但並不具有出眾的戰鬥力。書生擔任幫會長老可查看幫眾招收、升遷、離開記錄。",
-      "sects": ["buxuan", "xuantian"],
-      "advancement_paths": {
-        "buxuan": ["居士"],
-        "xuantian": ["散人"],
-        "shared": ["皇家情報員"]
+    "monk": {
+      "url": "https://sites.google.com/site/es2mud/home/story-lines/zhi-ye-yu-men-pai/he-shang",
+      "name_zh": "和尚",
+      "sects": {
+        "baolian": {"name_zh": "寶蓮寺", "focus": "治療系，團隊必備"},
+        "tianyue": {"name_zh": "天月庵", "focus": "治療系，團隊必備"},
+        "baixiang": {"name_zh": "白象寺", "focus": "武術起源，禪師(防禦)/羅漢(攻擊)兩路線"}
+      },
+      "note": "所有和尚禁止飲酒（致死後果）"
+    },
+    "thief": {
+      "url": "https://sites.google.com/site/es2mud/home/story-lines/zhi-ye-yu-men-pai/xiao-tou",
+      "name_zh": "小偷",
+      "sects": {
+        "langyi": {"name_zh": "瑯夷", "focus": "自稱第一地下幫會，無獨門武功但有廣泛特殊技能"},
+        "yinjiao": {"name_zh": "隱教", "focus": "輕功、內功、拳法優秀，接受政府招募"}
+      },
+      "advanced_paths": ["金蛇門人（劍系）", "黑龍使者（龍爪毒系）"]
+    },
+    "alchemist": {
+      "url": "https://sites.google.com/site/es2mud/home/story-lines/zhi-ye-yu-men-pai/fang-shi",
+      "name_zh": "方士",
+      "sects": {
+        "longttu": {"name_zh": "龍圖派", "focus": "缺乏戰鬥力但精通煉丹，可進階為醫師"},
+        "wutuo": {"name_zh": "武陀堂", "focus": "不能獨立煉丹但有優秀針灸術，可進階為香主"}
+      },
+      "cross_sect": "皆可入劍甲門增加戰力"
+    },
+    "scholar": {
+      "url": "https://sites.google.com/site/es2mud/home/story-lines/zhi-ye-yu-men-pai/shu-sheng",
+      "name_zh": "書生",
+      "sects": {
+        "buxuan": {"name_zh": "步玄派", "focus": "雙劍輕功，戰鬥如武者，可進階為居士"},
+        "xuantian": {"name_zh": "玄天教", "focus": "手動控制型群控，PvP強但打AI弱，可進階為散人"}
       }
     },
-    {
-      "id": "monk",
-      "name": "和尚",
-      "description": "和尚通過禪修和佛學修行達到精神修煉，尋求內心平靜並引導三界的靈力。天朝佛教信眾眾多，主要屬於禪宗。嚴禁飲酒，違者有致命後果。",
-      "sects": ["baolian", "tianyue", "baixiang"],
-      "advancement_paths": {
-        "baixiang": ["禪師（防禦型）", "羅漢（攻擊型）"]
+    "soldier": {
+      "url": "https://sites.google.com/site/es2mud/home/story-lines/zhi-ye-yu-men-pai/jun-ren",
+      "name_zh": "軍人",
+      "sects": {
+        "zhenwu": {"name_zh": "振武軍營", "focus": "累積戰功升遷，暴力軍官或軍師兩路線"}
       }
     },
-    {
-      "id": "thief",
-      "name": "小偷",
-      "description": "小偷/盜賊作為天朝的隱藏力量運作。自黃樵失蹤後影響力下降。所有小偷最終可獲得暗器。分兩大門派。",
-      "sects": ["langyi", "yinjiao"],
-      "advancement_paths": {
-        "langyi": ["金蛇門"],
-        "yinjiao": ["黑龍使者"]
-      }
-    },
-    {
-      "id": "taoist",
-      "name": "道士",
-      "description": "追求清淨自然天地合一的修行者，擅長元素法術、狀態效果、治療法術、鬼魂控制，可選修劍術。",
-      "sects": ["tianshi", "maoshan"],
-      "advancement_paths": {
-        "tianshi": ["雙元素大師"],
+    "taoist": {
+      "url": "https://sites.google.com/site/es2mud/home/story-lines/zhi-ye-yu-men-pai/dao-shi",
+      "name_zh": "道士",
+      "sects": {
+        "tianshi": {"name_zh": "天師派", "focus": "四元素（冰火風雷），修練後掌握兩種元素"},
         "maoshan": {
-          "lingyun": "靈雲觀 - 最強狀態影響能力",
-          "yinfeng": "隱風觀 - 治療和醫療法術",
-          "huanwu": "幻霧觀 - 高爆發鬼魂操控",
-          "sword": "茅山劍師 - 劍術戰鬥專家"
+          "name_zh": "茅山派",
+          "focus": "古老門派，分三觀",
+          "sub_sects": {
+            "lingyun": {"name_zh": "靈雲觀", "focus": "最強增益技"},
+            "yinfeng": {"name_zh": "隱風觀", "focus": "治療法術"},
+            "huanwu": {"name_zh": "幻霧觀", "focus": "高爆發＋馭鬼"}
+          },
+          "note": "三觀弟子皆可學茅山劍法成為茅山劍士"
         }
       }
-    },
-    {
-      "id": "alchemist",
-      "name": "方士",
-      "description": "追求長生不老的獨特職業，通常居住在偏遠地區。專精煉丹和修煉，受武林中人尊重。",
-      "sects": ["longttu", "wutuo"],
-      "advancement_paths": {
-        "longttu": ["醫師"],
-        "wutuo": ["香主"],
-        "shared": ["劍甲門弟子"]
-      }
-    },
-    {
-      "id": "soldier",
-      "name": "軍人",
-      "description": "每個國家都需要軍隊維持秩序。在天朝，軍人通過戰鬥經驗和消滅盜匪累積軍功來晉升。振武軍營是目前唯一的招兵中心。",
-      "sects": ["zhenwu"],
-      "advancement_paths": {
-        "zhenwu": ["軍事統領（暴力型）", "軍事策略家（道術型）"]
-      }
     }
-  ],
-  "sects": [
-    {"id": "fengshan", "name": "封山派", "class": "warrior", "description": "內功、輕功和獨特劍法。可晉升為劍靈、山修或劍師。擅長持久戰但爆發力較低。推薦種族：夜叉、刑天。"},
-    {"id": "lengmei", "name": "冷梅莊", "class": "warrior", "description": "快劍技法。可晉升為劍客、古劍門傳人或虎督。高爆發但耐久較低。推薦種族：刑天/阿修羅(劍客/虎督)；人類(古劍)。"},
-    {"id": "kuxiao", "name": "哭笑門", "class": "warrior", "description": "最強防禦力和獨特刀法。可晉升為護法、素衣衛或使者。推薦種族：刑天、夜叉、厭火。"},
-    {"id": "xueyin", "name": "雪吟莊", "class": "warrior", "description": "來自天邪國的強力內功技法。可晉升為浪人、棄徒或天邪派弟子。不建議新手。推薦種族：夜叉、阿修羅、焦僥、刑天、人類。"},
-    {"id": "hudao", "name": "虎刀門", "class": "warrior", "description": "最具爆發力的武功，壓倒性刀法。可晉升為護衛、鬼才或太守。推薦種族：刑天、阿修羅。"},
-    {"id": "buxuan", "name": "步玄派", "class": "scholar", "description": "雙劍流配合輕盈步法。可晉升為居士。"},
-    {"id": "xuantian", "name": "玄天教", "class": "scholar", "description": "手動控制式群控戰鬥，對NPC效果有限但PvP優勢大。可晉升為散人。"},
-    {"id": "baolian", "name": "寶蓮寺", "class": "monk", "description": "以濟世度人為己任，擅長治療，對修練和戰鬥都有幫助。"},
-    {"id": "tianyue", "name": "天月庵", "class": "monk", "description": "與寶蓮寺類似，以濟世度人為己任的尼姑庵門派。"},
-    {"id": "baixiang", "name": "護國白象寺", "class": "monk", "description": "武僧門派，在武林中地位崇高。可專精為禪師(防禦型)或羅漢(攻擊型)。"},
-    {"id": "langyi", "name": "瑯夷", "class": "thief", "description": "號稱最大地下組織。戰鬥技法無顯著特色但人脈廣泛，弟子可學習多種特殊技能。"},
-    {"id": "yinjiao", "name": "隱教", "class": "thief", "description": "擅長輕功、內功和武技。弟子偏好閃避而非正面對抗。"},
-    {"id": "jinshe", "name": "金蛇門", "class": "thief", "description": "小偷進階專精：劍法搭配暗器的戰鬥風格。來自瑯夷。"},
-    {"id": "heilong", "name": "黑龍使者", "class": "thief", "description": "小偷進階專精：龍爪和毒術專家，擅長操控對手。來自隱教。"},
-    {"id": "tianshi", "name": "天師派", "class": "taoist", "description": "專精冰、火、風、雷元素操控。玩家可修煉精通兩種元素。"},
-    {"id": "maoshan", "name": "茅山派", "class": "taoist", "description": "分為三個分支：靈雲觀(最強狀態效果)、隱風觀(治療法術)、幻霧觀(高爆發鬼魂操控)。另可學茅山劍術。"},
-    {"id": "longttu", "name": "龍圖", "class": "alchemist", "description": "專精煉丹修仙之道。可晉升為醫師。無直接戰鬥能力。"},
-    {"id": "wutuo", "name": "武陀", "class": "alchemist", "description": "出神入化的針灸能力。可晉升為香主。支援和戰鬥兼備。"},
-    {"id": "jianjia", "name": "劍甲門", "class": "alchemist", "description": "方士跨派可修煉路線，獲得戰鬥力和裝備強化能力。"},
-    {"id": "zhenwu", "name": "振武軍營", "class": "soldier", "description": "天朝唯一招兵中心。可發展為暴力的軍隊統領或類似道士戰法的軍師。"},
-    {"id": "tianxie", "name": "天邪門", "class": "warrior", "description": "雪吟莊的進階路線之一，暗系門派。"}
-  ],
-  "towns": [
-    {
-      "id": "snow",
-      "name": "雪亭鎮",
-      "description": "天朝主要城鎮，新手起點",
-      "mysteries": [
-        "老榕樹上阿寶等的人是誰？",
-        "瞎眼老太婆究竟是何人物？",
-        "貨棧搬箱子算不算苦力？",
-        "驛站送信送丟了多少？",
-        "振武軍營招兵，你有沒有興趣？",
-        "破舊大宅裡面躲著甚麼？",
-        "黑衣老人的閨女跑去了哪裡？"
-      ],
-      "rooms": ["square", "square_e", "square_w", "square_s", "square_n", "square_sw", "nstreet1", "nstreet2", "wstreet1", "wstreet2", "wstreet3", "sstreet1", "lane1", "lane2", "npath1", "npath2", "npath3", "epath", "river1", "riverbank", "ngate", "sgate", "egate", "wgate", "ebridge", "ruin1", "ruin2", "tree", "small_temple", "kitchen", "mill", "fireplace", "inn_hall", "inn_kitchen", "store", "smithy", "herb_shop", "bazar", "court", "school", "post_office", "warehouse", "military_camp", "dilapidated_manor", "bug_room"],
-      "npcs": ["innkeeper", "foreman", "gammer", "junkman", "girl", "herbalist", "alchemist", "garrison", "guard", "lieutenant", "miller", "smith", "waiter", "patrol", "yu", "teacher", "oldman", "woman", "child", "child1", "child2", "child3", "child4", "luoyi", "postman", "recruiter", "worker", "darkrobe", "liuyi", "meiyingfeng", "yutieshan"],
-      "quests": ["搬箱子", "送信", "參軍", "破舊大宅秘密"]
-    },
-    {
-      "id": "wutang",
-      "name": "五堂鎮",
-      "description": "天朝主要城鎮",
-      "mysteries": [
-        "飲血丟在哪裡？",
-        "巫山之中神秘雕像有何秘密？",
-        "郭布要收的徒弟在哪裡？",
-        "鎮天神廟內藏著誰？",
-        "別館內的欽差來五堂要做甚麼？",
-        "過河的船在哪裡？"
-      ],
-      "rooms": ["square", "square_e", "square_w", "square_s", "square_n", "lane1", "lane2", "street1", "street2", "street3", "ngate", "egate", "sgate", "wgate", "dock", "court", "inn_hall", "inn_2f", "inn_3f", "herb_shop", "smithy", "store", "residence", "temple", "wushan_foot", "wushan_path1", "wushan_path2", "wushan_path3", "wushan_cave"],
-      "npcs": ["ferryman", "haidafu", "guobu", "inspector", "guard", "patrol", "shen", "storyteller", "temple_master", "villager", "waiter", "yongtai"],
-      "quests": ["飲血之謎", "巫山雕像秘密", "郭布收徒", "鎮天神廟", "欽差來訪", "渡河之船"]
-    }
-  ],
-  "quests": [
-    {
-      "id": "main_quest",
-      "name": "主線任務",
-      "description": "圍繞解開江湖疑雲和侮天鬼不祥預言展開"
-    },
-    {
-      "id": "thirteen_spirits",
-      "name": "十三靈任務",
-      "description": "解開十三靈的任務可獲得重置天賦的機會，難度為天朝帝國諸多任務中最高",
-      "reward": "重置天賦機會",
-      "difficulty": "最高"
-    },
-    {
-      "id": "wutiangui",
-      "name": "侮天鬼任務",
-      "description": "十三靈任務為其一部份，目前仍在逐步展開中"
-    },
-    {
-      "id": "tianling",
-      "name": "天靈任務",
-      "description": "前往赤魈村許願池投入任意3樣火雷風雨四神武器，天靈出現並與玩家對戰",
-      "location": "赤魈村許願池",
-      "reward": "匕首(思歸符效果、無限使用無需裝備)、天靈之眼(隨機提升靈/智/速/慧1點)",
-      "boss_mechanics": "使用隱神篇武功，依據防禦力造成傷害，會降低攻勢等級，補血4次"
-    },
-    {
-      "id": "diling",
-      "name": "地靈任務",
-      "description": "需依序獲得聖木殘根→大環丹→金屋內丹→炎日箭→太陽槍，在地獄地氣塔頂insert開啟",
-      "location": "地獄地氣塔頂",
-      "reward": "雙手斧(傷害12-99、傷害+50)、地靈之心(隨機提升體/蝕/敏/力1點)",
-      "boss_mechanics": "房間內無法使用exert和perform，只能直接攻擊，補血4次"
-    }
-  ],
-  "story_mysteries": [
-    "大邪道人和殘蟻師太的關係",
-    "魚鐵山和劉乙忘玄的陰謀",
-    "武林盟主失蹤原因",
-    "白象寺隱藏秘密",
-    "封鬼慘案真凶",
-    "梅影風老婆的藥物治療",
-    "朝廷與侮天鬼傳說的關注",
-    "虎刀門二師父去向",
-    "阿寶在榕樹上的等待目標"
-  ],
-  "equipment": {
-    "note": "裝備資料存放在 Google Spreadsheet 中 (ID: 0AuX-wOBQ9N62dEFBTThBOHZpMWFzSkVBYktKcDdRbEE)，無法直接爬取詳細內容",
-    "source_url": "https://sites.google.com/site/es2mud/home/wan-jia-yuan-chuang/equipment"
   },
-  "mythology": "盤古開天闢地，分出凡間與混沌界。天神與侮天鬼分別掌控兩界。人類到來時，兩界充滿濁氣。天神欲助人類繁衍，侮天鬼視人類為食物。兩者衝突持續至韓宇——天朝第一位統治者出現。天神賜予韓宇聖袍和穿靈、旋光二刃。韓宇在十七天最終聖戰後逝世，天神將其精華化為十三靈：日神金烏、月神銀蟾、風神大鵬、雨神天龍、雷神澤獸、火神鳳凰，加上六個地靈（山鬼、林鬼、河鬼、原鬼等），及天地人三靈——渠雲（天）、玉馬（地）、渠民南（人）。前十二靈不死，但渠民南需每百年轉世為人，再沉睡兩百年。侮天鬼與天神打賭：若渠民南兩次轉世皆為善則入混沌界，若兩次轉世皆為惡則兩界屏障開啟。三百年前封印古樹破裂，釋放出超自然干擾，當前時代正處於這個宇宙性的十字路口。",
-  "geography": {
-    "world_map": "國家地圖（含多個種族領地）",
-    "tianchao_map": "天朝地圖",
-    "known_towns": ["五堂鎮", "雪亭鎮"],
-    "race_territories": ["人類", "刑天", "厭火", "夜叉", "巫首", "無腸", "焦僥", "釘靈", "阿修羅", "雨師妾", "黑齒"]
+  "equipment": {
+    "url": "https://sites.google.com/site/es2mud/home/wan-jia-yuan-chuang/equipment",
+    "summary": "裝備列表（嵌入 Google 試算表，含武器防具資料）",
+    "blog_data": {
+      "怒龍錦冑": {"type": "armor", "defense": 85, "bonus": "穩定+5"},
+      "交歡杖": {"type": "weapon", "subtype": "two-hand staff"},
+      "毒龍鞭": {"type": "weapon", "subtype": "lightning whip"},
+      "霹靂雷火彈": {"type": "weapon", "subtype": "explosive"}
+    }
+  },
+  "quests": {
+    "tiandiling": {
+      "url": "https://sites.google.com/site/es2mud/home/wan-jia-yuan-chuang/tiandiling",
+      "summary": "天靈地靈任務",
+      "celestial_spirit": {
+        "location": "赤魈村許願池",
+        "trigger": "投入任意三把四神武器（火雷風雨）",
+        "skill": "隱神篇（無法被五雷格擋）",
+        "reward_weapon": "思歸符短劍（無限使用）",
+        "reward_stat": "眼（隨機+1靈性/智力/容量/洞察，扣其他四項）"
+      },
+      "earth_spirit": {
+        "item_chain": "聖木殘根→大環丹→金屋內丹→炎日箭→太陽槍",
+        "location": "地獄塔頂插入",
+        "reward_weapon": "大斧",
+        "reward_stat": "心（隨機+1體質/根基/敏捷/力量，扣其他四項，扣項<10則失敗）"
+      }
+    },
+    "wutang_mysteries": [
+      "飲血丟在了哪裡？",
+      "巫山之中神秘雕像有何秘密？",
+      "郭布要收的徒弟在哪裡？",
+      "鎮天神廟內藏著誰？",
+      "別館內的欽差來五堂要做甚麼？",
+      "過河的船在哪裡？"
+    ],
+    "xueting_mysteries": [
+      "老榕樹上阿寶等的人是誰？",
+      "瞎眼老太婆究竟是何人物？",
+      "貨棧搬箱子算不算苦力？",
+      "驛站送信送丟了多少？",
+      "振武軍營招兵，你有沒有興趣？",
+      "破舊大宅裡面躲著甚麼？",
+      "黑衣老人的閨女跑去了哪裡？"
+    ],
+    "killing_grounds": {
+      "primary": ["鬼洞（50-70殺/趟＋金錢＋鬼魂）", "妖塔"],
+      "advanced": ["古墓場", "夜神殿"],
+      "random_npcs": ["旅人", "小孩", "流浪漢", "侍女"],
+      "daily_manual_kills": "5000-6000+"
+    }
+  },
+  "guides": {
+    "newbie_guide": {
+      "url": "https://sites.google.com/site/es2mud/home/you-xi-jie-zi/noobguide01",
+      "summary": "新手任務引導（頁面內容有限）"
+    },
+    "blog_help": {
+      "url": "https://es2tips.blogspot.com/2013/05/es2-help.html",
+      "learning_order": [
+        "help newbie + 官方Q&A",
+        "help cmds（約2小時）",
+        "help class（約2小時）",
+        "help race + help race.details（約1小時）",
+        "help history, help myth, help peoples, help theme（約1小時）",
+        "購買山海經白話版（約2-4小時）",
+        "遊戲內：看所有公告板、關注 Annihilator/Zorg 聊天、空閒時 help ALL"
+      ]
+    },
+    "blog_maoshan": {
+      "url": "https://es2tips.blogspot.com/2014/08/es2_47.html",
+      "class": "道士",
+      "excluded_races": ["夜叉", "刑天", "厭火", "黑齒"],
+      "master": "歐陽無極",
+      "skills": {
+        "maoshan_huanshu": {
+          "name": "茅山幻術",
+          "spells": {
+            "dog": "延遲2回合",
+            "monkey": "偷取物品",
+            "hydra": "吞噬非玩家目標",
+            "rain": "恢復隊伍數值"
+          },
+          "consumes": "先天符"
+        },
+        "maoshan_qishu": {
+          "name": "茅山奇術/遁甲書",
+          "requirements": "幻術>=90, 等級/靈性>=30",
+          "teacher": "歐陽無寂",
+          "abilities": {
+            "fate": "測量目標技能天賦/經驗",
+            "experience": "消耗自身法術修為提升目標技能經驗"
+          }
+        }
+      },
+      "talent_ratings": {
+        "200": "無可限量",
+        "190": "笑傲江湖",
+        "180": "名揚天下",
+        "170": "確實不錯",
+        "160": "一番成就",
+        "150": "普普通通",
+        "140": "沒有前途",
+        "<140": "和前輩一樣"
+      }
+    }
+  },
+  "original_repo": {
+    "areas": ["canyon", "choyin", "chuenyu", "city", "death", "force", "goathill", "graveyard", "green", "green.n", "ice", "jail", "latemoon", "oldpine", "sanyen", "snow", "temple", "village", "waterfog"],
+    "system_dirs": ["README", "class", "npc", "skill", "social_guild", "wiz"],
+    "skills": ["axe", "blade", "bloodystrike", "bolomiduo", "buddhism", "celestial", "celestrike", "chanting", "chaos-steps", "cloudstaff", "dagger", "deisword", "dodge", "essencemagic", "fall-steps", "fonxanforce", "fonxansword", "force", "fork", "gouyee", "hammer", "iceforce", "instruments", "iron-cloth", "jin-gang", "jingang-staff", "juechen-force", "linbo-steps", "literate", "liuh-ken", "lotusforce", "magic-array", "magic", "meihua-shou", "move", "music", "mysterrier", "mystforce", "mystsword", "necromancy", "nine-moon", "notraces", "parry", "perception", "pyrobat-steps", "qidaoforce", "scratching", "serpentforce", "shortsong-blade", "six-chaos-sword", "snowshade-force", "snowshade-sword", "snowwhip", "spells", "spicyclaw", "spider-array", "spring-blade", "staff", "stealing", "stormdance", "sword", "tao-mystery", "taoism", "tenderzhi", "throwing", "ts-fist", "unarmed", "whip", "wu-shun", "yirong"],
+    "classes_original": ["assassin", "beggar", "bonze", "dancer", "fighter", "juechen", "lama", "ninja", "nomad", "ronin", "scholar", "swordsman", "taoist"]
   }
 }

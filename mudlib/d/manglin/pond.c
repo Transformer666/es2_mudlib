@@ -12,6 +12,9 @@ void create()
 LONG
 	);
 	set("outdoors", "forest");
+	set("objects", ([
+		__DIR__"npc/qiyong" : 1,
+	]));
 	set("exits", ([
 		"south" : __DIR__"clearing",
 	]));

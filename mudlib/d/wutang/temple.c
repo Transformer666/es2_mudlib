@@ -23,6 +23,7 @@ LONG
 	"west"  : __DIR__"wushan_path3",
 	"east"  : "/d/tianshi/path",
 	"north" : "/d/xuantian/path",
+	"south" : __DIR__"temple_inner",
     ]));
 
     setup();

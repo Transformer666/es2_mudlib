@@ -11,6 +11,9 @@ void create()
 這裡是茅山修煉幻術的所在，據說長年在此修行可以洞悉虛實之道。
 LONG
     );
+    set("objects", ([
+        __DIR__"npc/ouyang_wuji2" : 1,
+    ]));
     set("exits", ([
         "east" : __DIR__"gate",
     ]));

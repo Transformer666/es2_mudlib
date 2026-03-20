@@ -19,7 +19,8 @@ LONG
 	__DIR__"npc/ferryman" : 1,
     ]));
     set("exits", ([
-	"east" : __DIR__"street3",
+	"east"  : __DIR__"street3",
+	"south" : __DIR__"river_bend",
     ]));
 
     setup();
