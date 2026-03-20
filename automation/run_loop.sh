@@ -1,6 +1,7 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # ES2 天朝帝國 — Continuous Agent Pipeline
 # 使用方式：bash automation/run_loop.sh [interval_minutes] [max_rounds]
+# 注意：必須用 bash 執行，不支援 sh
 # 例如：bash automation/run_loop.sh 10 5   （每 10 分鐘跑一輪，最多 5 輪）
 #        bash automation/run_loop.sh 30      （每 30 分鐘跑一輪，無限）
 #        bash automation/run_loop.sh          （預設每 15 分鐘，無限）
@@ -30,10 +31,10 @@ echo ""
 
 cleanup() {
     echo ""
-    echo -e "${YELLOW}[$(date +"%H:%M:%S")]${NC} Pipeline stopped after $ROUND rounds."
+    echo "[$(date +"%H:%M:%S")] Pipeline stopped after $ROUND rounds."
     exit 0
 }
-trap cleanup SIGINT SIGTERM
+trap 'cleanup' INT TERM
 
 while true; do
     ROUND=$((ROUND + 1))
