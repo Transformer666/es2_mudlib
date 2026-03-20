@@ -3,6 +3,7 @@
 #include <npc.h>
 
 inherit F_VILLAGER;
+inherit F_VENDOR;
 
 void create()
 {
@@ -22,6 +23,10 @@ void create()
 		"老兵掌櫃拍著桌子大聲道：來來來，喝碗烈酒暖暖身子！\n",
 		"老兵掌櫃摸著臉上的刀疤，似乎在回憶往事。\n",
 	}));
+	set("merchandise", ([
+		STOCK_ITEM("ration") : 50,
+		STOCK_ITEM("torch") : 50,
+	]));
 
 	setup();
 	carry_money("coin", 150);
