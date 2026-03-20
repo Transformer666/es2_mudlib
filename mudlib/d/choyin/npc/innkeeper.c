@@ -13,6 +13,7 @@ void create()
 	set_level(8);
 
 	set("age", 40);
+	set("gender", "male");
 	set("long",
 		"一個笑容可掬的胖掌櫃﹐圍著一條油膩膩的圍裙﹐手裡拎著一\n"
 		"條抹布。他待人十分熱情﹐見人便笑臉相迎。你可以用 list 看看\n"

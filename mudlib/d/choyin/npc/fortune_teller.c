@@ -12,6 +12,7 @@ void create()
 	set_level(8);
 
 	set("age", 55);
+	set("gender", "male");
 	set("long",
 		"一個身穿青布長衫的老先生﹐頭戴方巾﹐手搖鵝毛扇﹐面前擺\n"
 		"著一張小桌﹐桌上放著龜殼和銅錢。他鬚髮皆白﹐一雙眼睛卻精\n"

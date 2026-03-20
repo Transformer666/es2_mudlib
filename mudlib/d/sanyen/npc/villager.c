@@ -12,6 +12,7 @@ void create()
 	set_level(5);
 
 	set("age", 40);
+	set("gender", "male");
 	set("long", "一個面帶愁容的村民﹐看起來飽經風霜。\n");
 	set("chat_chance", 1);
 	set("chat_msg", ({

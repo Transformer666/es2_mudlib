@@ -12,6 +12,7 @@ void create()
 	set_level(10);
 
 	set("age", 45);
+	set("gender", "male");
 	set("long",
 		"一個精明幹練的中年男子，穿著一身靛藍色的綢袍，腰間繫著\n"
 		"一串銅鑰匙。他目光如炬，一邊撥弄著算盤，一邊招呼著來往的\n"

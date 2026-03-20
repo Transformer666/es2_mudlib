@@ -13,6 +13,7 @@ void create()
 	set_level(5);
 
 	set("age", 38);
+	set("gender", "male");
 	set("long",
 		"一個精明幹練的商人，身穿靛藍色的錦袍，腰間繫著一個鼓鼓囊\n"
 		"囊的錢袋。他笑容滿面地招呼著來往的客人，不時吆喝著推銷自己\n"

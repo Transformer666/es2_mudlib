@@ -12,6 +12,7 @@ void create()
 	set_level(10);
 
 	set("age", 70);
+	set("gender", "male");
 	set("long",
 		"一個精神矍鑠的老人﹐鬚髮皆白﹐穿著一件整潔的青布長衫。\n"
 		"他拄著一根龍頭拐杖﹐在村裡慢悠悠地踱步﹐遇到人便和藹地點\n"

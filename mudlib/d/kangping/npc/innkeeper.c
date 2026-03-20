@@ -13,6 +13,7 @@ void create()
 	set_level(8);
 
 	set("age", 50);
+	set("gender", "male");
 	set("long",
 		"一個憨厚老實的中年漢子﹐臉上總掛著樸實的笑容。他經營這\n"
 		"家小客店已經二十多年了﹐雖然生意冷清﹐但待客十分殷勤。你可\n"

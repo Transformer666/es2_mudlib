@@ -20,6 +20,7 @@ void create()
 	set_skill("dodge", 45);
 
 	set("age", 50);
+	set("gender", "male");
 	set("long",
 		"一位飽經風霜的老兵，臉上有一道長長的刀疤，身穿磨損的皮甲，\n"
 		"正坐在旗桿下擦拭著他的長矛。他的眼神沉穩而銳利，一看便知是\n"

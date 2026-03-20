@@ -12,6 +12,7 @@ void create()
 	set_level(5);
 
 	set("age", 70);
+	set("gender", "female");
 	set("long",
 		"一個衣衫襤褸的老婆婆﹐滿頭白髮亂蓬蓬的﹐臉上佈滿皺紋﹐\n"
 		"手裡拄著一根破竹杖﹐身旁放著一個缺了口的碗。雖然看起來落魄\n"

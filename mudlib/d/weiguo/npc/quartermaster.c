@@ -18,6 +18,7 @@ void create()
 	set_skill("unarmed", 30);
 
 	set("age", 42);
+	set("gender", "male");
 	set("long",
 		"一位身材魁梧的軍需官，穿著整齊的軍服，正在清點營房裡的物\n"
 		"資。他做事一絲不苟，每一件軍需品都要親自過目。你可以用 list\n"

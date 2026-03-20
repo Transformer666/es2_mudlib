@@ -19,6 +19,7 @@ void create()
 	set_skill("parry", 40);
 
 	set("age", 25);
+	set("gender", "male");
 	set("long",
 		"一名喬陰縣城的守衛﹐身穿皂色短衣﹐腰佩腰刀﹐頭戴皂帽﹐\n"
 		"看起來頗為精神。他雙目炯炯有神﹐不時掃視著來往的行人。\n");

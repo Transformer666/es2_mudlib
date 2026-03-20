@@ -12,6 +12,7 @@ void create()
 	set_level(12);
 
 	set("age", 50);
+	set("gender", "male");
 	set("long",
 		"一位穿著官服的中年男子，面容嚴肅卻不失和氣。他是這間官方\n"
 		"驛館的驛丞，負責接待來往的官員和使節。他舉止得體，說話不疾\n"

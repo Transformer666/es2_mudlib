@@ -13,6 +13,7 @@ void create()
 	set_level(10);
 
 	set("age", 45);
+	set("gender", "male");
 	set("long",
 		"一個文質彬彬的中年人﹐身穿灰色長袍﹐鼻樑上架著一副銅框\n"
 		"眼鏡﹐手中總是捧著一卷書。他說話慢條斯理﹐一看便知是個飽讀\n"

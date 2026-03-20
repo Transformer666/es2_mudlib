@@ -20,6 +20,7 @@ void create()
 	set_skill("internal", 100);
 
 	set("age", 65);
+	set("gender", "male");
 	set("long",
 		"一個身穿舊道袍的老道士﹐鶴髮童顏﹐面帶微笑。他手持一柄\n"
 		"拂塵﹐腳踩布鞋﹐看起來懶洋洋的﹐似乎隨時都要打瞌睡。但他\n"

@@ -13,6 +13,7 @@ void create()
 	set_level(8);
 
 	set("age", 55);
+	set("gender", "male");
 	set("long",
 		"一個瘦小的老頭﹐頭髮已經花白了。他經營這間小客店多年﹐\n"
 		"生意一直不好﹐但也沒有別的營生﹐只好繼續撐著。你可以用 list\n"

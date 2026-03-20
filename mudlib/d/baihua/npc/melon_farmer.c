@@ -13,6 +13,7 @@ void create()
 	set_level(5);
 
 	set("age", 50);
+	set("gender", "male");
 	set("long",
 		"一個皮膚黝黑的老農﹐戴著一頂破草帽﹐蹲在瓜田裡忙活。他\n"
 		"種的西瓜又大又甜﹐在附近幾個村子都有名氣。你可以用 list 看\n"

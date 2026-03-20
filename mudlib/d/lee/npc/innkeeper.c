@@ -13,6 +13,7 @@ void create()
 	set_level(6);
 
 	set("age", 45);
+	set("gender", "male");
 	set("long",
 		"一個老實巴交的漢子﹐圓臉﹐笑起來眼睛瞇成一條線。他是\n"
 		"李家村本地人﹐開著這間小客棧已有十來年了。你可以用 list 看\n"

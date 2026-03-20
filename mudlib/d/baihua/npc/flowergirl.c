@@ -13,6 +13,7 @@ void create()
 	set_level(3);
 
 	set("age", 16);
+	set("gender", "female");
 	set("long",
 		"一個清秀可人的少女﹐穿著一件碎花布衣裳﹐烏黑的長髮上別\n"
 		"著一朵小白花。她挎著一隻竹籃﹐裡面裝滿了各色鮮花﹐笑盈盈\n"

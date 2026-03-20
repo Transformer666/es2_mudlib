@@ -19,6 +19,7 @@ void create()
 	set_skill("dodge", 50);
 
 	set("age", 30);
+	set("gender", "male");
 	set("long",
 		"一名身著皂衣的京畿衙役，腰佩鋼刀，目光銳利地掃視著廣場上\n"
 		"來往的行人。他體格健壯，步伐沉穩，一看便知受過嚴格的訓練。\n");

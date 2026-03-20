@@ -12,6 +12,7 @@ void create()
 	set_level(3);
 
 	set("age", 10);
+	set("gender", "male");
 	set("long",
 		"一個虎頭虎腦的小男孩﹐穿著一件打了補丁的粗布短衫﹐光著\n"
 		"兩隻小腳丫。他手裡拿著一根樹枝當刀使﹐正一個人比劃著﹐嘴\n"

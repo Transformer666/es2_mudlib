@@ -19,6 +19,7 @@ void create()
 	set_skill("internal", 50);
 
 	set("age", 45);
+	set("gender", "male");
 	set("long",
 		"一個身穿灰色僧袍的和尚﹐面容清瘦而平和。他盤坐在蒲團上\n"
 		"閉目誦經﹐手中捻著一串念珠﹐偶爾敲一下木魚﹐發出清脆的聲響。\n");

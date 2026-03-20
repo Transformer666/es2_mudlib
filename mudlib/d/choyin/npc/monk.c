@@ -12,6 +12,7 @@ void create()
 	set_level(6);
 
 	set("age", 50);
+	set("gender", "male");
 	set("long",
 		"一個身穿灰布道袍的廟祝﹐面容清瘦﹐神態安詳。他手持一把\n"
 		"竹帚﹐不急不徐地打掃著廟前的落葉﹐偶爾停下來擦擦額頭的汗。\n");

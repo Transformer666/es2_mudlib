@@ -17,6 +17,7 @@ void create()
 	set_skill("dodge", 40);
 
 	set("age", 48);
+	set("gender", "male");
 	set("long",
 		"一位身穿青色長袍的中年文士，面容清瘦，目光精明。他是衙門\n"
 		"裡的師爺，專門替大人處理文書案牘。他手中拿著一卷公文，似乎\n"

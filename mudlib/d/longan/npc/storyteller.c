@@ -14,6 +14,7 @@ void create()
 	set_skill("unarmed", 20);
 
 	set("age", 60);
+	set("gender", "male");
 	set("long",
 		"一位鬚髮斑白的老者，身穿褪色的灰布長衫，手持一把摺扇。他\n"
 		"坐在廣場角落的石凳上，繪聲繪色地講述著江湖上的奇聞軼事，周\n"

@@ -12,6 +12,7 @@ void create()
 	set_level(5);
 
 	set("age", 35);
+	set("gender", "male");
 	set("long", "一個樸實的農家漢子﹐皮膚被太陽曬得黝黑﹐手裡扛著一把鋤頭。\n");
 	set("chat_chance", 1);
 	set("chat_msg", ({

@@ -12,6 +12,7 @@ void create()
 	set_level(15);
 
 	set("age", 55);
+	set("gender", "male");
 	set("long",
 		"一個身材魁梧的老兵，左臉上有一道長長的刀疤，那是他當年\n"
 		"在邊境作戰時留下的。退伍之後他在這裡開了間客棧，專門招待過\n"
