@@ -1,0 +1,469 @@
+
+==============================
+Pipeline start: 2026-03-19 10:51:49
+==============================
+[0;34m[10:51:49][0m Running task: Analyze missing content
+--- Task: Analyze missing content ---
+[0;31m[FAIL][0m Task failed: Analyze missing content
+
+==============================
+Pipeline start: 2026-03-19 10:57:07
+==============================
+[0;34m[10:57:07][0m Running task: Analyze missing content
+--- Task: Analyze missing content ---
+I need your permission to write files and use WebFetch. Could you please approve the pending permission requests? I need to:
+
+1. **Write** files to the `docs/` directory (for the fetch script and output files)
+2. **WebFetch** or **curl** access to fetch the wiki pages from `sites.google.com/site/es2mud/`
+
+You should see permission prompts — please approve them so I can proceed.
+[0;32m[OK][0m Task done: Analyze missing content
+[0;34m[11:02:07][0m Running task: Implement race daemons
+--- Task: Implement race daemons ---
+[0;31m[FAIL][0m Task failed: Implement race daemons
+
+==============================
+Pipeline start: 2026-03-19 11:08:14
+==============================
+[0;34m[11:08:14][0m Running task: Analyze missing content
+--- Task: Analyze missing content ---
+[0;31m[FAIL][0m Task failed: Analyze missing content
+
+==============================
+Pipeline start: 2026-03-19 11:08:29
+==============================
+[0;34m[11:08:29][0m Running task: Analyze missing content
+--- Task: Analyze missing content ---
+It seems file write permissions also need to be granted. Could you please approve the write permission so I can create the fetch script? Alternatively, you can grant WebFetch permission so I can directly access the wiki pages.
+
+In the meantime, I already have the complete codebase scan results. Here's what I found so far:
+
+**Existing codebase inventory:**
+- **Areas (mudlib/d/):** 30 areas with ~300 room/NPC/object files
+- **Daemons:** 11 races, 9 classes, 18 sects, 25 skills, 2 conditions
+- **Objects (mudlib/obj/):** ~110 files (weapons, armor, food, drugs, NPCs, etc.)
+- **Help files:** Only 2 (`human`, `topics`)
+
+Please approve either WebFetch or file write permissions so I can proceed with fetching the wiki data and generating the output files.
+[0;32m[OK][0m Task done: Analyze missing content
+[0;34m[11:12:01][0m Running task: Implement race daemons
+--- Task: Implement race daemons ---
+[0;31m[FAIL][0m Task failed: Implement race daemons
+
+==============================
+Pipeline start: 2026-03-19 11:14:35
+==============================
+[0;34m[11:14:35][0m Running task: Analyze missing content
+--- Task: Analyze missing content ---
+[0;31m[FAIL][0m Task failed: Analyze missing content
+
+==============================
+Pipeline start: 2026-03-19 11:21:16
+==============================
+[0;34m[11:21:16][0m Running task: Analyze missing content
+--- Task: Analyze missing content ---
+All three files have been generated. Here's the summary:
+
+---
+
+## ES2 MUD 實作進度總結
+
+| 類別 | 完成率 | 狀態 |
+|------|--------|------|
+| 種族 (11/11) | **100%** | 全部完成 |
+| 職業 (7/7) | **100%** | 全部完成 |
+| 門派 (18/20) | **90%** | 缺天月庵、茅山三觀分支待確認 |
+| 城鎮 (2/3) | **66.7%** | 缺赤魈村 |
+| 城鎮任務 (0/14) | **0%** | 雪亭鎮 7 個 + 五堂鎮 6 個 + 赤魈村 1 個 |
+| 天地靈任務 (0/2) | **0%** | 天靈任務 + 地靈任務 |
+| 主線劇情 (0/6) | **0%** | 6 條主線劇情謎團 |
+| 玩家說明 (0/10) | **0%** | help/player/ 目錄為空 |
+
+**整體完成率：約 52%** — 系統架構（種族/職業/門派/戰鬥/指令）已完備，**主要缺口在任務內容和玩家文件**。
+
+### 產出檔案
+- `docs/wiki_content.json` — Wiki 結構化資料（種族/職業/門派/城鎮/神話/任務）
+- `docs/missing_content.json` — 差異比對與缺少項目清單
+- `docs/implementation_log.md` — 完整進度報告與建議實作順序
+[0;32m[OK][0m Task done: Analyze missing content
+[0;34m[11:29:18][0m Running task: Implement race daemons
+--- Task: Implement race daemons ---
+All tasks complete. Here's the summary:
+
+## 結果
+
+**種族 Daemon (.c 檔案)** — 11/11 已存在，全部通過靜態驗證：
+| 種族 | 檔案 | 業力 | 驗證 |
+|------|------|------|------|
+| 人類 | `human.c` | 5 | PASS |
+| 刑天 | `xingtian.c` | 25 | PASS |
+| 厭火 | `yenhold.c` | 5 | PASS |
+| 夜叉 | `yaksha.c` | 35 | PASS |
+| 巫首 | `malik.c` | 30 | PASS |
+| 無腸 | `woochan.c` | 5 | PASS |
+| 焦僥 | `jiaojao.c` | 10 | PASS |
+| 釘靈 | `dingling.c` | 10 | PASS |
+| 阿修羅 | `asura.c` | 30 | PASS |
+| 雨師妾 | `rainnar.c` | 25 | PASS |
+| 黑齒 | `blackteeth.c` | 3 | PASS |
+
+**Help 文本** — 11 個檔案新建於 `mudlib/doc/help/player/races/`，每個包含背景故事、種族特性、業力消耗、可選職業、被動/主動能力。
+
+**`docs/implementation_log.md`** — 已更新玩家說明文件進度 (0/10 → 1/10)。
+[0;32m[OK][0m Task done: Implement race daemons
+[0;34m[11:32:32][0m Running task: Implement rooms
+--- Task: Implement rooms ---
+All tasks complete. Here's a summary of what was done:
+
+## 新建房間 (7 files)
+
+**赤魈村 (`d/chixiao/`)** — 全新區域，4 個房間：
+- `entrance.c` — 村口，連接 `road/wild_path2`
+- `village_square.c` — 村中廣場，連接村口、許願池、客棧
+- `wishing_pool.c` — 許願池（天靈任務核心場所）
+- `inn.c` — 客棧（`inherit INN`，設為起始房間）
+
+**雪亭鎮 (`d/snow/`)** — 新增 2 個房間：
+- `warehouse.c` — 倉庫，東接自 `bazar.c`
+- `military_camp.c` — 鎮部軍營，北接自 `court.c`
+
+**道路 (`d/road/`)** — 新增 1 個連接路段：
+- `wild_path2.c` — 荒野小徑，連接 `wild_path1` ↔ `chixiao/entrance`
+
+## 新建 NPC (2 files)
+- `snow/npc/worker.c` — 倉庫工人（F_VILLAGER, Lv5）
+- `snow/npc/recruiter.c` — 招兵官（F_SOLDIER, Lv25）
+
+## 修改的既有檔案 (3 files)
+- `snow/bazar.c` — 新增東出口 → `warehouse`
+- `snow/court.c` — 新增北出口 → `military_camp`
+- `road/wild_path1.c` — 新增東出口 → `wild_path2`
+
+## 已確認不需新建
+- **老榕樹** → 已存在為 `tree.c` + `square.c`
+- **破舊莊園** → 已存在為 `ruin1.c` + `ruin2.c`
+- **鎮天神廟** → 已存在為 `wutang/temple.c`（真天神殿）
+
+## 驗證結果
+- 所有 7 個新房間通過靜態驗證（inherit, short, exits, setup）
+- 所有 18 個出口雙向連結驗證通過
+[0;32m[OK][0m Task done: Implement rooms
+[0;34m[11:38:05][0m Running task: Implement NPCs
+--- Task: Implement NPCs ---
+All tasks complete. Here's a summary of what was done:
+
+## Completion Summary
+
+### Analysis of missing_npcs
+4 out of 8 listed NPCs **already existed**: 阿寶 (`child.c`), 盲眼老婦 (`gammer.c`), 倉庫工人 (`worker.c`), 軍營招兵官 (`recruiter.c`). The remaining 4 were created.
+
+### New NPCs Created (4)
+| NPC | File | Type | Level | Room |
+|---|---|---|---|---|
+| 驛站官員 | `snow/npc/postman.c` | F_VILLAGER | 8 | `post_office.c` |
+| 黑袍老人 | `snow/npc/darkrobe.c` | F_VILLAGER | 35 | `dilapidated_manor.c` |
+| 天靈 (Boss) | `chixiao/npc/tianling.c` | F_FIGHTER | 70 | `wishing_pool.c` |
+| 地靈 (Boss) | `chixiao/npc/diling.c` | F_FIGHTER | 70 | `village_square.c` |
+
+### New Room Created (1)
+- `snow/dilapidated_manor.c` (破舊莊園) - connected south from `square_sw.c`
+
+### Apprentice System Added (掌門拜師)
+- **recruiter.c** - added full `accept_apprentice()` / `init_apprentice()` / `acquire_skill()` system following the alchemist.c pattern. Teaches `blade` and `parry` skills, sets class to `soldier` with title "鎮部新兵".
+
+### Room Updates (4)
+- `post_office.c` - loads postman NPC
+- `square_sw.c` - added south exit to dilapidated_manor, updated description
+- `wishing_pool.c` - loads tianling NPC
+- `village_square.c` - loads diling NPC
+
+### Static Validation
+All 5 NPC files pass: `#include <npc.h>`, valid inheritance, `set_name()`, `set_race()`, `set_level()`, `setup()`. All room-NPC linkages confirmed correct.
+[0;32m[OK][0m Task done: Implement NPCs
+[0;34m[11:45:05][0m Running task: Implement equipment
+--- Task: Implement equipment ---
+All values are within the specified ranges from CLAUDE.md. Here's a summary:
+
+## All 11 equipment files created
+
+### 四神武器 (Quest Prerequisites) → `mudlib/d/chixiao/npc/obj/`
+| File | Name | Type | Stats (min,max,wc,reach) |
+|------|------|------|--------------------------|
+| `fire_weapon.c` | 火神器 | F_SWORD | 5, 30, 6, 3 |
+| `thunder_weapon.c` | 雷神器 | F_STAFF | 6, 35, 4, 5 |
+| `wind_weapon.c` | 風神器 | F_BLADE | 5, 40, 6, 3 |
+| `rain_weapon.c` | 雨神器 | F_WHIP | 4, 25, 3, 6 |
+
+### 靈任務獎勵 (Quest Rewards) → `mudlib/d/chixiao/npc/obj/`
+| File | Name | Type | Notes |
+|------|------|------|-------|
+| `tianling_dagger.c` | 天靈匕首 | F_DAGGER | 6, 20, 3, 2 |
+| `tianling_eye.c` | 天靈眼 | F_NECK_EQ | armor: 5 |
+| `diling_axe.c` | 地靈雙手斧 | F_AXE | 10, 60, 10, 3 |
+| `diling_heart.c` | 地靈心 | F_NECK_EQ | armor: 6 |
+
+### 傳說武器 (Legendary) → `mudlib/obj/weapon/`
+| File | Name | Type | Stats (min,max,wc,reach) |
+|------|------|------|--------------------------|
+| `chuanling.c` | 穿靈 | F_PIKE | 12, 80, 8, 7 |
+| `xuanyao.c` | 旋耀 | F_BLADE | 10, 90, 11, 4 |
+| `yinxue.c` | 飲血 | F_SWORD | 8, 50, 9, 4 |
+
+### Static validation passed:
+- All files have correct `#include` (`weapon.h` or `armor.h`)
+- All files have proper `inherit F_*`
+- All files call `setup_<type>()` with correct parameters
+- All files call `setup()` at end of `create()`
+- All files use `!clonep()` guard for description properties
+- All stats within CLAUDE.md specified ranges
+[0;32m[OK][0m Task done: Implement equipment
+[0;34m[11:47:21][0m All tasks completed.
+
+==============================
+Pipeline start: 2026-03-19 16:23:24
+==============================
+[0;34m[16:23:24][0m Running task: Analyze missing content
+--- Task: Analyze missing content ---
+All three files have been updated. Here's the summary:
+
+---
+
+## 分析完成 — 總結摘要
+
+| 類別 | 需求 | 已實作 | 缺少 | 完成率 |
+|------|------|--------|------|--------|
+| 種族 | 11 | 11 | 0 | **100%** |
+| 職業 | 7 | 7 | 0 | **100%** |
+| 門派 | 20 | 18 | 2 | 90% |
+| 城鎮 | 3 | 3 | 0 | **100%** |
+| 城鎮任務 | 13 | 5 | 8 | 38.5% |
+| 靈魂任務 | 2 | 1 | 1 | 50% |
+| 主線劇情 | 9 | 0 | 9 | 0% |
+| 說明文件 | 10 | 1 | 9 | 10% |
+| 傳說裝備 | 7 | 6 | 1 | 85.7% |
+| **總計** | **82** | **52** | **30** | **63.4%** |
+
+### 主要發現
+
+**已完成的亮點：**
+- 種族、職業、城鎮區域全部到位
+- 赤魈村已建立，含天靈/地靈 Boss NPC 和獎勵物品
+- 雪亭鎮新增了倉庫、軍營、破舊大宅等區域
+- 穿靈、旋芒、四神武器等傳說裝備已實作
+
+**最大缺口：**
+1. **城鎮任務邏輯**（8個待完成）— 很多房間和 NPC 已就緒，只缺任務觸發/完成邏輯
+2. **主線劇情**（9個謎團）— 完全未開始
+3. **說明文件**（9個待寫）— 只有種族 help 完成
+
+### 輸出檔案
+- `docs/wiki_content.json` — Wiki 資料（含更詳細的門派進階資訊和完整 9 個主線謎團）
+- `docs/missing_content.json` — 差異比對清單
+- `docs/implementation_log.md` — 完整進度報告
+[0;32m[OK][0m Task done: Analyze missing content
+[0;34m[16:31:02][0m Running task: Implement race daemons
+--- Task: Implement race daemons ---
+All 11 race daemons and all 11 help texts already exist. The `missing_content.json` confirms this:
+
+```
+"races": { "required": 11, "implemented": 11, "missing": 0 }
+```
+
+Existing daemon files in `mudlib/daemon/race/`:
+- `human.c`, `xingtian.c` (刑天/headless), `yenhold.c`, `yaksha.c` (夜叉), `malik.c`, `woochan.c`, `jiaojao.c`, `dingling.c`, `asura.c` (阿修羅), `rainnar.c`, `blackteeth.c`
+
+All 11 help texts exist in `mudlib/doc/help/player/races/`.
+
+There is nothing missing to implement for Task 02 — all races are already complete. Would you like me to verify the content of the existing files against the wiki data, or move on to a different task?
+[0;32m[OK][0m Task done: Implement race daemons
+[0;34m[16:31:27][0m Running task: Implement rooms
+--- Task: Implement rooms ---
+## Task 03 完成
+
+### 結果摘要
+
+**Missing rooms**: `missing_content.json` 中唯一的 missing room (`wutang/guest_house`) 已由 `residence.c`（御史別院）實現，無需新建。
+
+**修復了 14 個檔案的出口問題**：
+
+| 類型 | 修復數 | 說明 |
+|------|--------|------|
+| 新增缺少的反向出口 | 4 | inner_hall↔armory, lingyun↔altar, street1↔store, court↔ngate |
+| 修正路網拓撲 | 2 | road3/road4 經由 crossroad 正確連結 |
+| 修正方向不對稱 | 7 | mountain paths, sect gates 方向配對 |
+| 路線調整 | 1 | ngate→court（形成正確鏈路） |
+
+**驗證結果**: 掃描 267 個房間、529 個出口 — 0 斷鏈、0 未修復單向出口。
+
+**確認為設計意圖的單向出口**: 5 個（climb/enter/ferry 機制）。
+[0;32m[OK][0m Task done: Implement rooms
+[0;34m[16:43:13][0m Running task: Implement NPCs
+--- Task: Implement NPCs ---
+Also from the earlier exploration — no longer needed. All work for Task 04 is complete.
+[0;32m[OK][0m Task done: Implement NPCs
+[0;34m[16:56:45][0m Running task: Implement equipment
+--- Task: Implement equipment ---
+`yinxue.c` (飲血) already exists and looks complete. Let me verify it passes static validation:
+
+- `#include <weapon.h>` — present
+- `inherit F_SWORD` — present
+- `setup_sword(8, 50, 9, 4)` — min=8 (range 1-9), max=50 (range 10-60), wc=9 (range 2-11), reach=4 (range 1-5) — all within range
+- `!clonep()` block — present
+- `setup()` — present
+
+**All missing equipment is already implemented.** The `missing_content.json` lists only one missing equipment item (飲血/yinxue), and `mudlib/obj/weapon/yinxue.c` already exists with correct structure and valid stat ranges. The file was likely created after the JSON was generated (it appears in `implemented_since_last_scan`).
+
+Completion status:
+- [x] All missing equipment created (1/1 — `yinxue.c` exists)
+- [x] Static validation passed (include, inherit, setup function, setup(), clonep guard, stats in range)
+
+No further work needed for this task.
+[0;32m[OK][0m Task done: Implement equipment
+[0;34m[16:57:07][0m All tasks completed.
+[0;34m[01:55:59][0m Pulling latest changes from origin...
+From github.com:Transformer666/es2_mudlib
+ * branch            main       -> FETCH_HEAD
+Already up to date.
+[0;32m[OK][0m Repository updated.
+
+==============================
+Pipeline start: 2026-03-20 01:55:59
+==============================
+[0;34m[01:56:01][0m Running task: Analyze missing content
+--- Task: Analyze missing content ---
+All three files generated. Here's the summary:
+
+---
+
+## ES2 MUD 實作進度總結
+
+### 整體完成度：**65%** (62/95 項目)
+
+### 已完成 (100%)
+| 類別 | 數量 |
+|------|------|
+| 種族 (daemon + help) | 11/11 |
+| 職業 (daemon only) | 7/7 |
+| 門派 (daemon + area) | 18/18 |
+| 區域 | 35 個，~280 間房，~200 NPC |
+| 技能 | 24 種 |
+| 程式碼總計 | 693 個檔案 |
+
+### 缺少項目 (33+ 項)
+| 缺少項目 | 數量 | 優先級 |
+|----------|------|--------|
+| 職業說明檔 | 7 | 高 |
+| 門派說明檔 | 18 | 高 |
+| 進階職業系統 | 26 | 中 |
+| 任務系統 (主線+支線+十三靈) | 4+ 系統 | 高 |
+
+### 產出檔案
+- `docs/wiki_content.json` - Wiki 資料 (11 種族、7 職業、18 門派、26 進階職業、神話背景)
+- `docs/missing_content.json` - 差異比對清單
+- `docs/implementation_log.md` - 完整進度報告
+[0;32m[OK][0m Task done: Analyze missing content
+[0;34m[02:06:40][0m Running task: Implement race daemons
+--- Task: Implement race daemons ---
+
+
+All race content is already fully implemented. Here's the verification summary:
+
+## Races — Status: Complete (11/11)
+
+### Daemon Files (`mudlib/daemon/race/*.c`) — All Pass
+
+| File | `#include <race.h>` | `inherit HUMANOID` | `register_race_daemon` | `setup()` | `initialize()` |
+|---|---|---|---|---|---|
+| human.c | ✓ | ✓ | ✓ ("human") | ✓ | ✓ |
+| xingtian.c | ✓ | ✓ | ✓ ("xingtian") | ✓ | ✓ |
+| yenhold.c | ✓ | ✓ | ✓ ("yenhold") | ✓ | ✓ |
+| yaksha.c | ✓ | ✓ | ✓ ("yaksha") | ✓ | ✓ |
+| malik.c | ✓ | ✓ | ✓ ("malik") | ✓ | ✓ |
+| woochan.c | ✓ | ✓ | ✓ ("woochan") | ✓ | ✓ |
+| jiaojao.c | ✓ | ✓ | ✓ ("jiaojao") | ✓ | ✓ |
+| dingling.c | ✓ | ✓ | ✓ ("dingling") | ✓ | ✓ |
+| asura.c | ✓ | ✓ | ✓ ("asura") | ✓ | ✓ |
+| rainnar.c | ✓ | ✓ | ✓ ("rainnar") | ✓ | ✓ |
+| blackteeth.c | ✓ | ✓ | ✓ ("blackteeth") | ✓ | ✓ |
+
+### Help Files (`mudlib/doc/help/player/races/`) — All Present
+
+All 11 help files exist with consistent format containing: 種族特性, 業力消耗, 可選職業, 種族被動能力, 種族主動能力 sections.
+
+### Notes
+- The task description uses "headless" but the actual race ID in code is `xingtian` (刑天)
+- Similarly "ashura" → `asura`, "yaksa" → `yaksha`
+- `missing_content.json` already confirms `races: { required: 11, implemented: 11, missing: 0 }`
+
+No work is needed — all completion conditions are already met. The `docs/implementation_log.md` should already reflect this. Would you like me to verify or update the implementation log?
+[0;32m[OK][0m Task done: Implement race daemons
+[0;34m[02:08:55][0m Running task: Implement rooms
+--- Task: Implement rooms ---
+Error: Reached max turns (40)[0;32m[OK][0m Task done: Implement rooms
+[0;34m[02:17:20][0m Running task: Implement NPCs
+--- Task: Implement NPCs ---
+All tasks complete. Here's a summary:
+
+## NPC Implementation Complete
+
+### New NPCs Created (6 files)
+
+| Area | NPC | File | Type | Room |
+|------|-----|------|------|------|
+| 京畿 | 衙役 (guard) | `d/jingji/npc/guard.c` | F_SOLDIER, Lv16 | square |
+| 京畿 | 師爺 (official) | `d/jingji/npc/official.c` | F_SCHOLAR, Lv18 | yamen |
+| 龍安 | 雜貨商人 (merchant) | `d/longan/npc/merchant.c` | F_VILLAGER + F_VENDOR, Lv5 | market |
+| 龍安 | 說書人 (storyteller) | `d/longan/npc/storyteller.c` | F_VILLAGER, Lv8 | square |
+| 衛國 | 老兵 (soldier) | `d/weiguo/npc/soldier.c` | F_SOLDIER, Lv18 | square |
+| 衛國 | 軍需官 (quartermaster) | `d/weiguo/npc/quartermaster.c` | F_VILLAGER + F_VENDOR, Lv14 | barracks |
+
+### Vendor NPCs
+- **龍安商人**: sells black_pill, boar_berry, wild_ginseng (medicines)
+- **衛國軍需官**: sells broadsword, pike, cloth armor (military supplies)
+
+### Room Loading
+All 6 room files updated with `set("objects")` to load their respective NPCs.
+
+### snow_abao Status
+阿寶 already exists at `d/snow/npc/child.c` with full quest dialogue, loaded in `d/snow/tree.c` (老榕樹). Updated `missing_content.json` to reflect this — `missing_npcs` is now empty.
+
+### Static Validation
+All NPCs pass: `#include <npc.h>`, valid inherit, `set_name()`, `set_race()`, `set_level()`, `setup()` all present.
+
+### Note on 掌門 NPC 拜師系統
+The existing alchemist master (`d/snow/npc/alchemist.c`) already implements the full apprentice system (`set_flag`, `accept_apprentice`, `init_apprentice`, `acquire_skill`). No additional sect masters were listed as missing in `missing_content.json`. The sect areas (封山派, 冷梅莊, etc.) already have their own master NPCs.
+[0;32m[OK][0m Task done: Implement NPCs
+[0;34m[02:22:19][0m Running task: Implement equipment
+--- Task: Implement equipment ---
+Both files pass static validation. Let me verify the stats are within reasonable ranges:
+
+**旋芒 (xuanmang)** - F_BLADE, `setup_blade(12, 100, 12, 4)`:
+- min=12 (range 1-12) - at max, appropriate for legendary
+- max=100 (range 10-120) - within range
+- wc=12 (range 2-13) - within range
+- reach=4 (range 1-5) - within range
+
+**域摩之斧 (yumo_axe)** - F_AXE, `setup_axe(12, 90, 15, 3)`:
+- min=12 (range 2-15) - within range (wiki says 12)
+- max=90 (range 10-90) - at max, appropriate for legendary
+- wc=15 (range 3-15) - at max, appropriate for legendary
+- reach=3 (range 1-4) - within range
+
+Both checks pass. Here's a summary:
+
+## Completed
+
+Created 2 missing legendary equipment files:
+
+| File | Name | Type | Stats |
+|------|------|------|-------|
+| `mudlib/obj/weapon/xuanmang.c` | 旋芒 | F_BLADE | blade(12, 100, 12, 4) |
+| `mudlib/obj/weapon/yumo_axe.c` | 域摩之斧 | F_AXE | axe(12, 90, 15, 3) |
+
+- **旋芒** - the second divine blade given to 寒於氏 by the gods, paired with 穿靈 (chuanling)
+- **域摩之斧** - legendary double-handed axe, Earth Spirit (地靈域摩) quest reward
+
+All other equipment referenced by NPCs (via `STOCK_WEAPON()`/`STOCK_ARMOR()` and `carry_object()`) already exists. The `missing_content.json` had no `missing_equipment` section because no NPC-referenced equipment was missing — only these two wiki-documented legendary weapons were unimplemented.
+[0;32m[OK][0m Task done: Implement equipment
+[0;34m[02:25:23][0m All tasks completed.
+[0;34m[02:25:23][0m Checking for changes to commit...

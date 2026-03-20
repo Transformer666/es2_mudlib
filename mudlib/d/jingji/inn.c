@@ -14,10 +14,13 @@ void create()
 和散座。這裡接待的多是進京辦事的各地官員和富商巨賈。
 LONG
 	);
+	set("objects", ([
+		__DIR__"npc/innkeeper" : 1,
+	]));
 	set("valid_startroom", 1);
 	set("no_fight", 1);
 	set("exits", ([
-		"south" : __DIR__"entrance",
+		"south" : __DIR__"square",
 	]));
 
 	setup();

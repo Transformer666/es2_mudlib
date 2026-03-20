@@ -13,9 +13,10 @@ LONG
 	);
 	set("outdoors", "road");
 	set("exits", ([
-		"west" : __DIR__"crossroad",
-		"east" : __DIR__"road5",
+		"west"  : __DIR__"crossroad",
+		"east"  : __DIR__"road5",
 		"south" : "/d/baihua/road",
+		"north" : "/d/jingji/entrance",
 	]));
 
 	setup();

@@ -14,10 +14,13 @@ void create()
 兵，說話嗓門極大。
 LONG
 	);
+	set("objects", ([
+		__DIR__"npc/innkeeper" : 1,
+	]));
 	set("valid_startroom", 1);
 	set("no_fight", 1);
 	set("exits", ([
-		"south" : __DIR__"entrance",
+		"south" : __DIR__"square",
 	]));
 
 	setup();

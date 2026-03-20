@@ -12,8 +12,10 @@ void create()
 幾名巡邏的士兵正沿著預定的路線來回走動。
 LONG
 	);
+	set("outdoors", "fortress");
 	set("exits", ([
-		"north" : __DIR__"inn",
+		"east"  : "/d/road/wild_path1",
+		"north" : __DIR__"street",
 	]));
 
 	setup();

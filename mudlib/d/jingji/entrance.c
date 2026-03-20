@@ -12,8 +12,10 @@ void create()
 不絕，一派繁華景象。
 LONG
 	);
+	set("outdoors", "city");
 	set("exits", ([
-		"north" : __DIR__"inn",
+		"south" : "/d/road/road4",
+		"north" : __DIR__"street",
 	]));
 
 	setup();

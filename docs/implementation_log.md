@@ -1,24 +1,24 @@
 # ES2 MUD 實作進度報告
 
-> 產生日期：2026-03-19
+> 產生日期：2026-03-20
 > 資料來源：ES2 Wiki (sites.google.com/site/es2mud) vs mudlib 現有程式碼
 
 ---
 
 ## 總覽
 
-| 類別 | Wiki 需求 | 已實作 | 缺少 | 完成率 |
-|------|-----------|--------|------|--------|
-| 種族 (Races) | 11 | 11 | 0 | 100% |
-| 職業 (Classes) | 7 | 7 | 0 | 100% |
-| 門派 (Sects) | 20 | 18 | 2 | 90% |
-| 城鎮 (Towns) | 3 | 3 | 0 | 100% |
-| 城鎮任務 (Town Quests) | 13 | 5 | 8 | 38.5% |
-| 靈魂任務 (Spirit Quests) | 2 | 1 | 1 | 50% |
-| 主線劇情 (Main Story) | 9 | 0 | 9 | 0% |
-| 玩家說明 (Help Texts) | 10 | 1 | 9 | 10% |
-| 傳說裝備 (Legendary) | 7 | 6 | 1 | 85.7% |
-| **總計** | **82** | **52** | **30** | **63.4%** |
+| 項目 | Wiki 需求 | 已實作 | 缺少 | 完成度 |
+|------|----------|--------|------|--------|
+| 種族 (races) | 11 | 11 | 0 | 100% |
+| 職業 (classes) | 7 | 7 | 0 | 100% |
+| 門派 (sects) | 18 | 18 | 0 | 100% |
+| 城鎮區域 (areas) | 35 | 35 | 0 | 100% |
+| 種族說明檔 | 11 | 11 | 0 | 100% |
+| 職業說明檔 | 7 | 0 | 7 | 0% |
+| 門派說明檔 | 18 | 0 | 18 | 0% |
+| 進階職業 | 26 | 0 | 26 | 0% |
+| 任務系統 | 4+ | 0 | 4+ | 0% |
+| **合計** | **95+** | **62** | **33+** | **65%** |
 
 ---
 
@@ -26,266 +26,182 @@
 
 ### 種族系統 (11/11) - 100%
 
-所有 11 個種族的 daemon 及 help 文本均已實作：
+所有 11 個種族均已實作 daemon 配置及玩家說明檔：
 
-| 種族 | 檔案 | 功德值 | Help |
-|------|------|--------|------|
-| 人類 | `daemon/race/human.c` | 5 | `doc/help/player/races/human` |
-| 刑天 | `daemon/race/xingtian.c` | 25 | `doc/help/player/races/xingtian` |
-| 厭火 | `daemon/race/yenhold.c` | 5 | `doc/help/player/races/yenhold` |
-| 夜叉 | `daemon/race/yaksha.c` | 35 | `doc/help/player/races/yaksha` |
-| 巫首 | `daemon/race/malik.c` | 30 | `doc/help/player/races/malik` |
-| 無腸 | `daemon/race/woochan.c` | 5 | `doc/help/player/races/woochan` |
-| 焦僥 | `daemon/race/jiaojao.c` | 10 | `doc/help/player/races/jiaojao` |
-| 釘靈 | `daemon/race/dingling.c` | 10 | `doc/help/player/races/dingling` |
-| 阿修羅 | `daemon/race/asura.c` | 30 | `doc/help/player/races/asura` |
-| 雨師妾 | `daemon/race/rainnar.c` | 25 | `doc/help/player/races/rainnar` |
-| 黑齒 | `daemon/race/blackteeth.c` | 3 | `doc/help/player/races/blackteeth` |
+| 種族 | ID | daemon | help file |
+|------|----|--------|-----------|
+| 人類 | human | daemon/race/human.c | doc/help/player/races/human |
+| 刑天 | xingtian | daemon/race/xingtian.c | doc/help/player/races/xingtian |
+| 厭火 | yenhold | daemon/race/yenhold.c | doc/help/player/races/yenhold |
+| 夜叉 | yaksha | daemon/race/yaksha.c | doc/help/player/races/yaksha |
+| 巫首 | malik | daemon/race/malik.c | doc/help/player/races/malik |
+| 無腸 | woochan | daemon/race/woochan.c | doc/help/player/races/woochan |
+| 焦僥 | jiaojao | daemon/race/jiaojao.c | doc/help/player/races/jiaojao |
+| 釘靈 | dingling | daemon/race/dingling.c | doc/help/player/races/dingling |
+| 阿修羅 | asura | daemon/race/asura.c | doc/help/player/races/asura |
+| 雨師妾 | rainnar | daemon/race/rainnar.c | doc/help/player/races/rainnar |
+| 黑齒 | blackteeth | daemon/race/blackteeth.c | doc/help/player/races/blackteeth |
 
-### 職業系統 (7/7) - 100%
+### 職業系統 (7/7) - 100% (daemon only)
 
-| 職業 | 檔案 |
-|------|------|
-| 武者 | `daemon/class/warrior.c` |
-| 書生 | `daemon/class/scholar.c` |
-| 方士 | `daemon/class/alchemist.c` |
-| 道士 | `daemon/class/taoist.c` |
-| 小偷 | `daemon/class/thief.c` |
-| 軍人 | `daemon/class/soldier.c` |
-| 和尚 | `daemon/class/monk.c` |
+| 職業 | ID | daemon |
+|------|----|--------|
+| 武者 | warrior | daemon/class/warrior.c |
+| 道士 | taoist | daemon/class/taoist.c |
+| 和尚 | monk | daemon/class/monk.c |
+| 書生 | scholar | daemon/class/scholar.c |
+| 小偷 | thief | daemon/class/thief.c |
+| 軍人 | soldier | daemon/class/soldier.c |
+| 方士 | alchemist | daemon/class/alchemist.c |
 
-額外：`fighter.c`（戰鬥基礎類）、`commoner.c`（平民）
+> 注意：另有 commoner.c 和 fighter.c 兩個額外職業。
 
-### 門派系統 (18/20) - 90%
+### 門派系統 (18/18) - 100% (daemon + area)
 
-已實作 18 個門派 daemon 及對應區域：
+| 門派 | ID | 職業 | daemon | 區域 |
+|------|----|------|--------|------|
+| 封山派 | fengshan | 武者 | daemon/sect/fengshan.c | d/fengshan/ |
+| 冷梅莊 | lengmei | 武者 | daemon/sect/lengmei.c | d/lengmei/ |
+| 哭笑門 | kuxiao | 武者 | daemon/sect/kuxiao.c | d/kuxiao/ |
+| 雪吟莊 | xueyin | 武者 | daemon/sect/xueyin.c | d/xueyin/ |
+| 虎刀門 | hudao | 武者 | daemon/sect/hudao.c | d/hudao/ |
+| 天師派 | tianshi | 道士 | daemon/sect/tianshi.c | d/tianshi/ |
+| 茅山派 | maoshan | 道士 | daemon/sect/maoshan.c | d/maoshan/ |
+| 寶蓮寺 | baolian | 和尚 | daemon/sect/baolian.c | d/baolian/ |
+| 白象寺 | baixiang | 和尚 | daemon/sect/baixiang.c | d/baixiang/ |
+| 步玄派 | buxuan | 書生 | daemon/sect/buxuan.c | d/buxuan/ |
+| 玄天教 | xuantian | 書生 | daemon/sect/xuantian.c | d/xuantian/ |
+| 瑯夷 | langyi | 小偷 | daemon/sect/langyi.c | d/langyi/ |
+| 隱教 | yinjiao | 小偷 | daemon/sect/yinjiao.c | d/yinjiao/ |
+| 振武軍營 | zhenwu | 軍人 | daemon/sect/zhenwu.c | d/zhenwu/ |
+| 龍圖派 | longttu | 方士 | daemon/sect/longttu.c | d/longttu/ |
+| 武陀堂 | wutuo | 方士 | daemon/sect/wutuo.c | d/wutuo/ |
+| 劍甲門 | jianjia | 方士 | daemon/sect/jianjia.c | d/jianjia/ |
+| 天邪派 | tianxie | 武者 | daemon/sect/tianxie.c | d/tianxie/ |
 
-| 門派 | Daemon | 區域 | 房間數 |
-|------|--------|------|--------|
-| 封山派 | `sect/fengshan.c` | `d/fengshan/` | 5 |
-| 冷梅莊 | `sect/lengmei.c` | `d/lengmei/` | 6 |
-| 哭笑門 | `sect/kuxiao.c` | `d/kuxiao/` | 6 |
-| 雪吟莊 | `sect/xueyin.c` | `d/xueyin/` | 6 |
-| 虎刀門 | `sect/hudao.c` | `d/hudao/` | 5 |
-| 瑯夷 | `sect/langyi.c` | `d/langyi/` | 6 |
-| 隱教 | `sect/yinjiao.c` | `d/yinjiao/` | 6 |
-| 龍圖 | `sect/longttu.c` | `d/longttu/` | 6 |
-| 武陀 | `sect/wutuo.c` | `d/wutuo/` | 5 |
-| 步玄派 | `sect/buxuan.c` | `d/buxuan/` | 6 |
-| 玄天教 | `sect/xuantian.c` | `d/xuantian/` | 6 |
-| 振武軍營 | `sect/zhenwu.c` | `d/zhenwu/` | 5 |
-| 天師派 | `sect/tianshi.c` | `d/tianshi/` | 7 |
-| 茅山派 | `sect/maoshan.c` | `d/maoshan/` | 5 |
-| 護國白象寺 | `sect/baixiang.c` | `d/baixiang/` | 5 |
-| 寶蓮寺 | `sect/baolian.c` | `d/baolian/` | 6 |
-| 劍甲門 | `sect/jianjia.c` | `d/jianjia/` | 5 |
-| 天邪 | `sect/tianxie.c` | `d/tianxie/` | 6 |
+### 區域內容統計
 
-### 城鎮與區域
+| 區域 | 房間數 | NPC數 | 物品數 | 備註 |
+|------|--------|-------|--------|------|
+| snow (雪亭鎮) | 45 | 60 | 32 | 最完整，新手起始區 |
+| wutang (五堂鎮) | 29 | 18 | 6 | 第二大城鎮 |
+| choyin (朝陽城) | 10 | 10 | 4 | 城市區域 |
+| lijun (利郡) | 10 | 11 | 5 | 河港貿易區 |
+| road (道路) | 10 | 0 | 0 | 連接道路 |
+| baihua (百花) | 8 | 7 | 3 | |
+| oldpine (古松) | 8 | 6 | 2 | |
+| heifeng (黑風寨) | 7 | 6 | 2 | |
+| tianshi (天師派) | 7 | 5 | 2 | |
+| 其他 26 個區域 | 各2-6間 | 各0-5個 | 各0-2個 | |
+| **合計** | **~280** | **~200** | **~90** | |
 
-**主要城鎮：**
-- 雪亭鎮 (`d/snow/`) — 45 房間, 31 NPC
-- 五堂鎮 (`d/wutang/`) — 29 房間, 12 NPC
-- 赤魈村 (`d/chixiao/`) — 4 房間, 2 Boss NPC + 8 物品
+### 技能系統 (24 skills)
 
-**中型城鎮：**
-- 潮陰 (`d/choyin/`) — 10 房間, 6 NPC
-- 離郡 (`d/lijun/`) — 10 房間, 6 NPC
-- 百花村 (`d/baihua/`) — 8 房間, 3 NPC
-- 三焰 (`d/sanyen/`) — 6 房間, 3 NPC
+已實作 24 種技能：amazing_needle, axe, blade, dagger, diamond_hammer, fengshan_sword, five_defeat_needle, lengmei_sword, longttu_neigong, maoshan_neigong, maoshan_sword, needle, phantom_sword, pike, staff, sword, tactic, taiyi_sword, taoshan_milu, three_rotations, tiger_blade, unarmed, whip, ziwei_neigong
 
-**鄉村/小鎮：** 康平(6), 李莊(6), 龍安(2), 衛國(2)
+### 物品系統
 
-**野外區域：** 墓地(6), 黑風寨(7), 莽林(6), 老松嶺(8), 道路(11), 競技場(2)
-
-### 傳說裝備 (6/7) - 85.7%
-
-- [x] `obj/weapon/chuanling.c` — 穿靈（神話神劍）
-- [x] `obj/weapon/xuanyao.c` — 旋芒（神話神劍）
-- [x] `obj/weapon/yinxue.c` — 飲血劍
-- [x] `chixiao/npc/obj/fire_weapon.c` — 火神武器
-- [x] `chixiao/npc/obj/thunder_weapon.c` — 雷神武器
-- [x] `chixiao/npc/obj/wind_weapon.c` — 風神武器
-- [x] `chixiao/npc/obj/rain_weapon.c` — 雨神武器
-
-### 天地靈任務 (部分完成)
-
-- [x] 赤魈村地圖（entrance, village_square, wishing_pool, inn）
-- [x] 天靈 Boss NPC (`chixiao/npc/tianling.c`)
-- [x] 天靈匕首 (`chixiao/npc/obj/tianling_dagger.c`)
-- [x] 天靈眼 (`chixiao/npc/obj/tianling_eye.c`)
-- [x] 地靈 Boss NPC (`chixiao/npc/diling.c`)
-- [x] 地靈斧 (`chixiao/npc/obj/diling_axe.c`)
-- [x] 地靈心 (`chixiao/npc/obj/diling_heart.c`)
-- [x] 四神武器（火、雷、風、雨）
-- [ ] 任務觸發邏輯（投擲機制）
-- [ ] 天靈戰鬥 AI（隱神篇）
-- [ ] 地靈任務流程道具鏈
-- [ ] 地氣塔房間
-- [ ] 禁止技能房間機制
-
-### 系統架構
-
-- 154 個玩家指令
-- 24 個技能 daemon
-- 125+ 個遊戲物品
-- 55 個 feature 模組
-- 30 個 include 標頭檔
-- 完整的戰鬥系統、登入系統、頻道系統
+- **武器**: 20 種 (obj/weapon/)
+- **防具**: 10 種 (obj/armor/)
+- **藥品**: 16 種 (obj/medication/)
+- **食物**: 5 種 (obj/food/)
+- **藥材**: 4 種 (obj/reagent/)
+- **草藥**: 6 種 (obj/drug/)
+- **貨幣**: 3 種 (obj/money/)
 
 ---
 
-## 缺少項目 — 待實作清單
+## 缺少項目
 
-### 優先級 HIGH
+### 1. 職業說明檔 (0/7) - 優先級：高
 
-#### 1. 城鎮任務邏輯（8 個任務待完成）
+缺少所有 7 個職業的玩家說明檔 (`doc/help/player/classes/`)：
+- warrior (武者)、taoist (道士)、monk (和尚)、scholar (書生)
+- thief (小偷)、soldier (軍人)、alchemist (方士)
 
-**雪亭鎮（5 個未完成）：**
-- [ ] 阿寶的等待 — 需新增 NPC 到 tree.c
-- [ ] 盲眼老婦之謎 — 需確認 gammer.c 是否為此角色
-- [ ] 倉庫搬運 — `warehouse.c` + `worker.c` 就緒，需加任務邏輯
-- [ ] 遺失的信件 — `post_office.c` + `postman.c` 就緒，需加任務邏輯
-- [x] 軍營招募 — `military_camp.c` + `recruiter.c` 已建立
-- [x] 莊園秘密 — `dilapidated_manor.c` + `darkrobe.c` 已建立
-- [ ] 黑袍老人的女兒 — 尋人任務未實作
+### 2. 門派說明檔 (0/18) - 優先級：高
 
-**五堂鎮（3 個未完成）：**
-- [ ] 飲血的下落 — 尋找傳說武器
-- [x] 巫山神秘雕像 — `wushan_cave.c` 已存在
-- [x] 郭布的弟子 — `guobu.c` NPC 已存在
-- [x] 鎮天神廟之謎 — `temple.c` 已存在
-- [ ] 官員來訪 — 需 inspector 任務邏輯
-- [x] 渡河任務 — `ferryman.c` + `dock.c` 已建立
+缺少所有 18 個門派的玩家說明檔 (`doc/help/player/sects/`)。
 
-### 優先級 MEDIUM
+### 3. 進階職業系統 (0/26) - 優先級：中
 
-#### 2. 天地靈任務系統完善
+Wiki 中提到的 26 個進階職業均未實作：
 
-**天靈任務（NPC/物品就緒，缺邏輯）：**
-- [ ] 許願池互動機制（投入3件四神武器觸發天靈出現）
-- [ ] 天靈 Boss 戰鬥 AI（使用隱神篇，傷害基於玩家防禦力）
-- [ ] 戰鬥獎勵掉落邏輯
+**武者進階 (15):**
+- 封山派 → 劍靈、山人、劍客
+- 冷梅莊 → 劍士、古劍門傳人、虎督
+- 哭笑門 → 護法、素衣衛、使者
+- 雪吟莊 → 浪人、棄徒、天邪派弟子
+- 虎刀門 → 護衛、鬼才、太守
 
-**地靈任務（NPC/獎勵就緒，缺流程）：**
-- [ ] 任務道具鏈：聖木殘根→金屋內丹→炎日箭→太陽槍
-- [ ] 地氣塔頂房間（黑袍怪人所在地）
-- [ ] 禁止 exert/perform 的房間機制
-- [ ] Eye/Heart 扣減屬性不足10點的失敗判定
+**和尚進階 (2):** 白象寺 → 禪師、羅漢
 
-#### 3. 缺少的門派
+**書生進階 (2):** 步玄派 → 居士 / 玄天教 → 散人
 
-- [ ] 天月庵（`daemon/sect/tianyue.c` + `d/tianyue/`）— 和尚門派
-- [ ] 茅山派三觀分支邏輯 — 確認 `maoshan.c` 是否支持靈雲觀/隱風觀/幻霧觀選擇
+**小偷進階 (2):** 金蛇門、黑龍使者
 
-### 優先級 LOW
+**軍人進階 (2):** 軍隊統領、軍師
 
-#### 4. 玩家說明文件 (1/10)
+**方士進階 (2):** 龍圖派 → 醫師 / 武陀堂 → 香主
 
-`mudlib/doc/help/player/` 目錄：
-- [x] `races/` — 種族介紹（11 個種族 help 文本已建立）
-- [ ] `classes` — 職業介紹
-- [ ] `sects` — 門派介紹
-- [ ] `combat` — 戰鬥系統說明
-- [ ] `skills` — 技能系統說明
-- [ ] `equipment` — 裝備系統說明
-- [ ] `quests` — 任務系統說明
-- [ ] `newbie` — 新手指南
-- [ ] `towns` — 城鎮導覽
-- [ ] `mythology` — 世界觀與神話背景
+**道士進階 (1):** 茅山劍士
 
-#### 5. 主線劇情（大型系統工程）
+### 4. 任務系統 - 優先級：高
 
-Wiki 提到的 9 個主線劇情謎團：
-- [ ] 大邪道人與殘蟻師太的關係
-- [ ] 魚鐵山與劉乙忘玄的陰謀
-- [ ] 武林盟主失蹤事件
-- [ ] 白象寺隱藏秘密
-- [ ] 封鬼慘案真兇
-- [ ] 梅影風妻子劇情
-- [ ] 朝廷對侮天鬼傳說的態度
-- [ ] 虎刀門二師父下落
-- [ ] 阿寶的榕樹等待對象
+目前完全沒有結構化的任務系統。Wiki 定義了以下任務：
+
+**主線任務 - 侮天鬼傳說 (9 個謎團):**
+1. 大邪道人和殘蟻師太的關係
+2. 魚鐵山和劉乙忘玄的陰謀
+3. 失蹤的武林盟主
+4. 白象寺的秘密
+5. 封鬼慘案的真兇
+6. 梅影風妻子的病情
+7. 朝廷對侮天鬼傳說的了解
+8. 虎刀門二師兄的下落
+9. 阿寶在老榕樹下等的人
+
+**十三靈任務鏈:**
+- 天靈 (赤魈村許願池召喚)
+- 地靈 (多步驟召喚流程)
+- 其餘 11 個精靈相關任務
+
+**城鎮支線任務:**
+- 雪亭鎮 7 個謎題
+- 五堂鎮 6 個謎題
 
 ---
 
-## Task 03 完成記錄 — 房間出口雙向連結修復
+## 建議實作優先順序
 
-> 完成日期：2026-03-19
+### Phase 1 - 說明檔補齊 (預估工作量：小)
+1. 建立 7 個職業說明檔
+2. 建立 18 個門派說明檔
 
-### 修復內容
+### Phase 2 - 任務框架 (預估工作量：大)
+1. 建立任務 daemon 基礎架構
+2. 實作雪亭鎮新手任務
+3. 實作五堂鎮支線任務
 
-修復了 14 個檔案中的出口方向問題，確保所有房間出口雙向連結正確：
+### Phase 3 - 進階職業 (預估工作量：大)
+1. 設計進階職業轉職系統
+2. 逐門派實作進階職業 daemon
+3. 新增進階職業技能
 
-**新增缺少的反向出口（4 個）：**
-- `d/hudao/inner_hall.c` — 新增 east→armory（原本 armory→west→inner_hall 單向）
-- `d/maoshan/lingyun.c` — 新增 north→altar（原本 altar→south→lingyun 單向）
-- `d/wutang/street1.c` — 新增 west→store（原本 store→east→street1 單向）
-- `d/wutang/court.c` — 新增 north→ngate（串連 square_n→street2→court→ngate 路線）
-
-**修正路網拓撲（crossroad 插入）：**
-- `d/road/road3.c` — east 從 road4 改為 crossroad
-- `d/road/road4.c` — west 從 road3 改為 crossroad
-- （crossroad 原本被跳過，road3↔road4 直連）
-
-**修正方向不對稱：**
-- `d/road/road1.c` — 新增 northeast→mountain_road1
-- `d/road/mountain_road1.c` — south 改為 southwest→road1
-- `d/road/mountain_road2.c` — west 改為 south→crossroad（配合 crossroad→north）
-- `d/road/road5.c` — south 改為 southwest→maoshan/gate
-- `d/maoshan/gate.c` — south 改為 northeast→road5（消除雙方都用 south 的矛盾）
-- `d/hudao/gate.c` — south 改為 west→road2（配合 road2→east）
-- `d/baixiang/gate.c` — south 改為 west→mountain_road2（配合 mountain_road2→east）
-
-**路線調整：**
-- `d/wutang/ngate.c` — south 從 street2 改為 court（形成 street2→court→ngate 正確鏈路）
-
-### 已確認為設計意圖的單向出口
-
-以下使用 action 機制（climb/enter）而非標準 exit，屬正常設計：
-- `snow/tree.c` ↔ `square.c` — climb 榕樹
-- `snow/fireplace.c` ↔ `inn_kitchen.c` — enter 大灶
-- `snow/mill.c` ↔ `lane2.c` — enter 磨坊
-- `snow/kitchen.c` — climb 圍牆（無標準 exit）
-- `lijun/ferry_south.c` → `dock.c` — 渡船機制
-
-### 驗證結果
-
-- 掃描 270 個 .c 檔案，267 個房間
-- 檢查 529 個出口
-- 0 個斷鏈目標
-- 0 個未修復的單向出口
-
-### 關於 missing_rooms
-
-`missing_content.json` 中唯一的 missing_room 為 `wutang/guest_house`（別館/欽差住所）。
-經檢查，此功能已由 `wutang/residence.c`（御史別院）實現，inspector NPC 位於 `court.c`，
-court→east→residence 連結完整。無需新建房間。
+### Phase 4 - 主線任務 (預估工作量：最大)
+1. 實作侮天鬼主線劇情
+2. 實作十三靈任務鏈
+3. 連接各區域的劇情線索
 
 ---
 
-## 建議實作順序
-
-1. **Phase 1 — 任務邏輯**：為已有房間/NPC的城鎮任務加上任務觸發和完成邏輯
-2. **Phase 2 — 天地靈任務**：完善赤魈村的天靈/地靈任務系統
-3. **Phase 3 — 門派補完**：新增天月庵，確認茅山派三觀分支
-4. **Phase 4 — 說明文件**：撰寫玩家說明文件
-5. **Phase 5 — 主線劇情**：規劃並實作主線任務系統
-
----
-
-## 現有程式碼統計
+## 程式碼統計
 
 ```
-總 .c 檔案數量
-├── d/ (遊戲區域)     489 檔案 (房間 + NPC + NPC物品 + 其他)
-├── daemon/            67 檔案 (11 種族 + 9 職業 + 18 門派 + 24 技能 + 5 其他)
-├── obj/              125 檔案 (武器/防具/藥品/食物/NPC)
-├── cmds/             154 檔案 (管理/玩家/巫師指令)
-├── std/               21 檔案 (基礎類別)
-├── feature/           55 檔案 (功能模組)
-├── adm/               22 檔案 (系統管理)
-└── include/           30 檔案 (標頭定義)
-                      ───
-                      963 檔案
+d/      目錄：489 個 .c 檔案（35 個區域）
+daemon/ 目錄： 67 個 .c 檔案（種族/職業/門派/技能）
+obj/    目錄：125 個 .c 檔案（武器/防具/藥品等）
+doc/    目錄： 12 個說明檔（11 種族 + 1 topics）
+────────────────────────────────
+總計：         693 個檔案
 ```

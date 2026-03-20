@@ -12,8 +12,10 @@ void create()
 個進出城門的行人。
 LONG
 	);
+	set("outdoors", "city");
 	set("exits", ([
-		"north" : __DIR__"inn",
+		"south" : "/d/road/road2",
+		"north" : __DIR__"street",
 	]));
 
 	setup();

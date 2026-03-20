@@ -14,10 +14,13 @@ void create()
 間招呼客人。
 LONG
 	);
+	set("objects", ([
+		__DIR__"npc/innkeeper" : 1,
+	]));
 	set("valid_startroom", 1);
 	set("no_fight", 1);
 	set("exits", ([
-		"south" : __DIR__"entrance",
+		"south" : __DIR__"square",
 	]));
 
 	setup();
