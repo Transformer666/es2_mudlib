@@ -5895,3 +5895,152 @@ longttu_neigong, maoshan_neigong, taoshan_milu, ziwei_neigong 都有 `do_exercis
 總計：**23 FAIL**，主要集中在 room inherit 和雙向出口問題。需要修復嗎？
 [0;32m[OK][0m Static validation
 [0;34m[20:45:36][0m Pipeline complete: 5 ok, 0 warnings.
+[0;32m[OK][0m Final commit pushed to origin.
+[0;34m[20:50:38][0m Using git remote: origin
+[0;34m[20:50:38][0m Pulling latest changes...
+From github.com:Transformer666/es2_mudlib
+ * branch            main       -> FETCH_HEAD
+Already up to date.
+
+Pipeline start: 2026-03-20 20:50:38 (phase: all)
+==============================
+[0;34m[20:50:40][0m === Phase: Analyze (bash-native, no agent) ===
+[0;34m[20:50:41][0m Analyze complete:
+[0;34m[20:50:41][0m   Races: 11/11 | Classes: 9/7 | Sects: 18/18
+[0;34m[20:50:41][0m   Skills: 75 (missing: 40) | Rooms: 479 | NPCs: 284
+[0;34m[20:50:41][0m   Quests: 14 | Equipment: 282
+[0;34m[20:50:41][0m   Total missing: 40
+[0;32m[OK][0m Analyze phase
+[0;34m[20:50:41][0m === Phase: Build ===
+[0;34m[20:50:41][0m Step: Audit area: stub_towns
+--- Step: Audit area: stub_towns ---
+確認：所有區域的房間數都 >= 5，沒有任何 stub town。
+
+**stub_towns: complete**
+
+根據 pipeline 的定義（房間數 < 5 為 stub），目前所有 54 個區域都已經有至少 5 個房間檔案，沒有需要補充的 stub town。
+[0;32m[OK][0m Audit area: stub_towns
+[0;34m[20:51:45][0m Step: Audit skills
+--- Step: Audit skills ---
+All neigong skills have the required functions. Here's the complete audit result:
+
+## 技能 Daemon 完整性審查報告
+
+### 1. 門派引用的技能（共 20 個）
+
+| # | 技能名稱 | Daemon 檔案 | skill_improved | skill_advanced | actions/neigong |
+|---|---------|------------|:-:|:-:|:-:|
+| 1 | dagger | dagger.c | ✓ | ✓ | 6 招 ✓ |
+| 2 | sword | sword.c | ✓ | ✓ | 8 招 ✓ |
+| 3 | tiger blade | tiger_blade.c | ✓ | ✓ | 6 招 ✓ |
+| 4 | tactic | tactic.c | ✓ | ✓ | 6 招 ✓ |
+| 5 | pike | pike.c | ✓ | ✓ | 7 招 ✓ |
+| 6 | staff | staff.c | ✓ | ✓ | 6 招 ✓ |
+| 7 | fengshan sword | fengshan_sword.c | ✓ | ✓ | 6 招 ✓ |
+| 8 | maoshan sword | maoshan_sword.c | ✓ | ✓ | 6 招 ✓ |
+| 9 | maoshan neigong | maoshan_neigong.c | ✓ | ✓ | 內功 ✓ |
+| 10 | taoshan milu | taoshan_milu.c | ✓ | ✓ | 內功 ✓ |
+| 11 | needle | needle.c | ✓ | ✓ | 6 招 ✓ |
+| 12 | taiyi sword | taiyi_sword.c | ✓ | ✓ | 6 招 ✓ |
+| 13 | ziwei neigong | ziwei_neigong.c | ✓ | ✓ | 內功 ✓ |
+| 14 | longttu neigong | longttu_neigong.c | ✓ | ✓ | 內功 ✓ |
+| 15 | diamond hammer | diamond_hammer.c | ✓ | ✓ | 6 招 ✓ |
+| 16 | phantom sword | phantom_sword.c | ✓ | ✓ | 6 招 ✓ |
+| 17 | lengmei sword | lengmei_sword.c | ✓ | ✓ | 6 招 ✓ |
+| 18 | five defeat needle | five_defeat_needle.c | ✓ | ✓ | 6 招 ✓ |
+| 19 | amazing needle | amazing_needle.c | ✓ | ✓ | 6 招 ✓ |
+| 20 | three rotations | three_rotations.c | ✓ | ✓ | 6 招 ✓ |
+
+### 2. 總結
+
+- **缺少 0 個** — 所有 20 個門派引用的技能都有對應的 daemon 檔案
+- **不完整 0 個** — 所有 75 個 skill daemon 都有 `skill_improved` 和 `skill_advanced`
+- 所有 16 個戰鬥技能都有至少 6 個 actions（最多 8 個：sword）
+- 所有 4 個內功技能都有 `do_exercise`、`halt_exercise`、`exert_function`
+- **本次建立 0 個，剩餘 0 個待處理**
+
+技能 daemon 完整性：**100% 通過**。無需建立任何新檔案。
+[0;32m[OK][0m Audit skills
+[0;34m[20:53:46][0m Step: Audit quests
+--- Step: Audit quests ---
+## 任務系統審查結果
+
+### 已實作任務總覽：14 個任務
+
+**雪亭鎮 7 謎 — 全部完成 ✓** (+ 1 額外任務)
+
+| # | 謎題 | NPC | quest flag | 分數 | 載入房間 |
+|---|------|-----|-----------|------|---------|
+| 1 | 阿寶在老榕樹等的人是誰？ | arbao.c | `arbao_letter_done` | 80 | square.c ✓ |
+| 2 | 瞎眼婆婆的真實身分？ | gammer.c | `gammer_identity_done` | 120 | square.c ✓ |
+| 3 | 貨棧搬箱子算不算勞動？ | foreman.c | `foreman_crate_done` | 50 | store.c ✓ |
+| 4 | 驛站遺失了幾封信？ | postman.c | `postman_delivery_done` | 100 | post_office.c ✓ |
+| 5 | 想不想加入振武軍營？ | recruiter.c | `recruiter_enlist_done` | 50 | military_camp.c ✓ |
+| 6 | 破舊的老宅裡藏了什麼？ | old_beggar.c | `old_beggar_done` | 200 | square_sw.c ✓ |
+| 7 | 黑袍老人的女兒去了哪裡？ | darkrobe.c | `darkrobe_daughter_done` | 150 | dilapidated_manor.c ✓ |
+| 額外 | 護鏢隊指路 | escort.c | `escort_guide_done` | 30 | square_s.c ✓ |
+
+**五堂鎮 6 謎 — 全部完成 ✓**
+
+| # | 謎題 | NPC/房間 | quest flag | 分數 | 載入房間 |
+|---|------|---------|-----------|------|---------|
+| 1 | 飲血丟在了哪裡？ | river_bend.c | `yinxue_found_done` | 120 | (房間自身) ✓ |
+| 2 | 巫山神秘雕像有何秘密？ | wushan_secret.c | `wushan_statue_done` | 200 | (房間自身) ✓ |
+| 3 | 郭布要收的徒弟在哪裡？ | guobu.c + boy.c | `guobu_apprentice_done` | 80 | street1.c / river_bend.c ✓ |
+| 4 | 鎮天神廟內藏著誰？ | temple_master.c | `temple_master_done` | 150 | temple.c ✓ |
+| 5 | 欽差來五堂要做甚麼？ | inspector.c + storyteller.c | `inspector_case_done` | 80 | court.c / inn_hall.c ✓ |
+| 6 | 過河的船在哪裡？ | ferryman.c | `ferryman_guide_done` | 50 | dock.c ✓ |
+
+### 完整性檢查
+
+- **quest/ flag**: 14 個任務全部有 `set("quest/..._done", 1)` ✓
+- **pending/ flag**: 需要多步驟的任務都正確使用 `set_temp("pending/...", N)` 追蹤進度 ✓
+- **gain_score**: 所有主任務 NPC 都有 `gain_score("quest", N)` ✓
+  - girl.c 和 storyteller.c 無 gain_score — 正確，它們是輔助 NPC，不是任務發放者
+- **NPC 載入**: 所有 16 個任務相關 NPC 都已在對應房間的 `set("objects")` 中載入 ✓
+- **跨 NPC 任務連動**: arbao↔recruiter、postman↔herbalist、inspector↔storyteller、guobu↔boy、darkrobe↔girl 的 pending flag 交接正確 ✓
+
+### 結論
+
+**已有 14 個任務，本次新增 0 個。**
+
+Wiki 定義的「雪亭鎮 7 謎」和「五堂鎮 6 謎」共 13 個謎題已全部有對應的任務實作，另有 1 個額外的護鏢任務 (escort)。所有任務的 quest flag、pending 追蹤、gain_score 獎勵、NPC 房間載入均完整無缺，無需補充。
+[0;32m[OK][0m Audit quests
+[0;34m[20:55:46][0m === Phase: Validate ===
+[0;34m[20:55:46][0m Step: Static validation
+--- Step: Static validation ---
+## 靜態驗證報告
+
+### 主測試結果
+| | 數量 |
+|---|---|
+| **PASS** | 3534 |
+| **FAIL** | 23 |
+| **WARN** | 46 |
+
+### 額外檢查
+
+| 檢查項目 | 結果 |
+|---|---|
+| `set("aggressive", 1)` 誤用 | **PASS** — 0 筆 (全部使用正確的 `attitude`) |
+| skill daemon 含 `skill_improved` | **PASS** — 全部 75 個 daemon 皆有 (count ≥ 1) |
+| lv50+ 掌門有 `vision_of_ghost` | **FAIL** — 2 個缺失 |
+
+### 需修復項目
+
+**雙向出口缺失 (4 處):**
+- `d/snow/ngate` — northwest → entrance 缺 southeast 回程
+- `d/snow/tree` — down → square 缺 up 回程
+- `d/snow/mountain_road2` — west → mountain_path 缺 east 回程
+- `d/snow/gate` — west → watchtower 缺 east 回程
+
+**Room inherit 缺失 (從完整輸出可見):**
+- `d/longan/temple` — 城隍廟應 `inherit TEMPLE`
+- `d/snow/bazar`
+- `d/snow/small_temple`
+
+**lv50+ 掌門缺 `vision_of_ghost` (2 處):**
+- `d/tianxie/npc/daxiedaoren.c`
+- `d/hudao/npc/sunyi.c`
+[0;32m[OK][0m Static validation
+[0;34m[20:57:34][0m Pipeline complete: 5 ok, 0 warnings.
