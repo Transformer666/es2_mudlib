@@ -1,5 +1,5 @@
 # ES2 MUD Static Validation Report
-Run time: Fri Mar 20 16:57:48 UTC 2026
+Run time: Fri Mar 20 17:21:47 UTC 2026
 
 
 ## Room Validation
@@ -205,6 +205,7 @@ Run time: Fri Mar 20 16:57:48 UTC 2026
 - PASS: Room short desc: d/wutang/ngate
 - PASS: Room setup(): d/wutang/ngate
 - PASS: Room inherit: d/wutang/temple_inner
+- FAIL: Exit west -> watchtower has no east exit back (from gate)
 - PASS: Room short desc: d/wutang/temple_inner
 - PASS: Room setup(): d/wutang/temple_inner
 - PASS: Room inherit: d/wutang/inn_3f
@@ -381,6 +382,9 @@ Run time: Fri Mar 20 16:57:48 UTC 2026
 - FAIL: Room inherit missing: d/lee/ancestral_hall
 - PASS: Room short desc: d/lee/ancestral_hall
 - PASS: Room setup(): d/lee/ancestral_hall
+- PASS: Room inherit: d/lee/shop
+- PASS: Room short desc: d/lee/shop
+- PASS: Room setup(): d/lee/shop
 - PASS: Room inherit: d/sanyen/market
 - PASS: Room short desc: d/sanyen/market
 - PASS: Room setup(): d/sanyen/market
@@ -702,6 +706,13 @@ Run time: Fri Mar 20 16:57:48 UTC 2026
 - PASS: Room inherit: d/tianshi/hall
 - PASS: Room short desc: d/tianshi/hall
 - PASS: Room setup(): d/tianshi/hall
+
+## Summary
+| Result | Count |
+|--------|-------|
+| PASS | 3498 |
+| FAIL | 24 |
+| WARN | 46 |
 - PASS: Room inherit: d/tianshi/talisman_room
 - PASS: Room short desc: d/tianshi/talisman_room
 - PASS: Room setup(): d/tianshi/talisman_room
@@ -738,6 +749,9 @@ Run time: Fri Mar 20 16:57:48 UTC 2026
 - PASS: Room inherit: d/baihua/garden
 - PASS: Room short desc: d/baihua/garden
 - PASS: Room setup(): d/baihua/garden
+- PASS: Room inherit: d/baihua/shop
+- PASS: Room short desc: d/baihua/shop
+- PASS: Room setup(): d/baihua/shop
 - PASS: Room inherit: d/baihua/entrance
 - PASS: Room short desc: d/baihua/entrance
 - PASS: Room setup(): d/baihua/entrance
@@ -1594,6 +1608,10 @@ Run time: Fri Mar 20 16:57:48 UTC 2026
 - PASS: NPC inherit: d/wutang/npc/storyteller
 - PASS: NPC set_name: d/wutang/npc/storyteller
 - PASS: NPC setup(): d/wutang/npc/storyteller
+- PASS: NPC include: d/wutang/npc/boy
+- PASS: NPC inherit: d/wutang/npc/boy
+- PASS: NPC set_name: d/wutang/npc/boy
+- PASS: NPC setup(): d/wutang/npc/boy
 - PASS: NPC include: d/wutang/npc/ma_zhongsheng
 - PASS: NPC inherit: d/wutang/npc/ma_zhongsheng
 - PASS: NPC set_name: d/wutang/npc/ma_zhongsheng
@@ -1726,6 +1744,10 @@ Run time: Fri Mar 20 16:57:48 UTC 2026
 - PASS: NPC inherit: d/lee/npc/elder
 - PASS: NPC set_name: d/lee/npc/elder
 - PASS: NPC setup(): d/lee/npc/elder
+- PASS: NPC include: d/lee/npc/shopkeeper
+- PASS: NPC inherit: d/lee/npc/shopkeeper
+- PASS: NPC set_name: d/lee/npc/shopkeeper
+- PASS: NPC setup(): d/lee/npc/shopkeeper
 - PASS: NPC include: d/lee/npc/guard
 - PASS: NPC inherit: d/lee/npc/guard
 - PASS: NPC set_name: d/lee/npc/guard
@@ -2018,6 +2040,10 @@ Run time: Fri Mar 20 16:57:48 UTC 2026
 - PASS: NPC inherit: d/baihua/npc/melon_farmer
 - PASS: NPC set_name: d/baihua/npc/melon_farmer
 - PASS: NPC setup(): d/baihua/npc/melon_farmer
+- PASS: NPC include: d/baihua/npc/shopkeeper
+- PASS: NPC inherit: d/baihua/npc/shopkeeper
+- PASS: NPC set_name: d/baihua/npc/shopkeeper
+- PASS: NPC setup(): d/baihua/npc/shopkeeper
 - PASS: NPC include: d/baihua/npc/student
 - PASS: NPC inherit: d/baihua/npc/student
 - PASS: NPC set_name: d/baihua/npc/student
@@ -3565,6 +3591,6 @@ Run time: Fri Mar 20 16:57:48 UTC 2026
 ## Summary
 | Result | Count |
 |--------|-------|
-| PASS | 3480 |
+| PASS | 3498 |
 | FAIL | 24 |
 | WARN | 46 |

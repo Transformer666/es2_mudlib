@@ -3553,3 +3553,122 @@ Now back to the quest audit. Here's the complete report:
 完整報告已寫入 `docs/test_report.md`。
 [0;32m[OK][0m Static validation
 [0;34m[16:58:49][0m Pipeline complete: 6 ok, 0 warnings.
+[0;32m[OK][0m Final commit pushed to origin.
+[0;34m[17:03:52][0m Using git remote: origin
+[0;34m[17:03:52][0m Pulling latest changes...
+From github.com:Transformer666/es2_mudlib
+ * branch            main       -> FETCH_HEAD
+Already up to date.
+
+Pipeline start: 2026-03-20 17:03:52 (phase: all)
+==============================
+[0;34m[17:03:54][0m === Phase: Analyze (bash-native, no agent) ===
+[0;34m[17:03:55][0m Analyze complete:
+[0;34m[17:03:55][0m   Races: 11/11 | Classes: 9/7 | Sects: 18/18
+[0;34m[17:03:55][0m   Skills: 75 (missing: 40) | Rooms: 471 | NPCs: 278
+[0;34m[17:03:55][0m   Quests: 7 | Equipment: 280
+[0;34m[17:03:55][0m   Total missing: 40
+[0;32m[OK][0m Analyze phase
+[0;34m[17:03:55][0m === Phase: Build ===
+[0;34m[17:03:55][0m Step: Audit area: stub_towns
+--- Step: Audit area: stub_towns ---
+All changes look correct. Here's the audit summary:
+
+## Stub Towns 審查結果
+
+### 完整的城鎮 (5/8 無需修改)
+| 城鎮 | 中文 | 狀態 |
+|------|------|------|
+| longan | 龍安 | complete |
+| jingji | 京畿 | complete |
+| kangping | 康平 | complete |
+| sanyen | 三掩 | complete |
+| choyin | 喬陰 | complete |
+
+### 修復的問題 (3 towns)
+
+**weiguo (衛國)** - 入口缺少守衛
+- 修改 `d/weiguo/entrance.c` — 加入 `set("objects", ([ __DIR__"npc/sentry" : 1 ]))` (複用既有的哨兵 NPC)
+
+**lee (離/李家村)** - 缺少商店
+- 新建 `d/lee/shop.c` — 雜貨舖房間
+- 新建 `d/lee/npc/shopkeeper.c` — 雜貨商 NPC (F_VENDOR，賣豆腐和鋤頭)
+- 修改 `d/lee/back_street.c` — 加入 north 出口到 shop (雙向連結)
+
+**baihua (百花)** - 缺少商店
+- 新建 `d/baihua/shop.c` — 百花雜貨舖房間
+- 新建 `d/baihua/npc/shopkeeper.c` — 雜貨商 NPC (F_VENDOR，賣鮮花和花環)
+- 修改 `d/baihua/back_street.c` — 加入 east 出口到 shop (雙向連結)
+
+### 建立的檔案清單
+1. `mudlib/d/lee/shop.c` (新建)
+2. `mudlib/d/lee/npc/shopkeeper.c` (新建)
+3. `mudlib/d/baihua/shop.c` (新建)
+4. `mudlib/d/baihua/npc/shopkeeper.c` (新建)
+5. `mudlib/d/weiguo/entrance.c` (修改)
+6. `mudlib/d/lee/back_street.c` (修改)
+7. `mudlib/d/baihua/back_street.c` (修改)
+[0;32m[OK][0m Audit area: stub_towns
+[0;34m[17:09:56][0m Step: Audit skills
+--- Step: Audit skills ---
+`force.c` is a base skill (基礎內功) — no `do_exercise` is intentional since it's a generic foundation skill, not a sect-specific neigong.
+
+## 審查結果
+
+### 1. 門派引用的技能（20 個獨立名稱）
+
+| 門派 | 技能 |
+|------|------|
+| 白象寺 | diamond hammer, staff |
+| 寶蓮寺 | staff |
+| 步玄派 | three rotations |
+| 封山派 | fengshan sword |
+| 虎刀門 | tiger blade |
+| 劍甲門 | sword, needle |
+| 哭笑門 | sword |
+| 瑯夷 | dagger |
+| 冷梅莊 | lengmei sword |
+| 龍圖 | longttu neigong, needle |
+| 茅山派 | maoshan sword, maoshan neigong, taoshan milu |
+| 天師派 | taiyi sword, ziwei neigong |
+| 天邪派 | phantom sword |
+| 武陀 | five defeat needle, amazing needle |
+| 玄天教 | sword |
+| 雪吟莊 | sword |
+| 隱教 | dagger |
+| 振武軍營 | tactic, pike |
+
+### 2. Skill daemon 對應（全部存在）
+
+所有 20 個門派技能都有對應的 `mudlib/daemon/skill/<name>.c` 檔案。
+
+### 3. `skill_improved` / `skill_advanced`
+
+**全部 75 個 skill daemon 都有這兩個函數。**
+
+### 4. 戰鬥技能 actions 數量
+
+**全部戰鬥技能都有 >= 6 個 actions。** 最高的有 8 個（sword, blade, unarmed）。
+
+### 5. 內功技能完整性
+
+所有門派內功（longttu_neigong, maoshan_neigong, ziwei_neigong, taoshan_milu）都有 `do_exercise`、`halt_exercise`、`exert_function`。`force.c` 是基礎內功，設計上不含這些函數。
+
+### 結論
+
+- **缺少：0 個** — 所有門派引用的技能都有對應 daemon
+- **不完整：0 個** — 所有 skill daemon 都有 `skill_improved` + `skill_advanced`，戰鬥技能都有 >= 6 actions，內功都有完整的練功函數
+- **本次建立：0 個**
+- **剩餘待處理：0 個**
+
+技能系統完整，無需修復。
+[0;32m[OK][0m Audit skills
+[0;34m[17:12:32][0m Step: Audit quests
+--- Step: Audit quests ---
+Error: Reached max turns (25)[0;32m[OK][0m Audit quests
+[0;34m[17:18:19][0m === Phase: Validate ===
+[0;34m[17:18:19][0m Step: Static validation
+--- Step: Static validation ---
+Both background tasks have completed and their results were already incorporated into the validation report above. No new information — the 24 FAIL items listed match exactly.
+[0;32m[OK][0m Static validation
+[0;34m[17:24:42][0m Pipeline complete: 5 ok, 0 warnings.
