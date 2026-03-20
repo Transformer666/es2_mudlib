@@ -57,17 +57,211 @@ https://sites.google.com/site/es2mud/home/wan-jia-yuan-chuang/tiandiling
 https://sites.google.com/site/es2mud/home/you-xi-jie-zi/noobguide01
 ```
 
-#### 1B. 玩家攻略 Blog（es2tips）
+#### 1B. 玩家攻略 Blog（es2tips.blogspot.com — 完整 120+ 篇）
+
+爬取所有文章，重點提取：NPC 名稱/位置、裝備屬性、門派設定、任務流程、地圖資訊。
 
 ```
-# 新手必看
-https://es2tips.blogspot.com/2013/05/es2-help.html
-# 殺業鍛鍊（練功地點、NPC 分佈）
-https://es2tips.blogspot.com/2013/05/es2_29.html
-# 茅山道士設定（門派技能細節）
-https://es2tips.blogspot.com/2014/08/es2_47.html
-# 裝備實錄（武器防具資料）
-https://es2tips.blogspot.com/
+# === 新手指南 & 系統說明 ===
+https://es2tips.blogspot.com/2013/05/es2-help.html                    # 新手必看 Help
+https://es2tips.blogspot.com/2014/07/es2.html                         # 主機狀態查詢（置頂）
+https://es2tips.blogspot.com/2014/02/es2.html                         # 如何投胎
+https://es2tips.blogspot.com/2014/09/es2.html                         # 戰鬥攻擊防禦基本設定
+https://es2tips.blogspot.com/2013/06/reset-skill.html                 # 技能重置 Reset Skill
+https://es2tips.blogspot.com/2014/09/es2-1-2014-sept.html             # 使用者體驗提升想法
+
+# === 練功 & 殺業 ===
+https://es2tips.blogspot.com/2013/05/es2_29.html                      # 鍛鍊殺業
+https://es2tips.blogspot.com/2014/10/mobnpc-swordbladepikeaxeneedlestaffunar.html  # 物理練功 Mob/NPC
+https://es2tips.blogspot.com/2014/11/stakelionbuddhapillar.html       # 練功標靶 stake/lion/buddha/pillar
+https://es2tips.blogspot.com/2014/08/train-stone-parry-backstab.html  # 試煉石 Train stone
+https://es2tips.blogspot.com/2014/11/6-minutes-mob-4-minutes.html     # 撿裝備時間測試
+
+# === 門派 & 職業設定 ===
+# 道士系
+https://es2tips.blogspot.com/2014/08/es2.html                         # 道士設定總覽
+https://es2tips.blogspot.com/2014/08/es2_59.html                      # 道士進階、茅山劍士
+https://es2tips.blogspot.com/2014/08/es2_47.html                      # 隱風觀 茅山道士（喚雨、算命）
+https://es2tips.blogspot.com/2014/08/es2_71.html                      # 靈雲觀 茅山道士（五雷、幽冥三箭）
+https://es2tips.blogspot.com/2014/08/es2_76.html                      # 幻霧觀 茅山道士（噬魂、通靈）
+https://es2tips.blogspot.com/2014/08/es2_75.html                      # 紫衣派 道士（雷）
+https://es2tips.blogspot.com/2014/08/es2_64.html                      # 素衣派 道士（冰）
+https://es2tips.blogspot.com/2014/08/es2_85.html                      # 玄衣派 道士（風）
+https://es2tips.blogspot.com/2014/08/es2_13.html                      # 朱衣派 道士（火）
+https://es2tips.blogspot.com/2014/02/taoism-cloud.html                # 天師道法【素雲書】
+https://es2tips.blogspot.com/2014/02/mao-shan-sword.html              # 茅山劍法
+https://es2tips.blogspot.com/2014/02/mao-shan-taoist.html             # 茅山老道
+https://es2tips.blogspot.com/2014/02/blog-post.html                   # 茅山道士/茅山派
+https://es2tips.blogspot.com/2014/01/blog-post_31.html                # 茅山劍士
+https://es2tips.blogspot.com/2015/11/blog-post_77.html                # 天師道士裝備與幻劍術
+# 武者系
+https://es2tips.blogspot.com/2014/08/blog-post_23.html                # 虎刀門護衛進階
+https://es2tips.blogspot.com/2014/08/han-xiao.html                    # 虎刀門掌門 韓笑
+https://es2tips.blogspot.com/2015/11/blog-post_7.html                 # 金剛鎚法穿靈效果
+# 軍人系
+https://es2tips.blogspot.com/2014/09/soldiers.html                    # 士兵/軍人
+https://es2tips.blogspot.com/2014/09/soldier-berserker.html           # 振武軍營士兵
+https://es2tips.blogspot.com/2014/09/soldier-royal.html               # 京畿大內巡院
+https://es2tips.blogspot.com/2014/10/soldierber.html                  # 軍師：戰術兵法
+https://es2tips.blogspot.com/2014/10/blog-post.html                   # 振武軍營轉軍師
+https://es2tips.blogspot.com/2014/11/byun.html                        # 振武軍營軍師 必勇
+# 方士系
+https://es2tips.blogspot.com/2014/09/blog-post.html                   # 龍圖丹派方士
+https://es2tips.blogspot.com/2014/09/blog-post_17.html                # 針灸師 武陀灸堂
+https://es2tips.blogspot.com/2014/09/blog-post_27.html                # 方士/針灸師進階
+https://es2tips.blogspot.com/2014/08/blog-post.html                   # 龍圖丹派醫師 江述仁
+# 書生系
+https://es2tips.blogspot.com/2014/08/int-21.html                      # 步玄居士悟性裝
+https://es2tips.blogspot.com/2014/08/nmb48yamadanana.html             # 步玄派弟子
+
+# === 門派師父位置 ===
+https://es2tips.blogspot.com/2014/10/es2.html                         # 職業師父的位置
+
+# === NPC & Boss 戰鬥 ===
+https://es2tips.blogspot.com/2015/11/vs_7.html                        # 天師道士 vs 駱易
+https://es2tips.blogspot.com/2015/11/blog-post_27.html                # 天師道士 vs 劉乙忘玄
+https://es2tips.blogspot.com/2015/11/vs.html                          # 天師道士 vs 梅影風
+https://es2tips.blogspot.com/2015/11/blog-post_49.html                # 天師道士 vs 柳東蘆
+https://es2tips.blogspot.com/2015/11/blog-post.html                   # 大魔頭 李東靈
+https://es2tips.blogspot.com/2015/11/es2-jpg.html                     # 夜叉吞鬼
+https://es2tips.blogspot.com/2014/11/dslee.html                       # 雪吟莊棄徒 李東靈
+https://es2tips.blogspot.com/2014/08/black-hell-agent.html            # 勾魂使者 黑無常
+https://es2tips.blogspot.com/2014/08/white-hell-agent.html            # 勾魂使者 白無常
+https://es2tips.blogspot.com/2013/06/vs-mob.html                      # 滅心/滅名/滅慾/神衛 vs 風神
+https://es2tips.blogspot.com/2013/05/blog-post_29.html                # 虎刀門護衛 孫漪
+
+# === 八寶樓系列（Boss + 裝備）===
+https://es2tips.blogspot.com/2013/05/1-book.html                      # 八寶樓(1) 歐陽芝
+https://es2tips.blogspot.com/2013/05/2_29.html                        # 八寶樓(2) 司馬雷
+https://es2tips.blogspot.com/2013/05/3_29.html                        # 八寶樓(3) 崇白虎
+https://es2tips.blogspot.com/2013/05/4.html                           # 八寶樓(4) 馬鍾聖
+https://es2tips.blogspot.com/2013/05/5_29.html                        # 八寶樓(5) 公孫微
+https://es2tips.blogspot.com/2013/05/6_29.html                        # 八寶樓(6) 天神地鬼
+https://es2tips.blogspot.com/2013/05/7.html                           # 八寶樓(7) 施鈺
+https://es2tips.blogspot.com/2013/05/8.html                           # 八寶樓(8) 劍皇
+
+# === 裝備資料（武器）===
+https://es2tips.blogspot.com/2014/11/dragon-whip.html                 # 毒龍鞭
+https://es2tips.blogspot.com/2014/11/lightning-bomb.html               # 霹靂雷火彈
+https://es2tips.blogspot.com/2014/11/staff-of-eroticism-huge.html     # 交歡杖
+https://es2tips.blogspot.com/2014/11/green-blade.html                 # 蕭尹：玉戒尺
+https://es2tips.blogspot.com/2014/11/golden-beast-lance.html          # 金龍豹紋槍
+https://es2tips.blogspot.com/2014/10/sword-of-killing-god.html        # 蔑天劍
+https://es2tips.blogspot.com/2014/08/rapid-sword.html                 # 疾風劍
+https://es2tips.blogspot.com/2014/08/essence-of-fish-psychic-sword.html  # 河魚腹珠 & 靈通劍
+https://es2tips.blogspot.com/2014/03/jade-rod.html                    # 寒玉藥杵
+https://es2tips.blogspot.com/2014/03/blog-post.html                   # 清風刀 血匕封喉等
+https://es2tips.blogspot.com/2014/02/mirror-of-gods-black-spark.html  # 封神寶鏡+離玄光熾
+https://es2tips.blogspot.com/2014/02/stange-copper-staff-celestial-bull-cane.html  # 玄烏杖+饕餮法杖
+https://es2tips.blogspot.com/2014/02/loving-sword-silky-gloves.html   # 歸心似劍
+https://es2tips.blogspot.com/2014/02/white-sword.html                 # 白色長劍
+https://es2tips.blogspot.com/2014/01/staff-of-ancient-snow.html       # 萬年雪
+https://es2tips.blogspot.com/2014/01/thunder-claw.html                # 雷熊爪
+https://es2tips.blogspot.com/2013/08/blog-post_3785.html              # 藍涎刀
+https://es2tips.blogspot.com/2013/08/blog-post_9762.html              # 藥王神劍
+https://es2tips.blogspot.com/2013/08/blog-post_8637.html              # 易羅大劍
+https://es2tips.blogspot.com/2013/08/blog-post_8.html                 # 鬼頭劈象刀
+https://es2tips.blogspot.com/2013/08/blog-post_4.html                 # 雪魂匕
+https://es2tips.blogspot.com/2013/07/blog-post.html                   # 追月流星劍
+https://es2tips.blogspot.com/2013/07/liuye.html                       # 邪門歪刀
+https://es2tips.blogspot.com/2013/06/blog-post_3.html                 # 天都劍 水月劍
+https://es2tips.blogspot.com/2013/06/image.html                       # 天命刃 天靈 穹氤
+https://es2tips.blogspot.com/2013/05/blog-post_2462.html              # 風雷刀等8把武器
+https://es2tips.blogspot.com/2014/10/dragon-needle.html               # 盤龍針
+https://es2tips.blogspot.com/2014/10/gin-pike.html                    # 紫金鳳頭錐
+https://es2tips.blogspot.com/2014/10/seal-of-chaos-broken-seal.html   # 混沌之印
+https://es2tips.blogspot.com/2014/01/blog-post_6513.html              # 追風劍+霹靂雷火彈
+https://es2tips.blogspot.com/2014/01/blog-post_3410.html              # 六靈妖姬鞭
+https://es2tips.blogspot.com/2014/01/blog-post_7305.html              # 古刃旋芒
+
+# === 裝備資料（防具 & 飾品）===
+https://es2tips.blogspot.com/2014/11/dragon-armor-staff-huge-or-parrydodge.html  # 怒龍錦冑
+https://es2tips.blogspot.com/2014/11/soul-crystal.html                # 靈魂水晶
+https://es2tips.blogspot.com/2014/11/blessed-jade.html                # 萬福寶玉
+https://es2tips.blogspot.com/2014/11/dragon-bone.html                 # 靈骨
+https://es2tips.blogspot.com/2014/08/skull-rosary.html                # 白骨念珠
+https://es2tips.blogspot.com/2014/08/dragon-soul-ring.html            # 龍戒
+https://es2tips.blogspot.com/2014/08/corrosive-hands.html             # 腐蝕之手
+https://es2tips.blogspot.com/2014/03/symbol-of-dao.html               # 邪骨指環
+https://es2tips.blogspot.com/2014/03/jin-ju.html                      # 九天鳳珠
+https://es2tips.blogspot.com/2014/02/rainnar-cloth-ashura-mask.html   # 雨師妾袍+修羅之面
+https://es2tips.blogspot.com/2014/02/girdle-of-headless.html          # 形天之怒
+https://es2tips.blogspot.com/2014/01/topaz-belt.html                  # 黃玉佩
+https://es2tips.blogspot.com/2014/01/blog-post_29.html                # 巫首項鍊
+https://es2tips.blogspot.com/2014/01/blog-post_4623.html              # 冷雪手護+雲羅絲衣
+https://es2tips.blogspot.com/2014/01/woochan-ring.html                # 無腸寶珠
+https://es2tips.blogspot.com/2014/01/dingling-legs.html               # 釘靈腿護
+https://es2tips.blogspot.com/2014/01/jiaojaos-boots.html              # 焦僥靴
+https://es2tips.blogspot.com/2014/01/yenhold-gauntlets.html           # 厭火之拳
+https://es2tips.blogspot.com/2014/01/blog-post_29.html                # 巫首項鍊
+https://es2tips.blogspot.com/2013/08/blog-post_9676.html              # 雷火天狼罩
+https://es2tips.blogspot.com/2013/08/blog-post.html                   # 龍思羽+封印冰環
+https://es2tips.blogspot.com/2013/07/blog-post_29.html                # 鱷神系列裝備
+https://es2tips.blogspot.com/2013/06/super-skin.html                  # 混元一氣袋
+https://es2tips.blogspot.com/2013/06/blog-post_15.html                # 白熊系列裝備
+https://es2tips.blogspot.com/2013/05/blog-post_30.html                # 青銅/鐵棘等21件裝備總覽
+https://es2tips.blogspot.com/2013/05/blog-post_493.html               # 封印雷環+穿靈等12件
+https://es2tips.blogspot.com/2013/06/blog-post_4.html                 # 舞璃戒指
+
+# === 地點 & NPC ===
+https://es2tips.blogspot.com/2014/03/blog-post_7114.html              # ES2 地圖（大略相對位置）
+https://es2tips.blogspot.com/2014/03/blog-post_2376.html              # 域水客棧（天寒村）
+https://es2tips.blogspot.com/2014/11/blog-post_4.html                 # 書：用書換符紙
+https://es2tips.blogspot.com/2014/11/es2.html                         # 書：名山書肆等地點
+https://es2tips.blogspot.com/2014/11/str-5.html                       # 買道具的兩個地方
+https://es2tips.blogspot.com/2014/11/blog-post.html                   # 聲望：京畿神社功德箱
+https://es2tips.blogspot.com/2014/02/fortune-teller-teller-zhang-fortune.html  # 算命先生位置
+https://es2tips.blogspot.com/2014/02/pot-well-bucket.html             # 常見水缸/水井/大水桶
+https://es2tips.blogspot.com/2014/02/es.html                          # 常見當鋪
+https://es2tips.blogspot.com/2014/02/es2_3.html                       # 坐船+釣魚地點
+https://es2tips.blogspot.com/2013/05/es2.html                         # 鬼魂常出現的地方
+
+# === 任務 & 劇情 ===
+https://es2tips.blogspot.com/2014/10/beggar-crone-maro-dagger-watermelon.html  # 老乞婆任務
+https://es2tips.blogspot.com/2013/05/blog-post_7503.html              # 任蕭蕭任務支線
+https://es2tips.blogspot.com/2013/05/blog-post_5878.html              # 八穴鬼徑走法
+https://es2tips.blogspot.com/2014/02/blog-post_8.html                 # 神之心打法
+https://es2tips.blogspot.com/2013/06/blog-post_7143.html              # 混沌之印+混沌獸
+https://es2tips.blogspot.com/2013/05/blog-post_4347.html              # 龍安鎮+黑龍+九轉異龍珠
+https://es2tips.blogspot.com/2013/05/blog-post_2986.html              # 百藥谷：赤龍+封山
+https://es2tips.blogspot.com/2013/05/blog-post_9262.html              # 大蜈蚣+聖木殘根
+https://es2tips.blogspot.com/2013/05/seal.html                        # 風神+風之印記
+
+# === 上古妖獸 ===
+https://es2tips.blogspot.com/2014/11/blog-post_9.html                 # 上古妖獸8隻總覽
+https://es2tips.blogspot.com/2014/11/art-concept-inferno-dog-ritual-monkey.html  # 妖獸美術概念
+
+# === 玩家角色紀錄 ===
+https://es2tips.blogspot.com/2014/03/boyo.html                        # 虎刀門弟子 博佑
+https://es2tips.blogspot.com/2014/03/cclai.html                       # 黑龍左使 你好
+https://es2tips.blogspot.com/2014/03/vvcheng.html                     # 龍圖丹派弟子 鄭兩兩
+https://es2tips.blogspot.com/2014/03/spinlocks.html                   # 寶蓮寺弟子 善想
+https://es2tips.blogspot.com/2014/03/polynomial.html                  # 天月庵弟子 poly
+https://es2tips.blogspot.com/2014/03/gigiyiyi.html                    # 茅山真人 擊耀
+https://es2tips.blogspot.com/2014/03/spinlock.html                    # 白象寺羅漢 史賓
+https://es2tips.blogspot.com/2014/10/gfmul.html                       # 紫衣派道士 雷道
+https://es2tips.blogspot.com/2014/10/liu-ke.html                      # 劉可角色裝備
+
+# === 聲望 & 門派仇恨 ===
+https://es2tips.blogspot.com/2013/05/blog-post_6121.html              # 黑道/武林/青邪/戰場聲望
+https://es2tips.blogspot.com/2014/11/vs.html                          # 會結仇 vs 不會結仇的派別
+https://es2tips.blogspot.com/2013/06/1.html                           # 黑道聲望(1) 裝備
+https://es2tips.blogspot.com/2013/06/2.html                           # 黑道聲望(2) 裝備
+https://es2tips.blogspot.com/2013/06/3.html                           # 黑道聲望(3) 裝備
+https://es2tips.blogspot.com/2014/08/equalizer.html                   # 毒刀胡惑 解除仇恨
+
+# === 其他系統 ===
+https://es2tips.blogspot.com/2014/10/blog-post_29.html                # 水神天龍走法
+https://es2tips.blogspot.com/2014/02/blog-post_26.html                # 江湖藝人 張小簽
+https://es2tips.blogspot.com/2014/02/blog-post_23.html                # 幫包包加標籤
+https://es2tips.blogspot.com/2014/02/ghosts.html                      # 各種鬼魂
+https://es2tips.blogspot.com/2014/10/blog-post_28.html                # 各種中毒症狀
+https://es2tips.blogspot.com/2013/05/es2-tintin-automatic-duel.html   # 自動擂台比武
+https://es2tips.blogspot.com/2014/07/es2-expect-script.html           # 防砍檔自動登入 Expect
+https://es2tips.blogspot.com/2013/06/blog-post_9349.html              # 四鬼招喚法
+https://es2tips.blogspot.com/2013/05/blog-post_882.html               # 食物：紅燒雞等
+https://es2tips.blogspot.com/2013/05/blog-post_28.html                # 文國縣天風客棧食物
+https://es2tips.blogspot.com/2013/06/blog-post_9707.html              # 水龍經換奇兵精意
 ```
 
 #### 1C. 原版 ES2 mudlib（GitHub，用於比對區域結構）
