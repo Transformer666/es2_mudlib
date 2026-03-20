@@ -74,30 +74,87 @@ run_step() {
 # PHASE 1: ANALYZE — scan what's missing
 # ============================================================
 phase_analyze() {
-    log "=== Phase: Analyze ==="
+    log "=== Phase: Analyze (bash-native, no agent) ==="
 
-    run_step "Scan existing content" \
-"掃描 mudlib 的現有內容，產生 docs/missing_content.json。
+    local races=$(ls mudlib/daemon/race/*.c 2>/dev/null | wc -l | tr -d ' ')
+    local classes=$(ls mudlib/daemon/class/*.c 2>/dev/null | wc -l | tr -d ' ')
+    local sects=$(ls mudlib/daemon/sect/*.c 2>/dev/null | wc -l | tr -d ' ')
+    local skills=$(ls mudlib/daemon/skill/*.c 2>/dev/null | wc -l | tr -d ' ')
+    local rooms=$(find mudlib/d/ -maxdepth 2 -name '*.c' ! -path '*/npc/*' 2>/dev/null | wc -l | tr -d ' ')
+    local npcs=$(find mudlib/d/ -path '*/npc/*.c' ! -path '*/npc/obj/*' 2>/dev/null | wc -l | tr -d ' ')
+    local quests=$(grep -rl 'query("quest/' mudlib/d/*/npc/*.c 2>/dev/null | grep -v master | wc -l | tr -d ' ')
+    local equip=$(find mudlib/d/ -path '*/npc/obj/*.c' 2>/dev/null | wc -l | tr -d ' ')
+    local equip2=$(find mudlib/obj/weapon/ mudlib/obj/armor/ -name '*.c' 2>/dev/null | wc -l | tr -d ' ')
+    equip=$((equip + equip2))
 
-步驟：
-1. 讀取 automation/wiki_reference.md 取得應有的種族(11)/職業(7)/門派(18) 清單
-2. 掃描現有檔案：
-   - ls mudlib/daemon/race/*.c | wc -l（種族）
-   - ls mudlib/daemon/class/*.c | wc -l（職業）
-   - ls mudlib/daemon/sect/*.c | wc -l（門派）
-   - ls mudlib/daemon/skill/*.c | wc -l（技能）
-   - find mudlib/d/ -maxdepth 2 -name '*.c' ! -path '*/npc/*' | wc -l（房間）
-   - find mudlib/d/ -path '*/npc/*.c' ! -path '*/npc/obj/*' | wc -l（NPC）
-3. 比對差異
-4. 輸出 docs/missing_content.json，格式：
+    # Find stub areas (< 5 rooms)
+    local stub_towns=""
+    for area_dir in mudlib/d/*/; do
+        [ -d "$area_dir" ] || continue
+        local area=$(basename "$area_dir")
+        case "$area" in road|npc|obj) continue ;; esac
+        local rc=$(find "$area_dir" -maxdepth 1 -name "*.c" 2>/dev/null | wc -l | tr -d ' ')
+        if [ "$rc" -lt 5 ]; then
+            stub_towns="$stub_towns\"$area\","
+        fi
+    done
+    stub_towns="[${stub_towns%,}]"
+
+    # Find missing skills referenced by sects
+    local missing_skills=""
+    local missing_skill_count=0
+    for sect_file in mudlib/daemon/sect/*.c; do
+        [ -f "$sect_file" ] || continue
+        grep -A20 '"skills"' "$sect_file" 2>/dev/null | grep -o '"[^"]*"' | grep -v 'skills' | tr -d '"' | while read sk; do
+            [ -z "$sk" ] && continue
+            local sk_file="mudlib/daemon/skill/$(echo "$sk" | tr ' ' '_').c"
+            if [ ! -f "$sk_file" ]; then
+                echo "$sk"
+            fi
+        done
+    done | sort -u > /tmp/es2_missing_skills.txt
+    missing_skill_count=$(wc -l < /tmp/es2_missing_skills.txt | tr -d ' ')
+    missing_skills=$(sed 's/.*/"&"/' /tmp/es2_missing_skills.txt | paste -sd',' -)
+    missing_skills="[${missing_skills}]"
+
+    # Calculate total missing
+    local races_missing=$((11 - races))
+    [ "$races_missing" -lt 0 ] && races_missing=0
+    local classes_missing=$((7 - classes))
+    [ "$classes_missing" -lt 0 ] && classes_missing=0
+    local sects_missing=$((18 - sects))
+    [ "$sects_missing" -lt 0 ] && sects_missing=0
+    local total_missing=$((races_missing + classes_missing + sects_missing + missing_skill_count))
+
+    # Write JSON
+    cat > docs/missing_content.json << JSONEOF
 {
-  \"summary\": { \"total_missing\": N },
-  \"races\": { \"required\": 11, \"implemented\": N, \"missing\": N },
-  \"skills\": { \"implemented\": N, \"missing_list\": [] },
-  \"areas\": { \"implemented\": N, \"stub_towns\": [] },
-  \"quests\": { \"implemented\": N }
+  "summary": {
+    "total_missing": $total_missing,
+    "races": $races,
+    "classes": $classes,
+    "sects": $sects,
+    "skills": $skills,
+    "rooms": $rooms,
+    "npcs": $npcs,
+    "quests": $quests,
+    "equipment": $equip
+  },
+  "races": { "required": 11, "implemented": $races, "missing": $races_missing },
+  "classes": { "required": 7, "implemented": $classes, "missing": $classes_missing },
+  "sects": { "required": 18, "implemented": $sects, "missing": $sects_missing },
+  "skills": { "implemented": $skills, "missing": $missing_skill_count, "missing_list": $missing_skills },
+  "areas": { "implemented": $(ls -d mudlib/d/*/ 2>/dev/null | wc -l | tr -d ' '), "stub_towns": $stub_towns },
+  "quests": { "implemented": $quests }
 }
-5. 在終端輸出摘要" 15
+JSONEOF
+
+    log "Analyze complete:"
+    log "  Races: $races/11 | Classes: $classes/7 | Sects: $sects/18"
+    log "  Skills: $skills (missing: $missing_skill_count) | Rooms: $rooms | NPCs: $npcs"
+    log "  Quests: $quests | Equipment: $equip"
+    log "  Total missing: $total_missing"
+    success "Analyze phase"
 }
 
 # ============================================================
