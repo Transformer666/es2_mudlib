@@ -15,6 +15,8 @@ LONG
 	set("exits", ([
 		"south" : __DIR__"entrance",
 		"north" : __DIR__"square",
+		"east"  : __DIR__"weapon_shop",
+		"west"  : __DIR__"teahouse",
 	]));
 
 	setup();

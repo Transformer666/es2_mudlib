@@ -14,7 +14,9 @@ LONG
 	);
 	set("no_fight", 1);
 	set("exits", ([
-		"west" : __DIR__"square",
+		"west"  : __DIR__"square",
+		"east"  : __DIR__"stable",
+		"north" : __DIR__"armory",
 	]));
 	set("objects", ([
 		__DIR__"npc/quartermaster" : 1,

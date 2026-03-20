@@ -12,7 +12,8 @@ void create()
 LONG
     );
     set("exits", ([
-        "west" : __DIR__"yard",
+        "west"  : __DIR__"yard",
+        "north" : __DIR__"armory",
     ]));
 
     setup();

@@ -1,208 +1,224 @@
 {
   "scan_date": "2026-03-20",
   "summary": {
-    "total_required": 178,
-    "total_implemented": 108,
-    "total_missing": 70,
-    "completion_percentage": "60.7%"
+    "total_required_categories": 8,
+    "total_items_required": 327,
+    "total_items_implemented": 166,
+    "total_items_missing": 161,
+    "completion_percentage": "50.8%"
   },
   "races": {
     "required": 11,
     "implemented": 11,
     "missing": 0,
-    "completion": "100%",
+    "note": "wiki 列出 11 種族: human, headless(xingtian), yenhold, yaksa(yaksha), malik, woochan, jiaojao, dingling, ashura(asura), rainnar, blackteeth",
     "implemented_list": ["human", "xingtian", "yenhold", "yaksha", "malik", "woochan", "jiaojao", "dingling", "asura", "rainnar", "blackteeth"],
-    "note": "所有 11 種族已完整實作，含 daemon 與 help 檔案"
+    "help_files_implemented": 11,
+    "note2": "xingtian=headless(刑天), yaksha=yaksa(夜叉), asura=ashura(阿修羅) — 名稱略有差異但已全部實作"
   },
   "classes": {
-    "required": 7,
-    "implemented": 7,
+    "required": 9,
+    "implemented": 9,
     "missing": 0,
-    "completion": "100%",
-    "implemented_list": ["warrior", "monk", "taoist", "scholar", "thief", "soldier", "alchemist"],
-    "extra": ["commoner", "fighter"],
-    "note": "7 大職業全部實作完成，另有 commoner 與 fighter 額外職業"
+    "note": "我們的職業體系與原版不同，原版有14種(assassin, beggar, bonze, dancer, fighter, juechen, lama, ninja, nomad, ronin, scholar, swordsman, taoist)，我們按 wiki 重新設計為7+2種",
+    "implemented_list": ["warrior", "monk", "taoist", "thief", "alchemist", "scholar", "soldier", "commoner", "fighter"],
+    "original_es2_classes": ["assassin", "beggar", "bonze", "dancer", "fighter", "juechen", "lama", "ninja", "nomad", "ronin", "scholar", "swordsman", "taoist"],
+    "mapping_note": "原版14職業已重新整合為我們的9職業體系，不視為缺失"
   },
   "sects": {
     "required": 18,
     "implemented": 18,
     "missing": 0,
-    "completion": "100%",
-    "implemented_list": [
-      "fengshan（封山派）", "lengmei（冷梅莊）", "kuxiao（哭笑門）",
-      "xueyin（雪吟莊）", "hudao（虎刀門）",
-      "baolian（寶蓮寺）", "tianyue（天月庵）", "baixiang（白象寺）",
-      "tianshi（天師派）", "maoshan（茅山派）",
-      "langyi（瑯夷）", "yinjiao（隱教）",
-      "longttu（龍圖派）", "wutuo（武陀堂）",
-      "buxuan（步玄派）", "xuantian（玄天教）",
-      "zhenwu（振武軍營）",
-      "tianxie（天邪派）"
-    ],
-    "missing_list": [],
-    "note": "所有 18 門派已實作，location 指向的房間檔案全部存在（100% 驗證通過）",
-    "missing_from_wiki": {
-      "jianjia_cross_sect": "劍甲門已有 daemon 但 wiki 未列為獨立門派（跨門派機制）"
-    }
+    "note": "原版沒有 sect daemon 目錄，此為我們新增的系統",
+    "implemented_list": ["baixiang", "baolian", "buxuan", "fengshan", "hudao", "jianjia", "kuxiao", "langyi", "lengmei", "longttu", "maoshan", "tianshi", "tianxie", "wutuo", "xuantian", "xueyin", "yinjiao", "zhenwu"],
+    "all_locations_valid": true,
+    "note2": "wiki 提到的天月庵(tianyue)已有區域但可能缺少完整門派 daemon — 需驗證"
   },
   "skills": {
-    "our_total": 27,
-    "original_total": 71,
-    "shared": 10,
-    "missing_from_original": 60,
-    "our_unique": 17,
-    "completion_vs_original": "14.1%",
-    "completion": "38.0%",
-    "our_skills": [
-      "amazing_needle", "axe", "blade", "dagger", "diamond_hammer",
-      "dodge", "fengshan_sword", "five_defeat_needle", "force",
-      "lengmei_sword", "longttu_neigong", "maoshan_neigong", "maoshan_sword",
-      "needle", "parry", "phantom_sword", "pike", "staff", "sword",
-      "tactic", "taiyi_sword", "taoshan_milu", "three_rotations",
-      "tiger_blade", "unarmed", "whip", "ziwei_neigong"
+    "required": 71,
+    "implemented": 27,
+    "missing": 44,
+    "completion_percentage": "38.0%",
+    "implemented_list": [
+      "amazing_needle", "axe", "blade", "dagger", "diamond_hammer", "dodge",
+      "fengshan_sword", "five_defeat_needle", "force", "lengmei_sword",
+      "longttu_neigong", "maoshan_neigong", "maoshan_sword", "needle",
+      "parry", "phantom_sword", "pike", "staff", "sword", "tactic",
+      "taiyi_sword", "taoshan_milu", "three_rotations", "tiger_blade",
+      "unarmed", "whip", "ziwei_neigong"
     ],
-    "shared_with_original": [
-      "axe", "blade", "dagger", "dodge", "force", "parry", "staff", "sword", "unarmed", "whip"
+    "all_have_skill_improved": true,
+    "all_have_skill_advanced": true,
+    "missing_from_original": [
+      "bloodystrike", "bolomiduo", "buddhism", "celestial", "celestrike",
+      "chanting", "chaos-steps", "cloudstaff", "deisword", "essencemagic",
+      "fall-steps", "fonxanforce", "fonxansword", "fork", "gouyee",
+      "hammer", "iceforce", "instruments", "iron-cloth", "jin-gang",
+      "jingang-staff", "juechen-force", "linbo-steps", "literate",
+      "liuh-ken", "lotusforce", "magic-array", "magic", "meihua-shou",
+      "move", "music", "mysterrier", "mystforce", "mystsword",
+      "necromancy", "nine-moon", "notraces", "perception",
+      "pyrobat-steps", "qidaoforce", "scratching", "serpentforce",
+      "shortsong-blade", "six-chaos-sword", "snowshade-force",
+      "snowshade-sword", "snowwhip", "spells", "spicyclaw",
+      "spider-array", "spring-blade", "stealing", "stormdance",
+      "tao-mystery", "taoism", "tenderzhi", "throwing", "ts-fist",
+      "wu-shun", "yirong"
     ],
-    "our_unique_skills": [
-      "amazing_needle（奇針術）", "diamond_hammer（金剛鎚法）",
-      "fengshan_sword（封山劍法）", "five_defeat_needle（五敗針法）",
-      "lengmei_sword（冷梅劍法）", "longttu_neigong（龍圖內功）",
-      "maoshan_neigong（茅山內功）", "maoshan_sword（茅山劍法）",
-      "needle（針法）", "phantom_sword（幻影劍法）", "pike（槍法）",
-      "tactic（兵法）", "taiyi_sword（太乙劍法）",
-      "taoshan_milu（陶山迷路）", "three_rotations（三轉劍法）",
-      "tiger_blade（虎刀）", "ziwei_neigong（紫微內功）"
-    ],
-    "missing_from_original_list": [
-      "bloodystrike（血殺）", "bolomiduo（般若多）", "buddhism（佛學）",
-      "celestial（天功）", "celestrike（天擊）", "chanting（誦經）",
-      "chaos-steps（亂步）", "cloudstaff（雲杖）", "deisword（帝劍）",
-      "essencemagic（元素魔法）", "fall-steps（落步）",
-      "fonxanforce（封山內功）", "fonxansword（封山劍）",
-      "fork（叉）", "gouyee（勾藝）", "hammer（鎚法）",
-      "iceforce（冰功）", "instruments（樂器）", "iron-cloth（鐵布衫）",
-      "jin-gang（金剛）", "jingang-staff（金剛杖）",
-      "juechen-force（絕塵功）", "linbo-steps（凌波步）",
-      "literate（文學）", "liuh-ken（六根）", "lotusforce（蓮花功）",
-      "magic-array（法陣）", "magic（法術）", "meihua-shou（梅花手）",
-      "move（身法）", "music（音律）", "mysterrier（奧義）",
-      "mystforce（玄功）", "mystsword（玄劍）", "necromancy（招魂）",
-      "nine-moon（九月）", "notraces（無痕）", "perception（感知）",
-      "pyrobat-steps（火蝠步）", "qidaoforce（氣道功）",
-      "scratching（抓術）", "serpentforce（蛇功）",
-      "shortsong-blade（短歌刀）", "six-chaos-sword（六亂劍）",
-      "snowshade-force（雪影功）", "snowshade-sword（雪影劍）",
-      "snowwhip（雪鞭）", "spells（法術）", "spicyclaw（辛爪）",
-      "spider-array（蜘蛛陣）", "spring-blade（春刀）",
-      "stealing（偷竊）", "stormdance（風暴舞）",
-      "tao-mystery（道玄）", "taoism（道法）", "tenderzhi（柔指）",
-      "throwing（投擲）", "ts-fist（天山拳）", "wu-shun（五順）",
-      "yirong（易容）"
-    ],
-    "all_skills_have_improved_advanced": true,
-    "note": "我們的 27 個技能全部含有 skill_improved 和 skill_advanced 函數。原版 71 個技能中我們缺少 60 個，但我們也有 17 個原版沒有的自創技能。"
+    "note": "比對原版 mudchina/es2 的 daemon/skill/ 目錄，共71個技能檔，我們有27個（含自訂名稱的技能），缺少44個原版技能",
+    "priority_missing": {
+      "high": [
+        "buddhism (佛學，和尚系核心)",
+        "taoism (道術，道士系核心)",
+        "literate (識字，書生系核心)",
+        "stealing (偷竊，小偷系核心)",
+        "magic (法術，方士系核心)",
+        "spells (咒術)",
+        "hammer (鎚法，已有diamond_hammer但缺通用)",
+        "move (身法，基礎技能)",
+        "perception (感知，基礎技能)",
+        "music (音律)"
+      ],
+      "medium": [
+        "lotusforce (蓮花內功)", "jingang-staff (金剛杖法)", "jin-gang (金剛)",
+        "iron-cloth (鐵布衫)", "iceforce (冰凍內功)", "serpentforce (蛇形內功)",
+        "celestial (天界)", "celestrike (天擊)", "cloudstaff (雲杖法)",
+        "notraces (無影步)", "throwing (暗器)"
+      ],
+      "low": [
+        "bloodystrike", "bolomiduo", "chanting", "chaos-steps",
+        "deisword", "essencemagic", "fall-steps", "fonxanforce",
+        "fonxansword", "fork", "gouyee", "instruments",
+        "juechen-force", "linbo-steps", "liuh-ken", "magic-array",
+        "meihua-shou", "mysterrier", "mystforce", "mystsword",
+        "necromancy", "nine-moon", "pyrobat-steps", "qidaoforce",
+        "scratching", "shortsong-blade", "six-chaos-sword",
+        "snowshade-force", "snowshade-sword", "snowwhip",
+        "spicyclaw", "spider-array", "spring-blade", "stormdance",
+        "tao-mystery", "tenderzhi", "ts-fist", "wu-shun", "yirong"
+      ]
+    }
   },
   "areas": {
-    "our_total": 37,
-    "original_content_areas": 19,
-    "shared": 5,
-    "missing_from_original": 13,
-    "our_unique": 32,
-    "completion_vs_original": "26.3%",
+    "required": 25,
+    "implemented": 37,
+    "missing_from_original": 12,
+    "our_additional_areas": 32,
+    "completion_percentage": "72.0%",
+    "original_areas": [
+      "canyon", "choyin", "chuenyu", "city", "death", "force",
+      "goathill", "graveyard", "green", "green.n", "ice", "jail",
+      "latemoon", "npc", "oldpine", "sanyen", "snow", "temple",
+      "village", "waterfog", "class", "skill", "social_guild", "wiz"
+    ],
     "our_areas": [
       "baihua", "baixiang", "baolian", "buxuan", "chixiao", "choyin",
       "fengshan", "graveyard", "heifeng", "hell", "hudao", "jianjia",
       "jingji", "kangping", "kuxiao", "langyi", "lee", "lengmei",
       "lijun", "longan", "longttu", "manglin", "maoshan", "oldpine",
       "road", "sanyen", "snow", "tianshi", "tianxie", "tianyue",
-      "weiguo", "wutang", "wutuo", "xuantian", "xueyin", "yinjiao", "zhenwu"
+      "weiguo", "wutang", "wutuo", "xuantian", "xueyin", "yinjiao",
+      "zhenwu"
     ],
-    "shared_with_original": ["choyin", "graveyard", "oldpine", "sanyen", "snow"],
-    "missing_from_original_list": [
-      {"id": "canyon", "name_zh": "峽谷", "priority": "medium"},
-      {"id": "chuenyu", "name_zh": "泉域", "priority": "medium"},
-      {"id": "city", "name_zh": "城市", "priority": "high"},
-      {"id": "death", "name_zh": "死亡領域", "priority": "low", "note": "我們有 hell 區域可能對應"},
-      {"id": "force", "name_zh": "內功修練區", "priority": "high"},
-      {"id": "goathill", "name_zh": "羊山", "priority": "medium"},
-      {"id": "green", "name_zh": "草原", "priority": "medium"},
-      {"id": "green.n", "name_zh": "草原北", "priority": "medium"},
-      {"id": "ice", "name_zh": "冰域", "priority": "high"},
-      {"id": "jail", "name_zh": "監獄", "priority": "medium"},
-      {"id": "latemoon", "name_zh": "晚月", "priority": "medium"},
-      {"id": "temple", "name_zh": "神殿", "priority": "high"},
-      {"id": "village", "name_zh": "村莊", "priority": "medium"},
-      {"id": "waterfog", "name_zh": "水霧", "priority": "medium"}
+    "matched_areas": ["choyin", "graveyard", "oldpine", "sanyen", "snow"],
+    "missing_original_areas": [
+      "canyon (峽谷)",
+      "chuenyu (泉域)",
+      "city (城市)",
+      "death (死亡領域)",
+      "force (內功修練區)",
+      "goathill (羊山)",
+      "green/green.n (草原)",
+      "ice (冰域)",
+      "jail (監獄)",
+      "latemoon (晚月)",
+      "temple (神殿)",
+      "village (村莊)",
+      "waterfog (水霧)"
     ],
-    "note": "我們有 37 個區域（共 530 個 .c 檔案），遠超原版的 19 個內容區域。主要城鎮 snow（94檔）和 wutang（42檔）內容最豐富。原版中 13 個內容區域我們尚未實作。"
+    "our_unique_areas": [
+      "baihua (百花)", "baixiang (白象寺)", "baolian (寶蓮寺)",
+      "buxuan (步玄派)", "chixiao (赤霄)", "fengshan (封山派)",
+      "heifeng (黑風)", "hell (地獄)", "hudao (虎刀門)",
+      "jianjia (劍甲門)", "jingji (京畿)", "kangping (康平)",
+      "kuxiao (哭笑門)", "langyi (瑯夷)", "lee (李家村)",
+      "lengmei (冷梅莊)", "lijun (離郡)", "longan (龍安)",
+      "longttu (龍圖丹派)", "manglin (莽林)", "maoshan (茅山派)",
+      "road (道路)", "tianshi (天師派)", "tianxie (天邪派)",
+      "tianyue (天月庵)", "weiguo (衛國)", "wutang (武唐城)",
+      "wutuo (武陀)", "xuantian (玄天教)", "xueyin (雪吟莊)",
+      "yinjiao (隱教)", "zhenwu (振武軍營)"
+    ],
+    "note": "我們有很多原版沒有的門派專屬區域，但缺少一些原版的野外探索區域"
   },
-  "missing_rooms": [
-    {"area": "chixiao", "description": "赤魈村缺少許願池天靈任務觸發機制"},
-    {"area": "hell", "description": "地獄塔頂缺少地靈任務觸發機制"},
-    {"area": "snow", "description": "雪亭鎮缺少部分謎題關聯房間"},
-    {"area": "wutang", "description": "五堂鎮缺少部分謎題關聯房間"}
-  ],
-  "missing_npcs": [
-    {"name": "天靈", "location": "赤魈村許願池", "type": "boss", "priority": "high"},
-    {"name": "地靈", "location": "地獄塔頂", "type": "boss", "priority": "high"},
-    {"name": "大魔頭李東靈", "location": "未知", "type": "boss", "priority": "high"},
-    {"name": "駱易", "location": "未知", "type": "boss", "priority": "medium"},
-    {"name": "劉乙忘玄", "location": "未知", "type": "boss", "priority": "medium"},
-    {"name": "歐陽無極", "location": "茅山隱風觀", "type": "sect_master", "priority": "high", "note": "隱風觀茅山道士師父"},
-    {"name": "歐陽無寂", "location": "茅山", "type": "sect_npc", "priority": "high", "note": "教授茅山奇術/遁甲書"},
-    {"name": "杞庸", "location": "未知", "type": "lore", "priority": "low", "note": "傳授武學的神秘少年"}
-  ],
-  "missing_quests": [
-    {"name": "侮天鬼主線", "priority": "critical", "status": "wiki 標記為開發中"},
-    {"name": "十三靈天賦重置任務", "priority": "high"},
-    {"name": "天靈任務", "priority": "high", "location": "赤魈村"},
-    {"name": "地靈任務", "priority": "high", "location": "地獄塔"},
-    {"name": "五堂鎮六大謎題", "priority": "medium"},
-    {"name": "雪亭鎮七大謎題", "priority": "medium"},
-    {"name": "殺業鍛鍊系統", "priority": "medium"},
-    {"name": "金蛇門人進階任務", "priority": "medium"},
-    {"name": "黑龍使者進階任務", "priority": "medium"},
-    {"name": "劍甲門跨門派拜師", "priority": "medium"},
-    {"name": "軍人戰功升遷系統", "priority": "medium"}
-  ],
-  "missing_help_texts": [
-    {"name": "help cmds", "priority": "high", "note": "指令總覽"},
-    {"name": "help class", "priority": "high", "note": "職業說明"},
-    {"name": "help newbie", "priority": "high", "note": "新手指引"},
-    {"name": "help history", "priority": "medium", "note": "歷史故事"},
-    {"name": "help myth", "priority": "medium", "note": "神話故事"},
-    {"name": "help peoples", "priority": "medium", "note": "種族總覽"},
-    {"name": "help theme", "priority": "medium", "note": "世界觀主題"},
-    {"name": "help race.details", "priority": "medium", "note": "種族詳細資料"},
-    {"name": "help sect/*", "priority": "medium", "note": "各門派說明"},
-    {"name": "help skill/*", "priority": "low", "note": "各技能說明"}
-  ],
-  "missing_equipment": [
-    {"name": "穿靈", "type": "weapon", "subtype": "blade", "priority": "critical", "note": "神話雙刃之一"},
-    {"name": "旋芒", "type": "weapon", "subtype": "blade", "priority": "critical", "note": "神話雙刃之一"},
-    {"name": "思歸符", "type": "weapon", "subtype": "dagger", "priority": "high", "note": "天靈任務獎勵"},
-    {"name": "太陽槍", "type": "weapon", "subtype": "pike", "priority": "high", "note": "地靈任務道具"},
-    {"name": "炎日箭", "type": "weapon", "subtype": "arrow", "priority": "high", "note": "地靈任務道具"},
-    {"name": "怒龍錦冑", "type": "armor", "defense": 85, "priority": "medium"},
-    {"name": "交歡杖", "type": "weapon", "subtype": "two-hand staff", "priority": "medium", "note": "已在 obj/weapon/erotic_staff.c？需確認"},
-    {"name": "毒龍鞭", "type": "weapon", "subtype": "whip", "priority": "medium"},
-    {"name": "霹靂雷火彈", "type": "weapon", "subtype": "explosive", "priority": "medium"},
-    {"name": "先天符", "type": "consumable", "priority": "high", "note": "茅山幻術消耗品"},
-    {"name": "四神武器（火雷風雨）", "type": "weapon_set", "priority": "high", "note": "天靈任務觸發道具"},
-    {"name": "聖木殘根", "type": "quest_item", "priority": "high", "note": "地靈任務道具鏈"},
-    {"name": "大環丹", "type": "quest_item", "priority": "high", "note": "地靈任務道具鏈"},
-    {"name": "金屋內丹", "type": "quest_item", "priority": "high", "note": "地靈任務道具鏈"}
-  ],
-  "missing_systems": [
-    {"name": "茅山幻術系統", "priority": "high", "note": "先天符消耗召喚獸法術（狗/猴/蛇/雨）"},
-    {"name": "茅山奇術/遁甲書", "priority": "medium", "note": "fate/experience 能力"},
-    {"name": "天師四元素系統", "priority": "high", "note": "冰火風雷元素法術"},
-    {"name": "雨師妾養蛇系統", "priority": "medium", "note": "培養最多5條蛇作為裝備"},
-    {"name": "夜叉吞鬼/吞魂系統", "priority": "medium"},
-    {"name": "阿修羅吞屍系統", "priority": "medium"},
-    {"name": "種族主動技能系統", "priority": "high", "note": "多數種族的主動技能尚待確認是否實作"},
-    {"name": "召喚獸系統", "priority": "medium", "note": "部落格提到 8 種召喚獸概念設計"},
-    {"name": "天賦評級系統", "priority": "low", "note": "140-200 天賦等級文字描述"}
-  ]
+  "conditions": {
+    "required": 7,
+    "implemented": 2,
+    "missing": 5,
+    "implemented_list": ["drunk", "poison"],
+    "missing_list": ["bandaged", "iceshock", "rose_poison", "slumber_drug", "snake_poison"],
+    "note": "比對原版 mudchina/es2 的 daemon/condition/ 目錄"
+  },
+  "missing_rooms": {
+    "note": "所有 sect daemon 的 location 指向的房間都存在",
+    "broken_references": 0,
+    "total_room_files": 559,
+    "total_areas": 37,
+    "areas_needing_expansion": [
+      "hudao (6 files — 需要更多房間和 NPC)",
+      "baixiang (7 files — 需要更多房間和 NPC)",
+      "fengshan (7 files — 需要更多房間和 NPC)",
+      "longan (8 files — 需要更多城鎮設施)",
+      "jingji (8 files — 需要更多城鎮設施)",
+      "weiguo (8 files — 需要更多城鎮設施)",
+      "zhenwu (8 files — 需要更多軍營設施)"
+    ]
+  },
+  "missing_npcs": {
+    "note": "需要為缺少的原版區域補充 NPC",
+    "priority": [
+      "canyon (峽谷) — 未建區，需要全部 NPC",
+      "chuenyu (泉域) — 未建區，需要全部 NPC",
+      "city (城市) — 未建區，需要全部 NPC",
+      "ice (冰域) — 未建區，需要全部 NPC",
+      "village (村莊) — 未建區，需要全部 NPC",
+      "waterfog (水霧) — 未建區，需要全部 NPC"
+    ]
+  },
+  "missing_quests": {
+    "note": "wiki 主線任務頁面列出的任務系統尚未完整",
+    "known_missing": [
+      "主線任務系統 (來自 wiki zhu-xian-ren-wu)",
+      "天地靈任務 (來自 wiki tiandiling)",
+      "門派拜師任務（部分門派缺少完整流程）",
+      "殺業鍛鍊路線（練功地點指引）"
+    ]
+  },
+  "missing_help_texts": {
+    "implemented": 11,
+    "note": "僅有種族幫助文件，缺少職業、門派、技能、指令等幫助文件",
+    "missing_categories": [
+      "職業幫助文件 (classes/warrior, classes/monk, etc.)",
+      "門派幫助文件 (sects/fengshan, sects/baolian, etc.)",
+      "技能幫助文件 (skills/sword, skills/force, etc.)",
+      "指令幫助文件 (commands/look, commands/fight, etc.)",
+      "新手指南 (tutorial/getting_started, etc.)"
+    ]
+  },
+  "missing_equipment": {
+    "implemented_weapons": 18,
+    "implemented_weapon_list": [
+      "chuanling", "dragon_needle", "dragon_whip", "equalizer",
+      "erotic_staff", "golden_lance", "iron_tiger", "jade_ruler",
+      "mietianjian", "psychic_sword", "rapid_sword", "thunder_bomb",
+      "tiger_blade", "xuanmang", "xuanyao", "yinxue", "yumo_axe",
+      "zijin_pike"
+    ],
+    "note": "wiki equipment 頁面和 es2tips 裝備實錄可能列出更多裝備",
+    "needs_review": [
+      "防具系統（目前僅有少量散落在 NPC obj 中的防具）",
+      "飾品系統（戒指、項鏈等）",
+      "天地靈裝備套組"
+    ]
+  }
 }

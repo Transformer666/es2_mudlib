@@ -14,6 +14,8 @@ LONG
     set("exits", ([
         "south" : __DIR__"courtyard",
         "west"  : __DIR__"meditation",
+        "east"  : __DIR__"sutra_hall",
+        "north" : __DIR__"garden",
     ]));
 
     set("objects", ([

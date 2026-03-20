@@ -13,7 +13,8 @@ void create()
 LONG
     );
     set("exits", ([
-        "west" : __DIR__"inner_hall",
+        "west"  : __DIR__"inner_hall",
+        "north" : __DIR__"treasury",
     ]));
     set("no_fight", 1);
 

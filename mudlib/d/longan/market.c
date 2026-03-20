@@ -13,7 +13,8 @@ void create()
 LONG
 	);
 	set("exits", ([
-		"west" : __DIR__"square",
+		"west"   : __DIR__"square",
+		"north"  : __DIR__"alley",
 	]));
 	set("objects", ([
 		__DIR__"npc/merchant" : 1,

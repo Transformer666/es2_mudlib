@@ -18,6 +18,7 @@ LONG
         "south" : __DIR__"gate",
         "north" : __DIR__"main_hall",
         "east"  : __DIR__"bell_tower",
+        "west"  : __DIR__"kitchen",
     ]));
 
     setup();

@@ -16,6 +16,7 @@ LONG
     ]));
     set("exits", ([
         "west" : __DIR__"main_hall",
+        "east" : __DIR__"cliff",
     ]));
 
     setup();

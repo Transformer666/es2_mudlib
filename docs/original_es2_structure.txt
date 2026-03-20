@@ -1,0 +1,142 @@
+============================================================
+Original ES2 Mudlib Structure Reference
+Fetched from: https://github.com/mudchina/es2
+Date: 2026-03-20
+============================================================
+
+==== 1. Area List (repos/mudchina/es2/contents/d) ====
+README
+canyon
+choyin
+chuenyu
+city
+class
+death
+force
+goathill
+graveyard
+green.n
+green
+ice
+jail
+latemoon
+npc
+oldpine
+sanyen
+skill
+snow
+social_guild
+temple
+village
+waterfog
+wiz
+
+==== 2. Skill Daemon List (daemon/skill) ====
+axe.c
+blade.c
+bloodystrike.c
+bolomiduo.c
+buddhism.c
+celestial.c
+celestrike.c
+chanting.c
+chaos-steps.c
+cloudstaff.c
+dagger.c
+deisword.c
+dodge.c
+essencemagic.c
+fall-steps.c
+fonxanforce.c
+fonxansword.c
+force.c
+fork.c
+gouyee.c
+hammer.c
+iceforce.c
+instruments.c
+iron-cloth.c
+jin-gang.c
+jingang-staff.c
+juechen-force.c
+linbo-steps.c
+literate.c
+liuh-ken.c
+lotusforce.c
+magic-array.c
+magic.c
+meihua-shou.c
+move.c
+music.c
+mysterrier.c
+mystforce.c
+mystsword.c
+necromancy.c
+nine-moon.c
+notraces.c
+parry.c
+perception.c
+pyrobat-steps.c
+qidaoforce.c
+scratching.c
+serpentforce.c
+shortsong-blade.c
+six-chaos-sword.c
+snowshade-force.c
+snowshade-sword.c
+snowwhip.c
+spells.c
+spicyclaw.c
+spider-array.c
+spring-blade.c
+staff.c
+stealing.c
+stormdance.c
+sword.c
+tao-mystery.c
+taoism.c
+temp
+tenderzhi.c
+throwing.c
+ts-fist.c
+unarmed.c
+whip.c
+wu-shun.c
+yirong.c
+
+==== 3. Sect Daemon List (daemon/sect) ====
+NOT FOUND - directory does not exist in the original ES2 repo.
+
+==== 4. Race Daemon List (daemon/race) ====
+NOT FOUND - directory does not exist in the original ES2 repo.
+
+==== 5. Class Daemon List (daemon/class) ====
+assassin
+beggar
+bonze
+dancer
+fighter
+juechen
+lama
+ninja
+nomad
+ronin
+scholar
+skill
+swordsman
+taoist
+
+==== 6. Daemon Directory Overview (daemon/) ====
+class       (dir)
+condition   (dir)
+skill       (dir)
+
+==== 7. Condition Daemon List (daemon/condition) ====
+bandaged.c
+drunk.c
+iceshock.c
+poison.c
+rose_poison.c
+slumber_drug.c
+snake_poison.c
+temp

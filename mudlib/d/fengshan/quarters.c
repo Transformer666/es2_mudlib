@@ -15,7 +15,8 @@ LONG
         __DIR__"npc/disciple" : 1,
     ]));
     set("exits", ([
-        "east" : __DIR__"main_hall",
+        "east"  : __DIR__"main_hall",
+        "north" : __DIR__"kitchen",
     ]));
     set("no_fight", 1);
 

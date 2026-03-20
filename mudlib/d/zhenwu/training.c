@@ -12,7 +12,8 @@ void create()
 LONG
     );
     set("exits", ([
-        "east" : __DIR__"yard",
+        "east"  : __DIR__"yard",
+        "north" : __DIR__"mess_hall",
     ]));
 
     setup();

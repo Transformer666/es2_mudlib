@@ -16,6 +16,7 @@ LONG
 		"south" : __DIR__"street",
 		"north" : __DIR__"inn",
 		"east"  : __DIR__"barracks",
+		"west"  : __DIR__"watchtower",
 	]));
 
 	set("objects", ([

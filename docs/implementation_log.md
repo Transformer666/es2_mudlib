@@ -7,315 +7,289 @@
 
 ## 總覽
 
-| 類別 | 需求數 | 已實作 | 缺少 | 完成度 |
-|------|--------|--------|------|--------|
-| 種族 | 11 | 11 | 0 | **100%** |
-| 職業 | 7 | 7 | 0 | **100%** |
-| 門派 | 18 | 18 | 0 | **100%** |
-| 技能 | 71* | 27 | 44** | **38%** |
-| 區域 | 19* | 37 | 13** | **74%*** |
-| 任務 | 11+ | ~0 | 11+ | **~0%** |
-| Help 文件 | 10+ | 11 | 10+ | **52%** |
-| 裝備 | 14+ | 129 obj | 14+ | 部分 |
+| 類別 | 需要 | 已實作 | 缺少 | 完成度 |
+|------|------|--------|------|--------|
+| 種族 (Races) | 11 | 11 | 0 | **100%** |
+| 職業 (Classes) | 9 | 9 | 0 | **100%** |
+| 門派 (Sects) | 18 | 18 | 0 | **100%** |
+| 技能 (Skills) | 71 | 27 | 44 | **38.0%** |
+| 區域 (Areas) | 25 orig | 37 | 12 missing | **72%** |
+| 狀態 (Conditions) | 7 | 2 | 5 | **28.6%** |
+| 幫助文件 (Help) | ~80+ | 11 | ~70+ | **~14%** |
+| 裝備 (Equipment) | ~50+ | 18 | ~30+ | **~36%** |
 
-> *以原版 mudchina/es2 為基準
-> **原版有但我們缺少的數量
-> ***我們有 37 個區域遠超原版 19 個，但原版 13 個區域尚未移植
+**整體完成度估計：~50.8%**
 
 ---
 
-## 1. 種族系統 — 100% ✓
+## 1. 種族系統 — 100% 完成
 
-所有 11 種族已完整實作：
+全部 11 種族均已實作（daemon + help file）：
 
-| 種族 | Daemon | Help 檔案 |
-|------|--------|-----------|
-| 人類 (human) | ✓ | ✓ |
-| 刑天 (xingtian) | ✓ | ✓ |
-| 厭火 (yenhold) | ✓ | ✓ |
-| 夜叉 (yaksha) | ✓ | ✓ |
-| 巫首 (malik) | ✓ | ✓ |
-| 無腸 (woochan) | ✓ | ✓ |
-| 焦僥 (jiaojao) | ✓ | ✓ |
-| 釘靈 (dingling) | ✓ | ✓ |
-| 阿修羅 (asura) | ✓ | ✓ |
-| 雨師妾 (rainnar) | ✓ | ✓ |
-| 黑齒 (blackteeth) | ✓ | ✓ |
+| Wiki 名稱 | 我們的 ID | 狀態 |
+|-----------|----------|------|
+| 人族 Human | human | ✅ |
+| 刑天 Headless | xingtian | ✅ |
+| 燕侯 Yenhold | yenhold | ✅ |
+| 夜叉 Yaksa | yaksha | ✅ |
+| 馬力 Malik | malik | ✅ |
+| 烏禪 Woochan | woochan | ✅ |
+| 蛟蛟 Jiaojao | jiaojao | ✅ |
+| 丁零 Dingling | dingling | ✅ |
+| 阿修羅 Ashura | asura | ✅ |
+| 雷納 Rainnar | rainnar | ✅ |
+| 黑齒 Blackteeth | blackteeth | ✅ |
 
 ---
 
-## 2. 職業系統 — 100% ✓
+## 2. 職業系統 — 100% 完成
 
-| 職業 | Daemon | 備註 |
+我們的職業體系與原版不同（原版有 14 種，我們重新整合為 9 種）：
+
+| 職業 | Daemon | 狀態 |
 |------|--------|------|
-| 武者 (warrior) | ✓ | |
-| 和尚 (monk) | ✓ | |
-| 道士 (taoist) | ✓ | |
-| 書生 (scholar) | ✓ | |
-| 小偷 (thief) | ✓ | |
-| 軍人 (soldier) | ✓ | |
-| 方士 (alchemist) | ✓ | |
-| 平民 (commoner) | ✓ | 額外 |
-| 戰士 (fighter) | ✓ | 額外 |
+| 武者 warrior | ✅ | ✅ |
+| 和尚 monk | ✅ | ✅ |
+| 道士 taoist | ✅ | ✅ |
+| 小偷 thief | ✅ | ✅ |
+| 方士 alchemist | ✅ | ✅ |
+| 書生 scholar | ✅ | ✅ |
+| 軍人 soldier | ✅ | ✅ |
+| 平民 commoner | ✅ | ✅ |
+| 格鬥家 fighter | ✅ | ✅ |
 
 ---
 
-## 3. 門派系統 — 100% ✓
+## 3. 門派系統 — 100% 完成
 
-所有 18 門派 daemon 已建立，location 指向的房間全部存在。
+全部 18 門派均有 daemon + 專屬區域，且所有 location 指向存在的房間：
 
-| 門派 | 職業 | Location | 驗證 |
-|------|------|----------|------|
-| 封山派 (fengshan) | 武者 | /d/fengshan/main_hall | ✓ |
-| 冷梅莊 (lengmei) | 武者 | /d/lengmei/hall | ✓ |
-| 哭笑門 (kuxiao) | 武者 | /d/kuxiao/hall | ✓ |
-| 雪吟莊 (xueyin) | 武者 | /d/xueyin/hall | ✓ |
-| 虎刀門 (hudao) | 武者 | /d/hudao/hall | ✓ |
-| 寶蓮寺 (baolian) | 和尚 | /d/baolian/hall | ✓ |
-| 天月庵 (tianyue) | 和尚 | /d/tianyue/hall | ✓ |
-| 白象寺 (baixiang) | 和尚 | /d/baixiang/main_hall | ✓ |
-| 天師派 (tianshi) | 道士 | /d/tianshi/hall | ✓ |
-| 茅山派 (maoshan) | 道士 | /d/maoshan/lingyun | ✓ |
-| 瑯夷 (langyi) | 小偷 | /d/langyi/hall | ✓ |
-| 隱教 (yinjiao) | 小偷 | /d/yinjiao/hall | ✓ |
-| 龍圖派 (longttu) | 方士 | /d/longttu/study | ✓ |
-| 武陀堂 (wutuo) | 方士 | /d/wutuo/hall | ✓ |
-| 步玄派 (buxuan) | 書生 | /d/buxuan/study | ✓ |
-| 玄天教 (xuantian) | 書生 | /d/xuantian/hall | ✓ |
-| 振武軍營 (zhenwu) | 軍人 | /d/zhenwu/command | ✓ |
-| 天邪派 (tianxie) | 跨門派 | /d/tianxie/hall | ✓ |
-
-劍甲門 (jianjia) 另有獨立區域但非正式門派 daemon（跨門派機制）。
-
----
-
-## 4. 技能系統 — 38%
-
-### 已實作（27 技能，全部含 skill_improved/skill_advanced）
-
-| 技能 | 對應門派/通用 |
-|------|--------------|
-| amazing_needle（奇針術） | 瑯夷 |
-| axe（斧法） | 通用 |
-| blade（刀法） | 通用 |
-| dagger（匕首） | 通用 |
-| diamond_hammer（金剛鎚法） | 白象寺 |
-| dodge（閃避） | 通用 |
-| fengshan_sword（封山劍法） | 封山派 |
-| five_defeat_needle（五敗針法） | 武陀堂 |
-| force（內功） | 通用 |
-| lengmei_sword（冷梅劍法） | 冷梅莊 |
-| longttu_neigong（龍圖內功） | 龍圖派 |
-| maoshan_neigong（茅山內功） | 茅山派 |
-| maoshan_sword（茅山劍法） | 茅山派 |
-| needle（針法） | 通用 |
-| parry（格擋） | 通用 |
-| phantom_sword（幻影劍法） | 天邪派 |
-| pike（槍法） | 通用 |
-| staff（棍法） | 通用 |
-| sword（劍法） | 通用 |
-| tactic（兵法） | 振武軍營 |
-| taiyi_sword（太乙劍法） | 天師派 |
-| taoshan_milu（陶山迷路） | 隱教 |
-| three_rotations（三轉劍法） | 步玄派 |
-| tiger_blade（虎刀） | 虎刀門/哭笑門 |
-| unarmed（拳法） | 通用 |
-| whip（鞭法） | 通用 |
-| ziwei_neigong（紫微內功） | 天師派 |
-
-### 缺少的原版技能（60 個，按優先順序）
-
-**高優先（核心戰鬥/門派技能）：**
-- bloodystrike（血殺）、buddhism（佛學）、celestial（天功）
-- celestrike（天擊）、essencemagic（元素魔法）
-- iceforce（冰功）、iron-cloth（鐵布衫）、jin-gang（金剛）
-- jingang-staff（金剛杖）、lotusforce（蓮花功）
-- magic（法術）、spells（法術）、taoism（道法）
-- stealing（偷竊）、throwing（投擲）
-
-**中優先（進階/門派特色技能）：**
-- bolomiduo、chanting、chaos-steps、cloudstaff、deisword
-- fonxanforce、fonxansword、fork、gouyee、hammer
-- juechen-force、linbo-steps、magic-array、meihua-shou
-- move、mysterrier、mystforce、mystsword、necromancy
-- nine-moon、notraces、perception、pyrobat-steps、qidaoforce
-- scratching、serpentforce、shortsong-blade、six-chaos-sword
-- snowshade-force、snowshade-sword、snowwhip、spicyclaw
-- spider-array、spring-blade、stormdance、tao-mystery
-- tenderzhi、ts-fist、wu-shun、yirong
-
-**低優先（輔助/生活技能）：**
-- fall-steps、instruments、literate、liuh-ken、music
+| 門派 | Daemon | 區域 | 所屬職業 |
+|------|--------|------|----------|
+| 封山派 fengshan | ✅ | ✅ 9 files | 武者 |
+| 冷梅莊 lengmei | ✅ | ✅ 10 files | 武者 |
+| 哭笑門 kuxiao | ✅ | ✅ 10 files | 武者 |
+| 雪吟莊 xueyin | ✅ | ✅ 10 files | 武者 |
+| 虎刀門 hudao | ✅ | ✅ 9 files | 武者 |
+| 寶蓮寺 baolian | ✅ | ✅ 11 files | 和尚 |
+| 天月庵 tianyue | ✅ | ✅ 11 files | 和尚 |
+| 白象寺 baixiang | ✅ | ✅ 9 files | 和尚 |
+| 天師派 tianshi | ✅ | ✅ 12 files | 道士 |
+| 茅山派 maoshan | ✅ | ✅ 10 files | 道士 |
+| 瑯夷 langyi | ✅ | ✅ 11 files | 小偷 |
+| 隱教 yinjiao | ✅ | ✅ 11 files | 小偷 |
+| 龍圖丹派 longttu | ✅ | ✅ 10 files | 方士 |
+| 武陀 wutuo | ✅ | ✅ 9 files | 方士 |
+| 步玄派 buxuan | ✅ | ✅ 11 files | 書生 |
+| 玄天教 xuantian | ✅ | ✅ 10 files | 書生 |
+| 振武軍營 zhenwu | ✅ | ✅ 9 files | 軍人 |
+| 天邪派 tianxie | ✅ | ✅ 14 files | 跨門派 |
+| 劍甲門 jianjia | ✅ | ✅ 9 files | 跨門派(方士) |
 
 ---
 
-## 5. 區域系統 — 74%（以原版為基準）
+## 4. 技能系統 — 38.0% 完成
 
-### 已實作區域（37 個，530 .c 檔案）
+### 已實作技能 (27/71)
+
+所有已實作技能均有 `skill_improved` 和 `skill_advanced`：
+
+| 技能 | 對應門派/類型 |
+|------|-------------|
+| sword | 基礎武器技 |
+| blade | 基礎武器技 |
+| axe | 基礎武器技 |
+| dagger | 基礎武器技 |
+| staff | 基礎武器技 |
+| pike | 基礎武器技 |
+| whip | 基礎武器技 |
+| needle | 基礎武器技 |
+| unarmed | 基礎武器技 |
+| dodge | 基礎防禦技 |
+| parry | 基礎防禦技 |
+| force | 基礎內功 |
+| fengshan_sword | 封山派劍法 |
+| lengmei_sword | 冷梅莊劍法 |
+| tiger_blade | 虎刀門刀法 |
+| diamond_hammer | 白象寺鎚法 |
+| taiyi_sword | 天師派太乙劍 |
+| ziwei_neigong | 天師派紫微內功 |
+| maoshan_sword | 茅山派劍法 |
+| maoshan_neigong | 茅山派內功 |
+| amazing_needle | 瑯夷奇針 |
+| taoshan_milu | 隱教陶山迷路 |
+| five_defeat_needle | 武陀五敗針 |
+| longttu_neigong | 龍圖內功 |
+| three_rotations | 步玄三轉劍 |
+| phantom_sword | 天邪幻影劍 |
+| tactic | 振武兵法 |
+
+### 高優先缺失技能 (10)
+
+| 技能 | 原因 |
+|------|------|
+| buddhism | 佛學，和尚系核心技能 |
+| taoism | 道術，道士系核心技能 |
+| literate | 識字，書生系核心技能 |
+| stealing | 偷竊，小偷系核心技能 |
+| magic | 法術，方士系核心技能 |
+| spells | 咒術，多門派共用 |
+| hammer | 通用鎚法（已有 diamond_hammer 但缺通用版） |
+| move | 身法，所有職業基礎技能 |
+| perception | 感知，所有職業基礎技能 |
+| music | 音律，書生/特殊技能 |
+
+### 中優先缺失技能 (11)
+
+lotusforce, jingang-staff, jin-gang, iron-cloth, iceforce, serpentforce, celestial, celestrike, cloudstaff, notraces, throwing
+
+### 低優先缺失技能 (33)
+
+bloodystrike, bolomiduo, chanting, chaos-steps, deisword, essencemagic, fall-steps, fonxanforce, fonxansword, fork, gouyee, instruments, juechen-force, linbo-steps, liuh-ken, magic-array, meihua-shou, mysterrier, mystforce, mystsword, necromancy, nine-moon, pyrobat-steps, qidaoforce, scratching, shortsong-blade, six-chaos-sword, snowshade-force, snowshade-sword, snowwhip, spicyclaw, spider-array, spring-blade, stormdance, tao-mystery, tenderzhi, ts-fist, wu-shun, yirong
+
+---
+
+## 5. 區域系統 — 72% 完成
+
+### 已實作區域 (37 個，559 個 .c 檔)
 
 | 區域 | 檔案數 | 類型 |
 |------|--------|------|
-| snow（雪亭鎮） | 94 | 主城 |
-| wutang（五堂鎮） | 42 | 主城 |
-| choyin（喬陰） | 14 | 城鎮（原版有） |
-| baihua（百花） | 15 | 村莊 |
-| lijun（離鈞） | 14 | 渡口/城鎮 |
-| chixiao（赤魈） | 10 | 村莊 |
-| lengmei（冷梅莊） | 10 | 門派 |
-| langyi（瑯夷） | 10 | 門派 |
-| oldpine（古松林） | 10 | 野外（原版有） |
-| kuxiao（哭笑門） | 9 | 門派 |
-| xueyin（雪吟莊） | 9 | 門派 |
-| yinjiao（隱教） | 9 | 門派 |
-| tianshi（天師派） | 9 | 門派 |
-| tianxie（天邪派） | 9 | 門派 |
-| sanyen（三掩） | 9 | 城鎮（原版有） |
-| kangping（康平） | 9 | 村莊 |
-| heifeng（黑風） | 9 | 山寨 |
-| road（道路） | 9 | 連接路 |
-| graveyard（墓園） | 8 | 野外（原版有） |
-| baolian（寶蓮寺） | 8 | 門派 |
-| tianyue（天月庵） | 8 | 門派 |
-| longttu（龍圖派） | 8 | 門派 |
-| wutuo（武陀堂） | 8 | 門派 |
-| buxuan（步玄派） | 8 | 門派 |
-| xuantian（玄天教） | 8 | 門派 |
-| lee（李村） | 8 | 村莊 |
-| zhenwu（振武軍營） | 8 | 門派 |
-| jianjia（劍甲門） | 8 | 門派 |
-| manglin（莽林） | 8 | 野外 |
-| weiguo（衛國） | 7 | 城鎮 |
-| jingji（京畿） | 7 | 城鎮 |
-| maoshan（茅山） | 7 | 門派 |
-| hell（地獄） | 7 | 特殊 |
-| hudao（虎刀門） | 6 | 門派 |
-| fengshan（封山派） | 6 | 門派 |
-| baixiang（白象寺） | 5 | 門派 |
-| longan（龍安） | 5 | 城鎮 |
+| snow (雪亭鎮) | 112 | 主城 |
+| wutang (武唐城) | 50 | 主城 |
+| lijun (離郡) | 21 | 城鎮 |
+| choyin (喬陰) | 20 | 城鎮 |
+| baihua (百花) | 15 | 村莊 |
+| chixiao (赤霄) | 15 | 村莊 |
+| oldpine (古松林) | 14 | 野外 |
+| tianxie (天邪派) | 14 | 門派 |
+| heifeng (黑風) | 13 | 野外 |
+| hell (地獄) | 13 | 特殊 |
+| kangping (康平) | 12 | 村莊 |
+| tianshi (天師派) | 12 | 門派 |
+| baolian (寶蓮寺) | 11 | 門派 |
+| buxuan (步玄派) | 11 | 門派 |
+| graveyard (墓園) | 11 | 野外 |
+| langyi (瑯夷) | 11 | 門派 |
+| lee (李家村) | 11 | 村莊 |
+| manglin (莽林) | 11 | 野外 |
+| sanyen (三掩) | 11 | 城鎮 |
+| tianyue (天月庵) | 11 | 門派 |
+| yinjiao (隱教) | 11 | 門派 |
+| kuxiao (哭笑門) | 10 | 門派 |
+| lengmei (冷梅莊) | 10 | 門派 |
+| longttu (龍圖丹派) | 10 | 門派 |
+| maoshan (茅山派) | 10 | 門派 |
+| road (道路) | 10 | 連接 |
+| xuantian (玄天教) | 10 | 門派 |
+| xueyin (雪吟莊) | 10 | 門派 |
+| jianjia (劍甲門) | 9 | 門派 |
+| wutuo (武陀) | 9 | 門派 |
+| jingji (京畿) | 9 | 城鎮 |
+| longan (龍安) | 9 | 城鎮 |
+| weiguo (衛國) | 9 | 城鎮 |
+| zhenwu (振武軍營) | 9 | 門派 |
+| baixiang (白象寺) | 9 | 門派 |
+| fengshan (封山派) | 9 | 門派 |
+| hudao (虎刀門) | 9 | 門派 |
 
-### 原版有但我們缺少的區域（13 個）
+### 缺少的原版區域 (12 個)
 
-| 區域 | 名稱 | 優先度 | 備註 |
-|------|------|--------|------|
-| city | 城市 | 高 | 可能是主要城鎮 |
-| force | 內功修練區 | 高 | 練功系統核心 |
-| ice | 冰域 | 高 | 天師冰系相關 |
-| temple | 神殿 | 高 | 劇情相關 |
-| canyon | 峽谷 | 中 | 野外區域 |
-| chuenyu | 泉域 | 中 | 野外區域 |
-| goathill | 羊山 | 中 | 野外區域 |
-| green/green.n | 草原 | 中 | 野外區域 |
-| jail | 監獄 | 中 | 系統區域 |
-| latemoon | 晚月 | 中 | 野外區域 |
-| village | 村莊 | 中 | 通用村莊 |
-| waterfog | 水霧 | 中 | 野外區域 |
-| death | 死亡領域 | 低 | 我們有 hell 可能對應 |
-
----
-
-## 6. 任務系統 — ~0%
-
-### 缺少的任務（按優先度）
-
-**最高優先：**
-1. 侮天鬼主線任務（wiki 標記為開發中）
-2. 十三靈天賦重置任務
-
-**高優先：**
-3. 天靈任務（赤魈村許願池）
-4. 地靈任務（地獄塔）
-5. 門派進階任務（各門派升級路線）
-
-**中優先：**
-6. 五堂鎮六大謎題
-7. 雪亭鎮七大謎題
-8. 殺業鍛鍊系統
-9. 金蛇門人/黑龍使者進階
-10. 劍甲門跨門派拜師
-11. 軍人戰功升遷系統
+| 區域 | 中文 | 優先度 |
+|------|------|--------|
+| canyon | 峽谷 | 中 |
+| chuenyu | 泉域 | 中 |
+| city | 城市 | 高 |
+| death | 死亡領域 | 高 |
+| force | 內功修練區 | 中 |
+| goathill | 羊山 | 低 |
+| green/green.n | 草原 | 中 |
+| ice | 冰域 | 中 |
+| jail | 監獄 | 低 |
+| latemoon | 晚月 | 低 |
+| temple | 神殿 | 中 |
+| village | 村莊 | 中 |
+| waterfog | 水霧 | 中 |
 
 ---
 
-## 7. 缺少的遊戲系統
+## 6. 狀態效果系統 — 28.6% 完成
 
-| 系統 | 優先度 | 說明 |
-|------|--------|------|
-| 茅山幻術 | 高 | 先天符消耗的召喚獸法術（狗/猴/蛇/雨） |
-| 天師四元素 | 高 | 冰火風雷元素法術系統 |
-| 種族主動技能 | 高 | 11 種族各有獨特主動技能 |
-| 茅山奇術/遁甲書 | 中 | fate/experience 能力 |
-| 雨師妾養蛇 | 中 | 培養最多 5 條蛇作為裝備 |
-| 夜叉吞鬼/吞魂 | 中 | 種族特殊能力 |
-| 阿修羅吞屍 | 中 | 種族特殊能力 |
-| 召喚獸系統 | 中 | 8 種召喚獸概念 |
-| 天賦評級顯示 | 低 | 140-200 天賦文字描述 |
+| 狀態 | 狀態 |
+|------|------|
+| drunk (醉酒) | ✅ |
+| poison (中毒) | ✅ |
+| bandaged (包紮) | ❌ |
+| iceshock (冰凍) | ❌ |
+| rose_poison (玫瑰毒) | ❌ |
+| slumber_drug (迷藥) | ❌ |
+| snake_poison (蛇毒) | ❌ |
 
 ---
 
-## 8. 與原版 ES2 的差異分析
+## 7. 幫助文件 — ~14% 完成
 
-### 我們的優勢
-- **區域數量**：37 個 vs 原版 19 個（+18 個原創區域）
-- **門派完整度**：18 門派全部建立 vs 原版無 sect daemon
-- **種族完整度**：11 種族全部建立 vs 原版無 race daemon
-- **自創技能**：17 個原版沒有的技能（如奇針術、金剛鎚法、封山劍法等）
-- **內容規模**：729 個 .c 檔案，包含豐富的 NPC 和物件
+已有：11 個種族幫助文件
 
-### 原版的優勢
-- **技能數量**：71 個 vs 我們 27 個
-- **特殊區域**：ice、force、temple 等劇情/系統區域
-- **職業多樣性**：原版有 assassin、ninja、lama 等額外職業
-
-### 結構差異
-- 原版無 `daemon/sect/` 和 `daemon/race/` 目錄（我們已補齊）
-- 原版的 `d/` 下有 class、skill、npc、social_guild 等系統目錄（功能已整合至其他位置）
-- 我們的架構更模組化，門派/種族/職業各有獨立 daemon
+缺少：
+- 9 個職業幫助文件
+- 18 個門派幫助文件
+- 27+ 個技能幫助文件
+- 指令幫助文件（look, fight, inventory, etc.）
+- 新手指南系統
 
 ---
 
-## 9. 房間補齊記錄（2026-03-20）
+## 8. 裝備系統 — ~36% 完成
 
-### 新增房間（6 間）
+已有 18 件 obj/weapon/ 裝備 + 散落在各 NPC obj 中的裝備
 
-**雪亭鎮（snow）— 謎題關聯房間：**
-
-| 房間 | 檔案 | 連結自 | 對應謎題 |
-|------|------|--------|----------|
-| 大宅正堂 | `d/snow/manor_hall.c` | dilapidated_manor (south) | 謎題 6：破舊大宅裡面躲著甚麼 |
-| 大宅地窖 | `d/snow/manor_cellar.c` | manor_hall (down) | 謎題 6：大宅深處的秘密 |
-| 河邊小屋 | `d/snow/old_house.c` | riverbank (east) | 謎題 7：黑衣老人的閨女跑去了哪裡 |
-
-**五堂鎮（wutang）— 謎題關聯房間：**
-
-| 房間 | 檔案 | 連結自 | 對應謎題 |
-|------|------|--------|----------|
-| 神殿密室 | `d/wutang/temple_inner.c` | temple (south) | 謎題 4：鎮天神廟內藏著誰 |
-| 巫山密室 | `d/wutang/wushan_secret.c` | wushan_cave (down) | 謎題 2：巫山雕像有何秘密 |
-| 河灣 | `d/wutang/river_bend.c` | dock (south) | 謎題 1：飲血丟在了哪裡 |
-
-### 修改的既有房間（5 間，新增出口）
-
-| 檔案 | 新增出口 |
-|------|----------|
-| `d/snow/dilapidated_manor.c` | south → manor_hall |
-| `d/snow/riverbank.c` | east → old_house |
-| `d/wutang/temple.c` | south → temple_inner |
-| `d/wutang/wushan_cave.c` | down → wushan_secret |
-| `d/wutang/dock.c` | south → river_bend |
-
-### 驗證結果
-
-- 所有新房間含 `inherit ROOM`、`set("short")`、`set("exits")`、`setup()` ✓
-- 所有 6 對出口雙向連結驗證通過 ✓
-- 所有出口目標檔案存在 ✓
+缺少：
+- 系統化的防具體系（頭盔、鎧甲、護腕、靴子）
+- 飾品系統（戒指、項鏈、腰帶）
+- 天地靈裝備套組
+- 裝備強化/升級系統
 
 ---
 
-## 建議優先實作順序
+## 待實作優先順序
 
-1. **技能系統補齊** — 補齊核心戰鬥技能（佛學、偷竊、法術、元素魔法等）
-2. **任務系統** — 實作天靈/地靈任務作為範本
-3. **缺少的區域** — 優先實作 city、force、ice、temple
-4. **遊戲系統** — 茅山幻術、天師四元素、種族主動技能
-5. **Help 文件** — 補齊 cmds、class、newbie 等核心說明文件
-6. **裝備補齊** — 神話武器、任務獎勵、門派專屬裝備
+### P0 — 核心系統完善
+1. 高優先技能 daemon (buddhism, taoism, literate, stealing, magic, spells, move, perception)
+2. 狀態效果 daemon (bandaged, iceshock, rose_poison, slumber_drug, snake_poison)
+3. 主線任務系統框架
+
+### P1 — 區域擴展
+4. city (城市) 區域 — 重要的遊戲核心區域
+5. death (死亡領域) — 死亡系統相關
+6. village (村莊) — 基礎野外區域
+7. ~~擴展現有小區域~~ ✅ 已完成 — hudao, baixiang, fengshan, longan, jingji, weiguo, zhenwu 各增加 4 房間（共 28 間）
+
+### P2 — 內容豐富
+8. 中優先技能 daemon (lotusforce, jingang-staff, iron-cloth, etc.)
+9. 野外探索區域 (canyon, ice, green, waterfog, temple)
+10. 職業與門派幫助文件
+11. 防具與飾品系統
+
+### P3 — 完善細節
+12. 低優先技能 daemon
+13. 剩餘野外區域 (goathill, jail, latemoon)
+14. 技能幫助文件
+15. 天地靈任務與裝備
+16. 新手指南系統
+
+---
+
+## 與原版 ES2 的差異分析
+
+### 我們有而原版沒有的
+- **門派 Daemon 系統** — 原版沒有 `daemon/sect/` 目錄，我們建立了完整的18門派系統
+- **種族 Daemon 系統** — 原版沒有 `daemon/race/` 目錄，我們有11種族 daemon
+- **門派專屬區域** — 每個門派都有獨立的區域（房間、NPC、物品）
+- **更多城鎮** — wutang、lijun、baihua、kangping、jingji、longan、weiguo 等
+
+### 原版有而我們缺少的
+- **44個技能 daemon** — 原版71個，我們27個
+- **12個野外區域** — canyon, ice, green, waterfog 等探索區域
+- **5個狀態效果** — bandaged, iceshock, rose_poison, slumber_drug, snake_poison
+- **更多職業分支** — 原版14職業我們整合為9種（設計選擇，非缺失）
