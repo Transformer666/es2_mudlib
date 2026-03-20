@@ -35,9 +35,16 @@ warn() {
 
 mkdir -p docs
 
+# Detect the correct remote (mine or origin pointing to Transformer666)
+GIT_REMOTE=$(git remote -v | grep -m1 'Transformer666' | awk '{print $1}')
+if [ -z "$GIT_REMOTE" ]; then
+    GIT_REMOTE="origin"
+fi
+log "Using git remote: $GIT_REMOTE"
+
 # Pull latest changes before starting
 log "Pulling latest changes..."
-git pull mine main 2>&1 | tee -a $LOG_FILE || warn "Pull from mine failed, continuing with local state."
+git pull "$GIT_REMOTE" main 2>&1 | tee -a $LOG_FILE || warn "Pull failed, continuing with local state."
 success "Repository updated."
 
 echo "" >> $LOG_FILE
@@ -141,8 +148,8 @@ $(echo -e "$TASK_LIST")
 
 Co-Authored-By: Claude Code Agent <noreply@anthropic.com>"
 
-        git push mine main || warn "Push to mine failed."
-        success "Changes committed and pushed to mine."
+        git push "$GIT_REMOTE" main || warn "Push failed."
+        success "Changes committed and pushed to $GIT_REMOTE."
     else
         warn "No relevant files to commit."
     fi
