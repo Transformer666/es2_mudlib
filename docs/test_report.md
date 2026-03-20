@@ -1,5 +1,5 @@
 # ES2 MUD Static Validation Report
-Run time: Fri Mar 20 17:21:47 UTC 2026
+Run time: Fri Mar 20 17:45:37 UTC 2026
 
 
 ## Room Validation
@@ -205,7 +205,6 @@ Run time: Fri Mar 20 17:21:47 UTC 2026
 - PASS: Room short desc: d/wutang/ngate
 - PASS: Room setup(): d/wutang/ngate
 - PASS: Room inherit: d/wutang/temple_inner
-- FAIL: Exit west -> watchtower has no east exit back (from gate)
 - PASS: Room short desc: d/wutang/temple_inner
 - PASS: Room setup(): d/wutang/temple_inner
 - PASS: Room inherit: d/wutang/inn_3f
@@ -706,13 +705,6 @@ Run time: Fri Mar 20 17:21:47 UTC 2026
 - PASS: Room inherit: d/tianshi/hall
 - PASS: Room short desc: d/tianshi/hall
 - PASS: Room setup(): d/tianshi/hall
-
-## Summary
-| Result | Count |
-|--------|-------|
-| PASS | 3498 |
-| FAIL | 24 |
-| WARN | 46 |
 - PASS: Room inherit: d/tianshi/talisman_room
 - PASS: Room short desc: d/tianshi/talisman_room
 - PASS: Room setup(): d/tianshi/talisman_room
@@ -2807,6 +2799,12 @@ Run time: Fri Mar 20 17:21:47 UTC 2026
 - PASS: Armor include: d/yinjiao/npc/obj/eagle_glove
 - PASS: Armor inherit: d/yinjiao/npc/obj/eagle_glove
 - PASS: Equipment setup(): d/yinjiao/npc/obj/eagle_glove
+- PASS: Armor include: d/wutang/npc/obj/ancient_scroll
+- PASS: Armor inherit: d/wutang/npc/obj/ancient_scroll
+- PASS: Equipment setup(): d/wutang/npc/obj/ancient_scroll
+- PASS: Armor include: d/wutang/npc/obj/jade_token
+- PASS: Armor inherit: d/wutang/npc/obj/jade_token
+- PASS: Equipment setup(): d/wutang/npc/obj/jade_token
 - PASS: Armor include: d/wutang/npc/obj/amulet
 - PASS: Armor inherit: d/wutang/npc/obj/amulet
 - PASS: Equipment setup(): d/wutang/npc/obj/amulet
@@ -3591,6 +3589,6 @@ Run time: Fri Mar 20 17:21:47 UTC 2026
 ## Summary
 | Result | Count |
 |--------|-------|
-| PASS | 3498 |
+| PASS | 3504 |
 | FAIL | 24 |
 | WARN | 46 |

@@ -5,9 +5,9 @@
     "classes": 9,
     "sects": 18,
     "skills": 75,
-    "rooms": 471,
-    "npcs": 278,
-    "quests": 7,
+    "rooms": 473,
+    "npcs": 281,
+    "quests": 11,
     "equipment": 280
   },
   "races": { "required": 11, "implemented": 11, "missing": 0 },
@@ -15,5 +15,5 @@
   "sects": { "required": 18, "implemented": 18, "missing": 0 },
   "skills": { "implemented": 75, "missing": 40, "missing_list": ["/d/baixiang/main_hall","/d/baolian/hall","/d/buxuan/study","/d/fengshan/main_hall","/d/hudao/hall","/d/jianjia/hall","/d/kuxiao/hall","/d/langyi/hall","/d/lengmei/hall","/d/longttu/study","/d/maoshan/lingyun","/d/tianshi/hall","/d/tianxie/hall","/d/wutuo/hall","/d/xuantian/hall","/d/xueyin/hall","/d/yinjiao/hall","/d/zhenwu/command","class","location","name","paths","sect:baixiang","sect:baolian","sect:buxuan","sect:fengshan","sect:hudao","sect:jianjia","sect:kuxiao","sect:langyi","sect:lengmei","sect:longttu","sect:maoshan","sect:tianshi","sect:tianxie","sect:wutuo","sect:xuantian","sect:xueyin","sect:yinjiao","sect:zhenwu"] },
   "areas": { "implemented": 54, "stub_towns": [] },
-  "quests": { "implemented": 7 }
+  "quests": { "implemented": 11 }
 }
