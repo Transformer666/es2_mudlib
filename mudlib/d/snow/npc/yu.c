@@ -20,6 +20,7 @@ void create()
 	);
 	set("merchandise", ([
 		"/d/snow/npc/obj/blue_jacket": 5,
+		"/d/snow/npc/obj/maro": 5,
 		"/obj/armor/fur_hat": 5,
 		"/obj/bottle": 5,
 	]));

@@ -13,6 +13,9 @@ void create()
 LONG
 	);
 	set("outdoors", "forest");
+	set("objects", ([
+		__DIR__"npc/evil_hydra" : 1,
+	]));
 	set("exits", ([
 		"south" : __DIR__"path2",
 		"north" : "/d/tianxie/hidden_path",

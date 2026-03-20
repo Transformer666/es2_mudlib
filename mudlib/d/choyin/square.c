@@ -15,6 +15,7 @@ LONG
 	set("objects", ([
 		__DIR__"npc/fortune_teller" : 1,
 		__DIR__"npc/beggar" : 1,
+		__DIR__"npc/zhang_xiaoqian" : 1,
 	]));
 	set("exits", ([
 		"north" : __DIR__"nstreet",

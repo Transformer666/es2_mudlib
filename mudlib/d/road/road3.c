@@ -17,6 +17,7 @@ LONG
 		"south" : __DIR__"road2",
 		"north" : "/d/zhenwu/gate",
 		"east"  : __DIR__"crossroad",
+		"west"  : "/d/green/entrance",
 	]));
 
 	setup();

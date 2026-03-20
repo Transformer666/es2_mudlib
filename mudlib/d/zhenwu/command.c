@@ -19,6 +19,7 @@ LONG
 
     set("objects", ([
         __DIR__"npc/mipei" : 1,
+        __DIR__"npc/biyong" : 1,
     ]));
 
     setup();

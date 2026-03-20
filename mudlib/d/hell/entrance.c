@@ -17,9 +17,14 @@ LONG
         "符文" : "石板上刻著的符文古老而神秘﹐似乎是某種封印法陣﹐散發著微弱的光芒。\n",
         "霧氣" : "灰濛濛的霧氣在腳邊盤旋﹐冰冷刺骨﹐觸碰之處彷彿能聽到微弱的哀嚎聲。\n",
     ]));
+    set("objects", ([
+        __DIR__"npc/black_agent" : 1,
+        __DIR__"npc/white_agent" : 1,
+    ]));
     set("exits", ([
         "up"    : "/d/graveyard/shrine",
         "north" : __DIR__"path",
+        "east"  : "/d/death/entrance",
     ]));
 
     setup();

@@ -16,6 +16,8 @@ LONG
 	set("exits", ([
 		"west" : __DIR__"wild_path1",
 		"east" : "/d/chixiao/entrance",
+		"north" : "/d/latemoon/entrance",
+		"south" : "/d/village/entrance",
 	]));
 
 	setup();

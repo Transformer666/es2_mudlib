@@ -15,6 +15,7 @@ LONG
 	set("outdoors", "forest");
 	set("objects", ([
 		__DIR__"npc/snake" : 1,
+		__DIR__"npc/charming_bird" : 1,
 	]));
 	set("exits", ([
 		"northwest" : "/d/snow/sgate",

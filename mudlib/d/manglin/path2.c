@@ -15,6 +15,7 @@ LONG
 	set("outdoors", "forest");
 	set("objects", ([
 		__DIR__"npc/black_bear" : 1,
+		__DIR__"npc/devilish_tiger" : 1,
 	]));
 	set("exits", ([
 		"south" : __DIR__"path1",

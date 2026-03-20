@@ -18,7 +18,9 @@ LONG
 		"south" : __DIR__"dilapidated_manor",
 ]));
 	set("outdoors", "snow");
+	set("objects", ([
+		__DIR__"npc/old_beggar" : 1,
+	]));
 
 	setup();
-	replace_program(ROOM);
 }

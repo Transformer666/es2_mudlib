@@ -16,6 +16,7 @@ LONG
 		"south" : __DIR__"crossroad",
 		"east" : "/d/baixiang/gate",
 		"west" : "/d/tianyue/mountain_path",
+		"north" : "/d/ice/entrance",
 	]));
 
 	setup();

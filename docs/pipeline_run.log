@@ -951,3 +951,215 @@ All done. Here's a summary:
 [0;32m[OK][0m Task done: Implement equipment
 [0;34m[06:09:10][0m All tasks completed.
 [0;34m[06:09:10][0m Checking for changes to commit...
+[0;34m[06:21:25][0m Using git remote: origin
+[0;34m[06:21:25][0m Pulling latest changes...
+From github.com:Transformer666/es2_mudlib
+ * branch            main       -> FETCH_HEAD
+Already up to date.
+[0;32m[OK][0m Repository updated.
+
+==============================
+Pipeline start: 2026-03-20 06:21:25
+==============================
+[0;34m[06:21:28][0m Running task: Analyze missing content
+--- Task: Analyze missing content ---
+All 6 agents completed. Final blog batch 3 (85 pages) delivered the richest dataset: 30+ weapons with full stats, 50+ armor/accessories, complete weapon prefix/suffix modifier system, world map with 80+ locations, reputation formulas, 8 ancient beasts, 16 ghost types, and 10 poison effects.
+
+**Task 01 fully complete.** All data crawled, analyzed, and compiled into the three deliverables.
+[0;32m[OK][0m Task done: Analyze missing content
+[0;34m[06:34:32][0m Running task: Implement race daemons
+--- Task: Implement race daemons ---
+All 11 help files also exist. According to Step 1 of the task:
+
+> 若 missing 為 0，直接跳過此 task
+
+**Task 02 完成 — 無需執行。** 所有 11 個種族的 daemon `.c` 檔案和 help 文本都已實作完成：
+
+- [x] 所有種族 daemon .c 檔案已存在（11/11）
+- [x] 所有種族 help 文本已存在（11/11）
+- [x] missing = 0，跳過此 task
+[0;32m[OK][0m Task done: Implement race daemons
+[0;34m[06:34:52][0m Running task: Implement rooms and areas
+--- Task: Implement rooms and areas ---
+All tasks complete. Here's a summary:
+
+## Results
+
+**12 new areas created (74 room files):**
+
+| Area | Chinese | Type | Rooms | Connected From |
+|------|---------|------|-------|----------------|
+| green | 草原 | 野外 | 7 | road/road3 → west |
+| goathill | 羊山 | 野外 | 6 | green/grassland_s → west |
+| canyon | 峽谷 | 野外 | 7 | road/mountain_road1 → east |
+| ice | 冰域 | 野外 | 6 | road/mountain_road2 → north |
+| force | 修練區 | 特殊 | 6 | road/mountain_road1 → west |
+| village | 村莊 | 聚落 | 6 | road/wild_path2 → south |
+| chuenyu | 泉域 | 野外 | 6 | village/farm → south |
+| latemoon | 晚月 | 野外 | 6 | road/wild_path2 → north |
+| waterfog | 水霧 | 野外 | 6 | latemoon/lake → east |
+| temple | 神殿 | 宗教 | 6 | road/road5 → north |
+| death | 死亡領域 | 特殊 | 6 | hell/entrance → east |
+| jail | 監獄 | 特殊 | 6 | jingji/yamen → north |
+
+**7 existing files modified** (added exits):
+- `road/road3.c` — west → green
+- `road/mountain_road1.c` — east → canyon, west → force
+- `road/mountain_road2.c` — north → ice
+- `road/wild_path2.c` — north → latemoon, south → village
+- `road/road5.c` — north → temple
+- `hell/entrance.c` — east → death
+- `jingji/yamen.c` — north → jail
+
+**Validation**: 799 exits checked, all bidirectional links correct, all target files exist, all rooms have `inherit ROOM/INN`, `set("short")`, `set("exits")`, and `setup()`.
+
+The only original area not created is `city` (城市) since we already have 8+ city/town areas (longan, jingji, kangping, wutang, etc.).
+[0;32m[OK][0m Task done: Implement rooms and areas
+[0;34m[06:46:30][0m Running task: Implement NPCs
+--- Task: Implement NPCs ---
+All tasks complete. Here's the summary:
+
+## NPC Implementation Complete
+
+### Created 48 new NPC files:
+
+**Boss NPCs (14):**
+- Hell: 黑無常 `black_agent.c`, 白無常 `white_agent.c` → loaded in `hell/entrance.c`
+- 八寶樓 8 bosses in `wutang/npc/`: 歐陽芝, 司馬雷, 崇白虎, 馬鍾聖, 公孫微, 白魚, 施鈺, 軒轅劍月 (Lv45-80)
+- 孫漪 `sunyi.c` → `hudao/hall.c`
+- 景愈濤 `jing_yutao.c` → `canyon/cave.c`
+- 大蜈蚣 `centipede.c` → `waterfog/deep_fog.c`
+- 風神 `wind_god.c` → `latemoon/ruins.c`
+
+**上古妖獸 (8):**
+- 鬼獫, 靈狙, 鸂鷘, 狻猊, 饕餮, 寒蟾, 天獒, 鮫蛟 → placed across road, snow, oldpine, manglin, green, ice areas
+
+**General NPCs (6):**
+- 老乞婆, 張小簽, 江述仁, 必勇, 練功木人, 練功師父
+
+**Area NPCs (20) across 12 new areas:**
+- Canyon: hermit, canyon_bat
+- Chuenyu: spring_keeper, pilgrim
+- Death: soul_judge, wandering_soul, skeleton_guard
+- Force: training_dummy, weapon_master
+- Goathill: wild_goat, mountain_hermit
+- Green: shepherd (+ 2 beasts)
+- Ice: ice_guardian (+ frost_frog)
+- Jail: jailer, prisoner
+- Latemoon: moon_priestess (+ wind_god)
+- Temple: high_priest, temple_guard, bell_keeper
+- Village: village_elder, village_innkeeper, beggar_crone
+- Waterfog: fog_hermit (+ centipede)
+
+### Validation Results:
+- **48/48 NPC files** pass all static checks (`#include <npc.h>`, valid inherit, `set_name`, `set_race`, `set_level`, `setup`)
+- **40/48 NPCs** loaded by rooms via `set("objects",...)`
+- **8 八寶樓 bosses** not yet loaded (need tower rooms - future area task)
+- **All 18 sect master NPCs** already had complete apprentice systems (pre-existing)
+[0;32m[OK][0m Task done: Implement NPCs
+[0;34m[07:01:10][0m Running task: Implement equipment
+--- Task: Implement equipment ---
+All equipment implementation is complete. Here's the summary:
+
+## Results
+
+### Weapons Created (24 files in `mudlib/obj/weapon/`)
+
+| File | Name | Type | Stats |
+|------|------|------|-------|
+| jade_rod.c | 寒玉藥杵 | staff | 3/20/120/5 |
+| qingfeng_blade.c | 清風刀 | blade | 4/20/90/3 |
+| mirror_of_gods.c | 封神寶鏡 | blunt | 3/15/60/2 |
+| black_spark.c | 離玄光熾 | sword | 5/15/110/4 |
+| strange_copper_staff.c | 玄烏杖 | staff | 3/22/100/6 |
+| celestial_bull_cane.c | 饕餮法杖 | staff | 3/25/130/5 |
+| loving_sword.c | 歸心似劍 | sword | 3/14/90/3 |
+| white_sword.c | 白色長劍 | sword | 3/12/80/4 |
+| ancient_snow_staff.c | 萬年雪 | staff | 2/25/120/5 |
+| thunder_claw.c | 雷熊爪 | blunt | 4/14/70/2 |
+| blue_saliva_blade.c | 藍涎刀 | blade | 4/22/95/3 |
+| medicine_king_sword.c | 藥王神劍 | sword | 4/16/120/4 |
+| yiluo_greatsword.c | 易羅大劍 | sword | 5/20/150/5 |
+| ghost_head_axe.c | 鬼頭劈象刀 | axe | 5/25/160/3 |
+| snow_soul_dagger.c | 雪魂匕 | dagger | 3/12/60/2 |
+| meteor_sword.c | 追月流星劍 | sword | 5/16/130/4 |
+| evil_crooked_blade.c | 邪門歪刀 | blade | 4/24/100/4 |
+| tiandu_sword.c | 天都劍 | sword | 4/14/100/4 |
+| shuiyue_sword.c | 水月劍 | sword | 3/13/85/3 |
+| tianming_blade.c | 天命刃 | blade | 4/25/110/4 |
+| fenglei_blade.c | 風雷刀 | blade | 4/24/105/4 |
+| zhuifeng_sword.c | 追風劍 | sword | 3/12/90/4 |
+| liuling_whip.c | 六靈妖姬鞭 | whip | 6/15/90/7 |
+| ancient_blade_xuanmang.c | 古刃旋芒 | blade | 4/25/115/5 |
+
+### Armor Created (20 files in `mudlib/obj/armor/`)
+
+| File | Name | Type | Armor |
+|------|------|------|-------|
+| rainnar_cloth.c | 雨師妾袍 | cloth | 20 |
+| ashura_mask.c | 修羅之面 | head_eq | 10 |
+| girdle_of_headless.c | 形天之怒 | waist_eq | 30 |
+| topaz_belt.c | 黃玉佩 | waist_eq | 10 |
+| malik_necklace.c | 巫首項鍊 | neck_eq | 15 |
+| cold_snow_gauntlet.c | 冷雪手護 | hand_eq | 15 |
+| cloud_silk_robe.c | 雲羅絲衣 | cloth | 15 |
+| woochan_ring.c | 無腸寶珠 | finger_eq | 8 |
+| dingling_legs.c | 釘靈腿護 | leg_eq | 25 |
+| jiaojao_boots.c | 焦僥靴 | feet_eq | 12 |
+| yenhold_gauntlets.c | 厭火之拳 | hand_eq | 20 |
+| thunder_wolf_helm.c | 雷火天狼罩 | head_eq | 18 |
+| dragon_feather.c | 龍思羽 | cloth | 18 |
+| seal_ice_ring.c | 封印冰環 | finger_eq | 6 |
+| hunyuan_bag.c | 混元一氣袋 | waist_eq | 12 |
+| evil_bone_ring.c | 邪骨指環 | finger_eq | 5 |
+| jiutian_pearl.c | 九天鳳珠 | neck_eq | 20 |
+| wuli_ring.c | 舞璃戒指 | finger_eq | 4 |
+| crocodile_god_armor.c | 鱷神鎧甲 | armor | 35 |
+| white_bear_armor.c | 白熊護甲 | armor | 30 |
+
+### Validation
+
+- All 44 files have correct `#include` headers
+- All inherit the correct feature type
+- All have `setup_<type>()` calls with values within valid ranges
+- All have `setup()` at end of `create()`
+- All have `set_name()`, `set_weight()`, and proper equipment properties
+- 14 weapon files were initially created with out-of-range stats and were corrected to match the actual limits enforced by the feature files
+[0;32m[OK][0m Task done: Implement equipment
+[0;34m[07:11:55][0m Running task: Implement skill daemons
+--- Task: Implement skill daemons ---
+All tasks complete. Here's a summary:
+
+## Results
+
+**Total skill daemons: 75** (27 existing + 48 new)
+
+All 75 pass static validation:
+- `inherit SKILL` present
+- `register_skill_daemon()` present
+- `skill_improved()` present
+- `skill_advanced()` present
+
+### 48 New Skills Created
+
+| Category | Skills | Count |
+|----------|--------|-------|
+| **Combat weapon** | fork, scratching, cloudstaff, jingang_staff, shortsong_blade, six_chaos_sword, snowshade_sword, snowwhip, spring_blade, fonxansword, deisword | 11 |
+| **Sect combat** | bloodystrike, bolomiduo, celestrike, gouyee, liuh_ken, spicyclaw, stormdance, tenderzhi, ts_fist, wu_shun | 10 |
+| **Neigong** | fonxanforce, iceforce, serpentforce, juechen_force, qidaoforce, snowshade_force, jin_gang, celestial | 8 |
+| **Magic/Spell** | taoism, buddhism, spells, essencemagic, chanting, tao_mystery | 6 |
+| **Lightfoot** | chaos_steps, fall_steps, linbo_steps, notraces, pyrobat_steps | 5 |
+| **Non-combat** | perception, stealing, literate, yirong, throwing, instruments, iron_cloth, spider_array | 8 |
+
+Each skill type follows the established patterns:
+- **Combat skills**: `actions` mapping array + `attack_using()` + `COMBAT_D->fight()`
+- **Neigong skills**: `do_exercise()` + `halt_exercise()` + `exert_function()` + stat advancement
+- **Lightfoot skills**: `valid_enable("dodge")` + dex-based advancement
+- **Magic skills**: `valid_enable("spells")` + wisdom/spirit-based advancement
+- **Non-combat skills**: lower thresholds, passive advancement pattern
+[0;32m[OK][0m Task done: Implement skill daemons
+[0;34m[07:15:42][0m Running task: Implement quest system
+--- Task: Implement quest system ---
+Error: Reached max turns (40)[0;32m[OK][0m Task done: Implement quest system
+[0;34m[07:24:35][0m All tasks completed.
+[0;34m[07:24:35][0m Checking for changes to commit...

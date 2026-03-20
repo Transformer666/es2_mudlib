@@ -7,7 +7,7 @@ inherit F_VENDOR;
 
 void create()
 {
-	set_name("藥鋪掌櫃", ({"herbalist"}));
+	set_name("藥鋪掌櫃", ({"herbalist", "__ID_HERBALIST__"}));
 	set_race("human");
 	set_class("commoner");
 	set_level(3);
@@ -37,4 +37,19 @@ void init()
 {
 	::init();
 	add_action("do_vendor_list", "list");
+}
+
+int accept_object(object player, object ob)
+{
+	if( !ob->id("quest letter") && !ob->id("letter") ) return 0;
+	if( !player->query_temp("pending/postman_deliver") ) return 0;
+
+	do_chat(({
+		"藥鋪掌櫃接過信件﹐拆開來看了看。\n",
+		"藥鋪掌櫃說道﹕原來是藥材的訂單﹐等了好久了。\n",
+		"藥鋪掌櫃說道﹕多謝你跑這一趟﹐替我向驛站的人說聲謝。\n",
+	}));
+	player->delete_temp("pending/postman_deliver");
+	player->set_temp("pending/postman_done", 1);
+	return 1;
 }

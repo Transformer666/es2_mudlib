@@ -11,6 +11,7 @@ LONG
     );
     set("objects", ([
         __DIR__"npc/elder" : 1,
+        __DIR__"npc/jiang_shuren" : 1,
     ]));
     set("exits", ([
         "south" : __DIR__"lab",

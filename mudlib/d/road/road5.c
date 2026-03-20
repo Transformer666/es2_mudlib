@@ -16,6 +16,7 @@ LONG
 		"west"  : __DIR__"road4",
 		"east"  : "/d/wutang/wgate",
 		"southwest" : "/d/maoshan/gate",
+		"north" : "/d/temple/entrance",
 	]));
 
 	setup();

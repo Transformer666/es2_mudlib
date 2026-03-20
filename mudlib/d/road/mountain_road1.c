@@ -13,9 +13,14 @@ void create()
 LONG
 	);
 	set("outdoors", "road");
+	set("objects", ([
+		__DIR__"npc/inferno_dog" : 1,
+	]));
 	set("exits", ([
 		"southwest" : __DIR__"road1",
 		"north" : "/d/fengshan/gate",
+		"east"  : "/d/canyon/entrance",
+		"west"  : "/d/force/entrance",
 	]));
 
 	setup();
