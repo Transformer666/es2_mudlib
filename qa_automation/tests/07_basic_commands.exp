@@ -1,0 +1,183 @@
+#!/usr/bin/expect -f
+# 07_basic_commands.exp — Test basic MUD commands
+# Tests: look, score, skills, inventory, who, say, invalid direction
+
+set script_dir [file dirname [file normalize [info script]]]
+source "$script_dir/../lib/mud_connect.exp"
+source "$script_dir/../lib/helpers.exp"
+
+if {$argc < 2} {
+    puts "Usage: expect 07_basic_commands.exp <host> <port> \[report_file\]"
+    exit 1
+}
+
+set host [lindex $argv 0]
+set port [lindex $argv 1]
+set report_file [expr {$argc >= 3 ? [lindex $argv 2] : ""}]
+
+set test_user "qatest"
+set test_pass "testpass123"
+
+puts "\n=== Test: Basic Commands ==="
+
+if {$report_file ne ""} {
+    init_report $report_file "07 - Basic Commands"
+}
+
+# Login
+if {![mud_login $host $port $test_user $test_pass]} {
+    log_fail "Login" "Could not login for basic commands test"
+    close_report
+    exit 1
+}
+log_pass "Login for basic commands test"
+
+# --------------------------------------------------------------------------
+# Test 1: look
+# --------------------------------------------------------------------------
+puts "\nTest 1: look"
+set output [mud_cmd "look"]
+
+if {[string match "*TIMEOUT*" $output]} {
+    log_fail "look command" "Timed out"
+} elseif {[string length $output] < 10} {
+    log_fail "look command" "Output too short — may not have room description"
+} else {
+    log_pass "look command — room description received"
+}
+
+# --------------------------------------------------------------------------
+# Test 2: score
+# --------------------------------------------------------------------------
+puts "\nTest 2: score"
+set output [mud_cmd "score"]
+
+if {[string match "*TIMEOUT*" $output]} {
+    log_fail "score command" "Timed out"
+} else {
+    # Should contain character info — check for common elements
+    set has_info 0
+    foreach keyword {形體 精 氣 神 食物 飲水 疲勞 平民 業力 hp qi level} {
+        if {[string match -nocase "*$keyword*" $output]} {
+            set has_info 1
+            break
+        }
+    }
+    if {$has_info} {
+        log_pass "score command — character info displayed"
+    } else {
+        log_warn "score command" "Output received but could not find expected stats"
+    }
+}
+
+# --------------------------------------------------------------------------
+# Test 3: skills
+# --------------------------------------------------------------------------
+puts "\nTest 3: skills"
+set output [mud_cmd "skills"]
+
+if {[string match "*TIMEOUT*" $output]} {
+    log_fail "skills command" "Timed out"
+} elseif {[string length $output] > 0} {
+    log_pass "skills command — response received"
+} else {
+    log_warn "skills command" "Empty output"
+}
+
+# --------------------------------------------------------------------------
+# Test 4: inventory (i)
+# --------------------------------------------------------------------------
+puts "\nTest 4: inventory"
+set output [mud_cmd "i"]
+
+if {[string match "*TIMEOUT*" $output]} {
+    log_fail "inventory command" "Timed out"
+} else {
+    log_pass "inventory command — response received"
+}
+
+# --------------------------------------------------------------------------
+# Test 5: who
+# --------------------------------------------------------------------------
+puts "\nTest 5: who"
+set output [mud_cmd "who"]
+
+if {[string match "*TIMEOUT*" $output]} {
+    log_fail "who command" "Timed out"
+} else {
+    # Should at least show our own character
+    if {[string match -nocase "*$test_user*" $output] || [string match "*測試員*" $output]} {
+        log_pass "who command — shows our character"
+    } else {
+        log_warn "who command" "Response received but own character not found"
+    }
+}
+
+# --------------------------------------------------------------------------
+# Test 6: say
+# --------------------------------------------------------------------------
+puts "\nTest 6: say"
+set output [mud_cmd "say hello"]
+
+if {[string match "*TIMEOUT*" $output]} {
+    log_fail "say command" "Timed out"
+} else {
+    if {[string match "*說道*" $output] || [string match "*hello*" $output]} {
+        log_pass "say command — speech echoed"
+    } else {
+        log_warn "say command" "Response received but speech echo not found"
+    }
+}
+
+# --------------------------------------------------------------------------
+# Test 7: Invalid direction
+# --------------------------------------------------------------------------
+puts "\nTest 7: Invalid direction"
+set output [mud_cmd "go invaliddir123"]
+
+if {[string match "*TIMEOUT*" $output]} {
+    log_fail "Invalid direction" "Timed out"
+} else {
+    if {[string match "*沒有這個方向*" $output] || [string match "*沒有出路*" $output] || [string match "*什麼*" $output]} {
+        log_pass "Invalid direction — error message shown"
+    } else {
+        log_warn "Invalid direction" "Response received but expected error message not found"
+    }
+}
+
+# --------------------------------------------------------------------------
+# Test 8: help
+# --------------------------------------------------------------------------
+puts "\nTest 8: help"
+set output [mud_cmd "help"]
+
+if {[string match "*TIMEOUT*" $output]} {
+    log_fail "help command" "Timed out"
+} elseif {[string length $output] > 20} {
+    log_pass "help command — help text displayed"
+} else {
+    log_warn "help command" "Output seems short"
+}
+
+# --------------------------------------------------------------------------
+# Test 9: emote
+# --------------------------------------------------------------------------
+puts "\nTest 9: emote"
+set output [mud_cmd "smile"]
+
+if {[string match "*TIMEOUT*" $output]} {
+    log_warn "emote command" "Timed out"
+} else {
+    if {[string match "*笑*" $output] || [string match "*smile*" $output] || [string length $output] > 0} {
+        log_pass "emote command — response received"
+    } else {
+        log_warn "emote command" "Unexpected response"
+    }
+}
+
+mud_logout
+
+puts "\n=== Basic Commands Test Complete: [get_test_summary] ==="
+
+close_report
+exit [get_fail_count]

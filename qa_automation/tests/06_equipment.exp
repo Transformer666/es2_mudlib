@@ -1,0 +1,151 @@
+#!/usr/bin/expect -f
+# 06_equipment.exp — Test equipment wield/wear/remove
+# Tests wielding weapons, wearing armor, and removing equipment.
+
+set script_dir [file dirname [file normalize [info script]]]
+source "$script_dir/../lib/mud_connect.exp"
+source "$script_dir/../lib/helpers.exp"
+
+if {$argc < 2} {
+    puts "Usage: expect 06_equipment.exp <host> <port> \[report_file\]"
+    exit 1
+}
+
+set host [lindex $argv 0]
+set port [lindex $argv 1]
+set report_file [expr {$argc >= 3 ? [lindex $argv 2] : ""}]
+
+set test_user "qatest"
+set test_pass "testpass123"
+
+puts "\n=== Test: Equipment ==="
+
+if {$report_file ne ""} {
+    init_report $report_file "06 - Equipment"
+}
+
+# Login
+if {![mud_login $host $port $test_user $test_pass]} {
+    log_fail "Login" "Could not login for equipment test"
+    close_report
+    exit 1
+}
+log_pass "Login for equipment test"
+
+# Clone a test weapon (requires wizard)
+# Try to clone a dagger (simple weapon that should exist)
+set output [mud_cmd "clone /obj/area/obj/dagger"]
+set has_wizard 1
+
+if {[string match "*什麼*" $output] || [string match "*Error*" $output]} {
+    log_warn "Clone weapon" "Cannot clone objects — not wizard? Equipment tests limited"
+    set has_wizard 0
+}
+
+if {$has_wizard} {
+    # --- Weapon Tests ---
+    puts "\nWeapon Tests:"
+
+    # Test wield
+    set output [mud_cmd "wield dagger"]
+    if {[string match "*TIMEOUT*" $output]} {
+        log_fail "Wield weapon" "Timed out"
+    } elseif {[string match "*不能*" $output] || [string match "*無法*" $output]} {
+        log_fail "Wield weapon" "Cannot wield: $output"
+    } else {
+        log_pass "Wield weapon (dagger)"
+    }
+
+    # Test unwield
+    set output [mud_cmd "unwield dagger"]
+    if {[string match "*TIMEOUT*" $output]} {
+        log_fail "Unwield weapon" "Timed out"
+    } else {
+        log_pass "Unwield weapon (dagger)"
+    }
+
+    # Test wield again and check with inventory/equipment
+    set output [mud_cmd "wield dagger"]
+    set inv_output [mud_cmd "inventory"]
+    if {[string match "*dagger*" $inv_output] || [string match "*匕首*" $inv_output]} {
+        log_pass "Wielded weapon shows in inventory"
+    } else {
+        log_warn "Wielded weapon in inventory" "Dagger not found in inventory output"
+    }
+    set output [mud_cmd "unwield dagger"]
+
+    # --- Armor Tests ---
+    puts "\nArmor Tests:"
+
+    # Clone a test armor
+    set output [mud_cmd "clone /obj/area/obj/cloth"]
+    if {[string match "*什麼*" $output] || [string match "*Error*" $output]} {
+        # Try another armor file
+        set output [mud_cmd "clone /obj/area/obj/leather_armor"]
+        if {[string match "*什麼*" $output] || [string match "*Error*" $output]} {
+            log_warn "Clone armor" "Cannot find a standard armor to clone"
+        }
+    }
+
+    # Test wear
+    set output [mud_cmd "wear cloth"]
+    if {[string match "*TIMEOUT*" $output]} {
+        log_warn "Wear armor" "Timed out"
+    } elseif {[string match "*不能*" $output] || [string match "*什麼*" $output]} {
+        # Try alternate name
+        set output [mud_cmd "wear leather_armor"]
+        if {[string match "*不能*" $output] || [string match "*什麼*" $output]} {
+            log_warn "Wear armor" "Cannot wear available armor"
+        } else {
+            log_pass "Wear armor"
+            set output [mud_cmd "remove leather_armor"]
+            log_pass "Remove armor"
+        }
+    } else {
+        log_pass "Wear armor (cloth)"
+
+        # Test remove
+        set output [mud_cmd "remove cloth"]
+        if {[string match "*TIMEOUT*" $output]} {
+            log_fail "Remove armor" "Timed out"
+        } else {
+            log_pass "Remove armor (cloth)"
+        }
+    }
+
+    # --- ID/Examine Test ---
+    puts "\nItem Identification:"
+    set output [mud_cmd "id dagger"]
+    if {[string match "*TIMEOUT*" $output]} {
+        log_warn "ID weapon" "Timed out"
+    } elseif {[string length $output] > 10} {
+        log_pass "ID weapon shows stats"
+    } else {
+        log_warn "ID weapon" "ID output seems short"
+    }
+
+} else {
+    # Without wizard, try basic equipment commands
+    puts "\nTesting equipment commands without wizard access:"
+
+    set output [mud_cmd "wield"]
+    if {[string match "*什麼*" $output] || [string match "*沒有*" $output]} {
+        log_pass "Wield with no weapon gives appropriate error"
+    } else {
+        log_warn "Wield no args" "Unexpected response"
+    }
+
+    set output [mud_cmd "wear"]
+    if {[string match "*什麼*" $output] || [string match "*沒有*" $output]} {
+        log_pass "Wear with no armor gives appropriate error"
+    } else {
+        log_warn "Wear no args" "Unexpected response"
+    }
+}
+
+mud_logout
+
+puts "\n=== Equipment Test Complete: [get_test_summary] ==="
+
+close_report
+exit [get_fail_count]

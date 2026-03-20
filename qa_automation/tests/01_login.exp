@@ -1,0 +1,215 @@
+#!/usr/bin/expect -f
+# 01_login.exp — Test login flow
+# Verifies: connection, login prompt, password prompt, successful login,
+#           starting room, and clean logout.
+
+set script_dir [file dirname [file normalize [info script]]]
+source "$script_dir/../lib/mud_connect.exp"
+source "$script_dir/../lib/helpers.exp"
+
+# Parse arguments
+if {$argc < 2} {
+    puts "Usage: expect 01_login.exp <host> <port> \[report_file\]"
+    exit 1
+}
+
+set host [lindex $argv 0]
+set port [lindex $argv 1]
+set report_file [expr {$argc >= 3 ? [lindex $argv 2] : ""}]
+
+set test_user "qatest"
+set test_pass "testpass123"
+set test_email "qatest@test.com"
+
+puts "\n=== Test: Login Flow ==="
+
+if {$report_file ne ""} {
+    init_report $report_file "01 - Login Flow"
+}
+
+# --------------------------------------------------------------------------
+# Test 1: Connect to MUD and verify welcome banner
+# --------------------------------------------------------------------------
+puts "\nTest 1: Connection and welcome banner"
+spawn telnet $host $port
+set timeout $mud_timeout
+
+expect {
+    -re "您的使用者代號" {
+        log_pass "Connect and see login prompt"
+    }
+    timeout {
+        log_fail "Connect and see login prompt" "Timed out waiting for login prompt"
+        close_report
+        exit 1
+    }
+    eof {
+        log_fail "Connect and see login prompt" "Connection refused or closed"
+        close_report
+        exit 1
+    }
+}
+
+# --------------------------------------------------------------------------
+# Test 2: Send username, verify password or new-user prompt
+# --------------------------------------------------------------------------
+puts "\nTest 2: Username prompt response"
+send -- "$test_user\r"
+
+set is_new_user 0
+
+expect {
+    -re "請輸入密碼" {
+        log_pass "Username accepted — password prompt shown (existing user)"
+        # Send password for existing user
+        send -- "$test_pass\r"
+    }
+    -re "將會創造一個新的人物" {
+        log_pass "Username accepted — new user confirmation shown"
+        set is_new_user 1
+    }
+    timeout {
+        log_fail "Username accepted" "Timed out after sending username"
+        close_report
+        exit 1
+    }
+}
+
+# Handle new user creation flow
+if {$is_new_user} {
+    # Confirm creation
+    expect -re "\\(y/n\\)"
+    send -- "y\r"
+
+    # Set password
+    expect -re "請設定您的密碼"
+    send -- "$test_pass\r"
+
+    # Confirm password
+    expect -re "請再輸入一次您的密碼"
+    send -- "$test_pass\r"
+
+    # Email
+    expect -re "您的電子郵件地址"
+    send -- "$test_email\r"
+
+    # Race selection
+    expect -re "您的選擇"
+    send -- "human\r"
+
+    # Gender
+    expect -re "男性.*m.*女性.*f"
+    send -- "m\r"
+
+    # Chinese name — use binary send for UTF-8 reliability
+    expect -re "您的中文名字"
+    # Send the UTF-8 bytes for 測試員 directly
+    send -- "測試員\r"
+}
+
+# --------------------------------------------------------------------------
+# Test 3: Verify successful login
+# --------------------------------------------------------------------------
+puts "\nTest 3: Successful login"
+set timeout 30
+
+expect {
+    -re "目前權限|重新連線完畢" {
+        log_pass "Login successful — saw permission level"
+    }
+    -re "您的中文名字" {
+        # Name was rejected (encoding issue), try a simple ASCII-friendly approach
+        log_warn "Chinese name rejected" "Retrying with different name"
+        send -- "測試\r"
+        expect {
+            -re "目前權限|重新連線完畢" {
+                log_pass "Login successful on retry"
+            }
+            -re "您的中文名字" {
+                # Try once more
+                send -- "測試\r"
+                expect {
+                    -re "目前權限|重新連線完畢" {
+                        log_pass "Login successful on second retry"
+                    }
+                    timeout {
+                        log_fail "Login successful" "Could not complete character creation"
+                        close_report
+                        exit 1
+                    }
+                }
+            }
+            timeout {
+                log_fail "Login successful" "Timed out on retry"
+                close_report
+                exit 1
+            }
+        }
+    }
+    -re "密碼錯誤" {
+        log_fail "Login successful" "Wrong password"
+        close_report
+        exit 1
+    }
+    timeout {
+        log_fail "Login successful" "Timed out waiting for login completion"
+        close_report
+        exit 1
+    }
+}
+
+set timeout $mud_timeout
+
+# Wait for the prompt
+expect -re $mud_prompt
+
+# --------------------------------------------------------------------------
+# Test 4: Verify starting room
+# --------------------------------------------------------------------------
+puts "\nTest 4: Starting room"
+set output [mud_cmd "look"]
+
+if {[string match "*客棧*" $output] || [string match "*inn*" $output]} {
+    log_pass "Starting room is inn (客棧)"
+} else {
+    log_warn "Starting room check" "Room may not be inn — output: [string range $output 0 100]"
+}
+
+# --------------------------------------------------------------------------
+# Test 5: Test quit command
+# --------------------------------------------------------------------------
+puts "\nTest 5: Quit command"
+send -- "quit\r"
+
+expect {
+    -re "y.*n" {
+        log_pass "Quit confirmation prompt shown"
+        send -- "y\r"
+    }
+    eof {
+        log_pass "Quit — connection closed"
+    }
+    timeout {
+        log_warn "Quit command" "No confirmation prompt, but may have quit"
+    }
+}
+
+expect {
+    eof {
+        log_pass "Connection closed cleanly after quit"
+    }
+    timeout {
+        log_warn "Connection close" "Connection did not close promptly"
+    }
+}
+
+catch { close }
+catch { wait }
+
+# --------------------------------------------------------------------------
+# Summary
+# --------------------------------------------------------------------------
+puts "\n=== Login Test Complete: [get_test_summary] ==="
+
+close_report
+exit [get_fail_count]

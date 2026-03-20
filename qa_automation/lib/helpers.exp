@@ -1,0 +1,171 @@
+#!/usr/bin/expect -f
+# helpers.exp — Test helper procedures for QA automation
+# Provides logging, navigation, and assertion helpers.
+
+package require Tcl 8.5
+
+# --------------------------------------------------------------------------
+# Global test counters
+# --------------------------------------------------------------------------
+set pass_count 0
+set fail_count 0
+set warn_count 0
+set test_results {}
+
+# Report file handle
+set report_fh ""
+
+# --------------------------------------------------------------------------
+# init_report — Open the report file for writing
+# --------------------------------------------------------------------------
+proc init_report {report_file test_name} {
+    global report_fh
+
+    set report_fh [open $report_file a]
+    puts $report_fh "\n## $test_name"
+    puts $report_fh ""
+    puts $report_fh "| Status | Test | Details |"
+    puts $report_fh "|--------|------|---------|"
+}
+
+# --------------------------------------------------------------------------
+# close_report — Finalize and close the report file
+# --------------------------------------------------------------------------
+proc close_report {} {
+    global report_fh pass_count fail_count warn_count
+
+    if {$report_fh ne ""} {
+        puts $report_fh ""
+        puts $report_fh "**Summary**: $pass_count passed, $fail_count failed, $warn_count warnings"
+        puts $report_fh ""
+        close $report_fh
+        set report_fh ""
+    }
+}
+
+# --------------------------------------------------------------------------
+# log_pass — Record a passing test
+# --------------------------------------------------------------------------
+proc log_pass {test_name} {
+    global pass_count report_fh
+
+    incr pass_count
+    puts "  PASS: $test_name"
+    if {$report_fh ne ""} {
+        puts $report_fh "| PASS | $test_name |  |"
+    }
+}
+
+# --------------------------------------------------------------------------
+# log_fail — Record a failing test
+# --------------------------------------------------------------------------
+proc log_fail {test_name reason} {
+    global fail_count report_fh
+
+    incr fail_count
+    puts "  FAIL: $test_name — $reason"
+    if {$report_fh ne ""} {
+        puts $report_fh "| FAIL | $test_name | $reason |"
+    }
+}
+
+# --------------------------------------------------------------------------
+# log_warn — Record a warning
+# --------------------------------------------------------------------------
+proc log_warn {test_name reason} {
+    global warn_count report_fh
+
+    incr warn_count
+    puts "  WARN: $test_name — $reason"
+    if {$report_fh ne ""} {
+        puts $report_fh "| WARN | $test_name | $reason |"
+    }
+}
+
+# --------------------------------------------------------------------------
+# assert_contains — Assert output contains a substring
+# --------------------------------------------------------------------------
+proc assert_contains {test_name output expected} {
+    if {[string match "*$expected*" $output]} {
+        log_pass $test_name
+        return 1
+    } else {
+        log_fail $test_name "Expected to find '$expected' in output"
+        return 0
+    }
+}
+
+# --------------------------------------------------------------------------
+# assert_not_contains — Assert output does NOT contain a substring
+# --------------------------------------------------------------------------
+proc assert_not_contains {test_name output unexpected} {
+    if {[string match "*$unexpected*" $output]} {
+        log_fail $test_name "Unexpectedly found '$unexpected' in output"
+        return 0
+    } else {
+        log_pass $test_name
+        return 1
+    }
+}
+
+# --------------------------------------------------------------------------
+# assert_regexp — Assert output matches a regular expression
+# --------------------------------------------------------------------------
+proc assert_regexp {test_name output pattern} {
+    if {[regexp $pattern $output]} {
+        log_pass $test_name
+        return 1
+    } else {
+        log_fail $test_name "Output did not match pattern '$pattern'"
+        return 0
+    }
+}
+
+# --------------------------------------------------------------------------
+# go_direction — Move in a direction and return room output
+# --------------------------------------------------------------------------
+proc go_direction {dir} {
+    set output [mud_cmd $dir]
+    return $output
+}
+
+# --------------------------------------------------------------------------
+# get_room_output — Send 'look' and return the room description
+# --------------------------------------------------------------------------
+proc get_room_output {} {
+    return [mud_cmd "look"]
+}
+
+# --------------------------------------------------------------------------
+# check_npc_present — Check if an NPC name appears in the room
+# --------------------------------------------------------------------------
+proc check_npc_present {npc_name} {
+    set output [mud_cmd "look"]
+    return [string match "*$npc_name*" $output]
+}
+
+# --------------------------------------------------------------------------
+# navigate_to — Walk a sequence of directions to reach a destination
+# Directions should be a list like {east north north west}
+# --------------------------------------------------------------------------
+proc navigate_to {directions} {
+    foreach dir $directions {
+        go_direction $dir
+    }
+}
+
+# --------------------------------------------------------------------------
+# get_test_summary — Return a summary string
+# --------------------------------------------------------------------------
+proc get_test_summary {} {
+    global pass_count fail_count warn_count
+    return "$pass_count passed, $fail_count failed, $warn_count warnings"
+}
+
+# --------------------------------------------------------------------------
+# get_fail_count — Return the number of failures (for exit code)
+# --------------------------------------------------------------------------
+proc get_fail_count {} {
+    global fail_count
+    return $fail_count
+}

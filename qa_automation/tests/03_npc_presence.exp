@@ -1,0 +1,341 @@
+#!/usr/bin/expect -f
+# 03_npc_presence.exp — Test NPC loading via DFS walking
+# Walks all reachable rooms from the starting room, and at rooms that
+# should contain NPCs (per npc_rooms.txt), checks if the NPCs are present.
+
+set script_dir [file dirname [file normalize [info script]]]
+source "$script_dir/../lib/mud_connect.exp"
+source "$script_dir/../lib/helpers.exp"
+
+if {$argc < 2} {
+    puts "Usage: expect 03_npc_presence.exp <host> <port> \[report_file\]"
+    exit 1
+}
+
+set host [lindex $argv 0]
+set port [lindex $argv 1]
+set report_file [expr {$argc >= 3 ? [lindex $argv 2] : ""}]
+
+set test_user "qatest"
+set test_pass "testpass123"
+
+# Starting room — player's home inn
+set start_room "/d/snow/inn_hall"
+
+# Opposite direction mapping for backtracking
+array set opposite {
+    north south
+    south north
+    east west
+    west east
+    northeast southwest
+    southwest northeast
+    northwest southeast
+    southeast northwest
+    up down
+    down up
+    enter out
+    out enter
+}
+
+puts "\n=== Test: NPC Presence (DFS Walk) ==="
+
+if {$report_file ne ""} {
+    init_report $report_file "03 - NPC Presence (DFS Walk)"
+}
+
+# --------------------------------------------------------------------------
+# Parse room_paths.txt → build adjacency graph
+# --------------------------------------------------------------------------
+set data_file "$script_dir/../data/room_paths.txt"
+if {![file exists $data_file]} {
+    log_fail "Load room data" "File $data_file not found — run generate_test_data.sh first"
+    close_report
+    exit 1
+}
+
+set fh [open $data_file r]
+set room_data [read $fh]
+close $fh
+
+# exits_list(room) = list of {dir dest} pairs
+array set exits_list {}
+array set reverse_cmd {}
+set all_graph_rooms {}
+
+foreach line [split $room_data "\n"] {
+    set line [string trim $line]
+    if {$line eq "" || [string index $line 0] eq "#"} continue
+    set parts [split $line "\t"]
+    if {[llength $parts] >= 3} {
+        set src [lindex $parts 0]
+        set dir [lindex $parts 1]
+        set dest [lindex $parts 2]
+
+        if {![info exists exits_list($src)]} {
+            set exits_list($src) {}
+        }
+        lappend exits_list($src) [list $dir $dest]
+
+        if {[lsearch -exact $all_graph_rooms $src] == -1} {
+            lappend all_graph_rooms $src
+        }
+        if {[lsearch -exact $all_graph_rooms $dest] == -1} {
+            lappend all_graph_rooms $dest
+        }
+    }
+}
+
+# --------------------------------------------------------------------------
+# Parse hidden_paths.txt → add action-based exits to graph
+# --------------------------------------------------------------------------
+set hidden_file "$script_dir/../data/hidden_paths.txt"
+if {[file exists $hidden_file]} {
+    set fh [open $hidden_file r]
+    set hidden_data [read $fh]
+    close $fh
+
+    set hidden_count 0
+    foreach line [split $hidden_data "\n"] {
+        set line [string trim $line]
+        if {$line eq "" || [string index $line 0] eq "#"} continue
+        set parts [split $line "\t"]
+        if {[llength $parts] >= 4} {
+            set src [lindex $parts 0]
+            set action [lindex $parts 1]
+            set dest [lindex $parts 2]
+            set rev [lindex $parts 3]
+
+            if {![info exists exits_list($src)]} {
+                set exits_list($src) {}
+            }
+            lappend exits_list($src) [list $action $dest]
+            set reverse_cmd($src,$action) $rev
+
+            if {[lsearch -exact $all_graph_rooms $src] == -1} { lappend all_graph_rooms $src }
+            if {[lsearch -exact $all_graph_rooms $dest] == -1} { lappend all_graph_rooms $dest }
+            incr hidden_count
+        }
+    }
+    puts "Loaded $hidden_count hidden/action-based exits"
+}
+
+# --------------------------------------------------------------------------
+# Parse npc_rooms.txt → build NPC expectations
+# --------------------------------------------------------------------------
+set npc_file "$script_dir/../data/npc_rooms.txt"
+if {![file exists $npc_file]} {
+    log_fail "Load NPC data" "File $npc_file not found — run generate_test_data.sh first"
+    close_report
+    exit 1
+}
+
+set fh [open $npc_file r]
+set npc_data [read $fh]
+close $fh
+
+# npc_list(room) = list of {npc_id npc_path} pairs
+array set npc_list {}
+set total_npcs 0
+set npc_rooms_set {}
+
+foreach line [split $npc_data "\n"] {
+    set line [string trim $line]
+    if {$line eq "" || [string index $line 0] eq "#"} continue
+    set parts [split $line "\t"]
+    if {[llength $parts] >= 2} {
+        set room_path [lindex $parts 0]
+        set npc_id [lindex $parts 1]
+        set npc_path [expr {[llength $parts] >= 3 ? [lindex $parts 2] : $npc_id}]
+
+        if {![info exists npc_list($room_path)]} {
+            set npc_list($room_path) {}
+        }
+        lappend npc_list($room_path) [list $npc_id $npc_path]
+        incr total_npcs
+
+        if {[lsearch -exact $npc_rooms_set $room_path] == -1} {
+            lappend npc_rooms_set $room_path
+        }
+    }
+}
+
+puts "Loaded $total_npcs NPC entries across [llength $npc_rooms_set] rooms"
+
+# --------------------------------------------------------------------------
+# Login
+# --------------------------------------------------------------------------
+if {![mud_login $host $port $test_user $test_pass]} {
+    log_fail "Login" "Could not login for NPC presence test"
+    close_report
+    exit 1
+}
+log_pass "Login for NPC test"
+
+# --------------------------------------------------------------------------
+# Iterative DFS walk — check NPCs at each visited room
+# --------------------------------------------------------------------------
+array set visited {}
+set visited($start_room) 1
+set npcs_checked 0
+set npcs_found 0
+set npcs_missing 0
+set missing_npcs_list {}
+
+# Check NPCs at start room if any
+if {[info exists npc_list($start_room)]} {
+    set output [mud_cmd "look"]
+    foreach npc_entry $npc_list($start_room) {
+        set npc_id [lindex $npc_entry 0]
+        incr npcs_checked
+        if {[string match "*$npc_id*" $output]} {
+            log_pass "NPC present: $npc_id in $start_room"
+            incr npcs_found
+        } else {
+            log_fail "NPC present: $npc_id in $start_room" "NPC '$npc_id' not found in room"
+            incr npcs_missing
+            lappend missing_npcs_list "$npc_id in $start_room"
+        }
+    }
+}
+
+# Stack entries: {room exit_index backtrack_dir}
+set stack [list [list $start_room 0 ""]]
+
+puts "\nStarting DFS from $start_room ..."
+
+while {[llength $stack] > 0} {
+    # Peek at top of stack
+    set top_idx [expr {[llength $stack] - 1}]
+    set top [lindex $stack $top_idx]
+    set room [lindex $top 0]
+    set idx [lindex $top 1]
+    set backtrack [lindex $top 2]
+
+    # Get exits for this room
+    if {[info exists exits_list($room)]} {
+        set room_exits $exits_list($room)
+    } else {
+        set room_exits {}
+    }
+
+    if {$idx >= [llength $room_exits]} {
+        # All exits from this room explored — backtrack
+        set stack [lreplace $stack $top_idx $top_idx]
+
+        if {$backtrack ne ""} {
+            set bt_output [mud_cmd "$backtrack"]
+            after 150
+
+            if {[string match "*沒有這個方向*" $bt_output] || [string match "*沒有出路*" $bt_output] || [string match "*什麼*" $bt_output]} {
+                log_warn "Backtrack: $room via $backtrack" "Could not backtrack — DFS may be out of sync"
+            }
+        }
+        continue
+    }
+
+    # Advance the exit index
+    set new_top [list $room [expr {$idx + 1}] $backtrack]
+    set stack [lreplace $stack $top_idx $top_idx $new_top]
+
+    # Get the exit to try
+    set exit_info [lindex $room_exits $idx]
+    set dir [lindex $exit_info 0]
+    set dest [lindex $exit_info 1]
+
+    # Skip if destination already visited
+    if {[info exists visited($dest)]} {
+        continue
+    }
+
+    # Try walking
+    set output [mud_cmd "$dir"]
+    after 150
+
+    # Check for errors — if we can't move, skip
+    if {[string match "*沒有這個方向*" $output] || [string match "*沒有出路*" $output] || [string match "*什麼*" $output]} {
+        continue
+    }
+    if {$output eq "TIMEOUT" || $output eq "EOF"} {
+        continue
+    }
+
+    # We moved to dest
+    set visited($dest) 1
+
+    # Check NPCs in this room if any are expected
+    if {[info exists npc_list($dest)]} {
+        set look_output [mud_cmd "look"]
+        after 150
+
+        foreach npc_entry $npc_list($dest) {
+            set npc_id [lindex $npc_entry 0]
+            incr npcs_checked
+            if {[string match "*$npc_id*" $look_output]} {
+                log_pass "NPC present: $npc_id in $dest"
+                incr npcs_found
+            } else {
+                log_fail "NPC present: $npc_id in $dest" "NPC '$npc_id' not found in room"
+                incr npcs_missing
+                lappend missing_npcs_list "$npc_id in $dest"
+            }
+        }
+    }
+
+    # Compute backtrack direction — use explicit reverse_cmd if available
+    if {[info exists reverse_cmd($room,$dir)]} {
+        set back_dir $reverse_cmd($room,$dir)
+    } elseif {[info exists opposite($dir)]} {
+        set back_dir $opposite($dir)
+    } else {
+        set back_dir ""
+    }
+
+    # Push new room onto stack
+    lappend stack [list $dest 0 $back_dir]
+}
+
+# --------------------------------------------------------------------------
+# Report NPC rooms that were unreachable
+# --------------------------------------------------------------------------
+set unreachable_npc_rooms {}
+foreach room $npc_rooms_set {
+    if {![info exists visited($room)]} {
+        lappend unreachable_npc_rooms $room
+        # Count the NPCs in unreachable rooms
+        foreach npc_entry $npc_list($room) {
+            set npc_id [lindex $npc_entry 0]
+            log_warn "Unreachable NPC: $npc_id in $room" "Room not reachable from $start_room"
+        }
+    }
+}
+
+if {[llength $missing_npcs_list] > 0} {
+    puts "\n--- Missing NPCs ($npcs_missing) ---"
+    foreach npc $missing_npcs_list {
+        puts "  MISSING: $npc"
+    }
+}
+
+if {[llength $unreachable_npc_rooms] > 0} {
+    puts "\n--- Unreachable NPC Rooms ([llength $unreachable_npc_rooms]) ---"
+    foreach room $unreachable_npc_rooms {
+        puts "  UNREACHABLE: $room"
+    }
+}
+
+# --------------------------------------------------------------------------
+# Summary
+# --------------------------------------------------------------------------
+puts "\n--- Summary ---"
+puts "  NPCs checked: $npcs_checked / $total_npcs"
+puts "  NPCs found:   $npcs_found"
+puts "  NPCs missing: $npcs_missing"
+puts "  Unreachable NPC rooms: [llength $unreachable_npc_rooms]"
+
+mud_logout
+
+puts "\n=== NPC Presence Test Complete: [get_test_summary] ==="
+
+close_report
+exit [get_fail_count]

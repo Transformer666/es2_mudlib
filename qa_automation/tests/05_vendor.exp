@@ -1,0 +1,117 @@
+#!/usr/bin/expect -f
+# 05_vendor.exp — Test vendor NPC interactions
+# Tests list and buy commands with vendor NPCs.
+
+set script_dir [file dirname [file normalize [info script]]]
+source "$script_dir/../lib/mud_connect.exp"
+source "$script_dir/../lib/helpers.exp"
+
+if {$argc < 2} {
+    puts "Usage: expect 05_vendor.exp <host> <port> \[report_file\]"
+    exit 1
+}
+
+set host [lindex $argv 0]
+set port [lindex $argv 1]
+set report_file [expr {$argc >= 3 ? [lindex $argv 2] : ""}]
+
+set test_user "qatest"
+set test_pass "testpass123"
+
+puts "\n=== Test: Vendor NPCs ==="
+
+if {$report_file ne ""} {
+    init_report $report_file "05 - Vendor NPCs"
+}
+
+# Login
+if {![mud_login $host $port $test_user $test_pass]} {
+    log_fail "Login" "Could not login for vendor test"
+    close_report
+    exit 1
+}
+log_pass "Login for vendor test"
+
+# Known vendor locations
+# Format: {room_path vendor_id vendor_name}
+set vendors {
+    {/d/snow/herb_shop herbalist 藥鋪掌櫃}
+    {/d/snow/smithy smith 鐵匠}
+    {/d/wutang/baihua shen 花姑娘}
+}
+
+foreach vendor_info $vendors {
+    set room_path [lindex $vendor_info 0]
+    set vendor_id [lindex $vendor_info 1]
+    set vendor_name [lindex $vendor_info 2]
+
+    puts "\n--- Testing vendor: $vendor_name ($vendor_id) in $room_path ---"
+
+    # Navigate to vendor room
+    set output [mud_cmd "goto $room_path"]
+
+    if {[string match "*什麼*" $output]} {
+        log_warn "goto $room_path" "Cannot teleport to vendor room — skipping"
+        continue
+    }
+
+    # Verify vendor is present
+    set look_output [mud_cmd "look"]
+    if {[string match "*$vendor_name*" $look_output] || [string match "*$vendor_id*" $look_output]} {
+        log_pass "Vendor present: $vendor_name in $room_path"
+    } else {
+        log_fail "Vendor present: $vendor_name in $room_path" "Vendor not found in room"
+        continue
+    }
+
+    # Test 'list' command
+    set list_output [mud_cmd "list"]
+
+    if {[string match "*TIMEOUT*" $list_output]} {
+        log_fail "List merchandise: $vendor_name" "Timed out on list command"
+        continue
+    }
+
+    # Check that list shows some items (merchandise names or prices)
+    if {$list_output eq "" || [string length $list_output] < 10} {
+        log_fail "List merchandise: $vendor_name" "List output is empty or too short"
+    } else {
+        log_pass "List merchandise: $vendor_name"
+    }
+
+    # Test 'buy' command — give player some money first
+    # Use wizard command to give money, or skip if not wizard
+    set output [mud_cmd "set me money 10000"]
+    if {[string match "*什麼*" $output]} {
+        log_warn "Give money" "Cannot set money — buy test may fail"
+    }
+
+    # Try to buy the first item from the list
+    # We'll try a generic buy command
+    set buy_output [mud_cmd "buy 1 from $vendor_id"]
+
+    if {[string match "*TIMEOUT*" $buy_output]} {
+        log_warn "Buy from $vendor_name" "Timed out on buy command"
+    } elseif {[string match "*沒有*" $buy_output] || [string match "*不能*" $buy_output]} {
+        log_warn "Buy from $vendor_name" "Buy failed — may need correct item name or money"
+    } else {
+        log_pass "Buy from $vendor_name"
+
+        # Check inventory for the purchased item
+        set inv_output [mud_cmd "inventory"]
+        if {[string length $inv_output] > 5} {
+            log_pass "Inventory check after buy"
+        } else {
+            log_warn "Inventory check after buy" "Inventory appears empty"
+        }
+    }
+
+    after 200
+}
+
+mud_logout
+
+puts "\n=== Vendor Test Complete: [get_test_summary] ==="
+
+close_report
+exit [get_fail_count]

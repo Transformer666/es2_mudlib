@@ -1,0 +1,8 @@
+# Hidden path data — action-based exits not captured by generate_test_data.sh
+# Format: source_room	action_command	destination_room	reverse_command
+# These use add_action() instead of set("exits"), so they need manual listing.
+/d/snow/square	climb 榕樹	/d/snow/tree	down
+/d/snow/ruin1	climb 樑柱	/d/snow/ruin2	climb 樑柱
+/d/snow/inn_kitchen	enter 大灶	/d/snow/fireplace	out
+/d/snow/lane2	enter 磨坊	/d/snow/mill	out
+/d/snow/epath	climb 圍牆	/d/snow/kitchen	climb 圍牆

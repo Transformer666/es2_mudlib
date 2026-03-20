@@ -1,0 +1,390 @@
+#!/usr/bin/expect -f
+# mud_connect.exp — Expect library for MUD telnet connection
+# Provides login, logout, command execution, and assertion helpers.
+
+package require Tcl 8.5
+
+# UTF-8 encoding for Chinese character support
+encoding system utf-8
+set env(LANG) "en_US.UTF-8"
+
+# Default timeout for expect commands (seconds)
+set mud_timeout 15
+
+# The MUD prompt pattern — match "> " at end of output
+set mud_prompt "> $"
+
+# --------------------------------------------------------------------------
+# mud_connect — Open a telnet connection to the MUD
+# --------------------------------------------------------------------------
+proc mud_connect {host port} {
+    global spawn_id mud_timeout
+
+    spawn telnet $host $port
+    match_max 100000
+
+    set timeout $mud_timeout
+
+    expect {
+        -re "您的使用者代號" { return 1 }
+        timeout {
+            puts "ERROR: Timed out waiting for login prompt"
+            return 0
+        }
+        eof {
+            puts "ERROR: Connection closed unexpectedly"
+            return 0
+        }
+    }
+}
+
+# --------------------------------------------------------------------------
+# mud_login — Login with an existing player account
+# Returns 1 on success, 0 on failure
+# --------------------------------------------------------------------------
+proc mud_login {host port user pass} {
+    global spawn_id mud_timeout mud_prompt
+
+    if {![mud_connect $host $port]} {
+        return 0
+    }
+
+    set timeout $mud_timeout
+
+    # Send username
+    send -- "$user\r"
+
+    expect {
+        -re "請輸入密碼" {
+            # Existing user, send password
+            send -- "$pass\r"
+        }
+        -re "將會創造一個新的人物" {
+            # User doesn't exist yet — abort
+            send -- "n\r"
+            puts "ERROR: User '$user' does not exist"
+            return 0
+        }
+        timeout {
+            puts "ERROR: Timed out after sending username"
+            return 0
+        }
+        eof {
+            catch { puts "ERROR: Connection closed after sending username" }
+            return 0
+        }
+    }
+
+    # Wait for successful login — handle various MUD responses
+    # "目前權限" appears on fresh login, "重新連線完畢" on reconnect
+    expect {
+        -re "目前權限|重新連線完畢" {
+            expect -re $mud_prompt
+            return 1
+        }
+        -re "密碼錯誤" {
+            catch { puts "ERROR: Wrong password for user '$user'" }
+            catch { close }
+            catch { wait }
+            return 0
+        }
+        -re "您要將另一個連線中的相同人物趕出去" {
+            # Another session exists — kick it
+            send -- "y\r"
+            expect {
+                -re "目前權限|重新連線完畢" {
+                    expect -re $mud_prompt
+                    return 1
+                }
+                timeout {
+                    catch { puts "ERROR: Timed out after relogin confirmation" }
+                    return 0
+                }
+            }
+        }
+        -re "找不到您的人物資料" {
+            # Save file missing — reincarnate
+            catch { puts "WARNING: Character save file missing, attempting reincarnation" }
+            expect -re "重新創造.*\\(y/n\\)"
+            send -- "y\r"
+            expect -re "您的選擇"
+            send -- "human\r"
+            expect -re "男性.*m.*女性.*f"
+            send -- "m\r"
+            expect -re "您的中文名字"
+            send -- "測試\r"
+            expect {
+                -re "目前權限|重新連線完畢" {
+                    expect -re $mud_prompt
+                    return 1
+                }
+                timeout {
+                    catch { puts "ERROR: Timed out during reincarnation" }
+                    return 0
+                }
+            }
+        }
+        -re "無法讀取您的人物資料" {
+            catch { puts "ERROR: MUD cannot read character save data" }
+            catch { close }
+            catch { wait }
+            return 0
+        }
+        eof {
+            catch { puts "ERROR: Connection closed by MUD after password" }
+            catch { wait }
+            return 0
+        }
+        timeout {
+            catch { puts "ERROR: Timed out waiting for login completion" }
+            return 0
+        }
+    }
+}
+
+# --------------------------------------------------------------------------
+# mud_create_player — Create a new player account
+# Returns 1 on success, 0 on failure
+# --------------------------------------------------------------------------
+proc mud_create_player {host port user pass email race gender cname} {
+    global spawn_id mud_timeout mud_prompt
+
+    if {![mud_connect $host $port]} {
+        return 0
+    }
+
+    set timeout $mud_timeout
+
+    # Send username
+    send -- "$user\r"
+
+    expect {
+        -re "將會創造一個新的人物" {
+            # New user confirmation
+            expect -re "\\(y/n\\)"
+            send -- "y\r"
+        }
+        -re "請輸入密碼" {
+            # User already exists — login instead
+            send -- "$pass\r"
+            expect {
+                -re "目前權限|重新連線完畢" {
+                    expect -re $mud_prompt
+                    return 1
+                }
+                -re "找不到您的人物資料" {
+                    expect -re "重新創造.*\\(y/n\\)"
+                    send -- "y\r"
+                    expect -re "您的選擇"
+                    send -- "$race\r"
+                    expect -re "男性.*m.*女性.*f"
+                    send -- "$gender\r"
+                    expect -re "您的中文名字"
+                    send -- "$cname\r"
+                    expect {
+                        -re "目前權限|重新連線完畢" {
+                            expect -re $mud_prompt
+                            return 1
+                        }
+                        -re "您的中文名字" {
+                            send -- "$cname\r"
+                            expect {
+                                -re "目前權限|重新連線完畢" {
+                                    expect -re $mud_prompt
+                                    return 1
+                                }
+                                timeout {
+                                    catch { puts "ERROR: Timed out during reincarnation" }
+                                    return 0
+                                }
+                            }
+                        }
+                        timeout {
+                            catch { puts "ERROR: Timed out during reincarnation" }
+                            return 0
+                        }
+                    }
+                }
+                -re "您要將另一個連線中的相同人物趕出去" {
+                    send -- "y\r"
+                    expect {
+                        -re "目前權限|重新連線完畢" {
+                            expect -re $mud_prompt
+                            return 1
+                        }
+                        timeout {
+                            catch { puts "ERROR: Timed out after relogin" }
+                            return 0
+                        }
+                    }
+                }
+                eof {
+                    catch { puts "ERROR: Connection closed after password" }
+                    catch { wait }
+                    return 0
+                }
+                timeout {
+                    catch { puts "ERROR: Timed out during existing user login" }
+                    return 0
+                }
+            }
+        }
+        timeout {
+            catch { puts "ERROR: Timed out after sending username" }
+            return 0
+        }
+    }
+
+    # Set password
+    expect -re "請設定您的密碼"
+    send -- "$pass\r"
+
+    # Confirm password
+    expect -re "請再輸入一次您的密碼"
+    send -- "$pass\r"
+
+    # Email
+    expect -re "您的電子郵件地址"
+    send -- "$email\r"
+
+    # Race selection — wait for the race list to be displayed
+    expect -re "您的選擇"
+    send -- "$race\r"
+
+    # Gender
+    expect -re "男性.*m.*女性.*f"
+    send -- "$gender\r"
+
+    # Chinese name
+    expect -re "您的中文名字"
+    send -- "$cname\r"
+
+    # Wait for successful login — with retries for name rejection
+    set timeout 30
+    set name_retries 0
+    while {1} {
+        expect {
+            -re "目前權限|重新連線完畢" {
+                set timeout $mud_timeout
+                expect -re $mud_prompt
+                return 1
+            }
+            -re "您的中文名字" {
+                # Name rejected, retry
+                incr name_retries
+                if {$name_retries > 3} {
+                    catch { puts "ERROR: Chinese name rejected too many times" }
+                    set timeout $mud_timeout
+                    return 0
+                }
+                send -- "$cname\r"
+            }
+            timeout {
+                catch { puts "ERROR: Timed out during character creation" }
+                set timeout $mud_timeout
+                return 0
+            }
+        }
+    }
+}
+
+# --------------------------------------------------------------------------
+# mud_cmd — Send a command and capture the output
+# Returns the MUD output (everything between command echo and next prompt)
+# --------------------------------------------------------------------------
+proc mud_cmd {cmd} {
+    global spawn_id mud_timeout mud_prompt
+
+    set timeout $mud_timeout
+    set output ""
+
+    send -- "$cmd\r"
+
+    expect {
+        -re "(.*?)$mud_prompt" {
+            set output $expect_out(1,string)
+        }
+        eof {
+            catch { puts "WARNING: Connection closed after command: $cmd" }
+            set output "EOF"
+        }
+        timeout {
+            catch { puts "WARNING: Timed out waiting for prompt after command: $cmd" }
+            set output "TIMEOUT"
+        }
+    }
+
+    return $output
+}
+
+# --------------------------------------------------------------------------
+# mud_cmd_raw — Send a command and wait for a specific pattern
+# Returns the matched output
+# --------------------------------------------------------------------------
+proc mud_cmd_raw {cmd pattern} {
+    global spawn_id mud_timeout
+
+    set timeout $mud_timeout
+    set output ""
+
+    send -- "$cmd\r"
+
+    expect {
+        -re $pattern {
+            set output $expect_out(0,string)
+        }
+        eof {
+            catch { puts "WARNING: Connection closed after command: $cmd" }
+            set output "EOF"
+        }
+        timeout {
+            catch { puts "WARNING: Timed out waiting for pattern after command: $cmd" }
+            set output "TIMEOUT"
+        }
+    }
+
+    return $output
+}
+
+# --------------------------------------------------------------------------
+# mud_logout — Quit the MUD cleanly
+# --------------------------------------------------------------------------
+proc mud_logout {} {
+    global spawn_id
+
+    send -- "quit\r"
+
+    expect {
+        eof { }
+        -re "y.*n" {
+            send -- "y\r"
+            expect eof
+        }
+        timeout { }
+    }
+
+    catch { close }
+    catch { wait }
+}
+
+# --------------------------------------------------------------------------
+# mud_expect_contains — Check if output contains a pattern
+# Returns 1 if found, 0 if not
+# --------------------------------------------------------------------------
+proc mud_expect_contains {output pattern} {
+    if {[string match "*$pattern*" $output]} {
+        return 1
+    }
+    return 0
+}
+
+# --------------------------------------------------------------------------
+# mud_expect_regexp — Check if output matches a regexp
+# Returns 1 if found, 0 if not
+# --------------------------------------------------------------------------
+proc mud_expect_regexp {output pattern} {
+    if {[regexp $pattern $output]} {
+        return 1
+    }
+    return 0
+}

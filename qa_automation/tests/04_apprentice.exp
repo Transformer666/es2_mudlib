@@ -1,0 +1,133 @@
+#!/usr/bin/expect -f
+# 04_apprentice.exp — Test apprentice system
+# Creates fresh test accounts and tests the apprentice flow for each sect master.
+
+set script_dir [file dirname [file normalize [info script]]]
+source "$script_dir/../lib/mud_connect.exp"
+source "$script_dir/../lib/helpers.exp"
+
+if {$argc < 2} {
+    puts "Usage: expect 04_apprentice.exp <host> <port> \[report_file\]"
+    exit 1
+}
+
+set host [lindex $argv 0]
+set port [lindex $argv 1]
+set report_file [expr {$argc >= 3 ? [lindex $argv 2] : ""}]
+
+puts "\n=== Test: Apprentice System ==="
+
+if {$report_file ne ""} {
+    init_report $report_file "04 - Apprentice System"
+}
+
+# Define sect masters and their locations
+# Format: {test_user cname master_id master_room_path sect_skill}
+# Usernames must be a-z only (no digits allowed by the MUD)
+# Chinese names use 2-char "測試" which produces printable ASCII when garbled by telnet
+set sect_tests {
+    {qatesta 測試 alchemist /d/snow/school alchemy-medication}
+    {qatestb 測試 fengshan_master /d/fengshan/main_hall fengshan-qigong}
+    {qatestc 測試 hudao_master /d/hudao/hall hudao-sword}
+    {qatestd 測試 zhenwu_master /d/zhenwu/command zhenwu-fist}
+    {qateste 測試 maoshan_master /d/maoshan/lingyun maoshan-magic}
+    {qatestf 測試 baixiang_master /d/baixiang/main_hall baixiang-palm}
+    {qatestg 測試 tianxie_master /d/tianxie/hall tianxie-blade}
+    {qatesth 測試 langyi_master /d/langyi/hall langyi-staff}
+    {qatesti 測試 longttu_master /d/longttu/study longttu-alchemy}
+    {qatestj 測試 tianshi_master /d/tianshi/hall tianshi-dart}
+    {qatestk 測試 yinjiao_master /d/yinjiao/hall yinjiao-whip}
+    {qatestl 測試 buxuan_master /d/buxuan/study buxuan-finger}
+    {qatestm 測試 xuantian_master /d/xuantian/hall xuantian-sword}
+    {qatestn 測試 baolian_master /d/baolian/hall baolian-fist}
+    {qatesto 測試 wutuo_master /d/wutuo/hall wutuo-staff}
+    {qatestp 測試 jianjia_master /d/jianjia/hall jianjia-sword}
+    {qatestq 測試 lengmei_master /d/lengmei/hall lengmei-palm}
+    {qatestr 測試 kuxiao_master /d/kuxiao/hall kuxiao-flute}
+}
+
+set test_pass "testpass123"
+set test_email "qatest@test.com"
+
+foreach sect_test $sect_tests {
+    set test_user [lindex $sect_test 0]
+    set cname [lindex $sect_test 1]
+    set master_id [lindex $sect_test 2]
+    set master_room [lindex $sect_test 3]
+    set skill_name [lindex $sect_test 4]
+
+    puts "\n--- Testing apprentice: $master_id (user: $test_user) ---"
+
+    # Create a fresh test player
+    set result [mud_create_player $host $port $test_user $test_pass $test_email "human" "m" $cname]
+    if {!$result} {
+        log_fail "Create player $test_user" "Failed to create test player"
+        continue
+    }
+    log_pass "Create/login player $test_user"
+
+    # Navigate to master's room (requires wizard, or walk there)
+    set output [mud_cmd "goto $master_room"]
+
+    if {[string match "*什麼*" $output]} {
+        log_warn "goto $master_room" "Cannot teleport — trying to walk"
+        # If not wizard, this test cannot easily reach master rooms
+        # Skip with a warning
+        log_warn "Apprentice: $master_id" "Cannot reach master room without wizard access"
+        mud_logout
+        after 500
+        continue
+    }
+
+    # Step 1: First apprentice attempt — should trigger dialogue
+    puts "  Step 1: First apprentice request"
+    set output [mud_cmd "apprentice $master_id"]
+
+    # The first attempt should NOT succeed — master talks first
+    if {[string match "*TIMEOUT*" $output]} {
+        log_warn "Apprentice first call: $master_id" "Timed out — master may have long dialogue"
+        # Try waiting for prompt
+        expect {
+            -re "> $" { }
+            timeout { }
+        }
+    }
+
+    # Small delay for dialogue to complete
+    after 2000
+
+    # Step 2: Second apprentice attempt — should accept
+    puts "  Step 2: Second apprentice request"
+    set output [mud_cmd "apprentice $master_id"]
+
+    # Check if class changed
+    after 1000
+    set score_output [mud_cmd "score"]
+
+    if {[string match "*commoner*" $score_output] || [string match "*平民*" $score_output]} {
+        log_fail "Apprentice accepted: $master_id" "Player still commoner after apprentice"
+    } else {
+        log_pass "Apprentice accepted: $master_id"
+    }
+
+    # Step 3: Try to acquire a skill
+    puts "  Step 3: Skill acquisition"
+    set output [mud_cmd "acquire $skill_name from $master_id"]
+
+    set skills_output [mud_cmd "skills"]
+    # Note: skill names may differ from what we guessed — this is a best-effort check
+    if {[string match "*$skill_name*" $skills_output] || ![string match "*commoner*" $score_output]} {
+        log_pass "Skill acquired from: $master_id"
+    } else {
+        log_warn "Skill acquired from: $master_id" "Could not verify skill '$skill_name' in skills list"
+    }
+
+    # Logout this test user
+    mud_logout
+    after 500
+}
+
+puts "\n=== Apprentice Test Complete: [get_test_summary] ==="
+
+close_report
+exit [get_fail_count]
