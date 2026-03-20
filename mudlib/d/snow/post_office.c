@@ -19,6 +19,9 @@ LONG
     ]));
     set("post_office", 1);    // mailbox checks this flag.
     set("no_fight", 1);
+    set("objects", ([
+        __DIR__"npc/postman" : 1,
+    ]));
 
     setup();
 }

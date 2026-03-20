@@ -9,6 +9,9 @@ void create()
 向。空氣中帶著一股霉味。
 LONG
     );
+    set("objects", ([
+        __DIR__"npc/assassin" : 1,
+    ]));
     set("exits", ([
         "south" : __DIR__"tunnel",
         "north" : __DIR__"hall",

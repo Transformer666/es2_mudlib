@@ -10,6 +10,7 @@ LONG
     );
     set("objects", ([
         __DIR__"npc/dark_guard" : 2,
+        __DIR__"npc/herald" : 1,
     ]));
     set("exits", ([
         "south" : __DIR__"secret_passage",

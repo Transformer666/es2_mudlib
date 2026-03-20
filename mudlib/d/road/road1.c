@@ -16,6 +16,7 @@ LONG
 	set("exits", ([
 		"south" : "/d/snow/ngate",
 		"north" : __DIR__"road2",
+		"northeast" : __DIR__"mountain_road1",
 	]));
 
 	setup();

@@ -1,0 +1,167 @@
+{
+  "summary": {
+    "total_required_wiki_items": 82,
+    "total_implemented": 52,
+    "total_missing": 30,
+    "completion_percentage": "63.4%",
+    "breakdown": {
+      "races": { "required": 11, "implemented": 11, "missing": 0 },
+      "classes": { "required": 7, "implemented": 7, "missing": 0 },
+      "sects": { "required": 20, "implemented": 18, "missing": 2 },
+      "towns": { "required": 3, "implemented": 3, "missing": 0 },
+      "town_quests": { "required": 13, "implemented": 5, "missing": 8 },
+      "spirit_quests": { "required": 2, "implemented": 1, "missing": 1 },
+      "main_story_quests": { "required": 9, "implemented": 0, "missing": 9 },
+      "help_texts": { "required": 10, "implemented": 1, "missing": 9 },
+      "legendary_equipment": { "required": 7, "implemented": 6, "missing": 1 }
+    }
+  },
+  "missing_sects": [
+    {
+      "id": "tianyue",
+      "name": "天月庵",
+      "class": "monk",
+      "description": "與寶蓮寺同使命，近年遭受滅門之災，注重治療與輔助。需要: daemon/sect/tianyue.c 和對應的區域 d/tianyue/",
+      "priority": "medium"
+    },
+    {
+      "id": "maoshan_sub_sects",
+      "name": "茅山派三觀（靈雲觀/隱風觀/幻霧觀）",
+      "class": "taoist",
+      "description": "Wiki 描述茅山派分為三個子觀。房間 d/maoshan/ 已有 lingyun.c, yinfeng.c, huanwu.c，需確認 daemon 是否支持分支選擇邏輯",
+      "priority": "medium",
+      "note": "房間已存在，需確認 daemon 是否支持分支選擇"
+    }
+  ],
+  "missing_rooms": [
+    {
+      "area": "wutang",
+      "name": "五堂鎮 - 可能缺少的區域",
+      "description": "Wiki 提到的別館（欽差住所）等",
+      "required_rooms": ["guest_house（別館/欽差住所）"],
+      "note": "temple.c 可能即為鎮天神廟，inspector.c 已存在但缺少別館房間",
+      "priority": "low"
+    }
+  ],
+  "missing_npcs": [
+    {
+      "area": "snow",
+      "npcs": [
+        { "name": "阿寶", "location": "老榕樹下 (tree.c)", "role": "任務NPC - 等待某人", "status": "missing" },
+        { "name": "盲眼老婦", "location": "不明", "role": "任務NPC - 真實身份之謎", "status": "missing", "note": "gammer.c 可能對應此角色，需確認" }
+      ],
+      "priority": "high"
+    }
+  ],
+  "missing_quests": [
+    {
+      "category": "town_quests_snow",
+      "town": "雪亭鎮",
+      "quests": [
+        { "name": "阿寶的等待", "description": "調查阿寶在老榕樹下等的是誰", "status": "not_implemented" },
+        { "name": "盲眼老婦之謎", "description": "揭開盲眼老婦人的真實身份", "status": "not_implemented" },
+        { "name": "倉庫搬運", "description": "在倉庫搬箱子的勞動任務", "status": "room_and_npc_ready", "note": "warehouse.c + worker.c 已建立，需加任務邏輯" },
+        { "name": "遺失的信件", "description": "找出郵站遺失了幾封信", "status": "room_and_npc_ready", "note": "post_office.c + postman.c 已存在" },
+        { "name": "軍營招募", "description": "軍人職業入門", "status": "room_and_npc_ready", "note": "military_camp.c + recruiter.c 已建立" },
+        { "name": "莊園秘密", "description": "探索破舊莊園裡隱藏了什麼", "status": "room_and_npc_ready", "note": "dilapidated_manor.c + darkrobe.c 已建立" },
+        { "name": "黑袍老人的女兒", "description": "尋人任務", "status": "not_implemented" }
+      ],
+      "priority": "high"
+    },
+    {
+      "category": "town_quests_wutang",
+      "town": "五堂鎮",
+      "quests": [
+        { "name": "飲血的下落", "description": "尋找傳說武器「飲血」", "status": "not_implemented" },
+        { "name": "巫山神秘雕像", "description": "調查巫山中的神秘雕像", "status": "partial", "note": "wushan_cave.c 已存在" },
+        { "name": "郭布的弟子", "description": "協助郭布招收弟子", "status": "partial", "note": "guobu.c NPC 已存在" },
+        { "name": "鎮天神廟之謎", "description": "調查隱藏在鎮天神廟中的人物", "status": "partial", "note": "temple.c 已存在" },
+        { "name": "官員來訪", "description": "欽差來五堂做什麼", "status": "partial", "note": "inspector.c NPC 已存在" },
+        { "name": "渡河任務", "description": "過河的船在哪裡", "status": "implemented", "note": "ferryman.c + dock.c 已存在" }
+      ],
+      "priority": "high"
+    },
+    {
+      "category": "spirit_quests",
+      "quests": [
+        {
+          "name": "天靈任務",
+          "description": "投擲四神武器到赤魈村許願池召喚天靈",
+          "status": "area_and_npcs_ready",
+          "implemented": ["chixiao/wishing_pool.c", "chixiao/npc/tianling.c", "chixiao/npc/obj/tianling_dagger.c", "chixiao/npc/obj/tianling_eye.c", "chixiao/npc/obj/fire_weapon.c", "chixiao/npc/obj/rain_weapon.c", "chixiao/npc/obj/thunder_weapon.c", "chixiao/npc/obj/wind_weapon.c"],
+          "missing": ["任務觸發邏輯（投擲3件四神武器到許願池）", "天靈戰鬥AI（隱神篇武功）"],
+          "priority": "medium"
+        },
+        {
+          "name": "地靈任務",
+          "description": "聖木殘根→金屋內丹→炎日箭→太陽槍→地氣塔頂召喚地靈",
+          "status": "partial",
+          "implemented": ["chixiao/npc/diling.c", "chixiao/npc/obj/diling_axe.c", "chixiao/npc/obj/diling_heart.c"],
+          "missing": ["地氣塔房間", "任務流程道具鏈（聖木殘根→金屋內丹→炎日箭→太陽槍）", "禁止技能房間機制"],
+          "priority": "medium"
+        }
+      ]
+    },
+    {
+      "category": "main_story",
+      "quests": [
+        { "name": "大邪道人與殘蟻師太的關係", "description": "主線劇情之謎" },
+        { "name": "魚鐵山與劉乙忘玄的陰謀", "description": "主線劇情之謎" },
+        { "name": "武林盟主失蹤事件", "description": "主線劇情之謎" },
+        { "name": "白象寺隱藏秘密", "description": "主線劇情之謎" },
+        { "name": "封鬼慘案真兇", "description": "主線劇情之謎" },
+        { "name": "梅影風妻子劇情", "description": "主線劇情之謎" },
+        { "name": "朝廷對侮天鬼傳說的態度", "description": "主線劇情之謎" },
+        { "name": "虎刀門二師父下落", "description": "主線劇情之謎" },
+        { "name": "阿寶的榕樹等待對象", "description": "主線劇情之謎" }
+      ],
+      "priority": "low",
+      "note": "主線劇情為大型系統工程，建議最後實作"
+    }
+  ],
+  "missing_help_texts": [
+    { "file": "mudlib/doc/help/player/classes", "description": "職業介紹說明文件" },
+    { "file": "mudlib/doc/help/player/sects", "description": "門派介紹說明文件" },
+    { "file": "mudlib/doc/help/player/combat", "description": "戰鬥系統說明" },
+    { "file": "mudlib/doc/help/player/skills", "description": "技能系統說明" },
+    { "file": "mudlib/doc/help/player/equipment", "description": "裝備系統說明" },
+    { "file": "mudlib/doc/help/player/quests", "description": "任務系統說明" },
+    { "file": "mudlib/doc/help/player/newbie", "description": "新手指南" },
+    { "file": "mudlib/doc/help/player/towns", "description": "城鎮導覽" },
+    { "file": "mudlib/doc/help/player/mythology", "description": "世界觀與神話背景" }
+  ],
+  "missing_equipment": [
+    { "name": "飲血", "type": "legendary_weapon", "source": "五堂鎮任務", "status": "not_implemented" }
+  ],
+  "implemented_since_last_scan": [
+    "d/chixiao/ 赤魈村完整區域（entrance, village_square, wishing_pool, inn）",
+    "d/chixiao/npc/ 天靈+地靈 Boss NPC 及獎勵物品",
+    "d/chixiao/npc/obj/ 四神武器（fire, rain, thunder, wind）",
+    "d/snow/warehouse.c 倉庫",
+    "d/snow/military_camp.c 振武軍營",
+    "d/snow/dilapidated_manor.c 破舊大宅",
+    "d/snow/npc/darkrobe.c 黑衣人",
+    "d/snow/npc/postman.c 郵差",
+    "d/snow/npc/recruiter.c 招兵官",
+    "d/snow/npc/worker.c 工人",
+    "d/road/wild_path2.c 野外小路（連接赤魈村）",
+    "obj/weapon/chuanling.c 穿靈神劍",
+    "obj/weapon/xuanyao.c 旋芒神劍",
+    "obj/weapon/yinxue.c 飲血劍（部分？）"
+  ],
+  "existing_content_summary": {
+    "zones": {
+      "towns": ["snow（雪亭鎮, 45房間）", "wutang（五堂鎮, 29房間）", "chixiao（赤魈村, 4房間）", "choyin（潮陰, 10房間）", "lijun（離郡, 10房間）", "kangping（康平, 6房間）", "lee（李莊, 6房間）", "longan（龍安, 2房間）", "weiguo（衛國, 2房間）", "sanyen（三焰, 6房間）", "baihua（百花, 8房間）"],
+      "sects": ["baixiang(5)", "baolian(6)", "buxuan(6)", "fengshan(5)", "hudao(5)", "jianjia(5)", "kuxiao(6)", "langyi(6)", "lengmei(6)", "longttu(6)", "maoshan(5)", "tianshi(7)", "tianxie(6)", "wutuo(5)", "xuantian(6)", "xueyin(6)", "yinjiao(6)", "zhenwu(5)"],
+      "wilderness": ["graveyard(6)", "heifeng(7)", "manglin(6)", "oldpine(8)", "road(11)", "jingji(2)"]
+    },
+    "total_d_files": 489,
+    "total_daemon_files": 67,
+    "total_obj_files": 125,
+    "race_daemons": 11,
+    "class_daemons": 9,
+    "sect_daemons": 18,
+    "skill_daemons": 24,
+    "help_files": 11
+  }
+}

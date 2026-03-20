@@ -20,6 +20,7 @@ LONG
   set("objects", ([
 	"/d/snow/npc/waiter" : 1,
 	"/d/snow/npc/innkeeper" : 1,
+	"/d/snow/npc/luoyi" : 1,
   ]));
   set("valid_startroom", 1);
   set("no_fight",1);

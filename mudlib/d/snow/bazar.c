@@ -22,8 +22,9 @@ LONG
 			"金契請妥善保管﹐如有遺失﹐至本莊補發﹐需扣一成保證金。\n",
 		"櫃臺" : "一座漆黑紅杉所鋸雕而成, 散發出一種濃郁的杉木味, 看來價值不斐.\n",
 	]));
-	set("exits", ([ /* sizeof() == 1 */
+	set("exits", ([ /* sizeof() == 2 */
 		"west" : __DIR__"sstreet1",
+		"east" : __DIR__"warehouse",
 	]));
 	set("objects", ([
 		__DIR__"npc/yu": 1,

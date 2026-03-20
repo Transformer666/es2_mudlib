@@ -13,6 +13,7 @@ LONG
     );
     set("exits", ([
         "south" : __DIR__"gate",
+        "north" : __DIR__"altar",
     ]));
 
     set("objects", ([

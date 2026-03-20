@@ -13,6 +13,7 @@ LONG
     );
     set("exits", ([
         "south" : __DIR__"hall",
+        "east" : __DIR__"armory",
     ]));
     set("no_fight", 1);
 

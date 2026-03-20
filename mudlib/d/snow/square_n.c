@@ -19,6 +19,7 @@ LONG
 	set("objects", ([
 		__DIR__"npc/child1" : 1,
 		__DIR__"npc/child2" : 1,
+		__DIR__"npc/child4" : 1,
 	]) );
 	set("outdoors", "snow");
 

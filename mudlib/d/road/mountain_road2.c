@@ -13,7 +13,7 @@ LONG
 	);
 	set("outdoors", "road");
 	set("exits", ([
-		"west" : __DIR__"crossroad",
+		"south" : __DIR__"crossroad",
 		"east" : "/d/baixiang/gate",
 	]));
 

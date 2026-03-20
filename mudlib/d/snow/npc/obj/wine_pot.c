@@ -13,7 +13,7 @@ void create()
 	set("liquid_container", 1);
 	setup();
 	if( clonep() ) {
-		water = new("/d/choyin/npc/obj/red_wine");
+		water = new("/d/choyin/npc/obj/rice_wine");
 		water->set_volume(150000);
 		water->move(this_object());
 	}

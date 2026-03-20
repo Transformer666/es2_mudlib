@@ -30,6 +30,56 @@ void create()
     carry_money("coin", 200);
 }
 
+void set_flag(object me)
+{
+    if( me && present(me, environment()) ) {
+        if( me->query_class() != "commoner"
+        ||  me->query("title") )
+            return;
+        me->set_temp("pending/longttu_elder", 1);
+    }
+    else
+        do_chat("龍圖長老搖了搖頭﹐說道﹕嗯﹖人走了﹖\n");
+}
+
+int accept_apprentice(object me)
+{
+    if( is_chatting() ) return 0;
+    if( me->query_temp("pending/longttu_elder") ) return 1;
+    if( me->query("title") ) {
+        do_chat("龍圖長老說道﹕你已有師門﹐老夫不便收你為徒了。\n");
+        return 0;
+    }
+    do_chat(({
+        "龍圖長老上下打量了你一番﹐說道﹕你想學丹術﹖\n",
+        "龍圖長老說道﹕丹道一途﹐首重心性﹐次重悟性﹐非有耐心者不能有成。\n",
+        "龍圖長老撫了撫長鬚﹐說道﹕你若真心想學﹐再來找老夫吧。\n",
+        (: set_flag, me :)
+    }));
+    return 0;
+}
+
+int init_apprentice(object me)
+{
+    if( me->query_class() != "commoner" ) {
+        do_chat(({
+            "龍圖長老說道﹕你既已入別派﹐老夫便不好再收你了。\n",
+            "龍圖長老揮了揮手﹐說道﹕去吧。\n"
+        }));
+        return 1;
+    }
+    if( ::init_apprentice(me) ) {
+        seteuid(getuid());
+        me->set_class("alchemist");
+        me->set("title", "龍圖丹派弟子");
+        do_chat(({
+            "龍圖長老點了點頭﹐說道﹕好﹐老夫便收你入門。\n",
+            "龍圖長老說道﹕入門之後﹐先從辨藥識方做起﹐不可好高騖遠。\n",
+            "龍圖長老說道﹕去吧﹐好好用功。\n"
+        }));
+    }
+}
+
 int acquire_skill(object ob, string skill)
 {
     if( is_chatting() )

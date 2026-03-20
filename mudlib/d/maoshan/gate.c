@@ -12,7 +12,7 @@ void create()
 LONG
     );
     set("exits", ([
-        "south" : "/d/road/road5",
+        "northeast" : "/d/road/road5",
         "north" : __DIR__"lingyun",
         "east"  : __DIR__"yinfeng",
         "west"  : __DIR__"huanwu",

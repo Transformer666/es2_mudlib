@@ -15,8 +15,9 @@ create()
 LONG
   );
   set("outdoors", "snow");
-  set("exits", ([ /* sizeof() == 1 */
+  set("exits", ([ /* sizeof() == 2 */
 	"south" : __DIR__"wstreet3",
+	"north" : __DIR__"military_camp",
   ]));
   set("objects", ([
 	__DIR__"npc/oldman": 1

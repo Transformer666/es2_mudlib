@@ -14,11 +14,13 @@ LONG
 	);
 	set("objects", ([
 		__DIR__"npc/patrol" : 1,
+		__DIR__"npc/guobu" : 1,
 	]));
 	set("exits", ([
 		"north" : __DIR__"square_e",
 		"south" : __DIR__"smithy",
 		"east" : __DIR__"inn_hall",
+		"west" : __DIR__"store",
 	]));
 
 	setup();

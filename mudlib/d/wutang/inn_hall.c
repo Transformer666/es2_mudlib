@@ -19,6 +19,7 @@ LONG
 	set("objects", ([
 		__DIR__"npc/waiter" : 1,
 		__DIR__"npc/storyteller" : 1,
+		__DIR__"npc/yongtai" : 1,
 	]));
 	set("valid_startroom", 1);
 	set("no_fight", 1);

@@ -18,7 +18,7 @@ LONG
 	set("objects", ([
 		__DIR__"npc/teacher": 1,
 		__DIR__"npc/alchemist": 1,
-		__DIR__"npc/child3.c": 2,
+		__DIR__"npc/child3": 2,
 	]));
 	set("no_fight", 1);
 

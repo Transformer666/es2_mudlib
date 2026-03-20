@@ -16,6 +16,7 @@ LONG
 	set("exits", ([
 		"north" : __DIR__"crossroad",
 		"south" : "/d/lijun/entrance",
+		"east"  : __DIR__"wild_path2",
 	]));
 
 	setup();
