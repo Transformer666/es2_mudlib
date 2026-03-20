@@ -1,5 +1,5 @@
 # ES2 MUD Static Validation Report
-Run time: Fri Mar 20 17:45:37 UTC 2026
+Run time: Fri Mar 20 18:09:40 UTC 2026
 
 
 ## Room Validation
@@ -363,6 +363,9 @@ Run time: Fri Mar 20 17:45:37 UTC 2026
 - PASS: Room inherit: d/lee/back_street
 - PASS: Room short desc: d/lee/back_street
 - PASS: Room setup(): d/lee/back_street
+- PASS: Room inherit: d/lee/square
+- PASS: Room short desc: d/lee/square
+- PASS: Room setup(): d/lee/square
 - PASS: Room inherit: d/lee/farm
 - PASS: Room short desc: d/lee/farm
 - PASS: Room setup(): d/lee/farm
@@ -390,6 +393,9 @@ Run time: Fri Mar 20 17:45:37 UTC 2026
 - PASS: Room inherit: d/sanyen/pillar
 - PASS: Room short desc: d/sanyen/pillar
 - PASS: Room setup(): d/sanyen/pillar
+- PASS: Room inherit: d/sanyen/square
+- PASS: Room short desc: d/sanyen/square
+- PASS: Room setup(): d/sanyen/square
 - PASS: Room inherit: d/sanyen/weapon_shop
 - PASS: Room short desc: d/sanyen/weapon_shop
 - PASS: Room setup(): d/sanyen/weapon_shop
@@ -3589,6 +3595,6 @@ Run time: Fri Mar 20 17:45:37 UTC 2026
 ## Summary
 | Result | Count |
 |--------|-------|
-| PASS | 3504 |
+| PASS | 3510 |
 | FAIL | 24 |
 | WARN | 46 |

@@ -8,7 +8,7 @@
     "rooms": 473,
     "npcs": 281,
     "quests": 11,
-    "equipment": 280
+    "equipment": 282
   },
   "races": { "required": 11, "implemented": 11, "missing": 0 },
   "classes": { "required": 7, "implemented": 9, "missing": 0 },
