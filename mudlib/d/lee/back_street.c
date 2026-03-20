@@ -12,7 +12,7 @@ void create()
 LONG
 	);
 	set("exits", ([
-		"south" : __DIR__"r2",
+		"south" : __DIR__"square",
 		"north" : __DIR__"shop",
 	]));
 

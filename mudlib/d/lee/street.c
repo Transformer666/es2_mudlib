@@ -15,7 +15,7 @@ LONG
 		__DIR__"npc/elder" : 1,
 	]));
 	set("exits", ([
-		"west" : __DIR__"r2",
+		"west" : __DIR__"square",
 		"north" : __DIR__"inn",
 		"south" : __DIR__"farm",
 		"east" : __DIR__"ancestral_hall",

@@ -1,8 +1,11 @@
 // NPC: /d/snow/npc/recruiter.c
+// Quest: 想不想加入振武軍營？ (雪亭鎮 riddle 5)
 
 #include <npc.h>
 
 inherit F_SOLDIER;
+
+void complete_enlist_quest(object player);
 
 void create()
 {
@@ -144,4 +147,38 @@ int accept_object(object player, object ob)
 		"招兵官說道﹕這封回信你帶回去給那姑娘吧﹐省得她擔心。\n",
 	}));
 	return 1;
+}
+
+private void complete_enlist_quest(object player)
+{
+	if( !player || environment(player) != environment() ) return;
+	if( player->query("quest/recruiter_enlist_done") ) return;
+
+	player->set("quest/recruiter_enlist_done", 1);
+	player->gain_score("quest", 50);
+}
+
+void relay_say(object ob, string msg)
+{
+	if( !userp(ob) ) return;
+	if( is_fighting() || is_chatting() ) return;
+
+	if( strsrch(msg, "當兵") >= 0 || strsrch(msg, "軍營") >= 0
+	||  strsrch(msg, "入伍") >= 0 || strsrch(msg, "從軍") >= 0 ) {
+		if( ob->query("quest/recruiter_enlist_done") ) {
+			do_chat("招兵官說道﹕你之前不是聽過了嗎﹖想入伍就對著我用 apprentice 報名。\n");
+			return;
+		}
+		do_chat(({
+			"招兵官正色說道﹕好﹗有膽識﹗\n",
+			"招兵官說道﹕咱們振武軍營﹐可是天朝正規編制﹐不是那些江湖幫派可比的。\n",
+			"招兵官說道﹕入了軍營﹐刀法、操練、兵法一樣都不能少。\n",
+			"招兵官說道﹕不過當兵的好處也多﹐管吃管住﹐還有軍餉可領。\n",
+			"招兵官說道﹕你要是有興趣﹐就對著我用 apprentice 報名入伍。\n",
+			(: complete_enlist_quest, ob :),
+		}));
+		return;
+	}
+
+	// Support arbao quest: accept_object handles letter delivery
 }

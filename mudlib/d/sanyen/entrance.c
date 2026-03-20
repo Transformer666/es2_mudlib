@@ -18,7 +18,7 @@ LONG
 	]));
 	set("exits", ([
 		"north" : "/d/heifeng/road2",
-		"south" : __DIR__"street",
+		"south" : __DIR__"square",
 		"east" : __DIR__"pillar",
 		"west" : __DIR__"weapon_shop",
 	]));

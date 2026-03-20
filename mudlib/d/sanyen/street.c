@@ -15,7 +15,7 @@ LONG
 		__DIR__"npc/villager" : 1,
 	]));
 	set("exits", ([
-		"north" : __DIR__"entrance",
+		"north" : __DIR__"square",
 		"east" : __DIR__"temple",
 		"west" : __DIR__"inn",
 		"south" : __DIR__"back_alley",
