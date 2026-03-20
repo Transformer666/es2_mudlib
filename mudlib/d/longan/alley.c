@@ -14,6 +14,7 @@ LONG
     );
     set("exits", ([
         "south" : __DIR__"market",
+        "east" : __DIR__"garden",
     ]));
 
     set("objects", ([ __DIR__"npc/beggar" : 1 ]));

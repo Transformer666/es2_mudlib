@@ -6,45 +6,45 @@ inherit SKILL;
 
 mapping *actions = ({
     ([
-        "action":       "$N持$w往$n的$l砸去",
+        "action":       "$N一式「雲捲長空」﹐$w如捲雲般橫掃$n的$l",
+        "dodge":        -5,
+        "damae":        8,
+        "damage_type":  "瘀傷"
+    ]),
+    ([
+        "action":       "$N棍影朦朧﹐使出「霧鎖蒼穹」﹐$w罩向$n的$l",
         "dodge":        5,
         "damae":        5,
         "damage_type":  "瘀傷"
     ]),
     ([
-        "action":       "$N閃身上前﹐$w朝$n的$l劈去",
-        "dodge":        -5,
-        "damae":        5,
-        "damage_type":  "瘀傷"
-    ]),
-    ([
-        "action":       "$N欺身而進﹐$w直取$n的$l",
-        "dodge":        -10,
-        "damage":       10,
-        "damage_type":  "瘀傷"
-    ]),
-    ([
-        "action":       "$N虛晃一招﹐$w反手攻向$n的$l",
-        "dodge":        5,
-        "damae":        5,
-        "damage_type":  "瘀傷"
-    ]),
-    ([
-        "action":       "$N忽然暴起﹐$w朝$n的$l猛攻",
-        "dodge":        -5,
-        "damage":       10,
-        "damage_type":  "瘀傷"
-    ]),
-    ([
-        "action":       "$N一個側身﹐$w劃向$n的$l",
+        "action":       "$N身隨棍走﹐「行雲流水」﹐$w輕靈點向$n的$l",
         "dodge":        10,
-        "damae":        5,
+        "damage":       5,
+        "damage_type":  "瘀傷"
+    ]),
+    ([
+        "action":       "$N棍勢驟變﹐一招「翻雲覆雨」﹐$w猛力砸向$n的$l",
+        "dodge":        -15,
+        "damage":       15,
+        "damage_type":  "瘀傷"
+    ]),
+    ([
+        "action":       "$N大喝一聲﹐使出「撥雲見日」﹐$w直搗$n的$l",
+        "dodge":        -10,
+        "damage":       12,
+        "damage_type":  "瘀傷"
+    ]),
+    ([
+        "action":       "$N身形飄動﹐「風起雲湧」﹐$w連環掃向$n的$l",
+        "dodge":        -5,
+        "damae":        10,
         "damage_type":  "瘀傷"
     ]),
 });
 
 string *interattack = ({
-    "$N持棍在手﹐棍影如雲般幻化不定。\n",
+    "$N持棍在手﹐棍影如行雲般飄逸。\n",
 });
 
 private void

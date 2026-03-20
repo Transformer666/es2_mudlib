@@ -12,6 +12,9 @@ void create()
 LONG
 	);
 	set("outdoors", "snow");
+	set("objects", ([
+		__DIR__"npc/escort" : 1,
+	]));
 	set("exits", ([ /* sizeof() == 4 */
 		"west" : __DIR__"square_sw",
 		"east" : __DIR__"smithy",

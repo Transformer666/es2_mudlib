@@ -6,37 +6,37 @@ inherit SKILL;
 
 mapping *actions = ({
   ([
-    "action":		"$N手中$w一抖﹐劍尖直刺$n的$l",
+    "action":		"$N使一招「峰回路轉」﹐手中$w一抖﹐劍尖直刺$n的$l",
     "dodge":		5,
     "damage":		5,
     "damage_type":	"刺傷"
   ]),
   ([
-    "action":		"$N踏前一步﹐$w化作一道寒光斬向$n的$l",
+    "action":		"$N一式「空山鳥語」﹐$w化作一道寒光斬向$n的$l",
     "dodge":		-5,
     "damage":		10,
     "damage_type":	"割傷"
   ]),
   ([
-    "action":		"$N縱身躍起﹐$w挾著風聲朝$n的$l劈落",
+    "action":		"$N一招「御風而行」﹐縱身躍起﹐$w挾著風聲朝$n的$l劈落",
     "dodge":		-10,
     "damage":		15,
     "damage_type":	"割傷"
   ]),
   ([
-    "action":		"$N側身閃過﹐$w順勢削向$n的$l",
+    "action":		"$N使出「旭日東升」﹐側身閃過﹐$w順勢削向$n的$l",
     "dodge":		10,
     "damage":		5,
     "damage_type":	"割傷"
   ]),
   ([
-    "action":		"$N沉腰坐馬﹐$w穩穩刺向$n的$l",
+    "action":		"$N一式「金光瀉地」﹐沉腰坐馬﹐$w穩穩刺向$n的$l",
     "dodge":		-5,
     "damage":		10,
     "damage_type":	"刺傷"
   ]),
   ([
-    "action":		"$N長嘯一聲﹐手中$w如封山絕壁般橫掃$n的$l",
+    "action":		"$N長嘯一聲﹐使出「空谷秋虹」﹐$w如封山絕壁般橫掃$n的$l",
     "dodge":		-15,
     "damage":		15,
     "damage_type":	"割傷"

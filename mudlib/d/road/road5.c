@@ -17,6 +17,7 @@ LONG
 		"east"  : "/d/wutang/wgate",
 		"southwest" : "/d/maoshan/gate",
 		"north" : "/d/temple/entrance",
+		"south" : "/d/city/entrance",
 	]));
 
 	setup();

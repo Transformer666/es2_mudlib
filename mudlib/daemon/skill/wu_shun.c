@@ -6,45 +6,45 @@ inherit SKILL;
 
 mapping *actions = ({
     ([
-        "action":       "$N持$w往$n的$l打去",
+        "action":       "$N使出「順水推舟」﹐借勢將拳力推向$n的$l",
         "dodge":        5,
-        "damae":        5,
+        "damae":        7,
         "damage_type":  "瘀傷"
     ]),
     ([
-        "action":       "$N閃身上前﹐$w朝$n的$l劈去",
-        "dodge":        -5,
-        "damae":        5,
-        "damage_type":  "瘀傷"
-    ]),
-    ([
-        "action":       "$N欺身而進﹐$w直取$n的$l",
-        "dodge":        -10,
-        "damage":       10,
-        "damage_type":  "瘀傷"
-    ]),
-    ([
-        "action":       "$N虛晃一招﹐$w反手攻向$n的$l",
-        "dodge":        5,
-        "damae":        5,
-        "damage_type":  "瘀傷"
-    ]),
-    ([
-        "action":       "$N忽然暴起﹐$w朝$n的$l猛攻",
-        "dodge":        -5,
-        "damage":       10,
-        "damage_type":  "瘀傷"
-    ]),
-    ([
-        "action":       "$N一個側身﹐$w劃向$n的$l",
+        "action":       "$N施展「借力打力」﹐巧妙地將力道反彈向$n的$l",
         "dodge":        10,
-        "damae":        5,
+        "damage":       8,
+        "damage_type":  "瘀傷"
+    ]),
+    ([
+        "action":       "$N使出「四兩撥千斤」﹐輕描淡寫地擊向$n的$l",
+        "dodge":        -5,
+        "damae":        10,
+        "damage_type":  "瘀傷"
+    ]),
+    ([
+        "action":       "$N施展「以柔克剛」﹐柔勁暗湧攻向$n的$l",
+        "dodge":        -10,
+        "damage":       12,
+        "damage_type":  "瘀傷"
+    ]),
+    ([
+        "action":       "$N身隨意動使出「行雲流水」﹐拳勢綿綿不絕地打向$n的$l",
+        "dodge":        -5,
+        "damae":        9,
+        "damage_type":  "瘀傷"
+    ]),
+    ([
+        "action":       "$N氣勢大盛使出「勢如破竹」﹐摧枯拉朽地轟向$n的$l",
+        "dodge":        -15,
+        "damage":       15,
         "damage_type":  "瘀傷"
     ]),
 });
 
 string *interattack = ({
-    "$N蓄勢待發﹐巫順拳法的招式變幻莫測。\n",
+    "$N擺出武順的起手式﹐招式渾然天成。\n",
 });
 
 private void

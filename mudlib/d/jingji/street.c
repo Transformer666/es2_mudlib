@@ -12,6 +12,9 @@ void create()
 飄來焚香的氣息，讓人感受到皇城近在咫尺的威嚴。
 LONG
 	);
+	set("objects", ([
+		__DIR__"npc/passerby" : 2,
+	]));
 	set("exits", ([
 		"south" : __DIR__"entrance",
 		"north" : __DIR__"square",

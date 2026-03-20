@@ -6,45 +6,45 @@ inherit SKILL;
 
 mapping *actions = ({
     ([
-        "action":       "$N持$w往$n的$l砍去",
+        "action":       "$N低吟一聲﹐使出「短歌行」﹐$w如行雲般劃向$n的$l",
         "dodge":        5,
         "damae":        5,
         "damage_type":  "割傷"
     ]),
     ([
-        "action":       "$N閃身上前﹐$w朝$n的$l劈去",
-        "dodge":        -5,
-        "damae":        5,
-        "damage_type":  "割傷"
-    ]),
-    ([
-        "action":       "$N欺身而進﹐$w直取$n的$l",
+        "action":       "$N一式「長河落日」﹐$w帶著蒼涼之意劈向$n的$l",
         "dodge":        -10,
-        "damage":       10,
+        "damage":       12,
+        "damage_type":  "斲傷"
+    ]),
+    ([
+        "action":       "$N刀光一閃﹐「斷雲殘照」﹐$w直取$n的$l",
+        "dodge":        -5,
+        "damae":        8,
         "damage_type":  "割傷"
     ]),
     ([
-        "action":       "$N虛晃一招﹐$w反手攻向$n的$l",
-        "dodge":        5,
-        "damae":        5,
+        "action":       "$N悲歌長嘯﹐使出「秋風辭」﹐$w橫掃$n的$l",
+        "dodge":        -15,
+        "damage":       15,
         "damage_type":  "割傷"
     ]),
     ([
-        "action":       "$N忽然暴起﹐$w朝$n的$l猛攻",
+        "action":       "$N刀勢驟變﹐一招「慷慨悲歌」﹐$w猛攻$n的$l",
         "dodge":        -5,
         "damage":       10,
-        "damage_type":  "割傷"
+        "damage_type":  "斲傷"
     ]),
     ([
-        "action":       "$N一個側身﹐$w劃向$n的$l",
+        "action":       "$N決然出刀﹐「壯士斷腕」﹐$w不顧一切砍向$n的$l",
         "dodge":        10,
-        "damae":        5,
+        "damae":        7,
         "damage_type":  "割傷"
     ]),
 });
 
 string *interattack = ({
-    "$N持刀在手﹐刀勢沉穩如松﹐凝神待發。\n",
+    "$N持刀在手﹐短歌刀法如吟詩般行雲流水。\n",
 });
 
 private void

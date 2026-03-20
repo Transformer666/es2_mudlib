@@ -6,45 +6,45 @@ inherit SKILL;
 
 mapping *actions = ({
   ([
-    "action":		"$N指尖一彈﹐$w如毒蛇吐信般射向$n的$l穴道",
+    "action":		"$N一式「一敗天靈」﹐$w如電光般點向$n的$l天靈穴",
     "dodge":		5,
-    "damage":		5,
+    "damae":		5,
     "damage_type":	"刺傷"
   ]),
   ([
-    "action":		"$N手腕翻轉﹐$w連珠疾射取$n的$l要穴",
+    "action":		"$N施展「二敗膻中」﹐$w疾如閃電刺向$n的$l膻中穴",
     "dodge":		-10,
     "damage":		10,
     "damage_type":	"刺傷"
   ]),
   ([
-    "action":		"$N凝神瞄準﹐$w無聲無息地刺向$n的$l",
+    "action":		"$N凝神運針﹐「三敗氣海」的$w無聲無息地沒入$n的$l",
     "dodge":		-5,
-    "damage":		10,
+    "damae":		10,
     "damage_type":	"刺傷"
   ]),
   ([
-    "action":		"$N虛晃一招﹐$w暗中取$n的$l死穴",
+    "action":		"$N虛晃一招﹐「四敗命門」的$w暗中取$n的$l命門穴",
     "dodge":		10,
     "damage":		5,
     "damage_type":	"刺傷"
   ]),
   ([
-    "action":		"$N三指齊發﹐$w如三星連珠射向$n的$l",
+    "action":		"$N使出「五敗神闕」﹐$w帶著致命寒光射向$n的$l神闕穴",
     "dodge":		-15,
     "damage":		15,
     "damage_type":	"刺傷"
   ]),
   ([
-    "action":		"$N身形一閃﹐$w已自近身刺入$n的$l穴位",
-    "dodge":		-5,
-    "damage":		10,
+    "action":		"$N五針齊發﹐「連環奪命」的$w如暴雨般刺入$n的$l各處要穴",
+    "dodge":		-10,
+    "damae":		12,
     "damage_type":	"刺傷"
   ]),
 });
 
 string *interattack = ({
-  "$N指間夾著$n﹐目光如炬地注視著對手。\n",
+  "$N手持銀針﹐五敗針法瞄準$n的要穴。\n",
 });
 
 private void

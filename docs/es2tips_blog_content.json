@@ -1,0 +1,1668 @@
+{
+  "source": "es2tips.blogspot.com",
+  "crawl_date": "2026-03-20",
+  "total_posts": 50,
+  "categories": {
+    "sect_class": {
+      "description": "Sect and class-specific posts",
+      "posts": [
+        {
+          "id": 1,
+          "url": "https://es2tips.blogspot.com/2014/02/taoism-cloud.html",
+          "title": "天師道法【素雲書】",
+          "topic": "Taoism Cloud Teleportation Spell",
+          "content": {
+            "skill_name": "天師道法【素雲書】",
+            "category": "法術 (Magic/Spell)",
+            "learn_requirement": "Level 10, dialogue with 張齡 (Zhang Ling)",
+            "description": "Character kneels facing sky, closes eyes, chants prayer to 太乙真人 (Taiyi True Immortal), transforms into blue smoke for teleportation.",
+            "teleportation_abilities": [
+              {"command": "taiyi", "skill_level": "prerequisite", "destination": "太乙 (prerequisite for other spells)"},
+              {"command": "snow", "skill_level": 15, "destination": "飲風客棧 (Drinking Wind Inn)"},
+              {"command": "month", "skill_level": 30, "destination": "水月瀑布 (Water Moon Waterfall)"},
+              {"command": "sptown", "skill_level": 45, "destination": "祭劍臺 (Sword Sacrifice Platform)"},
+              {"command": "fontown", "skill_level": 60, "destination": "天山孤崖 (Lonely Cliff of Heavenly Mountain)"},
+              {"command": "swaylan", "skill_level": 75, "destination": "武陵客棧 (Wuling Inn)"},
+              {"command": "yaoy", "skill_level": 90, "destination": "天仁客棧 (Tian Ren Inn)"},
+              {"command": "skysnow", "skill_level": 105, "destination": "丱天樹 (Qiong Heaven Tree)"},
+              {"command": "flower", "skill_level": 120, "destination": "紅燈客棧 (Red Lantern Inn)"},
+              {"command": "fei", "skill_level": 135, "destination": "錢記酒樓 (Qian Ji Tavern)"},
+              {"command": "tomb", "skill_level": 150, "destination": "古墳墓 (Ancient Tomb)"},
+              {"command": "capital", "skill_level": 165, "destination": "後海湖 (Rear Sea Lake)"},
+              {"command": "dragon", "skill_level": 180, "destination": "天龍島 (Heavenly Dragon Island)"}
+            ]
+          }
+        },
+        {
+          "id": 2,
+          "url": "https://es2tips.blogspot.com/2014/02/mao-shan-sword.html",
+          "title": "茅山劍法",
+          "topic": "Maoshan Sword Technique - Taiyie Sword",
+          "content": {
+            "skill_name": "太乙劍法 (Taiyie Sword Technique)",
+            "category": "Sword art, parry/deflection technique",
+            "learn_requirement": "內功 (Internal skill) level 30",
+            "special_ability": "When internal skill reaches 90 and illusory sword technique reaches 90, automatically executes illusory sword attack when parrying opponent attacks",
+            "location": "古井 (Ancient Well)",
+            "npc": "玄清道長 (Xuanqing Taoist)",
+            "quest_commands": [
+              "climb 繩索",
+              "knock 井壁",
+              "push 暗門",
+              "sigh taoist",
+              "say 獨上高樓，望盡天涯路",
+              "say 好",
+              "nod taoist",
+              "inquire taiyie"
+            ],
+            "rewards": {
+              "法術修為": "+25",
+              "江湖歷練": "+1",
+              "taiyie_sword_skill": "+343"
+            }
+          }
+        },
+        {
+          "id": 3,
+          "url": "https://es2tips.blogspot.com/2014/02/mao-shan-taoist.html",
+          "title": "茅山老道",
+          "topic": "Maoshan Taoist NPC Locations and Repair Service",
+          "content": {
+            "total_npcs": 5,
+            "service": "Provides repairs for 1-2 silver coins",
+            "interaction_command": "give 1 silver to taoist",
+            "healing_effect": "Taoist casts healing spell using 先天符 (Primordial Talisman), creates healing cloud effect",
+            "locations": [
+              {
+                "area": "喬陰縣城 大街 (Qiaoyin County Main Street)",
+                "also_present": ["查思古禮 (Chaxigol)"],
+                "risk_level": "Low"
+              },
+              {
+                "area": "武陵客棧 (Wuling Inn area)",
+                "also_present": ["路人 (Passerby)"],
+                "risk_level": "Low"
+              },
+              {
+                "area": "兆隱縣 廣場 (Zhaoyin County Plaza)",
+                "also_present": ["冰糖葫蘆小販 (Candy seller)"],
+                "risk_level": "Low (warning for Taoists)"
+              },
+              {
+                "area": "李家村 (Li Family Village)",
+                "also_present": ["劍客 (Sword man)", "冰糖葫蘆小販 (Candy seller)"],
+                "risk_level": "Low"
+              },
+              {
+                "area": "後海湖 (Houhai Lake)",
+                "also_present": ["冰糖葫蘆小販 (Candy seller)", "青年書生 (Young scholar)"],
+                "risk_level": "High - other players may spawn Jingji centipedes"
+              }
+            ]
+          }
+        },
+        {
+          "id": 4,
+          "url": "https://es2tips.blogspot.com/2014/02/blog-post.html",
+          "title": "茅山道士/茅山派",
+          "topic": "Maoshan Sect Overview",
+          "content": {
+            "sect_name": "茅山派 (Maoshan Sect)",
+            "history": "Founded 300 years ago by ancestor Lin Zhengying using Youming Three Arrows and Maoshan Sword Technique",
+            "techniques": [
+              "幽冥三箭 (Youming Three Arrows)",
+              "茅山劍法 (Maoshan Sword Technique)",
+              "茅山法術 (Maoshan Spell Art)",
+              "茅山幻術 (Maoshan Illusion Art)",
+              "茅山心經 (Maoshan Heart Sutra)",
+              "茅山奇術 (Maoshan Strange Technique)"
+            ],
+            "monasteries": [
+              {
+                "name": "靈雲觀 (Spirit Cloud Monastery)",
+                "master": {
+                  "name": "林正陽 (Lin Zhengyang)",
+                  "age": "80+",
+                  "equipment": ["Green robe", "Peachwood sword", "Jade ring"]
+                },
+                "daoist": {
+                  "name": "公孫志 (Gongsun Zhi)",
+                  "age": "50+",
+                  "equipment": ["Big cap", "Burlap shoes", "Cloth"]
+                }
+              },
+              {
+                "name": "幻霧觀 (Illusion Mist Monastery)",
+                "master": {
+                  "name": "杜風凌 (Du Fengling)",
+                  "background": "Western Desert Shaman tribe",
+                  "age": "70+",
+                  "equipment": ["Green robe", "Peachwood sword", "Jade ring"]
+                }
+              },
+              {
+                "name": "隱風觀 (Hidden Wind Monastery)",
+                "master": {
+                  "name": "歐陽無極 (Ouyang Wuji)",
+                  "age": "40+",
+                  "equipment": ["Green robe", "Peachwood sword"]
+                },
+                "daoists": [
+                  {
+                    "name": "歐陽無寂 (Ouyang Wuji - twin brother)",
+                    "age": "40+",
+                    "equipment": ["Black hat", "Jade ring", "Green robe", "Peachwood sword"]
+                  },
+                  {
+                    "name": "趙曉九 (Zhao Xiaojiu)",
+                    "age": "30+",
+                    "equipment": ["Peachwood sword", "Black boots", "Copper hat", "Gray robe"]
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "id": 5,
+          "url": "https://es2tips.blogspot.com/2014/01/blog-post_31.html",
+          "title": "茅山劍士",
+          "topic": "Maoshan Swordsman Training Quest",
+          "content": {
+            "class": "茅山劍士 (Maoshan Swordsman)",
+            "quest_chain": [
+              {"npc": "小霸王 張天 (Little Tyrant Zhang Tian)", "action": "say 古董/戒指"},
+              {"npc": "二爺 (Second Master)", "cost": "10 gold"},
+              {"npc": "鳳盈盈 (Feng Yingying)"},
+              {"location": "附近的石壁 (nearby stone wall)"},
+              {"destination": "三層茅山石陣 (Three-Layer Maoshan Stone Array)"},
+              {"stage": "第三層 (Third Layer)"}
+            ],
+            "commands": [
+              "pray 鳳凰",
+              "practice 茅山劍法",
+              "gain"
+            ],
+            "skill_gains": {
+              "實戰經驗 (Combat Experience)": "+248",
+              "縱躍閃躲之法 (Evasion)": "+588",
+              "拆招卸力之法 (Parry)": "+168",
+              "茅山心經 (Maoshan Inner Cultivation)": "+245",
+              "茅山劍法 (Maoshan Sword Technique)": "+245"
+            }
+          }
+        },
+        {
+          "id": 6,
+          "url": "https://es2tips.blogspot.com/2015/11/blog-post_77.html",
+          "title": "天師道士裝備與幻劍術",
+          "topic": "Celestial Master Taoist Equipment and Phantom Sword Technique",
+          "content": {
+            "class": "天師道士 (Celestial Master Taoist)",
+            "note": "Content is primarily in embedded images - equipment guide and phantom sword technique (道士格檔幻劍術) guide images"
+          }
+        },
+        {
+          "id": 7,
+          "url": "https://es2tips.blogspot.com/2014/08/blog-post_23.html",
+          "title": "虎刀門護衛進階",
+          "topic": "Tiger Blade Sect Guard Advancement Quest",
+          "content": {
+            "sect": "虎刀門 (Tiger Blade Sect)",
+            "npcs": [
+              {"name": "高慎 (Gao Shen)", "role": "Master/trainer"},
+              {"name": "韓笑 (Han Xiao)", "role": "掌門 (Sect Leader)", "location": "季縣太平岡本門總堂"}
+            ],
+            "quest_flow": [
+              "Gao Shen praises player talent and recommends as guardian",
+              "Player accepts with 'say 願意' command",
+              "Visit Han Xiao at main headquarters",
+              "Mission: Locate and retrieve 軒轅龍骨刀 (Xuanyuan Dragon Bone Blade)"
+            ],
+            "organization_note": "Twelve lodges requiring guardians"
+          }
+        },
+        {
+          "id": 8,
+          "url": "https://es2tips.blogspot.com/2014/08/han-xiao.html",
+          "title": "虎刀門掌門 韓笑",
+          "topic": "Tiger Blade Sect Master Han Xiao - Profile and Equipment",
+          "content": {
+            "npc_name": "韓笑 (Han Xiao)",
+            "title": "虎刀門掌門 (Tiger Blade Sect Master)",
+            "age": "30+, became sect master at 28",
+            "description": "Youngest martial master in the land",
+            "equipment": [
+              {"item": "繡花鞋 (Embroidery boots)", "type": "Footwear"},
+              {"item": "束腰帶 (Girl girth)", "type": "Belt"},
+              {"item": "血玉戒指 (Bloodjade ring)", "type": "Ring", "stats": {"courage": 2}},
+              {"item": "混天白龍 (White-dragon plate)", "type": "Armor"},
+              {"item": "虎皮長袍 (Tigerish robe)", "type": "Robe", "stats": {"defense_level": -50, "offense_level": 25, "damage": 10}},
+              {"item": "虎牙項鏈 (Tiger necklace)", "type": "Necklace", "stats": {"damage": 5, "attack_power": 5}},
+              {
+                "item": "虎紋斬馬刀 (Reckless blade)",
+                "type": "Weapon",
+                "stats": {
+                  "usable_skill": "雙握刀法 (Two-handed blade technique)",
+                  "damage_range": "8-108",
+                  "strength_modifier": "172%",
+                  "multiplier_level": 4,
+                  "attack_power": 10,
+                  "damage": 10,
+                  "tiger_frenzy_blade_art": 15
+                }
+              }
+            ]
+          }
+        },
+        {
+          "id": 9,
+          "url": "https://es2tips.blogspot.com/2015/11/blog-post_7.html",
+          "title": "金剛鎚法穿靈效果",
+          "topic": "Diamond Hammer Technique Spirit Piercing Effect",
+          "content": {
+            "skill_name": "金剛鎚法 (Diamond Hammer Technique)",
+            "effect": "穿靈 (Spirit Piercing)",
+            "note": "Detailed content in embedded image only",
+            "referenced_skill_categories": [
+              "重擊術 (Heavy Strike Technique)",
+              "槍法 (Spear Technique)",
+              "刀法 (Blade Technique)",
+              "針灸之術 (Acupuncture Technique)",
+              "咒術 (Curse Art)",
+              "法術 (Magic/Spellcraft)"
+            ],
+            "referenced_stats": [
+              "膂力 (Physical Strength)",
+              "膽識 (Courage)",
+              "慧根 (Wisdom Root)",
+              "行動力 (Action Power)",
+              "定力 (Steadiness)",
+              "靈性 (Spirituality)"
+            ]
+          }
+        },
+        {
+          "id": 10,
+          "url": "https://es2tips.blogspot.com/2014/09/soldiers.html",
+          "title": "士兵/軍人",
+          "topic": "Soldier/Military Class Overview",
+          "content": {
+            "class_name": "士兵/軍人 (Soldiers/Military)",
+            "description": "Soldiers and bandits are sworn enemies. Team-based units where recruiting one may trigger pursuit by entire groups.",
+            "progression_method": "Combat experience and weapon familiarity",
+            "rank_advancement": "Accumulate 戰功 (battle merits) by killing bandits",
+            "promotion": "軍機處 (Military Affairs Office) issues promotion orders at merit thresholds",
+            "traits": {
+              "basic_skills": "Superior basic combat skills compared to other professions",
+              "special_techniques": "Less adept at special techniques"
+            },
+            "help_references": ["help soldier.ber", "help soldier.royal"]
+          }
+        },
+        {
+          "id": 11,
+          "url": "https://es2tips.blogspot.com/2014/09/soldier-berserker.html",
+          "title": "振武軍營士兵",
+          "topic": "Zhenwu Military Camp Soldier - Full Class Tree",
+          "content": {
+            "base_class": "振武軍營士兵 (Zhenwu Soldier)",
+            "profession": "軍人 (Military)",
+            "race": "不限 (Unrestricted)",
+            "gender": "只收男性 (Males only)",
+            "master_npc": "徵兵官 魯熙年",
+            "core_skills": [
+              {
+                "name": "狂擊亂鬥之法 (Berserk)",
+                "description": "Consumes percentage of max chi for devastating single or multi-target attacks (1-4 or 4-11 hits)",
+                "stat_gains": "Level 70+ gains 1 gin/2 kee per level; Level 140+ gains +1 strength/courage/constitution per 10 levels"
+              },
+              {
+                "name": "重擊術 (Powerblow)",
+                "description": "Auto-triggers with weapons; increases damage; ignores 0-50% damage resistance based on skill level",
+                "stat_gains": "Level 101+ gains 1 gin/kee per level"
+              },
+              {
+                "name": "戰術兵法 (Strategy)",
+                "train_location": "五十斤大石處 (50-pound stone)",
+                "commands": {
+                  "first_aid": "50 spirit, 1 delay",
+                  "charge": "5% chi, 1 delay knockdown"
+                }
+              }
+            ],
+            "advancement_paths": [
+              {
+                "name": "振武軍營統領 (Commander)",
+                "requirements": "Battle merit >=250k; berserk at talent cap; train with 米沛",
+                "skills": [
+                  {
+                    "name": "怒氣 (Aggressive)",
+                    "requirements": "1000 kill karma, berserk 70, commander status"
+                  },
+                  {
+                    "name": "強力格擋技巧 (Heavy Parry)",
+                    "stat_gains": "Level 121 +1 resolve; Level 141 +20 gin/kee; Level 161 +2 resolve/+30 gin/kee"
+                  }
+                ]
+              },
+              {
+                "name": "振武軍營軍師 (Strategist)",
+                "requirements": "Level 30, wisdom 30, reading 90, tactics 90",
+                "trigger_npc": "趙欽差",
+                "gains": "Ancient texts, sorcery, virtual sword techniques",
+                "enhanced_strategy_commands": {
+                  "mass_aid": "500 battle merit, restores chi/form to room",
+                  "supply": "Summons food",
+                  "money": "1000 battle merit, summons silver",
+                  "wis": "250 merit, boosts wisdom + armor to room",
+                  "cor": "250 merit, boosts courage + armor to room",
+                  "relax": "100 merit, reduces fatigue"
+                }
+              },
+              {
+                "name": "地府鬼卒/酆都鬼將 (Underworld Soldier/Judge General)",
+                "requirements": "Non-divine race, Level 40+, ghost form in 左國益處",
+                "skills": [
+                  {
+                    "name": "酆都心經 (Hell Force) - Inner skill",
+                    "commands": {
+                      "check": "Read fate register",
+                      "refresh": "Recovery",
+                      "salvate": "Transcend wandering spirits",
+                      "recover": "Full restoration",
+                      "vision": "Open yin-yang sight"
+                    },
+                    "stat_gains": "+2-3 essence, +2 chi, +2 spirit; mastery +2 dexterity/constitution; Level 140 +4 dexterity/constitution"
+                  },
+                  {
+                    "name": "黃泉判官斧 (Judgement Axe) - Dual axe",
+                    "commands": {
+                      "judgement": "Unblockable damage + delay, 2 merit",
+                      "enhance": "Boosts strength/courage/attack/momentum, 1 merit"
+                    },
+                    "stat_gains": "Progressive gains at Levels 80, 100, 120, 140, 160, 180"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "id": 12,
+          "url": "https://es2tips.blogspot.com/2014/09/soldier-royal.html",
+          "title": "京畿大內巡院",
+          "topic": "Royal Soldier Class - Full Class Tree",
+          "content": {
+            "class_names": ["京畿大內巡院", "大內高手", "四廠錦衣衛", "大內御林軍"],
+            "professions": ["Military", "Scholar"],
+            "race": "Unlimited",
+            "gender": "Unlimited",
+            "master_npc": "大內徵兵官 李天剛 (Li Tian Gang)",
+            "base_skills": [
+              {"name": "五行拳 (Five Quaint)", "category": "Unarmed Combat"},
+              {"name": "神龍藏蹤 (Dragon Steps)", "category": "Evasion/Acrobatics"},
+              {"name": "龍神槍法 (Dragon God)", "category": "Two-handed Pike/Spear"},
+              {"name": "五行陰陽之學 (Mysticism)", "category": "Knowledge"},
+              {"name": "古文造詣 (Archaic Attainment)", "category": "Knowledge"},
+              {
+                "name": "流雲鞭法 (Cloudy-whip)",
+                "category": "Soft Whip",
+                "special": "Chance to cause unavoidable damage or delay opponent based on alertness"
+              },
+              {
+                "name": "大內心法 (Royal Force)",
+                "category": "Internal Cultivation",
+                "commands": ["refresh (qi->essence)", "recover (spirit->essence/qi)", "royal (divine state)"],
+                "divine_state": "Merges willpower with true qi; boosts armor and damage based on skill level, constitution, and strength",
+                "stat_progression": "Level 10 grants +1 constitution and +1 agility; Level 100 grants additional +2 each; All levels: +3 essence/qi/spirit (multiplier 20/20/10)"
+              }
+            ],
+            "advanced_skills": [
+              {
+                "name": "八卦槍法 (Trigram Pike)",
+                "prerequisite": "Dragon god skill level 60",
+                "ability": "Enhanced parry effect (4x normal) during divine state; restores user's qi",
+                "type": "Two-handed Pike/Parry"
+              },
+              {
+                "name": "重擊術 (Powerblow)",
+                "prerequisite": "Dragon god skill level 60",
+                "effect": "Increases weapon damage; ignores 0-50% of opponent damage resistance",
+                "stat_bonus": "Above level 101: +1 gin and kee per level"
+              }
+            ],
+            "advancement_paths": [
+              {
+                "name": "大內高手 (Master of Inner Court)",
+                "level": 40,
+                "restrictions": "Excludes 刑天, 阿修羅, 夜叉 races",
+                "stat_reward": "+3 膂力 (physical strength)",
+                "new_skill": {
+                  "name": "穹槍訣 (Sky Pike)",
+                  "ability": "Divine state attacks target essence with damage determined by yin-yang five-element skills",
+                  "stat_progression": "Level 20 +1 strength; Level 60 +2; Level 120 +4; Qi increases 4 per level"
+                }
+              },
+              {
+                "name": "四廠錦衣衛 (Embroidered Uniform Guard)",
+                "level": 40,
+                "restrictions": "Scholars only",
+                "stat_requirement": "悟性 (wisdom) 35+",
+                "prerequisite_skills": "神龍藏蹤, 流雲鞭法 at aptitude",
+                "stat_reward": "+3 機敏 and +3 定力",
+                "new_skill": {
+                  "name": "舞醜之鞭 (Dance Whip)",
+                  "functions": "steal items, essence damage, delay targets",
+                  "stat_gain": "+2 essence per level"
+                }
+              },
+              {
+                "name": "大內御林軍 (Imperial Guard Army)",
+                "level": 40,
+                "restrictions": "Military only",
+                "requirement": "戰場功勳 >=250,000",
+                "new_skill": {
+                  "name": "強力格擋技巧 (Heavy Parry)",
+                  "stat_gains": "Level 121 +1 resolve; Level 141 +20 gin/kee; Level 161 +2 resolve/+30 gin/kee"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "id": 13,
+          "url": "https://es2tips.blogspot.com/2014/10/soldierber.html",
+          "title": "軍師：戰術兵法",
+          "topic": "Military Strategist Tactical Skills",
+          "content": {
+            "class": "軍師 (Military Strategist)",
+            "skill_set": "戰術兵法 (Tactical Military Arts)",
+            "abilities": [
+              {"command": "tactic cor", "effect": "Group +COR", "range": "Group", "description": "Summons spears, boosts courage"},
+              {"command": "tactic wis", "effect": "Group +WIS", "range": "Group", "description": "Summons dragons, boosts wisdom"},
+              {"command": "tactic first_aid", "effect": "Personal Heal", "range": "Self", "description": "Emergency self-healing"},
+              {"command": "tactic mass_aid", "effect": "Group Heal", "range": "Group", "description": "Group healing via medics"},
+              {"command": "tactic supply", "effect": "Item Drop", "range": "Group", "description": "Generates 356 Manto (food items)"},
+              {"command": "tactic money", "effect": "Item Drop", "range": "Group", "description": "Generates 2000 Silver coins"},
+              {"command": "tactic relax", "effect": "Fatigue Removal", "range": "Self", "description": "Removes fatigue debuff"}
+            ],
+            "note": "WIS/COR effects may be determined by SPI (Spirit attribute)"
+          }
+        },
+        {
+          "id": 14,
+          "url": "https://es2tips.blogspot.com/2014/10/blog-post.html",
+          "title": "振武軍營轉軍師",
+          "topic": "Zhenwu Soldier to Strategist Advancement Quest",
+          "content": {
+            "quest_npc": "趙欽差 (Zhao Qin-cha - Imperial Inspector)",
+            "quest_flow": [
+              "Inspector observes player's intelligence and military knowledge",
+              "Inquires if player serves under 米大帥 (General Mi)",
+              "Praises General Mi's elite forces",
+              "Offers position in military hierarchy",
+              "References campaign against 平陽山 bandits under 司馬嚴 (Sima Yan)",
+              "Requests player deliver 金龍杖 (Golden Dragon Staff)"
+            ],
+            "reward": "Title: 振武軍營軍師 (Zhenwu Military Camp Military Advisor)",
+            "quest_item": "金龍杖 (Golden Dragon Staff)",
+            "related_npcs": [
+              "米大帥 (General Mi) - commanding officer",
+              "司馬嚴 (Sima Yan) - separate campaign commander",
+              "趙欽差 - advancement facilitator"
+            ]
+          }
+        },
+        {
+          "id": 15,
+          "url": "https://es2tips.blogspot.com/2014/11/byun.html",
+          "title": "振武軍營軍師 必勇",
+          "topic": "Byun - Sample Strategist Character Profile",
+          "content": {
+            "character_name": "必勇 (Byun)",
+            "title": "振武軍營軍師 百戶",
+            "level": 50,
+            "race": "無腸 (Gutless/Woochan)",
+            "age": 34,
+            "karma": 9,
+            "stats": {
+              "膂力 (Strength)": "55(+12)",
+              "膽識 (Courage)": "47(+13)",
+              "悟性 (Comprehension)": "65(+22)",
+              "靈性 (Spirituality)": "62(+11)",
+              "定力 (Stability)": "42(+11)",
+              "機敏 (Agility)": "40(+3)",
+              "根骨 (Root)": 18,
+              "慧根 (Wisdom Root)": "32(+15)"
+            },
+            "resource_pools": {
+              "形體 (Body)": "90/90",
+              "精 (Essence)": "815/815",
+              "氣 (Qi)": "690/690",
+              "神 (Spirit)": "250/250"
+            },
+            "skills": {
+              "combat": {
+                "狂擊亂鬥之法 (Berserk)": "200 (名滿天下)",
+                "重擊術 (Power Blow)": "198(+22)",
+                "雙手斧術 (Two-handed Axe)": "184 (爐火純青)",
+                "偷襲暗算技倆 (Backstab)": 184,
+                "縱躍閃躲之法 (Dodge)": "178(+20)",
+                "雙握刀法 (Dual Blade)": 154,
+                "雙握劍術 (Dual Sword)": 152,
+                "雙握鎚法 (Dual Blunt)": "1 (初學乍練)",
+                "拆招卸力之法 (Parry)": "142 (神乎其技)",
+                "潛行伏進之技 (Sneak)": "141 (卓然有成)",
+                "妙手空空之技 (Stealing)": "2 (初學乍練)"
+              },
+              "magic": {
+                "天師道法【紫薇心經】(Ziwei Sutra)": "200(+15)",
+                "咒術-幻劍術 (Virtual Sword)": "175(-10)",
+                "強化之術 (Enhancement)": 180
+              },
+              "knowledge": {
+                "戰術兵法 (Strategy)": "193(+22)",
+                "五行陰陽之學 (Mysticism)": 156,
+                "讀書識字 (Literacy)": 184,
+                "古文造詣 (Archaic Attainment)": 175,
+                "文學造詣 (Literary Attainment)": 385000
+              },
+              "weapons": {
+                "雙手槍法 (Two-handed Pike)": 153,
+                "雙握杖法 (Dual Staff)": 172,
+                "徒手搏鬥-風嘯拳法 (Fengxiao Fist)": "160(-21)"
+              }
+            },
+            "experience": {
+              "兵刃精熟 (Weapon Mastery)": 3708800,
+              "武術造詣 (Martial Attainment)": 1117111,
+              "法術道行 (Spell Cultivation)": 914130,
+              "文書能力 (Documentation)": 664600,
+              "實戰經驗 (Combat Experience)": 653297,
+              "江湖歷練 (Jianghu Experience)": 538231,
+              "拳腳精熟 (Fist Mastery)": 534652,
+              "咒術道行 (Curse Cultivation)": 444000,
+              "法術修為 (Spell Attainment)": 172936,
+              "戰場功勳 (Battlefield Merit)": 135679,
+              "武學之道 (Martial Way)": 41325,
+              "黑道聲望 (Dark Reputation)": 1250,
+              "殺業 (Kill Karma)": 709,
+              "偷盜伎倆 (Thievery)": 131,
+              "聲望 (Reputation)": 45,
+              "重大惡行 (Major Crimes)": 27
+            },
+            "combat_analysis": {
+              "raw_abilities": {
+                "attack_offensive": 289,
+                "attack_technique": 287,
+                "attack_power": 408.45,
+                "defense_defensive": 227,
+                "defense_technique": 179,
+                "defense_power": 272.70,
+                "magic_technique": 432,
+                "magic_strength": 584.10,
+                "curses_technique": 205,
+                "curses_strength": 161.10,
+                "movement": 295,
+                "alertness": 310
+              },
+              "equipment_bonuses": {
+                "strength": "+12",
+                "courage": "+13",
+                "comprehension": "+22",
+                "spirituality": "+11",
+                "stability": "+11",
+                "agility": "+3",
+                "wisdom_root": "+15",
+                "strategy": "+22",
+                "power_blow": "+22",
+                "dodge": "+20",
+                "parry": "+50",
+                "action_movement": "+50",
+                "offensive_level": "+10",
+                "defensive_level": "+50",
+                "armor_strength": "+218",
+                "magic_spell": "+22",
+                "attack_power": "+4"
+              },
+              "elemental_damage": {
+                "fire": {"dealt": "+24", "resist": "+245"},
+                "ice": {"dealt": "+24", "resist": "+245"},
+                "wind": {"dealt": "+24", "resist": "+245"},
+                "lightning": {"dealt": "+24", "resist": "+295"}
+              }
+            },
+            "equipment": {
+              "armor": ["藍鏤衣 (Blue Dress)", "靈中樞甲 (Soul Lapis Lazuli Plate)", "玉蟒頭巾 (Python Headgear)", "青竹腿護 (Bamboo Leg Guard)", "玄蛛皂白靴 (Spider Boots)", "黑鐵護手 (Black Gauntlets)"],
+              "weapons": ["無腸斧 (Woochan Axe)", "無腸劍 (Woochan Longsword)", "巫首斧 (Malik Axe)", "巫首匕 (Malik Dagger)"],
+              "accessories": ["int+3符 (Int+3 Homemade Amulet)", "紫雲玉珮 (Violet Jade)", "無腸寶珠 (Woochan Ring)"],
+              "other": ["二十兩黃金 (Gold)", "一百九十五兩碎銀 (Silver)", "龍麟袋 (Dragon-skin Bag)", "古鄔赤水袋 (Strange Skin Bag)"]
+            }
+          }
+        },
+        {
+          "id": 16,
+          "url": "https://es2tips.blogspot.com/2014/09/blog-post.html",
+          "title": "龍圖丹派方士",
+          "topic": "Dragon Map Alchemy Sect - Alchemist Class",
+          "content": {
+            "sect_name": "龍圖丹派 (Long Tu Dan Pai)",
+            "class": "方士 (Fangshi - Alchemist)",
+            "master_npc": "牙山居士 陳維俠 (Chen Wei Xia)",
+            "race_gender": "Unrestricted",
+            "skills": [
+              {
+                "name": "丹道【神農之術】(Alchemy-Medication)",
+                "type": "Magic/Law",
+                "learn_condition": "After joining sect",
+                "abilities": "Seal/dispel functions using colored stamps (green, white, red, purple, yellow, gray, black) on bronze cauldrons"
+              },
+              {
+                "name": "丹道【黃白之術】(Alchemy-Wealth)",
+                "type": "Magic/Law",
+                "learn_condition": "Quest completion from NPC 江述仁",
+                "cost": "15 sen per use",
+                "function": "Convert items under 500 currency to money; items over 500 require skill level > item price/10000"
+              },
+              {
+                "name": "竹上經心法 (Zushang Internal Cultivation)",
+                "type": "Internal Power",
+                "learn_condition": "Quest from 江述仁",
+                "max_level": 10,
+                "ability": "Consume current gin/kee; restore sen value and maximum",
+                "stat_gains": "1 essence, 1 breath, 2 spirit per level"
+              },
+              {
+                "name": "龍圖心經 (Dragon Force)",
+                "type": "Internal Power",
+                "learn_condition": "Internal power 90, level 30, wisdom 30, quest completion",
+                "max_level": "70-120+",
+                "stat_gains": "1 spirit/breath per level; 120+ grants 4 breath/5 essence"
+              }
+            ],
+            "help_references": ["help alchemist.pill", "help alchemy-wealth", "help alchemist.adv"]
+          }
+        },
+        {
+          "id": 17,
+          "url": "https://es2tips.blogspot.com/2014/09/blog-post_17.html",
+          "title": "針灸師 武陀灸堂",
+          "topic": "Wuto Acupuncture Hall Acupuncturist Class",
+          "content": {
+            "class": "武陀灸堂灸師 (Wuto Acupuncturist)",
+            "profession": "方士 (Fangshi/Alchemist)",
+            "race_gender": "Unrestricted",
+            "master_npc": "武陀灸堂堂主 鬼華陀 武道通",
+            "skills": [
+              {
+                "name": "驚異二針 (Amazing-needle)",
+                "category": "針灸之術 (Acupuncture Art)",
+                "learn_requirement": "After becoming disciple",
+                "abilities": [
+                  {"command": "amazing_armor", "effect": "Consume spirit to increase target armor/defense, minor damage/attack"},
+                  {"command": "amazing_power", "effect": "Consume spirit to increase target damage/attack, minor armor/defense"},
+                  {"command": "self_test", "effect": "Consume qi to gain experience"}
+                ],
+                "note": "Cannot use both armor and power simultaneously on same target"
+              },
+              {
+                "name": "五敗針法 (Wuto-needle)",
+                "category": "針灸之術",
+                "learn_requirement": "After becoming disciple",
+                "abilities": [
+                  {"command": "fear_first", "effect": "Damage based on user/target courage"},
+                  {"command": "foul_second", "effect": "Damage based on user/target constitution"},
+                  {"command": "fail_third", "effect": "Damage based on user/target strength"},
+                  {"command": "fling_fourth", "effect": "Damage based on user/target willpower"},
+                  {"command": "fumble_fifth", "effect": "Damage based on user/target agility"}
+                ],
+                "mechanics": "User delay 1, chance to delay target 2"
+              },
+              {
+                "name": "引源針法 (Potency-needle)",
+                "category": "針灸之術",
+                "learn_requirement": "經脈穴道之學 >= 80",
+                "abilities": [
+                  {"command": "fatigue", "effect": "Relieves target fatigue"},
+                  {"command": "awareness", "effect": "Increases alertness, minor action/element damage"},
+                  {"command": "move", "effect": "Increases action points, minor alertness/element damage"},
+                  {"command": "element", "effect": "Increases element damage, minor alertness/action points"}
+                ],
+                "note": "Cannot use all three simultaneously on same target"
+              },
+              {
+                "name": "三自回針法 (Recovery-needle)",
+                "category": "針灸之術",
+                "learn_requirement": "經脈穴道之學 >= 80",
+                "abilities": [
+                  {"command": "gin-up", "effect": "Increases fatigue, restores essence"},
+                  {"command": "kee-up", "effect": "Increases fatigue, restores qi"},
+                  {"command": "sen-up", "effect": "Increases fatigue, restores spirit"}
+                ]
+              },
+              {
+                "name": "針灸之術 (Cauterization)",
+                "category": "基本技能 (Basic Skill)",
+                "learn_requirement": "After becoming disciple",
+                "stat_boost": "Every 5 levels increases gin/kee/sen by 10 points"
+              }
+            ]
+          }
+        },
+        {
+          "id": 18,
+          "url": "https://es2tips.blogspot.com/2014/09/blog-post_27.html",
+          "title": "方士/針灸師進階",
+          "topic": "Alchemist/Acupuncturist Advancement Paths",
+          "content": {
+            "shared_skills": [
+              {
+                "name": "天師道法【紫薇心經】(Chivi Sutra)",
+                "type": "Spell",
+                "learn_requirement": "Level 15, Tianfeng Daoist quest",
+                "abilities": "fire/storm/freeze/thunder defence, dispel effect"
+              },
+              {
+                "name": "強化之術 (Enhance)",
+                "type": "Spell",
+                "learn_requirement": "Spell 60, Level 10, Weapon Mastery 50000 from Chen Xueling",
+                "abilities": {
+                  "golden_bless": "2.5 gold per use",
+                  "silver_bless": "costs spirit, weapon damage risk"
+                },
+                "weapon_enhancement_caps": {
+                  "axes": "15-135",
+                  "blades": "14-110",
+                  "blunts": "16-100",
+                  "daggers": "18-75",
+                  "needles": "18-75",
+                  "swords": "15-110",
+                  "twohanded": "scale higher"
+                }
+              },
+              {
+                "name": "幻影鞭法 (Shadow Whip)",
+                "type": "Soft Whip Technique",
+                "learn_requirement": "Li Ji quest"
+              }
+            ],
+            "advancement_paths": [
+              {
+                "name": "龍圖丹派醫師 (Longtu Physician)",
+                "requirements": "Level 40, Shenong Alchemy & Yellow-White Alchemy at innate cap, 1000+ gold savings",
+                "npc": "Jiang Hsuren",
+                "special_ability": "Method Book (gather herbs/purchase timber anywhere)"
+              },
+              {
+                "name": "武陀灸堂香主 (Wuto Hall Master)",
+                "requirements": "Level 50, Meridian Point Study 180, Acupuncture 180, Shenong Alchemy at innate cap",
+                "npc": "Lay Ton",
+                "enhanced_skills": ["potency-needle enhanced", "wuto-needle (delay target, no spirit cost)"]
+              },
+              {
+                "name": "劍甲門傳人 (Jianjia Sect Heir)",
+                "requirements": "Enhance 140 + (Wuto acupuncture skills 140 OR Longtu alchemy skills 140)",
+                "npc": "Chen Xueling",
+                "tradeoff": "Longtu alchemists lose recipe-based alchemy; Wuto practitioners forget wuto-needle",
+                "new_skills": [
+                  {
+                    "name": "金剛鎚法 (Power Blunt)",
+                    "types": ["Hammer", "Staff", "Dual Hammer", "Dual Staff"],
+                    "abilities": ["spirit pierce", "cold shadow", "delay 2", "power smite (10x weapon weight damage, costs spirit seal)"],
+                    "stat_boost": "Strength +1 at levels 90, 130, 150, 180"
+                  },
+                  {
+                    "name": "靈甲術 (Armory Spell)",
+                    "type": "Spell",
+                    "abilities": {
+                      "cleanse": "3 spirit seals",
+                      "buffs": "move/awareness/defense/attack/wittiness/intimidate/spell (1 seal + 2.5 gold each)",
+                      "element_enhance": "fire/storm/freeze/thunder",
+                      "attribute_boost": "str/cor/wis/int using gold urn pills"
+                    },
+                    "stat_boost": "Spirit +2 per level"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "id": 19,
+          "url": "https://es2tips.blogspot.com/2014/08/blog-post.html",
+          "title": "龍圖丹派醫師 江述仁",
+          "topic": "Longtu Physician Jiang Shuren - Debt Quest",
+          "content": {
+            "npc_name": "江述仁 (Jiang Shuren)",
+            "title": "龍圖丹派醫師 (Longtu Danpai Physician)",
+            "quest_type": "Debt repayment",
+            "debts": [
+              {"location": "水嵐縣 (Water-Azure County)", "creditor": "錢富貴 (Qian Fugui)", "debt": "2,000 醒神丹 (Spirit-Awakening Pills)"},
+              {"location": "雪吟莊 (Snow-Chant Manor)", "creditor": "魚平胤 (Yu Pingyin)", "debt": "2,000 小還丹 (Minor Restoration Pills)"},
+              {"location": "五堂鎮 (Five Halls Town)", "creditor": "陸四爺 (Lu Siyi)", "debt": "6,000 金液丹 (Golden Liquid Pills)"}
+            ],
+            "player_balance_shown": "105,000+ taels and 1 wen"
+          }
+        },
+        {
+          "id": 20,
+          "url": "https://es2tips.blogspot.com/2014/08/int-21.html",
+          "title": "步玄居士悟性裝",
+          "topic": "Budget INT+21 Equipment Build for Buxuan Scholar",
+          "content": {
+            "class": "步玄派 (Buxuan Sect) / Scholar",
+            "target_stat": "悟性/INT +21 total",
+            "equipment_build": [
+              {"slot": "Weapons (x2)", "item": "無腸 (Woochan weapons)", "bonus": "+6 (+3 each)"},
+              {"slot": "Ring", "item": "無腸寶珠 (Zi variant)", "bonus": "+2"},
+              {"slot": "Armor/Plate", "item": "靈中樞甲 Plate", "bonus": "+1", "source": "Collect from ghost gourds"},
+              {"slot": "Cloth", "item": "白長袍 (White Robe)", "bonus": "+2", "source": "龍安 (Ning)"},
+              {"slot": "Headgear", "item": "-", "bonus": "+1", "source": "婁縣 (Lou County) cart"},
+              {"slot": "Jade", "item": "-", "bonus": "+1", "source": "Lin (Illusion Mist)"},
+              {"slot": "Amulet", "item": "張半仙 (storytelling)", "bonus": "+5"},
+              {"slot": "Homemade Amulet", "item": "-", "bonus": "+3", "source": "Shen, 5 gold cost"}
+            ],
+            "total_bonus": "+21 INT"
+          }
+        },
+        {
+          "id": 21,
+          "url": "https://es2tips.blogspot.com/2014/08/nmb48yamadanana.html",
+          "title": "步玄派弟子",
+          "topic": "Buxuan Sect Disciple - Sample Character Profile (Yamadanana)",
+          "content": {
+            "character_name": "山田菜菜 (Yamadanana)",
+            "class": "隱士 (Hermit/Recluse)",
+            "sect": "步玄派 (Buxuan Sect)",
+            "level": 60,
+            "gender": "Female",
+            "age": 43,
+            "stats": {
+              "膂力 (Strength)": 33,
+              "膽識 (Courage)": 25,
+              "悟性 (Enlightenment)": 47,
+              "靈性 (Spirituality)": 21,
+              "定力 (Composure)": 36,
+              "機敏 (Agility)": 33,
+              "根骨 (Foundation)": 34,
+              "慧根 (Wisdom Root)": 19
+            },
+            "resource_pools": {
+              "形體 (Form)": "170/170",
+              "精 (Essence)": "946/946",
+              "氣 (Qi)": "1261/1261",
+              "神 (Spirit)": "856/856"
+            },
+            "skills": {
+              "劍術 (Sword Mastery)": "195 (Transcendent)",
+              "左手劍術 (Left-Hand Sword)": "189(+18)",
+              "拆招卸力之法 (Parry)": "186(+27)",
+              "徒手搏鬥 (Unarmed Combat)": "185(+33)",
+              "潛行伏進之技 (Stealth)": "185(+12)",
+              "偷襲暗算技倆 (Backstab)": 186,
+              "縱躍閃躲之法 (Evasion)": "177(+35)",
+              "內功 (Internal Force)": "176(+6)",
+              "讀書識字 (Literacy)": 172,
+              "古文造詣 (Archaic Knowledge)": 161,
+              "五行陰陽之學 (Cosmology)": 160,
+              "虛空斬 (Void Slash)": "8 (Novice)",
+              "妙手空空之技 (Stealing)": "1 (Novice)"
+            },
+            "experience": {
+              "實戰經驗 (Combat)": 5993940,
+              "武術造詣 (Martial Arts)": 1969246,
+              "拳腳精熟 (Hand-to-Hand)": 1455107,
+              "兵刃精熟 (Weapon Proficiency)": 1339978,
+              "武學之道 (Martial Way)": 732535,
+              "文書能力 (Writing)": 576750,
+              "江湖歷練 (Experience)": 353433,
+              "文學造詣 (Literature)": 326025
+            },
+            "reputation": {
+              "聲望": 78846,
+              "業力": 15,
+              "重大惡行": 84,
+              "殺業": 30,
+              "偷盜伎倆": 13
+            },
+            "combat_macros": [
+              "#alias pro {k %1;pf %1;ro}",
+              "#tick aaa {pro %1} {4.1}"
+            ]
+          }
+        }
+      ]
+    },
+    "guide_system": {
+      "description": "Game guides and system mechanics",
+      "posts": [
+        {
+          "id": 22,
+          "url": "https://es2tips.blogspot.com/2013/05/es2-help.html",
+          "title": "新手必看 Help",
+          "topic": "Beginner's Guide to ES2",
+          "content": {
+            "learning_path": [
+              {"step": 0, "topic": "Introductory help", "command": "help newbie"},
+              {"step": 1, "topic": "Basic Commands", "command": "help cmds", "time": "~2 hours"},
+              {"step": 2, "topic": "Class/Sect Information", "command": "help class", "time": "~2 hours"},
+              {"step": 3, "topic": "Race/Species", "commands": ["help race", "help race.details"], "time": "~1 hour"},
+              {"step": 4, "topic": "Game Lore", "commands": ["help history", "help myth", "help myth.1", "help myth.2", "help peoples", "help theme", "help history.ys", "help history.zx", "help history.wz"], "time": "~1 hour"},
+              {"step": 5, "topic": "Supplementary Study", "resource": "山海經 (Classic of Mountains and Seas)", "time": "~2-4 hours"},
+              {"step": 6, "topic": "Community", "action": "Review all bulletin boards near portal area"},
+              {"step": 7, "topic": "Learn from Experienced Players", "npcs": ["Annihilator", "Zorg"]},
+              {"step": 8, "topic": "Comprehensive", "command": "help ALL"}
+            ],
+            "game_description": "數學mud+練功mud (Math + training-focused MUD)",
+            "features": ["Complete sect hierarchy", "Talent system", "11 playable races", "Post-max-level content", "Second advancement", "Rank system", "Reset mechanic", "Multiple warfare modes"]
+          }
+        },
+        {
+          "id": 23,
+          "url": "https://es2tips.blogspot.com/2014/02/es2.html",
+          "title": "如何投胎",
+          "topic": "Reincarnation System",
+          "content": {
+            "npcs_ghost_conversion": ["郭布 (Guo Bu)", "柳東蘆 (Liu Dong Lu)"],
+            "reincarnation_location": "五堂東北邊的廟 (Temple northeast of Wu Tang)",
+            "commands": ["say 投胎", "say 確定"],
+            "starting_karma": 70,
+            "races": {
+              "5_point": ["黑齒 (Blackteeth)", "人類 (Human)", "厭火 (Yenhold)", "無腸 (Woochan)"],
+              "10_point": ["釘靈 (Dingling)", "焦僥 (Jiaojao)"],
+              "25_point": ["雨師妾 (Rainnar)", "形天 (Headless)"],
+              "30_point": ["阿修羅 (Ashura)", "夜叉 (Yaksa)", "巫首 (Malik)"]
+            },
+            "query_command": "? <race name>"
+          }
+        },
+        {
+          "id": 24,
+          "url": "https://es2tips.blogspot.com/2014/09/es2.html",
+          "title": "戰鬥基本設定",
+          "topic": "Combat System - Attack, Defense, Spell Mechanics",
+          "content": {
+            "combat_commands": {
+              "kill": "Aggressive combat mode; continues until one party dies",
+              "fight": "Cooperative sparring mode; ends when one party flees or surrenders"
+            },
+            "defense_mechanics": {
+              "dodge": {
+                "description": "Avoids enemy attacks through evasion",
+                "resource_cost": "精力 (stamina)",
+                "skill": "縱躍閃躲之法 (Leap Dodge Technique)",
+                "affected_by": ["agility (機敏)", "composure (定力)", "gin/kee stats", "equipment", "race bonuses"]
+              },
+              "parry": {
+                "description": "Blocks attacks using wielded weapons",
+                "resource_cost": "stamina",
+                "skill": "拆招卸力之法 (Disarm Deflection Technique)",
+                "note": "Ineffective without weapon"
+              }
+            },
+            "attack_formulas": {
+              "momentum": "(Strength x Courage / 10) + (kee / 32) + bonuses",
+              "technique": "(Strength x Courage / 10) + (gin / 32) + bonuses",
+              "power": "(Strength x Courage / 7) + (kee / 32)"
+            },
+            "defense_formulas": {
+              "stance": "(Composure x Wisdom / 10) + (kee / 16) + bonuses",
+              "technique": "(Agility x Composure / 10) + (gin / 128) + (kee / 128) + bonuses",
+              "resistance": "(Agility x Composure / 7) + (kee / 32)"
+            },
+            "spell_formulas": {
+              "maoshan_technique": "(Spirituality x Enlightenment / 10) + (sen / 32) + bonuses",
+              "maoshan_power": "(Spirituality x Spirituality / 7) + (sen / 32)",
+              "tianshi_technique": "(Spirituality x Wisdom / 10) + (sen / 32) + bonuses",
+              "tianshi_power": "(Wisdom x Wisdom / 7) + (sen / 32)"
+            },
+            "other_formulas": {
+              "awareness": "(Spirituality x Composure / 10) + (gin / 16)",
+              "action": "(Arm Strength x Agility / 10) + (gin / 32)"
+            },
+            "combat_bonuses": {
+              "primary_target": "+20% momentum, -33% stance",
+              "waiting_bonus": "+20% momentum next turn"
+            },
+            "damage_system": {
+              "ghost_state": "Loses 精 (spirit)",
+              "living": "Loses 氣 (vitality)",
+              "unconscious": "Damage multiplied 10x affecting form directly",
+              "death": "Form reaches -1"
+            }
+          }
+        },
+        {
+          "id": 25,
+          "url": "https://es2tips.blogspot.com/2013/06/reset-skill.html",
+          "title": "技能重置",
+          "topic": "Skill Reset System - Star Ring",
+          "content": {
+            "item_name": "星之指環 (Star Ring)",
+            "lore": "Moon goddess Yinchan's gift, blessed with four divine seals to reshape one's skill talent",
+            "mechanics": "Insert four elemental seals to activate skill reset function. Ring disintegrates after use.",
+            "commands": [
+              "insert seal of water",
+              "insert seal of storm",
+              "insert seal of fire",
+              "insert seal of thunder",
+              "reset [skill name]"
+            ],
+            "required_seals": [
+              "水之印記 (Seal of Water)",
+              "風之印記 (Seal of Storm)",
+              "火之印記 (Seal of Fire)",
+              "雷之印記 (Seal of Thunder)"
+            ],
+            "ring_stats": {
+              "wind_strike_defense": 100,
+              "lightning_damage_defense": 200,
+              "alertness": 100,
+              "defensive_level": 50
+            }
+          }
+        },
+        {
+          "id": 26,
+          "url": "https://es2tips.blogspot.com/2013/05/es2_29.html",
+          "title": "鍛鍊殺業",
+          "topic": "Kill Karma Grinding Guide",
+          "content": {
+            "purpose": "AD_RANK advancement requires 10,000-30,000 kills",
+            "grinding_locations": [
+              {"location": "鬼洞 (Ghost Cave)", "kills_per_run": "50-70", "notes": "Earn money + collect ghosts"},
+              {"location": "妖塔 (Demon Tower)", "kills_per_run": "50-70", "notes": "Earn money + collect ghosts"},
+              {"location": "古墓場 (Ancient Tomb)", "notes": "Requires strong character"},
+              {"location": "夜神殿 (Night God Temple)", "notes": "Less competition"},
+              {"location": "榮府 (Rong Residence)", "notes": "Busy with bot users"},
+              {"location": "各山寨 (Mountain Strongholds)", "notes": "Avoid if soldiers training"}
+            ],
+            "killable_npc_types": ["道士 (Taoist)", "瞎眼老太婆 (Blind old woman)", "路人/旅人 (Passerby/Traveler)", "小孩/少年 (Children/Teenagers)", "男人/女人 (Men/Women)", "官兵 (Imperial Guards)", "封山弟子 (Seal Mountain disciples)", "青邪/雪吟/虎刀 members", "土匪 (Bandits)"],
+            "dangerous_npcs": ["張俊仁 (Zhang Junren) in Ghost Cave", "劉開 (Liu Kai) patrol leader"],
+            "grinding_rates": {
+              "manual": "5,000-6,000 kills/day (8-14 hours)",
+              "automated": "48xN kills per day (half-hour respawn cycle)"
+            },
+            "techniques": ["風嘯拳法 (Wind Whistle Fist)", "開光穿靈 (Light Opening Spirit Pierce)"]
+          }
+        },
+        {
+          "id": 27,
+          "url": "https://es2tips.blogspot.com/2014/10/mobnpc-swordbladepikeaxeneedlestaffunar.html",
+          "title": "練功Mob/NPC",
+          "topic": "Physical Attack Training Mobs/NPCs",
+          "content": {
+            "training_mob_traits": "Fight to red health without panting/fainting. Can fight simultaneously without interference.",
+            "weapon_types": ["sword", "blade", "pike", "axe", "needle", "staff", "unarmed", "berserk"],
+            "training_locations": [
+              {
+                "name": "夜叉小孩 (Yaksha Children)",
+                "spawn": "Pairs throughout areas",
+                "locations": ["Qingye Tower", "Fengcheng", "Lou County", "Zhi County", "Fei County"],
+                "note": "Zhaoyin location has one child with social hammer"
+              },
+              {
+                "name": "小學童 (School Children)",
+                "quantity": "2-3 groups",
+                "locations": ["Xueting Town (chen n w n)", "Baihua Village (search e n w)"],
+                "note": "Tells you to study instead of fighting"
+              },
+              {
+                "name": "妖塔前 bonze (Yao Tower Bonzes)",
+                "group_size": "4 per spawn (2 groups)",
+                "location": "Yao Tower entrance",
+                "note": "Higher KI than children"
+              },
+              {
+                "name": "Other options",
+                "locations": ["Qiaoyin: Xiao Pichen", "Baihua Village: Xiaodao Child, Lu Ping", "Zhixian supplement NPC", "Zhaoyin: Lu Feng", "Water Mist: Kind Abbot temple bonzes (4-group)"]
+              }
+            ]
+          }
+        },
+        {
+          "id": 28,
+          "url": "https://es2tips.blogspot.com/2014/11/stakelionbuddhapillar.html",
+          "title": "練功標靶",
+          "topic": "Training Target Locations (Stakes, Lions, Buddhas, Pillars)",
+          "content": {
+            "target_types": ["stake (假人)", "lion (石獅子)", "buddha (佛像)", "pillar (石柱)"],
+            "note": "Training dummies are the lowest-risk practice targets",
+            "locations": [
+              {"name": "振武軍營 (Zhenwu Military Camp)", "type": "Stake", "safety": "75%", "notes": "Most stakes; occasional black bears"},
+              {"name": "神武軍營 (Shenwu Military Camp)", "type": "Stake", "safety": "90%", "notes": "Remote; ghost delays possible"},
+              {"name": "武威軍營 (Wuwei Military Camp)", "type": "Stake", "safety": "5-30%", "notes": "NOT recommended; active warfare zone"},
+              {"name": "虎刀門 (Tiger Blade Sect)", "type": "Dummy", "safety": "90%", "notes": "Practice grounds with multiple targets"},
+              {"name": "靈雲觀 (Lingyun Temple)", "type": "Dummy", "safety": "90%", "notes": "Distant; some dummies"},
+              {"name": "青雲觀 (Qingyun Temple)", "type": "Dummy", "safety": "90%", "notes": "Safe during animal wars"},
+              {"name": "白雲觀 (Baiyun Temple)", "type": "Dummy", "safety": "80%", "notes": "Zombie invasion risk during wars"},
+              {"name": "百花村 (Hundred Flower Village)", "type": "Stone Lion", "safety": "99%", "notes": "Two lions near child NPC"},
+              {"name": "榮府 (Rong Mansion)", "type": "Buddha Statue", "safety": "95%", "notes": "Durable target"},
+              {"name": "黑風山寨 (Black Wind Stronghold)", "type": "Buddha Statue", "safety": "10%", "notes": "High risk"},
+              {"name": "野羊山 (Wild Goat Mountain)", "type": "Stake", "safety": "70%", "notes": "Internal; rarely used"},
+              {"name": "白象寺 (White Elephant Temple)", "type": "Stake", "safety": "65-80%", "notes": "Variable risk; NPC targeting"},
+              {"name": "巫山快船西方", "type": "Statue", "safety": "50%", "notes": "Black bears present"},
+              {"name": "冷梅莊 (Cold Plum Manor)", "type": "Stake", "safety": "70-90%", "notes": "Can train with NPC Xiaomei"},
+              {"name": "京畿西方官府 (Western Jingji Government)", "type": "Stake", "safety": "75-90%", "notes": "Abundant stakes; distant"},
+              {"name": "焱硝村 (Yanxiao Village)", "type": "Stone Pillar", "safety": "80%", "notes": "North location; durable target"}
+            ]
+          }
+        },
+        {
+          "id": 29,
+          "url": "https://es2tips.blogspot.com/2014/08/train-stone-parry-backstab.html",
+          "title": "試煉石",
+          "topic": "Training Stone for Parry and Backstab",
+          "content": {
+            "location": "藏經塔底 (Base of Scripture Tower) at 白象寺 (White Elephant Temple)",
+            "room_description": "Stone walls inscribed with 普心斷慾咒 and 瘋虎功 formulas",
+            "objects_present": ["人靈之僕 (Wisdom servant)", "試煉石 (Train stone)", "銅像 (Copper statue)"],
+            "trainable_skills": ["拆招卸力之法 (Parry)", "偷襲暗算技倆 (Backstab)"],
+            "training_macros": [
+              "#TICKER {aaa} {drink from skin;#delay {5} {train parry;gain;replete}} @ {10}",
+              "#ticker {bbb} {attack 銅像} {4}",
+              "#ACTION {必死無疑} {exert heal}",
+              "#ACTION {真氣不足} {exert luohan-kee}",
+              "#ACTION {無法繼續修習了}={exert heal;#delay {2} {exert heal}}",
+              "#ACTION {還是等等吧}={replete}"
+            ],
+            "exit": "north"
+          }
+        }
+      ]
+    },
+    "boss_combat": {
+      "description": "Boss fight guides (mostly image-only content)",
+      "posts": [
+        {
+          "id": 30,
+          "url": "https://es2tips.blogspot.com/2015/11/vs_7.html",
+          "title": "天師道士 vs 駱易",
+          "topic": "Celestial Master Taoist vs Luo Yi",
+          "content": {
+            "class": "天師道士 (Celestial Master Taoist)",
+            "boss": "駱易 (Luo Yi)",
+            "note": "Content is in embedded image only",
+            "referenced_stats": ["傷害力", "膽識", "慧根", "行動力", "防禦力", "膂力", "靈性", "定力"],
+            "referenced_elements": ["火焰傷害", "冰寒傷害", "雷電傷害", "風擊傷害"]
+          }
+        },
+        {
+          "id": 31,
+          "url": "https://es2tips.blogspot.com/2015/11/blog-post_27.html",
+          "title": "天師道士 vs 劉乙忘玄",
+          "topic": "Celestial Master Taoist vs Liu Yi Wang Xuan",
+          "content": {
+            "class": "天師道士 (Celestial Master Taoist)",
+            "boss": "劉乙忘玄 (Liu Yi Wang Xuan)",
+            "note": "Content is in embedded image only",
+            "referenced_taoist_skills": ["天師道法【冰咒】", "天師道法【火術】", "天師道法【雷法】", "天師道法【風符】", "天師道法【桃山密籙】"]
+          }
+        },
+        {
+          "id": 32,
+          "url": "https://es2tips.blogspot.com/2015/11/vs.html",
+          "title": "天師道士 vs 梅影風",
+          "topic": "Celestial Master Taoist vs Plum Shadow Wind",
+          "content": {
+            "class": "天師道士 (Celestial Master Taoist)",
+            "boss": "梅影風 (Mei Yingfeng / Plum Shadow Wind)",
+            "note": "Content is in embedded image only"
+          }
+        },
+        {
+          "id": 33,
+          "url": "https://es2tips.blogspot.com/2015/11/blog-post_49.html",
+          "title": "天師道士 vs 柳東蘆",
+          "topic": "Celestial Master Taoist vs Liu Dong Lu",
+          "content": {
+            "class": "天師道士 (Celestial Master Taoist)",
+            "boss": "柳東蘆 (Liu Dong Lu)",
+            "note": "Content is in embedded image only"
+          }
+        }
+      ]
+    },
+    "reputation_and_other": {
+      "description": "Reputation system, NPCs, items, and miscellaneous",
+      "posts": [
+        {
+          "id": 34,
+          "url": "https://es2tips.blogspot.com/2013/06/1.html",
+          "title": "黑道聲望(1)",
+          "topic": "Underworld Reputation Part 1 - Military NPCs and Equipment",
+          "content": {
+            "npcs": [
+              {
+                "name": "鍾貙 (Zhong Zhu)",
+                "title": "大將軍 (General)",
+                "location": "神武軍營 (Shenwu Military Camp)",
+                "reputation": "+500",
+                "race": "黑齒族 (Black Teeth Clan)",
+                "age": "50+",
+                "equipment": ["精鋼戰靴 (Steel boots)", "龍騎戰甲 (Dragon plate of knights)", "精鋼護腕 (Steel bracers)", "碎腦鎚 (Crasher maul)"],
+                "key_item": {
+                  "name": "龍騎戰甲 (Dragon plate of knights)",
+                  "stats": {"defense": 45, "root_bone": "+2", "agility": "-1"}
+                }
+              },
+              {
+                "name": "呂翌 (Lv Yi)",
+                "title": "鎮天將軍 (Garrison General)",
+                "location": "衛國鎮 (Weiguo Town)",
+                "reputation": "+100",
+                "equipment": ["十石大斧 (Grandaxe)", "鐵佛珠 (Iron rosary)", "霸王鎧 (Royal armor)", "霸王銅冠 (Royal helmet)", "精鋼戰靴 (Steel boots)"],
+                "key_item": {
+                  "name": "十石大斧 (Grandaxe)",
+                  "stats": {"skill": "雙手斧術", "damage": "12-99", "strength_modifier": "165%", "multiplier_level": 3, "fire_resistance": 50, "axe_mastery": "+10", "damage_bonus": "+10"}
+                }
+              },
+              {
+                "name": "司馬嚴 (Si-ma Yan)",
+                "title": "行軍主將 (Commanding General)",
+                "reputation": "+500",
+                "equipment": ["精鋼戰甲", "精鋼護腕", "霸王銅冠", "霸王指環", "精鋼戰靴", "蛟龍帶", "霸王槍 (Royal pike)"],
+                "key_item": {
+                  "name": "霸王槍 (Royal pike)",
+                  "stats": {"skill": "雙手槍法", "damage": "8-71", "strength_modifier": "135%", "multiplier_level": 3, "berserk_combo": "+15", "heavy_strike": "+15"}
+                }
+              },
+              {
+                "name": "司馬鷹 (Sima Ying)",
+                "title": "鎮南王 (Southern Regional Prince)",
+                "reputation": "+500",
+                "key_item": {
+                  "name": "泣龍怨 (Sword of dragon tears)",
+                  "stats": {"skill": "雙握劍術", "damage": "9-78", "strength_modifier": "90%", "multiplier_level": 3, "attack_power": "+50"}
+                }
+              },
+              {
+                "name": "杜獄 (Du Yu)",
+                "title": "行軍副將 (Deputy Military Commander)",
+                "location": "武威軍營 (Wuwei Military Camp)",
+                "reputation": "+100",
+                "equipment": ["連身鎖子甲 (Ring armor)", "精鐵環扣 (Iron girth)", "鐵盔 (Iron helmet)", "闊劍 (Broad sword)"]
+              }
+            ]
+          }
+        },
+        {
+          "id": 35,
+          "url": "https://es2tips.blogspot.com/2013/06/2.html",
+          "title": "黑道聲望(2)",
+          "topic": "Underworld Reputation Part 2 - More Military NPCs",
+          "content": {
+            "npcs": [
+              {
+                "name": "韓文緒 (Captain Han)",
+                "title": "喬陰縣都護校衛",
+                "reputation": "+25",
+                "race": "厭火族",
+                "key_item": {
+                  "name": "紫電紅纓槍 (Thunder Pike)",
+                  "stats": {"skill": "雙手槍法", "damage": "8-71", "strength_modifier": "135%", "multiplier_level": 3, "lightning_damage": "+30", "attack_ability": "+30"}
+                }
+              },
+              {
+                "name": "韓龍 (Han Long)",
+                "title": "白虎堂知事",
+                "reputation": "+0",
+                "race": "夜叉族",
+                "key_items": [
+                  {
+                    "name": "血月斧 (Bloodmoon Axe)",
+                    "stats": {"skills": ["斧術", "左手斧術"], "damage": "8-47", "strength_modifier": "100%", "multiplier_level": 3, "damage_bonus": "+30"}
+                  },
+                  {"name": "綠玉頂戴 (Jade Hat)", "stats": {"spirituality": "+1", "five_element_study": "+5"}},
+                  {"name": "蟠龍朝服 (Dragon Cloth)", "stats": {"defense": "+5", "alertness": "+10"}}
+                ]
+              },
+              {
+                "name": "司馬蔚 (Si-ma Wei)",
+                "title": "風城將軍",
+                "reputation": "+0",
+                "equipment": ["太陽巨神劍 (Sun colosus sword)", "霸王指環", "精鋼戰甲"]
+              },
+              {
+                "name": "榮世國 (Rong Shi Guo)",
+                "reputation": "+0",
+                "key_item": {
+                  "name": "冥魔杖 (Serpent Cane)",
+                  "stats": {"skill": "雙握杖法", "damage": "13-70", "strength_modifier": "202%", "multiplier_level": 3, "defense": "+45", "offensive_level": "+50"}
+                }
+              },
+              {
+                "name": "司馬雷 (Si-ma Lei)",
+                "title": "One of Seven Desert Demons",
+                "race": "阿修羅族",
+                "equipment": ["霸王槍", "霸王銅冠", "霸王鎧", "霸王指環"]
+              }
+            ]
+          }
+        },
+        {
+          "id": 36,
+          "url": "https://es2tips.blogspot.com/2013/06/3.html",
+          "title": "黑道聲望(3)",
+          "topic": "Underworld Reputation Part 3 - High-Level Military NPCs",
+          "content": {
+            "npcs": [
+              {
+                "name": "大內徵兵官 李天剛",
+                "reputation": "+0",
+                "command": "enlist",
+                "equipment": ["巴蛇大矛", "精鐵環扣", "蠻牛靴"]
+              },
+              {
+                "name": "上將軍 魯飛 (Lu Fei)",
+                "reputation": "+0",
+                "race": "厭火族",
+                "key_item": {
+                  "name": "旋風流星槌 (Whirlwind Blunt)",
+                  "stats": {"skill": "雙握鎚法", "damage": "8-108", "strength_modifier": "127%", "multiplier_level": 4, "berserk": "+10", "heavy_strike": "+10"}
+                }
+              },
+              {
+                "name": "兵部尚書 司馬成都",
+                "reputation": "+1000",
+                "key_item": {
+                  "name": "黑鐵大槌 (Black Iron Hammer)",
+                  "stats": {"skill": "雙握鎚法", "damage": "16-178", "strength_modifier": "135%", "multiplier_level": 6, "strength": "+2", "action_power": "-50", "damage": "+30"}
+                }
+              },
+              {
+                "name": "史部尚書 韓江洪",
+                "reputation": "+0",
+                "equipment": ["綠玉頂戴", "蟠龍朝服", "青蟒靴", "水晶戒指", "冷玉寶劍", "鑲玉短劍"]
+              },
+              {
+                "name": "四廠錦衣衛 吳堅稻",
+                "status": "Deceased",
+                "equipment": ["玄蛛皂白靴", "漢玉戒指", "金絲長袍", "巫首劍", "短劍"]
+              }
+            ]
+          }
+        },
+        {
+          "id": 37,
+          "url": "https://es2tips.blogspot.com/2014/08/equalizer.html",
+          "title": "毒刀胡惑",
+          "topic": "Poison Blade Equalizer - Feud Resolution Quest",
+          "content": {
+            "weapon": {
+              "name": "毒刀 胡惑 (Equalizer)",
+              "type": "Poison Blade",
+              "damage": "12-84",
+              "strength_modifier": "140%",
+              "multiplier_level": 4,
+              "stats": {"strength": "+2", "damage": "+20"},
+              "usable_skills": ["刀法 (Blade technique)", "左手刀法 (Off-hand blade technique)"]
+            },
+            "quest_npcs": ["哭無望 (Ku Wuwang)", "魚鐵山 (Yu Tieshan)", "劉乙忘玄 (Liu Yi Wangxuan)", "梅影風 (Mei Yingfeng)", "柳生木丸 (Kimaru)", "客店主人 (Innkeeper)"],
+            "locations": ["小客店 (Small Inn)", "東廂房 (East Chamber)", "雪吟莊 (Xueyin Manor)"],
+            "quest_branches": [
+              {"action": "Give 血石 (Blood Stone) to Liu Yi Wangxuan", "result": "Resolves feuds with Fengshan, Xueyin, Tiger Blade"},
+              {"action": "Give 血石 to Mei Yingfeng", "result": "Receive guild chest + 100 karma points"}
+            ],
+            "commands": ["give armor to ku", "id equalizer", "say 是"]
+          }
+        },
+        {
+          "id": 38,
+          "url": "https://es2tips.blogspot.com/2014/02/blog-post_26.html",
+          "title": "江湖藝人 張小簽",
+          "topic": "Street Performer Zhang Xiao Qian NPC",
+          "content": {
+            "npc_name": "張小簽 (Zhang Xiao Qian)",
+            "title": "Street Performer / Wandering Conjurer",
+            "sect": "Old Sword Mountain Path disciple (老劍山徑弟子)",
+            "rank": "Apprentice",
+            "age": "20+",
+            "specialty": "Magic tricks - makes things disappear and reappear",
+            "equipment": ["皮靴 (Skin boots)", "白色長衫 (White long robe)"],
+            "location": "街道 (Street) in 水嵐縣 (Shui Lan County)",
+            "nearby_directions": "Northwest to 冷梅莊 (Cold Plum Manor); South to an inn",
+            "commands": ["look zhang", "get sword 3 from bag", "give sword to zhang"],
+            "referenced_item": "妖蛇『鳳凰』劍 (Demon Snake Phoenix Sword)",
+            "warning": "Do not joke with gold nuggets - already lost 6 nuggets"
+          }
+        },
+        {
+          "id": 39,
+          "url": "https://es2tips.blogspot.com/2014/02/blog-post_23.html",
+          "title": "幫包包加標籤",
+          "topic": "Adding Labels to Bags",
+          "content": {
+            "npc": "老人 (Oldman) - 70+ years old, sells books and adds labels",
+            "service_cost": "100 silver (1 tael of gold)",
+            "item_example": "龍麟袋 (Dragon Scale Bag) - complete dragon scale, holds many items",
+            "commands": ["list", "buy", "l [object]", "give [item] to [NPC]", "write [item] as [label]"],
+            "workflow": "Player pays -> gives item to NPC -> NPC processes -> returns labeled item"
+          }
+        },
+        {
+          "id": 40,
+          "url": "https://es2tips.blogspot.com/2014/02/ghosts.html",
+          "title": "各種鬼魂",
+          "topic": "Types of Ghosts in ES2",
+          "content": {
+            "ghosts": [
+              {"name": "勾魂鬼 (Symbol-ghost of death)", "trigger": "High player blood threshold triggers direct kill"},
+              {"name": "冤魂 (Ghost of hate)", "behavior": "Gentle to innocents"},
+              {"name": "雲外鏡 (Ungaikyou)", "description": "Face resembles a mirror"},
+              {"name": "淘氣鬼 (Poltergeist)", "description": "Child ghost unaware of death"},
+              {"name": "鳳盈盈 (Feng ying ying)", "description": "4th generation Maoshan sect leader, age ~210"},
+              {"name": "狂骨 (Kyoukotu)", "description": "Skeleton in white burial clothes", "trigger": "Kill karma above 20,000 triggers appearance with 4-delay timer"},
+              {"name": "小雨坊 (Kosamebou)", "description": "Cute child ghost with perpetually wet clothing"},
+              {"name": "火消婆 (Hikesibaba)", "description": "Old woman ghost with burnt smell"},
+              {"name": "枉死的冤魂 (Ghost)", "description": "Wrongfully deceased in white robes"},
+              {"name": "小女孩 (Ghost child)", "location": "羅城 (Luo City)"},
+              {"name": "赤舌 (Akasita)", "description": "Floating skull head with extended tongue"},
+              {"name": "否哉 (Iyaya)", "description": "Beautiful female ghost with second pig-head"},
+              {"name": "天井嘗 (Tennjyouname)", "description": "Tall beam-like ghost"},
+              {"name": "長壁 (Osakabe)", "description": "Urn-shaped ghost with old man's face"},
+              {"name": "髮鬼 (Kamioni)", "description": "Beautiful female ghost with serpent-like hair"}
+            ],
+            "related_npc": {"name": "李嘉道 (Li jia dao)", "race": "Yaksha", "role": "Maintains ghost consumption records", "location": "羅城 (Luo City)"}
+          }
+        },
+        {
+          "id": 41,
+          "url": "https://es2tips.blogspot.com/2014/02/pot-well-bucket.html",
+          "title": "水缸/水井",
+          "topic": "Water Container Locations",
+          "content": {
+            "locations": [
+              {"area": "雪亭鎮 (Xueting Town)", "place": "廣場中央 (Central Plaza)", "container": "大水缸 (Pot)"},
+              {"area": "碧幽部落 (Biyou Tribe)", "place": "碧幽淼 (Water Collection)", "container": "幽淼池 (Pond)"},
+              {"area": "婁縣 (Lou County)", "place": "中央廣場", "container": "大水缸 (Pot)"},
+              {"area": "白象寺 (White Elephant Temple)", "place": "庭院角落 (Courtyard)", "container": "水井 (Well)", "note": "Monks train arm strength here"},
+              {"area": "綠林大盜東方 (Greenforest Bandits East)", "place": "廚房 (Kitchen)", "container": "大水桶 (Bucket)", "npc": "廚師 (Cook)"},
+              {"area": "青邪宮 (Qingxie Palace)", "place": "哭笑門外小徑", "container": "十戒濁缸 (Ten-precaution pot)", "npcs": "鬼鴉 (Ghost crow) x4", "capacity": "~100 liters of water"}
+            ]
+          }
+        },
+        {
+          "id": 42,
+          "url": "https://es2tips.blogspot.com/2014/02/es.html",
+          "title": "常見當鋪",
+          "topic": "Common Pawn Shop Locations",
+          "content": {
+            "pawn_shops": [
+              {"name": "和豐當鋪 (He Feng)", "location": "五堂 (Wu Tang)", "npc": "陸四爺 (Lu Si Ye)", "exit": "east"},
+              {"name": "高陽當舖 (Gao Yang)", "location": "水嵐 (Shui Lan)", "npcs": "護衛 (Guard) x2", "exit": "south", "note": "Fair pricing regardless of morality"},
+              {"name": "錢記當舖 (Qian Ji)", "location": "斐縣 (Fei County)", "owner": "錢四通", "exit": "north"},
+              {"name": "和豐當鋪分店", "location": "兆隱 (Zhao Yin)", "npc": "陸二爺 (Lu Er Ye)", "exit": "west", "note": "Allegedly front for black market"},
+              {"name": "當鋪 (Pawn Shop)", "location": "志縣 (Zhi County) Market", "exit": "east", "note": "Second-hand items for collectors"},
+              {"name": "景隆錢莊 (Jing Long)", "location": "京畿北大街五味巷 (Capital)", "npcs": ["小孩 (Child)", "護院武師 (Guard) x4"], "exit": "north"},
+              {"name": "舊貨商 (Old Goods)", "location": "青邪宮 (Qing Xie Palace)", "npc": "老婆婆 (Old Woman)", "exits": ["east", "west"]},
+              {"name": "當鋪 (Abandoned)", "location": "羅城 (Luo City)", "status": "Deserted ~10 years", "exit": "north"}
+            ]
+          }
+        },
+        {
+          "id": 43,
+          "url": "https://es2tips.blogspot.com/2014/02/es2_3.html",
+          "title": "坐船+釣魚",
+          "topic": "Boat Routes and Fishing Locations",
+          "content": {
+            "fishing_note": "Fishing rods do not need to be equipped/wielded to fish",
+            "locations": [
+              {"name": "雪吟莊北邊小溪 (Snow Stream)", "navigation": "褚商魂 2n"},
+              {"name": "雪亭鎮溪邊小路 (Streamside Path)", "npcs": ["Guard (青衣漢子)", "Woman (少婦)"]},
+              {"name": "李家村河邊 (Li Village Riverside)", "navigation": "四大嬸 1n"},
+              {"name": "鯉君渡口 (Liijun Ferry)", "route": "喬陰 -> 水嵐", "boat_type": "Slow boat", "npcs": "釣客 x2"},
+              {"name": "羿水河邊 (Fast Boat)", "route": "Qiaoyin to Shuilan", "boat_type": "Fast boat"},
+              {"name": "水嵐西北 (Shuilan NW)", "route": "水嵐 -> 喬陰", "boat_type": "Fast boat", "note": "Abundant fishing"},
+              {"name": "羿水官渡 (Official Ferry)", "route": "水嵐 -> 京畿", "boat_type": "Slow boat", "note": "No passage fee"},
+              {"name": "京畿東方 (Capital East)", "route": "京畿 -> 水嵐", "boat_type": "Slow boat"},
+              {"name": "安澤碼頭 (Anzhou Dock)", "location": "兆隱縣南面", "boat_type": "Bamboo rafts", "npc": "阿博 (A Bo)"},
+              {"name": "婁縣碼頭 (Lou County Dock)", "location": "婁縣南方", "boat_type": "Bamboo rafts", "npc": "船夫 老唐"},
+              {"name": "擘雲大澤 (Bashun Lake)", "note": "Unsafe"},
+              {"name": "平波湖邊 (Pingbo Lake)", "note": "Unsafe", "npcs": "釣客 x2"},
+              {"name": "赤魈村池塘邊 (Chiixiao Village Pool)", "note": "Active fishers and pavilion"},
+              {"name": "風凌渡 (Fenglingdu Crossing)", "location": "East of Shuilan/Luoyi", "note": "River tour boats available"}
+            ]
+          }
+        },
+        {
+          "id": 44,
+          "url": "https://es2tips.blogspot.com/2013/05/es2.html",
+          "title": "鬼魂地點",
+          "topic": "Ghost Spawning Locations",
+          "content": {
+            "purpose": "收鬼、吞鬼 (Capturing/Consuming Ghosts)",
+            "locations": [
+              {"name": "妖塔 (Demon Tower)", "note": "Most ghosts; 10-15 ghost encounters per run"},
+              {"name": "雪亭鎮 pot 北邊 (Xueting Town North)"},
+              {"name": "雪亭鎮靠亂葬崗 西邊 (Xueting Town West near Burial Grounds)"},
+              {"name": "衛國鎮 or 白無常附近 (Weiguo Town / White Impermanence area)"},
+              {"name": "羅城 (Luo City)"},
+              {"name": "青邪宮老莫廚師附近 (Qingxie Palace near Chef Old Mo)"}
+            ]
+          }
+        },
+        {
+          "id": 45,
+          "url": "https://es2tips.blogspot.com/2014/02/fortune-teller-teller-zhang-fortune.html",
+          "title": "算命先生",
+          "topic": "Fortune Teller NPCs - Skill Query System",
+          "content": {
+            "fortune_tellers": [
+              {
+                "name": "算命先生 (Fortune Teller)",
+                "location": "樹王墳 (Tree King Tomb), 喬陰縣",
+                "cost": "5 gold",
+                "commands": ["ask teller about 算命", "give 5 gold to teller", "inquire [skill name]"]
+              },
+              {
+                "name": "張半仙 (Teller Zhang)",
+                "location": "南大街 (South Street), 水嵐",
+                "cost": "1 gold",
+                "commands": ["ask teller about 算命", "give 1 gold to teller", "inquire [skill name]"]
+              },
+              {
+                "name": "神算子 (Fortune Teller)",
+                "location": "交叉路口 (Crossroads), 風城",
+                "cost": "1 gold",
+                "commands": ["give 1 gold to teller", "inquire [skill name]"]
+              }
+            ],
+            "queryable_skills": ["縱躍閃躲之法 (dodge/evasion)", "拆招卸力之法 (parrying)", "內功 (internal force)", "潛行伏進之技 (stealth)"],
+            "function": "Fortune tellers reveal whether a skill has reached its development limit or can still improve"
+          }
+        },
+        {
+          "id": 46,
+          "url": "https://es2tips.blogspot.com/2014/11/blog-post_4.html",
+          "title": "用書換符紙",
+          "topic": "Book-to-Talisman Exchange System",
+          "content": {
+            "exchange_npcs": [
+              {"name": "公孫志 (Gong-sun Zhi)", "location": "百花村 (Baihua Village)", "sect": "靈雲觀 (Spirit Cloud)", "talisman": "正陽符 (Scroll of Yang)"},
+              {"name": "趙曉九 (Zhao Xiao Jiu)", "location": "巫山客棧 (Wushan Inn)", "sect": "隱風觀 (Hidden Wind)", "talisman": "先天符 (Scroll of Nature)"},
+              {"name": "柳風 (Liu Feng)", "location": "天寒村客棧 (Tianhancun Inn)", "sect": "幻霧觀 (Illusion Mist)", "talisman": "少陰符 (Scroll of Yin)"}
+            ],
+            "exchange_rates": {
+              "standard_books": "20-50 talismans",
+              "premium_books": "~200 talismans (e.g., 水龍經)"
+            },
+            "command": "give book to [npc name]",
+            "book_examples": ["無名古籍 (Unnamed Ancient Text)", "藥石脈錄 (Medical Stone Pulse Record)", "天朝異事錄 (Strange Events Record)", "水龍經 (Water Dragon Scripture)"]
+          }
+        },
+        {
+          "id": 47,
+          "url": "https://es2tips.blogspot.com/2014/11/str-5.html",
+          "title": "買道具的地方",
+          "topic": "Places to Buy Equipment with Stat Bonuses",
+          "content": {
+            "vendors": [
+              {
+                "npc": "Shen",
+                "location": "五堂雜貨舖 (Five Halls General Store)",
+                "navigation": "五堂廣場 e;...e;e;ne;n;e;e;",
+                "cost": "5 gold or 500 silver",
+                "item_type": "Amulets",
+                "available_stats": ["悟性+3", "慧根+2", "膂力+3", "膽識+2", "定力+3"]
+              },
+              {
+                "npc": "Oldman",
+                "location": "衛國鎮 (Wei Guo Town)",
+                "cost": "5 gold or 500 silver",
+                "item_type": "Rings",
+                "available_stats": ["膂力+2", "膽識+1", "定力+1", "Elemental defense 50-100"]
+              }
+            ],
+            "note": "Both item types include bonus skills, damage, defense, and attack abilities"
+          }
+        },
+        {
+          "id": 48,
+          "url": "https://es2tips.blogspot.com/2014/11/blog-post.html",
+          "title": "京畿神社功德箱",
+          "topic": "Reputation via Shrine Donation Box",
+          "content": {
+            "location": "京畿神社 (Jingqi Shrine)",
+            "description": "Shrine housing 太陽神, 財神, 土地公, and siblings 杞庸 and 君違",
+            "npcs_objects": ["春慶兒 (Chun qing er)", "功德箱 (Donation box)", "二兩碎銀", "三百個饅頭"],
+            "conversion_rate": "10 silver = 1 reputation point",
+            "example": "100,000 reputation = 1,000,000 silver",
+            "commands": {
+              "withdraw_funds": "n;w;n;w;n;n;w;s;withdraw 3200 silver",
+              "return_to_shrine": "n;e;s;s;e;s;e;s;drop silver",
+              "donation_script": "#tick aaa {#4 {get 10 silver;donate silver}} {2}"
+            },
+            "warning": "Do not donate nuggets directly"
+          }
+        },
+        {
+          "id": 49,
+          "url": "https://es2tips.blogspot.com/2014/10/blog-post_29.html",
+          "title": "水神天龍走法",
+          "topic": "Water God Heavenly Dragon Navigation Path",
+          "content": {
+            "movement_path": "se;se;ne;s;se;n;ne",
+            "type": "Directional navigation command string"
+          }
+        },
+        {
+          "id": 50,
+          "url": "https://es2tips.blogspot.com/2013/06/blog-post_9707.html",
+          "title": "水龍經換奇兵精意",
+          "topic": "Water Dragon Manual Book Exchange",
+          "content": {
+            "location": "沐華居 (Mu Hua Residence) - Master's residence of 步玄派 sect",
+            "room_description": "Ancient red-wood furniture, incense burner, painting of fierce eagle by founder 駱步玄",
+            "npc": "小書僮 (Young Scholar) - exchanges dirty books for clean ones from master's collection",
+            "source_npc": "駱易 (Luo Yi) - deceased, corpse drops 水龍經",
+            "exchange_item": "水龍經 (Water Dragon Manual)",
+            "obtainable_books": ["奇兵精意 (Tactical Essence)", "無字真經 (Wordless Scripture)", "咬文嚼字 (Advanced version)", "八脈注 (Eight Meridians Annotation)"],
+            "commands": ["get book from corpse", "l", "say 麻煩", "give book to scholar"]
+          }
+        }
+      ]
+    }
+  }
+}

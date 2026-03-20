@@ -6,45 +6,45 @@ inherit SKILL;
 
 mapping *actions = ({
     ([
-        "action":       "$N持$w往$n的$l砍去",
+        "action":       "$N一式「春風化雨」﹐$w如和煦春風般劃向$n的$l",
         "dodge":        5,
         "damae":        5,
         "damage_type":  "割傷"
     ]),
     ([
-        "action":       "$N閃身上前﹐$w朝$n的$l劈去",
+        "action":       "$N刀光飄舞﹐使出「柳絮飛刀」﹐$w輕靈劈向$n的$l",
         "dodge":        -5,
-        "damae":        5,
+        "damae":        8,
         "damage_type":  "割傷"
     ]),
     ([
-        "action":       "$N欺身而進﹐$w直取$n的$l",
+        "action":       "$N欺身而進﹐「花開滿城」﹐$w如百花齊放般直取$n的$l",
         "dodge":        -10,
-        "damage":       10,
+        "damage":       12,
+        "damage_type":  "斲傷"
+    ]),
+    ([
+        "action":       "$N猛然暴起﹐一招「春雷乍響」﹐$w帶著雷霆之勢砍向$n的$l",
+        "dodge":        -15,
+        "damage":       15,
         "damage_type":  "割傷"
     ]),
     ([
-        "action":       "$N虛晃一招﹐$w反手攻向$n的$l",
-        "dodge":        5,
-        "damae":        5,
-        "damage_type":  "割傷"
-    ]),
-    ([
-        "action":       "$N忽然暴起﹐$w朝$n的$l猛攻",
-        "dodge":        -5,
-        "damage":       10,
-        "damage_type":  "割傷"
-    ]),
-    ([
-        "action":       "$N一個側身﹐$w劃向$n的$l",
+        "action":       "$N身形飄逸﹐使出「杏花微雨」﹐$w輕點$n的$l",
         "dodge":        10,
         "damae":        5,
+        "damage_type":  "斲傷"
+    ]),
+    ([
+        "action":       "$N刀勢一轉﹐「東風破」﹐$w破開防線攻向$n的$l",
+        "dodge":        -5,
+        "damage":       10,
         "damage_type":  "割傷"
     ]),
 });
 
 string *interattack = ({
-    "$N持刀在手﹐刀勢流轉如泉水般綿綿不絕。\n",
+    "$N持刀在手﹐春刀法帶著一股生機勃勃的氣息。\n",
 });
 
 private void

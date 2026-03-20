@@ -6,40 +6,40 @@ inherit SKILL;
 
 mapping *actions = ({
     ([
-        "action":       "$N持$w往$n的$l刺去",
-        "dodge":        5,
-        "damae":        5,
-        "damage_type":  "刺傷"
-    ]),
-    ([
-        "action":       "$N閃身上前﹐$w朝$n的$l劈去",
-        "dodge":        -5,
-        "damae":        5,
-        "damage_type":  "割傷"
-    ]),
-    ([
-        "action":       "$N欺身而進﹐$w直取$n的$l",
-        "dodge":        -10,
-        "damage":       10,
-        "damage_type":  "刺傷"
-    ]),
-    ([
-        "action":       "$N虛晃一招﹐$w反手攻向$n的$l",
-        "dodge":        5,
-        "damae":        5,
-        "damage_type":  "割傷"
-    ]),
-    ([
-        "action":       "$N忽然暴起﹐$w朝$n的$l猛攻",
-        "dodge":        -5,
-        "damage":       10,
-        "damage_type":  "刺傷"
-    ]),
-    ([
-        "action":       "$N一個側身﹐$w劃向$n的$l",
+        "action":       "$N使一招「雪落無聲」﹐$w悄無聲息地刺向$n的$l",
         "dodge":        10,
-        "damae":        5,
+        "damae":        7,
+        "damage_type":  "刺傷"
+    ]),
+    ([
+        "action":       "$N施展「影隨風逝」﹐$w如幻影般劃過$n的$l",
+        "dodge":        5,
+        "damae":        8,
         "damage_type":  "割傷"
+    ]),
+    ([
+        "action":       "$N凝氣使出「冰封千里」﹐$w帶著凜冽寒意劈向$n的$l",
+        "dodge":        -15,
+        "damage":       15,
+        "damage_type":  "割傷"
+    ]),
+    ([
+        "action":       "$N身形一閃亮出「寒梅映雪」﹐$w繞出一道弧光刺向$n的$l",
+        "dodge":        0,
+        "damae":        10,
+        "damage_type":  "刺傷"
+    ]),
+    ([
+        "action":       "$N劍光一寒使出「月影寒霜」﹐$w攜帶霜寒之氣斬向$n的$l",
+        "dodge":        -10,
+        "damage":       12,
+        "damage_type":  "割傷"
+    ]),
+    ([
+        "action":       "$N縱身施展「飛雪連天」﹐$w化作漫天雪花飛向$n的$l",
+        "dodge":        -5,
+        "damae":        10,
+        "damage_type":  "刺傷"
     ]),
 });
 

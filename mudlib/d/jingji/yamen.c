@@ -17,6 +17,7 @@ LONG
 		"west" : __DIR__"square",
 		"east" : __DIR__"garden",
 		"north" : "/d/jail/entrance",
+		"south" : __DIR__"bank",
 	]));
 	set("objects", ([
 		__DIR__"npc/official" : 1,

@@ -13,6 +13,9 @@ void create()
 LONG
 	);
 	set("outdoors", "city");
+	set("objects", ([
+		__DIR__"npc/guard" : 2,
+	]));
 	set("exits", ([
 		"south" : "/d/road/road2",
 		"north" : __DIR__"street",

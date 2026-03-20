@@ -6,45 +6,45 @@ inherit SKILL;
 
 mapping *actions = ({
     ([
-        "action":       "$N持$w往$n的$l刺去",
-        "dodge":        5,
-        "damae":        5,
-        "damage_type":  "刺傷"
-    ]),
-    ([
-        "action":       "$N閃身上前﹐$w朝$n的$l劈去",
-        "dodge":        -5,
-        "damae":        5,
-        "damage_type":  "割傷"
-    ]),
-    ([
-        "action":       "$N欺身而進﹐$w直取$n的$l",
+        "action":       "$N使一招「封山絕壁」﹐$w如山嶽般沉穩地劈向$n的$l",
         "dodge":        -10,
-        "damage":       10,
-        "damage_type":  "刺傷"
-    ]),
-    ([
-        "action":       "$N虛晃一招﹐$w反手攻向$n的$l",
-        "dodge":        5,
-        "damae":        5,
+        "damae":        10,
         "damage_type":  "割傷"
     ]),
     ([
-        "action":       "$N忽然暴起﹐$w朝$n的$l猛攻",
-        "dodge":        -5,
-        "damage":       10,
+        "action":       "$N施展「崖前望月」﹐$w凌空一轉刺向$n的$l",
+        "dodge":        5,
+        "damae":        8,
         "damage_type":  "刺傷"
     ]),
     ([
-        "action":       "$N一個側身﹐$w劃向$n的$l",
+        "action":       "$N大喝一聲使出「石破天驚」﹐$w猛然砸向$n的$l",
+        "dodge":        -15,
+        "damage":       15,
+        "damage_type":  "割傷"
+    ]),
+    ([
+        "action":       "$N身形一晃亮出「山嵐裂風」﹐$w帶著破風之勢斬向$n的$l",
+        "dodge":        -5,
+        "damae":        12,
+        "damage_type":  "割傷"
+    ]),
+    ([
+        "action":       "$N劍走偏鋒使出「峰迴劍影」﹐$w繞過防禦直取$n的$l",
         "dodge":        10,
-        "damae":        5,
+        "damage":       7,
+        "damage_type":  "刺傷"
+    ]),
+    ([
+        "action":       "$N縱身躍起施展「嶺上飛虹」﹐$w化作一道虹光劃向$n的$l",
+        "dodge":        0,
+        "damae":        10,
         "damage_type":  "割傷"
     ]),
 });
 
 string *interattack = ({
-    "$N持劍在手﹐封山劍法的劍意瀰漫四方。\n",
+    "$N持劍在手﹐封山劍法的劍意如山嶽般沉穩。\n",
 });
 
 private void

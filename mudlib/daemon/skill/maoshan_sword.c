@@ -6,45 +6,45 @@ inherit SKILL;
 
 mapping *actions = ({
   ([
-    "action":		"$N口誦咒語﹐$w燃起火焰斬向$n的$l",
+    "action":		"$N使一招「紫氣東來」﹐$w化作一道紫光刺向$n的$l",
     "dodge":		-5,
-    "damage":		10,
-    "damage_type":	"灼傷"
+    "damae":		5,
+    "damage_type":	"刺傷"
   ]),
   ([
-    "action":		"$N掐訣念咒﹐$w凝聚寒霜劈向$n的$l",
+    "action":		"$N施展「道法自然」﹐$w順應天地之勢斬向$n的$l",
     "dodge":		-10,
     "damage":		10,
     "damage_type":	"割傷"
   ]),
   ([
-    "action":		"$N踏罡布雷﹐$w帶著雷電之威刺向$n的$l",
-    "dodge":		-15,
-    "damage":		15,
-    "damage_type":	"灼傷"
+    "action":		"$N運起「太極歸元」﹐$w劍走圓弧劈向$n的$l",
+    "dodge":		5,
+    "damae":		8,
+    "damage_type":	"割傷"
   ]),
   ([
-    "action":		"$N御風而動﹐$w乘風勢削向$n的$l",
-    "dodge":		5,
+    "action":		"$N使出「清風拂塵」﹐$w輕靈飄逸地削向$n的$l",
+    "dodge":		10,
     "damage":		5,
     "damage_type":	"割傷"
   ]),
   ([
-    "action":		"$N以指引劍﹐$w赤焰纏繞斬向$n的$l",
-    "dodge":		-5,
-    "damage":		10,
-    "damage_type":	"灼傷"
+    "action":		"$N一招「仙人指路」﹐$w化為一點寒芒直取$n的$l",
+    "dodge":		-15,
+    "damae":		15,
+    "damage_type":	"刺傷"
   ]),
   ([
-    "action":		"$N低喝一聲﹐$w化作一道寒冰劍氣射向$n的$l",
+    "action":		"$N喝道「天罡劍訣」﹐$w挾帶罡風猛斬$n的$l",
     "dodge":		-10,
-    "damage":		15,
+    "damage":		12,
     "damage_type":	"割傷"
   ]),
 });
 
 string *interattack = ({
-  "$N持$n在手﹐劍身隱隱發出奇異的光芒。\n",
+  "$N持劍在手﹐茅山劍法的道韻隱隱流轉。\n",
 });
 
 private void

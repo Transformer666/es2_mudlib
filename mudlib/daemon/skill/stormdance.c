@@ -6,45 +6,45 @@ inherit SKILL;
 
 mapping *actions = ({
     ([
-        "action":       "$N持$w往$n的$l擊去",
-        "dodge":        5,
-        "damae":        5,
-        "damage_type":  "瘀傷"
-    ]),
-    ([
-        "action":       "$N閃身上前﹐$w朝$n的$l劈去",
-        "dodge":        -5,
-        "damae":        5,
-        "damage_type":  "割傷"
-    ]),
-    ([
-        "action":       "$N欺身而進﹐$w直取$n的$l",
+        "action":       "$N使出「狂風驟雨」﹐拳腳如暴雨般傾瀉向$n的$l",
         "dodge":        -10,
-        "damage":       10,
+        "damae":        11,
         "damage_type":  "瘀傷"
     ]),
     ([
-        "action":       "$N虛晃一招﹐$w反手攻向$n的$l",
-        "dodge":        5,
-        "damae":        5,
+        "action":       "$N旋身施展「暴風旋舞」﹐旋風般掃向$n的$l",
+        "dodge":        -15,
+        "damage":       14,
         "damage_type":  "割傷"
     ]),
     ([
-        "action":       "$N忽然暴起﹐$w朝$n的$l猛攻",
+        "action":       "$N凌空使出「雷電交加」﹐迅雷不及掩耳地劈向$n的$l",
         "dodge":        -5,
-        "damage":       10,
+        "damae":        9,
         "damage_type":  "瘀傷"
     ]),
     ([
-        "action":       "$N一個側身﹐$w劃向$n的$l",
+        "action":       "$N狂舞使出「颶風裂空」﹐撕裂般的勁風攻向$n的$l",
+        "dodge":        -10,
+        "damage":       13,
+        "damage_type":  "割傷"
+    ]),
+    ([
+        "action":       "$N忽然靜止使出「風暴之眼」﹐瞬間爆發擊向$n的$l",
         "dodge":        10,
-        "damae":        5,
+        "damae":        6,
+        "damage_type":  "瘀傷"
+    ]),
+    ([
+        "action":       "$N翻轉騰挪使出「天旋地轉」﹐令人目眩地攻向$n的$l",
+        "dodge":        5,
+        "damage":       8,
         "damage_type":  "割傷"
     ]),
 });
 
 string *interattack = ({
-    "$N身形旋轉如暴風﹐氣勢磅礡。\n",
+    "$N舞動身形﹐風暴舞帶起一陣狂風。\n",
 });
 
 private void

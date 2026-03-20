@@ -13,6 +13,9 @@ void create()
 漸漸消散。
 LONG
     );
+    set("objects", ([
+        __DIR__"npc/canyi" : 1,
+    ]));
     set("exits", ([
         "west" : __DIR__"hall",
     ]));

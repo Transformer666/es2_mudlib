@@ -6,45 +6,45 @@ inherit SKILL;
 
 mapping *actions = ({
     ([
-        "action":       "$N持$w往$n的$l勾去",
+        "action":       "$N一式「雁翎鉤影」﹐$w如雁翎般輕巧地勾向$n的$l",
         "dodge":        5,
         "damae":        5,
         "damage_type":  "割傷"
     ]),
     ([
-        "action":       "$N閃身上前﹐$w朝$n的$l劈去",
-        "dodge":        -5,
-        "damae":        5,
-        "damage_type":  "瘀傷"
-    ]),
-    ([
-        "action":       "$N欺身而進﹐$w直取$n的$l",
+        "action":       "$N施展「勾魂奪魄」﹐$w帶著攝人寒光鉤向$n的$l",
         "dodge":        -10,
         "damage":       10,
         "damage_type":  "割傷"
     ]),
     ([
-        "action":       "$N虛晃一招﹐$w反手攻向$n的$l",
-        "dodge":        5,
-        "damae":        5,
-        "damage_type":  "瘀傷"
+        "action":       "$N鉤法一轉﹐「回風拂柳」的$w柔中帶剛劃向$n的$l",
+        "dodge":        10,
+        "damae":        7,
+        "damage_type":  "刺傷"
     ]),
     ([
-        "action":       "$N忽然暴起﹐$w朝$n的$l猛攻",
+        "action":       "$N猛然出鉤﹐「鉤鐮斷腕」的$w狠辣地切向$n的$l",
+        "dodge":        -15,
+        "damage":       15,
+        "damage_type":  "割傷"
+    ]),
+    ([
+        "action":       "$N雙鉤連環﹐「盤蛇七探」的$w如毒蛇般纏向$n的$l",
+        "dodge":        -5,
+        "damae":        8,
+        "damage_type":  "刺傷"
+    ]),
+    ([
+        "action":       "$N虛晃一鉤﹐「暗渡陳倉」的$w從意想不到的角度刺向$n的$l",
         "dodge":        -5,
         "damage":       10,
         "damage_type":  "割傷"
     ]),
-    ([
-        "action":       "$N一個側身﹐$w劃向$n的$l",
-        "dodge":        10,
-        "damae":        5,
-        "damage_type":  "瘀傷"
-    ]),
 });
 
 string *interattack = ({
-    "$N雙手如鉤﹐鉤弋功的架勢攝人心魄。\n",
+    "$N手持雙鉤﹐鉤義的招式詭譎多變。\n",
 });
 
 private void

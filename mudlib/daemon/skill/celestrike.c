@@ -6,45 +6,45 @@ inherit SKILL;
 
 mapping *actions = ({
     ([
-        "action":       "$N持$w往$n的$l擊去",
+        "action":       "$N一式「天罰之拳」﹐$w帶著天威轟向$n的$l",
         "dodge":        5,
         "damae":        5,
         "damage_type":  "瘀傷"
     ]),
     ([
-        "action":       "$N閃身上前﹐$w朝$n的$l劈去",
+        "action":       "$N施展「雷霆萬鈞」﹐$w如雷霆般劈向$n的$l",
         "dodge":        -5,
-        "damae":        5,
+        "damage":       8,
         "damage_type":  "瘀傷"
     ]),
     ([
-        "action":       "$N欺身而進﹐$w直取$n的$l",
+        "action":       "$N躍起怒擊﹐「九天隕落」的$w如隕石般砸向$n的$l",
+        "dodge":        -15,
+        "damage":       15,
+        "damage_type":  "瘀傷"
+    ]),
+    ([
+        "action":       "$N怒目圓睜﹐「天威震怒」的$w裹挾狂風擊向$n的$l",
         "dodge":        -10,
-        "damage":       10,
+        "damae":        10,
         "damage_type":  "瘀傷"
     ]),
     ([
-        "action":       "$N虛晃一招﹐$w反手攻向$n的$l",
-        "dodge":        5,
-        "damae":        5,
-        "damage_type":  "瘀傷"
-    ]),
-    ([
-        "action":       "$N忽然暴起﹐$w朝$n的$l猛攻",
+        "action":       "$N凝聚星力﹐「星辰墜擊」的$w帶著星芒砸向$n的$l",
         "dodge":        -5,
-        "damage":       10,
+        "damae":        10,
         "damage_type":  "瘀傷"
     ]),
     ([
-        "action":       "$N一個側身﹐$w劃向$n的$l",
+        "action":       "$N集天地之力﹐「天崩地裂」的$w如山崩般壓向$n的$l",
         "dodge":        10,
-        "damae":        5,
+        "damage":       7,
         "damage_type":  "瘀傷"
     ]),
 });
 
 string *interattack = ({
-    "$N氣勢一沉﹐天擊功的氣勢隱隱外放。\n",
+    "$N凝聚天地之氣﹐天擊的拳勢如雷霆般蓄勢待發。\n",
 });
 
 private void

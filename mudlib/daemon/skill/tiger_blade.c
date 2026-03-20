@@ -6,45 +6,45 @@ inherit SKILL;
 
 mapping *actions = ({
   ([
-    "action":		"$N大喝一聲﹐$w如猛虎下山般劈向$n的$l",
+    "action":		"$N使一招「猛虎下山」﹐手中$w猛然劈向$n的$l",
     "dodge":		-10,
-    "damage":		15,
+    "damae":		10,
     "damage_type":	"割傷"
   ]),
   ([
-    "action":		"$N虎目圓睜﹐$w橫掃$n的$l",
+    "action":		"$N大喝一聲﹐一式「虎嘯山林」﹐$w橫掃$n的$l",
     "dodge":		-5,
     "damage":		10,
-    "damage_type":	"割傷"
+    "damage_type":	"斲傷"
   ]),
   ([
-    "action":		"$N低吼一聲﹐$w由下而上撩向$n的$l",
-    "dodge":		5,
-    "damage":		10,
-    "damage_type":	"割傷"
-  ]),
-  ([
-    "action":		"$N猛然前撲﹐$w挾帶虎威直砍$n的$l",
+    "action":		"$N低身前撲﹐「白虎撲食」﹐$w直取$n的$l",
     "dodge":		-15,
     "damage":		15,
     "damage_type":	"割傷"
   ]),
   ([
-    "action":		"$N一聲虎嘯﹐$w反手一刀削向$n的$l",
-    "dodge":		-5,
-    "damage":		10,
+    "action":		"$N猛然轉身﹐一招「猛虎擺尾」﹐$w反掃$n的$l",
+    "dodge":		5,
+    "damae":		8,
+    "damage_type":	"斲傷"
+  ]),
+  ([
+    "action":		"$N虎目圓睜﹐使出「虎牙劈空」﹐$w凌空劈向$n的$l",
+    "dodge":		-10,
+    "damae":		12,
     "damage_type":	"割傷"
   ]),
   ([
-    "action":		"$N身形暴起﹐$w凌空劈落$n的$l﹐勢如猛虎撲食",
-    "dodge":		-10,
-    "damage":		15,
+    "action":		"$N氣沉丹田﹐「卧虎藏鋒」一刀突襲$n的$l",
+    "dodge":		10,
+    "damage":		5,
     "damage_type":	"割傷"
   ]),
 });
 
 string *interattack = ({
-  "$N緊握$n﹐虎目炯炯﹐殺氣騰騰。\n",
+  "$N手持虎刀﹐殺氣如猛虎般凶猛。\n",
 });
 
 private void

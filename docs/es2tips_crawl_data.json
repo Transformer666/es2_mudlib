@@ -1,0 +1,1205 @@
+{
+  "source": "es2tips.blogspot.com",
+  "crawl_date": "2026-03-20",
+  "equipment": [
+    {
+      "id": 1,
+      "url": "https://es2tips.blogspot.com/2014/11/dragon-armor-staff-huge-or-parrydodge.html",
+      "name_chinese": "怒龍錦冑",
+      "name_english": "Dragon Armor",
+      "type": "armor",
+      "slot": "body",
+      "stats": {
+        "attack_power": -50,
+        "defense_power": 100,
+        "lightning_resistance": 100,
+        "ice_resistance": 100,
+        "wind_resistance": 100,
+        "fire_resistance": 100,
+        "courage": -5
+      },
+      "previous_version_stats": {
+        "resolve": 5,
+        "defense": 85
+      },
+      "notes": "Suitable for staff users or parry/dodge practitioners. Made from phantom black dragon hide."
+    },
+    {
+      "id": 2,
+      "url": "https://es2tips.blogspot.com/2014/11/soul-crystal.html",
+      "name_chinese": "靈魂水晶",
+      "name_english": "Soul Crystal",
+      "type": "accessory",
+      "description": "一枚晶瑩的深藍色水晶，在那憂鬱的深藍色裡面，似乎埋藏著神秘秘密",
+      "stats": {},
+      "notes": "Stub post with minimal data. No stats provided."
+    },
+    {
+      "id": 3,
+      "url": "https://es2tips.blogspot.com/2014/11/blessed-jade.html",
+      "name_chinese": "萬福寶玉",
+      "name_english": "Blessed Jade",
+      "type": "accessory",
+      "slot": "waist",
+      "stats": {
+        "defense_ability_value": 15,
+        "defense_power": 15
+      },
+      "description": "A belt crafted from quality jade stones engraved with auspicious blessing symbols."
+    },
+    {
+      "id": 4,
+      "url": "https://es2tips.blogspot.com/2014/11/dragon-bone.html",
+      "name_chinese": "靈骨",
+      "name_english": "Dragon Bone",
+      "type": "armor",
+      "stats": {
+        "天師道法_冰咒": 5,
+        "天師道法_風符": 5,
+        "天師道法_火術": 5,
+        "天師道法_雷法": 5,
+        "慧根": 1
+      },
+      "description": "A bone found only in elderly dragons with powerful magical properties. Grants bonuses to all four Taoist spell elements."
+    },
+    {
+      "id": 5,
+      "url": "https://es2tips.blogspot.com/2014/08/skull-rosary.html",
+      "name_chinese": "白骨念珠",
+      "name_english": "Skull Rosary",
+      "type": "accessory",
+      "description": "一串用人的頭骨串成的念珠",
+      "stats": {
+        "defense_power": 25,
+        "attack_ability_value": 25
+      }
+    },
+    {
+      "id": 6,
+      "url": "https://es2tips.blogspot.com/2014/08/dragon-soul-ring.html",
+      "name_chinese": "龍戒",
+      "name_english": "Dragon-Soul Ring",
+      "type": "accessory",
+      "slot": "ring",
+      "description": "Gold ring featuring a celestial dragon holding a magical gem radiating golden light.",
+      "stats": {
+        "defensive_level": 25,
+        "offensive_level": 25,
+        "mobility": 25
+      }
+    },
+    {
+      "id": 7,
+      "url": "https://es2tips.blogspot.com/2014/08/corrosive-hands.html",
+      "name_chinese": "腐蝕之手",
+      "name_english": "Corrosive Hands",
+      "type": "armor",
+      "slot": "hands",
+      "stats": {
+        "定力": 5,
+        "防禦力": 50
+      },
+      "special_effects": "Touching a corpse dissolves it into black smoke, leaving only silver coins behind.",
+      "location_context": "喬陰縣城西門"
+    },
+    {
+      "id": 8,
+      "url": "https://es2tips.blogspot.com/2014/03/symbol-of-dao.html",
+      "name_chinese": "邪骨指環",
+      "name_english": "Symbol of Dao",
+      "type": "accessory",
+      "slot": "ring",
+      "stats": {
+        "守勢等級": 25
+      },
+      "how_to_obtain": "殘塔內 - search 碎瓦, found on 黑衣童子 corpse",
+      "quest_chain": "武者 → broom → girl → 知恩圖報 → bloodcloth → yi → blade → phoxin → Red lady → search 畫像 → give blade to 封七慾 → give arm to master(正閒) → give cloth to master → give arm to qiu → phoxin say 大邪道人 → ming say 大邪道人 → enter 殘塔",
+      "other_items_from_same_quest": [
+        {
+          "name_chinese": "翠羽刀",
+          "name_english": "Feather Blade",
+          "type": "weapon",
+          "skill": "刀法",
+          "damage_range": "7-64",
+          "strength_modifier": "110%",
+          "multiplier_level": 3,
+          "stats": {
+            "attack_ability": 15,
+            "大邪七損刀訣": 5,
+            "wind_strike_defense": 65,
+            "attack_level": 25
+          }
+        },
+        {
+          "name_chinese": "緊身衣",
+          "name_english": "Cloth",
+          "type": "armor",
+          "stats": {
+            "defense": 4,
+            "defense_ability": 5
+          }
+        },
+        {
+          "name_chinese": "意寒神功",
+          "name_english": "Iceforce Book",
+          "type": "skill_book",
+          "how_to_obtain": "Search 碎瓦 in 殘塔"
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "url": "https://es2tips.blogspot.com/2014/03/jin-ju.html",
+      "name_chinese": "九天鳳珠",
+      "name_english": "Nine Heavens Phoenix Pearl",
+      "type": "accessory",
+      "description": "七彩奪目的珠子，輕若無物",
+      "location": "丱天樹 tree hollow area",
+      "acquisition_method": "Enter tree, search moss areas",
+      "related_npc": "李秋鄴",
+      "related_item": "赤龍牙骨 (Red Dragon Fang Bone)",
+      "stats": {},
+      "notes": "Minimal stats documented in source."
+    },
+    {
+      "id": 10,
+      "url": "https://es2tips.blogspot.com/2014/02/rainnar-cloth-ashura-mask.html",
+      "name_chinese": "雨師妾袍",
+      "name_english": "Rainnar Cloth",
+      "type": "armor",
+      "description": "A robe with five lifelike venomous snakes depicted on it.",
+      "stats": {},
+      "notes": "No specific stats provided in source."
+    },
+    {
+      "id": "10b",
+      "url": "https://es2tips.blogspot.com/2014/02/rainnar-cloth-ashura-mask.html",
+      "name_chinese": "修羅之面",
+      "name_english": "Ashura Mask",
+      "type": "accessory",
+      "description": "An odd mask with one half hideously ugly and the other half beautifully charming.",
+      "stats": {},
+      "notes": "No specific stats provided in source."
+    },
+    {
+      "id": 11,
+      "url": "https://es2tips.blogspot.com/2014/02/girdle-of-headless.html",
+      "name_chinese": "形天之怒",
+      "name_english": "Girdle of Headless",
+      "type": "accessory",
+      "slot": "waist",
+      "stats": {
+        "defense_power": 50,
+        "attack_level": 50
+      },
+      "notes": "Designed exclusively for the 形天 (Headless) race."
+    },
+    {
+      "id": 12,
+      "url": "https://es2tips.blogspot.com/2014/01/topaz-belt.html",
+      "name_chinese": "黃玉佩",
+      "name_english": "Topaz Belt",
+      "type": "accessory",
+      "slot": "waist",
+      "stats": {
+        "靈性": 1,
+        "慧根": 1
+      },
+      "how_to_obtain": {
+        "quest_giver": "韓江洪",
+        "location": "西廂房",
+        "steps": [
+          "Collect herb",
+          "Trade herb for ginseng",
+          "Trade ginseng for jujube",
+          "Trade jujube for 豚骨 (Bone of boar)",
+          "Give bone to 戒言大師 (Master Jieyan)",
+          "Receive 回陽延壽粉 (Longevity dust)",
+          "Give longevity dust to 韓江洪",
+          "Purchase 烤羊肉 (Roast goat) from tavern vendor for 2 silver taels (NOT mutton)",
+          "Give roast goat to 韓江洪",
+          "Receive Topaz belt as reward"
+        ]
+      }
+    },
+    {
+      "id": 13,
+      "url": "https://es2tips.blogspot.com/2014/01/blog-post_29.html",
+      "name_chinese": "巫首項鍊",
+      "name_english": "Malik Necklace",
+      "type": "accessory",
+      "slot": "necklace",
+      "description": "A string of nandwood beads with dark luster.",
+      "stats": {
+        "靈性": 2,
+        "悟性": 2,
+        "慧根": 2
+      },
+      "race_requirement": "巫首族",
+      "special_ability": {
+        "name": "sacrifice",
+        "command": "sacrifice <kee/HP>",
+        "description": "Absorb heaven and earth spiritual essence to restore mental clarity"
+      },
+      "race_lore": "Originates from Western deserts. Lifespan ~800 years, nobility up to 1000 years."
+    },
+    {
+      "id": 14,
+      "url": "https://es2tips.blogspot.com/2014/01/blog-post_4623.html",
+      "name_chinese": "冷雪手護",
+      "name_english": "Snowy Bracers",
+      "type": "armor",
+      "slot": "wrists",
+      "description": "銀製護腕上刻了一枝梅花，做工相當精細。",
+      "stats": {
+        "行動力": 10,
+        "守勢等級": 25,
+        "防禦力": 10
+      }
+    },
+    {
+      "id": "14b",
+      "url": "https://es2tips.blogspot.com/2014/01/blog-post_4623.html",
+      "name_chinese": "雲羅絲衣",
+      "name_english": "Cloudy Silk Cloth",
+      "type": "armor",
+      "slot": "body",
+      "description": "絲衣用百年冰蠶的蠶絲縫製，對冰系法術有抵抗力。薄如蟬翼，輕如鴻毛。",
+      "stats": {
+        "警覺性": 50,
+        "防禦力": 5,
+        "冰寒傷害防禦力": 100
+      },
+      "special_effects": "Ice spell resistance"
+    },
+    {
+      "id": 15,
+      "url": "https://es2tips.blogspot.com/2014/01/woochan-ring.html",
+      "name_chinese": "無腸寶珠",
+      "name_english": "Woochan Ring",
+      "type": "accessory",
+      "slot": "ring",
+      "description": "一枚做工精細的黃金戒指，輕得出奇。",
+      "stats": {
+        "靈性": 2,
+        "防禦力": 50,
+        "悟性": 2,
+        "慧根": 2
+      },
+      "race_requirement": "無腸族",
+      "special_ability": {
+        "name": "replete",
+        "chinese_name": "氤氳之氣",
+        "command": "replete",
+        "effect": "Body emits blue-green qi, gradually healing wounds (regeneration)"
+      }
+    },
+    {
+      "id": 16,
+      "url": "https://es2tips.blogspot.com/2014/01/dingling-legs.html",
+      "name_chinese": "釘靈腿護",
+      "name_english": "Dingling Legs",
+      "type": "armor",
+      "slot": "legs",
+      "stats": {
+        "defense": 50,
+        "agility": 50,
+        "offensive_level": 50
+      },
+      "race_requirement": "釘靈族",
+      "special_ability": {
+        "name": "hoof",
+        "effect": "Kick enemies with powerful legs, knockdown effect"
+      },
+      "race_lore": "Human-like from waist up, dense fur below knees with hooved feet. Known for exceptional speed."
+    },
+    {
+      "id": 17,
+      "url": "https://es2tips.blogspot.com/2014/01/jiaojaos-boots.html",
+      "name_chinese": "焦僥靴",
+      "name_english": "Jiaojao's Boots",
+      "type": "armor",
+      "slot": "feet",
+      "stats": {
+        "defense": 50,
+        "agility": 100,
+        "alertness": 100
+      },
+      "race_requirement": "焦僥族",
+      "race_lore": "Less than half the height of normal humans. Naturally agile, skilled thieves."
+    },
+    {
+      "id": 18,
+      "url": "https://es2tips.blogspot.com/2014/01/yenhold-gauntlets.html",
+      "name_chinese": "厭火之拳",
+      "name_english": "Yenhold Gauntlets",
+      "type": "armor",
+      "slot": "hands",
+      "stats": {
+        "fire_damage_defense": 100,
+        "defense": 50,
+        "defense_ability": 50
+      },
+      "race_related": "厭火族",
+      "race_special_ability": "breathe - fire attack against enemies"
+    },
+    {
+      "id": 19,
+      "url": "https://es2tips.blogspot.com/2013/08/blog-post_9676.html",
+      "name_chinese": "雷火天狼罩",
+      "name_english": "Fire-Wolf Cloak",
+      "type": "armor",
+      "description": "Purple-red hooded cloak with a fierce wolf head embroidered on the back.",
+      "stats": {
+        "fire_damage": 50,
+        "defense": 50
+      }
+    },
+    {
+      "id": 20,
+      "url": "https://es2tips.blogspot.com/2013/08/blog-post.html",
+      "name_chinese": "龍思羽",
+      "name_english": "Dragon Thoughtful Feather",
+      "type": "accessory",
+      "description": "Ring bestowed by Rain God Celestial Dragon. Dark gold setting with deep blue stone.",
+      "stats": {
+        "defense": 10,
+        "天師道法_冰咒": 15,
+        "慧根": 2
+      }
+    },
+    {
+      "id": "20b",
+      "url": "https://es2tips.blogspot.com/2013/08/blog-post.html",
+      "name_chinese": "封印冰環",
+      "name_english": "Sealed Ice Ring",
+      "type": "accessory",
+      "slot": "ring",
+      "stats": {
+        "defense": 10,
+        "天師道法_冰咒": 15,
+        "慧根": 2
+      },
+      "notes": "Stats appear merged with 龍思羽 in source. Ice-based protection and frost curse enhancement."
+    },
+    {
+      "id": 21,
+      "url": "https://es2tips.blogspot.com/2013/07/blog-post_29.html",
+      "name_chinese": "鱷神系列裝備",
+      "name_english": "Crocodile God Series",
+      "type": "equipment_set",
+      "items": [
+        {
+          "name_chinese": "狼牙棒",
+          "name_english": "Wolf Hammer",
+          "type": "weapon",
+          "weapon_type": "blunt",
+          "skill": "雙握鎚法 (twohanded blunt)",
+          "damage_range": "8-108",
+          "strength_modifier": "127%",
+          "multiplier_level": 4
+        },
+        {
+          "name_chinese": "鱷神束帶",
+          "name_english": "Crocodile Girth",
+          "type": "armor",
+          "slot": "waist",
+          "stats": {
+            "膂力": 1,
+            "膽識": 1
+          }
+        },
+        {
+          "name_chinese": "鱷皮手套",
+          "name_english": "Crocodile Gloves",
+          "type": "armor",
+          "slot": "hands",
+          "stats": {
+            "傷害力": 5,
+            "防禦能力值": 10
+          }
+        },
+        {
+          "name_chinese": "鱷皮靴",
+          "name_english": "Crocodile Boots",
+          "type": "armor",
+          "slot": "feet",
+          "stats": {
+            "縱躍閃躲之法": 10,
+            "機敏": 2
+          }
+        },
+        {
+          "name_chinese": "鱷神戰袍",
+          "name_english": "Crocodile Dress",
+          "type": "armor",
+          "slot": "body",
+          "stats": {
+            "防禦力": 10,
+            "膽識": 2,
+            "雙握鎚法": 10
+          },
+          "lore": "Made from the legendary giant Crocodile King hide by 江渲 after slaying it."
+        }
+      ]
+    },
+    {
+      "id": 22,
+      "url": "https://es2tips.blogspot.com/2013/06/super-skin.html",
+      "name_chinese": "混元一氣袋",
+      "name_english": "Super Skin",
+      "type": "accessory",
+      "description": "Ancient leather water skin from Northern 羅剎 Kingdom.",
+      "stats": {
+        "capacity": "approximately 4 liters"
+      },
+      "special_effects": [
+        "Wine (女兒紅) inside never runs out (infinite refillable)",
+        "Can be converted to water skin but water will NOT regenerate"
+      ],
+      "how_to_obtain": {
+        "steps": [
+          "Gather 蒜泥白肉 (garlic white meat)",
+          "Enter 破洞 (cave), defeat Poisonfrog for poison frog meat",
+          "Talk to 老莫 about missing ingredient",
+          "老莫 directs to 食神周大發 who requires 泥漩草 (mud swirl grass)",
+          "Get 泥漩草 from 黑野豬 (Black Wild Boar) in 大澤 (Big Marsh)",
+          "Return to 老莫 to complete cooking",
+          "Give 2 gold to 老酒鬼 (Drunk Old Man)",
+          "Receive 混元一氣袋"
+        ],
+        "ingredients": ["garlic white meat", "poison frog meat", "mud swirl grass", "salt", "2 gold"]
+      },
+      "warning": "Once converted from wine to water skin, regeneration property is permanently lost."
+    },
+    {
+      "id": 23,
+      "url": "https://es2tips.blogspot.com/2013/06/blog-post_15.html",
+      "name_chinese": "白熊系列裝備",
+      "name_english": "Polar Bear Series",
+      "type": "equipment_set",
+      "crafting_material": {
+        "name": "白熊的皮毛 (Bear Skin)",
+        "source": "Polar Bear corpse",
+        "usage": "Trade to blacksmith (smith) with gold"
+      },
+      "items": [
+        {
+          "name_chinese": "白熊護腿",
+          "name_english": "Bear Legs",
+          "type": "armor",
+          "slot": "legs",
+          "stats": {
+            "defense": 5,
+            "cold_damage_resistance": 25
+          }
+        },
+        {
+          "name_chinese": "白熊套手",
+          "name_english": "Bear Gloves",
+          "type": "armor",
+          "slot": "hands",
+          "stats": {
+            "cold_damage_resistance": 25,
+            "damage": 10
+          }
+        },
+        {
+          "name_chinese": "白熊護甲",
+          "name_english": "Bear Armor",
+          "type": "armor",
+          "slot": "body",
+          "stats": {
+            "defense": 30,
+            "cold_damage_resistance": 20
+          }
+        },
+        {
+          "name_chinese": "黃金戒(幽冥刀訣)",
+          "name_english": "Gold Ring (Wind Blade technique)",
+          "type": "accessory",
+          "slot": "ring",
+          "stats": {
+            "defense": 5,
+            "left_hand_blade_skill": 5
+          },
+          "special_effect": "Trade to NPC 封威靈 to learn left-hand blade technique 幽冥刀訣",
+          "skill_mastery": 193,
+          "source": "Polar Bear corpse"
+        }
+      ]
+    },
+    {
+      "id": 24,
+      "url": "https://es2tips.blogspot.com/2013/05/blog-post_30.html",
+      "name_chinese": "裝備詞綴系統",
+      "name_english": "Equipment Prefix/Suffix Modifier System",
+      "type": "equipment_system",
+      "description": "Weapon enhancement modifiers based on NPC level. Higher-level NPCs have increased probability of dropping modified weapons.",
+      "prefix_modifiers": [
+        { "name": "青銅", "english": "Bronze", "bonus": "Armor +20" },
+        { "name": "鐵棘", "english": "Iron Thorns", "bonus": "Defense Ability +20" },
+        { "name": "點鋼", "english": "Point Steel", "bonus": "Attack Ability +20" },
+        { "name": "赤血", "english": "Crimson Blood", "bonus": "Damage +20" },
+        { "name": "紫陽", "english": "Purple Sun", "bonus": "Resolve +3" },
+        { "name": "太陽", "english": "Great Sun", "bonus": "Physique +2" },
+        { "name": "無腸", "english": "Gutless", "bonus": "Comprehension +3" },
+        { "name": "焦僥", "english": "Charred Fortune", "bonus": "Agility +3" },
+        { "name": "青陽", "english": "Blue Sun", "bonus": "Wisdom Root +2" },
+        { "name": "巫首", "english": "Shaman Head", "bonus": "Spirituality +2" },
+        { "name": "雕花", "english": "Carved Flower", "bonus": "Alertness +30" },
+        { "name": "金鑲", "english": "Gold Inlay", "bonus": "Damage +10, Attack Ability +10" },
+        { "name": "纏布", "english": "Wrapped Cloth", "bonus": "Armor +10, Defense Ability +10" }
+      ],
+      "suffix_modifiers": [
+        { "name": "形天", "english": "Form Heaven", "bonus": "Strength +3" },
+        { "name": "修羅", "english": "Asura", "bonus": "Courage +3" },
+        { "name": "彤雲", "english": "Red Cloud", "bonus": "Offensive Stance +50" },
+        { "name": "古錠", "english": "Ancient Lock", "bonus": "Defensive Stance +50" },
+        { "name": "鳳凰", "english": "Phoenix", "bonus": "Fire Resistance +75" },
+        { "name": "天龍", "english": "Celestial Dragon", "bonus": "Ice Resistance +75" },
+        { "name": "澤獸", "english": "Marsh Beast", "bonus": "Lightning Resistance +75" },
+        { "name": "大鵬", "english": "Great Roc", "bonus": "Wind Resistance +75" }
+      ],
+      "example_combinations": [
+        { "name": "赤血形天劍", "effects": "Strength +3, Damage +20" },
+        { "name": "雕花鳳凰劍", "effects": "Alertness +30, Fire Resistance +75" }
+      ]
+    },
+    {
+      "id": 25,
+      "url": "https://es2tips.blogspot.com/2013/05/blog-post_493.html",
+      "name_chinese": "封印雷環+穿靈等12件",
+      "name_english": "Thunder Ring, Celestial Sword & 12 misc items",
+      "type": "mixed_items",
+      "items": [
+        {
+          "name_chinese": "穿靈",
+          "name_english": "Celestial Sword",
+          "type": "weapon",
+          "weapon_type": "sword",
+          "skill": "劍術",
+          "damage_range": "2-16",
+          "strength_modifier": "40%",
+          "multiplier_level": 1,
+          "stats": { "defensive_level": 10 },
+          "description": "Holy sword purified after defeating eight ancient demonic beasts."
+        },
+        {
+          "name_chinese": "潤神幻戒",
+          "name_english": "Ring of Summon",
+          "type": "accessory",
+          "slot": "ring",
+          "stats": {
+            "defense": 20,
+            "wind_damage_resistance": 50,
+            "fire_damage_resistance": 50,
+            "lightning_damage_resistance": 50,
+            "ice_damage_resistance": 50
+          }
+        },
+        {
+          "name_chinese": "竹笛",
+          "name_english": "Bamboo Flute",
+          "type": "special_item",
+          "special_effect": "Playable item (command: blow)"
+        },
+        {
+          "name_chinese": "封印雷環",
+          "name_english": "Thunder Ring",
+          "type": "accessory",
+          "slot": "ring",
+          "stats": {
+            "天師道法_雷法": 15,
+            "慧根": 2
+          },
+          "description": "Yellow bronze ring with ancient ritual symbols."
+        },
+        {
+          "name_chinese": "蠻龍",
+          "name_english": "Sword of Mighty Dragon",
+          "type": "weapon",
+          "weapon_type": "two-handed sword",
+          "skill": "雙握劍術",
+          "damage_range": "9-109",
+          "strength_modifier": "180%",
+          "multiplier_level": 4,
+          "stats": { "damage_bonus": 30 }
+        },
+        {
+          "name_chinese": "蛟骨刀",
+          "name_english": "Blade of Hydra Bone",
+          "type": "weapon",
+          "weapon_type": "blade",
+          "skill": "刀法",
+          "damage_range": "7-64",
+          "strength_modifier": "110%",
+          "multiplier_level": 3,
+          "stats": { "offensive_level": 50 }
+        },
+        {
+          "name_chinese": "寒蟾指環",
+          "name_english": "Frost Frog Ring",
+          "type": "accessory",
+          "slot": "ring",
+          "stats": {
+            "ice_damage_output": 5,
+            "curse_magic": 10,
+            "慧根": 1
+          }
+        },
+        {
+          "name_chinese": "疾步快靴",
+          "name_english": "Runner's Boots",
+          "type": "armor",
+          "slot": "feet",
+          "stats": {
+            "defense": 25,
+            "ice_damage_resistance": 100,
+            "機敏": 3
+          },
+          "material": "Ghost beast fur and skin"
+        },
+        {
+          "name_chinese": "獒尾帶",
+          "name_english": "Dog Tail Belt",
+          "type": "armor",
+          "slot": "waist",
+          "stats": {
+            "defense": 25,
+            "根骨": 1
+          }
+        },
+        {
+          "name_chinese": "心殘爪",
+          "name_english": "Heartless Claw",
+          "type": "armor",
+          "slot": "hands",
+          "stats": {
+            "offensive_level": 10,
+            "damage_bonus": 10
+          }
+        },
+        {
+          "name_chinese": "罪牙匕",
+          "name_english": "Evil-Grin Dagger",
+          "type": "weapon",
+          "weapon_type": "dagger",
+          "skills": ["錐法", "左手錐法"],
+          "damage_range": "13-61",
+          "strength_modifier": "85%",
+          "multiplier_level": 3,
+          "stats": {
+            "internal_power": 5,
+            "attack_value": 25
+          }
+        },
+        {
+          "name_chinese": "狙首盔",
+          "name_english": "Monkey Helmet",
+          "type": "armor",
+          "slot": "head",
+          "stats": {
+            "offensive_level": 10,
+            "悟性": 1,
+            "attack_value": 10
+          }
+        },
+        {
+          "name_chinese": "水慾羽衣",
+          "name_english": "Devilish Dress",
+          "type": "armor",
+          "slot": "body",
+          "stats": {
+            "defense": 15,
+            "警覺性": 50,
+            "attack_value": 10
+          }
+        }
+      ]
+    },
+    {
+      "id": 26,
+      "url": "https://es2tips.blogspot.com/2013/06/blog-post_4.html",
+      "name_chinese": "舞璃戒指",
+      "name_english": "Wuzin Ring",
+      "type": "accessory",
+      "slot": "ring",
+      "stats": {
+        "定力": 3,
+        "悟性": 1
+      },
+      "how_to_obtain": "From Wounded Traveller NPC + pill",
+      "description": "A transparent gemstone set in an ordinary-looking ring."
+    }
+  ],
+  "sects": {
+    "taoist_overview": {
+      "url": "https://es2tips.blogspot.com/2014/08/es2.html",
+      "class_name": "道士 (Taoist)",
+      "philosophy": "清淨自然，與天地和而為一，神形俱妙，與天同壽",
+      "combat_style": "法術為主，武術為輔 (Spells primary, martial arts secondary)",
+      "universal_skills": [
+        {
+          "name": "太乙劍法",
+          "command": "taiyie",
+          "available_to": "所有天師派道士，茅山劍士"
+        },
+        {
+          "name": "強化之術",
+          "command": "enchance",
+          "available_to": "所有道士"
+        },
+        {
+          "name": "幻劍術",
+          "command": "virtual sword",
+          "available_to": "所有道士"
+        },
+        {
+          "name": "天師道法【紫薇心經】",
+          "command": "chivi sutra",
+          "available_to": "所有道士"
+        },
+        {
+          "name": "天師道法【素雲書】",
+          "command": "taoism-cloud",
+          "available_to": "所有天師派道士"
+        },
+        {
+          "name": "天師道法【桃山密籙】",
+          "command": "taoism of conviction",
+          "available_to": "所有天師派道士"
+        }
+      ],
+      "sect_branches": [
+        { "name": "朱衣派", "element": "火 (Fire)" },
+        { "name": "玄衣派", "element": "風 (Wind)" },
+        { "name": "素衣派", "element": "冰 (Ice)" },
+        { "name": "紫衣派", "element": "雷 (Thunder)" },
+        { "name": "幻霧觀", "school": "茅山" },
+        { "name": "隱風觀", "school": "茅山" },
+        { "name": "靈雲觀", "school": "茅山" },
+        { "name": "茅山劍士", "school": "茅山" }
+      ]
+    },
+    "taoist_advancement": {
+      "url": "https://es2tips.blogspot.com/2014/08/es2_59.html",
+      "shared_skills": [
+        {
+          "name": "太乙劍法 (Taiyi Sword)",
+          "type": "Sword Art / Parry",
+          "learning_requirement": "Internal Force 30",
+          "special": "When Internal Force >= 90 AND Virtual Sword >= 90, auto-triggers virtual sword attack during parry"
+        },
+        {
+          "name": "天師道法【紫薇心經】",
+          "type": "Magic",
+          "learning_requirement": "Level 15 + Tianfeng Daoist quest",
+          "abilities": [
+            "Fire defence: Increases fire magic resistance temporarily",
+            "Storm defence: Increases wind magic resistance temporarily",
+            "Freeze defence: Increases ice magic resistance temporarily",
+            "Thunder defence: Increases lightning magic resistance temporarily",
+            "Dispel: Removes applied effects"
+          ]
+        },
+        {
+          "name": "天師道法【桃山密籙】",
+          "type": "Magic",
+          "learning_requirement": "紫薇心經 100 + Taoxian quest",
+          "abilities": [
+            "Thunder-conviction: Reduces target lightning resistance",
+            "Freeze-conviction: Reduces target ice resistance",
+            "Fire-conviction: Reduces target fire resistance",
+            "Storm-conviction: Reduces target wind resistance",
+            "Dispel: Removes effects"
+          ]
+        },
+        {
+          "name": "幻劍術 (Virtual Sword)",
+          "type": "Spell",
+          "learning_requirement": "Level 5 + dialogue with Zhang Ling",
+          "damage_levels": [
+            { "rank": "ten", "bonus_damage": 10 },
+            { "rank": "thirty-six", "bonus_damage": 36 },
+            { "rank": "forty-nine", "bonus_damage": 49 },
+            { "rank": "sixty-four", "bonus_damage": 64 },
+            { "rank": "eighty-one", "bonus_damage": 81 },
+            { "rank": "ninety-nine", "bonus_damage": 99 }
+          ],
+          "cost": "Half of total damage in spirit points",
+          "user_delay": 1
+        },
+        {
+          "name": "天師道法【素雲書】(Plain Cloud Codex)",
+          "type": "Teleportation Magic",
+          "learning_requirement": "Level 10 + dialogue with Zhang Ling",
+          "spirit_cost": 50,
+          "teleport_destinations": [
+            { "command": "snow", "skill_req": 15, "destination": "Flying Wind Inn" },
+            { "command": "month", "skill_req": 30, "destination": "Shui Yue Waterfall" },
+            { "command": "sptown", "skill_req": 45, "destination": "Sacrifice Sword Platform" },
+            { "command": "fontown", "skill_req": 60, "destination": "Tianshan Solitary Cliff" },
+            { "command": "swaylan", "skill_req": 75, "destination": "Wuling Inn" },
+            { "command": "yaoy", "skill_req": 90, "destination": "Tianren Inn" },
+            { "command": "skysnow", "skill_req": 105, "destination": "Jiong Tian Tree" },
+            { "command": "flower", "skill_req": 120, "destination": "Red Lantern Inn" },
+            { "command": "fei", "skill_req": 135, "destination": "Qian Ji Wine Tower" },
+            { "command": "tomb", "skill_req": 150, "destination": "Ancient Tomb" },
+            { "command": "capital", "skill_req": 165, "destination": "Hou Hai Lake" },
+            { "command": "dragon", "skill_req": 180, "destination": "Tian Long Island" }
+          ]
+        }
+      ],
+      "celestial_master_advancement": {
+        "first_system": "Level >= 40, Qingxie Battle Medal >= 3000, Force and Spells at max. Pray to obtain second element.",
+        "second_system": "Level >= 50, carry corresponding element seal to Library 5F, learn from Taiyi Jade Body."
+      },
+      "maoshan_skills": {
+        "茅山法術": {
+          "type": "Magic",
+          "abilities": [
+            { "command": "blank", "effect": "Converts talisman to plain" },
+            { "command": "yin", "effect": "Converts plain to Lesser Yin Talisman" },
+            { "command": "yang", "effect": "Converts plain to Pure Yang Talisman" },
+            { "command": "nature", "effect": "Converts plain to Innate Talisman" },
+            { "command": "remedy", "effect": "Uses Innate Talisman to restore vitality" },
+            { "command": "vision", "effect": "Uses Innate Talisman to increase alertness, grants Yin-Yang Eye" }
+          ],
+          "stat_per_level": "+1-2 Spirit, +1-2 Qi, +3 Mind"
+        },
+        "茅山步法": {
+          "type": "Dodge",
+          "requirement": "茅山法術 > 5 + quest from Zhang Zhengxian"
+        },
+        "茅山劍士": {
+          "requirement": "Level 50 + Second tier sect ability + quest from Zhang Datian",
+          "sub_skills": {
+            "茅山心經": {
+              "type": "Internal Force",
+              "abilities": [
+                "regenerate: Consumes Gin to restore Sen",
+                "exert element: Consumes Sen, delay 3, summons Wind/Fire/Water/Lightning power",
+                "check: Displays internal spiritual rune status"
+              ],
+              "initial_stats": "Sen -50, Gin +10, Kee +10",
+              "per_level": "+1-2 Gin, +1-2 Kee"
+            },
+            "茅山劍法": {
+              "type": "Sword Art / Left-hand Sword",
+              "element_attacks": [
+                { "element": "fire", "description": "Hell fire attack, mitigated by fire resistance", "cost": "50 spirit + fire element" },
+                { "element": "lightning", "description": "Thunder attack on spirit, dodgeable via lightning resistance", "cost": "50 spirit + lightning element" },
+                { "element": "water", "description": "Heavy snow damage to spirit, mitigated by ice resistance", "cost": "50 spirit + water element" }
+              ],
+              "note": "Wind element can substitute for missing elements"
+            }
+          }
+        },
+        "茅山真人": {
+          "requirement": "Level 30+, Spirit >= 35, Second tier sect ability + quest from 封瑩瑩",
+          "sub_skills": [
+            "古文造詣 (Archaic Attainment) - Knowledge skill",
+            "五行陰陽之學 (Five Elements Yin-Yang Mysticism) - Enhances illusion hit rate, summon rain, odd technique damage, Five Thunder Technique"
+          ]
+        }
+      }
+    },
+    "隱風觀": {
+      "url": "https://es2tips.blogspot.com/2014/08/es2_47.html",
+      "name": "隱風觀",
+      "english": "Yin Feng Guan",
+      "school": "茅山",
+      "master": "歐陽無極",
+      "races_excluded": ["夜叉", "形天", "厭火", "黑齒"],
+      "gender": "不限",
+      "skills": [
+        {
+          "name": "茅山幻術",
+          "english": "taoism of nature",
+          "type": "咒術",
+          "learning_requirement": "拜師後",
+          "abilities": [
+            { "command": "dog", "name": "喚犬之術", "effect": "Causes target delay 2" },
+            { "command": "monkey", "name": "喚猿之術", "effect": "Randomly steal one item from target" },
+            { "command": "hydra", "name": "喚蟒之術", "effect": "Swallow non-player targets" },
+            { "command": "rain", "name": "喚雨之術", "effect": "Restores vital energy of surrounding players" }
+          ],
+          "cost": "先天符 x1 per successful cast"
+        },
+        {
+          "name": "茅山奇術【遁甲書】",
+          "english": "taoism of dunja",
+          "type": "法術",
+          "learning_requirement": "茅山幻術 >= 90, 人物等級和靈性 >= 30",
+          "abilities": [
+            {
+              "command": "fate",
+              "name": "天命",
+              "effect": "Assess target talent and experience in designated skill",
+              "talent_scale": [
+                { "label": "無可限量", "value": 200 },
+                { "label": "笑傲江湖", "value": 190 },
+                { "label": "名揚天下", "value": 180 },
+                { "label": "確實不錯", "value": 170 },
+                { "label": "一番成就", "value": 160 },
+                { "label": "普普通通", "value": 150 },
+                { "label": "沒有前途", "value": 140 }
+              ]
+            },
+            {
+              "command": "experience",
+              "name": "心眼",
+              "effect": "Consume caster magic cultivation to boost target skill experience. Ineffective on skills below level 30."
+            }
+          ]
+        }
+      ],
+      "last_updated": "2012/05/01"
+    },
+    "靈雲觀": {
+      "url": "https://es2tips.blogspot.com/2014/08/es2_71.html",
+      "name": "靈雲觀",
+      "english": "Lingyun Temple",
+      "school": "茅山",
+      "master": "林正陽",
+      "races_excluded": ["形天", "焦僥", "厭火", "釘靈"],
+      "gender": "不限",
+      "skills": [
+        {
+          "name": "幽冥三箭",
+          "english": "Taoism of Purify",
+          "type": "咒術",
+          "learning_requirement": "拜師後",
+          "abilities": [
+            { "command": "netherbolt", "name": "青冥之箭", "effect": "Recovers 神 (spirit)" },
+            { "command": "drainerbolt", "name": "紫幽之箭", "effect": "Recovers 精 (essence)" },
+            { "command": "feeblebolt", "name": "蒼靈之箭", "effect": "Recovers 氣 (chi)" }
+          ],
+          "damage_bonus": "Higher damage against zombies, ghosts, and animal-type targets",
+          "cost": "正陽符"
+        },
+        {
+          "name": "茅山【五雷術】",
+          "english": "Mao-shan Lightning",
+          "type": "法術",
+          "learning_requirement": "幽冥三箭 >= 90, learn from 林正陽",
+          "abilities": [
+            { "command": "cleanse", "effect": "Consolidates spirit to gather spiritual power", "cost": "神" },
+            { "command": "bless", "effect": "Comprehensive stat, elemental damage, and resistance boost to target", "cost": "神、靈力、先天符" },
+            { "command": "consume", "effect": "Recovers target essence and spirit", "cost": "神、靈力、先天符" }
+          ]
+        }
+      ],
+      "last_updated": "2014/05/01"
+    },
+    "幻霧觀": {
+      "url": "https://es2tips.blogspot.com/2014/08/es2_76.html",
+      "name": "幻霧觀",
+      "school": "茅山",
+      "master": "杜風凌",
+      "races_accepted": ["阿修羅", "巫首", "雨師妾", "無腸", "夜叉"],
+      "gender": "不限",
+      "skills": [
+        {
+          "name": "茅山奇術",
+          "english": "taoism of darkness",
+          "type": "咒術",
+          "learning_requirement": "拜師後",
+          "abilities": [
+            { "command": "hell", "name": "入陰之術", "effect": "Teleport to Hell" , "cost": "少陰符" },
+            { "command": "ghost_fire", "name": "鬼火術", "effect": "Magic damage to target", "cost": "少陰符" },
+            { "command": "smoke", "name": "鬼煙術", "effect": "Escape combat and hide self", "cost": "none" },
+            { "command": "hell_fire", "name": "幽冥之火", "effect": "Large single magic damage to target", "cost": "少陰符" }
+          ]
+        },
+        {
+          "name": "茅山道法【奇門術】",
+          "english": "mao-shan mysticism",
+          "type": "法術",
+          "learning_requirement": "茅山奇術 >= 100, learn from 杜風凌",
+          "abilities": [
+            { "command": "memory", "name": "記憶之術", "effect": "Record a location", "cost": "none" },
+            { "command": "recall", "name": "翔空之術", "effect": "Teleport to recorded location", "cost": "少陰符" },
+            { "command": "collect", "name": "集靈之術", "effect": "Decompose corpse to obtain 陰魂 (dark soul). Max souls = character 靈性", "cost": "none" },
+            { "command": "slave", "name": "通靈之術", "effect": "Possess target body with dark soul for protection. Ineffective on players and animals.", "cost": "少陰符" },
+            { "command": "devour", "name": "噬魂之術", "effect": "Sacrifice possessed target to restore large amount of 氣 and 神", "cost": "少陰符" }
+          ]
+        }
+      ],
+      "last_updated": "2012/05/05"
+    },
+    "紫衣派": {
+      "url": "https://es2tips.blogspot.com/2014/08/es2_75.html",
+      "name": "紫衣派",
+      "school": "天師",
+      "element": "雷 (Thunder)",
+      "master": "青雲觀主 華子儀",
+      "requirements": {
+        "race": "不限",
+        "慧根": ">= 16",
+        "gender": "不限"
+      },
+      "skills": [
+        {
+          "name": "天師道法【雷法】",
+          "english": "taoism-thunder",
+          "type": "咒術",
+          "abilities": [
+            { "command": "swamp thunder", "name": "澤雷", "sen_cost": 5, "delay": 1, "damage": "50%" },
+            { "command": "blaster thunder", "name": "爆雷", "sen_cost": 50, "delay": 1, "damage": "25%", "extra": "附加當前神 1/8" },
+            { "command": "divine thunder", "name": "神光雷", "sen_cost": 75, "delay": 2, "damage": "33%", "special": "Ignores resistance" },
+            { "command": "hexagram thunder", "name": "六卦熒雷", "sen_cost": 90, "delay": 2, "damage": "175%", "special": "Triggers but does not consume overload" }
+          ]
+        },
+        {
+          "name": "九龍神功",
+          "english": "nine-dragon force",
+          "type": "內功",
+          "learning_requirement": "Level >= 10",
+          "max_level": 5,
+          "abilities": [
+            { "command": "heal", "effect": "Consume gin to restore kee" },
+            { "command": "regenerate", "effect": "Consume gin to restore sen" },
+            { "command": "overload", "sen_cost": 75, "effect": "Summon thunder light, next 天師咒 base damage +50%" }
+          ],
+          "stat_advancement": "Level 5: gin < sk*30, kee < sk*30, sen < sk*30. Per level: +1-2 gin, +2 kee, +1-3 sen. At level 100: +2 根骨, +1 慧根"
+        },
+        {
+          "name": "清河映星劍",
+          "english": "reflecting star sword",
+          "type": "劍術"
+        },
+        {
+          "name": "陰陽奇門步",
+          "english": "magic steps",
+          "type": "縱躍閃躲"
+        }
+      ],
+      "last_updated": "2013/05/25"
+    },
+    "素衣派": {
+      "url": "https://es2tips.blogspot.com/2014/08/es2_64.html",
+      "name": "素衣派",
+      "english": "Plain Silk Sect",
+      "school": "天師",
+      "element": "冰 (Ice)",
+      "master": "太乙觀觀主 白齊",
+      "requirements": {
+        "race": "不限",
+        "gender": "不限"
+      },
+      "skills": [
+        {
+          "name": "天師道法【冰咒】",
+          "english": "taoism-freeze",
+          "type": "咒術",
+          "abilities": [
+            { "command": "chill freeze", "name": "寒冰", "sen_cost": 5, "delay": 1, "damage": "50%" },
+            { "command": "ominous freeze", "name": "兆冰", "sen_cost": 20, "delay": 2, "damage": "100% spirit damage, 33% divine damage", "special": "Restore 50% of damage to spirit, ignores target resistance" },
+            { "command": "shadow freeze", "name": "無相冰", "sen_cost": 30, "effect": "Target delay 3, caster delay 1 on failure" },
+            { "command": "polar freeze", "name": "七重玄冰", "sen_cost": 50, "delay": 2, "damage": "150%" }
+          ]
+        },
+        {
+          "name": "冰蠶奇功",
+          "english": "Polar Silkworm Force",
+          "type": "內功",
+          "learning_requirement": "Level >= 15, quest from 白齊",
+          "abilities": [
+            { "command": "heal", "effect": "Consume gin to restore kee" },
+            { "command": "regenerate", "effect": "Consume gin to restore sen" },
+            { "command": "vapour", "effect": "Consume all water to increase 4 element damage" },
+            { "command": "ice-shield", "requirement": "冰咒 100 + 冰蠶奇功 100", "effect": "Enter sneak state from combat, restore 50% max and 100% current gin/kee/sen" }
+          ],
+          "stat_advancement": "Mastery level 20. Per level: gin +1, kee +1, sen +2 (when skill < level*30). At level 80: +1 根骨, +2 靈性"
+        },
+        {
+          "name": "五行迷蹤步",
+          "english": "Five Element Mystical Steps",
+          "type": "縱躍閃躲"
+        }
+      ]
+    },
+    "玄衣派": {
+      "url": "https://es2tips.blogspot.com/2014/08/es2_85.html",
+      "name": "玄衣派",
+      "school": "天師",
+      "element": "風 (Wind)",
+      "master": "安懶道人 (Old Taoist)",
+      "requirements": {
+        "race": "不限",
+        "靈性": ">= 18",
+        "gender": "不限"
+      },
+      "skills": [
+        {
+          "name": "天師道法【風符】",
+          "english": "taoism-storm",
+          "type": "咒術",
+          "abilities": [
+            { "command": "quick storm", "name": "疾風", "sen_cost": 10, "delay": 1, "damage": "25%", "special": "When conditions met, next wind spell guaranteed triple-cast" },
+            { "command": "crazy storm", "name": "暴風", "sen_cost": 30, "delay": 1, "damage": "33%", "special": "On hit, ignores target wind resistance" },
+            { "command": "killer storm", "name": "飛戮風", "sen_cost": 50, "delay": 1, "damage": "75%" },
+            { "command": "whirl storm", "name": "轉輪大風", "sen_cost": 75, "delay": 3, "damage": "125%" }
+          ],
+          "advancement_note": "With sufficient skill and random spell technique, chance for 2nd and 3rd multi-cast"
+        },
+        {
+          "name": "明道心法",
+          "english": "dao force",
+          "type": "內功",
+          "learning_requirement": "Level >= 20",
+          "abilities": [
+            { "command": "recover", "level_req": 30, "effect": "Boost fatigue recovery for gin/kee/sen max values" },
+            { "command": "remedy", "level_req": 60, "effect": "Consume water to restore gin/kee/sen current values" },
+            { "command": "windarmor", "level_req": 90, "requirement2": "風符 90", "effect": "Boost defensive stance, armor ability, 慧根, and all four elemental resistances" }
+          ],
+          "stat_advancement": "Base level 25. Per level: gin +1 (gin<sk*10), kee +1 (kee<sk*10), sen +3 (sen<sk*15). At level 130: +2 慧根, gin/kee/sen random +30-45"
+        }
+      ]
+    },
+    "朱衣派": {
+      "url": "https://es2tips.blogspot.com/2014/08/es2_13.html",
+      "name": "朱衣派",
+      "school": "天師",
+      "element": "火 (Fire)",
+      "master": "郭布 (Kuo Boo)",
+      "requirements": {
+        "race": "不限",
+        "gender": "不限"
+      },
+      "skills": [
+        {
+          "name": "天師道法【火術】",
+          "english": "taoism-fire",
+          "type": "咒術",
+          "abilities": [
+            { "command": "magic fire", "name": "咒火", "sen_cost": 5, "delay": 1, "damage": "50%" },
+            { "command": "earth fire", "name": "地火", "sen_cost": 20, "delay": 1, "damage": "33%", "special": "Restores 氣, ignores target resistance" },
+            { "command": "inferno fire", "name": "大業火", "sen_cost": 45, "delay": 2, "damage": "50%", "extra": "Adds 25% of current 氣 as bonus damage" },
+            { "command": "pure fire", "name": "三昧真火", "sen_cost": 75, "delay": 3, "damage": "300%" }
+          ]
+        },
+        {
+          "name": "丹陽神功",
+          "english": "sun force",
+          "type": "內功",
+          "learning_requirement": "Level >= 15",
+          "abilities": [
+            { "command": "remedy", "effect": "Consume water to restore gin/kee/sen current values" },
+            { "command": "recover", "level_req": 30, "effect": "Boost fatigue recovery for gin/kee/sen max values" },
+            { "command": "sun fire", "name": "聚日術", "level_req": 90, "restriction": "Daytime only", "sen_cost": 150, "effect": "Temporarily boost 慧根, 定力, and spell ability value" }
+          ],
+          "stat_advancement": "Mastery level 10. Per level: gin +1, kee +1, sen +3. On mastery completion: +2 慧根"
+        },
+        {
+          "name": "火雲奇門步法",
+          "english": "eight_steps",
+          "type": "縱躍閃躲"
+        }
+      ],
+      "last_updated": "2013/05/25"
+    }
+  }
+}

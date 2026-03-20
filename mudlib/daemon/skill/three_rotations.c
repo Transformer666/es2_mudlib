@@ -6,45 +6,45 @@ inherit SKILL;
 
 mapping *actions = ({
   ([
-    "action":		"$N輕搖摺扇﹐$w順勢削向$n的$l",
-    "dodge":		5,
-    "damage":		5,
-    "damage_type":	"割傷"
-  ]),
-  ([
-    "action":		"$N踏乾坤步法﹐$w一轉斬向$n的$l",
+    "action":		"$N使出「天旋」﹐身形上旋如飛鳥﹐$w削向$n的$l",
     "dodge":		-5,
-    "damage":		10,
+    "damae":		9,
     "damage_type":	"割傷"
   ]),
   ([
-    "action":		"$N身形一旋﹐二轉之勢﹐一掌拍向$n的$l",
+    "action":		"$N施展「地旋」﹐腳踏旋風﹐掃向$n的$l",
     "dodge":		-10,
-    "damage":		10,
+    "damage":		12,
     "damage_type":	"瘀傷"
   ]),
   ([
-    "action":		"$N乾坤三轉﹐$w挾帶勁風劈向$n的$l",
+    "action":		"$N使出「人旋」﹐身隨意轉攻向$n的$l",
+    "dodge":		5,
+    "damae":		7,
+    "damage_type":	"割傷"
+  ]),
+  ([
+    "action":		"$N三旋合一使出「三才歸一」﹐勁力匯聚轟向$n的$l",
     "dodge":		-15,
     "damage":		15,
-    "damage_type":	"割傷"
-  ]),
-  ([
-    "action":		"$N側身閃過﹐手肘順勢撞向$n的$l",
-    "dodge":		10,
-    "damage":		5,
     "damage_type":	"瘀傷"
   ]),
   ([
-    "action":		"$N收扇為劍﹐$w點向$n的$l﹐劍意縱橫",
-    "dodge":		-5,
-    "damage":		10,
+    "action":		"$N身形大旋使出「乾坤大挪移」﹐排山倒海地擊向$n的$l",
+    "dodge":		-10,
+    "damae":		13,
     "damage_type":	"割傷"
+  ]),
+  ([
+    "action":		"$N飛身旋踢使出「玄門旋踢」﹐凌厲的腿風掃向$n的$l",
+    "dodge":		10,
+    "damage":		6,
+    "damage_type":	"瘀傷"
   ]),
 });
 
 string *interattack = ({
-  "$N輕搖$n﹐神態從容﹐自有一股書生意氣。\n",
+  "$N擺出三旋的架式﹐身形旋轉如風。\n",
 });
 
 private void

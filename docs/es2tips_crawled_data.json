@@ -1,0 +1,844 @@
+{
+  "metadata": {
+    "source": "es2tips.blogspot.com",
+    "crawl_date": "2026-03-20",
+    "total_urls": 35,
+    "description": "ES2 MUD game content extracted from blog posts"
+  },
+  "quests": {
+    "beggar_crone": {
+      "title": "老乞婆任務",
+      "url": "https://es2tips.blogspot.com/2014/10/beggar-crone-maro-dagger-watermelon.html",
+      "npc": "老乞婆",
+      "location": "喬陰 (near farmland)",
+      "quest_items": ["棉襖 (maro)", "匕首 (dagger)", "西瓜 (watermelon)"],
+      "steps": [
+        {"step": 1, "action": "give maro to crone", "item": "棉襖", "source": "雪山客棧前 traveller", "dialogue": "真是太謝謝你啦！"},
+        {"step": 2, "action": "give dagger to crone", "item": "匕首", "dialogue": "現在世道不太平，能不能賞我把匕首防身啊？"},
+        {"step": 3, "action": "pick 西瓜 at 農田, then give watermelon to crone", "item": "西瓜", "note": "Farmers attack on first attempt, succeed on second"}
+      ],
+      "rewards": ["念珠 (rosary)", "白長袍 (white robe)", "partial INT equipment"]
+    },
+    "ren_xiaoxiao": {
+      "title": "任蕭蕭任務支線",
+      "url": "https://es2tips.blogspot.com/2013/05/blog-post_7503.html",
+      "npcs": [
+        {"name": "任蕭蕭", "role": "quest giver"},
+        {"name": "劉欣玲", "role": "quest NPC"},
+        {"name": "李秋鄴", "role": "deceased NPC"},
+        {"name": "江渲", "role": "漕幫信堂分舵主"},
+        {"name": "江隕", "role": "NPC"},
+        {"name": "邋遢道士", "role": "also called 鬼首"},
+        {"name": "烏金貓 (suncat)", "role": "divine beast boss"}
+      ],
+      "locations": ["天寒村", "白象寺", "船艙", "祠堂", "雪亭外亂葬崗", "草原"],
+      "steps": [
+        "Provide 天山野蔘鬚 to 任蕭蕭 for sister's injury",
+        "Refuse martial arts teaching (say 沒有)",
+        "Retrieve 移殤杖 from 李秋鄴's corpse",
+        "Give staff to 劉欣玲 (give cane to liu)",
+        "Report to 江渲 at boat cabin",
+        "Find 邋遢道士 by saying 鬼首",
+        "Insert 混沌珠 into altar",
+        "Defeat 烏金貓 and retrieve 烏金皮"
+      ],
+      "items": [
+        {"name": "天山野蔘鬚", "type": "quest item"},
+        {"name": "移殤杖", "type": "weapon", "skill": "staff"},
+        {"name": "混沌珠", "type": "quest item"},
+        {"name": "烏金皮", "type": "armor", "stats": {"fire_defense": 50, "courage": 1, "damage": 20}}
+      ],
+      "commands": ["say 沒有", "give cane to liu", "say 鬼首", "insert pearl of chaos"]
+    },
+    "eight_hole_ghost_path": {
+      "title": "八穴鬼徑走法",
+      "url": "https://es2tips.blogspot.com/2013/05/blog-post_5878.html",
+      "location": "八穴鬼徑",
+      "navigation_sequence": "n ne w se n sw e s"
+    },
+    "heart_of_god": {
+      "title": "神之心打法",
+      "url": "https://es2tips.blogspot.com/2014/02/blog-post_8.html",
+      "boss": "滅心",
+      "strategy": {
+        "taoist": "ckk guardian, 2sec interval",
+        "bonze": "大悲咒, 2sec interval"
+      },
+      "warning": "不要讓滅心有機會破壞你的裝備 (Don't let the boss destroy your equipment)"
+    },
+    "chaos_seal": {
+      "title": "混沌之印+混沌獸",
+      "url": "https://es2tips.blogspot.com/2013/06/blog-post_7143.html",
+      "boss": {
+        "name": "混沌 (Beast of Chaos)",
+        "description": "天神創世後殘存在尚未消失的混沌界內的生物"
+      },
+      "location": "民房 (Ruined Cottage) - dungeon with bears, zombies",
+      "items": [
+        {
+          "name": "混沌之印 (Seal of Chaos)",
+          "description": "五角星狀的印章，通體散發出幽暗的黑色光芒",
+          "usage": "combine broken seal, then insert seal of chaos"
+        },
+        {
+          "name": "混沌之鏡 (Mirror of Chaos)",
+          "type": "necklace",
+          "description": "散發著幽暗之光的古鏡",
+          "stats": {"attack_level": 25, "courage": 1, "damage": 10}
+        },
+        {"name": "水之印記 (Seal of Water)", "type": "quest seal"}
+      ],
+      "steps": [
+        "Combine five broken seal fragments: combine broken seal",
+        "Enter stone structure: insert seal of chaos",
+        "Defeat chaos beast",
+        "Loot mirror from corpse"
+      ]
+    },
+    "dragon_town": {
+      "title": "龍安鎮+黑龍+九轉異龍珠",
+      "url": "https://es2tips.blogspot.com/2013/05/blog-post_4347.html",
+      "locations": [
+        {"name": "妖塔一層", "description": "巨大的血池 in center", "exits": ["northeast", "south"], "npc": "食人鬼", "command": "jump 血池"},
+        {"name": "湖底洞", "description": "beneath 平波湖", "exits": ["down"]},
+        {"name": "洞底", "description": "pitch black, glowing pearl", "exits": ["up"]},
+        {"name": "湖邊", "description": "寧波湖", "exits": ["east", "north"]}
+      ],
+      "boss": {
+        "name": "黑龍 (Black Dragon)",
+        "description": "天下只有一條, resurrects after death but loses the pearl",
+        "abilities": "unique spells"
+      },
+      "items": [
+        {
+          "name": "九轉異龍珠 (Dragon Pearl)",
+          "usage": "roll 珠子 - produces blinding flash, teleports to 湖邊"
+        }
+      ],
+      "commands": ["jump 血池", "get pearl", "roll 珠子"]
+    },
+    "baiyao_valley": {
+      "title": "百藥谷：赤龍+封山",
+      "url": "https://es2tips.blogspot.com/2013/05/blog-post_2986.html",
+      "location": "百藥谷 石洞 (Stone Cave)",
+      "boss": {
+        "name": "赤龍 (Brimstony Dragon)",
+        "description": "Ancient red dragon found unconscious in blood pool",
+        "lore": "Older dragons cast spells more powerfully, defeated by Fengshan disciples"
+      },
+      "drops": [
+        {"name": "九轉異龍珠", "note": "ejected from dragon before death"},
+        {
+          "name": "赤龍鱗 (Brimstony Armor)",
+          "type": "armor",
+          "stats": {"defense": 30, "fire_resist": 20, "wind_resist": 20, "strength": 2}
+        },
+        {
+          "name": "赤龍牙骨 (Fire-dragon Tooth)",
+          "type": "dagger",
+          "stats": {"damage": "10-43", "defense": 10, "courage": 1, "fire_resist": 50}
+        },
+        {
+          "name": "赤龍筋 (Brimstony Whip)",
+          "type": "whip",
+          "stats": {"damage": "10-43", "spellcraft": 10, "fire_magic": 5, "hex_magic": 5}
+        }
+      ]
+    },
+    "giant_centipede": {
+      "title": "大蜈蚣+聖木殘根",
+      "url": "https://es2tips.blogspot.com/2013/05/blog-post_9262.html",
+      "location": "後海湖 (Back Sea Lake)",
+      "boss": {
+        "name": "大蜈蚣 (Giant Centipede)",
+        "behavior": "actively attacks, self-heals with delay",
+        "lore": "Has sword wound on forehead from Taoist master ~300 years ago"
+      },
+      "items": [
+        {"name": "聖木殘根 (Root of Holy Tree)"},
+        {"name": "破碎的印記 (Broken Seal)", "note": "five pieces can be combined"}
+      ],
+      "commands": ["dig 樹根", "look 樹根", "wield 穿靈"],
+      "lore": "300 years ago warriors released sealed demon 侮天鬼 while extracting sword from holy tree"
+    },
+    "wind_god": {
+      "title": "風神+風之印記",
+      "url": "https://es2tips.blogspot.com/2013/05/seal.html",
+      "boss": {
+        "name": "墮落的風神 (Fallen Wind God)",
+        "race": "human",
+        "age": "~7860 years",
+        "dialogue": "結束了，又可以沉睡了..."
+      },
+      "released_npc": "風神「大鵬」(Wind God Dapeng)",
+      "drops": [
+        {
+          "name": "風之印記 (Seal of Storm)",
+          "description": "不時變換著形狀的綠色水晶",
+          "type": "quest seal"
+        },
+        {
+          "name": "風神之羽 (Storm-lord's Feather)",
+          "type": "two-handed sword (雙握劍術)",
+          "stats": {
+            "damage": "9-109",
+            "strength_modifier": "180%",
+            "multiplier_level": 4,
+            "resolve": 4,
+            "wind_defense": 100,
+            "defense": 40,
+            "wind_spell": 30
+          },
+          "description": "風神大鵬額上之羽，形若無物卻重達千斤"
+        }
+      ]
+    }
+  },
+  "bosses": {
+    "li_dongling_grand": {
+      "title": "大魔頭 李東靈",
+      "url": "https://es2tips.blogspot.com/2015/11/blog-post.html",
+      "name": "「大魔頭」李東靈",
+      "race": "人類",
+      "class": "棄徒",
+      "note": "Blog post content was image-only; limited data extracted"
+    },
+    "yaksha_ghost_devourer": {
+      "title": "夜叉吞鬼",
+      "url": "https://es2tips.blogspot.com/2015/11/es2-jpg.html",
+      "name": "夜叉吞鬼",
+      "note": "Blog post content was image-only; no stats extractable"
+    },
+    "li_dongling_deserter": {
+      "title": "雪吟莊棄徒 李東靈",
+      "url": "https://es2tips.blogspot.com/2014/11/dslee.html",
+      "name": "雪吟莊棄徒 李東靈",
+      "level": 60,
+      "age": 156,
+      "class": "大魔頭",
+      "birth": "己酉年 9月4日",
+      "attributes": {
+        "strength": {"base": 63, "bonus": 22},
+        "courage": {"base": 46, "bonus": 11},
+        "wisdom": {"base": 48, "bonus": 11},
+        "spirituality": 19,
+        "stability": {"base": 42, "bonus": 11},
+        "agility": 43,
+        "constitution": {"base": 43, "bonus": 1},
+        "insight": {"base": 29, "bonus": 11}
+      },
+      "resources": {
+        "form": "210/210",
+        "essence": "1296/1296",
+        "qi": "1738/1738",
+        "spirit": "449/449"
+      },
+      "skills": [
+        "天邪神功 (Celestial Demon Force) - primary internal",
+        "六陰絕識劍 (Six Yin Absolute Sword) - dual sword",
+        "六陰追魂劍法 (Six Chaos Soul-Hunting Sword)",
+        "風嘯拳法 (Wind Howling Fist)",
+        "深空刀法 (Deep Space Blade)",
+        "偷襲暗算技倆 (Backstab techniques)"
+      ],
+      "equipment": {
+        "weapons": ["繞指柔劍 (secondhand sword)", "白龍牙 (White Dragon Sword)", "旋芒 (Dimensional Sword)"],
+        "armor": ["靈中樞甲 (Soul Lapis Lazuli Plate)", "征衣「血染」(Blood Cloth)", "白馬盔 (White Helmet)", "封神靴 (Forgod Boots)", "青竹腿護 (Bamboo Leg Guards)", "百鬼腰束 (Ghosts Girdle)"],
+        "accessories": ["str+3符 (amulet)", "str+2戒 (ring)"]
+      },
+      "combat_stats": {
+        "offense": 527,
+        "technique": 496,
+        "power": 486.84,
+        "attack_bonus": 1348.69,
+        "defense_stance": 368,
+        "defense_technique": 386,
+        "defense_power": 323.04,
+        "armor_strength": 229,
+        "action_speed": 657
+      },
+      "resistances": {
+        "ice": 387,
+        "lightning": 237,
+        "fire": 237,
+        "wind": 237
+      },
+      "experience": {
+        "martial_mastery": 3390396,
+        "blade_mastery": 3320690,
+        "jianghu_experience": 1984472,
+        "combat_experience": 1828835
+      },
+      "karma": 15,
+      "strategy": "配合 link + auto-re action，避免打到一半沒精暈倒"
+    },
+    "black_wuchang": {
+      "title": "勾魂使者 黑無常",
+      "url": "https://es2tips.blogspot.com/2014/08/black-hell-agent.html",
+      "name": "勾魂使者 黑無常",
+      "race": "巫首族",
+      "age": "~5320 years",
+      "description": "負責將因戰亂和意外而喪生的人的靈魂引去接受閻王的審判",
+      "behavior": "Does not engage in direct combat",
+      "dialogue": [
+        "老子的法眼都尋不到這個人 (if target offline)",
+        "看起來黑無常並不想跟你較量 (refuses combat)"
+      ]
+    },
+    "white_wuchang": {
+      "title": "勾魂使者 白無常",
+      "url": "https://es2tips.blogspot.com/2014/08/white-hell-agent.html",
+      "name": "勾魂使者 白無常",
+      "race": "巫首族",
+      "age": "~5320 years",
+      "description": "負責將因戰亂和意外而喪生的人的靈魂引去接受閻王的審判",
+      "dialogue": "這次不好交差了啊",
+      "quest": {
+        "description": "Lost ghost souls after drinking with City God",
+        "request": "閣下要是殺虐深重，是否能換些給老夫？",
+        "trigger_commands": ["say 是", "say 可", "say 能", "say 好"],
+        "reward": "降殺業 (reduces killing karma)"
+      }
+    },
+    "divine_mobs_vs_wind_god": {
+      "title": "滅心/滅名/滅慾/神衛 vs 風神",
+      "url": "https://es2tips.blogspot.com/2013/06/vs-mob.html",
+      "result": "FAILED - Divine realm mobs won't attack Wind God",
+      "wind_god": {
+        "name": "墮落的風神 (Evil Spirit of Storm)",
+        "spell": "轉輪大風 (Wheel of Wind) - dual-cast wind damage",
+        "weapon": "風神之羽"
+      },
+      "guardian_mobs": ["滅心", "滅名", "滅慾", "神衛"],
+      "finding": "他們只會圍毆你 - mobs only attack the player, not the Wind God",
+      "player_spell": "六卦熒雷 (Six Trigrams Lightning)",
+      "drops_observed": ["舍利子 (Pearl of Buddha)", "古鄔赤水袋 (Strange Skin)"]
+    },
+    "sun_yi": {
+      "title": "虎刀門護衛 孫漪",
+      "url": "https://es2tips.blogspot.com/2013/05/blog-post_29.html",
+      "name": "虎刀門護衛 孫漪",
+      "race": "阿修羅族",
+      "age": 13,
+      "location": "比武場 (Tournament Arena)",
+      "background": "Rescued by sect leader 韓笑, became martial champion at 13",
+      "personality": "膽識過人，天不怕地不怕",
+      "equipment": [
+        "獸面玉戒 (Beast Ring)",
+        "束腰帶 (Girl Girth)",
+        "繡花鞋 (Embroidery Boots)",
+        "白綢羽衫 (White Silk Feather Garment)",
+        "啐雪大刀 (Snow Blade)"
+      ],
+      "notable_drop": {
+        "name": "無形心鏡 (Shapeless Heartguard)",
+        "type": "chest armor",
+        "description": "深藍色光芒的護心鏡，觸手冰涼",
+        "stats": {"wind_resistance": 50, "defense": 5, "constitution": 1, "lightning_resistance": 50}
+      }
+    }
+  },
+  "babao_tower": {
+    "description": "八寶樓 (Eight Treasure Tower) - 8-floor dungeon",
+    "location": "將軍府",
+    "floors": {
+      "floor_1": {
+        "title": "八寶樓(1) 歐陽芝",
+        "url": "https://es2tips.blogspot.com/2013/05/1-book.html",
+        "boss": {
+          "name": "「神算無疑」歐陽芝",
+          "faction": "大漠八魔之一",
+          "room": "歐陽書屋 (Ouyang Study)",
+          "exits": ["west", "south"],
+          "martial_style": "步玄派"
+        },
+        "equipment": ["長劍", "白長袍", "腰帶", "皮短靴"],
+        "items": ["【天朝異事錄】(Book of mystery)"]
+      },
+      "floor_2": {
+        "title": "八寶樓(2) 司馬雷",
+        "url": "https://es2tips.blogspot.com/2013/05/2_29.html",
+        "boss": {
+          "name": "司馬雷",
+          "race": "阿修羅族",
+          "age": "~50+",
+          "description": "虎背熊腰，原本是天朝的一名參將，later became desert bandit"
+        },
+        "drops": ["霸王槍 (Royal Pike)", "霸王銅冠 (Royal Helmet)", "霸王鎧 (Royal Armor)", "霸王指環 (Ring of Mighty Lord)"]
+      },
+      "floor_3": {
+        "title": "八寶樓(3) 崇白虎",
+        "url": "https://es2tips.blogspot.com/2013/05/3_29.html",
+        "boss": {
+          "name": "崇白虎",
+          "race": "夜叉族",
+          "age": "~50+",
+          "room": "鑄刀房 (Forge Room)",
+          "exit": "east",
+          "background": "Dedicated weaponsmith"
+        },
+        "drops": [
+          {
+            "name": "虎嘯旭日鎧 (Tiger Plate)",
+            "type": "armor",
+            "description": "灰鋼鎧甲，六隻猛虎+旭日",
+            "stats": {"defense": 30, "damage": 10}
+          },
+          {
+            "name": "邪刀‧焱靈 (Blade of Fire Spirit)",
+            "type": "two-handed blade (雙握刀法)",
+            "stats": {"damage": "9-102", "strength_modifier": "90%", "multiplier": 3, "fire_resistance": 100, "two_hand_bonus": 10, "damage_bonus": 25}
+          },
+          {"name": "精鐵環扣 (Iron girth)"},
+          {"name": "精鋼戰靴 (Steel boots)"}
+        ]
+      },
+      "floor_4": {
+        "title": "八寶樓(4) 馬鍾聖",
+        "url": "https://es2tips.blogspot.com/2013/05/4.html",
+        "boss": {
+          "name": "馬鍾聖",
+          "race": "黑齒族",
+          "rank": "大漠八魔 fifth",
+          "age": "~50+",
+          "room": "拳屋 (Fist House)",
+          "exit": "up",
+          "description": "虎背熊腰, 為人沈默寡言, 殺起人來異常殘忍",
+          "specialty": "Fist techniques (拳法) - profound expertise",
+          "lore": "所有對手都被殺，無人知其武功套路"
+        },
+        "equipment": ["精鋼戰靴 (Steel Boots)", "鐵盔 (Iron Helmet)", "精鋼護腕 (Steel Bracers)", "連身鎖子甲 (Ring Armor)"]
+      },
+      "floor_5": {
+        "title": "八寶樓(5) 公孫微",
+        "url": "https://es2tips.blogspot.com/2013/05/5_29.html",
+        "boss": {
+          "name": "「神行無蹤」公孫微",
+          "race": "焦僥族",
+          "room": "鬼境 (Ghost Realm)",
+          "description": "Tall/thin, skeletal, sneaky, hides in darkness"
+        },
+        "drops": [
+          {"name": "闇之寶靴 (Dark boots)"},
+          {"name": "闇之護手 (Dark bracers)"},
+          {
+            "name": "黑鋼短刃 (Black iron dagger)",
+            "quantity": 2,
+            "stats": {"damage": "10-38", "strength_modifier": "100%", "multiplier": 2, "attack_power": 30},
+            "skills": ["dagger techniques", "off-hand dagger techniques"]
+          }
+        ],
+        "other_npcs": ["枯乾的骸骨 (Dried skeleton)", "腐爛的男屍 (Rotting male corpse) x2"]
+      },
+      "floor_6": {
+        "title": "八寶樓(6) 天神地鬼",
+        "url": "https://es2tips.blogspot.com/2013/05/6_29.html",
+        "boss": {
+          "name": "白魚",
+          "race": "巫首族",
+          "age": "~200+",
+          "role": "Leader of the Eight Desert Demons",
+          "room": "魔境 (Demonic Realm)",
+          "exit": "west",
+          "description": "眼神深邃, indecisive leader"
+        },
+        "drops": [
+          {
+            "name": "怒天鞭 (Angry Heaven Whip)",
+            "type": "soft whip",
+            "stats": {"damage": "11-50", "strength_modifier": "85%", "multiplier": 3, "courage": 2, "alertness": 50, "fire_damage": 15}
+          },
+          {
+            "name": "七星道袍 (Seven Star Robe)",
+            "type": "robe",
+            "material": "天山冰蠶絲",
+            "stats": {"fire_resistance": 15, "cold_resistance": 15, "spellcasting": 10, "defense": 10}
+          },
+          {"name": "青銅道冠 (Copper Hat)"}
+        ]
+      },
+      "floor_7": {
+        "title": "八寶樓(7) 施鈺",
+        "url": "https://es2tips.blogspot.com/2013/05/7.html",
+        "boss": {
+          "name": "「鬼見愁」施鈺",
+          "room_description": "30 skulls with white powder, candles surrounding",
+          "exit": "up",
+          "combat_style": "Low martial ability, extremely advanced poison techniques",
+          "mechanic": "Inflicts unavoidable poison regardless of opponent skill"
+        },
+        "drops": ["百鬒寒鳩劍 (Hundreds_poison sword)", "襯甲 (Padded armor)", "流雲靴 (Cloud boots)"]
+      },
+      "floor_8": {
+        "title": "八寶樓(8) 劍皇",
+        "url": "https://es2tips.blogspot.com/2013/05/8.html",
+        "boss": {
+          "name": "劍皇 軒轅劍月",
+          "age": "~60+",
+          "room": "Decorated like imperial palace with dragon carvings",
+          "description": "Handsome, charming, rarely kills unlike his sworn brothers",
+          "exit": "jump out south window"
+        },
+        "drops": [
+          {"name": "短劍 (Short sword)"},
+          {"name": "長劍 (Longsword)"},
+          {
+            "name": "龍吟指環 (Dragon Ring)",
+            "description": "精緻戒指鑲嵌黑珠",
+            "stats": {"spirituality": 1, "wisdom_root": 1}
+          },
+          {"name": "飛天靴 (Flying boots)"},
+          {"name": "征衣「血染」(Blood cloth armor)"}
+        ]
+      }
+    }
+  },
+  "locations": {
+    "world_map": {
+      "title": "ES2 地圖",
+      "url": "https://es2tips.blogspot.com/2014/03/blog-post_7114.html",
+      "regions": {
+        "northern": [
+          {"name": "天山", "role": "central northern hub"},
+          {"name": "青雲觀", "npcs": ["thunder", "dog"]},
+          {"name": "桃花林/棄劍石"},
+          {"name": "榮府/神域", "feature": "神之心"},
+          {"name": "孟家莊"},
+          {"name": "將軍府", "feature": "八寶樓"},
+          {"name": "風城"}
+        ],
+        "western": [
+          {"name": "天靈山", "npcs": ["awar"]},
+          {"name": "青邪後花園"},
+          {"name": "青邪宮", "npcs": ["chin", "freeze"]},
+          {"name": "草原", "npcs": ["bull"]},
+          {"name": "太乙觀"},
+          {"name": "亂葬崗"},
+          {"name": "雪山"}
+        ],
+        "central_eastern": [
+          {"name": "雪亭鎮", "npcs": ["pot", "monkey", "dragon"]},
+          {"name": "野羊山", "npcs": ["yin"]},
+          {"name": "水月村"},
+          {"name": "雪吟莊", "npcs": ["snow"]},
+          {"name": "李家村"},
+          {"name": "羅城"}
+        ],
+        "southern_water_routes": [
+          {"name": "羿水", "type": "major river"},
+          {"name": "鯉君渡", "feature": "boat"},
+          {"name": "檒城", "feature": "boat"},
+          {"name": "天龍島", "feature": "boat"},
+          {"name": "渡船頭", "npcs": ["ring"], "feature": "boat"}
+        ],
+        "additional_southern": [
+          {"name": "清月樓"},
+          {"name": "京畿", "npcs": ["royal"]},
+          {"name": "紫煙"},
+          {"name": "魚村"},
+          {"name": "青石官道"},
+          {"name": "五陵客棧"},
+          {"name": "水嵐縣"},
+          {"name": "冷梅莊", "npcs": ["lunmay"]}
+        ],
+        "eastern": [
+          {"name": "六甲山"},
+          {"name": "幻霧森林"},
+          {"name": "蘆葦叢", "npcs": ["hairpin"]},
+          {"name": "三煙谷"},
+          {"name": "靈雲觀", "npcs": ["cloud"]},
+          {"name": "康平村", "npcs": ["storm"]},
+          {"name": "老松林", "npcs": ["f.tiger"]},
+          {"name": "百花村"},
+          {"name": "喬陰"},
+          {"name": "焱硝村"},
+          {"name": "黑風山寨"},
+          {"name": "黑風山", "npcs": ["tiger"]},
+          {"name": "白雲觀"},
+          {"name": "比武場", "npcs": ["strange skin"]},
+          {"name": "封山", "npcs": ["foxan", "moon"]},
+          {"name": "斐縣"},
+          {"name": "虎刀門"},
+          {"name": "赤魈村", "npcs": ["dog", "frog"]},
+          {"name": "文國"},
+          {"name": "綠林總部"},
+          {"name": "步玄派", "npcs": ["kind"]},
+          {"name": "黑森林"},
+          {"name": "龍安鎮", "npcs": ["fog"]},
+          {"name": "妖塔"},
+          {"name": "天寒村", "npcs": ["shark"]},
+          {"name": "熊岳村"},
+          {"name": "茅山派廢墟"},
+          {"name": "兆隱縣"},
+          {"name": "天仁客棧"},
+          {"name": "丱天樹", "npcs": ["ghosts"]},
+          {"name": "志縣"},
+          {"name": "東濤客棧"},
+          {"name": "神武軍營"}
+        ],
+        "southern_western_water": [
+          {"name": "擘雲大澤", "type": "major water area"},
+          {"name": "擘雲大澤森林"},
+          {"name": "齊軍府"},
+          {"name": "碧幽部落", "feature": "boat"},
+          {"name": "古墓", "npcs": ["girdle"]},
+          {"name": "冷府"},
+          {"name": "白象寺", "npcs": ["wele"]},
+          {"name": "藏經閣"},
+          {"name": "十八銅人"},
+          {"name": "婁縣"}
+        ]
+      }
+    },
+    "yuanshui_inn": {
+      "title": "域水客棧",
+      "url": "https://es2tips.blogspot.com/2014/03/blog-post_2376.html",
+      "name": "域水客棧",
+      "area": "天寒村",
+      "description": "Small but renowned inn within hundred li, retired imperial chefs",
+      "exits": ["east", "up"],
+      "npcs": ["勾魂鬼 (Symbol-ghost)", "店小二 (Waiter)", "幻霧觀道士 柳風 (Liu Feng)"],
+      "menu": [
+        {"item": "白切肉 (Pork)", "price": "2 taels silver"},
+        {"item": "牛肉包子 (Beef dumpling)", "price": "10 cash"},
+        {"item": "饅頭 (Steamed bun)", "price": "10 cash"}
+      ]
+    },
+    "bookshops": {
+      "title": "名山書肆等地點",
+      "url": "https://es2tips.blogspot.com/2014/11/es2.html",
+      "shops": [
+        {
+          "name": "儒林書坊",
+          "location": "志縣靠軍營處",
+          "npc": "徐師母 (Woman)",
+          "exit": "west",
+          "items": [
+            {"name": "【脈經注】", "price": "18 silver"},
+            {"name": "【名山文考】", "price": "30 silver"},
+            {"name": "【五數】", "price": "22 silver"},
+            {"name": "【文心雕龍】", "price": "25 silver"}
+          ]
+        },
+        {
+          "name": "寶蓮寺",
+          "location": "水嵐東方，尚未出城門",
+          "npc": "無想禪師 (Abbot)",
+          "exits": ["northeast", "south"],
+          "items": [
+            {"name": "迷羅香 (Incense)", "price": "15 silver"},
+            {"name": "【法華經】", "price": "5 silver"},
+            {"name": "【大悲咒】", "price": "5 silver"},
+            {"name": "【往生經】", "price": "5 silver"},
+            {"name": "【佛名經】", "price": "5 silver"}
+          ]
+        },
+        {
+          "name": "狀元堂",
+          "location": "京畿 woodcutter + s + s",
+          "npcs": ["騷客 (Writer)", "李再延", "老秀才 (Old scholar)"],
+          "exit": "north",
+          "items": [
+            {"name": "【大悲咒】", "price": "5 silver"},
+            {"name": "【名山文考】", "price": "30 silver"},
+            {"name": "【往生經】", "price": "5 silver"},
+            {"name": "【咬文嚼字】(Book of words)", "price": "10 silver"},
+            {"name": "【般若波羅密多心經】", "price": "5 silver"},
+            {"name": "【無量壽經】", "price": "5 silver"}
+          ]
+        },
+        {
+          "name": "名山書肆",
+          "location": "喬陰老乞婆西方",
+          "npc": "老人 (Oldman)",
+          "exit": "east",
+          "items": [
+            {"name": "【脈經注】", "price": "18 silver"},
+            {"name": "【名山文考】", "price": "30 silver"},
+            {"name": "【奇兵摘要】(Book of ambush)", "price": "50 silver"},
+            {"name": "【五數】", "price": "22 silver"},
+            {"name": "【文心雕龍】", "price": "25 silver"},
+            {"name": "【般若波羅密多心經】", "price": "5 silver"},
+            {"name": "【無量壽經】", "price": "5 silver"}
+          ]
+        },
+        {
+          "name": "白象寺觀景台",
+          "location": "2F客房",
+          "npc": "小和尚 (Bonze)",
+          "exit": "south",
+          "items": [
+            {"name": "黃山對弈錄 (Chessbook)", "price": "30 coins"},
+            {"name": "迷羅香 (Incense)", "price": "15 silver"},
+            {"name": "【法華經】", "price": "5 silver"},
+            {"name": "饅頭 (Manto)", "price": "10 coins"},
+            {"name": "灰草菇 (Gray mushroom)", "price": "90 coins"},
+            {"name": "小山豬果 (Mini boar berry)", "price": "10 silver"},
+            {"name": "【佛名經】", "price": "5 silver"}
+          ]
+        }
+      ]
+    },
+    "class_masters": {
+      "title": "職業師父位置",
+      "url": "https://es2tips.blogspot.com/2014/10/es2.html",
+      "classes": {
+        "fighter_武者": [
+          {"school": "封山派", "master": "柳東蘆 (Liuh don-lu)", "location": "east of fortune teller in 喬陰"},
+          {"school": "雪吟莊", "master": "魚鐵山 (Yu tieshan)", "location": "northeast of 雪亭鎮", "note": "recommended for beginners"},
+          {"school": "冷梅莊", "master": "梅影風 (May yin fong)", "location": "north of 水嵐 五陵客棧"},
+          {"school": "虎刀門", "master": "高慎 (Kao shen)", "location": "老松林, north from fortune teller"},
+          {"school": "笑啼門", "master": "劉乙忘玄 (Liuye)", "location": "north of 青邪宮, north of 郭布"}
+        ],
+        "thief_盜賊": [
+          {"school": "龍冶派", "master": "吳長貲 (Wu changgui)", "location": "west from 雪亭 toward 亂葬崗, through grass"},
+          {"school": "隱教", "master": "利丰華 (Li fenghua)", "location": "north of 雪亭, 野羊山 area"}
+        ],
+        "alchemist_方士": [
+          {"school": "武拓灸堂", "master": "武道通", "location": "south from five-way intersection toward 斐縣"},
+          {"school": "龍圖丹派", "master": "陳維俠", "location": "雪亭 private school", "note": "easiest to locate"}
+        ],
+        "soldier_軍人": [
+          {"school": "鎮府營", "master": "魯熙年 (Lu xinien)", "location": "northwest of 武當, training ground"},
+          {"school": "御禁衛府", "master": "李天剛 (Li tian gang)", "location": "via ship to capital"}
+        ],
+        "scholar_書生": [
+          {"school": "玄天派", "master": "東方孤冥", "location": "second floor of 春風客棧, road to 風城"},
+          {"school": "步玄派", "master": "駱易", "location": "northeast from 五陵客棧"}
+        ],
+        "celestial_taoist_天師道士": [
+          {"school": "朱衣派", "master": "郭布 (Kuo boo)", "location": "武當 crossroads area"},
+          {"school": "玄衣派", "master": "安懶道人", "location": "east to 康平村 from 老松林"},
+          {"school": "素衣派", "master": "白齊", "location": "太乙觀 west pathway"},
+          {"school": "紫衣派", "master": "華子儀", "location": "青雲觀 west of 天山"}
+        ],
+        "maoshan_taoist_茅山道士": [
+          {"school": "幻霧觀", "master": "杜風凌", "location": "fast ship to 紫煙鎮, then fast cart to 龍安"},
+          {"school": "隱風觀", "master": "歐陽無極", "location": "康平村, near small inn"},
+          {"school": "靈雲觀", "master": "林正陽", "location": "康平村 eastward to mountain trail"}
+        ],
+        "bonze_僧侶": [
+          {"school": "天月庵", "master": "無慾師太 (Wu-yu nun)", "location": "east courtyard of 柳東蘆 residence"},
+          {"school": "寶蓮寺", "master": "無想禪師", "location": "east from 水嵐 五陵客棧"},
+          {"school": "白象寺", "master": "無念大師", "location": "south from 五陵客棧, southwest to 兆隱"}
+        ]
+      }
+    }
+  },
+  "systems": {
+    "reputation": {
+      "title": "聲望系統",
+      "url": "https://es2tips.blogspot.com/2013/05/blog-post_6121.html",
+      "types": [
+        {"name": "黑道聲望 (Underworld)", "gain_methods": ["quests", "defeating generals in military camps (500-1000 pts)", "praise from thief allies"]},
+        {"name": "武林聲望 (Martial Arts)", "gain_methods": ["victory in duels", "praise from martial allies"]},
+        {"name": "青邪戰勳 (Green Evil Merit)", "gain_methods": ["quests", "opening war (開 war)", "defeating ghost kings"]},
+        {"name": "戰場功勳 (Battlefield Merit)", "gain_methods": ["defeating bandits", "quests", "opening bandit war"]}
+      ],
+      "formula": "(LV - 1) * (LV - 1)",
+      "thresholds": [
+        {"level": 50, "points": 40425},
+        {"level": 55, "points": 53955},
+        {"level": 60, "points": 70210},
+        {"level": 65, "points": 89440},
+        {"level": 70, "points": 111895}
+      ]
+    },
+    "faction_hatred": {
+      "title": "門派仇恨",
+      "url": "https://es2tips.blogspot.com/2014/11/vs.html",
+      "factions_with_enmity": [
+        {"name": "軍人 (Military)", "members": "soldiers, garrisons, scouts, guards"},
+        {"name": "封山", "members": "apprentices", "note": "most hated faction"},
+        {"name": "雪吟", "members": "gardeners, guards, maids"},
+        {"name": "青邪", "members": "palace members only"},
+        {"name": "虎刀", "members": "county apprentices and HQ personnel"}
+      ],
+      "factions_without_enmity": [
+        "Money changers", "gate guards", "冷梅 (non-hostile fighter faction)",
+        "銅城", "all Maoshan priests", "all Tianshi priests", "all Fangshi",
+        "monks/nuns", "捕快", "all thieves (龍冶/隱教)", "漕幫", "all scholars"
+      ],
+      "resolution_methods": [
+        "Single-target kills may reduce hostility after multiple deaths",
+        "Deep hatred: consult oldman at 風城 tavern 2F, build trust via combat, contact 榮府 leader (500 gold)",
+        "青邪/雪吟/虎刀 offer complex hatred-clearing quests"
+      ]
+    },
+    "ancient_beasts": {
+      "title": "上古妖獸8隻",
+      "url": "https://es2tips.blogspot.com/2014/11/blog-post_9.html",
+      "beasts": [
+        {"name": "鬼獫 (Inferno Dog)", "location": "山路", "lore": "Sealed by 商句 during desert crossing, dried entire forest"},
+        {"name": "靈狙 (Ritual Monkey)", "location": "廣場中央", "traits": "天性聰穎但膽小害羞"},
+        {"name": "鸂鷘 (Charming Bird)", "location": "老松林", "lore": "Sealed at fourth peak"},
+        {"name": "狻猊 (Devilish Tiger)", "location": "森林中", "lore": "Sealed at first peak, heavy resentful dark energy"},
+        {"name": "天獒 (Godly Dog)", "location": "草原", "lore": "Sealed at second peak, elephant-sized golden fur"},
+        {"name": "寒蟾 (Frost Frog)", "location": "森林", "lore": "Sealed at sixth peak, magic exceeds dragons"},
+        {"name": "鮫蛟 (Evil Hydra)", "location": "樹林", "lore": "Sealed at third peak ice lake, 12 claws, blue crystal scales"},
+        {"name": "饕餮 (Celestial Bull)", "location": "plains", "description": "Hairless bull form, crimson hard skin"}
+      ]
+    },
+    "poison": {
+      "title": "中毒症狀",
+      "url": "https://es2tips.blogspot.com/2014/10/blog-post_28.html",
+      "poisons": [
+        {"name": "酖風刀 (Toxin Wind Blade)", "source": "艾小虎", "symptom": "你感到一陣噁心，忍不住想要嘔吐"},
+        {"name": "雨毒 (Rain Poison)", "source": "佛心", "symptom": "傷口處一陣麻癢，腦中一陣昏眩"},
+        {"name": "附骨之蛆 (Bone-Attached Maggots)", "source": "武道通", "symptom": "嘔出帶血膿痰，有蛆蟲蠕動"},
+        {"name": "百鬒寒鳩劍 (Hundred Plague Sword)", "source": "施鈺", "symptom": "萬毒啐骨, 五臟六腑血氣翻騰"},
+        {"name": "古銅刀 (Copper Blade)", "source": "平陽山 bandit", "symptom": "Black blood discharge, sharp wound pain"},
+        {"name": "藍延刀 (Blue Extended Blade)", "source": "Chin War enemy", "symptom": "冷冽的蝕骨之痛從傷口傳來"},
+        {"name": "萬骨枯心 (Ten-Thousand Bones)", "source": "鬼洞鬼王", "symptom": "傷口已經麻木，沒有任何反應"},
+        {"name": "藥王神劍 (Medicine King Sword)", "source": "unknown", "symptom": "Breathing obstruction"},
+        {"name": "汞池 (Mercury Pool)", "source": "environmental", "symptom": "Severe stomach pain from mercury ingestion"}
+      ]
+    },
+    "four_ghosts_summoning": {
+      "title": "四鬼招喚法",
+      "url": "https://es2tips.blogspot.com/2013/06/blog-post_9349.html",
+      "location": "丱天樹",
+      "commands": [
+        "climb 丱天樹",
+        "offer genip hairpin",
+        "offer dorado ring",
+        "offer chixiao necklace",
+        "offer sparia girdle"
+      ],
+      "required_items": [
+        "genip hairpin (金针发夹)",
+        "dorado ring (金色戒指)",
+        "chixiao necklace (赤宵项链)",
+        "sparia girdle (腰带)"
+      ]
+    },
+    "food": {
+      "title": "食物",
+      "url": "https://es2tips.blogspot.com/2013/05/blog-post_882.html",
+      "location": "小廚房 (Small Kitchen)",
+      "npc": "虎刀門弟子 (Waitress)",
+      "exit": "east",
+      "menu": [
+        {"item": "紅燒雞 (Roast chicken)", "price": "8 taels silver"},
+        {"item": "松果 (Pine nut)", "price": "3 wen"},
+        {"item": "烤羊肉 (Roast mutton)", "price": "5 taels silver"},
+        {"item": "烤肉串 (Barbecue)", "price": "40 wen"}
+      ]
+    },
+    "tianfeng_inn_food": {
+      "title": "天風客棧食物",
+      "url": "https://es2tips.blogspot.com/2013/05/blog-post_28.html",
+      "location": "天風客棧",
+      "area": "清水鄉, 文國縣",
+      "navigation": "From 武陵客棧: sss...ss, sw, sw, sss...enter",
+      "npc": "天風客棧 店小二 (Waiter)",
+      "menu": [
+        {"item": "饅頭 (Steamed bun)", "price": "10 coins"},
+        {"item": "烤羊肉 (Roast goat)", "price": "2 taels silver"},
+        {"item": "白乾 (Wine)", "price": "15 taels silver"},
+        {"item": "烤牛肉 (Roast beef)", "price": "5 taels silver"},
+        {"item": "蒜泥白肉 (Garlic pork)", "price": "2 taels silver", "note": "Required for 京畿 quest"}
+      ]
+    }
+  }
+}

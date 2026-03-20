@@ -6,39 +6,39 @@ inherit SKILL;
 
 mapping *actions = ({
     ([
-        "action":       "$N持$w往$n的$l刺去",
+        "action":       "$N使一招「亂花迷眼」﹐$w幻化出數道劍影刺向$n的$l",
         "dodge":        5,
-        "damae":        5,
+        "damae":        8,
         "damage_type":  "刺傷"
     ]),
     ([
-        "action":       "$N閃身上前﹐$w朝$n的$l劈去",
-        "dodge":        -5,
-        "damae":        5,
-        "damage_type":  "割傷"
-    ]),
-    ([
-        "action":       "$N欺身而進﹐$w直取$n的$l",
+        "action":       "$N施展「顛倒乾坤」﹐$w忽上忽下地劈向$n的$l",
         "dodge":        -10,
-        "damage":       10,
-        "damage_type":  "刺傷"
-    ]),
-    ([
-        "action":       "$N虛晃一招﹐$w反手攻向$n的$l",
-        "dodge":        5,
-        "damae":        5,
+        "damae":        12,
         "damage_type":  "割傷"
     ]),
     ([
-        "action":       "$N忽然暴起﹐$w朝$n的$l猛攻",
+        "action":       "$N猛然使出「混沌初開」﹐$w爆發出狂亂的劍氣斬向$n的$l",
+        "dodge":        -15,
+        "damage":       15,
+        "damage_type":  "割傷"
+    ]),
+    ([
+        "action":       "$N身形飄忽亮出「迷途劍影」﹐$w從意想不到的角度刺向$n的$l",
+        "dodge":        10,
+        "damae":        7,
+        "damage_type":  "刺傷"
+    ]),
+    ([
+        "action":       "$N劍勢一變使出「六道輪迴」﹐$w連環六擊攻向$n的$l",
         "dodge":        -5,
         "damage":       10,
         "damage_type":  "刺傷"
     ]),
     ([
-        "action":       "$N一個側身﹐$w劃向$n的$l",
-        "dodge":        10,
-        "damae":        5,
+        "action":       "$N旋身施展「天旋地轉」﹐$w化作一團劍旋劃向$n的$l",
+        "dodge":        0,
+        "damae":        10,
         "damage_type":  "割傷"
     ]),
 });

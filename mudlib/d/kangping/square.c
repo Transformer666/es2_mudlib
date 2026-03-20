@@ -15,6 +15,7 @@ LONG
 		"west" : __DIR__"street",
 		"north" : __DIR__"inn",
 		"east" : __DIR__"thatched_hall",
+		"south" : __DIR__"well",
 	]));
 
 	setup();

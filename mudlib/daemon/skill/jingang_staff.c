@@ -6,45 +6,45 @@ inherit SKILL;
 
 mapping *actions = ({
     ([
-        "action":       "$N持$w往$n的$l砸去",
-        "dodge":        5,
-        "damae":        5,
-        "damage_type":  "瘀傷"
-    ]),
-    ([
-        "action":       "$N閃身上前﹐$w朝$n的$l劈去",
-        "dodge":        -5,
-        "damae":        5,
-        "damage_type":  "瘀傷"
-    ]),
-    ([
-        "action":       "$N欺身而進﹐$w直取$n的$l",
+        "action":       "$N一式「金剛伏魔」﹐$w帶著千鈞之力砸向$n的$l",
         "dodge":        -10,
         "damage":       10,
         "damage_type":  "瘀傷"
     ]),
     ([
-        "action":       "$N虛晃一招﹐$w反手攻向$n的$l",
-        "dodge":        5,
-        "damae":        5,
-        "damage_type":  "瘀傷"
-    ]),
-    ([
-        "action":       "$N忽然暴起﹐$w朝$n的$l猛攻",
+        "action":       "$N口宣佛號﹐使出「羅漢鎮邪」﹐$w橫掃$n的$l",
         "dodge":        -5,
-        "damage":       10,
+        "damae":        8,
         "damage_type":  "瘀傷"
     ]),
     ([
-        "action":       "$N一個側身﹐$w劃向$n的$l",
+        "action":       "$N棍影大盛﹐「佛光普照」﹐$w如金光般罩向$n的$l",
+        "dodge":        5,
+        "damage":       5,
+        "damage_type":  "瘀傷"
+    ]),
+    ([
+        "action":       "$N大喝一聲﹐一招「降龍伏虎」﹐$w猛力劈向$n的$l",
+        "dodge":        -15,
+        "damage":       15,
+        "damage_type":  "瘀傷"
+    ]),
+    ([
+        "action":       "$N怒目圓睜﹐使出「怒目金剛」﹐$w直搗$n的$l",
+        "dodge":        -5,
+        "damae":        12,
+        "damage_type":  "瘀傷"
+    ]),
+    ([
+        "action":       "$N持棍護身﹐一式「天王護法」﹐$w順勢掃向$n的$l",
         "dodge":        10,
-        "damae":        5,
+        "damae":        7,
         "damage_type":  "瘀傷"
     ]),
 });
 
 string *interattack = ({
-    "$N雙手持棍﹐渾身散發出金剛怒目般的威勢。\n",
+    "$N持棍在手﹐金剛棍法帶著一股沛然正氣。\n",
 });
 
 private void

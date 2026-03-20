@@ -12,9 +12,13 @@ void create()
 LONG
 	);
 	set("outdoors", "village");
+	set("objects", ([
+		__DIR__"npc/guard" : 1,
+	]));
 	set("exits", ([
 		"west" : "/d/oldpine/road3",
 		"east" : __DIR__"street",
+		"south" : __DIR__"path",
 	]));
 
 	setup();

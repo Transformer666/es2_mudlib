@@ -6,45 +6,45 @@ inherit SKILL;
 
 mapping *actions = ({
     ([
-        "action":       "$N持$w往$n的$l點去",
-        "dodge":        5,
-        "damae":        5,
-        "damage_type":  "瘀傷"
-    ]),
-    ([
-        "action":       "$N閃身上前﹐$w朝$n的$l劈去",
-        "dodge":        -5,
-        "damae":        5,
-        "damage_type":  "瘀傷"
-    ]),
-    ([
-        "action":       "$N欺身而進﹐$w直取$n的$l",
-        "dodge":        -10,
-        "damage":       10,
-        "damage_type":  "瘀傷"
-    ]),
-    ([
-        "action":       "$N虛晃一招﹐$w反手攻向$n的$l",
-        "dodge":        5,
-        "damae":        5,
-        "damage_type":  "瘀傷"
-    ]),
-    ([
-        "action":       "$N忽然暴起﹐$w朝$n的$l猛攻",
-        "dodge":        -5,
-        "damage":       10,
-        "damage_type":  "瘀傷"
-    ]),
-    ([
-        "action":       "$N一個側身﹐$w劃向$n的$l",
+        "action":       "$N使出「柔情似水」﹐指尖輕柔地點向$n的$l",
         "dodge":        10,
-        "damae":        5,
+        "damae":        6,
         "damage_type":  "瘀傷"
+    ]),
+    ([
+        "action":       "$N施展「纖指點穴」﹐纖指疾點$n的$l",
+        "dodge":        -5,
+        "damage":       10,
+        "damage_type":  "刺傷"
+    ]),
+    ([
+        "action":       "$N翩然使出「蘭花拂穴」﹐指如蘭花般拂向$n的$l",
+        "dodge":        5,
+        "damae":        8,
+        "damage_type":  "瘀傷"
+    ]),
+    ([
+        "action":       "$N使出「玉指纏絲」﹐指力纏繞攻向$n的$l",
+        "dodge":        -10,
+        "damage":       12,
+        "damage_type":  "刺傷"
+    ]),
+    ([
+        "action":       "$N輕彈玉指使出「輕指彈夢」﹐指風飄渺地擊向$n的$l",
+        "dodge":        -5,
+        "damae":        9,
+        "damage_type":  "瘀傷"
+    ]),
+    ([
+        "action":       "$N忽然指力一變使出「柔中帶剛」﹐剛猛地戳向$n的$l",
+        "dodge":        -15,
+        "damage":       14,
+        "damage_type":  "刺傷"
     ]),
 });
 
 string *interattack = ({
-    "$N伸出纖纖玉指﹐柔指功的指力暗藏。\n",
+    "$N手指纖纖﹐柔指功的指法看似柔弱實則暗藏殺機。\n",
 });
 
 private void

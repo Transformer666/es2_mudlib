@@ -6,45 +6,45 @@ inherit SKILL;
 
 mapping *actions = ({
     ([
-        "action":       "$N持$w往$n的$l抽去",
-        "dodge":        5,
+        "action":       "$N一式「雪舞狂飆」﹐$w如暴風雪般抽向$n的$l",
+        "dodge":        -5,
         "damae":        5,
         "damage_type":  "瘀傷"
     ]),
     ([
-        "action":       "$N閃身上前﹐$w朝$n的$l劈去",
-        "dodge":        -5,
-        "damae":        5,
-        "damage_type":  "割傷"
-    ]),
-    ([
-        "action":       "$N欺身而進﹐$w直取$n的$l",
+        "action":       "$N鞭影一閃﹐使出「冰鏈縛天」﹐$w纏向$n的$l",
         "dodge":        -10,
         "damage":       10,
         "damage_type":  "瘀傷"
     ]),
     ([
-        "action":       "$N虛晃一招﹐$w反手攻向$n的$l",
-        "dodge":        5,
-        "damae":        5,
+        "action":       "$N身形旋轉﹐「寒風捲雪」﹐$w挾著寒氣掃向$n的$l",
+        "dodge":        -15,
+        "damage":       15,
         "damage_type":  "割傷"
     ]),
     ([
-        "action":       "$N忽然暴起﹐$w朝$n的$l猛攻",
-        "dodge":        -5,
-        "damage":       10,
+        "action":       "$N冷哼一聲﹐一招「凝霜纏身」﹐$w如蛇般纏向$n的$l",
+        "dodge":        5,
+        "damae":        8,
         "damage_type":  "瘀傷"
     ]),
     ([
-        "action":       "$N一個側身﹐$w劃向$n的$l",
-        "dodge":        10,
-        "damae":        5,
+        "action":       "$N連環出鞭﹐使出「飛雪連環」﹐$w接連抽向$n的$l",
+        "dodge":        -5,
+        "damage":       12,
         "damage_type":  "割傷"
+    ]),
+    ([
+        "action":       "$N猛然揮鞭﹐「冰河裂岸」﹐$w帶著破空之聲砸向$n的$l",
+        "dodge":        10,
+        "damae":        7,
+        "damage_type":  "瘀傷"
     ]),
 });
 
 string *interattack = ({
-    "$N手持長鞭﹐鞭影如飛雪般凌厲。\n",
+    "$N揮動雪鞭﹐鞭影如漫天飛雪。\n",
 });
 
 private void

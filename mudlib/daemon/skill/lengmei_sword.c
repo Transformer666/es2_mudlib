@@ -6,45 +6,45 @@ inherit SKILL;
 
 mapping *actions = ({
   ([
-    "action":		"$N手腕一翻﹐$w如寒梅吐蕊般刺向$n的$l",
-    "dodge":		5,
-    "damage":		5,
+    "action":		"$N使一招「寒梅傲雪」﹐$w如寒梅綻放般刺向$n的$l",
+    "dodge":		-5,
+    "damae":		10,
     "damage_type":	"刺傷"
   ]),
   ([
-    "action":		"$N身形一晃﹐$w帶著凜冽寒意斬向$n的$l",
-    "dodge":		-5,
-    "damage":		10,
+    "action":		"$N施展「冷月無聲」﹐$w悄然無息地斬向$n的$l",
+    "dodge":		-10,
+    "damage":		12,
     "damage_type":	"割傷"
   ]),
   ([
-    "action":		"$N疾退一步﹐$w反手一劍削向$n的$l",
+    "action":		"$N使出「梅花三弄」﹐$w連刺三劍取向$n的$l",
+    "dodge":		5,
+    "damae":		8,
+    "damage_type":	"刺傷"
+  ]),
+  ([
+    "action":		"$N一招「暗香浮動」﹐$w帶著凜冽寒意削向$n的$l",
     "dodge":		10,
     "damage":		5,
     "damage_type":	"割傷"
   ]),
   ([
-    "action":		"$N身形如電﹐$w化為一點寒芒直取$n的$l",
-    "dodge":		-10,
-    "damage":		10,
-    "damage_type":	"刺傷"
-  ]),
-  ([
-    "action":		"$N踏雪無痕般滑步上前﹐$w橫掃$n的$l",
-    "dodge":		-5,
-    "damage":		10,
+    "action":		"$N運起「疏影橫斜」﹐$w劍影橫斜掠過$n的$l",
+    "dodge":		-15,
+    "damae":		15,
     "damage_type":	"割傷"
   ]),
   ([
-    "action":		"$N冷然一笑﹐$w疾刺$n的$l﹐劍勢快如冰雪飄落",
-    "dodge":		-15,
-    "damage":		15,
+    "action":		"$N喝道「冰清玉潔」﹐$w化為一道冰寒劍氣射向$n的$l",
+    "dodge":		-5,
+    "damage":		10,
     "damage_type":	"刺傷"
   ]),
 });
 
 string *interattack = ({
-  "$N握著$n﹐神色冷峻﹐劍尖微微顫動。\n",
+  "$N持劍在手﹐劍上彷彿散發出一股清冷的梅香。\n",
 });
 
 private void

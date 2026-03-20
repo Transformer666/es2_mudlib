@@ -6,45 +6,45 @@ inherit SKILL;
 
 mapping *actions = ({
   ([
-    "action":		"$N一聲令下﹐指揮部下朝$n的$l發起攻擊",
-    "dodge":		-5,
-    "damage":		10,
-    "damage_type":	"瘀傷"
-  ]),
-  ([
-    "action":		"$N運籌帷幄﹐揮手示意部下包抄$n的$l",
+    "action":		"$N持$n使出「破陣斬將」﹐大開大闔地劈向$n的$l",
     "dodge":		-10,
-    "damage":		10,
-    "damage_type":	"瘀傷"
+    "damae":		12,
+    "damage_type":	"割傷"
   ]),
   ([
-    "action":		"$N大喝一聲﹐親自衝鋒朝$n的$l猛擊",
+    "action":		"$N持$n施展「軍陣突擊」﹐如箭般突刺$n的$l",
     "dodge":		-15,
     "damage":		15,
     "damage_type":	"瘀傷"
   ]),
   ([
-    "action":		"$N以退為進﹐忽然反身一拳打向$n的$l",
-    "dodge":		10,
-    "damage":		5,
-    "damage_type":	"瘀傷"
-  ]),
-  ([
-    "action":		"$N厲聲喝令﹐部下如潮水般湧向$n的$l",
+    "action":		"$N持$n使出「長驅直入」﹐勢不可擋地攻向$n的$l",
     "dodge":		-5,
-    "damage":		10,
+    "damae":		9,
     "damage_type":	"瘀傷"
   ]),
   ([
-    "action":		"$N擺出鶴翼陣勢﹐揮拳猛攻$n的$l",
+    "action":		"$N持$n橫掃使出「鐵壁橫掃」﹐沉重地掃向$n的$l",
     "dodge":		-10,
-    "damage":		15,
+    "damage":		13,
+    "damage_type":	"割傷"
+  ]),
+  ([
+    "action":		"$N持$n使出「衝鋒陷陣」﹐奮不顧身地衝向$n的$l",
+    "dodge":		5,
+    "damae":		7,
     "damage_type":	"瘀傷"
+  ]),
+  ([
+    "action":		"$N持$n使出「兵法奇謀」﹐出其不意地攻向$n的$l",
+    "dodge":		10,
+    "damage":		6,
+    "damage_type":	"割傷"
   ]),
 });
 
 string *interattack = ({
-  "$N目光銳利地觀察著戰場形勢﹐伺機而動。\n",
+  "$N持$n在手﹐戰術招式穩健紮實﹐殺氣凜然。\n",
 });
 
 private void

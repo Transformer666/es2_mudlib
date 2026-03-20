@@ -6,37 +6,37 @@ inherit SKILL;
 
 mapping *actions = ({
     ([
-        "action":       "$N持$w往$n的$l抓去",
-        "dodge":        5,
-        "damae":        5,
-        "damage_type":  "割傷"
-    ]),
-    ([
-        "action":       "$N閃身上前﹐$w朝$n的$l劈去",
-        "dodge":        -5,
-        "damae":        5,
-        "damage_type":  "割傷"
-    ]),
-    ([
-        "action":       "$N欺身而進﹐$w直取$n的$l",
+        "action":       "$N使出「鷹爪擒拿」﹐五指如鉤扣向$n的$l",
         "dodge":        -10,
-        "damage":       10,
+        "damae":        10,
         "damage_type":  "割傷"
     ]),
     ([
-        "action":       "$N虛晃一招﹐$w反手攻向$n的$l",
-        "dodge":        5,
-        "damae":        5,
+        "action":       "$N猛然施展「虎爪裂肉」﹐利爪撕向$n的$l",
+        "dodge":        -15,
+        "damage":       14,
         "damage_type":  "割傷"
     ]),
     ([
-        "action":       "$N忽然暴起﹐$w朝$n的$l猛攻",
+        "action":       "$N伸手使出「龍爪探珠」﹐直探$n的$l",
         "dodge":        -5,
-        "damage":       10,
+        "damae":        8,
         "damage_type":  "割傷"
     ]),
     ([
-        "action":       "$N一個側身﹐$w劃向$n的$l",
+        "action":       "$N翻手使出「鳳爪穿林」﹐爪影紛飛刺向$n的$l",
+        "dodge":        5,
+        "damae":        7,
+        "damage_type":  "割傷"
+    ]),
+    ([
+        "action":       "$N大喝一聲使出「熊掌碎骨」﹐巨力拍向$n的$l",
+        "dodge":        -10,
+        "damage":       13,
+        "damage_type":  "割傷"
+    ]),
+    ([
+        "action":       "$N身形一晃使出「蛇爪纏絲」﹐陰柔地纏向$n的$l",
         "dodge":        10,
         "damae":        5,
         "damage_type":  "割傷"
@@ -44,7 +44,7 @@ mapping *actions = ({
 });
 
 string *interattack = ({
-    "$N五指微曲﹐擺出爪功的架勢。\n",
+    "$N十指微曲如鉤﹐抓法的爪勢凶狠無比。\n",
 });
 
 private void

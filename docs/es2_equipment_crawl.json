@@ -1,0 +1,1145 @@
+{
+  "metadata": {
+    "source": "es2tips.blogspot.com",
+    "crawl_date": "2026-03-20",
+    "total_items": 45,
+    "categories": ["weapons", "armor", "accessories", "consumables", "quest_items"]
+  },
+  "equipment": [
+    {
+      "id": 1,
+      "name_zh": "毒龍鞭",
+      "name_en": "Dragon Whip / Poison Dragon Whip",
+      "type": "weapon",
+      "subtype": "whip",
+      "url": "https://es2tips.blogspot.com/2014/11/dragon-whip.html",
+      "stats": {
+        "damage": "10-43",
+        "strength_modifier": "100%",
+        "multiplier_level": 3
+      },
+      "properties": {
+        "sorcery_咒術": 10,
+        "attack_capability_攻擊能力值": 10,
+        "lightning_damage_雷電傷害力": 25
+      },
+      "skill": "軟鞭鞭法 (whip)",
+      "npc_source": "聶晟 (Nie Sheng)",
+      "location": null,
+      "quest_steps": null
+    },
+    {
+      "id": 2,
+      "name_zh": "霹靂雷火彈",
+      "name_en": "Lightning Bomb",
+      "type": "consumable",
+      "subtype": "explosive",
+      "url": "https://es2tips.blogspot.com/2014/11/lightning-bomb.html",
+      "stats": {},
+      "properties": {},
+      "skill": null,
+      "description": "一顆小小的珠子，隱隱傳來硝石的味道。似乎可以拿來引爆",
+      "usage": "explode <target> - creates smoke cover for escape",
+      "npc_source": "黑無常 (Black Impermanence) - hostile NPC encountered",
+      "location": null,
+      "quest_steps": null
+    },
+    {
+      "id": 3,
+      "name_zh": "交歡杖",
+      "name_en": "Staff of Eroticism",
+      "type": "weapon",
+      "subtype": "two-handed staff",
+      "url": "https://es2tips.blogspot.com/2014/11/staff-of-eroticism-huge.html",
+      "stats": {
+        "damage": "13-64",
+        "strength_modifier": "150%",
+        "multiplier_level": 3
+      },
+      "properties": {
+        "strength_膂力": 3,
+        "ice_damage_冰寒傷害力": 50,
+        "ice_defense_冰寒傷害防禦力": 100,
+        "fire_defense_火焰傷害防禦力": 100,
+        "defense_防禦力": 30,
+        "fire_damage_火焰傷害力": 50,
+        "wisdom_慧根": 3
+      },
+      "skill": "雙握杖法 (twohanded staff)",
+      "npc_source": null,
+      "location": null,
+      "quest_steps": null,
+      "contributor": "紅紅的月亮 (zorg)"
+    },
+    {
+      "id": 4,
+      "name_zh": "玉戒尺",
+      "name_en": "Green Blade / Jade Ruler",
+      "type": "weapon",
+      "subtype": "blade",
+      "url": "https://es2tips.blogspot.com/2014/11/green-blade.html",
+      "stats": {
+        "damage": "8-41",
+        "strength_modifier": "90%",
+        "multiplier_level": 3
+      },
+      "properties": {
+        "dark_evil_heart_sutra_大邪心經": 10,
+        "inner_power_內功": 10,
+        "technique_dismantling_拆招卸力之法": 10
+      },
+      "skill": null,
+      "engraving": "七傷七損",
+      "npc_source": "蕭尹 (Xiao Yin) - 漕幫總舵主 (Grand Master of Cao Gang)",
+      "location": "歡喜樓天字第一號房",
+      "related_npcs": [
+        {
+          "name_zh": "蕭尹",
+          "name_en": "Xiao Yin",
+          "title": "漕幫總舵主 (Grand Master of Cao Gang)",
+          "location": "歡喜樓天字第一號房",
+          "description": "Elderly man, 60+ years old, established Cao Gang water transport faction"
+        },
+        {
+          "name_zh": "言歙",
+          "name_en": "Yan She",
+          "title": "御史大夫 (Imperial Censor)",
+          "location": "縣衙客房",
+          "equipment": ["綠玉頂戴 (Jade Hat)", "蟠龍朝服 (Dragon Cloth)"]
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "name_zh": "金龍豹紋槍",
+      "name_en": "Golden Beast Lance",
+      "type": "weapon",
+      "subtype": "two-handed pike",
+      "url": "https://es2tips.blogspot.com/2014/11/golden-beast-lance.html",
+      "stats": {
+        "damage": "14-90",
+        "strength_modifier": "150%",
+        "multiplier_level": 4
+      },
+      "properties": {
+        "attack_capability_攻擊能力值": 50,
+        "strength_膂力": 5,
+        "defense_防禦力": 50
+      },
+      "skill": "雙手槍法 (twohanded pike)",
+      "npc_source": null,
+      "location": null
+    },
+    {
+      "id": 6,
+      "name_zh": "蔑天劍",
+      "name_en": "Sword of Killing God",
+      "type": "weapon",
+      "subtype": "two-handed sword",
+      "url": "https://es2tips.blogspot.com/2014/10/sword-of-killing-god.html",
+      "stats": {
+        "damage": "7-94",
+        "strength_modifier": "157%",
+        "multiplier_level": 3
+      },
+      "properties": {
+        "twohanded_sword_雙握劍術": 25,
+        "courage_膽識": 5,
+        "damage_傷害力": 50
+      },
+      "skill": "雙握劍術 (twohanded sword)",
+      "special_effect": "攻擊可補精 (Attacks restore essence/jing)",
+      "npc_source": null,
+      "location": null,
+      "related_equipment_set": {
+        "set_name": "火鱗 (Red Scale)",
+        "pieces": [
+          {"name_zh": "火鱗胸鎧", "name_en": "Red Scale Plate", "slot": "chest"},
+          {"name_zh": "火鱗脛甲", "name_en": "Red Scale Leggings", "slot": "legs"},
+          {"name_zh": "火鱗腰帶", "name_en": "Red Scale Girth", "slot": "waist"},
+          {"name_zh": "火鱗手套", "name_en": "Red Scale Gloves", "slot": "hands"},
+          {"name_zh": "火鱗盔", "name_en": "Red Scale Helm", "slot": "head"},
+          {"name_zh": "火鱗靴", "name_en": "Red Scale Boots", "slot": "feet"},
+          {"name_zh": "火鱗衣", "name_en": "Red Scale Cloth", "slot": "body"}
+        ]
+      }
+    },
+    {
+      "id": 7,
+      "name_zh": "疾風劍",
+      "name_en": "Rapid Sword",
+      "type": "weapon",
+      "subtype": "sword",
+      "url": "https://es2tips.blogspot.com/2014/08/rapid-sword.html",
+      "stats": {
+        "damage": "9-54",
+        "strength_modifier": "120%",
+        "multiplier_level": 3
+      },
+      "properties": {
+        "wind_damage_風擊傷害力": 25,
+        "offensive_level_攻擊能力值": 50,
+        "courage_膽識": 1
+      },
+      "skill": ["劍術 (sword)", "左手劍術 (secondhand sword)"],
+      "npc_source": null,
+      "location": null
+    },
+    {
+      "id": 8,
+      "name_zh": "河魚腹珠",
+      "name_en": "Essence of Fish",
+      "type": "quest_item",
+      "subtype": "trade good",
+      "url": "https://es2tips.blogspot.com/2014/08/essence-of-fish-psychic-sword.html",
+      "stats": {},
+      "properties": {},
+      "description": "Pearl-like object formed in fish bellies over years",
+      "npc_source": "珍寶商人 (Treasure Merchant) - exchange NPC",
+      "location": null
+    },
+    {
+      "id": 9,
+      "name_zh": "靈通劍",
+      "name_en": "Psychic Sword",
+      "type": "weapon",
+      "subtype": "sword",
+      "url": "https://es2tips.blogspot.com/2014/08/essence-of-fish-psychic-sword.html",
+      "stats": {
+        "damage": "4-32",
+        "strength_modifier": "100%",
+        "multiplier_level": 2
+      },
+      "properties": {
+        "spellcraft_法術": 5,
+        "spirituality_靈性": 1,
+        "enlightenment_悟性": 1
+      },
+      "skill": ["劍術 (sword)", "左手劍術 (secondhand sword)"],
+      "material": "obsidian",
+      "npc_source": null,
+      "location": null
+    },
+    {
+      "id": 10,
+      "name_zh": "寒玉藥杵",
+      "name_en": "Jade Rod",
+      "type": "weapon",
+      "subtype": "blunt/hammer",
+      "url": "https://es2tips.blogspot.com/2014/03/jade-rod.html",
+      "stats": {
+        "damage": "3-45",
+        "strength_modifier": "115%",
+        "multiplier_level": 3
+      },
+      "properties": {
+        "ice_defense_冰寒傷害防禦力": 50,
+        "wisdom_慧根": 1,
+        "alchemy_丹道_神農之術": 20
+      },
+      "skill": "鎚法 (hammer)",
+      "npc_source": "藥草商 (Herbalist)",
+      "location": "蛇膽 --> 五堂 west -> boar -> north to 藥草商",
+      "quest_steps": ["Go to 蛇膽", "Travel to 五堂 west", "Pass boar area", "Go north to find 藥草商 (Herbalist)"]
+    },
+    {
+      "id": 11,
+      "name_zh": "清風刀",
+      "name_en": "Wind-power Blade",
+      "type": "weapon",
+      "subtype": "blade",
+      "url": "https://es2tips.blogspot.com/2014/03/blog-post.html",
+      "stats": {
+        "damage": "7-64",
+        "strength_modifier": null,
+        "multiplier_level": null
+      },
+      "properties": {
+        "attack_攻擊能力值": 20,
+        "inner_power_內功": 10
+      },
+      "skill": "刀法 (blade)",
+      "related_npcs": ["封七慾", "梵雲飛 (historical figure)", "劉乙老賊 (antagonist)"],
+      "npc_source": null,
+      "location": null
+    },
+    {
+      "id": 12,
+      "name_zh": "血匕封喉",
+      "name_en": "Bloody Dagger",
+      "type": "weapon",
+      "subtype": "dagger",
+      "url": "https://es2tips.blogspot.com/2014/03/blog-post.html",
+      "stats": {
+        "damage": "10-52",
+        "strength_modifier": null,
+        "multiplier_level": null
+      },
+      "properties": {
+        "killer_instinct": 10,
+        "alertness_警覺性": 30
+      },
+      "skill": ["錐法 (dagger)", "左手錐法 (secondhand dagger)"],
+      "npc_source": null,
+      "location": null
+    },
+    {
+      "id": 13,
+      "name_zh": "青鋼短劍",
+      "name_en": "Iron Sword",
+      "type": "weapon",
+      "subtype": "sword",
+      "url": "https://es2tips.blogspot.com/2014/03/blog-post.html",
+      "stats": {
+        "damage": "3-37",
+        "strength_modifier": null,
+        "multiplier_level": null
+      },
+      "properties": {},
+      "skill": ["劍術 (sword)", "左手劍術 (secondhand sword)"],
+      "npc_source": null,
+      "location": null
+    },
+    {
+      "id": 14,
+      "name_zh": "蛈蜇杳龍屐",
+      "name_en": "Dragon Boots",
+      "type": "armor",
+      "subtype": "boots",
+      "url": "https://es2tips.blogspot.com/2014/03/blog-post.html",
+      "stats": {},
+      "properties": {
+        "damage_傷害力": 5,
+        "attack_level_攻擊能力值": 25
+      },
+      "npc_source": null,
+      "location": null
+    },
+    {
+      "id": 15,
+      "name_zh": "鴛鴦刀譜殘頁",
+      "name_en": "Incomplete Blade Manual Pages",
+      "type": "quest_item",
+      "subtype": "skill manual fragment",
+      "url": "https://es2tips.blogspot.com/2014/03/blog-post.html",
+      "description": "Cannot be practiced without complete manual",
+      "npc_source": null,
+      "location": null
+    },
+    {
+      "id": 16,
+      "name_zh": "封神寶鏡",
+      "name_en": "Mirror of Gods",
+      "type": "accessory",
+      "subtype": "protective gear",
+      "url": "https://es2tips.blogspot.com/2014/02/mirror-of-gods-black-spark.html",
+      "stats": {},
+      "properties": {
+        "attack_power_攻擊能力值": 25,
+        "alertness_警覺性": 100
+      },
+      "npc_source": "黑袍怪人 (Figure in Black Robes)",
+      "location": "五堂鎮城隍廟 (Wutang Town City God Temple)"
+    },
+    {
+      "id": 17,
+      "name_zh": "離玄光熾",
+      "name_en": "Black Spark",
+      "type": "weapon",
+      "subtype": "two-handed staff",
+      "url": "https://es2tips.blogspot.com/2014/02/mirror-of-gods-black-spark.html",
+      "stats": {
+        "damage_base": "13-82",
+        "strength_modifier_base": "225%",
+        "multiplier_level": 3,
+        "damage_enhanced": "6-153",
+        "strength_modifier_enhanced": "342%"
+      },
+      "properties": {
+        "strength_膂力": 2,
+        "damage_bonus_傷害力": 20,
+        "defense_level_防禦力": 30
+      },
+      "skill": "雙握杖法 (twohanded staff)",
+      "enhancement": "金咒 (Golden Spell) - significantly increases weapon damage",
+      "npc_source": "黑袍怪人 (Figure in Black Robes)",
+      "location": "五堂鎮城隍廟 (Wutang Town City God Temple) basement"
+    },
+    {
+      "id": 18,
+      "name_zh": "玄烏杖",
+      "name_en": "Strange-copper Staff",
+      "type": "weapon",
+      "subtype": "two-handed staff",
+      "url": "https://es2tips.blogspot.com/2014/02/stange-copper-staff-celestial-bull-cane.html",
+      "stats": {
+        "damage": "13-64",
+        "strength_modifier": "150%",
+        "multiplier_level": 3
+      },
+      "properties": {
+        "alertness_警覺性": 50,
+        "wisdom_慧根": 3,
+        "wind_defense_風擊傷害防禦力": 100
+      },
+      "skill": "雙握杖法 (twohanded staff)",
+      "npc_source": "龍安莫大叔 (Uncle Muo of Long'an)",
+      "location": null
+    },
+    {
+      "id": 19,
+      "name_zh": "饕餮法杖",
+      "name_en": "Celestial Bull Cane",
+      "type": "weapon",
+      "subtype": "two-handed staff",
+      "url": "https://es2tips.blogspot.com/2014/02/stange-copper-staff-celestial-bull-cane.html",
+      "stats": {
+        "damage": "13-64",
+        "strength_modifier": "150%",
+        "multiplier_level": 3
+      },
+      "properties": {
+        "strength_膂力": 3,
+        "spirituality_靈性": 3,
+        "defense_防禦力": 50
+      },
+      "skill": "雙握杖法 (twohanded staff)",
+      "special_ability": "knock silver/gold to generate talisman papers (50 gold = ~20,000 blank talisman papers)",
+      "npc_source": "龍安莫大叔 (Uncle Muo of Long'an)",
+      "location": null,
+      "quest_steps": ["say to NPC", "give sword", "give 罪牙匕 (Sinful fang dagger)"]
+    },
+    {
+      "id": 20,
+      "name_zh": "歸心似劍",
+      "name_en": "Loving Sword",
+      "type": "weapon",
+      "subtype": "short sword",
+      "url": "https://es2tips.blogspot.com/2014/02/loving-sword-silky-gloves.html",
+      "stats": {
+        "damage": "3-21",
+        "strength_modifier": "50%",
+        "multiplier_level": 2
+      },
+      "properties": {
+        "attack_power_攻擊能力值": 30,
+        "damage_傷害力": 5
+      },
+      "skill": ["劍術 (sword)", "左手劍術 (secondhand sword)"],
+      "special": "Requires guild membership (幫會) for 'vow' ability",
+      "npc_source": null,
+      "location": null
+    },
+    {
+      "id": 21,
+      "name_zh": "青絲手套",
+      "name_en": "Silky Gloves",
+      "type": "armor",
+      "subtype": "gloves",
+      "url": "https://es2tips.blogspot.com/2014/02/loving-sword-silky-gloves.html",
+      "stats": {},
+      "properties": {
+        "composure_定力": 2,
+        "spellcraft_法術": 5,
+        "incantation_咒術": 5
+      },
+      "npc_source": null,
+      "location": "京畿 (Capital Region)",
+      "quest_steps": [
+        "Talk to 張章 (Zhang Zhang) - quest giver",
+        "Get gloves",
+        "Go to 龍卿 (Long Qing)",
+        "Go to 張雁來 (Zhang Yanlai)",
+        "say 天靈山",
+        "Return to 龍卿"
+      ]
+    },
+    {
+      "id": 22,
+      "name_zh": "白色長劍",
+      "name_en": "White Sword",
+      "type": "weapon",
+      "subtype": "sword",
+      "url": "https://es2tips.blogspot.com/2014/02/white-sword.html",
+      "stats": {
+        "damage": "3-21",
+        "strength_modifier": "50%",
+        "multiplier_level": 2
+      },
+      "properties": {
+        "spirituality_靈性": 1,
+        "ice_damage_冰寒傷害力": 15,
+        "lightning_damage_雷電傷害力": 15
+      },
+      "skill": "劍術 (sword)",
+      "npc_source": "紫衣道人 (Purple-Robed Taoist)",
+      "location": null
+    },
+    {
+      "id": 23,
+      "name_zh": "萬年雪",
+      "name_en": "Staff of Ancient Snow",
+      "type": "weapon",
+      "subtype": "two-handed staff",
+      "url": "https://es2tips.blogspot.com/2014/01/staff-of-ancient-snow.html",
+      "stats": {
+        "damage": "2-32",
+        "strength_modifier": "135%",
+        "multiplier_level": 2
+      },
+      "properties": {
+        "twohanded_staff_雙握杖法": 20,
+        "cold_damage_defense_冰寒傷害防禦力": 100,
+        "wisdom_慧根": 2
+      },
+      "skill": "雙握杖法 (twohanded staff)",
+      "lore": "A mage crafted this staff using his fiancee's body and blood; her dying curse transformed the world into endless winter",
+      "npc_source": null,
+      "location": null
+    },
+    {
+      "id": 24,
+      "name_zh": "雷熊爪",
+      "name_en": "Thunder Claw",
+      "type": "armor",
+      "subtype": "gauntlets/hand protector",
+      "url": "https://es2tips.blogspot.com/2014/01/thunder-claw.html",
+      "stats": {},
+      "properties": {
+        "defense_ability_防禦能力值": 25,
+        "lightning_defense_雷電傷害防禦力": 50
+      },
+      "description": "Hand guards crafted from Thunder Bear front claws, faintly emanating electrical radiance",
+      "npc_source": null,
+      "location": null
+    },
+    {
+      "id": 25,
+      "name_zh": "藍涎刀",
+      "name_en": "Blue Poison Blade",
+      "type": "weapon",
+      "subtype": "blade",
+      "url": "https://es2tips.blogspot.com/2013/08/blog-post_3785.html",
+      "stats": {
+        "damage": "8-41",
+        "strength_modifier": "90%",
+        "multiplier_level": 3
+      },
+      "properties": {
+        "blade_technique_刀法": 10,
+        "attack_capability_攻擊能力值": 20
+      },
+      "skill": ["刀法 (blade)", "左手刀法 (secondhand blade)"],
+      "npc_source": null,
+      "location": null
+    },
+    {
+      "id": 26,
+      "name_zh": "藥王神劍",
+      "name_en": "Medication-King Sword",
+      "type": "weapon",
+      "subtype": "sword",
+      "url": "https://es2tips.blogspot.com/2013/08/blog-post_9762.html",
+      "stats": {
+        "damage": "9-60",
+        "strength_modifier": "100%",
+        "multiplier_level": 3
+      },
+      "properties": {
+        "spirituality_靈性": 2,
+        "defensive_stance_守勢等級": 50,
+        "wisdom_慧根": 2
+      },
+      "skill": "劍術 (sword)",
+      "npc_source": "侮藥王鬼將 (Medication-King Ghost General) - signature weapon wielder",
+      "location": null
+    },
+    {
+      "id": 27,
+      "name_zh": "易羅大劍",
+      "name_en": "Yiluo Sword",
+      "type": "weapon",
+      "subtype": "two-handed sword",
+      "url": "https://es2tips.blogspot.com/2013/08/blog-post_8637.html",
+      "stats": {
+        "damage": "5-56",
+        "strength_modifier": "120%",
+        "multiplier_level": 3
+      },
+      "properties": {
+        "defense_ability_防禦能力值": 50,
+        "defense_防禦力": 50
+      },
+      "skill": "雙握劍術 (twohanded sword)",
+      "npc_source": "蔭百邪鬼將 (Yin Bai Xie Ghost General) - weapon owner",
+      "location": null
+    },
+    {
+      "id": 28,
+      "name_zh": "鬼頭劈象刀",
+      "name_en": "Ghost Blade",
+      "type": "weapon",
+      "subtype": "two-handed blade",
+      "url": "https://es2tips.blogspot.com/2013/08/blog-post_8.html",
+      "stats": {
+        "damage": "8-124",
+        "strength_modifier": "195%",
+        "multiplier_level": 4
+      },
+      "properties": {
+        "strength_膂力": 5,
+        "damage_傷害力": 25
+      },
+      "skill": "雙握刀法 (twohanded blade)",
+      "description": "Blade length exceeds 7 feet, weighs 97 jin",
+      "npc_source": "霸牙獅鬼將 (Tyrant Fang Lion Ghost General) - famous weapon",
+      "location": null
+    },
+    {
+      "id": 29,
+      "name_zh": "雪魂匕",
+      "name_en": "Snow Soul Dagger",
+      "type": "weapon",
+      "subtype": "dagger",
+      "url": "https://es2tips.blogspot.com/2013/08/blog-post_4.html",
+      "stats": {
+        "damage": "10-52",
+        "strength_modifier": "80%",
+        "multiplier_level": 3
+      },
+      "properties": {
+        "spirituality_靈性": -1,
+        "root_bone_根骨": -1,
+        "agility_機敏": 3
+      },
+      "skill": ["錐法 (dagger)", "左手錐法 (secondhand dagger)"],
+      "npc_source": null,
+      "location": null
+    },
+    {
+      "id": 30,
+      "name_zh": "追月流星劍",
+      "name_en": "Charm Sword",
+      "type": "weapon",
+      "subtype": "sword",
+      "url": "https://es2tips.blogspot.com/2013/07/blog-post.html",
+      "stats": {
+        "damage": "9-60",
+        "strength_modifier": "100%",
+        "multiplier_level": 3
+      },
+      "properties": {
+        "damage_傷害力": 10,
+        "attack_ability_攻擊能力值": 30
+      },
+      "skill": ["劍術 (sword)", "左手劍術 (secondhand sword)"],
+      "npc_source": "白德 (Bai De) - quest giver / master",
+      "location": null,
+      "quest_steps": [
+        "Talk to 白德 (Bai De)",
+        "Keyword: 劍之義 (Righteousness of the Sword)",
+        "say 領悟了 (Say: I understand)",
+        "Receive sword upon acknowledgment"
+      ]
+    },
+    {
+      "id": 31,
+      "name_zh": "邪門歪刀",
+      "name_en": "Evil-lopsided Blade",
+      "type": "weapon",
+      "subtype": "blade",
+      "url": "https://es2tips.blogspot.com/2013/07/liuye.html",
+      "stats": {
+        "damage": "8-41",
+        "strength_modifier": "90%",
+        "multiplier_level": 3
+      },
+      "properties": {
+        "defense_level_守勢等級": 75,
+        "attack_capability_攻擊能力值": 125
+      },
+      "skill": "刀法 (blade)",
+      "description": "Hilt bears: 邪門一刀，歪打正著 (Evil blade strikes true through unconventional means)",
+      "npc_source": null,
+      "location": null
+    },
+    {
+      "id": 32,
+      "name_zh": "天都劍",
+      "name_en": "Tian Du Sword",
+      "type": "weapon",
+      "subtype": "short sword",
+      "url": "https://es2tips.blogspot.com/2013/06/blog-post_3.html",
+      "stats": {
+        "damage": "7-49",
+        "strength_modifier": "100%",
+        "multiplier_level": 3
+      },
+      "properties": {
+        "lightning_defense_雷電傷害防禦力": 50,
+        "attack_power_攻擊能力值": 15,
+        "damage_傷害力": 10
+      },
+      "skill": ["劍術 (sword)", "左手劍術 (secondhand sword)"],
+      "paired_with": "水月劍",
+      "npc_source": null,
+      "location": null,
+      "lore": "Part of paired swords owned by Li Yun Long's daughter of Bu Xuan School (步玄派)"
+    },
+    {
+      "id": 33,
+      "name_zh": "水月劍",
+      "name_en": "Shui Yue Sword / Water Moon Sword",
+      "type": "weapon",
+      "subtype": "short sword",
+      "url": "https://es2tips.blogspot.com/2013/06/blog-post_3.html",
+      "stats": {
+        "damage": "7-49",
+        "strength_modifier": "100%",
+        "multiplier_level": 3
+      },
+      "properties": {
+        "fire_defense_火焰傷害防禦力": 50,
+        "damage_傷害力": 10,
+        "attack_power_攻擊能力值": 15
+      },
+      "skill": "劍術 (sword)",
+      "paired_with": "天都劍",
+      "npc_source": null,
+      "location": null
+    },
+    {
+      "id": 34,
+      "name_zh": "天命刃",
+      "name_en": "Dagger of Fate",
+      "type": "weapon",
+      "subtype": "dagger",
+      "url": "https://es2tips.blogspot.com/2013/06/image.html",
+      "stats": {
+        "damage": "10-43",
+        "strength_modifier": "75%",
+        "multiplier_level": 3
+      },
+      "properties": {
+        "steadfastness_定力": 5,
+        "spirituality_靈性": 1,
+        "enlightenment_悟性": 1,
+        "wisdom_慧根": 2
+      },
+      "skill": "錐法 (dagger)",
+      "lore": "Reportedly used by 天靈穹氤 (celestial spirit Qiong Yin)",
+      "npc_source": null,
+      "location": null
+    },
+    {
+      "id": 35,
+      "name_zh": "風雷刀",
+      "name_en": "Thunderfurry Blade",
+      "type": "weapon",
+      "subtype": "blade",
+      "url": "https://es2tips.blogspot.com/2013/05/blog-post_2462.html",
+      "stats": {
+        "damage": "7-64"
+      },
+      "properties": {
+        "wind_defense_風擊傷害防禦力": 100,
+        "thunder_defense_雷電傷害防禦力": 100,
+        "attack_攻擊能力值": 30
+      },
+      "price": "25 gold",
+      "npc_source": "軍備商 (Military Vendor)",
+      "location": "武器庫 (Armory)",
+      "requirement": "Win-Loss record >= 50"
+    },
+    {
+      "id": 36,
+      "name_zh": "古鄔匕",
+      "name_en": "Ancient Dagger",
+      "type": "weapon",
+      "subtype": "dagger",
+      "url": "https://es2tips.blogspot.com/2013/05/blog-post_2462.html",
+      "stats": {
+        "damage": "13-61"
+      },
+      "properties": {
+        "attack_攻擊能力值": 30,
+        "pickpocket": 30
+      },
+      "price": "25 gold",
+      "npc_source": "軍備商 (Military Vendor)",
+      "location": "武器庫 (Armory)",
+      "requirement": "Win-Loss record >= 50"
+    },
+    {
+      "id": 37,
+      "name_zh": "繡花銀針",
+      "name_en": "Tailor's Needle",
+      "type": "weapon",
+      "subtype": "needle",
+      "url": "https://es2tips.blogspot.com/2013/05/blog-post_2462.html",
+      "stats": {
+        "damage": "13-55"
+      },
+      "properties": {
+        "attack_攻擊能力值": 30,
+        "defense_防禦力": 30
+      },
+      "price": "15 gold",
+      "npc_source": "軍備商 (Military Vendor)",
+      "location": "武器庫 (Armory)",
+      "requirement": "Win-Loss record >= 50"
+    },
+    {
+      "id": 38,
+      "name_zh": "西山仙劍",
+      "name_en": "Godness Sword",
+      "type": "weapon",
+      "subtype": "sword",
+      "url": "https://es2tips.blogspot.com/2013/05/blog-post_2462.html",
+      "stats": {
+        "damage": "9-60"
+      },
+      "properties": {
+        "spell_法術": 20,
+        "attack_攻擊能力值": 30,
+        "defense_防禦力": 30
+      },
+      "price": "30 gold",
+      "npc_source": "軍備商 (Military Vendor)",
+      "location": "武器庫 (Armory)",
+      "requirement": "Win-Loss record >= 50"
+    },
+    {
+      "id": 39,
+      "name_zh": "無情匕",
+      "name_en": "Coldblood Dagger",
+      "type": "weapon",
+      "subtype": "dagger",
+      "url": "https://es2tips.blogspot.com/2013/05/blog-post_2462.html",
+      "stats": {
+        "damage": "13-61"
+      },
+      "properties": {
+        "backstab": 10,
+        "attack_level_攻擊能力值": 40,
+        "dagger_skill_錐法": 10
+      },
+      "price": "10 gold",
+      "npc_source": "軍備商 (Military Vendor)",
+      "location": "武器庫 (Armory)",
+      "requirement": "Win-Loss record >= 50"
+    },
+    {
+      "id": 40,
+      "name_zh": "戰神劈天刀",
+      "name_en": "Warlord Blade",
+      "type": "weapon",
+      "subtype": "two-handed blade",
+      "url": "https://es2tips.blogspot.com/2013/05/blog-post_2462.html",
+      "stats": {
+        "damage": "8-124"
+      },
+      "properties": {
+        "block": 10,
+        "attack_level_攻擊能力值": 30,
+        "berserk": 15,
+        "attack_攻擊": 25
+      },
+      "price": "20 gold",
+      "npc_source": "軍備商 (Military Vendor)",
+      "location": "武器庫 (Armory)",
+      "requirement": "Win-Loss record >= 50"
+    },
+    {
+      "id": 41,
+      "name_zh": "英雄王者劍",
+      "name_en": "Royal Sword of Honor",
+      "type": "weapon",
+      "subtype": "sword",
+      "url": "https://es2tips.blogspot.com/2013/05/blog-post_2462.html",
+      "stats": {
+        "damage": "9-109"
+      },
+      "properties": {
+        "dual_sword_雙握劍術": 10,
+        "inner_power_內功": 10,
+        "attack_攻擊能力值": 30
+      },
+      "price": "20 gold",
+      "npc_source": "軍備商 (Military Vendor)",
+      "location": "武器庫 (Armory)",
+      "requirement": "Win-Loss record >= 50"
+    },
+    {
+      "id": 42,
+      "name_zh": "聖靈禪杖",
+      "name_en": "Cane of Spirit",
+      "type": "weapon",
+      "subtype": "two-handed staff",
+      "url": "https://es2tips.blogspot.com/2013/05/blog-post_2462.html",
+      "stats": {
+        "damage": "13-70"
+      },
+      "properties": {
+        "wind_defense": "high",
+        "thunder_defense": "high",
+        "fire_defense": "moderate",
+        "ice_defense": "moderate"
+      },
+      "price": "20 gold",
+      "npc_source": "軍備商 (Military Vendor)",
+      "location": "武器庫 (Armory)",
+      "requirement": "Win-Loss record >= 50"
+    },
+    {
+      "id": 43,
+      "name_zh": "盤龍針",
+      "name_en": "Dragon Needle",
+      "type": "weapon",
+      "subtype": "needle",
+      "url": "https://es2tips.blogspot.com/2014/10/dragon-needle.html",
+      "stats": {
+        "damage": "9-27",
+        "strength_modifier": "85%",
+        "multiplier_level": 2
+      },
+      "properties": {
+        "courage_膽識": 2,
+        "acupuncture_針灸之術": 5,
+        "attack_ability_攻擊能力值": 25
+      },
+      "skill": ["needle (針法)", "secondhand needle (左手針法)"],
+      "npc_source": null,
+      "location": null
+    },
+    {
+      "id": 44,
+      "name_zh": "紫金鳳頭錐",
+      "name_en": "Gin Pike",
+      "type": "weapon",
+      "subtype": "pike/spear",
+      "url": "https://es2tips.blogspot.com/2014/10/gin-pike.html",
+      "stats": {
+        "damage": "14-54",
+        "strength_modifier": "100%",
+        "multiplier_level": 4
+      },
+      "properties": {},
+      "skill": ["單手槍法 (pike)", "左手槍法 (secondhand pike)"],
+      "npc_source": "潘焦 (Pan Jiao) - vendor",
+      "location": null,
+      "lore": "Associated with Gongsun Yan of Lantian Gate, used 30 years ago against Twin Evils of Taihu Lake",
+      "acquisition": "buy pike from pan"
+    },
+    {
+      "id": 45,
+      "name_zh": "混沌之印",
+      "name_en": "Seal of Chaos",
+      "type": "quest_item",
+      "subtype": "transmutable seal",
+      "url": "https://es2tips.blogspot.com/2014/10/seal-of-chaos-broken-seal.html",
+      "stats": {},
+      "properties": {},
+      "transmutation_results": ["火之印記 (Fire Seal Mark)", "水之印記 (Water Seal Mark)"],
+      "usage": "transmute seal - converts into elemental seal marks",
+      "related_items": ["破碎的印記 (Broken Seal)", "神之心 (Heart of Divinity)"],
+      "note": "2014 update: no longer need to defeat 混沌獸 (Chaos Beast); use 神之心 + 3 broken seals instead",
+      "npc_source": null,
+      "location": null
+    },
+    {
+      "id": 46,
+      "name_zh": "追風劍",
+      "name_en": "Storm Chaser's Sword",
+      "type": "weapon",
+      "subtype": "sword",
+      "url": "https://es2tips.blogspot.com/2014/01/blog-post_6513.html",
+      "stats": {
+        "damage": "9-60"
+      },
+      "properties": {
+        "ice_damage_冰寒傷害力": 50,
+        "attack_攻擊能力值": 50
+      },
+      "skill": null,
+      "npc_source": "梅嵐武 (Mei Lan Wu) - sword owner",
+      "location": "Buried by old pine tree on mountainside",
+      "quest_steps": [
+        "Complete 漕幫 task to get 玉戒尺",
+        "Search bed curtain",
+        "Kill 欽差",
+        "Obtain 霹靂雷火彈 (Lightning Bomb)",
+        "Give bomb to 肖麗穎 (Xiao Li Ying / Demon Concubine)",
+        "Receive coordinates to dig treasure",
+        "Obtain shovel (from smith/zombie)",
+        "dig 寶貝 - Unearth 追風劍",
+        "Return sword to 梅嵐武",
+        "Report to 楊子陵 (Yang Ziling - Cold Plum Manor disciple)",
+        "Mention Yang's name to 煙波釣叟 (Fisher elder) at riverside",
+        "Receive 青絲釣竿 (Silk Fishing Rod)"
+      ],
+      "related_npcs": [
+        {"name_zh": "肖麗穎", "title": "妖妃 (Demon Concubine)"},
+        {"name_zh": "梅嵐武", "role": "Sword owner"},
+        {"name_zh": "楊子陵", "role": "Cold Plum Manor disciple"},
+        {"name_zh": "煙波釣叟", "role": "Riverside fisher elder"}
+      ],
+      "related_locations": [
+        "山腰 (Mountainside)",
+        "河邊 (Riverside)",
+        "小船 (Small boat)",
+        "涼亭 (Pavilion)"
+      ]
+    },
+    {
+      "id": 47,
+      "name_zh": "青絲釣竿",
+      "name_en": "Silk Fishing Rod",
+      "type": "weapon",
+      "subtype": "whip",
+      "url": "https://es2tips.blogspot.com/2014/01/blog-post_6513.html",
+      "stats": {
+        "damage": "10-43"
+      },
+      "properties": {
+        "fishing_bonus": 10
+      },
+      "skill": "whip",
+      "usage": "crash fish - obtain 魚餌 (fish bait)",
+      "npc_source": "煙波釣叟 (Fisher elder)",
+      "location": "Riverside"
+    },
+    {
+      "id": 48,
+      "name_zh": "六靈妖姬鞭",
+      "name_en": "Whip of Evil Beauties",
+      "type": "weapon",
+      "subtype": "whip",
+      "url": "https://es2tips.blogspot.com/2014/01/blog-post_3410.html",
+      "stats": {
+        "damage": "8-32",
+        "strength_modifier": "65%",
+        "multiplier_level": 3
+      },
+      "properties": {
+        "spell_ability_咒文能力": 10,
+        "magic_法術": 10,
+        "wisdom_慧根": 1
+      },
+      "skill": "軟鞭鞭法 (whip)",
+      "description": "Soft whip adorned with six half-naked enchantresses, emanating faint rouge fragrance",
+      "npc_source": null,
+      "location": null
+    },
+    {
+      "id": 49,
+      "name_zh": "古刃旋芒",
+      "name_en": "Ancient Blade Whirling Radiance",
+      "type": "weapon",
+      "subtype": "dagger",
+      "url": "https://es2tips.blogspot.com/2014/01/blog-post_7305.html",
+      "stats": {
+        "damage": "10-52",
+        "strength_modifier": "80%",
+        "multiplier_level": 3
+      },
+      "properties": {
+        "attack_level_攻擊能力值": 25,
+        "fire_damage_火焰傷害力": 25,
+        "ice_damage_冰寒傷害力": 25,
+        "lightning_damage_雷電傷害力": 25,
+        "wind_damage_風擊傷害力": 25,
+        "total_damage_傷害力": 50
+      },
+      "skill": ["錐法 (dagger)", "左手錐法 (secondhand dagger)"],
+      "npc_source": null,
+      "location": "小鐘樓 (Small Bell Tower)",
+      "quest_chain": {
+        "npcs": [
+          {"name_zh": "宋安江", "name_en": "Song Anjian", "role": "quest giver"},
+          {"name_zh": "韓尚書", "name_en": "Han Shangshu", "role": "Capital official"},
+          {"name_zh": "周大發", "name_en": "Zhou Dafa", "role": "Food sage", "location": "天仁客棧二樓 (Tianren Inn 2F)"},
+          {"name_zh": "村長", "name_en": "Village Elder", "location": "鯉君渡 (Li-jun Ford)"},
+          {"name_zh": "白德", "name_en": "Bai De", "location": "天仁客棧 (Tianren Inn)"}
+        ],
+        "locations": [
+          "天仁客棧 (Tianren Inn) - 2nd floor",
+          "鯉君渡 (Li-jun Ford) - village area",
+          "小鐘樓 (Small Bell Tower) - blade found here",
+          "紫煙小棧 (Purple Smoke Inn) - merchant location"
+        ],
+        "steps": [
+          "Obtain pig heart (4 silver taels)",
+          "Bring to food sage 周大發",
+          "Visit village elder (requires purification pearl)",
+          "Obtain roasted lamb leg",
+          "Complete chain to access 小鐘樓"
+        ]
+      }
+    }
+  ],
+  "npcs_index": [
+    {"name_zh": "聶晟", "name_en": "Nie Sheng", "associated_item": "毒龍鞭"},
+    {"name_zh": "黑無常", "name_en": "Black Impermanence", "type": "hostile"},
+    {"name_zh": "蕭尹", "name_en": "Xiao Yin", "title": "漕幫總舵主", "location": "歡喜樓天字第一號房"},
+    {"name_zh": "言歙", "name_en": "Yan She", "title": "御史大夫", "location": "縣衙客房"},
+    {"name_zh": "黑袍怪人", "name_en": "Figure in Black Robes", "location": "五堂鎮城隍廟"},
+    {"name_zh": "龍安莫大叔", "name_en": "Uncle Muo of Long'an", "associated_items": ["玄烏杖", "饕餮法杖"]},
+    {"name_zh": "張章", "name_en": "Zhang Zhang", "role": "quest giver", "location": "京畿"},
+    {"name_zh": "龍卿", "name_en": "Long Qing", "role": "quest NPC"},
+    {"name_zh": "張雁來", "name_en": "Zhang Yanlai", "role": "quest NPC"},
+    {"name_zh": "紫衣道人", "name_en": "Purple-Robed Taoist", "associated_item": "白色長劍"},
+    {"name_zh": "藥草商", "name_en": "Herbalist", "location": "五堂 north of boar area"},
+    {"name_zh": "珍寶商人", "name_en": "Treasure Merchant", "role": "exchange NPC"},
+    {"name_zh": "白德", "name_en": "Bai De", "role": "master/quest giver", "location": "天仁客棧"},
+    {"name_zh": "侮藥王鬼將", "name_en": "Medication-King Ghost General", "type": "boss"},
+    {"name_zh": "蔭百邪鬼將", "name_en": "Yin Bai Xie Ghost General", "type": "boss"},
+    {"name_zh": "霸牙獅鬼將", "name_en": "Tyrant Fang Lion Ghost General", "type": "boss"},
+    {"name_zh": "軍備商", "name_en": "Military Vendor", "location": "武器庫 (Armory)"},
+    {"name_zh": "潘焦", "name_en": "Pan Jiao", "role": "vendor"},
+    {"name_zh": "肖麗穎", "name_en": "Xiao Li Ying", "title": "妖妃 (Demon Concubine)"},
+    {"name_zh": "梅嵐武", "name_en": "Mei Lan Wu", "role": "sword owner"},
+    {"name_zh": "楊子陵", "name_en": "Yang Ziling", "role": "Cold Plum Manor disciple"},
+    {"name_zh": "煙波釣叟", "name_en": "Fisher Elder", "location": "河邊 (Riverside)"},
+    {"name_zh": "宋安江", "name_en": "Song Anjian", "role": "quest giver"},
+    {"name_zh": "韓尚書", "name_en": "Han Shangshu", "role": "Capital official"},
+    {"name_zh": "周大發", "name_en": "Zhou Dafa", "role": "Food sage", "location": "天仁客棧二樓"},
+    {"name_zh": "村長", "name_en": "Village Elder", "location": "鯉君渡 (Li-jun Ford)"},
+    {"name_zh": "封七慾", "name_en": "Feng Qi Yu", "associated_item": "清風刀"},
+    {"name_zh": "梵雲飛", "name_en": "Fan Yun Fei", "type": "historical figure"}
+  ],
+  "locations_index": [
+    {"name_zh": "歡喜樓天字第一號房", "name_en": "Huanxi Tower Room #1", "npcs": ["蕭尹"]},
+    {"name_zh": "縣衙客房", "name_en": "County Magistrate Guest Room", "npcs": ["言歙"]},
+    {"name_zh": "五堂鎮城隍廟", "name_en": "Wutang Town City God Temple", "npcs": ["黑袍怪人"]},
+    {"name_zh": "京畿", "name_en": "Capital Region", "npcs": ["張章"]},
+    {"name_zh": "武器庫", "name_en": "Armory", "npcs": ["軍備商"]},
+    {"name_zh": "天仁客棧", "name_en": "Tianren Inn", "npcs": ["白德", "周大發"]},
+    {"name_zh": "鯉君渡", "name_en": "Li-jun Ford", "npcs": ["村長"]},
+    {"name_zh": "小鐘樓", "name_en": "Small Bell Tower", "items": ["古刃旋芒"]},
+    {"name_zh": "紫煙小棧", "name_en": "Purple Smoke Inn", "type": "merchant location"},
+    {"name_zh": "河邊", "name_en": "Riverside", "npcs": ["煙波釣叟"]},
+    {"name_zh": "山腰", "name_en": "Mountainside", "items": ["追風劍 (buried)"]},
+    {"name_zh": "五堂", "name_en": "Wutang", "nearby": ["藥草商"]}
+  ],
+  "skill_types_referenced": [
+    {"name_zh": "劍術", "name_en": "sword", "type": "one-handed sword"},
+    {"name_zh": "左手劍術", "name_en": "secondhand sword", "type": "off-hand sword"},
+    {"name_zh": "雙握劍術", "name_en": "twohanded sword", "type": "two-handed sword"},
+    {"name_zh": "刀法", "name_en": "blade", "type": "one-handed blade"},
+    {"name_zh": "左手刀法", "name_en": "secondhand blade", "type": "off-hand blade"},
+    {"name_zh": "雙握刀法", "name_en": "twohanded blade", "type": "two-handed blade"},
+    {"name_zh": "錐法", "name_en": "dagger", "type": "dagger"},
+    {"name_zh": "左手錐法", "name_en": "secondhand dagger", "type": "off-hand dagger"},
+    {"name_zh": "雙握杖法", "name_en": "twohanded staff", "type": "two-handed staff"},
+    {"name_zh": "軟鞭鞭法", "name_en": "whip", "type": "soft whip"},
+    {"name_zh": "鎚法", "name_en": "hammer", "type": "blunt"},
+    {"name_zh": "單手槍法", "name_en": "pike", "type": "one-handed pike"},
+    {"name_zh": "左手槍法", "name_en": "secondhand pike", "type": "off-hand pike"},
+    {"name_zh": "雙手槍法", "name_en": "twohanded pike", "type": "two-handed pike"},
+    {"name_zh": "針法", "name_en": "needle", "type": "needle"},
+    {"name_zh": "針灸之術", "name_en": "acupuncture", "type": "medical skill"},
+    {"name_zh": "丹道", "name_en": "alchemy", "type": "crafting skill"},
+    {"name_zh": "大邪心經", "name_en": "dark evil heart sutra", "type": "inner power"}
+  ]
+}

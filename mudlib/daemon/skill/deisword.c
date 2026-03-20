@@ -6,45 +6,45 @@ inherit SKILL;
 
 mapping *actions = ({
     ([
-        "action":       "$N持$w往$n的$l刺去",
-        "dodge":        5,
-        "damae":        5,
-        "damage_type":  "刺傷"
-    ]),
-    ([
-        "action":       "$N閃身上前﹐$w朝$n的$l劈去",
-        "dodge":        -5,
-        "damae":        5,
-        "damage_type":  "割傷"
-    ]),
-    ([
-        "action":       "$N欺身而進﹐$w直取$n的$l",
+        "action":       "$N使一招「帝王斬邪」﹐$w帶著凜然正氣劈向$n的$l",
         "dodge":        -10,
-        "damage":       10,
-        "damage_type":  "刺傷"
-    ]),
-    ([
-        "action":       "$N虛晃一招﹐$w反手攻向$n的$l",
-        "dodge":        5,
-        "damae":        5,
+        "damae":        12,
         "damage_type":  "割傷"
     ]),
     ([
-        "action":       "$N忽然暴起﹐$w朝$n的$l猛攻",
+        "action":       "$N施展「龍威震宇」﹐$w爆發出龍形劍氣刺向$n的$l",
         "dodge":        -5,
-        "damage":       10,
+        "damae":        10,
         "damage_type":  "刺傷"
     ]),
     ([
-        "action":       "$N一個側身﹐$w劃向$n的$l",
-        "dodge":        10,
-        "damae":        5,
+        "action":       "$N威嚴一喝使出「天子臨朝」﹐$w如天威降臨般斬向$n的$l",
+        "dodge":        -15,
+        "damage":       15,
         "damage_type":  "割傷"
+    ]),
+    ([
+        "action":       "$N身形飄然亮出「御劍乘風」﹐$w乘風而至直取$n的$l",
+        "dodge":        5,
+        "damae":        8,
+        "damage_type":  "刺傷"
+    ]),
+    ([
+        "action":       "$N劍光大盛使出「金殿飛光」﹐$w化作萬道金光射向$n的$l",
+        "dodge":        0,
+        "damage":       10,
+        "damage_type":  "割傷"
+    ]),
+    ([
+        "action":       "$N氣勢磅礡施展「萬乘之尊」﹐$w以壓倒性的氣勢劃向$n的$l",
+        "dodge":        10,
+        "damae":        7,
+        "damage_type":  "刺傷"
     ]),
 });
 
 string *interattack = ({
-    "$N持劍在手﹐劍上隱隱帶著一股煞氣。\n",
+    "$N持劍在手﹐帝劍散發出威嚴的劍氣。\n",
 });
 
 private void

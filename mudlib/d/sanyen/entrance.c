@@ -13,10 +13,14 @@ void create()
 LONG
 	);
 	set("outdoors", "village");
+	set("objects", ([
+		__DIR__"npc/guard" : 1,
+	]));
 	set("exits", ([
 		"north" : "/d/heifeng/road2",
 		"south" : __DIR__"street",
 		"east" : __DIR__"pillar",
+		"west" : __DIR__"weapon_shop",
 	]));
 
 	setup();

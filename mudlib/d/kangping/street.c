@@ -19,6 +19,7 @@ LONG
 		"west" : __DIR__"entrance",
 		"east" : __DIR__"square",
 		"south" : __DIR__"cottage",
+		"north" : __DIR__"herb_garden",
 	]));
 
 	setup();

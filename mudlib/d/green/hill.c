@@ -15,6 +15,7 @@ LONG
 	]));
 	set("exits", ([
 		"south" : __DIR__"grassland_n",
+		"north" : "/d/green_n/entrance",
 	]));
 
 	setup();

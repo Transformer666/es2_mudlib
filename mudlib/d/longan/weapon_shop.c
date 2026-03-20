@@ -15,6 +15,7 @@ LONG
     );
     set("exits", ([
         "west" : __DIR__"street",
+        "north" : __DIR__"smithy",
     ]));
 
     set("objects", ([ __DIR__"npc/weaponsmith" : 1 ]));

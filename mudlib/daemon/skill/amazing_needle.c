@@ -6,45 +6,45 @@ inherit SKILL;
 
 mapping *actions = ({
   ([
-    "action":		"$N出手如電﹐$w瞬間刺入$n的$l經脈",
+    "action":		"$N施展「妙手回春」﹐$w精準地點向$n的$l經脈",
+    "dodge":		-5,
+    "damae":		8,
+    "damage_type":	"刺傷"
+  ]),
+  ([
+    "action":		"$N一式「銀蛇吐信」﹐$w如靈蛇般射向$n的$l",
     "dodge":		-10,
     "damage":		10,
     "damage_type":	"刺傷"
   ]),
   ([
-    "action":		"$N雙指一彈﹐$w帶著驚人勁力射向$n的$l",
-    "dodge":		-5,
-    "damage":		10,
-    "damage_type":	"刺傷"
-  ]),
-  ([
-    "action":		"$N身法詭異地閃到$n身側﹐$w直取$n的$l命穴",
-    "dodge":		5,
-    "damage":		10,
-    "damage_type":	"刺傷"
-  ]),
-  ([
-    "action":		"$N冷笑一聲﹐$w劃出驚異弧線刺向$n的$l",
+    "action":		"$N凌空飛出「天外飛針」﹐$w從刁鑽角度刺向$n的$l",
     "dodge":		-15,
     "damage":		15,
     "damage_type":	"刺傷"
   ]),
   ([
-    "action":		"$N手中$w忽然化為兩道銀光﹐同時射向$n的$l",
-    "dodge":		-10,
-    "damage":		15,
+    "action":		"$N身法飄忽﹐「穿花蝴蝶」的$w輕盈地沒入$n的$l穴道",
+    "dodge":		10,
+    "damae":		5,
     "damage_type":	"刺傷"
   ]),
   ([
-    "action":		"$N虛實難辨地一晃﹐$w已然沒入$n的$l穴道",
-    "dodge":		10,
-    "damage":		5,
+    "action":		"$N遠距發針﹐「百步穿楊」的$w破空射向$n的$l",
+    "dodge":		-10,
+    "damage":		12,
+    "damage_type":	"刺傷"
+  ]),
+  ([
+    "action":		"$N使出「神針渡穴」﹐$w帶著渾厚內力刺入$n的$l要穴",
+    "dodge":		5,
+    "damae":		10,
     "damage_type":	"刺傷"
   ]),
 });
 
 string *interattack = ({
-  "$N指間$n閃爍寒光﹐令人不寒而慄。\n",
+  "$N手中銀針閃爍﹐奇針手法令人防不勝防。\n",
 });
 
 private void

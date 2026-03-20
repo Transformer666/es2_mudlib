@@ -1,4 +1,7 @@
 // girl.c
+// White-robed girl hiding in the ruins
+// Part of darkrobe quest: player can mention her father to trigger quest flag
+// Existing puzzle: give hairpin -> ask for 英雄帖 -> get invitation
 
 #include <npc.h>
 
@@ -101,7 +104,24 @@ void drop_invitation()
 void relay_say(object ob, string msg)
 {
     if( ob==this_object() ) return;
-    if( ob != query("pending_requester") ) 
+
+    // Darkrobe quest: player mentions father
+    if( ob->query_temp("try/darkrobe")
+    &&	!ob->query_temp("darkrobe_found_girl")
+    &&	!ob->query("quest/darkrobe_daughter_done") ) {
+        if( strsrch(msg, "父親") >= 0 || strsrch(msg, "黑袍") >= 0
+        ||	strsrch(msg, "爹") >= 0 || strsrch(msg, "找你") >= 0 ) {
+            do_chat(({
+                "白衣女子微微一愣﹐眼中閃過一絲複雜的神色。\n",
+                "白衣女子低聲說道﹕他 ... 他還在那裡嗎﹖\n",
+                "白衣女子轉過身去﹐不再說話﹐但你能看到她的肩膀微微顫抖。\n",
+            }));
+            ob->set_temp("darkrobe_found_girl", 1);
+            return;
+        }
+    }
+
+    if( ob != query("pending_requester") )
         do_chat((: command, "say 這裡沒有你說話的餘地﹐給我閉嘴﹗":));
     else {
         if( msg!="英雄帖" ) {
@@ -115,11 +135,20 @@ void relay_say(object ob, string msg)
 void init()
 {
     ::init();
-    if( this_player() && (!this_player()->query_temp("hairpin_quest")) ) {
+    if( !this_player() ) return;
+
+    if( !this_player()->query_temp("hairpin_quest") ) {
         do_chat((: command, "say 你是誰﹖滾﹗滾出去﹗不然我殺了你﹗" :));
         if( member_array(this_player(), dest)==-1 ) {
             dest += ({ this_player() });
             call_out((: attack_intruder, this_player() :), 5);
         }
+        return;
+    }
+
+    // If player is on darkrobe quest, greet differently
+    if( this_player()->query_temp("try/darkrobe")
+    &&	!this_player()->query_temp("darkrobe_found_girl") ) {
+        do_chat("白衣女子警覺地看了你一眼﹐但沒有動手的意思。\n");
     }
 }

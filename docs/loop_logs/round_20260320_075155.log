@@ -1,0 +1,245 @@
+Round 1 - Fri Mar 20 07:51:55 UTC 2026
+[0;34m[07:51:55][0m Using git remote: origin
+[0;34m[07:51:55][0m Pulling latest changes...
+From github.com:Transformer666/es2_mudlib
+ * branch            main       -> FETCH_HEAD
+Already up to date.
+[0;32m[OK][0m Repository updated.
+
+=========================================
+  ES2 Agent Pipeline
+  Start: 2026-03-20 07:51:55
+=========================================
+
+[0;34m[07:51:58][0m Running task: Analyze missing content
+## Agent Task 01 完成
+
+### 產出檔案
+
+| 檔案 | 大小 | 內容 |
+|------|------|------|
+| `docs/wiki_content.json` | 30KB | 26 頁 wiki 資料 + blog 資料索引 |
+| `docs/missing_content.json` | 13KB | 完整差異分析 |
+| `docs/implementation_log.md` | 8KB | 實作進度報告 |
+| `docs/es2_equipment_crawl.json` | 39KB | 49 件武器裝備詳細數據 |
+| `docs/es2tips_crawl_data.json` | 46KB | 50+ 防具 + 道士門派詳細設定 |
+| `docs/es2tips_crawled_data.json` | 37KB | 任務/Boss/地圖/系統資料 |
+| `docs/es2tips_blog_content.json` | 85KB | 職業/指南/聲望資料 |
+
+### 關鍵發現
+
+**完成度高的部分:** 種族 100%, 職業 100%, 門派 100%, 上古妖獸 100%
+
+**最大缺口:**
+1. **任務系統** — 12 條已文檔化的任務鏈尚未實作（含主線）
+2. **門派子系統** — 天師 4 元素派、茅山 3 觀、振武 4 路線的專精分支
+3. **12 個原版技能** — hammer, magic, move 等核心技能
+4. **city 區域** + 八寶樓完整 Boss 系統
+5. **~42 個說明檔案** 缺失
+[0;32m[OK][0m Task done: Analyze missing content
+
+[0;34m[08:07:18][0m Running task: Implement race daemons
+All 11 race daemon files and all 11 help files already exist. Per the task instructions:
+
+> 若 missing 為 0，直接跳過此 task
+
+**Task 02 can be skipped** — all races are already fully implemented:
+
+- 11/11 daemon `.c` files exist in `mudlib/daemon/race/`
+- 11/11 help files exist in `mudlib/doc/help/player/races/`
+- Status: **COMPLETE**
+[0;32m[OK][0m Task done: Implement race daemons
+
+[0;34m[08:07:38][0m Running task: Implement rooms and areas
+All tasks complete. Here's a summary of what was implemented:
+
+## Results
+
+### New Areas Created
+
+**city (天都城)** — 12 rooms + 9 NPCs
+- `entrance.c` (城市南門), `main_street.c` (大街), `square.c` (城中廣場), `market.c` (市集), `alley.c` (小巷), `inn.c` (天風客棧), `yamen.c` (府衙), `temple.c` (城隍廟), `weapon_shop.c` (兵器鋪), `armor_shop.c` (甲冑店), `pawnshop.c` (當鋪), `garden.c` (城中花園)
+- NPCs: guard, innkeeper, merchant, peddler, beggar, temple_monk, weaponsmith, armorer, pawnbroker
+- Connected to road network via `road5.c` (south exit)
+
+**green_n (草原北部)** — 6 rooms + 3 NPCs
+- `entrance.c` (北草原入口), `windswept.c` (風嘯草原), `stream.c` (北溪邊), `rock_formation.c` (亂石堆), `highland.c` (草原高地), `cliff.c` (懸崖邊)
+- NPCs: wild_wolf, wild_boar, wild_horse
+- Connected to `green/hill.c` (north exit)
+
+### Town Expansions (3 rooms each)
+
+| Town | New Rooms | Connected From |
+|------|-----------|---------------|
+| **longan** (龍安城) | smithy, back_street, garden | weapon_shop, teahouse, alley |
+| **jingji** (京畿) | back_alley, weapon_shop, bank | market (×2), yamen |
+| **kangping** (康平村) | herb_garden, well, path | street, square, entrance |
+| **sanyen** (焱硝村) | market, weapon_shop, back_alley | back_alley, entrance, street |
+
+### Validation
+- All 77 rooms pass static validation (inherit, short, setup, exits)
+- All exit targets exist as files
+- All new exits are bidirectional
+- Only pre-existing asymmetric connection flagged (road2 ↔ longan, by design)
+[0;32m[OK][0m Task done: Implement rooms and areas
+
+[0;34m[08:17:09][0m Running task: Implement NPCs
+All tasks complete. Here's a summary:
+
+## Task 04 完成報告：NPC 實作
+
+### 掌門/師父 NPC（拜師系統）
+- **19/19 門派已有完整拜師系統** — 所有門派的 `accept_apprentice`、`init_apprentice`、`acquire_skill` 均已實作
+
+### 新建 Boss NPC（3 個）
+| NPC | 檔案 | 等級 | 房間 |
+|-----|------|------|------|
+| 赤龍 | `d/kangping/npc/red_dragon.c` | 65 | `kangping/stone_cave.c`（新建） |
+| 黑龍 | `d/longan/npc/black_dragon.c` | 65 | `longan/lake_cave.c`（新建） |
+| 混沌獸 | `obj/npc/chaos_beast.c` | 60 | 待任務系統觸發 |
+
+### 新建故事/任務 NPC（3 個）
+| NPC | 檔案 | 等級 | 房間 |
+|-----|------|------|------|
+| 大邪道人 | `d/tianxie/npc/evil_daoist.c` | 75 | `tianxie/training.c` |
+| 殘蟻師太 | `d/tianyue/npc/canyi.c` | 70 | `tianyue/meditation.c` |
+| 毒刀胡惑 | `d/wutang/npc/huhuo.c` | 40 | `wutang/square.c` |
+
+### 新建城鎮 NPC（16 個）
+- **龍安**（4）: 守衛、小販、老園丁、鐵匠（商人）
+- **京畿**（4）: 城門守衛、路人、兵器商（商人）、錢莊護衛
+- **康平**（4）: 守衛、洗衣婦、農夫、採藥人
+- **三掩**（4）: 守衛、乞丐、兵器鋪老闆（商人）、香客
+
+### 已確認存在（無需新建）
+劍皇、司馬雷、歐陽芝、孫漪、大蜈蚣、黑無常、白無常、瞎眼老太婆、黑衣老人 — 共 9 個
+
+### 房間載入
+- 17 個現有房間已更新 `set("objects")` 載入新 NPC
+- 2 個新建洞穴房間（stone_cave, lake_cave）含雙向出口
+
+### 靜態驗證
+- **22/22 新 NPC 全部通過**：`#include <npc.h>`、繼承類型、`set_name`、`set_race`、`set_level`、`setup()` 均正確
+[0;32m[OK][0m Task done: Implement NPCs
+
+[0;34m[08:30:56][0m Running task: Implement equipment
+All tasks complete. Here's a summary of what was created:
+
+## Created Equipment Summary (28 files)
+
+### Weapons (13 new files in `mudlib/obj/weapon/`)
+| File | Chinese Name | Type | Stats |
+|------|-------------|------|-------|
+| `wind_god_feather.c` | 風神之羽 | F_SWORD | setup_sword(9, 30, 200, 5) |
+| `evil_blade_yanling.c` | 邪刀焱靈 | F_BLADE | setup_blade(4, 18, 100, 4) |
+| `black_steel_dagger.c` | 黑鋼短刃 | F_DAGGER | setup_dagger(3, 10, 50, 2) |
+| `fury_whip.c` | 怒天鞭 | F_WHIP | setup_whip(5, 12, 90, 8) |
+| `bloody_dagger.c` | 血匕封喉 | F_DAGGER | setup_dagger(4, 14, 70, 2) |
+| `goddess_sword.c` | 西山仙劍 | F_SWORD | setup_sword(5, 16, 120, 5) |
+| `royal_sword.c` | 英雄王者劍 | F_SWORD | setup_sword(9, 30, 200, 5) |
+| `ancient_dagger.c` | 古鄔匕 | F_DAGGER | setup_dagger(5, 16, 80, 2) |
+| `coldblood_dagger.c` | 無情匕 | F_DAGGER | setup_dagger(5, 16, 80, 2) |
+| `tailor_needle.c` | 繡花銀針 | F_NEEDLE | setup_needle(5, 14, 80, 3) |
+| `spirit_staff.c` | 聖靈禪杖 | F_STAFF | setup_staff(5, 22, 120, 7) |
+| `warlord_blade.c` | 戰神劈天刀 | F_BLADE | setup_blade(8, 30, 180, 5) |
+| `silk_fishing_rod.c` | 青絲釣竿 | F_WHIP | setup_whip(3, 10, 60, 7) |
+
+### Armor (12 new files in `mudlib/obj/armor/`)
+| File | Chinese Name | Type | Armor Value |
+|------|-------------|------|-------------|
+| `bloodstained_armor.c` | 征衣血染 | F_ARMOR | 55 |
+| `silky_gloves.c` | 青絲手套 | F_HAND_EQ | 12 |
+| `dragon_boots.c` | 蛈蜇杳龍屐 | F_FEET_EQ | 18 |
+| `symbol_of_dao.c` | 邪骨指環 | F_FINGER_EQ | 8 |
+| `wuzin_ring.c` | 舞璃戒指 | F_FINGER_EQ | 3 |
+| `fire_scale_plate.c` | 火鱗胸鎧 | F_ARMOR | 45 |
+| `fire_scale_leggings.c` | 火鱗脛甲 | F_LEG_EQ | 20 |
+| `fire_scale_belt.c` | 火鱗腰帶 | F_WAIST_EQ | 12 |
+| `fire_scale_gloves.c` | 火鱗手套 | F_HAND_EQ | 15 |
+| `fire_scale_helm.c` | 火鱗盔 | F_HEAD_EQ | 18 |
+| `fire_scale_boots.c` | 火鱗靴 | F_FEET_EQ | 15 |
+| `fire_scale_cloth.c` | 火鱗衣 | F_CLOTH | 25 |
+
+### Quest Items (3 new files in `mudlib/obj/weapon/`)
+| File | Chinese Name |
+|------|-------------|
+| `seal_of_chaos.c` | 混沌之印 |
+| `fish_belly_pearl.c` | 河魚腹珠 |
+| `nine_turn_pearl.c` | 九轉異龍珠 |
+
+**Static validation: 28/28 files passed** - all have correct includes, inheritance, setup functions, and required properties.
+[0;32m[OK][0m Task done: Implement equipment
+
+[0;34m[08:38:27][0m Running task: Implement skill daemons
+All tasks complete. Here's the summary:
+
+## Results
+
+### Validation - All Pass
+
+| Check | Result |
+|-------|--------|
+| All 75 skills have `inherit SKILL` | PASS |
+| All 75 skills have `register_skill_daemon` | PASS |
+| All 75 skills have `skill_improved` | PASS |
+| All 75 skills have `skill_advanced` | PASS |
+| All 41 combat skills have >= 6 actions | PASS |
+| All 33 門派武功 have named moves (「」) | PASS |
+| All 12 force/neigong skills have do_exercise/halt_exercise/exert_function | PASS |
+
+### What was done
+
+All skill daemon files already existed with proper structure. The main work was **adding unique themed named moves** to 32 門派武功 combat skills that previously used identical generic action templates:
+
+- **8 sword skills**: fengshan_sword, fonxansword, maoshan_sword, lengmei_sword, taiyi_sword, phantom_sword, deisword, six_chaos_sword, snowshade_sword
+- **3 blade skills**: tiger_blade, shortsong_blade, spring_blade
+- **3 staff/hammer**: jingang_staff, cloudstaff, diamond_hammer
+- **2 needle skills**: five_defeat_needle, amazing_needle
+- **1 whip**: snowwhip
+- **8 unarmed/fist/claw**: bloodystrike, bolomiduo, celestrike, ts_fist, liuh_ken, scratching, spicyclaw, tenderzhi
+- **5 special**: fork, gouyee, wu_shun, stormdance, three_rotations, tactic
+
+Each now has 6 unique thematically-named moves reflecting the skill's identity (e.g., 封山劍法 has mountain-themed moves like「峰回路轉」「空山鳥語」, 六亂劍法 has chaos-themed moves like「亂花迷眼」「顛倒乾坤」).
+[0;32m[OK][0m Task done: Implement skill daemons
+
+[0;34m[08:46:17][0m Running task: Implement quest system
+All done. Here's a summary of the quest system implementation:
+
+---
+
+## Implemented Quests
+
+### Quest 1: 搬箱子打工 (Crate Carrying) — `foreman.c`
+- **Location**: 貨棧 (`store.c`)
+- **Flow**: Say "打工" → pick up crates → `load crate into wagon` → say "工錢" to collect
+- **First-time bonus**: Load 3+ crates (75+ coins) → extra 100 coins + 50 quest XP
+- **Flag**: `quest/foreman_crate_done`
+
+### Quest 2: 尋女任務 (Missing Daughter) — `darkrobe.c` + `girl.c`
+- **Location**: 破舊莊園 (`dilapidated_manor.c`) → 破舊大宅正廳 (`ruin2.c`)
+- **Flow**: Talk to 黑袍老人 (say "女兒"/"怎麼了") → sets `hairpin_quest` so girl won't attack → go to ruin2 → say "父親"/"黑袍" to girl → return to darkrobe → say "找到"/"女兒"
+- **Reward**: 5 silver + 150 quest XP
+- **Flag**: `quest/darkrobe_daughter_done`
+
+### Quest 3: 拜師引導 (Apprentice Guide) — `escort.c` (NEW)
+- **Location**: 廣場南 (`square_s.c`)
+- **Flow**: Say "拜師"/"學武"/"門派" to 老鏢師 → get faction info + 50 coins + 30 quest XP
+- **Also responds to**: specific faction questions (煉丹, 軍營, 冷梅, 血印, 苦笑)
+- **Flag**: `quest/escort_guide_done`
+
+### Pre-existing Quests (already working)
+- **老乞婆** (棉襖→匕首→西瓜): 200 quest XP + rosary + white robe
+- **送信** (postman→herbalist): 100 quest XP + 100 coins
+
+### Files Modified
+- `mudlib/d/snow/npc/foreman.c` — added quest bonus + "打工" dialogue
+- `mudlib/d/snow/npc/darkrobe.c` — complete quest flow with reward
+- `mudlib/d/snow/npc/girl.c` — responds to father mention for darkrobe quest
+- `mudlib/d/snow/square_s.c` — loads escort NPC
+
+### Files Created
+- `mudlib/d/snow/npc/escort.c` — new apprentice guide NPC
+[0;32m[OK][0m Task done: Implement quest system
+
+[0;34m[08:56:15][0m All tasks completed.
+[0;34m[08:56:15][0m Checking for changes to commit...

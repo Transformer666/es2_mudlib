@@ -6,45 +6,45 @@ inherit SKILL;
 
 mapping *actions = ({
     ([
-        "action":       "$N持$w往$n的$l刺去",
+        "action":       "$N一式「龍王出海」﹐$w如蛟龍般刺向$n的$l",
         "dodge":        5,
         "damae":        5,
         "damage_type":  "刺傷"
     ]),
     ([
-        "action":       "$N閃身上前﹐$w朝$n的$l劈去",
-        "dodge":        -5,
-        "damae":        5,
-        "damage_type":  "割傷"
-    ]),
-    ([
-        "action":       "$N欺身而進﹐$w直取$n的$l",
+        "action":       "$N施展「三叉鎮海」﹐$w三尖齊出鎖向$n的$l",
         "dodge":        -10,
         "damage":       10,
         "damage_type":  "刺傷"
     ]),
     ([
-        "action":       "$N虛晃一招﹐$w反手攻向$n的$l",
-        "dodge":        5,
-        "damae":        5,
+        "action":       "$N叉勢一沉﹐「海底撈月」的$w自下而上挑向$n的$l",
+        "dodge":        -5,
+        "damae":        8,
         "damage_type":  "割傷"
     ]),
     ([
-        "action":       "$N忽然暴起﹐$w朝$n的$l猛攻",
+        "action":       "$N大喝一聲﹐「翻江倒海」的$w帶著排山之力劈向$n的$l",
+        "dodge":        -15,
+        "damage":       15,
+        "damage_type":  "割傷"
+    ]),
+    ([
+        "action":       "$N橫叉一掃﹐「怒潮拍岸」的$w如怒潮般拍向$n的$l",
         "dodge":        -5,
         "damage":       10,
         "damage_type":  "刺傷"
     ]),
     ([
-        "action":       "$N一個側身﹐$w劃向$n的$l",
+        "action":       "$N叉勢翻湧﹐「巨浪滔天」的$w裹挾萬鈞之力砸向$n的$l",
         "dodge":        10,
-        "damae":        5,
+        "damae":        7,
         "damage_type":  "割傷"
     ]),
 });
 
 string *interattack = ({
-    "$N將叉橫在身前﹐虎視眈眈地看著對方。\n",
+    "$N持叉在手﹐叉法大開大闔﹐威猛無比。\n",
 });
 
 private void

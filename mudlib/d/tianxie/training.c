@@ -9,6 +9,9 @@ void create()
 習身法和暗器手法﹐動作迅捷無聲。
 LONG
     );
+    set("objects", ([
+        __DIR__"npc/evil_daoist" : 1,
+    ]));
     set("exits", ([
         "west" : __DIR__"yard",
     ]));

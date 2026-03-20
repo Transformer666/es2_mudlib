@@ -6,45 +6,45 @@ inherit SKILL;
 
 mapping *actions = ({
   ([
-    "action":		"$N輕揮$w﹐劍走太極圓弧斬向$n的$l",
+    "action":		"$N使一招「太乙真火」﹐$w燃起真火斬向$n的$l",
     "dodge":		-5,
     "damage":		10,
     "damage_type":	"割傷"
   ]),
   ([
-    "action":		"$N身隨劍轉﹐$w順勢刺向$n的$l",
-    "dodge":		5,
-    "damage":		5,
-    "damage_type":	"刺傷"
-  ]),
-  ([
-    "action":		"$N踏罡步斗﹐$w帶著道韻直取$n的$l",
+    "action":		"$N施展「紫微星落」﹐$w化作一道星光刺向$n的$l",
     "dodge":		-10,
-    "damage":		10,
+    "damae":		12,
     "damage_type":	"刺傷"
   ]),
   ([
-    "action":		"$N御劍凌風﹐$w化為一道清光劈向$n的$l",
+    "action":		"$N使出「北斗七殺」﹐$w連環七劍劈向$n的$l",
     "dodge":		-15,
     "damage":		15,
     "damage_type":	"割傷"
   ]),
   ([
-    "action":		"$N氣沉丹田﹐$w以柔勁削向$n的$l",
-    "dodge":		10,
-    "damage":		5,
+    "action":		"$N運起「天罡正氣」﹐$w挾帶浩然正氣削向$n的$l",
+    "dodge":		5,
+    "damae":		8,
     "damage_type":	"割傷"
   ]),
   ([
-    "action":		"$N旋身一轉﹐$w畫出一道太乙劍圈掃向$n的$l",
+    "action":		"$N一招「玄天破魔」﹐$w劍氣凜然直取$n的$l",
     "dodge":		-5,
     "damage":		10,
+    "damage_type":	"刺傷"
+  ]),
+  ([
+    "action":		"$N喝道「星河倒轉」﹐$w旋轉如星河般掃向$n的$l",
+    "dodge":		10,
+    "damae":		5,
     "damage_type":	"割傷"
   ]),
 });
 
 string *interattack = ({
-  "$N持$n在手﹐劍意綿綿﹐自有一股道家風範。\n",
+  "$N持劍在手﹐太乙劍法隱隱透出一股凜然正氣。\n",
 });
 
 private void

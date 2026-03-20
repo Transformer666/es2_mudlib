@@ -6,45 +6,45 @@ inherit SKILL;
 
 mapping *actions = ({
     ([
-        "action":       "$N持$w往$n的$l抓去",
-        "dodge":        5,
-        "damae":        5,
-        "damage_type":  "割傷"
-    ]),
-    ([
-        "action":       "$N閃身上前﹐$w朝$n的$l劈去",
+        "action":       "$N使出「火辣連環」﹐雙爪連環抓向$n的$l",
         "dodge":        -5,
-        "damae":        5,
+        "damae":        9,
         "damage_type":  "割傷"
     ]),
     ([
-        "action":       "$N欺身而進﹐$w直取$n的$l",
+        "action":       "$N猛施「烈焰抓心」﹐灼熱的爪勁直取$n的$l",
+        "dodge":        -15,
+        "damage":       15,
+        "damage_type":  "瘀傷"
+    ]),
+    ([
+        "action":       "$N翻手使出「灼爪焚天」﹐爪風炙熱地掃向$n的$l",
         "dodge":        -10,
-        "damage":       10,
+        "damae":        11,
         "damage_type":  "割傷"
     ]),
     ([
-        "action":       "$N虛晃一招﹐$w反手攻向$n的$l",
+        "action":       "$N冷笑一聲施展「辣手摧花」﹐毒辣地攻向$n的$l",
         "dodge":        5,
-        "damae":        5,
+        "damage":       8,
+        "damage_type":  "瘀傷"
+    ]),
+    ([
+        "action":       "$N雙爪齊出使出「烈火燎原」﹐爪影鋪天蓋地襲向$n的$l",
+        "dodge":        -10,
+        "damae":        13,
         "damage_type":  "割傷"
     ]),
     ([
-        "action":       "$N忽然暴起﹐$w朝$n的$l猛攻",
-        "dodge":        -5,
-        "damage":       10,
-        "damage_type":  "割傷"
-    ]),
-    ([
-        "action":       "$N一個側身﹐$w劃向$n的$l",
+        "action":       "$N陰狠地使出「毒辣鬼爪」﹐詭異的爪勁攻向$n的$l",
         "dodge":        10,
-        "damae":        5,
-        "damage_type":  "割傷"
+        "damage":       6,
+        "damage_type":  "瘀傷"
     ]),
 });
 
 string *interattack = ({
-    "$N五指如鉤﹐辣爪功的陰狠氣息令人不寒而慄。\n",
+    "$N雙手翻飛﹐辣爪的爪勢又快又狠。\n",
 });
 
 private void

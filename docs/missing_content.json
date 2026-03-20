@@ -1,307 +1,253 @@
 {
-  "scan_date": "2026-03-20",
+  "generated_date": "2026-03-20",
   "summary": {
-    "total_required_categories": 9,
-    "total_items_required": 355,
-    "total_items_implemented": 194,
-    "total_items_missing": 161,
-    "completion_percentage": "54.6%"
+    "total_files_implemented": 748,
+    "total_rooms": 399,
+    "total_npcs": 222,
+    "total_area_objects": 127,
+    "total_global_objects": 174,
+    "areas_implemented": 49,
+    "areas_in_original": 19,
+    "skills_implemented": 75,
+    "skills_in_original": 72,
+    "races_implemented": 11,
+    "races_required": 11,
+    "classes_implemented": 9,
+    "classes_required": 8,
+    "sects_implemented": 19,
+    "sects_required": 19,
+    "weapons_implemented": 42,
+    "armor_implemented": 30,
+    "help_files": 13,
+    "blog_posts_crawled": 143,
+    "equipment_items_in_blog": 95,
+    "quest_chains_documented": 12,
+    "completion_notes": "Core framework well-implemented. All races, classes, sects have daemons and areas. Main gaps: 12 missing original skills, city area, quest content, help files, sub-sect specialization (tianshi 4 elements, maoshan 3 monasteries), and some notable NPCs/bosses."
   },
   "races": {
     "required": 11,
     "implemented": 11,
     "missing": 0,
-    "completion_percentage": "100%",
-    "note": "wiki 列出 11 種族: human, headless(xingtian), yenhold, yaksa(yaksha), malik, woochan, jiaojao, dingling, ashura(asura), rainnar, blackteeth",
-    "implemented_list": ["human", "xingtian", "yenhold", "yaksha", "malik", "woochan", "jiaojao", "dingling", "asura", "rainnar", "blackteeth"],
-    "help_files_implemented": 11,
-    "note2": "xingtian=headless(刑天), yaksha=yaksa(夜叉), asura=ashura(阿修羅) — 名稱略有差異但已全部實作"
+    "status": "COMPLETE",
+    "list": [
+      {"id": "human", "name": "人類", "daemon": true, "help": true},
+      {"id": "xingtian", "name": "刑天", "daemon": true, "help": true},
+      {"id": "yenhold", "name": "厭火", "daemon": true, "help": true},
+      {"id": "yaksha", "name": "夜叉", "daemon": true, "help": true},
+      {"id": "malik", "name": "巫首", "daemon": true, "help": true},
+      {"id": "woochan", "name": "無腸", "daemon": true, "help": true},
+      {"id": "jiaojao", "name": "焦僥", "daemon": true, "help": true},
+      {"id": "dingling", "name": "釘靈", "daemon": true, "help": true},
+      {"id": "asura", "name": "阿修羅", "daemon": true, "help": true},
+      {"id": "rainnar", "name": "雨師妾", "daemon": true, "help": true},
+      {"id": "blackteeth", "name": "黑齒", "daemon": true, "help": true}
+    ]
   },
   "classes": {
-    "required": 9,
+    "required": 8,
     "implemented": 9,
     "missing": 0,
-    "completion_percentage": "100%",
-    "note": "我們的職業體系與原版不同，原版有14種(assassin, beggar, bonze, dancer, fighter, juechen, lama, ninja, nomad, ronin, scholar, swordsman, taoist)，我們按 wiki 重新設計為7+2種",
-    "implemented_list": ["warrior", "monk", "taoist", "thief", "alchemist", "scholar", "soldier", "commoner", "fighter"],
-    "original_es2_classes": ["assassin", "beggar", "bonze", "dancer", "fighter", "juechen", "lama", "ninja", "nomad", "ronin", "scholar", "swordsman", "taoist"],
-    "mapping_note": "原版14職業已重新整合為我們的9職業體系，不視為缺失"
+    "status": "COMPLETE",
+    "list": [
+      {"id": "warrior", "name": "武者"},
+      {"id": "monk", "name": "和尚"},
+      {"id": "taoist", "name": "道士"},
+      {"id": "thief", "name": "小偷"},
+      {"id": "alchemist", "name": "方士"},
+      {"id": "scholar", "name": "書生"},
+      {"id": "soldier", "name": "軍人"},
+      {"id": "commoner", "name": "平民"},
+      {"id": "fighter", "name": "戰士", "note": "Additional class beyond wiki spec"}
+    ]
   },
   "sects": {
-    "required": 18,
-    "implemented": 18,
+    "required": 19,
+    "implemented": 19,
     "missing": 0,
-    "completion_percentage": "100%",
-    "note": "原版沒有 sect daemon 目錄，此為我們新增的系統",
-    "implemented_list": ["baixiang", "baolian", "buxuan", "fengshan", "hudao", "jianjia", "kuxiao", "langyi", "lengmei", "longttu", "maoshan", "tianshi", "tianxie", "wutuo", "xuantian", "xueyin", "yinjiao", "zhenwu"],
-    "all_locations_valid": true,
-    "tianyue_note": "天月庵(tianyue)有區域(11 files)但wiki未列為門派 — 已包含在天月庵 sect daemon 中"
+    "status": "COMPLETE",
+    "all_location_rooms_exist": true,
+    "list": [
+      {"id": "fengshan", "name": "封山派", "class": "warrior", "daemon": true, "area": true},
+      {"id": "lengmei", "name": "冷梅莊", "class": "warrior", "daemon": true, "area": true},
+      {"id": "kuxiao", "name": "哭笑門", "class": "warrior", "daemon": true, "area": true},
+      {"id": "xueyin", "name": "雪吟莊", "class": "warrior", "daemon": true, "area": true},
+      {"id": "hudao", "name": "虎刀門", "class": "warrior", "daemon": true, "area": true},
+      {"id": "baolian", "name": "寶蓮寺", "class": "monk", "daemon": true, "area": true},
+      {"id": "tianyue", "name": "天月庵", "class": "monk", "daemon": true, "area": true},
+      {"id": "baixiang", "name": "白象寺", "class": "monk", "daemon": true, "area": true},
+      {"id": "tianshi", "name": "天師派", "class": "taoist", "daemon": true, "area": true},
+      {"id": "maoshan", "name": "茅山派", "class": "taoist", "daemon": true, "area": true},
+      {"id": "langyi", "name": "瑯夷", "class": "thief", "daemon": true, "area": true},
+      {"id": "yinjiao", "name": "隱教", "class": "thief", "daemon": true, "area": true},
+      {"id": "longttu", "name": "龍圖丹派", "class": "alchemist", "daemon": true, "area": true},
+      {"id": "wutuo", "name": "武陀", "class": "alchemist", "daemon": true, "area": true},
+      {"id": "buxuan", "name": "步玄派", "class": "scholar", "daemon": true, "area": true},
+      {"id": "xuantian", "name": "玄天教", "class": "scholar", "daemon": true, "area": true},
+      {"id": "zhenwu", "name": "振武軍營", "class": "soldier", "daemon": true, "area": true},
+      {"id": "jianjia", "name": "劍甲門", "class": "cross-class", "daemon": true, "area": true},
+      {"id": "tianxie", "name": "天邪派", "class": "cross-class", "daemon": true, "area": true}
+    ],
+    "sub_sect_gaps": [
+      {
+        "sect": "maoshan",
+        "sub_sects": ["靈雲觀 (status effects)", "隱風觀 (healing)", "幻霧觀 (burst damage)"],
+        "status": "Single daemon exists, sub-sect specialization not yet implemented",
+        "priority": "MEDIUM"
+      },
+      {
+        "sect": "tianshi",
+        "sub_sects": ["紫衣派 (Thunder/雷)", "素衣派 (Ice/冰)", "玄衣派 (Wind/風)", "朱衣派 (Fire/火)"],
+        "status": "Single daemon exists, elemental specialization not yet implemented",
+        "priority": "MEDIUM"
+      }
+    ]
   },
   "skills": {
-    "required": 71,
-    "implemented": 27,
-    "missing": 44,
-    "completion_percentage": "38.0%",
-    "implemented_list": [
-      "amazing_needle", "axe", "blade", "dagger", "diamond_hammer", "dodge",
-      "fengshan_sword", "five_defeat_needle", "force", "lengmei_sword",
-      "longttu_neigong", "maoshan_neigong", "maoshan_sword", "needle",
-      "parry", "phantom_sword", "pike", "staff", "sword", "tactic",
-      "taiyi_sword", "taoshan_milu", "three_rotations", "tiger_blade",
-      "unarmed", "whip", "ziwei_neigong"
-    ],
+    "total_in_original": 72,
+    "total_implemented": 75,
+    "missing_from_original": 12,
+    "added_beyond_original": 17,
     "all_have_skill_improved": true,
     "all_have_skill_advanced": true,
-    "missing_from_original": [
-      "bloodystrike", "bolomiduo", "buddhism", "celestial", "celestrike",
-      "chanting", "chaos-steps", "cloudstaff", "deisword", "essencemagic",
-      "fall-steps", "fonxanforce", "fonxansword", "fork", "gouyee",
-      "hammer", "iceforce", "instruments", "iron-cloth", "jin-gang",
-      "jingang-staff", "juechen-force", "linbo-steps", "literate",
-      "liuh-ken", "lotusforce", "magic-array", "magic", "meihua-shou",
-      "move", "music", "mysterrier", "mystforce", "mystsword",
-      "necromancy", "nine-moon", "notraces", "perception",
-      "pyrobat-steps", "qidaoforce", "scratching", "serpentforce",
-      "shortsong-blade", "six-chaos-sword", "snowshade-force",
-      "snowshade-sword", "snowwhip", "spells", "spicyclaw",
-      "spider-array", "spring-blade", "stealing", "stormdance",
-      "tao-mystery", "taoism", "tenderzhi", "throwing", "ts-fist",
-      "wu-shun", "yirong"
+    "status": "83% original coverage + 17 new sect-specific skills",
+    "missing_from_original_list": [
+      {"id": "hammer", "name": "鎚法(通用)", "priority": "HIGH", "note": "We have diamond_hammer but not generic hammer"},
+      {"id": "lotusforce", "name": "蓮花內功", "priority": "MEDIUM"},
+      {"id": "magic_array", "name": "法陣", "priority": "MEDIUM"},
+      {"id": "magic", "name": "法術(通用)", "priority": "HIGH"},
+      {"id": "meihua_shou", "name": "梅花手", "priority": "LOW"},
+      {"id": "move", "name": "身法(通用)", "priority": "HIGH", "note": "Core movement skill missing"},
+      {"id": "music", "name": "音律", "priority": "MEDIUM"},
+      {"id": "mysterrier", "name": "玄鐵", "priority": "LOW"},
+      {"id": "mystforce", "name": "玄功", "priority": "MEDIUM"},
+      {"id": "mystsword", "name": "玄劍", "priority": "MEDIUM"},
+      {"id": "necromancy", "name": "招魂術", "priority": "MEDIUM"},
+      {"id": "nine_moon", "name": "九陰功", "priority": "MEDIUM"}
     ],
-    "note": "比對原版 mudchina/es2 的 daemon/skill/ 目錄，共71個技能檔，我們有27個（含自訂名稱的技能），缺少44個原版技能",
-    "priority_missing": {
-      "high": [
-        "buddhism (佛學，和尚系核心)",
-        "taoism (道術，道士系核心)",
-        "literate (識字，書生系核心)",
-        "stealing (偷竊，小偷系核心)",
-        "magic (法術，方士系核心)",
-        "spells (咒術)",
-        "hammer (鎚法，已有diamond_hammer但缺通用)",
-        "move (身法，基礎技能)",
-        "perception (感知，基礎技能)",
-        "music (音律)"
-      ],
-      "medium": [
-        "lotusforce (蓮花內功)", "jingang-staff (金剛杖法)", "jin-gang (金剛)",
-        "iron-cloth (鐵布衫)", "iceforce (冰凍內功)", "serpentforce (蛇形內功)",
-        "celestial (天界)", "celestrike (天擊)", "cloudstaff (雲杖法)",
-        "notraces (無影步)", "throwing (暗器)"
-      ],
-      "low": [
-        "bloodystrike", "bolomiduo", "chanting", "chaos-steps",
-        "deisword", "essencemagic", "fall-steps", "fonxanforce",
-        "fonxansword", "fork", "gouyee", "instruments",
-        "juechen-force", "linbo-steps", "liuh-ken", "magic-array",
-        "meihua-shou", "mysterrier", "mystforce", "mystsword",
-        "necromancy", "nine-moon", "pyrobat-steps", "qidaoforce",
-        "scratching", "shortsong-blade", "six-chaos-sword",
-        "snowshade-force", "snowshade-sword", "snowwhip",
-        "spicyclaw", "spider-array", "spring-blade", "stormdance",
-        "tao-mystery", "tenderzhi", "ts-fist", "wu-shun", "yirong"
-      ]
-    }
+    "added_beyond_original_list": [
+      "amazing_needle (奇針術)", "diamond_hammer (金剛鎚法)", "fengshan_sword (封山劍法)",
+      "five_defeat_needle (五敗針法)", "lengmei_sword (冷梅劍法)", "longttu_neigong (龍圖內功)",
+      "maoshan_neigong (茅山內功)", "maoshan_sword (茅山劍法)", "needle (針法)",
+      "phantom_sword (幻影劍法)", "pike (槍法)", "tactic (戰術兵法)",
+      "taiyi_sword (太乙劍法)", "taoshan_milu (陶山迷路)", "three_rotations (三轉劍法)",
+      "tiger_blade (虎刀)", "ziwei_neigong (紫微內功)"
+    ]
   },
   "areas": {
-    "required": 20,
-    "implemented": 37,
-    "missing_from_original": 13,
-    "our_additional_areas": 30,
-    "completion_percentage": "75.0%",
-    "total_c_files": 621,
-    "total_npc_files": 173,
-    "total_npc_obj_files": 120,
-    "original_areas": [
-      "canyon", "choyin", "chuenyu", "city", "death", "force",
-      "goathill", "graveyard", "green", "green.n", "ice", "jail",
-      "latemoon", "npc", "oldpine", "sanyen", "snow", "temple",
-      "village", "waterfog"
+    "original_count": 19,
+    "implemented_from_original": 17,
+    "missing_from_original": 2,
+    "additional_new": 32,
+    "total_implemented": 49,
+    "status": "89% original + 32 new areas",
+    "missing_from_original_list": [
+      {"id": "city", "name": "城市", "priority": "HIGH", "note": "Major town area from original ES2"},
+      {"id": "green_n", "name": "草原北部 (green.n)", "priority": "MEDIUM", "note": "Northern grassland extension"}
     ],
-    "our_areas": [
-      "baihua (15)", "baixiang (17)", "baolian (11)", "buxuan (11)", "chixiao (15)",
-      "choyin (20)", "fengshan (15)", "graveyard (11)", "heifeng (13)", "hell (13)",
-      "hudao (17)", "jianjia (9)", "jingji (18)", "kangping (12)", "kuxiao (10)",
-      "langyi (11)", "lee (11)", "lengmei (10)", "lijun (21)", "longan (18)",
-      "longttu (10)", "manglin (11)", "maoshan (10)", "oldpine (14)",
-      "road (10)", "sanyen (11)", "snow (112)", "tianshi (12)", "tianxie (14)",
-      "tianyue (11)", "weiguo (19)", "wutang (50)", "wutuo (9)", "xuantian (10)",
-      "xueyin (10)", "yinjiao (11)", "zhenwu (19)"
-    ],
-    "matched_areas": ["choyin", "graveyard", "oldpine", "sanyen", "snow"],
-    "missing_original_areas": [
-      "canyon (峽谷)",
-      "chuenyu (泉域)",
-      "city (城市)",
-      "death (死亡領域)",
-      "force (內功修練區)",
-      "goathill (羊山)",
-      "green/green.n (草原)",
-      "ice (冰域)",
-      "jail (監獄)",
-      "latemoon (晚月)",
-      "temple (神殿)",
-      "village (村莊)",
-      "waterfog (水霧)"
-    ],
-    "our_unique_areas": [
-      "baihua (百花)", "baixiang (白象寺)", "baolian (寶蓮寺)",
-      "buxuan (步玄派)", "chixiao (赤霄)", "fengshan (封山派)",
-      "heifeng (黑風)", "hell (地獄)", "hudao (虎刀門)",
-      "jianjia (劍甲門)", "jingji (京畿)", "kangping (康平)",
-      "kuxiao (哭笑門)", "langyi (瑯夷)", "lee (李家村)",
-      "lengmei (冷梅莊)", "lijun (離郡)", "longan (龍安)",
-      "longttu (龍圖丹派)", "manglin (莽林)", "maoshan (茅山派)",
-      "road (道路)", "tianshi (天師派)", "tianxie (天邪派)",
-      "tianyue (天月庵)", "weiguo (衛國)", "wutang (武唐城)",
-      "wutuo (武陀)", "xuantian (玄天教)", "xueyin (雪吟莊)",
-      "yinjiao (隱教)", "zhenwu (振武軍營)"
-    ],
-    "note": "我們有32個原版沒有的門派專屬區域和城鎮，但缺少13個原版的野外探索區域"
-  },
-  "conditions": {
-    "required": 7,
-    "implemented": 2,
-    "missing": 5,
-    "completion_percentage": "28.6%",
-    "implemented_list": ["drunk", "poison"],
-    "missing_list": ["bandaged", "iceshock", "rose_poison", "slumber_drug", "snake_poison"],
-    "note": "比對原版 mudchina/es2 的 daemon/condition/ 目錄"
-  },
-  "equipment": {
-    "weapons": {
-      "implemented": 18,
-      "list": [
-        "chuanling (穿靈)", "dragon_needle (盤龍針)", "dragon_whip (毒龍鞭)",
-        "equalizer (毒刀胡惑)", "erotic_staff (交歡杖)", "golden_lance (金龍豹紋槍)",
-        "iron_tiger (鐵虎)", "jade_ruler (玉戒尺)", "mietianjian (蔑天劍)",
-        "psychic_sword (靈通劍)", "rapid_sword (疾風劍)", "thunder_bomb (霹靂雷火彈)",
-        "tiger_blade (虎刀)", "xuanmang (旋芒)", "xuanyao (玄妖)",
-        "yinxue (銀血)", "yumo_axe (域摩斧)", "zijin_pike (紫金鳳頭錐)"
-      ]
-    },
-    "armor": {
-      "implemented": 10,
-      "list": [
-        "blessed_jade (萬福寶玉)", "cloth (布衣)", "corrosive_hands (腐蝕之手)",
-        "dragon_armor (怒龍錦冑)", "dragon_bone (靈骨)", "dragon_ring (龍戒)",
-        "fur_hat (皮帽)", "lightning_bomb (霹靂雷火彈)", "skull_rosary (白骨念珠)",
-        "soul_crystal_plate (靈魂水晶)"
-      ]
-    },
-    "npc_equipment": {
-      "total_npc_obj_files": 120,
-      "note": "散落在各區域 NPC 的 obj/ 中，包含武器、防具、食物、道具等"
-    },
-    "missing_from_blog": [
-      "寒玉藥杵 (jade_rod)", "清風刀 (qingfeng_blade)", "封神寶鏡 (mirror_of_gods)",
-      "離玄光熾 (black_spark)", "玄烏杖 (strange_copper_staff)", "饕餮法杖 (celestial_bull_cane)",
-      "歸心似劍 (loving_sword)", "白色長劍 (white_sword)", "萬年雪 (ancient_snow_staff)",
-      "雷熊爪 (thunder_claw)", "藍涎刀 (blue_saliva_blade)", "藥王神劍 (medicine_king_sword)",
-      "易羅大劍 (yiluo_greatsword)", "鬼頭劈象刀 (ghost_head_axe)", "雪魂匕 (snow_soul_dagger)",
-      "追月流星劍 (meteor_sword)", "邪門歪刀 (evil_crooked_blade)", "天都劍 (tiandu_sword)",
-      "水月劍 (shuiyue_sword)", "天命刃 (tianming_blade)", "風雷刀 (fenglei_blade)",
-      "追風劍 (zhuifeng_sword)", "六靈妖姬鞭 (liuling_whip)", "古刃旋芒 (ancient_blade_xuanmang)"
-    ],
-    "missing_armor_from_blog": [
-      "雨師妾袍 (rainnar_cloth)", "修羅之面 (ashura_mask)", "形天之怒 (girdle_of_headless)",
-      "黃玉佩 (topaz_belt)", "巫首項鍊 (malik_necklace)", "冷雪手護 (cold_snow_gauntlet)",
-      "雲羅絲衣 (cloud_silk_robe)", "無腸寶珠 (woochan_ring)", "釘靈腿護 (dingling_legs)",
-      "焦僥靴 (jiaojao_boots)", "厭火之拳 (yenhold_gauntlets)", "雷火天狼罩 (thunder_wolf_helm)",
-      "龍思羽 (dragon_feather)", "封印冰環 (seal_ice_ring)", "混元一氣袋 (hunyuan_bag)",
-      "邪骨指環 (evil_bone_ring)", "九天鳳珠 (jiutian_pearl)",
-      "舞璃戒指 (wuli_ring)", "鱷神系列裝備 (crocodile_god_set)", "白熊系列裝備 (white_bear_set)"
-    ],
-    "note": "blog 記錄了大量裝備資料，其中24件武器和20件防具/飾品尚未實作"
-  },
-  "missing_rooms": {
-    "note": "所有 sect daemon 的 location 指向的房間都存在",
-    "broken_references": 0,
-    "total_room_files": 621,
-    "total_areas": 37,
-    "areas_by_size": {
-      "large": ["snow (112)", "wutang (50)"],
-      "medium": ["lijun (21)", "choyin (20)", "zhenwu (19)", "weiguo (19)", "longan (18)", "jingji (18)", "hudao (17)", "baixiang (17)"],
-      "small": ["chixiao (15)", "baihua (15)", "fengshan (15)", "tianxie (14)", "oldpine (14)", "heifeng (13)", "hell (13)"],
-      "minimal": ["kangping (12)", "tianshi (12)", "tianyue (11)", "sanyen (11)", "manglin (11)", "lee (11)", "langyi (11)", "graveyard (11)", "buxuan (11)", "baolian (11)", "xueyin (10)", "xuantian (10)", "road (10)", "maoshan (10)", "longttu (10)", "lengmei (10)", "kuxiao (10)", "wutuo (9)", "jianjia (9)"]
+    "area_room_counts": {
+      "snow": {"rooms": 49, "npcs": 66, "objects": 36},
+      "wutang": {"rooms": 32, "npcs": 26, "objects": 6},
+      "lijun": {"rooms": 10, "npcs": 11, "objects": 5},
+      "choyin": {"rooms": 10, "npcs": 11, "objects": 4},
+      "zhenwu": {"rooms": 9, "npcs": 11, "objects": 3},
+      "weiguo": {"rooms": 9, "npcs": 10, "objects": 3},
+      "hudao": {"rooms": 9, "npcs": 9, "objects": 3},
+      "jingji": {"rooms": 9, "npcs": 9, "objects": 3},
+      "fengshan": {"rooms": 9, "npcs": 6, "objects": 2},
+      "baixiang": {"rooms": 9, "npcs": 8, "objects": 3},
+      "longan": {"rooms": 9, "npcs": 9, "objects": 2},
+      "oldpine": {"rooms": 8, "npcs": 7, "objects": 2},
+      "baihua": {"rooms": 8, "npcs": 7, "objects": 3},
+      "canyon": {"rooms": 7, "npcs": 3, "objects": 0},
+      "green": {"rooms": 7, "npcs": 3, "objects": 0},
+      "heifeng": {"rooms": 7, "npcs": 6, "objects": 2},
+      "tianxie": {"rooms": 7, "npcs": 7, "objects": 3},
+      "tianshi": {"rooms": 7, "npcs": 5, "objects": 2},
+      "manglin": {"rooms": 6, "npcs": 7, "objects": 1},
+      "kangping": {"rooms": 6, "npcs": 6, "objects": 2},
+      "others": "remaining areas have 5-6 rooms each"
     }
   },
   "missing_npcs": {
-    "total_implemented": 173,
-    "note": "需要為缺少的原版區域補充 NPC",
-    "important_npcs_from_blog": [
-      "駱易 (Luoyi) — 已實作 in snow",
-      "梅影風 (Meiyingfeng) — 已實作 in lengmei + snow",
-      "劉乙忘玄 (Liuyi) — 已實作 in kuxiao + snow",
-      "韓笑 (Hanxiao) — 已實作 in hudao",
-      "柳東蘆 (Liudonglu) — 已實作 in fengshan",
-      "李東靈 (Lidongling) — 已實作 in tianxie",
-      "歐陽無極 (Ouyang Wuji) — 已實作 in maoshan",
-      "魚鐵山 (Yutieshan) — 已實作 in snow",
-      "黑無常 (Black hell agent) — 未實作",
-      "白無常 (White hell agent) — 未實作",
-      "天靈 (Tianling) — 已實作 in chixiao",
-      "地靈 (Diling) — 已實作 in chixiao + hell",
-      "八寶樓系列 Boss (歐陽芝、司馬雷、崇白虎、馬鍾聖、公孫微、天神地鬼、施鈺、劍皇) — 未實作",
-      "杞庸 (Qiyong) — 已實作 in manglin",
-      "郭布 (Guobu) — 已實作 in wutang",
-      "大蜈蚣 — 未實作",
-      "水神天龍 — 未實作",
-      "風神 — 未實作",
-      "上古妖獸8隻 (鬼獫、靈狙、鸂鷘、天獒、寒蟾、鮫蛟、饕餮、狻猊) — 未實作"
-    ]
-  },
-  "missing_quests": {
-    "note": "wiki 主線任務頁面列出的任務系統尚未完整",
-    "known_missing": [
-      "主線任務系統 (來自 wiki zhu-xian-ren-wu) — 侮天鬼、十三靈任務線",
-      "天地靈任務 (來自 wiki tiandiling) — 天靈/地靈已有 NPC，任務流程部分完成",
-      "八寶樓任務 (8層Boss rush)",
-      "混沌之印+混沌獸任務",
-      "龍安鎮+黑龍+九轉異龍珠任務",
-      "百藥谷：赤龍+封山任務",
-      "大蜈蚣+聖木殘根任務",
-      "風神+風之印記任務",
-      "門派拜師任務（部分門派缺少完整流程）",
-      "殺業鍛鍊路線（練功地點指引）",
-      "老乞婆任務",
-      "任蕭蕭任務支線",
-      "八穴鬼徑走法",
-      "神之心打法"
-    ]
-  },
-  "missing_help_texts": {
-    "implemented": 11,
-    "note": "僅有種族幫助文件，缺少職業、門派、技能、指令等幫助文件",
-    "original_es2_help_files": [
-      "about", "armor", "attitude", "attribute", "board", "channels", "cmds",
-      "combat", "damage", "force", "gift", "guild", "health", "history",
-      "magic", "map.es2", "martial", "material", "myth", "newbie", "plan",
-      "quest", "rank", "rules", "settings", "setup", "skill", "start",
-      "stats", "story", "taoist", "theme", "topics", "weapon", "whatsnew"
+    "implemented_key_npcs": 23,
+    "missing_key_npcs": [
+      {"name": "大邪道人", "english": "Great Evil Daoist", "source": "main_quest", "priority": "HIGH"},
+      {"name": "殘蟻師太", "english": "Canyi Shitai", "source": "main_quest", "priority": "HIGH"},
+      {"name": "劍皇", "english": "Sword Emperor", "source": "八寶樓(8) final boss", "priority": "HIGH"},
+      {"name": "阿寶", "english": "Abao", "source": "雪亭鎮 榕樹quest", "priority": "MEDIUM"},
+      {"name": "瞎眼老太婆", "english": "Blind Old Woman", "source": "雪亭鎮quest", "priority": "MEDIUM"},
+      {"name": "黑衣老人", "english": "Old Man in Black", "source": "雪亭鎮quest", "priority": "MEDIUM"},
+      {"name": "毒刀胡惑", "english": "Poison Blade Huhuo", "source": "hatred reset NPC", "priority": "MEDIUM"},
+      {"name": "赤龍", "english": "Red Dragon", "source": "百藥谷boss", "priority": "HIGH"},
+      {"name": "黑龍", "english": "Black Dragon", "source": "龍安鎮boss", "priority": "HIGH"},
+      {"name": "混沌獸", "english": "Chaos Beast", "source": "混沌之印quest", "priority": "HIGH"},
+      {"name": "大蜈蚣", "english": "Giant Centipede", "source": "聖木殘根quest", "priority": "MEDIUM"},
+      {"name": "滅心/滅名/滅慾/神衛", "english": "Miewei Quartet", "source": "wind_god fight", "priority": "LOW"}
     ],
+    "ancient_beasts": {
+      "required": 8,
+      "implemented": 8,
+      "status": "COMPLETE"
+    }
+  },
+  "missing_quests": [
+    {"name": "主線任務完整流程", "priority": "CRITICAL", "type": "main_quest"},
+    {"name": "八穴鬼徑", "priority": "HIGH", "type": "dungeon"},
+    {"name": "神之心", "priority": "HIGH", "type": "boss_encounter"},
+    {"name": "混沌之印任務", "priority": "HIGH", "type": "quest_chain"},
+    {"name": "龍安鎮黑龍", "priority": "HIGH", "type": "boss_encounter"},
+    {"name": "百藥谷赤龍封山", "priority": "HIGH", "type": "boss_encounter"},
+    {"name": "天地靈任務線", "priority": "HIGH", "type": "quest_chain"},
+    {"name": "大蜈蚣聖木殘根", "priority": "MEDIUM", "type": "quest_chain"},
+    {"name": "任蕭蕭支線", "priority": "MEDIUM", "type": "side_quest"},
+    {"name": "四鬼招喚法", "priority": "LOW", "type": "skill_quest"},
+    {"name": "水龍經換奇兵精意", "priority": "LOW", "type": "item_quest"},
+    {"name": "老乞婆任務延伸", "priority": "LOW", "type": "side_quest", "note": "beggar_crone NPC exists"}
+  ],
+  "missing_help_texts": {
+    "current": 13,
+    "estimated_needed": 55,
     "missing_categories": [
-      "職業幫助文件 (9個: warrior, monk, taoist, thief, alchemist, scholar, soldier, commoner, fighter)",
-      "門派幫助文件 (18個: 每個 sect 一個)",
-      "技能幫助文件 (27+個: 每個已實作 skill 一個)",
-      "指令幫助文件 (cmds, combat, armor, weapon, etc.)",
-      "系統幫助文件 (about, attribute, board, channels, guild, health, rank, rules, settings, setup, stats, whatsnew)",
-      "故事幫助文件 (history, myth, story, theme)",
-      "新手指南 (newbie, start, tutorial)"
+      "classes (7): warrior, monk, taoist, thief, alchemist, scholar, soldier",
+      "sects (19): all sect descriptions",
+      "combat (5): fight, attack, defend, skills, parry",
+      "system (8): reincarnation, reputation, karma, equipment, inventory, map, quest, guild",
+      "newbie (3): getting_started, first_steps, commands"
     ]
   },
-  "consumables": {
-    "drugs": {
-      "implemented": 6,
-      "list": ["black_pill", "boar_berry", "dragon_saliva", "flower_pill", "gray_mushroom", "wild_ginseng"]
-    },
-    "food": {
-      "implemented": 5,
-      "list": ["dumpling", "manto", "mooncake", "pork", "ricedough"]
-    },
-    "reagents": {
-      "implemented": 4,
-      "list": ["cinnabar", "crane_dye", "medlar", "strychin"]
-    },
-    "note": "blog 提到更多食物和道具：紅燒雞、文國縣天風客棧食物等"
+  "missing_equipment": {
+    "note": "42 weapons and 30 armor pieces implemented. Blog data references ~60+ unique equipment items.",
+    "possibly_missing_weapons": [
+      "混沌之印/混沌之鏡 (Seal/Mirror of Chaos)", "河魚腹珠 (Fish Belly Pearl)",
+      "饕餮法杖 (Taotie Staff)", "九轉異龍珠 (Nine-Turn Dragon Pearl)",
+      "風神之羽 (Wind God Feather - 9-109 dmg two-handed sword)",
+      "邪刀焱靈 (Evil Blade Yanling - 八寶樓 drop)",
+      "黑鋼短刃 (Black Steel Dagger - 八寶樓 drop)",
+      "怒天鞭 (Fury Whip - 八寶樓 drop)",
+      "龍吟指環 (Dragon Ring - 八寶樓 drop)",
+      "征衣血染 (Blood-stained Armor - 八寶樓 drop)",
+      "霸王 set (八寶樓 set equipment)"
+    ],
+    "equipment_sets_missing": [
+      "鱷神系列 (Crocodile God set - 5 pieces, partially implemented)",
+      "白熊系列 (White Bear set - 4 pieces, partially implemented)",
+      "八寶樓 drops (multiple floor-specific items)"
+    ],
+    "food_gap": "Only 5 food items vs 15+ documented in blog (小廚房 + 天風客棧 menus)",
+    "priority": "LOW-MEDIUM"
+  },
+  "reputation_system": {
+    "types": ["黑道聲望 (Underworld)", "武林聲望 (Martial)", "青邪聲望 (Green Evil)", "戰場聲望 (Battlefield)"],
+    "formula": "(LV-1)^2 reputation points per level",
+    "hatred_system": "5 factions with enmity mechanics, resolution via 毒刀胡惑 NPC",
+    "status": "UNKNOWN - needs code audit",
+    "priority": "MEDIUM"
+  },
+  "crawled_data_references": {
+    "wiki_pages": "docs/wiki_content.json (26 pages from Google Sites)",
+    "equipment_weapons": "docs/es2_equipment_crawl.json (49 items from 32 posts)",
+    "equipment_armor_sects": "docs/es2tips_crawl_data.json (50+ items + taoist sect details from 35 posts)",
+    "quests_bosses_locations": "docs/es2tips_crawled_data.json (quests/bosses/maps from 35 posts)",
+    "classes_guides_reputation": "docs/es2tips_blog_content.json (classes/guides from 50 posts)"
   }
 }

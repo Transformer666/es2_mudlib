@@ -15,6 +15,8 @@ LONG
     );
     set("exits", ([
         "west" : __DIR__"street",
+        "south" : __DIR__"back_alley",
+        "east" : __DIR__"weapon_shop",
     ]));
     set("objects", ([
         __DIR__"npc/silk_merchant" : 1,

@@ -1,8 +1,13 @@
 // NPC: /d/snow/npc/darkrobe.c
+// Quest: help darkrobe find his missing daughter (girl in ruin2)
+// Flow: talk to darkrobe -> go to ruin2, mention father to girl
+//       -> return to darkrobe and report -> reward
 
 #include <npc.h>
 
 inherit F_VILLAGER;
+
+void give_reward(object player);
 
 void create()
 {
@@ -54,11 +59,39 @@ void init()
 {
 	::init();
 	if( is_fighting() || is_chatting() ) return;
+	if( !userp(this_player()) ) return;
 
-	if( this_player()->query_temp("try/darkrobe") )
+	if( this_player()->query("quest/darkrobe_daughter_done") ) {
+		do_chat("黑袍老人看到你﹐感激地點了點頭。\n");
+		return;
+	}
+
+	if( this_player()->query_temp("darkrobe_found_girl") ) {
 		do_chat("黑袍老人見到你﹐急切地問道﹕可有小語兒的消息﹖\n");
-	else
-		do_chat("黑袍老人抬起頭﹐用混濁的眼睛打量著你﹐似乎想說什麼。\n");
+		return;
+	}
+
+	if( this_player()->query_temp("try/darkrobe") ) {
+		do_chat("黑袍老人見到你﹐急切地問道﹕可有小語兒的消息﹖\n");
+		return;
+	}
+
+	do_chat("黑袍老人抬起頭﹐用混濁的眼睛打量著你﹐似乎想說什麼。\n");
+}
+
+private void give_reward(object player)
+{
+	object money;
+
+	if( !player || environment(player) != environment() ) return;
+
+	player->set("quest/darkrobe_daughter_done", 1);
+	player->gain_score("quest", 150);
+
+	money = new("/obj/money/silver");
+	money->set_amount(5);
+	if( !money->move(player) )
+		money->move(environment());
 }
 
 void relay_say(object ob, string msg)
@@ -68,18 +101,45 @@ void relay_say(object ob, string msg)
 	if( !userp(ob) ) return;
 	if( is_fighting() || is_chatting() ) return;
 
+	if( ob->query("quest/darkrobe_daughter_done") ) return;
+
+	// Player found the girl and returned to report
+	if( ob->query_temp("darkrobe_found_girl") ) {
+		if( strsrch(msg, "找到") >= 0 || strsrch(msg, "女兒") >= 0
+		||	strsrch(msg, "小語") >= 0 || strsrch(msg, "破舊") >= 0
+		||	strsrch(msg, "大宅") >= 0 ) {
+			do_chat(({
+				"黑袍老人猛地站起身來﹐雙手顫抖著說道﹕你 ... 你說什麼﹖她還活著﹖\n",
+				"黑袍老人聽完你的描述﹐老淚縱橫。\n",
+				"黑袍老人說道﹕太好了 ... 只要她平安就好 ...\n",
+				"黑袍老人說道﹕多謝你告訴我這個消息﹐這點銀子你拿著﹐算是老朽的一點心意。\n",
+				(: give_reward, ob :),
+			}));
+			return;
+		}
+	}
+
 	tmp = ob->query_temp("try/darkrobe");
 
 	if( !tmp || tmp == 0 ) {
-		if( strsrch(msg, "女兒") >= 0 || strsrch(msg, "小語") >= 0 ) {
+		if( strsrch(msg, "女兒") >= 0 || strsrch(msg, "小語") >= 0
+		||	strsrch(msg, "怎麼了") >= 0 || strsrch(msg, "什麼事") >= 0 ) {
 			do_chat(({
 				"黑袍老人眼眶一紅﹐說道﹕你 ... 你知道小語兒的消息﹖\n",
 				"黑袍老人說道﹕小語兒是我的女兒﹐三個月前出門採藥就再也沒有回來 ...\n",
 				"黑袍老人說道﹕我找遍了附近的山林﹐問遍了鎮上的人﹐都沒有她的消息。\n",
-				"黑袍老人說道﹕如果你願意幫我找到她﹐老朽感激不盡。\n",
+				"黑袍老人說道﹕聽說鎮東邊有座破舊大宅﹐晚上有人看到白影閃過 ...\n",
+				"黑袍老人說道﹕我身子不好﹐爬不過那些坍塌的樑柱﹐如果你願意去看看 ...\n",
 			}));
 			ob->set_temp("try/darkrobe", 1);
+			ob->set_temp("hairpin_quest", 1);
 		}
+		return;
+	}
+
+	if( strsrch(msg, "大宅") >= 0 || strsrch(msg, "哪") >= 0
+	||	strsrch(msg, "在哪") >= 0 ) {
+		do_chat("黑袍老人說道﹕聽說在鎮東邊﹐從這裡往北走到廣場﹐再往東走就能找到了。\n");
 		return;
 	}
 }

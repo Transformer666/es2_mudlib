@@ -18,6 +18,7 @@ LONG
 		"north" : __DIR__"entrance",
 		"east" : __DIR__"temple",
 		"west" : __DIR__"inn",
+		"south" : __DIR__"back_alley",
 	]));
 
 	setup();

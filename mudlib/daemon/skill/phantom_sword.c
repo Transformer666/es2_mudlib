@@ -6,45 +6,45 @@ inherit SKILL;
 
 mapping *actions = ({
   ([
-    "action":		"$N手中$w忽隱忽現﹐幻影般斬向$n的$l",
+    "action":		"$N使一招「鬼影迷蹤」﹐$w忽隱忽現地斬向$n的$l",
     "dodge":		10,
-    "damage":		5,
+    "damae":		5,
     "damage_type":	"割傷"
   ]),
   ([
-    "action":		"$N身形虛晃﹐$w化作數道幻影同時削向$n的$l",
+    "action":		"$N施展「幻夢千重」﹐$w化作千道幻影削向$n的$l",
     "dodge":		-10,
     "damage":		10,
     "damage_type":	"割傷"
   ]),
   ([
-    "action":		"$N一劍刺出﹐$w劍影重重﹐虛虛實實取向$n的$l",
+    "action":		"$N使出「虛實難辨」﹐$w虛虛實實刺向$n的$l",
     "dodge":		5,
-    "damage":		10,
-    "damage_type":	"割傷"
+    "damae":		8,
+    "damage_type":	"刺傷"
   ]),
   ([
-    "action":		"$N倏然消失在原處﹐$w已自虛空中斬向$n的$l",
+    "action":		"$N一招「暗夜追魂」﹐$w如鬼魅般直取$n的$l",
     "dodge":		-15,
     "damage":		15,
-    "damage_type":	"割傷"
+    "damage_type":	"刺傷"
   ]),
   ([
-    "action":		"$N手腕顫動﹐$w幻化出漫天劍花罩向$n的$l",
+    "action":		"$N運起「飄渺劍影」﹐$w劍影飄渺掠過$n的$l",
     "dodge":		-5,
     "damage":		10,
     "damage_type":	"割傷"
   ]),
   ([
-    "action":		"$N輕喝一聲﹐$w如夢似幻地掠過$n的$l",
+    "action":		"$N喝道「夢魘纏身」﹐$w如噩夢般纏向$n的$l",
     "dodge":		-5,
-    "damage":		10,
+    "damae":		12,
     "damage_type":	"割傷"
   ]),
 });
 
 string *interattack = ({
-  "$N持$n在手﹐身形飄忽不定﹐如幻似真。\n",
+  "$N持劍在手﹐劍影幢幢﹐真假難辨。\n",
 });
 
 private void

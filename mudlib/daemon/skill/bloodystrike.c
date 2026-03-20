@@ -6,39 +6,39 @@ inherit SKILL;
 
 mapping *actions = ({
     ([
-        "action":       "$N持$w往$n的$l擊去",
+        "action":       "$N使一招「血手印」﹐雙掌如血焰般拍向$n的$l",
         "dodge":        5,
         "damae":        5,
         "damage_type":  "瘀傷"
     ]),
     ([
-        "action":       "$N閃身上前﹐$w朝$n的$l劈去",
+        "action":       "$N施展「赤炎裂空」﹐$w帶著灼熱血氣劈向$n的$l",
         "dodge":        -5,
-        "damae":        5,
+        "damage":       8,
         "damage_type":  "瘀傷"
     ]),
     ([
-        "action":       "$N欺身而進﹐$w直取$n的$l",
+        "action":       "$N怒吼一聲﹐「血雨腥風」的$w如暴雨般砸向$n的$l",
         "dodge":        -10,
         "damage":       10,
         "damage_type":  "瘀傷"
     ]),
     ([
-        "action":       "$N虛晃一招﹐$w反手攻向$n的$l",
-        "dodge":        5,
-        "damae":        5,
+        "action":       "$N猛然出拳﹐「殺神拳」帶著嗜血殺意轟向$n的$l",
+        "dodge":        -15,
+        "damae":        15,
         "damage_type":  "瘀傷"
     ]),
     ([
-        "action":       "$N忽然暴起﹐$w朝$n的$l猛攻",
+        "action":       "$N氣勢暴漲﹐「血煞衝天」的$w裹挾血霧衝向$n的$l",
         "dodge":        -5,
         "damage":       10,
         "damage_type":  "瘀傷"
     ]),
     ([
-        "action":       "$N一個側身﹐$w劃向$n的$l",
+        "action":       "$N化身修羅﹐「修羅怒擊」的$w帶著滔天殺氣擊向$n的$l",
         "dodge":        10,
-        "damae":        5,
+        "damae":        7,
         "damage_type":  "瘀傷"
     ]),
 });

@@ -6,45 +6,45 @@ inherit SKILL;
 
 mapping *actions = ({
     ([
-        "action":       "$N持$w往$n的$l打去",
-        "dodge":        5,
-        "damae":        5,
-        "damage_type":  "瘀傷"
-    ]),
-    ([
-        "action":       "$N閃身上前﹐$w朝$n的$l劈去",
-        "dodge":        -5,
-        "damae":        5,
-        "damage_type":  "瘀傷"
-    ]),
-    ([
-        "action":       "$N欺身而進﹐$w直取$n的$l",
+        "action":       "$N使一招「龍拳」﹐拳如蛟龍出海般擊向$n的$l",
         "dodge":        -10,
-        "damage":       10,
+        "damae":        10,
         "damage_type":  "瘀傷"
     ]),
     ([
-        "action":       "$N虛晃一招﹐$w反手攻向$n的$l",
+        "action":       "$N施展「虎拳」﹐虎虎生風地砸向$n的$l",
+        "dodge":        -5,
+        "damage":       12,
+        "damage_type":  "瘀傷"
+    ]),
+    ([
+        "action":       "$N翩然使出「鶴拳」﹐單腳獨立啄向$n的$l",
         "dodge":        5,
-        "damae":        5,
+        "damae":        8,
         "damage_type":  "瘀傷"
     ]),
     ([
-        "action":       "$N忽然暴起﹐$w朝$n的$l猛攻",
+        "action":       "$N身形扭動使出「蛇拳」﹐詭異地纏向$n的$l",
+        "dodge":        10,
+        "damae":        6,
+        "damage_type":  "瘀傷"
+    ]),
+    ([
+        "action":       "$N跳躍騰挪使出「猴拳」﹐靈巧地攻向$n的$l",
         "dodge":        -5,
         "damage":       10,
         "damage_type":  "瘀傷"
     ]),
     ([
-        "action":       "$N一個側身﹐$w劃向$n的$l",
-        "dodge":        10,
-        "damae":        5,
+        "action":       "$N雙臂揮動使出「螳螂拳」﹐連環快攻$n的$l",
+        "dodge":        -15,
+        "damae":        15,
         "damage_type":  "瘀傷"
     ]),
 });
 
 string *interattack = ({
-    "$N握拳蓄勢﹐六拳的招式蓄勢待發。\n",
+    "$N擺出六拳的架式﹐拳風凌厲。\n",
 });
 
 private void

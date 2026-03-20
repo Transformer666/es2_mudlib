@@ -6,45 +6,45 @@ inherit SKILL;
 
 mapping *actions = ({
     ([
-        "action":       "$N持$w往$n的$l擊去",
+        "action":       "$N一式「天師降魔」﹐$w帶著道家正氣擊向$n的$l",
         "dodge":        5,
         "damae":        5,
         "damage_type":  "瘀傷"
     ]),
     ([
-        "action":       "$N閃身上前﹐$w朝$n的$l劈去",
-        "dodge":        -5,
-        "damae":        5,
-        "damage_type":  "瘀傷"
-    ]),
-    ([
-        "action":       "$N欺身而進﹐$w直取$n的$l",
+        "action":       "$N施展「五雷正法拳」﹐$w裹挾雷電之力劈向$n的$l",
         "dodge":        -10,
-        "damage":       10,
+        "damage":       12,
         "damage_type":  "瘀傷"
     ]),
     ([
-        "action":       "$N虛晃一招﹐$w反手攻向$n的$l",
-        "dodge":        5,
-        "damae":        5,
+        "action":       "$N掌法一變﹐「紫微掌」的$w帶著紫氣拍向$n的$l",
+        "dodge":        -5,
+        "damae":        8,
         "damage_type":  "瘀傷"
     ]),
     ([
-        "action":       "$N忽然暴起﹐$w朝$n的$l猛攻",
+        "action":       "$N拳勢如星辰運轉﹐「北斗拳」的$w直取$n的$l",
+        "dodge":        -15,
+        "damage":       15,
+        "damage_type":  "瘀傷"
+    ]),
+    ([
+        "action":       "$N運起天罡之氣﹐「天罡破邪」的$w正氣凜然地擊向$n的$l",
         "dodge":        -5,
         "damage":       10,
         "damage_type":  "瘀傷"
     ]),
     ([
-        "action":       "$N一個側身﹐$w劃向$n的$l",
+        "action":       "$N收勢歸元﹐「太極歸一」的$w綿綿不絕地壓向$n的$l",
         "dodge":        10,
-        "damae":        5,
+        "damae":        7,
         "damage_type":  "瘀傷"
     ]),
 });
 
 string *interattack = ({
-    "$N雙拳緊握﹐天山拳法的寒意隱隱外放。\n",
+    "$N擺出天師拳法的起手式﹐拳上隱隱泛出道家真氣。\n",
 });
 
 private void
