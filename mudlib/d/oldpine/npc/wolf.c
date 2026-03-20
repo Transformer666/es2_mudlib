@@ -21,7 +21,7 @@ void create()
 	set("long",
 		"一匹灰毛野狼﹐體型不小﹐兩眼泛著綠光﹐嘴裡露出尖銳的\n"
 		"獠牙﹐不時發出低沉的嗚嗚聲﹐看來正處於警戒狀態。\n");
-	set("aggressive", 1);
+	set("attitude", "aggressive");
 	setup();
 	carry_money("coin", 30);
 }

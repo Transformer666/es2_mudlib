@@ -22,7 +22,7 @@ void create()
 		"一團模糊的綠色光影在空中飄忽不定﹐隱約可以看出是一個人形\n"
 		"的輪廓。它發出淒厲的嗚咽聲﹐像是在訴說著什麼冤屈。當它飄過\n"
 		"你身邊時﹐你能感覺到一陣徹骨的寒意。\n");
-	set("aggressive", 1);
+	set("attitude", "aggressive");
 	setup();
 	carry_money("coin", 50);
 }

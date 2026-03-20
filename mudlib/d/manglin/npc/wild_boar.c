@@ -22,7 +22,7 @@ void create()
 		"一頭體型碩大的野豬﹐渾身灰褐色的鬃毛又粗又硬﹐嘴裡露出\n"
 		"兩根鋒利的獠牙。它正在地上拱來拱去地覓食﹐不時發出哼哼的聲\n"
 		"音﹐看起來十分暴躁。\n");
-	set("aggressive", 1);
+	set("attitude", "aggressive");
 	setup();
 	carry_money("coin", 50);
 }

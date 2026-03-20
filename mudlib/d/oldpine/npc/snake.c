@@ -22,7 +22,7 @@ void create()
 		"一條渾身佈滿花紋的毒蛇﹐約有三尺來長﹐三角形的蛇頭不停\n"
 		"地吐著猩紅的蛇信﹐一雙冰冷的眼睛死死地盯著你﹐隨時準備發\n"
 		"動攻擊。\n");
-	set("aggressive", 1);
+	set("attitude", "aggressive");
 	setup();
 	carry_money("coin", 20);
 }

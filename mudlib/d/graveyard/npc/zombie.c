@@ -22,7 +22,7 @@ void create()
 		"一具從墳墓中爬出來的殭屍﹐全身皮膚呈暗灰色﹐已經開始腐\n"
 		"爛﹐散發著令人作嘔的惡臭。它的雙眼空洞無神﹐嘴裡露出發黑的\n"
 		"牙齒﹐四肢僵硬﹐行動遲緩但力量驚人。\n");
-	set("aggressive", 1);
+	set("attitude", "aggressive");
 	setup();
 	carry_money("coin", 80);
 }

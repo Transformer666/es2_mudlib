@@ -27,7 +27,7 @@ void create()
 		"守門人喝道﹕站住﹗哪裡來的﹖口令﹗\n",
 		"守門人狠狠地盯著你﹐手中的斧頭握得更緊了。\n",
 	}));
-	set("aggressive", 1);
+	set("attitude", "aggressive");
 	setup();
 	carry_object(__DIR__"obj/iron_axe")->wield();
 	carry_object( STOCK_ARMOR("cloth") )->wear();

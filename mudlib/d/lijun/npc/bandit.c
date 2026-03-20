@@ -28,7 +28,7 @@ void create()
 		"河匪陰笑道﹕此路是我開﹐此樹是我栽﹐要打此處過﹐留下買路財﹗\n",
 		"河匪往地上吐了口唾沫﹐狠狠道﹕今天運氣不錯﹐又來了一個。\n",
 	}));
-	set("aggressive", 1);
+	set("attitude", "aggressive");
 	setup();
 	carry_object( STOCK_WEAPON("broadsword") )->wield();
 	carry_money("coin", 150);

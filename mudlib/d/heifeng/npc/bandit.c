@@ -27,7 +27,7 @@ void create()
 		"匪徒嘿嘿冷笑道﹕又來了一個送死的。\n",
 		"匪徒拍了拍腰間的鐵斧﹐神色得意。\n",
 	}));
-	set("aggressive", 1);
+	set("attitude", "aggressive");
 	setup();
 	carry_object(__DIR__"obj/iron_axe")->wield();
 	carry_money("coin", 120);

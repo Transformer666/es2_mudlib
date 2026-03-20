@@ -30,7 +30,7 @@ void create()
 		"寨主端起酒碗一飲而盡﹐往地上一摔﹐碗碎了一地。\n",
 		"寨主冷冷地掃視著四周﹐目光所到之處﹐匪徒們紛紛低頭。\n",
 	}));
-	set("aggressive", 1);
+	set("attitude", "aggressive");
 	setup();
 	carry_object( STOCK_WEAPON("broadaxe") )->wield();
 	carry_object(__DIR__"obj/bandit_armor")->wear();

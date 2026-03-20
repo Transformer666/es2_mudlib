@@ -29,7 +29,7 @@ void create()
 		"匪首端起酒碗猛灌了一口﹐抹了抹嘴。\n",
 		"匪首拍了拍手中的大刀﹐刀鋒閃著寒光。\n",
 	}));
-	set("aggressive", 1);
+	set("attitude", "aggressive");
 	setup();
 	carry_object( STOCK_WEAPON("blade") )->wield();
 	carry_object( STOCK_ARMOR("cloth") )->wear();

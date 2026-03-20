@@ -29,7 +29,7 @@ void create()
 		"盜匪往地上吐了口唾沫﹐嘿嘿冷笑。\n",
 		"盜匪摸了摸腰間的朴刀﹐目露凶光。\n",
 	}));
-	set("aggressive", 1);
+	set("attitude", "aggressive");
 	setup();
 	carry_object(__DIR__"obj/bandit_blade")->wield();
 	carry_money("coin", 80);

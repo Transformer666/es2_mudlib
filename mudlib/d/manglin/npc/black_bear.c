@@ -23,7 +23,7 @@ void create()
 		"一頭巨大的黑熊﹐站起來足有一人多高。渾身漆黑的毛皮油光\n"
 		"發亮﹐胸前有一塊白色的V形斑紋。它四肢粗壯﹐爪子又長又尖﹐\n"
 		"正用一雙小眼睛警惕地盯著你。\n");
-	set("aggressive", 1);
+	set("attitude", "aggressive");
 	setup();
 	carry_money("coin", 100);
 }
