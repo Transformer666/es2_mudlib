@@ -203,3 +203,15 @@ void init()
 - 需修復: 2 個 NPC 缺 `vision_of_ghost`、若干房間 inherit 問題、4 條單向出口
 [0;32m[OK][0m Static validation
 [0;34m[19:14:53][0m Pipeline complete: 5 ok, 0 warnings.
+[main 83e37ec] feat: auto-implement content via pipeline v2 [2026-03-21 19:14:53]
+ 4 files changed, 421 insertions(+), 1 deletion(-)
+ create mode 100644 docs/loop_logs/round_20260321_190616.log
+To github.com:Transformer666/es2_mudlib.git
+   a4bffaf..83e37ec  main -> main
+[0;32m[OK][0m Final commit pushed to origin.
+
+=========================================
+  Pipeline complete!
+  Completed: 6 | Warnings: 0
+  End: 2026-03-21 19:14:53
+=========================================
