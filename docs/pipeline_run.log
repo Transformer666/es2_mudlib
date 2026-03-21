@@ -24885,3 +24885,153 @@ Now I have the full picture. Here's the audit result:
 主要是 Room inherit missing 問題（城隍廟 `inherit TEMPLE` 被判為缺少 `ROOM` inherit）。完整報告在 `docs/test_report.md`。需要我列出所有失敗項目或修復嗎？
 [0;32m[OK][0m Static validation
 [0;34m[21:33:17][0m Pipeline complete: 5 ok, 0 warnings.
+[0;32m[OK][0m Final commit pushed to origin.
+[0;34m[21:38:19][0m Using git remote: origin
+[0;34m[21:38:19][0m Pulling latest changes...
+From github.com:Transformer666/es2_mudlib
+ * branch            main       -> FETCH_HEAD
+Already up to date.
+
+Pipeline start: 2026-03-21 21:38:19 (phase: all)
+==============================
+[0;34m[21:38:21][0m === Phase: Analyze (bash-native, no agent) ===
+[0;34m[21:38:22][0m Analyze complete:
+[0;34m[21:38:22][0m   Races: 11/11 | Classes: 9/7 | Sects: 18/18
+[0;34m[21:38:22][0m   Skills: 75 (missing: 40) | Rooms: 484 | NPCs: 305
+[0;34m[21:38:22][0m   Quests: 14 | Equipment: 284
+[0;34m[21:38:22][0m   Total missing: 40
+[0;32m[OK][0m Analyze phase
+[0;34m[21:38:22][0m === Phase: Build ===
+[0;34m[21:38:22][0m Step: Audit area: stub_towns
+--- Step: Audit area: stub_towns ---
+所有區域都有 5 個以上的房間檔案，沒有任何 stub town。
+
+**stub_towns: complete**
+
+`mudlib/d/` 下的 54 個區域全部都有 5 個以上的房間檔案，不存在需要補完的 stub town。`missing_content.json` 中的 `stub_towns` 陣列也確認為空。
+[0;32m[OK][0m Audit area: stub_towns
+[0;34m[21:38:57][0m Step: Audit skills
+--- Step: Audit skills ---
+## 技能 Daemon 審查報告
+
+### 1. 門派引用的技能（20 個）
+
+| 門派 | 技能 |
+|------|------|
+| 白象寺 | diamond hammer, staff |
+| 寶蓮寺 | staff |
+| 步玄派 | three rotations |
+| 封山派 | fengshan sword |
+| 虎刀門 | tiger blade |
+| 劍甲門 | sword, needle |
+| 哭笑門 | sword |
+| 瑯夷 | dagger |
+| 冷梅莊 | lengmei sword |
+| 龍圖 | longttu neigong, needle |
+| 茅山派 | maoshan sword, maoshan neigong, taoshan milu |
+| 天師派 | taiyi sword, ziwei neigong |
+| 天邪派 | phantom sword |
+| 武陀 | five defeat needle, amazing needle |
+| 玄天教 | sword |
+| 雪吟莊 | sword |
+| 隱教 | dagger |
+| 振武軍營 | tactic, pike |
+
+### 2. 對應 Daemon 檢查
+
+全部 20 個技能名稱均有對應的 `mudlib/daemon/skill/<name>.c` 檔案。**無缺少。**
+
+### 3. 函數完整性
+
+- `skill_improved()` — 75/75 全部具備
+- `skill_advanced()` — 75/75 全部具備
+
+### 4. 戰鬥技能 Actions 數量
+
+所有 41 個戰鬥技能均有 **6 個以上** actions（最多 8 個）。**無不足。**
+
+非戰鬥技能（內功、輕功、被動技能等 34 個）不需要 actions，屬正常。
+
+### 5. 結論
+
+- **缺少：0 個**
+- **不完整：0 個**
+- **本次建立：0 個**
+- **剩餘待處理：0 個**
+
+所有門派引用的技能 daemon 均已存在且完整。75 個技能 daemon 全部具備 `skill_improved` 和 `skill_advanced`，戰鬥技能全部有至少 6 招 actions。
+[0;32m[OK][0m Audit skills
+[0;34m[21:40:25][0m Step: Audit quests
+--- Step: Audit quests ---
+## 任務系統審查結果
+
+### 已有任務：14 個（全部完整實作）
+
+**雪亭鎮 7 謎 — 全部已實作 ✓**
+
+| # | 謎題 | NPC/檔案 | Quest Flag | 獎勵 |
+|---|------|----------|-----------|------|
+| 1 | 阿寶在老榕樹等的人是誰？ | `arbao.c` | `quest/arbao_letter_done` | 80 分 |
+| 2 | 瞎眼婆婆的真實身分？ | `gammer.c` | `quest/gammer_identity_done` | 120 分 |
+| 3 | 貨棧搬箱子算不算勞動？ | `foreman.c` | `quest/foreman_crate_done` | 50 分 |
+| 4 | 驛站遺失了幾封信？ | `postman.c` | `quest/postman_delivery_done` | 100 分 |
+| 5 | 想不想加入振武軍營？ | `recruiter.c` | `quest/recruiter_enlist_done` | 50 分 |
+| 6 | 破舊的老宅裡藏了什麼？ | `old_beggar.c` | `quest/old_beggar_done` | 200 分 |
+| 7 | 黑袍老人的女兒去了哪裡？ | `darkrobe.c` | `quest/darkrobe_daughter_done` | 150 分 |
+
+**五堂鎮 6 謎 — 全部已實作 ✓**
+
+| # | 謎題 | NPC/檔案 | Quest Flag | 獎勵 |
+|---|------|----------|-----------|------|
+| 1 | 飲血丟在了哪裡？ | `river_bend.c` | `quest/yinxue_found_done` | 120 分 |
+| 2 | 巫山之中神秘雕像有何秘密？ | `wushan_secret.c` | `quest/wushan_statue_done` | 200 分 |
+| 3 | 郭布要收的徒弟在哪裡？ | `guobu.c` | `quest/guobu_apprentice_done` | 80 分 |
+| 4 | 鎮天神廟內藏著誰？ | `temple_master.c` | `quest/temple_master_done` | 150 分 |
+| 5 | 別館內的欽差來五堂要做甚麼？ | `inspector.c` | `quest/inspector_case_done` | 80 分 |
+| 6 | 過河的船在哪裡？ | `ferryman.c` | `quest/ferryman_guide_done` | 50 分 |
+
+**額外任務（不在謎題列表中）：**
+- `escort.c`（雪亭鎮）— `quest/escort_guide_done` — 30 分
+
+### 任務系統健康狀況
+
+所有 13 個謎題任務 + 1 個額外任務均已完整實作，每個都具備：
+- `pending/` temp flag 追蹤進度
+- `quest/*_done` 永久完成標記
+- `gain_score("quest", N)` 獎勵
+- NPC 已載入到對應房間
+
+**已有 14 個任務，本次新增 0 個** — 所有城鎮謎題均已完成實作，無缺失。
+[0;32m[OK][0m Audit quests
+[0;34m[21:41:42][0m === Phase: Validate ===
+[0;34m[21:41:42][0m Step: Static validation
+--- Step: Static validation ---
+## 靜態驗證報告
+
+### 主測試套件 (`run_tests.sh all`)
+| 項目 | 數量 |
+|------|------|
+| **PASS** | 3633 |
+| **FAIL** | 22 |
+| **WARN** | 48 |
+
+出口雙向驗證：**PASS** (All exits are bidirectional)
+
+### 額外檢查
+
+| 檢查項目 | 結果 |
+|----------|------|
+| `set("aggressive", 1)` 誤用 | **PASS** — 0 個匹配，全部正確使用 `attitude` |
+| `skill_improved` 存在性 | **PASS** — 全部 75 個 skill daemon 均包含 `skill_improved` |
+| lv50+ 掌門 `vision_of_ghost` | **PASS** — 13 位掌門級 NPC 全部設定 |
+
+### FAIL 項目摘要
+
+22 個失敗項主要為 **Room inherit missing**，涉及的檔案包括：
+- `d/longan/temple` — 城隍廟缺少正確的 inherit
+- `d/snow/bazar` — 缺少 inherit
+- `d/snow/small_temple` — 缺少 inherit
+
+完整報告已寫入 `docs/test_report.md`。需要我修復這些 FAIL 項目嗎？
+[0;32m[OK][0m Static validation
+[0;34m[21:43:14][0m Pipeline complete: 5 ok, 0 warnings.
