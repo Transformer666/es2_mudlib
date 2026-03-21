@@ -202,3 +202,15 @@ Already up to date.
 > 注意：部分 NPC 可能不是掌門（如怪物、守衛），需人工判斷是否應加 `vision_of_ghost`。規範要求「掌門 lv50+」才需要，非掌門高等級 NPC 可酌情忽略。
 [0;32m[OK][0m Static validation
 [0;34m[13:56:54][0m Pipeline complete: 5 ok, 0 warnings.
+[main 8c4da17] feat: auto-implement content via pipeline v2 [2026-03-21 13:56:54]
+ 4 files changed, 421 insertions(+), 1 deletion(-)
+ create mode 100644 docs/loop_logs/round_20260321_134506.log
+To github.com:Transformer666/es2_mudlib.git
+   528b050..8c4da17  main -> main
+[0;32m[OK][0m Final commit pushed to origin.
+
+=========================================
+  Pipeline complete!
+  Completed: 6 | Warnings: 0
+  End: 2026-03-21 13:56:54
+=========================================
