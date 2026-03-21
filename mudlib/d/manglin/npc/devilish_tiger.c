@@ -25,5 +25,6 @@ void create()
         "狻猊發出震耳欲聾的咆哮。\n",
         "狻猊的身上陰氣翻湧，令人不寒而慄。\n",
     }));
+    set("attitude", "aggressive");
     setup();
 }

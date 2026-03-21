@@ -15,6 +15,7 @@ void create()
 	]));
 	set("exits", ([
 		"east" : __DIR__"grave3",
+		"down" : "/d/hell/entrance",
 	]));
 
 	setup();

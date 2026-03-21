@@ -15,6 +15,9 @@ LONG
 	set("exits", ([
 		"east" : __DIR__"street",
 	]));
+	set("objects", ([
+		__DIR__"npc/priest" : 1,
+	]));
 
 	setup();
 	replace_program(TEMPLE);

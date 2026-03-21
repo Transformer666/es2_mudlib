@@ -51,4 +51,5 @@ void create()
 
     carry_object("/obj/area/obj/longsword")->wield();
     carry_object("/obj/area/obj/cloth")->wear();
+    set_temp("apply/vision_of_ghost", 1);
 }

@@ -26,4 +26,5 @@ void create()
         "天獒抖了抖金色的皮毛，四周響起噼啪的電光。\n",
     }));
     setup();
+    set_temp("apply/vision_of_ghost", 1);
 }

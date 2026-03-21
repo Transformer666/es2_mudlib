@@ -14,6 +14,7 @@ LONG
     );
     set("exits", ([
         "west" : __DIR__"gate",
+        "east" : __DIR__"gate",
     ]));
     set("objects", ([
         __DIR__"npc/sentry" : 1,

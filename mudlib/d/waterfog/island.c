@@ -10,6 +10,9 @@ void create()
 LONG
 	);
 	set("outdoors", "wilderness");
+	set("objects", ([
+		__DIR__"npc/swamp_creature" : 1,
+	]));
 	set("exits", ([
 		"south" : __DIR__"bridge",
 		"east" : __DIR__"clearing",

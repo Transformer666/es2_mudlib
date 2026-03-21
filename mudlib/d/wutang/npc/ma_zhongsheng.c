@@ -29,4 +29,5 @@ void create()
         "他虎背熊腰，看起來約五十多歲。\n");
     setup();
     carry_object(STOCK_ARMOR("cloth"))->wear();
+    set_temp("apply/vision_of_ghost", 1);
 }

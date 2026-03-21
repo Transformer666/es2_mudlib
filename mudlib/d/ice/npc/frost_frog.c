@@ -25,5 +25,6 @@ void create()
         "寒蟾呱呱叫了兩聲，四周的溫度驟降。\n",
         "寒蟾吐出一口寒霧，地面立刻結了一層薄冰。\n",
     }));
+    set("attitude", "aggressive");
     setup();
 }

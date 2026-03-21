@@ -20,6 +20,7 @@ LONG
 	]));
 	set("exits", ([ /* sizeof() == 1 */
 		"east" : __DIR__"inn_hall",
+		"enter" : __DIR__"fireplace",
 	]));
 
 	setup();

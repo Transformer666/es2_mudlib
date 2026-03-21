@@ -10,6 +10,9 @@ void create()
 LONG
 	);
 	set("outdoors", "wilderness");
+	set("objects", ([
+		__DIR__"npc/ice_wolf" : 1,
+	]));
 	set("exits", ([
 		"south" : __DIR__"frozen_lake",
 		"east" : __DIR__"summit",

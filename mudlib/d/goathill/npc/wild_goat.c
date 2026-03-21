@@ -26,5 +26,6 @@ void create()
     set("chat_msg", ({
         "野山羊咩咩叫了兩聲。\n",
     }));
+    set("attitude", "aggressive");
     setup();
 }

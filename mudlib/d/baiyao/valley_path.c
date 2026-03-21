@@ -13,6 +13,9 @@ void create()
 LONG
     );
     set("outdoors", "mountain");
+    set("objects", ([
+        __DIR__"npc/mountain_snake" : 1,
+    ]));
     set("exits", ([
         "north" : __DIR__"entrance",
         "east" : __DIR__"herb_garden",

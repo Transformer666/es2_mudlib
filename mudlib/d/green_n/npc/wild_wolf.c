@@ -20,6 +20,7 @@ void create()
 		"野狼低沉地咆哮著，警惕地注視著四周。\n",
 		"野狼搖著尾巴在草叢中來回踱步。\n",
 	}));
+	set("attitude", "aggressive");
 
 	setup();
 }

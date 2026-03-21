@@ -14,6 +14,9 @@ LONG
 		"north" : "/d/road/wild_path2",
 		"south" : __DIR__"street",
 	]));
+	set("objects", ([
+		__DIR__"npc/guard" : 1,
+	]));
 
 	setup();
 	replace_program(ROOM);

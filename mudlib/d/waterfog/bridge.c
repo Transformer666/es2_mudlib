@@ -10,6 +10,9 @@ void create()
 LONG
 	);
 	set("outdoors", "wilderness");
+	set("objects", ([
+		__DIR__"npc/fog_snake" : 1,
+	]));
 	set("exits", ([
 		"south" : __DIR__"fog_path",
 		"north" : __DIR__"island",

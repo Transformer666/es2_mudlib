@@ -30,7 +30,9 @@ void create()
     set("chat_msg", ({
         "冰域守衛冷冷地注視著你，寒氣更加濃郁了。\n",
     }));
+    set("attitude", "aggressive");
     setup();
     carry_object(STOCK_WEAPON("staff"))->wield();
     carry_object(STOCK_ARMOR("cloth"))->wear();
+    set_temp("apply/vision_of_ghost", 1);
 }

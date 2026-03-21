@@ -21,6 +21,7 @@ void create()
 		"野豬用鼻子拱著地上的泥土，尋找食物。\n",
 		"野豬警覺地抬起頭，鼻子使勁嗅了嗅。\n",
 	}));
+	set("attitude", "aggressive");
 
 	setup();
 }

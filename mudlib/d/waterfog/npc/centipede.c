@@ -24,5 +24,7 @@ void create()
     set("long", "一條巨大的蜈蚣盤踞在霧林深處，身長數丈，通體漆黑，無數節足如利刃般閃著寒光。牠會主動攻擊入侵者，而且懂得自行療傷。\n");
     set("chat_chance", 5);
     set("chat_msg", ({"大蜈蚣發出嘶嘶的聲響。\n", "大蜈蚣的觸鬚不安地擺動著。\n"}));
+    set("attitude", "aggressive");
     setup();
+    set_temp("apply/vision_of_ghost", 1);
 }

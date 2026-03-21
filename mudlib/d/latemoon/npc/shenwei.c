@@ -39,4 +39,5 @@ void create()
 	add_temp("apply/defense", 60);
 	add_temp("apply/damage", 25);
 	add_temp("apply/armor", 55);
+	set_temp("apply/vision_of_ghost", 1);
 }

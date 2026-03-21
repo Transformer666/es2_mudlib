@@ -30,6 +30,7 @@ LONG
 		"north" : __DIR__"square_n",
 		"west" : __DIR__"square_w",
 		"south" : __DIR__"square_s",
+		"up" : __DIR__"tree",
 	]));
 
 	setup();

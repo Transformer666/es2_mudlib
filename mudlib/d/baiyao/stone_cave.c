@@ -16,6 +16,9 @@ LONG
         "石臺" : "天然形成的石臺，表面異常光滑，上面有煉藥的痕跡。\n",
         "苔蘚" : "一種罕見的發光苔蘚，在黑暗中散發著幽綠色的光芒。\n",
     ]));
+    set("objects", ([
+        __DIR__"npc/mountain_snake" : 1,
+    ]));
     set("exits", ([
         "east" : __DIR__"waterfall",
         "down" : __DIR__"deep_cave",

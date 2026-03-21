@@ -13,6 +13,9 @@ LONG
 	set("exits", ([
 		"west" : __DIR__"farm",
 	]));
+	set("objects", ([
+		__DIR__"npc/merchant" : 1,
+	]));
 
 	setup();
 	replace_program(ROOM);

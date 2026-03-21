@@ -25,6 +25,7 @@ LONG
 	set("exits", ([ /* sizeof() == 2 */
 		"south" : __DIR__"lane1",
 		"north" : __DIR__"npath3",
+		"enter" : __DIR__"mill",
 ]));
 	set("outdoors", "snow");
 

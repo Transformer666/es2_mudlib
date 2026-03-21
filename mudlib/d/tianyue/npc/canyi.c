@@ -50,4 +50,5 @@ void create()
     add_temp("apply/armor", 70);
 
     carry_object("/obj/area/obj/cloth")->wear();
+    set_temp("apply/vision_of_ghost", 1);
 }

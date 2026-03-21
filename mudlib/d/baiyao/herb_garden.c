@@ -17,6 +17,9 @@ LONG
         "靈芝" : "一株紫紅色的靈芝，傘蓋碩大，散發著淡淡的清香。\n",
         "草棚" : "草棚裡放著藥鋤、竹簍和一些曬乾的藥材。\n",
     ]));
+    set("objects", ([
+        __DIR__"npc/herb_guardian" : 1,
+    ]));
     set("exits", ([
         "west" : __DIR__"valley_path",
     ]));

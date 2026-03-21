@@ -15,6 +15,10 @@ LONG
         "north" : __DIR__"quarters",
     ]));
 
+    set("objects", ([
+        __DIR__"npc/disciple" : 2,
+    ]));
+
     setup();
     replace_program(ROOM);
 }

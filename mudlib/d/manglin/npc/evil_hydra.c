@@ -25,5 +25,7 @@ void create()
         "鮫蛟吐出長長的蛇信，發出嘶嘶的聲響。\n",
         "鮫蛟巨大的身軀緩緩移動，碾碎了周圍的灌木。\n",
     }));
+    set("attitude", "aggressive");
     setup();
+    set_temp("apply/vision_of_ghost", 1);
 }

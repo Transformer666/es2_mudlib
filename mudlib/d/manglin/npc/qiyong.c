@@ -47,6 +47,7 @@ void create()
 
 	setup();
 	carry_object(STOCK_ARMOR("cloth"))->wear();
+	set_temp("apply/vision_of_ghost", 1);
 }
 
 int acquire_skill(object ob, string skill)

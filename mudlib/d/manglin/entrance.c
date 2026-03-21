@@ -16,6 +16,7 @@ LONG
 	set("exits", ([
 		"south" : "/d/wutang/ngate",
 		"north" : __DIR__"path1",
+		"southeast" : "/d/wutang/ngate",
 	]));
 
 	setup();
