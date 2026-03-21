@@ -1,5 +1,5 @@
 # ES2 MUD Static Validation Report
-Run time: Sat Mar 21 07:12:36 UTC 2026
+Run time: Sat Mar 21 07:31:20 UTC 2026
 
 
 ## Room Validation
@@ -402,7 +402,7 @@ Run time: Sat Mar 21 07:12:36 UTC 2026
 - PASS: Room inherit: d/sanyen/weapon_shop
 - PASS: Room short desc: d/sanyen/weapon_shop
 - PASS: Room setup(): d/sanyen/weapon_shop
-- PASS: Room inherit: d/sanyen/inner_temple
+- FAIL: Room inherit missing: d/sanyen/inner_temple
 - PASS: Room short desc: d/sanyen/inner_temple
 - PASS: Room setup(): d/sanyen/inner_temple
 - PASS: Room inherit: d/sanyen/inn
@@ -3642,6 +3642,6 @@ Run time: Sat Mar 21 07:12:36 UTC 2026
 ## Summary
 | Result | Count |
 |--------|-------|
-| PASS | 3557 |
-| FAIL | 24 |
+| PASS | 3556 |
+| FAIL | 25 |
 | WARN | 46 |
