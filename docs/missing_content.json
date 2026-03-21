@@ -6,9 +6,9 @@
     "sects": 18,
     "skills": 75,
     "rooms": 484,
-    "npcs": 288,
+    "npcs": 305,
     "quests": 14,
-    "equipment": 282
+    "equipment": 284
   },
   "races": { "required": 11, "implemented": 11, "missing": 0 },
   "classes": { "required": 7, "implemented": 9, "missing": 0 },
