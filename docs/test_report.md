@@ -1,5 +1,5 @@
 # ES2 MUD Static Validation Report
-Run time: Sat Mar 21 14:12:48 UTC 2026
+Run time: Sat Mar 21 14:31:18 UTC 2026
 
 
 ## Room Validation
@@ -390,6 +390,9 @@ Run time: Sat Mar 21 14:12:48 UTC 2026
 - PASS: Room inherit: d/lee/shop
 - PASS: Room short desc: d/lee/shop
 - PASS: Room setup(): d/lee/shop
+- FAIL: Room inherit missing: d/lee/temple
+- PASS: Room short desc: d/lee/temple
+- PASS: Room setup(): d/lee/temple
 - PASS: Room inherit: d/sanyen/market
 - PASS: Room short desc: d/sanyen/market
 - PASS: Room setup(): d/sanyen/market
@@ -1778,6 +1781,10 @@ Run time: Sat Mar 21 14:12:48 UTC 2026
 - PASS: NPC inherit: d/lee/npc/guard
 - PASS: NPC set_name: d/lee/npc/guard
 - PASS: NPC setup(): d/lee/npc/guard
+- PASS: NPC include: d/lee/npc/temple_keeper
+- PASS: NPC inherit: d/lee/npc/temple_keeper
+- PASS: NPC set_name: d/lee/npc/temple_keeper
+- PASS: NPC setup(): d/lee/npc/temple_keeper
 - PASS: NPC include: d/sanyen/npc/innkeeper
 - PASS: NPC inherit: d/sanyen/npc/innkeeper
 - PASS: NPC set_name: d/sanyen/npc/innkeeper
@@ -3642,6 +3649,6 @@ Run time: Sat Mar 21 14:12:48 UTC 2026
 ## Summary
 | Result | Count |
 |--------|-------|
-| PASS | 3556 |
-| FAIL | 25 |
+| PASS | 3562 |
+| FAIL | 26 |
 | WARN | 46 |
