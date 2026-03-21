@@ -1,6 +1,6 @@
 // Room: /d/sanyen/inner_temple.c
 
-inherit ROOM;
+inherit TEMPLE;
 
 void create()
 {
@@ -21,5 +21,5 @@ LONG
 	]));
 
 	setup();
-	replace_program(ROOM);
+	replace_program(TEMPLE);
 }
