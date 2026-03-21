@@ -8974,3 +8974,136 @@ Pipeline start: 2026-03-21 00:49:08 (phase: all)
 - 額外檢查：**2 PASS / 1 FAIL**（2 個掌門 NPC 需補上 `vision_of_ghost`）
 [0;32m[OK][0m Static validation
 [0;34m[00:54:39][0m Pipeline complete: 5 ok, 0 warnings.
+[0;32m[OK][0m Final commit pushed to origin.
+[0;34m[00:59:41][0m Using git remote: origin
+[0;34m[00:59:41][0m Pulling latest changes...
+From github.com:Transformer666/es2_mudlib
+ * branch            main       -> FETCH_HEAD
+Already up to date.
+
+Pipeline start: 2026-03-21 00:59:41 (phase: all)
+==============================
+[0;34m[00:59:44][0m === Phase: Analyze (bash-native, no agent) ===
+[0;34m[00:59:44][0m Analyze complete:
+[0;34m[00:59:44][0m   Races: 11/11 | Classes: 9/7 | Sects: 18/18
+[0;34m[00:59:44][0m   Skills: 75 (missing: 40) | Rooms: 480 | NPCs: 286
+[0;34m[00:59:44][0m   Quests: 14 | Equipment: 282
+[0;34m[00:59:44][0m   Total missing: 40
+[0;32m[OK][0m Analyze phase
+[0;34m[00:59:44][0m === Phase: Build ===
+[0;34m[00:59:44][0m Step: Audit area: stub_towns
+--- Step: Audit area: stub_towns ---
+**stub_towns: complete**
+
+`stub_towns` 不是一個實際的遊戲區域目錄。它是 pipeline 自動化系統中的變數名稱，用來追蹤「房間數量少於 5 個的未完成區域」。
+
+根據 `docs/missing_content.json`，`stub_towns` 陣列為空 `[]`，所有 54 個已實作的區域都有 5 個以上的房間，沒有任何區域被標記為 stub。不需要建立新檔案。
+[0;32m[OK][0m Audit area: stub_towns
+[0;34m[01:00:06][0m Step: Audit skills
+--- Step: Audit skills ---
+## 技能 Daemon 審查結果
+
+### 門派引用的技能（20 個）
+
+所有 18 個門派的 `set("skills")` 共引用了 **20 個獨立技能名稱**，每一個都有對應的 daemon 檔案存在於 `mudlib/daemon/skill/` 中。
+
+### 完整性檢查
+
+| 檢查項目 | 結果 |
+|---------|------|
+| 缺少 daemon 檔案 | **0 個** |
+| 缺少 `skill_improved` | **0 個** |
+| 缺少 `skill_advanced` | **0 個** |
+| 戰鬥技能 actions < 6 | **0 個** |
+
+### 統計
+
+- 現有 skill daemon 總數：**74 個**
+- 其中戰鬥技能（含 actions）：**41 個**（全部 ≥ 6 招）
+- 非戰鬥技能（內功/輕功/知識等）：**33 個**
+- 門派引用但無 daemon：**0 個**
+
+### 額外發現
+
+有 **54 個 skill daemon** 未被任何門派的 `set("skills")` 引用，包括：
+- 通用技能：`dodge`, `parry`, `force`, `unarmed`, `blade` 等
+- 可能屬於其他門派但未在 sect daemon 中列出的武功：`bloodystrike`, `celestrike`, `cloudstaff`, `six_chaos_sword` 等
+- 這些可能透過其他系統（如任務、NPC 教學）習得，或者門派的 `skills` mapping 僅列出主要技能
+
+### 結論
+
+**缺少 0 個、本次建立 0 個、剩餘 0 個待下輪處理。**
+
+技能 daemon 系統相對於門派引用是完整的。所有門派引用的技能都有對應的、結構完整的 daemon 檔案。
+[0;32m[OK][0m Audit skills
+[0;34m[01:01:42][0m Step: Audit quests
+--- Step: Audit quests ---
+## 任務系統審查結果
+
+### 雪亭鎮 7 謎 — 全部已實作 ✓
+
+| # | 謎題 | quest flag | NPC/房間 | 獎勵 |
+|---|------|-----------|----------|------|
+| 1 | 阿寶在老榕樹等的人是誰？ | `arbao_letter_done` | arbao.c → square.c | 80 |
+| 2 | 瞎眼婆婆的真實身分？ | `gammer_identity_done` | gammer.c → square.c | 120 |
+| 3 | 貨棧搬箱子算不算勞動？ | `foreman_crate_done` | foreman.c → store.c | 50 |
+| 4 | 驛站遺失了幾封信？ | `postman_delivery_done` | postman.c → post_office.c | 100 |
+| 5 | 想不想加入振武軍營？ | `recruiter_enlist_done` | recruiter.c → military_camp.c | 50 |
+| 6 | 破舊的老宅裡藏了什麼？ | `old_beggar_done` | old_beggar.c → square_sw.c | 200 |
+| 7 | 黑袍老人的女兒去了哪裡？ | `darkrobe_daughter_done` | darkrobe.c + girl.c → dilapidated_manor.c + ruin2.c | 150 |
+
+額外任務：`escort_guide_done`（護送，30 分）載入於 square_s.c
+
+### 五堂鎮 6 謎 — 全部已實作 ✓
+
+| # | 謎題 | quest flag | NPC/房間 | 獎勵 |
+|---|------|-----------|----------|------|
+| 1 | 飲血丟在了哪裡？ | `yinxue_found_done` | river_bend.c（房間 action） | 120 |
+| 2 | 巫山之中神秘雕像有何秘密？ | `wushan_statue_done` | wushan_secret.c（房間 action） | 200 |
+| 3 | 郭布要收的徒弟在哪裡？ | `guobu_apprentice_done` | guobu.c + boy.c → street1.c + river_bend.c | 80 |
+| 4 | 鎮天神廟內藏著誰？ | `temple_master_done` | temple_master.c → temple.c | 150 |
+| 5 | 別館內的欽差來五堂要做甚麼？ | `inspector_case_done` | inspector.c + storyteller.c → court.c + inn_hall.c | 80 |
+| 6 | 過河的船在哪裡？ | `ferryman_guide_done` | ferryman.c → dock.c | 50 |
+
+### 總結
+
+- **已有 14 個任務**（雪亭鎮 7 謎 + 護送任務 + 五堂鎮 6 謎）
+- **本次新增 0 個** — 所有 13 道謎題均已有完整任務實作
+- 所有任務 NPC 已載入對應房間
+- 所有任務使用一致的模式：`pending/*` 追蹤進度、`quest/*_done` 標記完成、`gain_score("quest", N)` 給獎勵
+- 任務總分值：1,230 分（雪亭 750 + 護送 30 + 五堂 680，另有 manor_cellar 60 分）
+[0;32m[OK][0m Audit quests
+[0;34m[01:02:49][0m === Phase: Validate ===
+[0;34m[01:02:49][0m Step: Static validation
+--- Step: Static validation ---
+## 驗證報告
+
+### 主測試套件
+- **PASS: 3545** / **FAIL: 23** / **WARN: 46**
+
+### 額外檢查
+
+| 檢查項目 | 結果 |
+|---|---|
+| `set("aggressive", 1)` 誤用 | **PASS** — 0 筆，全部正確使用 `attitude` |
+| skill daemon 含 `skill_improved` | **PASS** — 全部 75 個 skill daemon 皆有 |
+| lv50+ 掌門有 `vision_of_ghost` | **FAIL** — 2 個缺少 |
+
+### 需要修復的項目
+
+**缺少 `vision_of_ghost` 的 lv50+ 掌門：**
+1. `d/tianxie/npc/daxiedaoren.c` (lv75)
+2. `d/hudao/npc/sunyi.c` (lv55)
+
+**Room inherit 缺失 (3 筆)：**
+- `d/longan/temple` — 城隍廟應 inherit TEMPLE
+- `d/snow/bazar`
+- `d/snow/small_temple`
+
+**雙向出口缺失 (4 筆)：**
+- `ngate`: northwest → entrance 缺少 southeast 回程
+- `tree`: down → square 缺少 up 回程
+- `mountain_road2`: west → mountain_path 缺少 east 回程
+- `gate`: west → watchtower 缺少 east 回程
+[0;32m[OK][0m Static validation
+[0;34m[01:04:41][0m Pipeline complete: 5 ok, 0 warnings.
