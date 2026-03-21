@@ -10349,3 +10349,150 @@ Pipeline start: 2026-03-21 02:34:20 (phase: all)
 完整報告已寫入 `docs/test_report.md`。需要我修復這些問題嗎？
 [0;32m[OK][0m Static validation
 [0;34m[02:40:52][0m Pipeline complete: 5 ok, 0 warnings.
+[0;32m[OK][0m Final commit pushed to origin.
+[0;34m[02:45:54][0m Using git remote: origin
+[0;34m[02:45:54][0m Pulling latest changes...
+From github.com:Transformer666/es2_mudlib
+ * branch            main       -> FETCH_HEAD
+Already up to date.
+
+Pipeline start: 2026-03-21 02:45:54 (phase: all)
+==============================
+[0;34m[02:45:56][0m === Phase: Analyze (bash-native, no agent) ===
+[0;34m[02:45:57][0m Analyze complete:
+[0;34m[02:45:57][0m   Races: 11/11 | Classes: 9/7 | Sects: 18/18
+[0;34m[02:45:57][0m   Skills: 75 (missing: 40) | Rooms: 480 | NPCs: 286
+[0;34m[02:45:57][0m   Quests: 14 | Equipment: 282
+[0;34m[02:45:57][0m   Total missing: 40
+[0;32m[OK][0m Analyze phase
+[0;34m[02:45:57][0m === Phase: Build ===
+[0;34m[02:45:57][0m Step: Audit area: stub_towns
+--- Step: Audit area: stub_towns ---
+所有區域都已有 5 個或以上的房間，沒有 stub towns。
+
+`missing_content.json` 也確認了 `"stub_towns": []`（空陣列）。
+
+**結論：`mudlib/d/stub_towns/` 這個目錄不存在，因為它不是一個遊戲區域。** 在這個專案裡，「stub towns」是 pipeline 用來標記房間數不足 5 個的區域的概念。目前所有 54 個區域目錄都已超過 5 個房間，沒有 stub towns 需要補完。
+
+**stub_towns: complete** — 無缺少內容。
+[0;32m[OK][0m Audit area: stub_towns
+[0;34m[02:46:40][0m Step: Audit skills
+--- Step: Audit skills ---
+## 技能 Daemon 審查報告
+
+### 統計總覽
+
+- **門派數量**: 18 個 sect daemon
+- **引用技能數**: 20 個唯一技能名稱
+- **技能 daemon 檔案**: 20/20 全部存在
+
+### 完整性檢查結果
+
+| 類別 | 數量 | skill_improved | skill_advanced | 完整 |
+|------|------|:-:|:-:|:-:|
+| 戰鬥技能 | 16 | 全有 | 全有 | 全部 ≥6 招 |
+| 內功技能 | 4 | 全有 | 全有 | 全部有 do_exercise + exert_function |
+
+### 結論
+
+- **缺少 0 個**技能 daemon
+- **本次建立 0 個**
+- **剩餘 0 個**待下輪處理
+
+所有 18 個門派引用的 20 個技能，對應的 daemon 檔案全部存在且完整：戰鬥技能都有至少 6 個 actions 招式，內功技能都有 `do_exercise`/`halt_exercise`/`exert_function`，所有技能都實作了 `skill_improved` 和 `skill_advanced`。無需建立新檔案。
+[0;32m[OK][0m Audit skills
+[0;34m[02:48:49][0m Step: Audit quests
+--- Step: Audit quests ---
+Now I have all the data. Let me compile the analysis.
+
+## 任務系統完整性審查結果
+
+### 已有任務清單
+
+**雪亭鎮（9 個完整任務）：**
+
+| # | 任務 | NPC/房間 | Quest Flag | 獎勵 |
+|---|------|----------|-----------|------|
+| 1 | 阿寶送信 | arbao.c | `quest/arbao_letter_done` | 80 分 + 50 coin |
+| 2 | 瞎眼婆婆身份 | gammer.c | `quest/gammer_identity_done` | 120 分 |
+| 3 | 搬箱子打工 | foreman.c | `quest/foreman_crate_done` | 50 分 + 100 coin |
+| 4 | 驛站送信 | postman.c | `quest/postman_delivery_done` | 100 分 + 100 coin |
+| 5 | 加入軍營 | recruiter.c | `quest/recruiter_enlist_done` | 50 分 |
+| 6 | 老宅秘密 | manor_cellar.c | `quest/manor_secret_done` | 60 分 + 3 silver |
+| 7 | 黑袍老人找女兒 | darkrobe.c | `quest/darkrobe_daughter_done` | 150 分 + 5 silver |
+| 8 | 老乞婆三請求 | old_beggar.c | `quest/old_beggar_done` | 200 分 + 道具 |
+| 9 | 老鏢師指引 | escort.c | `quest/escort_guide_done` | 30 分 + 50 coin |
+
+**五堂鎮（6 個完整任務）：**
+
+| # | 任務 | NPC/房間 | Quest Flag | 獎勵 |
+|---|------|----------|-----------|------|
+| 1 | 飲血劍 | river_bend.c | `quest/yinxue_found_done` | 120 分 + 武器 |
+| 2 | 巫山雕像秘密 | wushan_secret.c | `quest/wushan_statue_done` | 200 分 + 卷軸 |
+| 3 | 郭布收徒 | guobu.c | `quest/guobu_apprentice_done` | 80 分 + 200 coin |
+| 4 | 神殿住持身份 | temple_master.c | `quest/temple_master_done` | 150 分 + 信物 |
+| 5 | 欽差調查案 | inspector.c | `quest/inspector_case_done` | 80 分 + 5 silver |
+| 6 | 渡船指引 | ferryman.c | `quest/ferryman_guide_done` | 50 分 |
+
+### 謎題比對
+
+**雪亭鎮 7 謎 — 全部已實作：**
+1. 阿寶在老榕樹等的人是誰？ → `arbao.c` (送信找哥哥阿明)
+2. 瞎眼婆婆的真實身分？ → `gammer.c` (鬼手趙嫂)
+3. 貨棧搬箱子算不算勞動？ → `foreman.c` (搬貨打工)
+4. 驛站遺失了幾封信？ → `postman.c` (送信任務)
+5. 想不想加入振武軍營？ → `recruiter.c` (招兵任務)
+6. 破舊的老宅裡藏了什麼？ → `manor_cellar.c` (密室寶藏)
+7. 黑袍老人的女兒去了哪裡？ → `darkrobe.c` (尋找女兒)
+
+**五堂鎮 6 謎 — 全部已實作：**
+1. 飲血丟在了哪裡？ → `river_bend.c` (河灣找劍)
+2. 巫山之中神秘雕像有何秘密？ → `wushan_secret.c` (石棺卷軸)
+3. 郭布要收的徒弟在哪裡？ → `guobu.c` + `boy.c` (河灣阿虎)
+4. 鎮天神廟內藏著誰？ → `temple_master.c` (鎮天宗守印人)
+5. 別館內的欽差來五堂要做甚麼？ → `inspector.c` (調查失蹤案)
+6. 過河的船在哪裡？ → `ferryman.c` (碼頭渡船)
+
+### 結論
+
+**已有 15 個完整任務**（雪亭 9 + 五堂 6），13 個謎題全部有對應任務實作。每個任務都有：
+- 觸發機制（`init()` / `add_action` / keyword detection）
+- 進度追蹤（`pending/*` flags）
+- 完成標記（`quest/*_done` flags）
+- 獎勵（`gain_score("quest", N)` + 金錢/道具）
+
+**本次新增 0 個** — 所有謎題已覆蓋，無需補充。
+[0;32m[OK][0m Audit quests
+[0;34m[02:50:30][0m === Phase: Validate ===
+[0;34m[02:50:30][0m Step: Static validation
+--- Step: Static validation ---
+## 驗證報告
+
+### 主測試套件
+| 結果 | 數量 |
+|------|------|
+| **PASS** | 3545 |
+| **FAIL** | 23 |
+| **WARN** | 46 |
+
+FAIL 包含房間 inherit 缺失（`d/longan/temple`、`d/snow/bazar`、`d/snow/small_temple` 等）及 4 個單向出口問題：
+- `ngate`: northwest → entrance 缺反向 southeast
+- `tree`: down → square 缺反向 up
+- `mountain_road2`: west → mountain_path 缺反向 east
+- `gate`: west → watchtower 缺反向 east
+
+### 額外檢查
+
+| 檢查項目 | 結果 |
+|----------|------|
+| `set("aggressive", 1)` 誤用 | **PASS** — 0 筆，全部正確使用 `attitude` |
+| skill daemon 有 `skill_improved` | **PASS** — 全部 75 個 skill daemon 皆有 (count=1) |
+| lv50+ 掌門有 `vision_of_ghost` | **FAIL** — 2 個缺失 |
+
+缺少 `vision_of_ghost` 的掌門：
+1. `d/tianxie/npc/daxiedaoren.c`
+2. `d/hudao/npc/sunyi.c`
+
+完整報告已寫入 `docs/test_report.md`。
+[0;32m[OK][0m Static validation
+[0;34m[02:52:36][0m Pipeline complete: 5 ok, 0 warnings.
