@@ -161,3 +161,15 @@ All NPCs are loaded. Here's the complete audit:
 需要修復的優先項：2 個 NPC 缺 `vision_of_ghost`、4 處單向出口、以及若干房間 inherit 缺失。要我修復這些問題嗎？
 [0;32m[OK][0m Static validation
 [0;34m[05:35:00][0m Pipeline complete: 5 ok, 0 warnings.
+[main b1282df] feat: auto-implement content via pipeline v2 [2026-03-21 05:35:00]
+ 4 files changed, 348 insertions(+), 3 deletions(-)
+ create mode 100644 docs/loop_logs/round_20260321_052210.log
+To github.com:Transformer666/es2_mudlib.git
+   0395424..b1282df  main -> main
+[0;32m[OK][0m Final commit pushed to origin.
+
+=========================================
+  Pipeline complete!
+  Completed: 6 | Warnings: 0
+  End: 2026-03-21 05:35:00
+=========================================
