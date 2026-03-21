@@ -1,0 +1,170 @@
+Round 17 - Sat Mar 21 20:15:22 UTC 2026
+[0;34m[20:15:22][0m Using git remote: origin
+[0;34m[20:15:22][0m Pulling latest changes...
+From github.com:Transformer666/es2_mudlib
+ * branch            main       -> FETCH_HEAD
+Already up to date.
+
+=========================================
+  ES2 Agent Pipeline v2
+  Phase: all
+  Start: 2026-03-21 20:15:22
+=========================================
+
+[0;34m[20:15:24][0m === Phase: Analyze (bash-native, no agent) ===
+[0;34m[20:15:25][0m Analyze complete:
+[0;34m[20:15:25][0m   Races: 11/11 | Classes: 9/7 | Sects: 18/18
+[0;34m[20:15:25][0m   Skills: 75 (missing: 40) | Rooms: 484 | NPCs: 288
+[0;34m[20:15:25][0m   Quests: 14 | Equipment: 282
+[0;34m[20:15:25][0m   Total missing: 40
+[0;32m[OK][0m Analyze phase
+[0;34m[20:15:25][0m === Phase: Build ===
+[0;34m[20:15:25][0m Step: Audit area: stub_towns
+
+
+**stub_towns: complete**
+
+所有 8 個 stub 城鎮全部通過審查，沒有缺少的內容。
+
+| 檢查項目 | longan | jingji | kangping | sanyen | lee | choyin | baihua | weiguo |
+|---|---|---|---|---|---|---|---|---|
+| 出口雙向連結 | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
+| NPC 檔案存在 | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
+| Inn: inherit INN | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
+| Inn: valid_startroom | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
+| Inn: no_fight | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
+| Temple: inherit TEMPLE | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
+| Temple: replace_program | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
+| 廣場 | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
+| 街道 x2+ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
+| 客棧 | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
+| 商店 | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
+| 城門/入口 | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
+| 廟 | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
+| 客棧老闆 NPC | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
+| 守衛 NPC | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
+| 商人 NPC (F_VENDOR) | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
+
+不需要建立任何新檔案。
+[0;32m[OK][0m Audit area: stub_towns
+[0;34m[20:18:22][0m Step: Audit skills
+## 技能 Daemon 審查報告
+
+### 1. 門派引用的技能 (20 個)
+
+所有 18 個門派 daemon 共引用了 **20 個唯一技能名稱**。
+
+### 2. 對應 daemon 檔案檢查
+
+**20/20 全部存在** — 每個技能名稱都有對應的 `mudlib/daemon/skill/<name>.c` 檔案。
+
+### 3-4. 完整性檢查
+
+| 檔案 | 類型 | skill_improved | skill_advanced | actions 數 | 狀態 |
+|------|------|:-:|:-:|:-:|:-:|
+| amazing_needle.c | 戰鬥 | OK | OK | 6 | 完整 |
+| dagger.c | 戰鬥 | OK | OK | 6 | 完整 |
+| diamond_hammer.c | 戰鬥 | OK | OK | 6 | 完整 |
+| fengshan_sword.c | 戰鬥 | OK | OK | 6 | 完整 |
+| five_defeat_needle.c | 戰鬥 | OK | OK | 6 | 完整 |
+| lengmei_sword.c | 戰鬥 | OK | OK | 6 | 完整 |
+| maoshan_sword.c | 戰鬥 | OK | OK | 6 | 完整 |
+| needle.c | 戰鬥 | OK | OK | 6 | 完整 |
+| phantom_sword.c | 戰鬥 | OK | OK | 6 | 完整 |
+| pike.c | 戰鬥 | OK | OK | 7 | 完整 |
+| staff.c | 戰鬥 | OK | OK | 6 | 完整 |
+| sword.c | 戰鬥 | OK | OK | 8 | 完整 |
+| tactic.c | 戰鬥 | OK | OK | 6 | 完整 |
+| taiyi_sword.c | 戰鬥 | OK | OK | 6 | 完整 |
+| three_rotations.c | 戰鬥 | OK | OK | 6 | 完整 |
+| tiger_blade.c | 戰鬥 | OK | OK | 6 | 完整 |
+| longttu_neigong.c | 內功 | OK | OK | do/halt/exert OK | 完整 |
+| maoshan_neigong.c | 內功 | OK | OK | do/halt/exert OK | 完整 |
+| taoshan_milu.c | 內功 | OK | OK | do/halt/exert OK | 完整 |
+| ziwei_neigong.c | 內功 | OK | OK | do/halt/exert OK | 完整 |
+
+### 5. 結論
+
+- **缺少 0 個** — 所有門派引用的技能都有對應 daemon
+- **不完整 0 個** — 所有 daemon 都具備必要函數
+- **本次建立 0 個**
+- **剩餘 0 個待處理**
+
+所有 20 個門派技能 daemon 均完整無缺，無需建立新檔案。
+[0;32m[OK][0m Audit skills
+[0;34m[20:19:31][0m Step: Audit quests
+## 任務系統審查結果
+
+### 雪亭鎮 7 謎 — 全部已實作 (7/7)
+
+| # | 謎題 | 檔案 | quest flag | gain_score |
+|---|------|------|-----------|------------|
+| 1 | 阿寶在老榕樹等的人是誰？ | `snow/npc/arbao.c` | `quest/arbao_letter_done` | ✓ |
+| 2 | 瞎眼婆婆的真實身分？ | `snow/npc/gammer.c` | `quest/gammer_identity_done` | ✓ |
+| 3 | 貨棧搬箱子算不算勞動？ | `snow/npc/foreman.c` | `quest/foreman_crate_done` | ✓ |
+| 4 | 驛站遺失了幾封信？ | `snow/npc/postman.c` | `quest/postman_delivery_done` | ✓ |
+| 5 | 想不想加入振武軍營？ | `snow/npc/recruiter.c` | `quest/recruiter_enlist_done` | ✓ |
+| 6 | 破舊的老宅裡藏了什麼？ | `snow/npc/old_beggar.c` | `quest/old_beggar_done` | ✓ |
+| 7 | 黑袍老人的女兒去了哪裡？ | `snow/npc/darkrobe.c` | `quest/darkrobe_daughter_done` | ✓ |
+
+### 五堂鎮 6 謎 — 全部已實作 (6/6)
+
+| # | 謎題 | 檔案 | quest flag | gain_score |
+|---|------|------|-----------|------------|
+| 1 | 飲血丟在了哪裡？ | `wutang/river_bend.c` | `quest/yinxue_found_done` | ✓ |
+| 2 | 巫山神秘雕像有何秘密？ | `wutang/wushan_secret.c` | `quest/wushan_statue_done` | ✓ |
+| 3 | 郭布要收的徒弟在哪裡？ | `wutang/npc/guobu.c` | `quest/guobu_apprentice_done` | ✓ |
+| 4 | 鎮天神廟內藏著誰？ | `wutang/npc/temple_master.c` | `quest/temple_master_done` | ✓ |
+| 5 | 別館內的欽差來五堂要做甚麼？ | `wutang/npc/inspector.c` | `quest/inspector_case_done` | ✓ |
+| 6 | 過河的船在哪裡？ | `wutang/npc/ferryman.c` | `quest/ferryman_guide_done` | ✓ |
+
+### 額外任務
+
+- `snow/npc/escort.c` — `quest/escort_guide_done` (不在 7 謎列表中，但有完整任務邏輯)
+
+### 結論
+
+**已有 14 個任務（含 escort 額外任務），本次新增 0 個。**
+
+所有 13 個謎題任務均已完整實作，每個都具備：
+- `pending/*` 追蹤進度
+- `quest/*_done` 標記完成
+- `gain_score("quest", N)` 獎勵
+- NPC 已載入對應房間
+
+無需新增任務。
+[0;32m[OK][0m Audit quests
+[0;34m[20:20:40][0m === Phase: Validate ===
+[0;34m[20:20:40][0m Step: Static validation
+## 靜態驗證報告
+
+### 主測試套件 (`run_tests.sh all`)
+| 結果 | 數量 |
+|------|------|
+| **PASS** | 3562 |
+| **FAIL** | 26 |
+| **WARN** | 46 |
+
+主要失敗項包括：
+- **Room inherit 缺失**: `d/longan/temple`, `d/snow/bazar`, `d/snow/small_temple` 等
+- **雙向出口缺失** (4 項):
+  - `ngate`: northwest → entrance 缺少 southeast 返回
+  - `tree`: down → square 缺少 up 返回
+  - `mountain_road2`: west → mountain_path 缺少 east 返回
+  - `gate`: west → watchtower 缺少 east 返回
+
+### 額外檢查
+
+| 檢查項目 | 結果 |
+|----------|------|
+| `set("aggressive", 1)` 誤用 | **PASS** — 0 筆，全部正確使用 `attitude` |
+| skill daemon 含 `skill_improved` | **PASS** — 全部 75 個 daemon 均有 (count=1) |
+| lv50+ 掌門有 `vision_of_ghost` | **FAIL** — 2 個缺失 |
+
+缺少 `vision_of_ghost` 的掌門：
+1. `d/tianxie/npc/daxiedaoren.c` — vision_of_ghost=0
+2. `d/hudao/npc/sunyi.c` — vision_of_ghost=0
+
+完整報告已寫入 `docs/test_report.md`。
+[0;32m[OK][0m Static validation
+[0;34m[20:22:11][0m Pipeline complete: 5 ok, 0 warnings.
