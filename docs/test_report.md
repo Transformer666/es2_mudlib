@@ -1,5 +1,5 @@
 # ES2 MUD Static Validation Report
-Run time: Sat Mar 21 05:16:06 UTC 2026
+Run time: Sat Mar 21 05:33:59 UTC 2026
 
 
 ## Room Validation
@@ -627,18 +627,27 @@ Run time: Sat Mar 21 05:16:06 UTC 2026
 - PASS: Room inherit: d/lijun/riverside_w
 - PASS: Room short desc: d/lijun/riverside_w
 - PASS: Room setup(): d/lijun/riverside_w
+- PASS: Room inherit: d/lijun/back_street
+- PASS: Room short desc: d/lijun/back_street
+- PASS: Room setup(): d/lijun/back_street
 - FAIL: Room inherit missing: d/lijun/ferry
 - PASS: Room short desc: d/lijun/ferry
 - PASS: Room setup(): d/lijun/ferry
 - FAIL: Room inherit missing: d/lijun/ferry_back
 - PASS: Room short desc: d/lijun/ferry_back
 - PASS: Room setup(): d/lijun/ferry_back
+- PASS: Room inherit: d/lijun/square
+- PASS: Room short desc: d/lijun/square
+- PASS: Room setup(): d/lijun/square
 - PASS: Room inherit: d/lijun/teahouse
 - PASS: Room short desc: d/lijun/teahouse
 - PASS: Room setup(): d/lijun/teahouse
 - PASS: Room inherit: d/lijun/street
 - PASS: Room short desc: d/lijun/street
 - PASS: Room setup(): d/lijun/street
+- FAIL: Room inherit missing: d/lijun/temple
+- PASS: Room short desc: d/lijun/temple
+- PASS: Room setup(): d/lijun/temple
 - PASS: Room inherit: d/lijun/entrance
 - PASS: Room short desc: d/lijun/entrance
 - PASS: Room setup(): d/lijun/entrance
@@ -1973,6 +1982,10 @@ Run time: Sat Mar 21 05:16:06 UTC 2026
 - PASS: NPC inherit: d/lijun/npc/ferryman
 - PASS: NPC set_name: d/lijun/npc/ferryman
 - PASS: NPC setup(): d/lijun/npc/ferryman
+- PASS: NPC include: d/lijun/npc/innkeeper
+- PASS: NPC inherit: d/lijun/npc/innkeeper
+- PASS: NPC set_name: d/lijun/npc/innkeeper
+- PASS: NPC setup(): d/lijun/npc/innkeeper
 - PASS: NPC include: d/lijun/npc/fisherman
 - PASS: NPC inherit: d/lijun/npc/fisherman
 - PASS: NPC set_name: d/lijun/npc/fisherman
@@ -3629,6 +3642,6 @@ Run time: Sat Mar 21 05:16:06 UTC 2026
 ## Summary
 | Result | Count |
 |--------|-------|
-| PASS | 3545 |
-| FAIL | 23 |
+| PASS | 3557 |
+| FAIL | 24 |
 | WARN | 46 |

@@ -12425,3 +12425,160 @@ All checks pass. Here's the complete audit result:
 - `gate`: west → watchtower 缺 east 回路
 [0;32m[OK][0m Static validation
 [0;34m[05:17:08][0m Pipeline complete: 5 ok, 0 warnings.
+[0;32m[OK][0m Final commit pushed to origin.
+[0;34m[05:22:10][0m Using git remote: origin
+[0;34m[05:22:10][0m Pulling latest changes...
+From github.com:Transformer666/es2_mudlib
+ * branch            main       -> FETCH_HEAD
+Already up to date.
+
+Pipeline start: 2026-03-21 05:22:10 (phase: all)
+==============================
+[0;34m[05:22:13][0m === Phase: Analyze (bash-native, no agent) ===
+[0;34m[05:22:13][0m Analyze complete:
+[0;34m[05:22:13][0m   Races: 11/11 | Classes: 9/7 | Sects: 18/18
+[0;34m[05:22:13][0m   Skills: 75 (missing: 40) | Rooms: 480 | NPCs: 286
+[0;34m[05:22:13][0m   Quests: 14 | Equipment: 282
+[0;34m[05:22:13][0m   Total missing: 40
+[0;32m[OK][0m Analyze phase
+[0;34m[05:22:13][0m === Phase: Build ===
+[0;34m[05:22:13][0m Step: Audit area: stub_towns
+--- Step: Audit area: stub_towns ---
+Error: Reached max turns (25)[0;32m[OK][0m Audit area: stub_towns
+[0;34m[05:29:42][0m Step: Audit skills
+--- Step: Audit skills ---
+審查結果如下：
+
+## 技能 Daemon 完整性報告
+
+### 1. 門派引用的技能（18 個門派，20 個唯一技能）
+
+| 門派 | 技能 |
+|------|------|
+| 虎刀門 | tiger blade |
+| 寶蓮寺 | staff |
+| 封山派 | fengshan sword |
+| 哭笑門 | sword |
+| 劍甲門 | sword, needle |
+| 龍圖丹派 | longttu neigong, needle |
+| 白象寺 | diamond hammer, staff |
+| 冷梅莊 | lengmei sword |
+| 瑯夷 | dagger |
+| 步玄派 | three rotations |
+| 隱教 | dagger |
+| 玄天教 | sword |
+| 振武軍營 | tactic, pike |
+| 茅山派 | maoshan sword, maoshan neigong, taoshan milu |
+| 天師派 | taiyi sword, ziwei neigong |
+| 雪吟莊 | sword |
+| 天邪派 | phantom sword |
+| 武陀 | five defeat needle, amazing needle |
+
+### 2. 缺少的技能 daemon
+
+**0 個缺少** — 所有 20 個門派引用的技能都有對應的 daemon 檔案。
+
+### 3. skill_improved / skill_advanced
+
+**全部 75 個 skill daemon 都有** `skill_improved` 和 `skill_advanced` — 100% 通過。
+
+### 4. 戰鬥技能 actions 數量
+
+**全部 41 個戰鬥技能都有 ≥6 個 actions** — 100% 通過。
+- 6 actions: 37 個
+- 7 actions: 1 個 (pike)
+- 8 actions: 3 個 (blade, sword, unarmed)
+
+### 結論
+
+- 缺少：**0 個**
+- 不完整：**0 個**
+- 本次建立：**0 個**
+- 剩餘待處理：**0 個**
+
+所有門派引用的技能 daemon 均已存在且完整，無需建立新檔案。
+[0;32m[OK][0m Audit skills
+[0;34m[05:31:54][0m Step: Audit quests
+--- Step: Audit quests ---
+All NPCs are loaded. Here's the complete audit:
+
+---
+
+## 任務系統完整性審查結果
+
+### 雪亭鎮 7 謎 — **全部已實作** (7/7)
+
+| # | 謎題 | quest flag | NPC/房間 | 載入房間 |
+|---|------|-----------|----------|---------|
+| 1 | 阿寶在老榕樹等的人是誰？ | `quest/arbao_letter_done` | arbao.c + recruiter.c | square.c ✅ |
+| 2 | 瞎眼婆婆的真實身分？ | `quest/gammer_identity_done` | gammer.c | square.c ✅ |
+| 3 | 貨棧搬箱子算不算勞動？ | `quest/foreman_crate_done` | foreman.c | store.c ✅ |
+| 4 | 驛站遺失了幾封信？ | `quest/postman_delivery_done` | postman.c + herbalist.c | post_office.c ✅ |
+| 5 | 想不想加入振武軍營？ | `quest/recruiter_enlist_done` | recruiter.c | military_camp.c ✅ |
+| 6 | 破舊的老宅裡藏了什麼？ | `quest/manor_secret_done` | manor_cellar.c | manor_hall.c ✅ |
+| 7 | 黑袍老人的女兒去了哪裡？ | `quest/darkrobe_daughter_done` | darkrobe.c + girl.c | dilapidated_manor.c + ruin2.c ✅ |
+
+### 五堂鎮 6 謎 — **全部已實作** (6/6)
+
+| # | 謎題 | quest flag | NPC/房間 | 載入房間 |
+|---|------|-----------|----------|---------|
+| 1 | 飲血丟在了哪裡？ | `quest/yinxue_found_done` | river_bend.c | dock.c (south出口) ✅ |
+| 2 | 巫山之中神秘雕像有何秘密？ | `quest/wushan_statue_done` | wushan_secret.c | wushan_cave.c (down出口) ✅ |
+| 3 | 郭布要收的徒弟在哪裡？ | `quest/guobu_apprentice_done` | guobu.c + boy.c | street1.c + river_bend.c ✅ |
+| 4 | 鎮天神廟內藏著誰？ | `quest/temple_master_done` | temple_master.c | temple.c ✅ |
+| 5 | 別館內的欽差來五堂要做甚麼？ | `quest/inspector_case_done` | inspector.c + storyteller.c | court.c + inn_hall.c ✅ |
+| 6 | 過河的船在哪裡？ | `quest/ferryman_guide_done` | ferryman.c | dock.c ✅ |
+
+### 額外任務（非謎題）
+
+| quest flag | NPC | 說明 |
+|-----------|-----|------|
+| `quest/escort_guide_done` | escort.c | 老鏢師引導新手拜師 (square_s.c) |
+
+### 總結
+
+- **已有 14 個任務**（雪亭7 + 五堂6 + 額外1）
+- **本次新增 0 個** — 所有 13 個城鎮謎題均已完整實作
+- 所有任務 NPC 均已正確載入到對應房間
+- 所有任務均使用 `pending/` 追蹤進度 + `quest/` 標記完成 + `gain_score("quest", N)` 給獎勵
+- 任務物件（信件、回信等）均存在於 `npc/obj/` 子目錄
+[0;32m[OK][0m Audit quests
+[0;34m[05:33:15][0m === Phase: Validate ===
+[0;34m[05:33:15][0m Step: Static validation
+--- Step: Static validation ---
+## 靜態驗證報告
+
+### 主測試套件 (`run_tests.sh all`)
+| 結果 | 數量 |
+|------|------|
+| **PASS** | 3557 |
+| **FAIL** | 24 |
+| **WARN** | 46 |
+
+主要失敗項包含：
+- **Room inherit 缺失**：`d/longan/temple`、`d/snow/bazar`、`d/snow/small_temple` 等
+- **雙向出口斷裂** (4 處)：
+  - `ngate`: northwest→entrance 缺 southeast 回程
+  - `tree`: down→square 缺 up 回程
+  - `mountain_road2`: west→mountain_path 缺 east 回程
+  - `gate`: west→watchtower 缺 east 回程
+
+### 額外檢查
+
+| 檢查項 | 結果 |
+|--------|------|
+| `set("aggressive", 1)` 誤用 | **PASS** — 0 處found，全部正確使用 `attitude` |
+| `skill_improved` 存在性 | **PASS** — 全部 75 個 skill daemon 均包含 `skill_improved` |
+| lv50+ 掌門 `vision_of_ghost` | **FAIL** — 2 處缺失 |
+
+缺少 `vision_of_ghost` 的掌門級 NPC：
+1. **`d/tianxie/npc/daxiedaoren.c`** (lv75)
+2. **`d/hudao/npc/sunyi.c`** (lv55)
+
+### 總結
+- 額外檢查：**2 PASS / 1 FAIL**
+- 全部合計：**3559 PASS / 25 FAIL / 46 WARN**
+
+需要修復的優先項：2 個 NPC 缺 `vision_of_ghost`、4 處單向出口、以及若干房間 inherit 缺失。要我修復這些問題嗎？
+[0;32m[OK][0m Static validation
+[0;34m[05:35:00][0m Pipeline complete: 5 ok, 0 warnings.
