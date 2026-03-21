@@ -30,3 +30,9 @@ void create()
     setup();
     carry_money("coin", 150);
 }
+
+void init()
+{
+    ::init();
+    add_action("do_vendor_list", "list");
+}

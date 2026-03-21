@@ -32,3 +32,9 @@ void create()
 	carry_money("coin", 150);
 	carry_object(STOCK_ARMOR("cloth"))->wear();
 }
+
+void init()
+{
+	::init();
+	add_action("do_vendor_list", "list");
+}

@@ -34,6 +34,12 @@ void create()
 	carry_money("coin", 50);
 }
 
+void init()
+{
+	::init();
+	add_action("do_vendor_list", "list");
+}
+
 int accept_fight(object ob)
 {
 	do_chat("老闆娘嚇得連連擺手﹕哎呀﹐客倌別動手﹐有話好好說﹗\n");

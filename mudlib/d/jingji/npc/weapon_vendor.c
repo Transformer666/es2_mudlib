@@ -28,3 +28,9 @@ void create()
     setup();
     carry_money("silver", 100);
 }
+
+void init()
+{
+    ::init();
+    add_action("do_vendor_list", "list");
+}
