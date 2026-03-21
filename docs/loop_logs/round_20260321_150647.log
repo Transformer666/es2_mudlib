@@ -196,3 +196,15 @@ All NPCs are loaded into rooms. Here's the complete audit result:
 主要問題：21 個 lv50+ NPC 缺少 `set_temp("apply/vision_of_ghost", 1)`，以及 4 個單向出口需要修復。完整報告在 `docs/test_report.md`。
 [0;32m[OK][0m Static validation
 [0;34m[15:13:38][0m Pipeline complete: 5 ok, 0 warnings.
+[main 1fd6fe4] feat: auto-implement content via pipeline v2 [2026-03-21 15:13:38]
+ 4 files changed, 409 insertions(+), 1 deletion(-)
+ create mode 100644 docs/loop_logs/round_20260321_150647.log
+To github.com:Transformer666/es2_mudlib.git
+   a5d1511..1fd6fe4  main -> main
+[0;32m[OK][0m Final commit pushed to origin.
+
+=========================================
+  Pipeline complete!
+  Completed: 6 | Warnings: 0
+  End: 2026-03-21 15:13:38
+=========================================
