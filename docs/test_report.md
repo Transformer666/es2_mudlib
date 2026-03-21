@@ -1,5 +1,5 @@
 # ES2 MUD Static Validation Report
-Run time: Sat Mar 21 20:21:24 UTC 2026
+Run time: Sat Mar 21 20:41:04 UTC 2026
 
 
 ## Room Validation
@@ -1465,6 +1465,10 @@ Run time: Sat Mar 21 20:21:24 UTC 2026
 - PASS: NPC inherit: d/xueyin/npc/yutieshan
 - PASS: NPC set_name: d/xueyin/npc/yutieshan
 - PASS: NPC setup(): d/xueyin/npc/yutieshan
+- PASS: NPC include: d/xueyin/npc/disciple
+- PASS: NPC inherit: d/xueyin/npc/disciple
+- PASS: NPC set_name: d/xueyin/npc/disciple
+- PASS: NPC setup(): d/xueyin/npc/disciple
 - PASS: NPC include: d/xueyin/npc/servant
 - PASS: NPC inherit: d/xueyin/npc/servant
 - PASS: NPC set_name: d/xueyin/npc/servant
@@ -1553,6 +1557,10 @@ Run time: Sat Mar 21 20:21:24 UTC 2026
 - PASS: NPC inherit: d/yinjiao/npc/dark_guard
 - PASS: NPC set_name: d/yinjiao/npc/dark_guard
 - PASS: NPC setup(): d/yinjiao/npc/dark_guard
+- PASS: NPC include: d/yinjiao/npc/disciple
+- PASS: NPC inherit: d/yinjiao/npc/disciple
+- PASS: NPC set_name: d/yinjiao/npc/disciple
+- PASS: NPC setup(): d/yinjiao/npc/disciple
 - PASS: NPC include: d/wutang/npc/temple_master
 - PASS: NPC inherit: d/wutang/npc/temple_master
 - PASS: NPC set_name: d/wutang/npc/temple_master
@@ -1825,6 +1833,14 @@ Run time: Sat Mar 21 20:21:24 UTC 2026
 - PASS: NPC inherit: d/jianjia/npc/smith
 - PASS: NPC set_name: d/jianjia/npc/smith
 - PASS: NPC setup(): d/jianjia/npc/smith
+- PASS: NPC include: d/jianjia/npc/disciple
+- PASS: NPC inherit: d/jianjia/npc/disciple
+- PASS: NPC set_name: d/jianjia/npc/disciple
+- PASS: NPC setup(): d/jianjia/npc/disciple
+- PASS: NPC include: d/ice/npc/ice_wolf
+- PASS: NPC inherit: d/ice/npc/ice_wolf
+- PASS: NPC set_name: d/ice/npc/ice_wolf
+- PASS: NPC setup(): d/ice/npc/ice_wolf
 - PASS: NPC include: d/ice/npc/ice_guardian
 - PASS: NPC inherit: d/ice/npc/ice_guardian
 - PASS: NPC set_name: d/ice/npc/ice_guardian
@@ -1833,10 +1849,22 @@ Run time: Sat Mar 21 20:21:24 UTC 2026
 - PASS: NPC inherit: d/ice/npc/frost_frog
 - PASS: NPC set_name: d/ice/npc/frost_frog
 - PASS: NPC setup(): d/ice/npc/frost_frog
+- PASS: NPC include: d/ice/npc/snow_leopard
+- PASS: NPC inherit: d/ice/npc/snow_leopard
+- PASS: NPC set_name: d/ice/npc/snow_leopard
+- PASS: NPC setup(): d/ice/npc/snow_leopard
+- PASS: NPC include: d/baiyao/npc/herb_guardian
+- PASS: NPC inherit: d/baiyao/npc/herb_guardian
+- PASS: NPC set_name: d/baiyao/npc/herb_guardian
+- PASS: NPC setup(): d/baiyao/npc/herb_guardian
 - PASS: NPC include: d/baiyao/npc/chilong
 - PASS: NPC inherit: d/baiyao/npc/chilong
 - PASS: NPC set_name: d/baiyao/npc/chilong
 - PASS: NPC setup(): d/baiyao/npc/chilong
+- PASS: NPC include: d/baiyao/npc/mountain_snake
+- PASS: NPC inherit: d/baiyao/npc/mountain_snake
+- PASS: NPC set_name: d/baiyao/npc/mountain_snake
+- PASS: NPC setup(): d/baiyao/npc/mountain_snake
 - PASS: NPC include: d/snow/npc/foreman
 - PASS: NPC inherit: d/snow/npc/foreman
 - PASS: NPC set_name: d/snow/npc/foreman
@@ -2105,6 +2133,14 @@ Run time: Sat Mar 21 20:21:24 UTC 2026
 - PASS: NPC inherit: d/road/npc/inferno_dog
 - PASS: NPC set_name: d/road/npc/inferno_dog
 - PASS: NPC setup(): d/road/npc/inferno_dog
+- PASS: NPC include: d/goathill/npc/eagle
+- PASS: NPC inherit: d/goathill/npc/eagle
+- PASS: NPC set_name: d/goathill/npc/eagle
+- PASS: NPC setup(): d/goathill/npc/eagle
+- PASS: NPC include: d/goathill/npc/mountain_wolf
+- PASS: NPC inherit: d/goathill/npc/mountain_wolf
+- PASS: NPC set_name: d/goathill/npc/mountain_wolf
+- PASS: NPC setup(): d/goathill/npc/mountain_wolf
 - PASS: NPC include: d/goathill/npc/wild_goat
 - PASS: NPC inherit: d/goathill/npc/wild_goat
 - PASS: NPC set_name: d/goathill/npc/wild_goat
@@ -2121,10 +2157,22 @@ Run time: Sat Mar 21 20:21:24 UTC 2026
 - PASS: NPC inherit: d/village/npc/village_elder
 - PASS: NPC set_name: d/village/npc/village_elder
 - PASS: NPC setup(): d/village/npc/village_elder
+- PASS: NPC include: d/village/npc/merchant
+- PASS: NPC inherit: d/village/npc/merchant
+- PASS: NPC set_name: d/village/npc/merchant
+- PASS: NPC setup(): d/village/npc/merchant
 - PASS: NPC include: d/village/npc/village_innkeeper
 - PASS: NPC inherit: d/village/npc/village_innkeeper
 - PASS: NPC set_name: d/village/npc/village_innkeeper
 - PASS: NPC setup(): d/village/npc/village_innkeeper
+- PASS: NPC include: d/village/npc/priest
+- PASS: NPC inherit: d/village/npc/priest
+- PASS: NPC set_name: d/village/npc/priest
+- PASS: NPC setup(): d/village/npc/priest
+- PASS: NPC include: d/village/npc/guard
+- PASS: NPC inherit: d/village/npc/guard
+- PASS: NPC set_name: d/village/npc/guard
+- PASS: NPC setup(): d/village/npc/guard
 - PASS: NPC include: d/hudao/npc/hanxiao
 - PASS: NPC inherit: d/hudao/npc/hanxiao
 - PASS: NPC set_name: d/hudao/npc/hanxiao
@@ -2461,6 +2509,10 @@ Run time: Sat Mar 21 20:21:24 UTC 2026
 - PASS: NPC inherit: d/wutuo/npc/master
 - PASS: NPC set_name: d/wutuo/npc/master
 - PASS: NPC setup(): d/wutuo/npc/master
+- PASS: NPC include: d/wutuo/npc/disciple
+- PASS: NPC inherit: d/wutuo/npc/disciple
+- PASS: NPC set_name: d/wutuo/npc/disciple
+- PASS: NPC setup(): d/wutuo/npc/disciple
 - PASS: NPC include: d/wutuo/npc/apprentice
 - PASS: NPC inherit: d/wutuo/npc/apprentice
 - PASS: NPC set_name: d/wutuo/npc/apprentice
@@ -2481,6 +2533,10 @@ Run time: Sat Mar 21 20:21:24 UTC 2026
 - PASS: NPC inherit: d/xuantian/npc/master
 - PASS: NPC set_name: d/xuantian/npc/master
 - PASS: NPC setup(): d/xuantian/npc/master
+- PASS: NPC include: d/xuantian/npc/disciple
+- PASS: NPC inherit: d/xuantian/npc/disciple
+- PASS: NPC set_name: d/xuantian/npc/disciple
+- PASS: NPC setup(): d/xuantian/npc/disciple
 - PASS: NPC include: d/xuantian/npc/attendant
 - PASS: NPC inherit: d/xuantian/npc/attendant
 - PASS: NPC set_name: d/xuantian/npc/attendant
@@ -2533,6 +2589,10 @@ Run time: Sat Mar 21 20:21:24 UTC 2026
 - PASS: NPC inherit: d/langyi/npc/assassin
 - PASS: NPC set_name: d/langyi/npc/assassin
 - PASS: NPC setup(): d/langyi/npc/assassin
+- PASS: NPC include: d/langyi/npc/disciple
+- PASS: NPC inherit: d/langyi/npc/disciple
+- PASS: NPC set_name: d/langyi/npc/disciple
+- PASS: NPC setup(): d/langyi/npc/disciple
 - PASS: NPC include: d/chuenyu/npc/pilgrim
 - PASS: NPC inherit: d/chuenyu/npc/pilgrim
 - PASS: NPC set_name: d/chuenyu/npc/pilgrim
@@ -2541,10 +2601,18 @@ Run time: Sat Mar 21 20:21:24 UTC 2026
 - PASS: NPC inherit: d/chuenyu/npc/spring_keeper
 - PASS: NPC set_name: d/chuenyu/npc/spring_keeper
 - PASS: NPC setup(): d/chuenyu/npc/spring_keeper
+- PASS: NPC include: d/waterfog/npc/fog_snake
+- PASS: NPC inherit: d/waterfog/npc/fog_snake
+- PASS: NPC set_name: d/waterfog/npc/fog_snake
+- PASS: NPC setup(): d/waterfog/npc/fog_snake
 - PASS: NPC include: d/waterfog/npc/fog_hermit
 - PASS: NPC inherit: d/waterfog/npc/fog_hermit
 - PASS: NPC set_name: d/waterfog/npc/fog_hermit
 - PASS: NPC setup(): d/waterfog/npc/fog_hermit
+- PASS: NPC include: d/waterfog/npc/swamp_creature
+- PASS: NPC inherit: d/waterfog/npc/swamp_creature
+- PASS: NPC set_name: d/waterfog/npc/swamp_creature
+- PASS: NPC setup(): d/waterfog/npc/swamp_creature
 - PASS: NPC include: d/waterfog/npc/centipede
 - PASS: NPC inherit: d/waterfog/npc/centipede
 - PASS: NPC set_name: d/waterfog/npc/centipede
@@ -3053,6 +3121,10 @@ Run time: Sat Mar 21 20:21:24 UTC 2026
 - PASS: Equipment setup(): d/baihua/npc/obj/wreath
 - WARN: No weapon/armor include: d/baihua/npc/obj/watermelon (may be a generic item)
 - PASS: Equipment setup(): d/baihua/npc/obj/watermelon
+- WARN: No weapon/armor include: d/village/npc/obj/herb (may be a generic item)
+- PASS: Equipment setup(): d/village/npc/obj/herb
+- WARN: No weapon/armor include: d/village/npc/obj/rope (may be a generic item)
+- PASS: Equipment setup(): d/village/npc/obj/rope
 - PASS: Armor include: d/hudao/npc/obj/hudao_vest
 - PASS: Armor inherit: d/hudao/npc/obj/hudao_vest
 - PASS: Equipment setup(): d/hudao/npc/obj/hudao_vest
@@ -3641,14 +3713,11 @@ Run time: Sat Mar 21 20:21:24 UTC 2026
 - PASS: Equipment setup(): obj/armor/lightning_bomb
 
 ## Exit Bidirectional Validation
-- FAIL: Exit northwest -> entrance has no southeast exit back (from ngate)
-- FAIL: Exit down -> square has no up exit back (from tree)
-- FAIL: Exit west -> mountain_path has no east exit back (from mountain_road2)
-- FAIL: Exit west -> watchtower has no east exit back (from gate)
+- PASS: All exits are bidirectional
 
 ## Summary
 | Result | Count |
 |--------|-------|
-| PASS | 3562 |
-| FAIL | 26 |
-| WARN | 46 |
+| PASS | 3633 |
+| FAIL | 22 |
+| WARN | 48 |

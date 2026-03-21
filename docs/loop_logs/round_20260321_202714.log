@@ -1,0 +1,216 @@
+Round 18 - Sat Mar 21 20:27:14 UTC 2026
+[0;34m[20:27:14][0m Using git remote: origin
+[0;34m[20:27:14][0m Pulling latest changes...
+From github.com:Transformer666/es2_mudlib
+ * branch            main       -> FETCH_HEAD
+Already up to date.
+
+=========================================
+  ES2 Agent Pipeline v2
+  Phase: all
+  Start: 2026-03-21 20:27:14
+=========================================
+
+[0;34m[20:27:16][0m === Phase: Analyze (bash-native, no agent) ===
+[0;34m[20:27:17][0m Analyze complete:
+[0;34m[20:27:17][0m   Races: 11/11 | Classes: 9/7 | Sects: 18/18
+[0;34m[20:27:17][0m   Skills: 75 (missing: 40) | Rooms: 484 | NPCs: 288
+[0;34m[20:27:17][0m   Quests: 14 | Equipment: 282
+[0;34m[20:27:17][0m   Total missing: 40
+[0;32m[OK][0m Analyze phase
+[0;34m[20:27:17][0m === Phase: Build ===
+[0;34m[20:27:17][0m Step: Audit area: stub_towns
+
+
+**Vision of ghost 修復完成** — 20 個 lv50+ NPC 全部已加上 `set_temp("apply/vision_of_ghost", 1)`
+
+---
+
+## 完整修復總結
+
+### 本次建立的檔案（19 個）
+| 類型 | 檔案 | 說明 |
+|------|------|------|
+| 門派弟子 NPC | xuantian/npc/disciple.c | 玄天弟子 |
+| 門派弟子 NPC | xueyin/npc/disciple.c | 雪吟弟子 |
+| 門派弟子 NPC | yinjiao/npc/disciple.c | 銀蛟弟子 |
+| 門派弟子 NPC | jianjia/npc/disciple.c | 蒹葭弟子 |
+| 門派弟子 NPC | wutuo/npc/disciple.c | 武陀弟子 |
+| 門派弟子 NPC | langyi/npc/disciple.c | 狼翼弟子 |
+| 村莊 NPC | village/npc/guard.c | 村莊守衛 |
+| 村莊 NPC | village/npc/merchant.c | 雜貨商人 |
+| 村莊 NPC | village/npc/priest.c | 廟祝 |
+| 村莊物件 | village/npc/obj/rope.c | 麻繩 |
+| 村莊物件 | village/npc/obj/herb.c | 草藥 |
+| 野外怪物 | goathill/npc/mountain_wolf.c | 山狼 (aggressive) |
+| 野外怪物 | goathill/npc/eagle.c | 蒼鷹 (aggressive) |
+| 野外怪物 | ice/npc/ice_wolf.c | 冰狼 (aggressive) |
+| 野外怪物 | ice/npc/snow_leopard.c | 雪豹 (aggressive) |
+| 野外怪物 | waterfog/npc/fog_snake.c | 霧蛇 (aggressive) |
+| 野外怪物 | waterfog/npc/swamp_creature.c | 沼澤怪 (aggressive) |
+| 野外怪物 | baiyao/npc/herb_guardian.c | 草藥守衛 (aggressive) |
+| 野外怪物 | baiyao/npc/mountain_snake.c | 山蛇 (aggressive) |
+
+### 修改的檔案（61 個）
+| 修復類型 | 數量 | 說明 |
+|----------|------|------|
+| 野外 NPC 加 aggressive | 8 | green_n, goathill, ice, waterfog, manglin |
+| 房間載入新弟子 | 12 | 7 個門派的 training/quarters/hall 等 |
+| 房間載入村莊 NPC | 3 | village 的 entrance/well/temple |
+| 房間載入新怪物 | 11 | goathill/ice/waterfog/baiyao 的各房間 |
+| 補反向出口 | 7 | graveyard/tianyue/snow/manglin/zhenwu |
+| 加 vision_of_ghost | 20 | 10 個區域的 lv50+ NPC |
+
+### 仍有的已知問題（低優先）
+- 2 個房間缺 inherit（jingji/bank.c, snow/bazar.c）— 可能是特殊繼承，需確認
+- 2 個出口指向不存在的檔案（snow/npath2→month/a1, snow/river1→chixiao/river2）— 需建立目標房間或移除出口
+- chuenyu 門派仍缺掌門/大廳/弟子，結構不完整
+[0;32m[OK][0m Audit area: stub_towns
+[0;34m[20:36:29][0m Step: Audit skills
+Audit confirmed. Here's the complete report:
+
+## 技能 Daemon 完整性審查結果
+
+### 1. 門派技能引用統計
+18 個門派 daemon 共引用 **20 個**不重複技能名稱。
+
+### 2. 技能 Daemon 檔案存在性
+**20/20 全部存在** — 無缺少的技能 daemon。
+
+| 門派 | 引用技能 |
+|------|----------|
+| 封山派 | fengshan sword |
+| 冷梅莊 | lengmei sword |
+| 哭笑門 | sword |
+| 雪吟莊 | sword |
+| 虎刀門 | tiger blade |
+| 寶蓮寺 | staff |
+| 白象寺 | diamond hammer, staff |
+| 天師派 | taiyi sword, ziwei neigong |
+| 茅山派 | maoshan sword, maoshan neigong, taoshan milu |
+| 瑯夷 | dagger |
+| 隱教 | dagger |
+| 龍圖 | longttu neigong, needle |
+| 武陀 | five defeat needle, amazing needle |
+| 劍甲門 | sword, needle |
+| 步玄派 | three rotations |
+| 玄天教 | sword |
+| 振武軍營 | tactic, pike |
+| 天邪派 | phantom sword |
+
+### 3. skill_improved / skill_advanced
+**75/75** 個 skill daemon 皆具備 `skill_improved()` 和 `skill_advanced()`。
+
+### 4. 戰鬥技能 actions 數量
+所有 41 個戰鬥技能皆有 **≥ 6 個 actions**（最多 8 個）。無不足的情況。
+
+### 5. 總結
+
+- **缺少：0 個**
+- **本次建立：0 個**
+- **剩餘待處理：0 個**
+
+所有門派引用的技能 daemon 完整無缺，每個檔案都有 `skill_improved`、`skill_advanced`，戰鬥技能 actions 數量均達標。審查通過。
+[0;32m[OK][0m Audit skills
+[0;34m[20:38:53][0m Step: Audit quests
+All quest reward objects exist. Here's the complete audit:
+
+## 任務系統審查報告
+
+### 雪亭鎮 7 謎 — 全部已實作 ✓
+
+| # | 謎題 | NPC/檔案 | 房間 | quest flag | 獎勵分 |
+|---|------|----------|------|-----------|--------|
+| 1 | 阿寶在老榕樹等的人是誰？ | arbao.c | square.c | `arbao_letter_done` | 80 |
+| 2 | 瞎眼婆婆的真實身分？ | gammer.c | square.c | `gammer_identity_done` | 120 |
+| 3 | 貨棧搬箱子算不算勞動？ | foreman.c | store.c | `foreman_crate_done` | 50 |
+| 4 | 驛站遺失了幾封信？ | postman.c | post_office.c | `postman_delivery_done` | 100 |
+| 5 | 想不想加入振武軍營？ | recruiter.c | military_camp.c | `recruiter_enlist_done` | 50 |
+| 6 | 破舊的老宅裡藏了什麼？ | manor_cellar.c | manor_hall→down | `manor_secret_done` | 60 |
+| 7 | 黑袍老人的女兒去了哪裡？ | darkrobe.c | dilapidated_manor.c | `darkrobe_daughter_done` | 150 |
+
+### 五堂鎮 6 謎 — 全部已實作 ✓
+
+| # | 謎題 | NPC/檔案 | 房間 | quest flag | 獎勵分 |
+|---|------|----------|------|-----------|--------|
+| 1 | 飲血丟在了哪裡？ | river_bend.c | dock→south | `yinxue_found_done` | 120 |
+| 2 | 巫山神秘雕像有何秘密？ | wushan_secret.c | wushan_cave→down | `wushan_statue_done` | 200 |
+| 3 | 郭布要收的徒弟在哪裡？ | guobu.c | street1.c | `guobu_apprentice_done` | 80 |
+| 4 | 鎮天神廟內藏著誰？ | temple_master.c | temple.c | `temple_master_done` | 150 |
+| 5 | 欽差來五堂要做甚麼？ | inspector.c | court.c | `inspector_case_done` | 80 |
+| 6 | 過河的船在哪裡？ | ferryman.c | dock.c | `ferryman_guide_done` | 50 |
+
+### 額外任務（不在謎題列表中）
+
+| NPC | 房間 | quest flag | 獎勵分 |
+|-----|------|-----------|--------|
+| escort.c（護衛） | square_s.c | `escort_guide_done` | 30 |
+| old_beggar.c（老乞丐） | square_sw.c | `old_beggar_done` | 200 |
+
+### 完整性檢查
+
+- **quest/ flag**：所有 15 個任務均使用 `quest/<id>_done` 標記完成 ✓
+- **pending/ flag**：多階段任務正確使用 `pending/` 追蹤進度 ✓
+- **gain_score**：所有 15 個任務均呼叫 `gain_score("quest", N)` ✓
+- **NPC 載入房間**：所有任務 NPC 均已在對應房間的 `objects` 中載入 ✓
+- **跨任務引用**：storyteller 正確引用 `inspector_case_done`；boy 正確引用 `guobu_apprentice_done` ✓
+- **獎勵物品**：jade_token、quest_letter 等獎勵物品檔案均存在 ✓
+
+### 結論
+
+**已有 15 個任務，本次新增 0 個。** 雪亭鎮 7 謎和五堂鎮 6 謎全部已有對應的完整任務實作，無需補充。
+[0;32m[OK][0m Audit quests
+[main e28375e] feat: add quests
+ 78 files changed, 689 insertions(+)
+ create mode 100644 mudlib/d/baiyao/npc/herb_guardian.c
+ create mode 100644 mudlib/d/baiyao/npc/mountain_snake.c
+ create mode 100644 mudlib/d/goathill/npc/eagle.c
+ create mode 100644 mudlib/d/goathill/npc/mountain_wolf.c
+ create mode 100644 mudlib/d/ice/npc/ice_wolf.c
+ create mode 100644 mudlib/d/ice/npc/snow_leopard.c
+ create mode 100644 mudlib/d/jianjia/npc/disciple.c
+ create mode 100644 mudlib/d/langyi/npc/disciple.c
+ create mode 100644 mudlib/d/village/npc/guard.c
+ create mode 100644 mudlib/d/village/npc/merchant.c
+ create mode 100644 mudlib/d/village/npc/obj/herb.c
+ create mode 100644 mudlib/d/village/npc/obj/rope.c
+ create mode 100644 mudlib/d/village/npc/priest.c
+ create mode 100644 mudlib/d/waterfog/npc/fog_snake.c
+ create mode 100644 mudlib/d/waterfog/npc/swamp_creature.c
+ create mode 100644 mudlib/d/wutuo/npc/disciple.c
+ create mode 100644 mudlib/d/xuantian/npc/disciple.c
+ create mode 100644 mudlib/d/xueyin/npc/disciple.c
+ create mode 100644 mudlib/d/yinjiao/npc/disciple.c
+[0;34m[20:40:21][0m === Phase: Validate ===
+[0;34m[20:40:21][0m Step: Static validation
+## 靜態驗證報告
+
+### 主測試套件 (run_tests.sh all)
+| 結果 | 數量 |
+|------|------|
+| **PASS** | 3633 |
+| **FAIL** | 22 |
+| **WARN** | 48 |
+
+### 額外檢查
+
+| 檢查項目 | 結果 |
+|----------|------|
+| `set("aggressive", 1)` 誤用 | **PASS** — 0 筆，全部正確使用 `attitude` |
+| skill daemon 含 `skill_improved` | **PASS** — 全部 75 個 skill daemon 皆有 (count=1) |
+| lv50+ 掌門有 `vision_of_ghost` | **PASS** — 全部 13 位掌門皆已設定 |
+
+### 22 個 FAIL 明細（均為 Room inherit missing）
+
+這些房間缺少正確的 inherit 宣告（如城隍廟應 `inherit TEMPLE`，一般房間應 `inherit ROOM`）：
+- `d/longan/temple`
+- `d/snow/bazar`
+- `d/snow/small_temple`
+- 以及其餘 19 個（完整清單見 `docs/test_report.md`）
+
+### 總結
+- 核心規範（aggressive 用法、skill daemon、vision_of_ghost）全部 **PASS**
+- 22 個 FAIL 集中在房間 inherit 缺失，需逐一修復
+- 48 個 WARN 多為裝備缺少 weapon/armor include（可能是特殊道具，非嚴重問題）
+[0;32m[OK][0m Static validation
+[0;34m[20:41:52][0m Pipeline complete: 5 ok, 0 warnings.
