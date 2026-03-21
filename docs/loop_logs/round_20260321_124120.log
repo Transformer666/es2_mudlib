@@ -1,0 +1,181 @@
+Round 82 - Sat Mar 21 12:41:20 UTC 2026
+[0;34m[12:41:20][0m Using git remote: origin
+[0;34m[12:41:20][0m Pulling latest changes...
+From github.com:Transformer666/es2_mudlib
+ * branch            main       -> FETCH_HEAD
+Already up to date.
+
+=========================================
+  ES2 Agent Pipeline v2
+  Phase: all
+  Start: 2026-03-21 12:41:20
+=========================================
+
+[0;34m[12:41:23][0m === Phase: Analyze (bash-native, no agent) ===
+[0;34m[12:41:23][0m Analyze complete:
+[0;34m[12:41:23][0m   Races: 11/11 | Classes: 9/7 | Sects: 18/18
+[0;34m[12:41:23][0m   Skills: 75 (missing: 40) | Rooms: 483 | NPCs: 287
+[0;34m[12:41:23][0m   Quests: 14 | Equipment: 282
+[0;34m[12:41:23][0m   Total missing: 40
+[0;32m[OK][0m Analyze phase
+[0;34m[12:41:23][0m === Phase: Build ===
+[0;34m[12:41:23][0m Step: Audit area: stub_towns
+**stub_towns: complete** — 沒有任何區域少於 5 個房間檔案，因此不存在 stub towns。
+
+所有 54 個區域都有 5 個以上的房間和至少 1 個 NPC。最小的區域（hell, jianjia, maoshan, wutuo）有 5 個房間，但這些多為門派或野外區域，5 個房間已符合最低要求。
+[0;32m[OK][0m Audit area: stub_towns
+[0;34m[12:42:04][0m Step: Audit skills
+## 技能 Daemon 完整性審查結果
+
+### 1. 門派引用的技能清單（18 門派）
+
+| 門派 | 引用技能 |
+|------|---------|
+| 封山派 fengshan | fengshan sword |
+| 冷梅莊 lengmei | lengmei sword |
+| 哭笑門 kuxiao | sword |
+| 雪吟莊 xueyin | sword |
+| 虎刀門 hudao | tiger blade |
+| 寶蓮寺 baolian | staff |
+| 白象寺 baixiang | diamond hammer, staff |
+| 天師派 tianshi | taiyi sword, ziwei neigong |
+| 茅山派 maoshan | maoshan sword, maoshan neigong, taoshan milu |
+| 瑯夷 langyi | dagger |
+| 隱教 yinjiao | dagger |
+| 龍圖丹派 longttu | longttu neigong, needle |
+| 武陀 wutuo | five defeat needle, amazing needle |
+| 劍甲門 jianjia | sword, needle |
+| 步玄派 buxuan | three rotations |
+| 玄天教 xuantian | sword |
+| 振武軍營 zhenwu | tactic, pike |
+| 天邪派 tianxie | phantom sword |
+
+### 2. 技能對應檢查
+
+所有門派引用的技能（空格換底線）均有對應的 `mudlib/daemon/skill/<name>.c`：
+
+- `tiger_blade.c` / `fengshan_sword.c` / `lengmei_sword.c` / `phantom_sword.c` / `taiyi_sword.c` / `maoshan_sword.c` / `diamond_hammer.c` / `three_rotations.c` / `five_defeat_needle.c` / `amazing_needle.c` — 門派專屬戰鬥技能
+- `sword.c` / `dagger.c` / `staff.c` / `pike.c` / `needle.c` / `tactic.c` — 基礎戰鬥技能
+- `longttu_neigong.c` / `maoshan_neigong.c` / `ziwei_neigong.c` / `taoshan_milu.c` — 內功/特殊技能
+
+### 3. skill_improved / skill_advanced 檢查
+
+全部 77 個 skill daemon 均包含 `skill_improved()` 和 `skill_advanced()` 函數。
+
+### 4. 戰鬥技能 actions 數量檢查
+
+所有戰鬥技能均有至少 6 個 actions（最多 8 個：blade, sword, unarmed）。
+
+### 5. 總結
+
+| 項目 | 結果 |
+|------|------|
+| 門派引用技能總數 | 20 個（去重） |
+| 已有對應 daemon | 20 個 |
+| 缺少 skill_improved/skill_advanced | 0 個 |
+| 戰鬥技能 actions < 6 | 0 個 |
+
+**缺少 0 個、本次建立 0 個、剩餘 0 個待下輪處理。**
+
+所有門派引用的技能 daemon 均已建立且完整。
+[0;32m[OK][0m Audit skills
+[0;34m[12:44:29][0m Step: Audit quests
+All quest implementations are verified. Here's the complete audit result:
+
+## 任務系統完整性審查結果
+
+### 已有任務：15 個
+
+**雪亭鎮 7 謎 — 全部已實作：**
+
+| # | 謎題 | Quest ID | 獎勵分數 | 實作檔案 |
+|---|------|----------|---------|---------|
+| 1 | 阿寶在老榕樹等的人是誰？ | `arbao_letter_done` | 80 | `snow/npc/arbao.c` |
+| 2 | 瞎眼婆婆的真實身分？ | `gammer_identity_done` | 120 | `snow/npc/gammer.c` |
+| 3 | 貨棧搬箱子算不算勞動？ | `foreman_crate_done` | 50 | `snow/npc/foreman.c` |
+| 4 | 驛站遺失了幾封信？ | `postman_delivery_done` | 100 | `snow/npc/postman.c` |
+| 5 | 想不想加入振武軍營？ | `recruiter_enlist_done` | 50 | `snow/npc/recruiter.c` |
+| 6 | 破舊的老宅裡藏了什麼？ | `manor_secret_done` | 60 | `snow/manor_cellar.c` |
+| 7 | 黑袍老人的女兒去了哪裡？ | `darkrobe_daughter_done` | 150 | `snow/npc/darkrobe.c` + `girl.c` |
+
+**五堂鎮 6 謎 — 全部已實作：**
+
+| # | 謎題 | Quest ID | 獎勵分數 | 實作檔案 |
+|---|------|----------|---------|---------|
+| 1 | 飲血丟在了哪裡？ | `yinxue_found_done` | 120 | `wutang/river_bend.c` |
+| 2 | 巫山之中神秘雕像有何秘密？ | `wushan_statue_done` | 200 | `wutang/wushan_secret.c` |
+| 3 | 郭布要收的徒弟在哪裡？ | `guobu_apprentice_done` | 80 | `wutang/npc/guobu.c` + `boy.c` |
+| 4 | 鎮天神廟內藏著誰？ | `temple_master_done` | 150 | `wutang/npc/temple_master.c` |
+| 5 | 別館內的欽差來五堂要做甚麼？ | `inspector_case_done` | 80 | `wutang/npc/inspector.c` + `storyteller.c` |
+| 6 | 過河的船在哪裡？ | `ferryman_guide_done` | 50 | `wutang/npc/ferryman.c` |
+
+**額外任務（不屬於城鎮謎題）：**
+
+| Quest ID | 獎勵分數 | 實作檔案 |
+|----------|---------|---------|
+| `escort_guide_done` | 30 | `snow/npc/escort.c` |
+| `old_beggar_done` | 200 | `snow/npc/old_beggar.c` |
+
+### 實作品質確認
+
+所有 15 個任務均已包含：
+- `pending/<id>` 追蹤進度（多階段任務）
+- `quest/<id>_done` 標記完成（防重複）
+- `gain_score("quest", N)` 給獎勵分數
+- NPC 已透過 `set("objects", ...)` 載入到對應房間
+
+### 結論
+
+**已有 15 個任務，本次新增 0 個。** 雪亭鎮 7 謎和五堂鎮 6 謎全部已有對應任務實作，不需要補充。`pending/` 的使用除了任務系統外，還有 20+ 個拜師系統 NPC 使用 `pending/` 來追蹤拜師流程，這屬於正常用途。
+[0;32m[OK][0m Audit quests
+[0;34m[12:47:00][0m === Phase: Validate ===
+[0;34m[12:47:00][0m Step: Static validation
+## 靜態驗證報告
+
+### 測試套件結果：**3556 PASS / 25 FAIL / 46 WARN**
+
+---
+
+### 25 個 FAIL 明細
+
+**Room inherit 缺失（20 個）** — 城隍廟/渡口/銀行等特殊房間缺少正確的 inherit：
+
+| 區域 | 檔案 | 問題 |
+|------|------|------|
+| longan | temple | 缺 TEMPLE inherit |
+| wutang | ferry, ferry_back, temple | 缺 inherit |
+| lee | ancestral_hall | 缺 inherit |
+| sanyen | inner_temple, temple | 缺 inherit |
+| snow | bazar, small_temple | 缺 inherit |
+| lijun | ferry, ferry_back, temple | 缺 inherit |
+| weiguo | temple | 缺 inherit |
+| baihua | shrine | 缺 inherit |
+| village | temple | 缺 inherit |
+| jingji | bank, temple | 缺 inherit |
+| choyin | temple | 缺 inherit |
+| kangping | temple | 缺 inherit |
+| chixiao | temple | 缺 inherit |
+
+**裝備 setup() 缺失（1 個）：** `d/snow/npc/obj/invitation`
+
+**雙向出口缺失（4 個）：**
+- `ngate` → northwest → `entrance`（缺 southeast 回程）
+- `tree` → down → `square`（缺 up 回程）
+- `mountain_road2` → west → `mountain_path`（缺 east 回程）
+- `gate` → west → `watchtower`（缺 east 回程）
+
+---
+
+### 額外檢查
+
+| 檢查項目 | 結果 |
+|----------|------|
+| `set("aggressive", 1)` 違規 | **PASS** — 0 筆（全部正確使用 attitude） |
+| skill daemon 含 `skill_improved` | **PASS** — 全部 75 個 daemon 皆有 |
+| lv50+ 掌門有 `vision_of_ghost` | **FAIL** — 2 個缺失 |
+
+**缺少 `vision_of_ghost` 的掌門：**
+- `d/tianxie/npc/daxiedaoren.c`（lv75）
+- `d/hudao/npc/sunyi.c`（lv55）
+[0;32m[OK][0m Static validation
+[0;34m[12:51:01][0m Pipeline complete: 5 ok, 0 warnings.
