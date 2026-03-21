@@ -1,5 +1,7 @@
 // Room: /d/sanyen/inner_temple.c
 
+#include <room.h>
+
 inherit TEMPLE;
 
 void create()
