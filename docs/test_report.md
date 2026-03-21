@@ -1,5 +1,5 @@
 # ES2 MUD Static Validation Report
-Run time: Sat Mar 21 08:21:12 UTC 2026
+Run time: Sat Mar 21 08:37:17 UTC 2026
 
 
 ## Room Validation
@@ -686,7 +686,6 @@ Run time: Sat Mar 21 08:21:12 UTC 2026
 - PASS: Room setup(): d/green/grassland_s
 - PASS: Room inherit: d/weiguo/stable
 - PASS: Room short desc: d/weiguo/stable
-- FAIL: Exit west -> watchtower has no east exit back (from gate)
 - PASS: Room setup(): d/weiguo/stable
 - PASS: Room inherit: d/weiguo/back_street
 - PASS: Room short desc: d/weiguo/back_street
@@ -1199,13 +1198,6 @@ Run time: Sat Mar 21 08:21:12 UTC 2026
 - PASS: Room short desc: d/kangping/square
 - PASS: Room setup(): d/kangping/square
 - PASS: Room inherit: d/kangping/herb_garden
-
-## Summary
-| Result | Count |
-|--------|-------|
-| PASS | 3556 |
-| FAIL | 25 |
-| WARN | 46 |
 - PASS: Room short desc: d/kangping/herb_garden
 - PASS: Room setup(): d/kangping/herb_garden
 - PASS: Room inherit: d/kangping/stone_cave
