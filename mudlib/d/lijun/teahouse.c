@@ -19,6 +19,7 @@ LONG
 	set("no_fight", 1);
 	set("objects", ([
 		__DIR__"npc/tea_lady" : 1,
+		__DIR__"npc/innkeeper" : 1,
 	]));
 	set("detail", ([
 		"茶壺" : "青瓷茶壺﹐壺身上繪著淡淡的山水圖案﹐壺嘴冒著嫋嫋的熱氣。\n",

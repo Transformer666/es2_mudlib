@@ -10,12 +10,12 @@ void create()
 家店鋪﹐門板上掛著褪色的招牌。地面鋪著青石板﹐被來往的行人踩
 得光滑發亮。往南走是碼頭﹐可以隱約聞到河水的腥氣；東邊有個小
 市集﹐不時傳來吆喝叫賣聲；西邊是一棟二層的茶樓﹐門口掛著「清
-月樓」的招牌。往北可以回到渡口入口。
+月樓」的招牌。往北是鎮上的廣場。
 LONG
 	);
 	set("outdoors", "town");
 	set("exits", ([
-		"north" : __DIR__"entrance",
+		"north" : __DIR__"square",
 		"south" : __DIR__"dock",
 		"east" : __DIR__"market",
 		"west" : __DIR__"teahouse",

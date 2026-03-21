@@ -3,6 +3,7 @@
 #include <npc.h>
 
 inherit F_VILLAGER;
+inherit F_VENDOR;
 
 void create()
 {
@@ -23,6 +24,11 @@ void create()
 		"老闆娘一邊擦桌子一邊說﹕咱們百花村﹐最不缺的就是花。\n",
 		"老闆娘往花瓶裡插了一朵新摘的花。\n",
 	}));
+
+	set("merchandise", ([
+		STOCK_ITEM("ration") : 50,
+		STOCK_ITEM("torch") : 50,
+	]));
 
 	setup();
 	carry_money("coin", 50);

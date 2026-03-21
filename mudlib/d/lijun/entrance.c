@@ -19,7 +19,7 @@ LONG
 	]));
 	set("exits", ([
 		"north" : "/d/road/wild_path1",
-		"south" : __DIR__"street",
+		"south" : __DIR__"square",
 	]));
 
 	setup();
