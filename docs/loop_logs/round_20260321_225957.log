@@ -184,3 +184,15 @@ All 8 stub towns were analyzed:
 核心程式碼品質良好。22 個 FAIL 主要是測試腳本對 `inherit TEMPLE`/`inherit INN` 等特殊 inherit 的檢測規則不夠完善，以及 1 個 NPC 裝備缺少 `setup()`。三項額外規範檢查全部通過。
 [0;32m[OK][0m Static validation
 [0;34m[23:10:44][0m Pipeline complete: 5 ok, 0 warnings.
+[main 158ec1b] feat: auto-implement content via pipeline v2 [2026-03-21 23:10:44]
+ 4 files changed, 385 insertions(+), 1 deletion(-)
+ create mode 100644 docs/loop_logs/round_20260321_225957.log
+To github.com:Transformer666/es2_mudlib.git
+   5802573..158ec1b  main -> main
+[0;32m[OK][0m Final commit pushed to origin.
+
+=========================================
+  Pipeline complete!
+  Completed: 6 | Warnings: 0
+  End: 2026-03-21 23:10:44
+=========================================

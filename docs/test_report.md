@@ -1,5 +1,5 @@
 # ES2 MUD Static Validation Report
-Run time: Sat Mar 21 23:08:24 UTC 2026
+Run time: Sat Mar 21 23:30:13 UTC 2026
 
 
 ## Room Validation
@@ -1173,6 +1173,9 @@ Run time: Sat Mar 21 23:08:24 UTC 2026
 - PASS: Room inherit: d/tianhan/cottage
 - PASS: Room short desc: d/tianhan/cottage
 - PASS: Room setup(): d/tianhan/cottage
+- PASS: Room inherit: d/tianhan/square
+- PASS: Room short desc: d/tianhan/square
+- PASS: Room setup(): d/tianhan/square
 - PASS: Room inherit: d/tianhan/inn_2f
 - PASS: Room short desc: d/tianhan/inn_2f
 - PASS: Room setup(): d/tianhan/inn_2f
@@ -2457,6 +2460,14 @@ Run time: Sat Mar 21 23:08:24 UTC 2026
 - PASS: NPC inherit: d/tianhan/npc/waiter
 - PASS: NPC set_name: d/tianhan/npc/waiter
 - PASS: NPC setup(): d/tianhan/npc/waiter
+- PASS: NPC include: d/tianhan/npc/villager
+- PASS: NPC inherit: d/tianhan/npc/villager
+- PASS: NPC set_name: d/tianhan/npc/villager
+- PASS: NPC setup(): d/tianhan/npc/villager
+- PASS: NPC include: d/tianhan/npc/elder
+- PASS: NPC inherit: d/tianhan/npc/elder
+- PASS: NPC set_name: d/tianhan/npc/elder
+- PASS: NPC setup(): d/tianhan/npc/elder
 - PASS: NPC include: d/tianhan/npc/guard
 - PASS: NPC inherit: d/tianhan/npc/guard
 - PASS: NPC set_name: d/tianhan/npc/guard
@@ -2529,6 +2540,10 @@ Run time: Sat Mar 21 23:08:24 UTC 2026
 - PASS: NPC inherit: d/canyon/npc/jing_yutao
 - PASS: NPC set_name: d/canyon/npc/jing_yutao
 - PASS: NPC setup(): d/canyon/npc/jing_yutao
+- PASS: NPC include: d/babao/npc/mansion_guard
+- PASS: NPC inherit: d/babao/npc/mansion_guard
+- PASS: NPC set_name: d/babao/npc/mansion_guard
+- PASS: NPC setup(): d/babao/npc/mansion_guard
 - PASS: NPC include: d/xuantian/npc/master
 - PASS: NPC inherit: d/xuantian/npc/master
 - PASS: NPC set_name: d/xuantian/npc/master
@@ -3718,6 +3733,6 @@ Run time: Sat Mar 21 23:08:24 UTC 2026
 ## Summary
 | Result | Count |
 |--------|-------|
-| PASS | 3633 |
+| PASS | 3648 |
 | FAIL | 22 |
 | WARN | 48 |
