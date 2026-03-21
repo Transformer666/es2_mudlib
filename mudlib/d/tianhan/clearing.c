@@ -16,8 +16,11 @@ LONG
         "木樁" : "幾根插在地上的木樁，上面佈滿了刀劍砍過的痕跡。\n",
         "稻草人" : "用舊衣服和稻草紮成的靶子，千瘡百孔。\n",
     ]));
+    set("objects", ([
+        __DIR__"npc/villager" : 1,
+    ]));
     set("exits", ([
-        "south" : __DIR__"street",
+        "south" : __DIR__"square",
         "west" : __DIR__"cottage",
     ]));
 

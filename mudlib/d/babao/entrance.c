@@ -16,6 +16,9 @@ LONG
         "匾額" : "「將軍府」三個金色大字，筆力雄渾，氣勢不凡。\n",
         "石獅" : "兩尊石獅怒目圓睜，張牙舞爪，栩栩如生。\n",
     ]));
+    set("objects", ([
+        __DIR__"npc/mansion_guard" : 2,
+    ]));
     set("exits", ([
         "southwest" : "/d/wutang/ngate",
         "north" : __DIR__"hall",
