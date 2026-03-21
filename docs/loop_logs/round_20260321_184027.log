@@ -167,3 +167,15 @@ All neigong skills have the required functions too. The grep earlier was a false
 - 需修復：26 個 room 問題（inherit 缺失 + 單向出口）+ 2 個掌門缺 `vision_of_ghost`
 [0;32m[OK][0m Static validation
 [0;34m[18:48:27][0m Pipeline complete: 5 ok, 0 warnings.
+[main 20d2732] feat: auto-implement content via pipeline v2 [2026-03-21 18:48:27]
+ 4 files changed, 351 insertions(+), 1 deletion(-)
+ create mode 100644 docs/loop_logs/round_20260321_184027.log
+To github.com:Transformer666/es2_mudlib.git
+   325aa4e..20d2732  main -> main
+[0;32m[OK][0m Final commit pushed to origin.
+
+=========================================
+  Pipeline complete!
+  Completed: 6 | Warnings: 0
+  End: 2026-03-21 18:48:27
+=========================================
