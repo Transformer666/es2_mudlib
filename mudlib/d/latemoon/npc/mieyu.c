@@ -31,6 +31,7 @@ void create()
 		"滅慾是風神座下四大護衛之一﹐身穿灰白色戰袍﹐容貌清冷如\n"
 		"冰霜﹐手持數枚銀針﹐針法精準致命。她是四大護衛中最年輕的\n"
 		"一位﹐卻也是最令人畏懼的。\n");
+	set("attitude", "aggressive");
 	setup();
 	carry_object(STOCK_WEAPON("needle"))->wield();
 	carry_object(STOCK_ARMOR("cloth"))->wear();

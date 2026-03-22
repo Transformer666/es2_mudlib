@@ -11,7 +11,7 @@ LONG
     );
     set("exits", ([
         "west" : "/d/snow/herb_shop",
-        "east" : __DIR__"garden",
+        "east" : __DIR__"hall",
     ]));
 
     setup();

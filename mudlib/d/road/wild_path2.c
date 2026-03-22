@@ -17,6 +17,7 @@ LONG
 		"west" : __DIR__"wild_path1",
 		"east" : "/d/chixiao/entrance",
 		"north" : "/d/latemoon/entrance",
+		"northwest" : "/d/langyi/gate",
 		"south" : "/d/village/entrance",
 	]));
 

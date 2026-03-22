@@ -16,7 +16,7 @@ LONG
 		__DIR__"npc/guard" : 1,
 	]));
 	set("exits", ([
-		"west" : __DIR__"r1",
+		"west" : __DIR__"gate",
 		"east" : __DIR__"square",
 	]));
 

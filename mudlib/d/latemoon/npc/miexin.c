@@ -31,6 +31,7 @@ void create()
 		"滅心是風神座下四大護衛之一﹐身穿灰白色戰袍﹐面無表情﹐\n"
 		"一雙死灰般的眼睛透著冷酷無情的殺意。他手持長劍﹐忠誠地\n"
 		"守衛著這片古老的遺跡。\n");
+	set("attitude", "aggressive");
 	setup();
 	carry_object(STOCK_WEAPON("longsword"))->wield();
 	carry_object(STOCK_ARMOR("cloth"))->wear();

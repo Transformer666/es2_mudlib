@@ -25,5 +25,6 @@ void create()
         "饕餮發出低沉的哞聲，大地為之震動。\n",
         "饕餮用蹄子刨著地面，揚起一陣塵土。\n",
     }));
+    set("attitude", "aggressive");
     setup();
 }

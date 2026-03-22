@@ -26,5 +26,6 @@ void create()
     set("chat_msg", ({
         "峽谷蝠發出尖銳的叫聲，在洞穴中迴盪。\n",
     }));
+    set("attitude", "aggressive");
     setup();
 }

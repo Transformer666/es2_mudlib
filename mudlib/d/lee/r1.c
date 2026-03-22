@@ -15,7 +15,7 @@ LONG
 	set("outdoors", "road");
 	set("exits", ([
 		"southwest" : "/d/snow/egate",
-		"east" : __DIR__"r2",
+		"east" : __DIR__"gate",
 	]));
 
 	setup();

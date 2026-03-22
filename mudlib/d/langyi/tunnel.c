@@ -11,6 +11,7 @@ LONG
     );
     set("exits", ([
         "up"    : "/d/wutang/lane2",
+        "south" : __DIR__"gate",
         "north" : __DIR__"passage",
     ]));
 

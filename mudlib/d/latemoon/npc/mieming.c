@@ -30,6 +30,7 @@ void create()
 	set("long",
 		"滅名是風神座下四大護衛之一﹐身穿灰白色戰袍﹐沉默寡言﹐\n"
 		"手持一把寒光閃爍的長刀。他的刀法迅捷凌厲﹐出手毫不留情。\n");
+	set("attitude", "aggressive");
 	setup();
 	carry_object(STOCK_WEAPON("blade"))->wield();
 	carry_object(STOCK_ARMOR("cloth"))->wear();

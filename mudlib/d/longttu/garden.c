@@ -10,7 +10,7 @@ void create()
 LONG
     );
     set("exits", ([
-        "west"  : __DIR__"entrance",
+        "west"  : __DIR__"hall",
         "east"  : __DIR__"lab",
         "north" : __DIR__"storehouse",
     ]));

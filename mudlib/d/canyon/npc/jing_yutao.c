@@ -23,6 +23,7 @@ void create()
     set("age", 40);
     set("gender", "male");
     set("long", "景愈濤是古劍門掌門，虎背熊腰，看起來相當孔武有力，約四十多歲。他一生都在追尋劍道的至高境界，隱居在峽谷深處潛心修煉。\n");
+    set("attitude", "aggressive");
     setup();
     carry_object(STOCK_WEAPON("longsword"))->wield();
     carry_object(STOCK_ARMOR("cloth"))->wear();

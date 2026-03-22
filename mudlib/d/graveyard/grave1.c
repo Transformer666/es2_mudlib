@@ -14,7 +14,7 @@ LONG
 	);
 	set("outdoors", "wasteland");
 	set("exits", ([
-		"southeast" : "/d/snow/wgate",
+		"south" : __DIR__"entrance",
 		"north" : __DIR__"grave2",
 	]));
 

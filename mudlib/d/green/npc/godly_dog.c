@@ -25,6 +25,7 @@ void create()
         "天獒仰天長嘯，空中劈過一道閃電。\n",
         "天獒抖了抖金色的皮毛，四周響起噼啪的電光。\n",
     }));
+    set("attitude", "aggressive");
     setup();
     set_temp("apply/vision_of_ghost", 1);
 }

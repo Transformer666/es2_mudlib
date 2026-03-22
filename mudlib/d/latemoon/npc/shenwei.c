@@ -31,6 +31,7 @@ void create()
 		"神衛是風神座下四大護衛之一﹐身穿灰白色戰甲﹐體型魁梧﹐\n"
 		"手持一桿長槍﹐如同一座不可撼動的山嶽。他是四大護衛中防禦\n"
 		"最強的一位﹐負責守衛遺跡的入口。\n");
+	set("attitude", "aggressive");
 	setup();
 	carry_object(STOCK_WEAPON("pike"))->wield();
 	carry_object(STOCK_ARMOR("cloth"))->wear();
