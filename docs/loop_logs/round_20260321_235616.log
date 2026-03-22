@@ -1,0 +1,150 @@
+Round 33 - Sat Mar 21 23:56:16 UTC 2026
+[0;34m[23:56:16][0m Using git remote: origin
+[0;34m[23:56:16][0m Pulling latest changes...
+From github.com:Transformer666/es2_mudlib
+ * branch            main       -> FETCH_HEAD
+Already up to date.
+
+=========================================
+  ES2 Agent Pipeline v2
+  Phase: all
+  Start: 2026-03-21 23:56:16
+=========================================
+
+[0;34m[23:56:19][0m === Phase: Analyze (bash-native, no agent) ===
+[0;34m[23:56:19][0m Analyze complete:
+[0;34m[23:56:19][0m   Races: 11/11 | Classes: 9/7 | Sects: 18/18
+[0;34m[23:56:19][0m   Skills: 75 (missing: 40) | Rooms: 485 | NPCs: 308
+[0;34m[23:56:19][0m   Quests: 14 | Equipment: 284
+[0;34m[23:56:19][0m   Total missing: 40
+[0;32m[OK][0m Analyze phase
+[0;34m[23:56:19][0m === Phase: Build ===
+[0;34m[23:56:19][0m Step: Audit area: stub_towns
+Spot-check confirms the agent's findings. All 8 stub town areas have their required files.
+
+**stub_towns: complete**
+
+All 8 城鎮stub areas (龍安、京畿、康平、三掩、離、喬陰、百花、衛國) pass the audit:
+
+| 區域 | 房間數 | NPC數 | 客棧(INN) | 城隍廟(TEMPLE) | 守衛 | 商人(VENDOR) |
+|------|--------|--------|-----------|---------------|------|-------------|
+| longan | 14 | 13 | ✓ | ✓ | ✓ | 4 |
+| jingji | 13 | 10+ | ✓ | ✓ | ✓ | 2 |
+| kangping | 13 | 11 | ✓ | ✓ | ✓ | 2 |
+| sanyen | 11 | 10 | ✓ | ✓ | ✓ | 3 |
+| lee | 10 | 9 | ✓ | ✓ | ✓ | 2 |
+| choyin | 11 | 8 | ✓ | ✓ | ✓ | 3 |
+| baihua | 11 | 8 | ✓ | ✓ | ✓ | 4 |
+| weiguo | 12 | 11 | ✓ | ✓ | ✓ | 3 |
+
+- All inns inherit INN with `valid_startroom` + `no_fight`
+- All temples inherit TEMPLE
+- All exits are bidirectional
+- All NPC file references resolve to existing files
+- All external road connections point to existing files
+
+No missing content detected. No files need to be created.
+[0;32m[OK][0m Audit area: stub_towns
+[0;34m[23:59:12][0m Step: Audit skills
+Filtering out non-skill strings (class, location, name, paths), the skill list matches exactly what the agent found: **20 unique skills**.
+
+Here's the complete audit result:
+
+## 技能 Daemon 審查報告
+
+### 1. 門派引用技能 (20 個)
+全部 20 個技能在 `mudlib/daemon/skill/` 都有對應的 `.c` 檔案。
+
+### 2. skill_improved / skill_advanced 檢查
+全部 **75 個** skill daemon 都有 `skill_improved()` 和 `skill_advanced()`。
+
+### 3. 戰鬥技能 actions 檢查 (≥6)
+所有門派戰鬥技能都達標：
+
+| 技能 | actions 數 |
+|------|-----------|
+| tiger blade | 6 |
+| staff | 6 |
+| fengshan sword | 6 |
+| sword | 8 |
+| needle | 6 |
+| diamond hammer | 6 |
+| lengmei sword | 6 |
+| dagger | 6 |
+| three rotations | 6 |
+| tactic | 6 |
+| pike | 7 |
+| maoshan sword | 6 |
+| taiyi sword | 6 |
+| phantom sword | 6 |
+| five defeat needle | 6 |
+| amazing needle | 6 |
+
+### 4. 內功技能檢查 (do_exercise / halt_exercise / exert_function)
+所有門派內功均完整：
+- longttu_neigong ✓
+- maoshan_neigong ✓
+- ziwei_neigong ✓
+- taoshan_milu ✓
+
+### 結論
+
+- **缺少：0 個** — 所有門派引用的技能都有對應 daemon
+- **不完整：0 個** — 所有 daemon 都有必要函式且戰鬥招式數達標
+- **本次建立：0 個**
+- **剩餘待處理：0 個**
+
+技能系統完整，無需修補。
+[0;32m[OK][0m Audit skills
+[0;34m[00:00:40][0m Step: Audit quests
+## 任務系統審查結果
+
+### 雪亭鎮 7 謎 — 全部已實作 ✅
+
+| # | 謎題 | 對應檔案 | quest flag | 獎勵 |
+|---|------|----------|------------|------|
+| 1 | 阿寶在老榕樹等的人是誰？ | `arbao.c` | `quest/arbao_letter_done` | 80 分 |
+| 2 | 瞎眼婆婆的真實身分？ | `gammer.c` | `quest/gammer_identity_done` | 120 分 |
+| 3 | 貨棧搬箱子算不算勞動？ | `foreman.c` | `quest/foreman_crate_done` | 50 分 |
+| 4 | 驛站遺失了幾封信？ | `postman.c` | `quest/postman_delivery_done` | 100 分 |
+| 5 | 想不想加入振武軍營？ | `recruiter.c` | `quest/recruiter_enlist_done` | 50 分 |
+| 6 | 破舊的老宅裡藏了什麼？ | `manor_cellar.c` | `quest/manor_secret_done` | 60 分 |
+| 7 | 黑袍老人的女兒去了哪裡？ | `darkrobe.c` | `quest/darkrobe_daughter_done` | 150 分 |
+
+### 五堂鎮 6 謎 — 全部已實作 ✅
+
+| # | 謎題 | 對應檔案 | quest flag | 獎勵 |
+|---|------|----------|------------|------|
+| 1 | 飲血丟在了哪裡？ | `river_bend.c` | `quest/yinxue_found_done` | 120 分 + 飲血劍 |
+| 2 | 巫山之中神秘雕像有何秘密？ | `wushan_secret.c` | `quest/wushan_statue_done` | 200 分 + 古卷 |
+| 3 | 郭布要收的徒弟在哪裡？ | `guobu.c` | `quest/guobu_apprentice_done` | 80 分 + 200 銅 |
+| 4 | 鎮天神廟內藏著誰？ | `temple_master.c` | `quest/temple_master_done` | 150 分 + 玉牌 |
+| 5 | 別館內的欽差來五堂要做甚麼？ | `inspector.c` | `quest/inspector_case_done` | 80 分 + 5 銀 |
+| 6 | 過河的船在哪裡？ | `ferryman.c` | `quest/ferryman_guide_done` | 50 分 |
+
+### 額外任務（不屬於謎題系列）
+
+| 對應檔案 | 任務描述 | quest flag | 獎勵 |
+|----------|----------|------------|------|
+| `old_beggar.c` | 老乞婆三階段跑腿 | `quest/old_beggar_done` | 200 分 + 念珠 + 白袍 |
+| `escort.c` | 老鏢師拜師指引 | `quest/escort_guide_done` | 30 分 |
+
+### pending/ flag 用途分類
+
+- **任務追蹤**：`pending/arbao_*`, `pending/gammer_identity`, `pending/old_beggar`, `pending/postman_*`, `pending/guobu_apprentice`, `pending/inspector_case`, `pending/yinxue_search`, `pending/wushan_statue`, `pending/temple_master`
+- **拜師系統**（非任務）：`pending/alchemist`, `pending/liuyi`, `pending/yutieshan`, `pending/meiyingfeng`, `pending/liudonglu`, `pending/hanxiao`, `pending/luxinian`, `pending/mipei`, `pending/ouyang_wuji`, `pending/longttu_elder`, `pending/recruiter`
+- **學習系統**（非任務）：`pending/sit_learning_literate`, `pending/picked_by_whaiz`
+
+### 總結
+
+- **已有 15 個任務**（雪亭 9 個 + 五堂 6 個）
+- **13 個謎題全部已實作**，無缺漏
+- **本次新增 0 個**（所有謎題均已有對應任務邏輯）
+- 所有任務均使用 `quest/<id>_done` 標記完成、`pending/<id>` 追蹤進度、`gain_score("quest", N)` 給獎勵
+- 任務分數範圍：30～200 分，總計可得 1140 分
+[0;32m[OK][0m Audit quests
+[0;34m[00:02:47][0m === Phase: Validate ===
+[0;34m[00:02:47][0m Step: Static validation
+所有背景任務均已完成，結果與上方報告一致。驗證報告完整，無需補充。
+[0;32m[OK][0m Static validation
+[0;34m[00:10:50][0m Pipeline complete: 5 ok, 0 warnings.

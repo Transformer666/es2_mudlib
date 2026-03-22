@@ -1,5 +1,5 @@
 # ES2 MUD Static Validation Report
-Run time: Sat Mar 21 23:50:26 UTC 2026
+Run time: Sun Mar 22 00:08:13 UTC 2026
 
 
 ## Room Validation
@@ -876,6 +876,14 @@ Run time: Sat Mar 21 23:50:26 UTC 2026
 - PASS: Room inherit: d/hudao/training
 - PASS: Room short desc: d/hudao/training
 - PASS: Room setup(): d/hudao/training
+- PASS: All exits are bidirectional
+
+## Summary
+| Result | Count |
+|--------|-------|
+| PASS | 3648 |
+| FAIL | 22 |
+| WARN | 48 |
 - PASS: Room inherit: d/heifeng/yard
 - PASS: Room short desc: d/heifeng/yard
 - PASS: Room setup(): d/heifeng/yard
