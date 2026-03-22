@@ -1,5 +1,5 @@
 # ES2 MUD Static Validation Report
-Run time: Sun Mar 22 05:11:48 UTC 2026
+Run time: Sun Mar 22 05:25:29 UTC 2026
 
 
 ## Room Validation
@@ -2091,15 +2091,7 @@ Run time: Sun Mar 22 05:11:48 UTC 2026
 - PASS: NPC inherit: d/weiguo/npc/sentry
 - PASS: NPC set_name: d/weiguo/npc/sentry
 - PASS: NPC setup(): d/weiguo/npc/sentry
-- PASS: All exits are bidirectional
-
 - PASS: NPC include: d/weiguo/npc/soldier
-## Summary
-| Result | Count |
-|--------|-------|
-| PASS | 3681 |
-| FAIL | 24 |
-| WARN | 52 |
 - PASS: NPC inherit: d/weiguo/npc/soldier
 - PASS: NPC set_name: d/weiguo/npc/soldier
 - PASS: NPC setup(): d/weiguo/npc/soldier
