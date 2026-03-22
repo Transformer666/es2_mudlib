@@ -28126,3 +28126,187 @@ Now I have a complete picture. Here's the audit result:
 - 完整報告已寫入 `docs/test_report.md`
 [0;32m[OK][0m Static validation
 [0;34m[01:53:59][0m Pipeline complete: 5 ok, 0 warnings.
+[0;32m[OK][0m Final commit pushed to origin.
+[0;34m[01:59:01][0m Using git remote: origin
+[0;34m[01:59:01][0m Pulling latest changes...
+From github.com:Transformer666/es2_mudlib
+ * branch            main       -> FETCH_HEAD
+Already up to date.
+
+Pipeline start: 2026-03-22 01:59:01 (phase: all)
+==============================
+[0;34m[01:59:03][0m === Phase: Analyze (bash-native, no agent) ===
+[0;34m[01:59:04][0m Analyze complete:
+[0;34m[01:59:04][0m   Races: 11/11 | Classes: 9/7 | Sects: 18/18
+[0;34m[01:59:04][0m   Skills: 75 (missing: 40) | Rooms: 485 | NPCs: 308
+[0;34m[01:59:04][0m   Quests: 14 | Equipment: 284
+[0;34m[01:59:04][0m   Total missing: 40
+[0;32m[OK][0m Analyze phase
+[0;34m[01:59:04][0m === Phase: Build ===
+[0;34m[01:59:04][0m Step: Audit area: stub_towns
+--- Step: Audit area: stub_towns ---
+**結果：`mudlib/d/stub_towns/` 目錄不存在。**
+
+在這個專案中，`stub_towns` 不是一個區域目錄，而是 `automation/run_pipeline.sh` 中的概念，指**房間數少於 5 個的區域**。
+
+根據目前的掃描結果：
+
+- 所有 54 個區域都至少有 5 個 `.c` 房間檔案
+- `docs/missing_content.json` 中 `"stub_towns": []` 為空
+- 最小的區域是 `hell`、`jianjia`、`maoshan`、`wutuo`（各 5 個房間）
+
+**stub_towns: complete** — 沒有不完整的 stub 區域需要補充。
+
+如果你想讓我審查那些房間數較少的區域（例如只有 5-6 個房間的區域）是否缺少城鎮必要設施（客棧、廟、商店等），請告訴我要檢查哪些。
+[0;32m[OK][0m Audit area: stub_towns
+[0;34m[01:59:51][0m Step: Audit skills
+--- Step: Audit skills ---
+## 技能 Daemon 完整性審查報告
+
+### 1. 門派引用的技能（20 個唯一技能）
+
+| 門派 | 引用技能 |
+|------|---------|
+| 寶蓮寺 baolian | staff |
+| 白象寺 baixiang | diamond hammer, staff |
+| 步玄派 buxuan | three rotations |
+| 封山派 fengshan | fengshan sword |
+| 虎刀門 hudao | tiger blade |
+| 劍甲門 jianjia | sword, needle |
+| 哭笑門 kuxiao | sword |
+| 瑯夷 langyi | dagger |
+| 冷梅莊 lengmei | lengmei sword |
+| 龍圖丹派 longttu | longttu neigong, needle |
+| 茅山派 maoshan | maoshan sword, maoshan neigong, taoshan milu |
+| 天師派 tianshi | taiyi sword, ziwei neigong |
+| 天邪派 tianxie | phantom sword |
+| 武陀 wutuo | five defeat needle, amazing needle |
+| 玄天教 xuantian | sword |
+| 雪吟莊 xueyin | sword |
+| 隱教 yinjiao | dagger |
+| 振武軍營 zhenwu | tactic, pike |
+
+### 2. Daemon 檔案存在性：全部存在 (20/20)
+
+### 3. skill_improved / skill_advanced：全部具備 (75/75 skill daemons)
+
+### 4. 戰鬥技能 actions 數量（≥6 要求）：全部通過
+
+| 技能 | actions 數 |
+|------|-----------|
+| sword | 8 |
+| pike | 7 |
+| staff, diamond_hammer, three_rotations, fengshan_sword, tiger_blade, needle, dagger, maoshan_sword, taiyi_sword, phantom_sword, five_defeat_needle, amazing_needle, tactic, lengmei_sword | 各 6 |
+
+### 5. 內功技能完整性：全部通過
+
+| 內功 | do_exercise | halt_exercise | exert_function |
+|------|:-:|:-:|:-:|
+| maoshan_neigong | ✓ | ✓ | ✓ |
+| ziwei_neigong | ✓ | ✓ | ✓ |
+| longttu_neigong | ✓ | ✓ | ✓ |
+| taoshan_milu | ✓ | ✓ | ✓ |
+
+### 結論
+
+- **缺少 0 個**技能 daemon
+- **本次建立 0 個**
+- **剩餘 0 個**待處理
+
+所有 18 個門派引用的 20 個唯一技能均有對應的 daemon 檔案，且全部具備 `skill_improved`、`skill_advanced`，戰鬥技能 actions ≥ 6，內功技能三函式齊全。技能系統完整無缺。
+[0;32m[OK][0m Audit skills
+[0;34m[02:01:05][0m Step: Audit quests
+--- Step: Audit quests ---
+## 任務系統審查結果
+
+### 掃描結果
+
+所有 **雪亭鎮 7 謎** 和 **五堂鎮 6 謎** 均已有對應任務實作。
+
+#### 雪亭鎮 — 9 個任務（7 謎 + 2 額外）
+
+| 謎題 | NPC/房間 | quest flag | 分數 |
+|------|----------|-----------|------|
+| 1. 阿寶在老榕樹等的人 | `arbao.c` | `quest/arbao_letter_done` | 80 |
+| 2. 瞎眼婆婆的真實身分 | `gammer.c` | `quest/gammer_identity_done` | 120 |
+| 3. 貨棧搬箱子算不算勞動 | `foreman.c` | `quest/foreman_crate_done` | 50 |
+| 4. 驛站遺失了幾封信 | `postman.c` | `quest/postman_delivery_done` | 100 |
+| 5. 想不想加入振武軍營 | `recruiter.c` | `quest/recruiter_enlist_done` | 50 |
+| 6. 破舊老宅裡藏了什麼 | `manor_cellar.c` | `quest/manor_secret_done` | 60 |
+| 7. 黑袍老人的女兒去了哪裡 | `darkrobe.c` | `quest/darkrobe_daughter_done` | 150 |
+| (額外) 老乞婆收集任務 | `old_beggar.c` | `quest/old_beggar_done` | 200 |
+| (額外) 老鏢師指引任務 | `escort.c` | `quest/escort_guide_done` | 30 |
+
+#### 五堂鎮 — 6 個任務（6 謎全覆蓋）
+
+| 謎題 | NPC/房間 | quest flag | 分數 |
+|------|----------|-----------|------|
+| 1. 飲血丟在了哪裡 | `river_bend.c` | `quest/yinxue_found_done` | 120 |
+| 2. 巫山神秘雕像有何秘密 | `wushan_secret.c` | `quest/wushan_statue_done` | 200 |
+| 3. 郭布要收的徒弟在哪裡 | `guobu.c` | `quest/guobu_apprentice_done` | 80 |
+| 4. 鎮天神廟內藏著誰 | `temple_master.c` | `quest/temple_master_done` | 150 |
+| 5. 欽差來五堂要做甚麼 | `inspector.c` | `quest/inspector_case_done` | 80 |
+| 6. 過河的船在哪裡 | `ferryman.c` | `quest/ferryman_guide_done` | 50 |
+
+### 統計
+
+- **已有 15 個任務**，覆蓋全部 13 個謎題 + 2 個額外任務
+- **本次新增 0 個** — 所有謎題均已實作完畢
+- 總可獲得 quest 分數：**1,140 分**
+- 所有任務均使用 `pending/` 追蹤進度、`quest/*_done` 標記完成、`gain_score("quest", N)` 發放獎勵
+
+> 注意：初始掃描 `grep -v master` 誤排除了 `temple_master.c`（謎題4），實際該任務已完整實作，含 3 階段對話 + 玉牌獎勵 + 150 分。
+[0;32m[OK][0m Audit quests
+[0;34m[02:03:06][0m === Phase: Validate ===
+[0;34m[02:03:06][0m Step: Static validation
+--- Step: Static validation ---
+## 靜態驗證報告
+
+### 主測試套件結果
+| 狀態 | 數量 |
+|------|------|
+| **PASS** | 3648 |
+| **FAIL** | 22 |
+| **WARN** | 48 |
+
+### 22 個 FAIL 明細
+
+**Room inherit missing (21 個)** — 這些房間缺少正確的 `inherit` 語句：
+
+| 區域 | 檔案 | 類型 |
+|------|------|------|
+| longan | temple | 城隍廟 |
+| wutang | ferry, ferry_back, temple | 渡口/城隍廟 |
+| lee | ancestral_hall, temple | 祠堂/城隍廟 |
+| sanyen | inner_temple, temple | 內殿/城隍廟 |
+| snow | bazar, small_temple | 市集/小廟 |
+| lijun | ferry, ferry_back, temple | 渡口/城隍廟 |
+| weiguo | temple | 城隍廟 |
+| baihua | shrine | 神壇 |
+| village | temple | 城隍廟 |
+| jingji | bank, temple | 錢莊/城隍廟 |
+| choyin | temple | 城隍廟 |
+| kangping | temple | 城隍廟 |
+| chixiao | temple | 城隍廟 |
+
+**Equipment setup() missing (1 個)**：
+- `d/snow/npc/obj/invitation` — 缺少 `setup()` 函式
+
+---
+
+### 額外檢查結果
+
+| 檢查項目 | 結果 |
+|----------|------|
+| `set("aggressive", 1)` 違規 | **PASS** — 0 筆（無違規） |
+| skill daemon 有 `skill_improved` | **PASS** — 75/75 檔案全部包含 |
+| lv50+ 掌門有 `vision_of_ghost` | **PASS** — 13/13 位掌門全部包含 |
+| 雙向出口 | **PASS** — 全部出口皆為雙向 |
+
+---
+
+### 總結
+
+大部分 FAIL 是城隍廟（temple）和渡口（ferry）房間缺少 `inherit TEMPLE` 或正確的 inherit 語句，這是一個系統性問題。`d/snow/bazar` 可能也需要檢查 inherit。裝備方面只有 `snow/npc/obj/invitation` 一個問題。三項額外檢查全數通過。
+[0;32m[OK][0m Static validation
+[0;34m[02:10:05][0m Pipeline complete: 5 ok, 0 warnings.
