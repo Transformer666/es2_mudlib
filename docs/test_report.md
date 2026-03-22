@@ -1,5 +1,5 @@
 # ES2 MUD Static Validation Report
-Run time: Sun Mar 22 04:25:54 UTC 2026
+Run time: Sun Mar 22 04:44:10 UTC 2026
 
 
 ## Room Validation
@@ -1177,6 +1177,14 @@ Run time: Sun Mar 22 04:25:54 UTC 2026
 - PASS: Room short desc: d/kuxiao/hall
 - PASS: Room setup(): d/kuxiao/hall
 - PASS: Room inherit: d/kuxiao/alley
+- PASS: All exits are bidirectional
+
+## Summary
+| Result | Count |
+|--------|-------|
+| PASS | 3681 |
+| FAIL | 24 |
+| WARN | 52 |
 - PASS: Room short desc: d/kuxiao/alley
 - PASS: Room setup(): d/kuxiao/alley
 - PASS: Room inherit: d/kuxiao/gate
