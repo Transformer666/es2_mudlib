@@ -1,0 +1,191 @@
+Round 47 - Sun Mar 22 03:34:18 UTC 2026
+[0;34m[03:34:18][0m Using git remote: origin
+[0;34m[03:34:19][0m Pulling latest changes...
+From github.com:Transformer666/es2_mudlib
+ * branch            main       -> FETCH_HEAD
+Already up to date.
+
+=========================================
+  ES2 Agent Pipeline v2
+  Phase: all
+  Start: 2026-03-22 03:34:18
+=========================================
+
+[0;34m[03:34:21][0m === Phase: Analyze (bash-native, no agent) ===
+[0;34m[03:34:22][0m Analyze complete:
+[0;34m[03:34:22][0m   Races: 11/11 | Classes: 9/7 | Sects: 18/18
+[0;34m[03:34:22][0m   Skills: 75 (missing: 40) | Rooms: 485 | NPCs: 308
+[0;34m[03:34:22][0m   Quests: 14 | Equipment: 288
+[0;34m[03:34:22][0m   Total missing: 40
+[0;32m[OK][0m Analyze phase
+[0;34m[03:34:22][0m === Phase: Build ===
+[0;34m[03:34:22][0m Step: Audit area: stub_towns
+
+
+All fixes are complete. Here's a summary of everything that was done:
+
+## 建立的新檔案 (10 files)
+
+### 城鎮 — 天寒村 (tianhan)
+| 檔案 | 說明 |
+|------|------|
+| `d/tianhan/temple.c` | 寒山古廟 (`inherit TEMPLE`) |
+| `d/tianhan/shop.c` | 雜貨鋪 |
+| `d/tianhan/street2.c` | 天寒村西街 (第二條街) |
+| `d/tianhan/npc/shopkeeper.c` | 雜貨鋪老闆 (`F_VILLAGER` + `F_VENDOR`) |
+
+### 門派 HQ
+| 檔案 | 說明 |
+|------|------|
+| `d/langyi/gate.c` | 狼義門暗門 (入口) |
+| `d/longttu/hall.c` | 龍圖閣大廳 |
+| `d/maoshan/hall.c` | 茅山三清殿 (大廳) |
+| `d/maoshan/quarters.c` | 掌門靜室 |
+
+### 野外入口
+| 檔案 | 說明 |
+|------|------|
+| `d/graveyard/entrance.c` | 亂葬崗入口 |
+| `d/lee/gate.c` | 李家村村門 |
+
+## 修改的既有檔案
+
+### NPC 加上 `set("attitude", "aggressive")` (9 NPCs)
+- **green**: celestial_bull, godly_dog
+- **canyon**: canyon_bat, jing_yutao
+- **latemoon**: mieming, miexin, mieyu, shenwei, wind_god
+
+### 城隍廟修正
+- **city/temple.c**: `inherit ROOM` → `inherit TEMPLE` + `replace_program(TEMPLE)`
+
+### 出口連結更新 (雙向)
+- `tianhan/well.c` — 加 west 出口到 street2
+- `langyi/tunnel.c` — 加 south 出口到 gate
+- `road/wild_path2.c` — 加 northwest 出口到 langyi/gate
+- `longttu/entrance.c` — east 改指向 hall
+- `longttu/garden.c` — west 改指向 hall
+- `maoshan/gate.c` — north 改指向 hall
+- `maoshan/lingyun.c` — south 改指向 hall
+- `snow/wgate.c` — northwest 改指向 graveyard/entrance
+- `graveyard/grave1.c` — south 改指向 entrance
+- `lee/r1.c` — east 改指向 gate
+- `lee/r2.c` — west 改指向 gate
+
+### 已確認正常 (不需修改)
+- **snow** 的 3 個 broken exits 早已被修復（已註解掉）
+- **babao** 是塔型副本，非標準城鎮，跳過
+[0;32m[OK][0m Audit area: stub_towns
+[0;34m[03:41:36][0m Step: Audit skills
+## 技能 Daemon 完整性審查結果
+
+### 1. 門派引用的技能（20 個）
+
+從 18 個門派 daemon 中提取的所有技能：
+
+| # | 技能名稱 | 門派 | 對應檔案 | 狀態 |
+|---|---------|------|---------|------|
+| 1 | amazing needle | 武陀 | amazing_needle.c | ✅ |
+| 2 | dagger | 瑯夷、隱教 | dagger.c | ✅ |
+| 3 | diamond hammer | 白象寺 | diamond_hammer.c | ✅ |
+| 4 | fengshan sword | 封山派 | fengshan_sword.c | ✅ |
+| 5 | five defeat needle | 武陀 | five_defeat_needle.c | ✅ |
+| 6 | lengmei sword | 冷梅莊 | lengmei_sword.c | ✅ |
+| 7 | longttu neigong | 龍圖 | longttu_neigong.c | ✅ |
+| 8 | maoshan neigong | 茅山派 | maoshan_neigong.c | ✅ |
+| 9 | maoshan sword | 茅山派 | maoshan_sword.c | ✅ |
+| 10 | needle | 劍甲門、龍圖 | needle.c | ✅ |
+| 11 | phantom sword | 天邪派 | phantom_sword.c | ✅ |
+| 12 | pike | 振武軍營 | pike.c | ✅ |
+| 13 | staff | 寶蓮寺、白象寺 | staff.c | ✅ |
+| 14 | sword | 哭笑門、劍甲門、玄天教、雪吟莊 | sword.c | ✅ |
+| 15 | tactic | 振武軍營 | tactic.c | ✅ |
+| 16 | taiyi sword | 天師派 | taiyi_sword.c | ✅ |
+| 17 | taoshan milu | 茅山派 | taoshan_milu.c | ✅ |
+| 18 | three rotations | 步玄派 | three_rotations.c | ✅ |
+| 19 | tiger blade | 虎刀門 | tiger_blade.c | ✅ |
+| 20 | ziwei neigong | 天師派 | ziwei_neigong.c | ✅ |
+
+### 2-3. 完整性檢查
+
+- **skill_improved / skill_advanced**：全部 80 個 skill daemon 皆具備 ✅
+- **戰鬥技能 actions 數量**：所有戰鬥技能皆有 6-8 個 actions ✅
+
+### 5. 結論
+
+- **缺少 0 個** — 門派引用的 20 個技能全部有對應 daemon
+- **不完整 0 個** — 所有 daemon 皆有 skill_improved、skill_advanced，戰鬥技能皆有 ≥6 actions
+- **本次建立 0 個**
+- **剩餘 0 個待處理**
+
+所有門派技能 daemon 完整，無需建立新檔案。
+[0;32m[OK][0m Audit skills
+[0;34m[03:43:08][0m Step: Audit quests
+
+
+## 任務系統完整性審查結果
+
+### 現有任務總覽：15 個任務
+
+**雪亭鎮 7 謎 — 全部已實作 (7/7)**
+
+| # | 謎題 | quest flag | NPC/檔案 | 獎勵 |
+|---|------|-----------|----------|------|
+| 1 | 阿寶在老榕樹等的人是誰？ | `arbao_letter_done` | `arbao.c` | 80 分 |
+| 2 | 瞎眼婆婆的真實身分？ | `gammer_identity_done` | `gammer.c` | 120 分 |
+| 3 | 貨棧搬箱子算不算勞動？ | `foreman_crate_done` | `foreman.c` | 50 分 |
+| 4 | 驛站遺失了幾封信？ | `postman_delivery_done` | `postman.c` | 100 分 |
+| 5 | 想不想加入振武軍營？ | `recruiter_enlist_done` | `recruiter.c` | 50 分 |
+| 6 | 破舊的老宅裡藏了什麼？ | `manor_secret_done` | `manor_cellar.c` | 60 分 |
+| 7 | 黑袍老人的女兒去了哪裡？ | `darkrobe_daughter_done` | `darkrobe.c` + `girl.c` | 150 分 |
+
+**雪亭鎮額外任務 (2 個)**
+
+| quest flag | NPC/檔案 | 獎勵 |
+|-----------|----------|------|
+| `escort_guide_done` | `escort.c` | 30 分 |
+| `old_beggar_done` | `old_beggar.c` | 200 分 |
+
+**五堂鎮 6 謎 — 全部已實作 (6/6)**
+
+| # | 謎題 | quest flag | NPC/檔案 | 獎勵 |
+|---|------|-----------|----------|------|
+| 1 | 飲血丟在了哪裡？ | `yinxue_found_done` | `river_bend.c` | 120 分 |
+| 2 | 巫山之中神秘雕像有何秘密？ | `wushan_statue_done` | `wushan_secret.c` | 200 分 |
+| 3 | 郭布要收的徒弟在哪裡？ | `guobu_apprentice_done` | `guobu.c` + `boy.c` | 80 分 |
+| 4 | 鎮天神廟內藏著誰？ | `temple_master_done` | `temple_master.c` | 150 分 |
+| 5 | 別館內的欽差來五堂要做甚麼？ | `inspector_case_done` | `inspector.c` + `storyteller.c` | 80 分 |
+| 6 | 過河的船在哪裡？ | `ferryman_guide_done` | `ferryman.c` | 50 分 |
+
+### 品質檢查
+
+所有 15 個任務均具備完整的四要素：
+- `init()` 或 `relay_say()` 觸發機制
+- `pending/` flag 追蹤進度（多階段任務）
+- `quest/` flag 標記完成
+- `gain_score("quest", N)` 獎勵
+
+多個任務涉及跨 NPC 協作（如 `inspector` ↔ `storyteller`、`arbao` ↔ `recruiter`、`postman` ↔ `herbalist`、`darkrobe` ↔ `girl`），流程完整。
+
+### 結論
+
+**已有 15 個任務，本次新增 0 個。** 雪亭鎮 7 謎和五堂鎮 6 謎全部已有對應的任務實作，無缺漏。
+
+> 注意：初始掃描 `grep -v master` 漏掉了 `temple_master.c`（鎮天神廟任務），實際上該任務已完整實作。
+[0;32m[OK][0m Audit quests
+[main 9f8608c] feat: add quests
+ 31 files changed, 281 insertions(+), 12 deletions(-)
+ create mode 100644 mudlib/d/graveyard/entrance.c
+ create mode 100644 mudlib/d/langyi/gate.c
+ create mode 100644 mudlib/d/lee/gate.c
+ create mode 100644 mudlib/d/longttu/hall.c
+ create mode 100644 mudlib/d/maoshan/hall.c
+ create mode 100644 mudlib/d/maoshan/quarters.c
+ create mode 100644 mudlib/d/tianhan/npc/shopkeeper.c
+ create mode 100644 mudlib/d/tianhan/shop.c
+ create mode 100644 mudlib/d/tianhan/street2.c
+ create mode 100644 mudlib/d/tianhan/temple.c
+[0;34m[03:45:16][0m === Phase: Validate ===
+[0;34m[03:45:16][0m Step: Static validation
+All background tasks completed. Results already captured in the report above — no new findings. Ready to fix the 24 FAILs whenever you'd like.
+[0;32m[OK][0m Static validation
+[0;34m[03:54:27][0m Pipeline complete: 5 ok, 0 warnings.

@@ -1,5 +1,5 @@
 # ES2 MUD Static Validation Report
-Run time: Sun Mar 22 03:26:33 UTC 2026
+Run time: Sun Mar 22 03:51:27 UTC 2026
 
 
 ## Room Validation
@@ -87,6 +87,9 @@ Run time: Sun Mar 22 03:26:33 UTC 2026
 - PASS: Room inherit: d/longttu/quarters
 - PASS: Room short desc: d/longttu/quarters
 - PASS: Room setup(): d/longttu/quarters
+- PASS: Room inherit: d/longttu/hall
+- PASS: Room short desc: d/longttu/hall
+- PASS: Room setup(): d/longttu/hall
 - PASS: Room inherit: d/longttu/garden
 - PASS: Room short desc: d/longttu/garden
 - PASS: Room setup(): d/longttu/garden
@@ -393,6 +396,9 @@ Run time: Sun Mar 22 03:26:33 UTC 2026
 - FAIL: Room inherit missing: d/lee/temple
 - PASS: Room short desc: d/lee/temple
 - PASS: Room setup(): d/lee/temple
+- PASS: Room inherit: d/lee/gate
+- PASS: Room short desc: d/lee/gate
+- PASS: Room setup(): d/lee/gate
 - PASS: Room inherit: d/sanyen/market
 - PASS: Room short desc: d/sanyen/market
 - PASS: Room setup(): d/sanyen/market
@@ -912,6 +918,9 @@ Run time: Sun Mar 22 03:26:33 UTC 2026
 - PASS: Room inherit: d/graveyard/shrine
 - PASS: Room short desc: d/graveyard/shrine
 - PASS: Room setup(): d/graveyard/shrine
+- PASS: Room inherit: d/graveyard/entrance
+- PASS: Room short desc: d/graveyard/entrance
+- PASS: Room setup(): d/graveyard/entrance
 - PASS: Room inherit: d/graveyard/grave3
 - PASS: Room short desc: d/graveyard/grave3
 - PASS: Room setup(): d/graveyard/grave3
@@ -936,6 +945,12 @@ Run time: Sun Mar 22 03:26:33 UTC 2026
 - PASS: Room inherit: d/maoshan/yinfeng
 - PASS: Room short desc: d/maoshan/yinfeng
 - PASS: Room setup(): d/maoshan/yinfeng
+- PASS: Room inherit: d/maoshan/quarters
+- PASS: Room short desc: d/maoshan/quarters
+- PASS: Room setup(): d/maoshan/quarters
+- PASS: Room inherit: d/maoshan/hall
+- PASS: Room short desc: d/maoshan/hall
+- PASS: Room setup(): d/maoshan/hall
 - PASS: Room inherit: d/maoshan/huanwu
 - PASS: Room short desc: d/maoshan/huanwu
 - PASS: Room setup(): d/maoshan/huanwu
@@ -1176,6 +1191,9 @@ Run time: Sun Mar 22 03:26:33 UTC 2026
 - PASS: Room inherit: d/tianhan/square
 - PASS: Room short desc: d/tianhan/square
 - PASS: Room setup(): d/tianhan/square
+- PASS: Room inherit: d/tianhan/street2
+- PASS: Room short desc: d/tianhan/street2
+- PASS: Room setup(): d/tianhan/street2
 - PASS: Room inherit: d/tianhan/inn_2f
 - PASS: Room short desc: d/tianhan/inn_2f
 - PASS: Room setup(): d/tianhan/inn_2f
@@ -1185,9 +1203,15 @@ Run time: Sun Mar 22 03:26:33 UTC 2026
 - PASS: Room inherit: d/tianhan/street
 - PASS: Room short desc: d/tianhan/street
 - PASS: Room setup(): d/tianhan/street
+- PASS: Room inherit: d/tianhan/shop
+- PASS: Room short desc: d/tianhan/shop
+- PASS: Room setup(): d/tianhan/shop
 - PASS: Room inherit: d/tianhan/well
 - PASS: Room short desc: d/tianhan/well
 - PASS: Room setup(): d/tianhan/well
+- FAIL: Room inherit missing: d/tianhan/temple
+- PASS: Room short desc: d/tianhan/temple
+- PASS: Room setup(): d/tianhan/temple
 - PASS: Room inherit: d/tianhan/entrance
 - PASS: Room short desc: d/tianhan/entrance
 - PASS: Room setup(): d/tianhan/entrance
@@ -1356,6 +1380,9 @@ Run time: Sun Mar 22 03:26:33 UTC 2026
 - PASS: Room inherit: d/langyi/vault
 - PASS: Room short desc: d/langyi/vault
 - PASS: Room setup(): d/langyi/vault
+- PASS: Room inherit: d/langyi/gate
+- PASS: Room short desc: d/langyi/gate
+- PASS: Room setup(): d/langyi/gate
 - PASS: Room inherit: d/langyi/training
 - PASS: Room short desc: d/langyi/training
 - PASS: Room setup(): d/langyi/training
@@ -1425,7 +1452,7 @@ Run time: Sun Mar 22 03:26:33 UTC 2026
 - PASS: Room inherit: d/city/alley
 - PASS: Room short desc: d/city/alley
 - PASS: Room setup(): d/city/alley
-- PASS: Room inherit: d/city/temple
+- FAIL: Room inherit missing: d/city/temple
 - PASS: Room short desc: d/city/temple
 - PASS: Room setup(): d/city/temple
 - PASS: Room inherit: d/city/entrance
@@ -1990,6 +2017,14 @@ Run time: Sun Mar 22 03:26:33 UTC 2026
 - PASS: NPC setup(): d/snow/npc/guard
 - PASS: NPC include: d/snow/npc/ritual_monkey
 - PASS: NPC inherit: d/snow/npc/ritual_monkey
+- PASS: All exits are bidirectional
+
+## Summary
+| Result | Count |
+|--------|-------|
+| PASS | 3681 |
+| FAIL | 24 |
+| WARN | 52 |
 - PASS: NPC set_name: d/snow/npc/ritual_monkey
 - PASS: NPC setup(): d/snow/npc/ritual_monkey
 - PASS: NPC include: d/snow/npc/escort
@@ -2468,6 +2503,10 @@ Run time: Sun Mar 22 03:26:33 UTC 2026
 - PASS: NPC inherit: d/tianhan/npc/elder
 - PASS: NPC set_name: d/tianhan/npc/elder
 - PASS: NPC setup(): d/tianhan/npc/elder
+- PASS: NPC include: d/tianhan/npc/shopkeeper
+- PASS: NPC inherit: d/tianhan/npc/shopkeeper
+- PASS: NPC set_name: d/tianhan/npc/shopkeeper
+- PASS: NPC setup(): d/tianhan/npc/shopkeeper
 - PASS: NPC include: d/tianhan/npc/guard
 - PASS: NPC inherit: d/tianhan/npc/guard
 - PASS: NPC set_name: d/tianhan/npc/guard
@@ -3741,6 +3780,6 @@ Run time: Sun Mar 22 03:26:33 UTC 2026
 ## Summary
 | Result | Count |
 |--------|-------|
-| PASS | 3652 |
-| FAIL | 22 |
+| PASS | 3681 |
+| FAIL | 24 |
 | WARN | 52 |
