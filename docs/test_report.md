@@ -1,5 +1,5 @@
 # ES2 MUD Static Validation Report
-Run time: Sun Mar 22 04:44:10 UTC 2026
+Run time: Sun Mar 22 05:11:48 UTC 2026
 
 
 ## Room Validation
@@ -1177,14 +1177,6 @@ Run time: Sun Mar 22 04:44:10 UTC 2026
 - PASS: Room short desc: d/kuxiao/hall
 - PASS: Room setup(): d/kuxiao/hall
 - PASS: Room inherit: d/kuxiao/alley
-- PASS: All exits are bidirectional
-
-## Summary
-| Result | Count |
-|--------|-------|
-| PASS | 3681 |
-| FAIL | 24 |
-| WARN | 52 |
 - PASS: Room short desc: d/kuxiao/alley
 - PASS: Room setup(): d/kuxiao/alley
 - PASS: Room inherit: d/kuxiao/gate
@@ -2099,7 +2091,15 @@ Run time: Sun Mar 22 04:44:10 UTC 2026
 - PASS: NPC inherit: d/weiguo/npc/sentry
 - PASS: NPC set_name: d/weiguo/npc/sentry
 - PASS: NPC setup(): d/weiguo/npc/sentry
+- PASS: All exits are bidirectional
+
 - PASS: NPC include: d/weiguo/npc/soldier
+## Summary
+| Result | Count |
+|--------|-------|
+| PASS | 3681 |
+| FAIL | 24 |
+| WARN | 52 |
 - PASS: NPC inherit: d/weiguo/npc/soldier
 - PASS: NPC set_name: d/weiguo/npc/soldier
 - PASS: NPC setup(): d/weiguo/npc/soldier
