@@ -30210,3 +30210,140 @@ Now I have a complete picture. Let me compile the results.
 主要問題集中在 **23 個特殊房間缺少正確的 inherit**（城隍廟應 `inherit TEMPLE`、渡口/錢莊/市集等需要對應的 inherit）。其餘所有規範檢查均通過。
 [0;32m[OK][0m Static validation
 [0;34m[05:44:40][0m Pipeline complete: 5 ok, 0 warnings.
+[0;32m[OK][0m Final commit pushed to origin.
+[0;34m[05:49:43][0m Using git remote: origin
+[0;34m[05:49:43][0m Pulling latest changes...
+From github.com:Transformer666/es2_mudlib
+ * branch            main       -> FETCH_HEAD
+Already up to date.
+
+Pipeline start: 2026-03-22 05:49:43 (phase: all)
+==============================
+[0;34m[05:49:45][0m === Phase: Analyze (bash-native, no agent) ===
+[0;34m[05:49:46][0m Analyze complete:
+[0;34m[05:49:46][0m   Races: 11/11 | Classes: 9/7 | Sects: 18/18
+[0;34m[05:49:46][0m   Skills: 75 (missing: 40) | Rooms: 494 | NPCs: 309
+[0;34m[05:49:46][0m   Quests: 14 | Equipment: 288
+[0;34m[05:49:46][0m   Total missing: 40
+[0;32m[OK][0m Analyze phase
+[0;34m[05:49:46][0m === Phase: Build ===
+[0;34m[05:49:46][0m Step: Audit area: stub_towns
+--- Step: Audit area: stub_towns ---
+## 審查結果：所有 8 個 stub 城鎮均完整
+
+所有城鎮皆為「城鎮stub」類型，已逐一審查最低需求：
+
+| 城鎮 | 廣場 | 街道x2 | 客棧(INN) | 商店 | 城門 | 廟(TEMPLE) | 客棧老闆 | 守衛 | 商人(F_VENDOR) | 結果 |
+|------|------|--------|-----------|------|------|------------|----------|------|----------------|------|
+| longan 龍安 | square | street, west_street, back_street | inn ✓ | market, weapon_shop | entrance | temple ✓ | innkeeper | guard | merchant +4 | **complete** |
+| jingji 京畿 | square | street, west_street, back_alley | inn ✓ | weapon_shop, market | entrance | temple ✓ | innkeeper | guard, gate_guard | silk_merchant +2 | **complete** |
+| kangping 康平 | square | street, back_street | inn ✓ | shop | entrance | temple ✓ | innkeeper | guard | merchant +1 | **complete** |
+| sanyen 三掩 | square | street, west_street | inn ✓ | weapon_shop, market | entrance | temple ✓ | innkeeper | guard | merchant +2 | **complete** |
+| lee 離 | square | street, back_street | inn ✓ | shop | gate | temple ✓ | innkeeper | guard | shopkeeper +1 | **complete** |
+| choyin 喬陰 | square | nstreet, sstreet | inn ✓ | shop, bookshop | ngate, sgate | temple ✓ | innkeeper | cityguard | merchant +2 | **complete** |
+| baihua 百花 | square | street, back_street, road | inn ✓ | shop | entrance | shrine(TEMPLE) ✓ | innkeeper | guard | shopkeeper +3 | **complete** |
+| weiguo 衛國 | square | street, back_street | inn ✓ | shop | entrance | temple ✓ | innkeeper | sentry | shopkeeper +2 | **complete** |
+
+### 詳細驗證結果
+
+- **出口雙向連結**: 8/8 城鎮全部通過，所有內部出口皆有對應的反向出口
+- **NPC 檔案引用**: 所有房間的 `set("objects")` 指向的 NPC 檔案全部存在
+- **客棧合規**: 全部使用 `inherit INN` + `set("valid_startroom", 1)` + `set("no_fight", 1)`
+- **城隍廟合規**: 全部使用 `inherit TEMPLE` + `replace_program(TEMPLE)`（百花的 shrine.c 也正確使用 TEMPLE）
+- **商人 NPC**: 每個城鎮都有至少 1 個 `inherit F_VENDOR` 並設有 `merchandise`
+
+**stub_towns: complete**
+
+不需要建立任何新檔案。
+[0;32m[OK][0m Audit area: stub_towns
+[0;34m[05:52:29][0m Step: Audit skills
+--- Step: Audit skills ---
+## 技能 Daemon 完整性審查結果
+
+### 1. 門派引用的技能（20 個唯一技能）
+
+| 門派 | 引用技能 |
+|------|---------|
+| 虎刀門 | tiger blade |
+| 寶蓮寺 | staff |
+| 封山派 | fengshan sword |
+| 哭笑門 / 劍甲門 / 玄天教 / 雪吟莊 | sword |
+| 劍甲門 / 龍圖 | needle |
+| 龍圖 | longttu neigong |
+| 白象寺 | diamond hammer, staff |
+| 冷梅莊 | lengmei sword |
+| 瑯夷 / 隱教 | dagger |
+| 步玄派 | three rotations |
+| 振武軍營 | tactic, pike |
+| 茅山派 | maoshan sword, maoshan neigong, taoshan milu |
+| 天師派 | taiyi sword, ziwei neigong |
+| 天邪派 | phantom sword |
+| 武陀 | five defeat needle, amazing needle |
+
+### 2. Daemon 檔案對應檢查 — 全部存在
+
+所有 20 個技能名稱（空格換底線）都有對應的 `mudlib/daemon/skill/<name>.c`。
+
+### 3. skill_improved / skill_advanced 檢查
+
+**75/75 個 skill daemon 都有 `skill_improved()` 和 `skill_advanced()`。**
+
+### 4. 戰鬥技能 actions 數量檢查
+
+**41 個戰鬥技能全部有至少 6 個 actions**（最多 8 個：blade, sword, unarmed）。
+
+### 5. 審查總結
+
+- 缺少：**0 個**
+- 不完整：**0 個**
+- 本次建立：**0 個**
+- 剩餘待處理：**0 個**
+
+所有門派引用的技能都有對應的 daemon 檔案，且每個 daemon 都具備完整的 `skill_improved`、`skill_advanced` 函數，戰鬥技能的 actions 數量也都符合最低 6 招的要求。技能系統目前是完整的。
+[0;32m[OK][0m Audit skills
+[0;34m[05:53:49][0m Step: Audit quests
+--- Step: Audit quests ---
+## 任務系統審查結果
+
+### 現有任務：15 個
+
+| # | Quest Flag | NPC/地點 | 對應謎題 | 獎勵 |
+|---|-----------|---------|---------|------|
+| 1 | `quest/arbao_letter_done` | 阿寶 (snow) | 雪亭謎1：等的人是誰 | 80分+50幣 |
+| 2 | `quest/gammer_identity_done` | 瞎眼老太婆 (snow) | 雪亭謎2：真實身分 | 120分 |
+| 3 | `quest/foreman_crate_done` | 工頭 (snow) | 雪亭謎3：搬箱子 | 50分+工資 |
+| 4 | `quest/postman_delivery_done` | 驛站官員 (snow) | 雪亭謎4：遺失的信 | 100分+100幣 |
+| 5 | `quest/recruiter_enlist_done` | 招兵官 (snow) | 雪亭謎5：加入軍營 | 50分 |
+| 6 | `quest/manor_secret_done` | 大宅地窖 (snow) | 雪亭謎6：老宅秘密 | 60分+3銀 |
+| 7 | `quest/darkrobe_daughter_done` | 黑袍老人 (snow) | 雪亭謎7：女兒去哪 | 150分+5銀 |
+| 8 | `quest/old_beggar_done` | 老乞婆 (snow) | 額外任務 | 200分+裝備 |
+| 9 | `quest/escort_guide_done` | 老鏢師 (snow) | 額外任務 | 30分+50幣 |
+| 10 | `quest/yinxue_found_done` | 河灣淺灘 (wutang) | 五堂謎1：飲血在哪 | 120分+武器 |
+| 11 | `quest/wushan_statue_done` | 巫山密室 (wutang) | 五堂謎2：雕像秘密 | 200分+卷軸 |
+| 12 | `quest/guobu_apprentice_done` | 郭布 (wutang) | 五堂謎3：收徒 | 80分+200幣 |
+| 13 | `quest/temple_master_done` | 神殿住持 (wutang) | 五堂謎4：廟內藏誰 | 150分+玉牌 |
+| 14 | `quest/inspector_case_done` | 御史大人 (wutang) | 五堂謎5：欽差來意 | 80分+5銀 |
+| 15 | `quest/ferryman_guide_done` | 渡船夫 (wutang) | 五堂謎6：船在哪 | 50分 |
+
+### 謎題覆蓋率
+
+- **雪亭鎮 7 謎：7/7 全部完成** (+ 2 個額外任務)
+- **五堂鎮 6 謎：6/6 全部完成**
+
+### 結論
+
+**已有 15 個任務，本次新增 0 個。**
+
+所有 13 道謎題（雪亭 7 + 五堂 6）均已有對應的任務實作，且每個任務都使用了標準的三層結構：
+- `pending/<quest_id>` — 追蹤進度階段
+- `quest/<quest_id>_done` — 標記完成
+- `gain_score("quest", N)` — 給予獎勵
+
+任務系統完整性良好，無需新增。
+[0;32m[OK][0m Audit quests
+[0;34m[05:55:37][0m === Phase: Validate ===
+[0;34m[05:55:37][0m Step: Static validation
+--- Step: Static validation ---
+Same results as already reported. All background tasks have completed and the full validation report stands as summarized above.
+[0;32m[OK][0m Static validation
+[0;34m[06:07:11][0m Pipeline complete: 5 ok, 0 warnings.

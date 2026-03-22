@@ -1,5 +1,5 @@
 # ES2 MUD Static Validation Report
-Run time: Sun Mar 22 05:41:53 UTC 2026
+Run time: Sun Mar 22 06:04:05 UTC 2026
 
 
 ## Room Validation
@@ -2555,6 +2555,14 @@ Run time: Sun Mar 22 05:41:53 UTC 2026
 - PASS: NPC inherit: d/wutuo/npc/disciple
 - PASS: NPC set_name: d/wutuo/npc/disciple
 - PASS: NPC setup(): d/wutuo/npc/disciple
+- PASS: All exits are bidirectional
+
+## Summary
+| Result | Count |
+|--------|-------|
+| PASS | 3681 |
+| FAIL | 24 |
+| WARN | 52 |
 - PASS: NPC include: d/wutuo/npc/apprentice
 - PASS: NPC inherit: d/wutuo/npc/apprentice
 - PASS: NPC set_name: d/wutuo/npc/apprentice
