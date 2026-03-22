@@ -11,6 +11,14 @@
 - 客棧加 `set("valid_startroom", 1)` + `set("no_fight", 1)`
 - 使用 `__DIR__` 做相對路徑
 
+## 技能上限 (Skill Cap)
+- 拜師時用 `me->set_skill_cap("skill_name", max_level)` 設定上限
+- 普通弟子上限建議 60-80，進階路線 100-120
+- `advance_skill()` 會自動檢查 cap，超過不會升級
+- 未設定 cap 的技能預設上限 200
+- 範例（init_apprentice 中）：
+  `me->set_skill_cap("fengshan sword", 80);`
+
 ## NPC
 - `#include <npc.h>` + `inherit F_FIGHTER/F_VILLAGER/F_SOLDIER/F_SCHOLAR`
 - `set_name("中文", ({"english"}))` + `set_race` + `set_class` + `set_level`
