@@ -76,11 +76,6 @@ int init_apprentice(object me)
         seteuid(getuid());
         me->set_class("warrior");
         me->set("title", "封山派弟子");
-        // 設定門派技能上限：普通弟子可練到 80 級
-        me->set_skill_cap("fengshan sword", 80);
-        me->set_skill_cap("sword", 60);
-        me->set_skill_cap("dodge", 60);
-        me->set_skill_cap("parry", 60);
         do_chat(({
             "柳東蘆點了點頭﹐說道﹕好﹐從今日起你便是封山派弟子了。\n",
             "柳東蘆說道﹕封山劍法講究以靜制動﹐你先好生修煉基本功。\n",

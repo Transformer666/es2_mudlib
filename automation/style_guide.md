@@ -12,12 +12,11 @@
 - 使用 `__DIR__` 做相對路徑
 
 ## 技能上限 (Skill Cap)
-- 拜師時用 `me->set_skill_cap("skill_name", max_level)` 設定上限
-- 普通弟子上限建議 60-80，進階路線 100-120
-- `advance_skill()` 會自動檢查 cap，超過不會升級
-- 未設定 cap 的技能預設上限 200
-- 範例（init_apprentice 中）：
-  `me->set_skill_cap("fengshan sword", 80);`
+- 所有技能的預設上限是 **200 重**
+- 第一次學到技能時 `improve_skill()` 自動設定 cap 為 200
+- 可用 `set_skill_cap("skill", N)` 調整（如特殊事件降低/提高）
+- `advance_skill()` 自動檢查 cap，超過不會升級
+- `query_skill_cap("skill")` 查詢當前上限
 
 ## NPC
 - `#include <npc.h>` + `inherit F_FIGHTER/F_VILLAGER/F_SOLDIER/F_SCHOLAR`

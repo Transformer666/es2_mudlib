@@ -164,7 +164,12 @@ improve_skill(string skill, int amount)
     if( undefinedp(skill_gain[skill]) ) skill_gain[skill] = amount;
     else skill_gain[skill] += amount;
 
-    if( undefinedp(skills[skill]) ) skills[skill] = 0;
+    if( undefinedp(skills[skill]) ) {
+	skills[skill] = 0;
+	// First time learning this skill — set cap to 200 if not already set
+	if( !query("skill_cap/" + skill) )
+	    set_skill_cap(skill, 200);
+    }
 
     SKILL_D(skill)->skill_improved(this_object(), skill);
 }
@@ -176,11 +181,12 @@ improve_skill(string skill, int amount)
 
 // set_skill_cap()
 //
-// Sets the maximum level a character can reach for a specific skill.
-// Called during init_apprentice or when learning a new skill.
+// Sets the maximum level (重) a character can reach for a specific skill.
+// Default cap is 200. Called when a skill is first learned or by special events.
 
 void set_skill_cap(string skill, int cap)
 {
+    if( cap > 200 ) cap = 200;
     if( !mapp(query("skill_cap")) )
         set("skill_cap", ([ skill : cap ]));
     else
@@ -191,7 +197,7 @@ int query_skill_cap(string skill)
 {
     int cap;
     cap = query("skill_cap/" + skill);
-    if( !cap ) return 200;  // default cap if none set
+    if( !cap ) return 200;  // default: all skills can reach 200
     return cap;
 }
 
@@ -206,12 +212,9 @@ varargs void advance_skill(string skill, int amount)
     else
 	skills[skill] += amount;
 
-    // Check per-character skill cap
+    // Check per-character skill cap (default 200)
     cap = query_skill_cap(skill);
     if( skills[skill] > cap ) skills[skill] = cap;
-
-    // Absolute hard cap
-    if( skills[skill] > 200 ) skills[skill] = 200;
 
     SKILL_D(skill)->skill_advanced(this_object(), skill);
 
