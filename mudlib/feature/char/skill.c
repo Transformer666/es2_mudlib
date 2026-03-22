@@ -166,9 +166,10 @@ improve_skill(string skill, int amount)
 
     if( undefinedp(skills[skill]) ) {
 	skills[skill] = 0;
-	// First time learning this skill — set cap to 200 if not already set
+	// First time learning this skill — random a cap in steps of 20
+	// Represents the character's talent ceiling for this skill
 	if( !query("skill_cap/" + skill) )
-	    set_skill_cap(skill, 200);
+	    set_skill_cap(skill, (random(10) + 1) * 20);  // 20, 40, 60, ... 200
     }
 
     SKILL_D(skill)->skill_improved(this_object(), skill);

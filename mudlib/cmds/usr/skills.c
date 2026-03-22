@@ -116,7 +116,7 @@ int main(object me, string arg)
             if( member_array(s, mapped) >= 0 ) continue;
         }
 
-        line += sprintf("%s%-50s" NOR " - %-10s %3d", 
+        line += sprintf("%s%-50s" NOR " - %-10s %3d",
             (member_array(s, mapped)==-1? "  ": HIY "ˇ"),
             to_chinese(s) + " (" + s + ")",
             skill_level(SKILL_D(s)->type(), skl[s]),
@@ -124,11 +124,34 @@ int main(object me, string arg)
         );
         if( _skill[s] != skl[s] )
             line += sprintf( HIW " (%+d)" NOR, _skill[s] - skl[s]);
+        // Show talent ceiling
+        if( ob == me ) {
+            int cap = ob->query_skill_cap(s);
+            if( cap < 200 )
+                line += "  [" + skill_cap_desc(cap) + "]";
+        }
         line += "\n";
     }
 
     this_player()->start_more(line);
     return 1;
+}
+
+// Return a description of the character's talent ceiling for this skill
+string skill_cap_desc(int cap)
+{
+    switch(cap) {
+    case 0..20:   return HIR "不堪造就" NOR;
+    case 21..40:  return RED "資質駑鈍" NOR;
+    case 41..60:  return "資質平庸";
+    case 61..80:  return "尚可造就";
+    case 81..100: return "頗有天份";
+    case 101..120: return HIY "天資聰穎" NOR;
+    case 121..140: return HIY "骨骼清奇" NOR;
+    case 141..160: return HIG "天賦異稟" NOR;
+    case 161..180: return HIG "百年奇才" NOR;
+    default:       return HIW "萬中無一" NOR;
+    }
 }
 
 string skill_level(string type, int level)

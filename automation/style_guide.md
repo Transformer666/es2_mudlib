@@ -11,12 +11,14 @@
 - 客棧加 `set("valid_startroom", 1)` + `set("no_fight", 1)`
 - 使用 `__DIR__` 做相對路徑
 
-## 技能上限 (Skill Cap)
-- 所有技能的預設上限是 **200 重**
-- 第一次學到技能時 `improve_skill()` 自動設定 cap 為 200
-- 可用 `set_skill_cap("skill", N)` 調整（如特殊事件降低/提高）
-- `advance_skill()` 自動檢查 cap，超過不會升級
+## 技能上限 (Skill Cap / 天賦)
+- 每個角色第一次學到技能時，自動 random 一個上限（20 為一階）
+- 上限範圍：20/40/60/80/100/120/140/160/180/200
+- 代表角色在該技能的天賦天花板
+- `skills` 指令會顯示天賦描述：不堪造就(20) → 萬中無一(200)
+- `set_skill_cap("skill", N)` 可由特殊事件調整（如任務獎勵）
 - `query_skill_cap("skill")` 查詢當前上限
+- `advance_skill()` 自動檢查 cap，到達上限不再升級
 
 ## NPC
 - `#include <npc.h>` + `inherit F_FIGHTER/F_VILLAGER/F_SOLDIER/F_SCHOLAR`
