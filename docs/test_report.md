@@ -1,5 +1,5 @@
 # ES2 MUD Static Validation Report
-Run time: Sun Mar 22 03:08:30 UTC 2026
+Run time: Sun Mar 22 03:26:33 UTC 2026
 
 
 ## Room Validation
@@ -1906,14 +1906,6 @@ Run time: Sun Mar 22 03:08:30 UTC 2026
 - PASS: NPC setup(): d/snow/npc/darkrobe
 - PASS: NPC include: d/snow/npc/luoyi
 - PASS: NPC inherit: d/snow/npc/luoyi
-- PASS: All exits are bidirectional
-
-## Summary
-| Result | Count |
-|--------|-------|
-| PASS | 3652 |
-| FAIL | 22 |
-| WARN | 52 |
 - PASS: NPC set_name: d/snow/npc/luoyi
 - PASS: NPC setup(): d/snow/npc/luoyi
 - PASS: NPC include: d/snow/npc/junkman
