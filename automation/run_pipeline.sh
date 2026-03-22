@@ -230,6 +230,53 @@ $orig_content
     fi
 
     # ================================================================
+    # Priority 1.5: Verify sect martial arts system (拜師/學技能/門派任務)
+    # ================================================================
+    run_step "Audit sect systems" \
+"逐一檢查所有 18 個門派的完整性：拜師系統、技能教學、門派任務。
+
+檢查方式（用 Bash 和 Grep 工具）：
+
+A. 拜師系統驗證 — 對每個 mudlib/daemon/sect/*.c：
+1. 讀取 sect daemon 的 set(\"location\") 確認掌門房間路徑
+2. 確認該房間檔案存在
+3. 確認該房間的 set(\"objects\") 有載入掌門 NPC
+4. 確認掌門 NPC 有以下函數（grep 檢查）：
+   - accept_apprentice — 接受拜師
+   - init_apprentice — 設定 class + title
+   - acquire_skill — 傳授技能
+   - set_flag — 設定 pending flag
+5. 確認 init_apprentice 中 set_class 的值與 sect daemon 的 set(\"class\") 一致
+
+B. 技能教學驗證 — 對每個掌門 NPC：
+1. 找出 acquire_skill 中的 switch/case，列出可教的技能名稱
+2. 確認每個技能名稱有對應的 mudlib/daemon/skill/<name>.c
+3. 確認技能名稱與 sect daemon 的 set(\"skills\", ({...})) 一致
+4. 確認技能 daemon 有 actions（戰鬥技能）或 do_exercise（內功）
+
+C. 門派相關任務檢查：
+1. 讀取 automation/wiki_reference.md 中各門派的描述
+2. 檢查是否有進階路線相關的 NPC 或機制（如虎刀門護衛進階、茅山劍士、軍師轉職）
+3. 列出各門派應有但尚未實作的進階/任務系統
+
+D. 修正發現的問題（每輪最多修 3 個）：
+- 掌門 acquire_skill 的技能名不匹配 → 修正名稱
+- 掌門 init_apprentice 的 class 不匹配 → 修正 class
+- 房間沒載入掌門 NPC → 加 set(\"objects\")
+- 技能 daemon 不存在 → 報告（由 Priority 1 處理）
+
+輸出格式：
+  門派名 | 掌門 | 拜師 | 技能教學 | 進階任務 | 狀態
+  -------|------|------|---------|---------|------
+  封山派 | OK   | OK   | OK      | 未實作   | PASS
+  天月庵 | 缺daemon| -  | -       | -       | FAIL" 25
+
+    if git status --porcelain mudlib/ 2>/dev/null | grep -q .; then
+        git add mudlib/ 2>/dev/null
+        git commit -m "fix: verify and fix sect apprentice/skill systems" 2>/dev/null || true
+    fi
+
+    # ================================================================
     # Priority 2: Quests per area
     # ================================================================
     run_step "Build quests" \
