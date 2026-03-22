@@ -1,5 +1,5 @@
 # ES2 MUD Static Validation Report
-Run time: Sun Mar 22 02:07:04 UTC 2026
+Run time: Sun Mar 22 02:25:50 UTC 2026
 
 
 ## Room Validation
@@ -2928,6 +2928,10 @@ Run time: Sun Mar 22 02:07:04 UTC 2026
 - PASS: Armor include: d/longan/npc/obj/leather_vest
 - PASS: Armor inherit: d/longan/npc/obj/leather_vest
 - PASS: Equipment setup(): d/longan/npc/obj/leather_vest
+- WARN: No weapon/armor include: d/longan/npc/obj/local_wine (may be a generic item)
+- PASS: Equipment setup(): d/longan/npc/obj/local_wine
+- WARN: No weapon/armor include: d/longan/npc/obj/roast_chicken (may be a generic item)
+- PASS: Equipment setup(): d/longan/npc/obj/roast_chicken
 - PASS: Weapon include: d/longan/npc/obj/iron_sword
 - PASS: Weapon inherit: d/longan/npc/obj/iron_sword
 - PASS: Equipment setup(): d/longan/npc/obj/iron_sword
@@ -3171,6 +3175,10 @@ Run time: Sun Mar 22 02:07:04 UTC 2026
 - PASS: Armor include: d/jingji/npc/obj/jade_pendant
 - PASS: Armor inherit: d/jingji/npc/obj/jade_pendant
 - PASS: Equipment setup(): d/jingji/npc/obj/jade_pendant
+- WARN: No weapon/armor include: d/jingji/npc/obj/longjing_tea (may be a generic item)
+- PASS: Equipment setup(): d/jingji/npc/obj/longjing_tea
+- WARN: No weapon/armor include: d/jingji/npc/obj/steamed_bun (may be a generic item)
+- PASS: Equipment setup(): d/jingji/npc/obj/steamed_bun
 - PASS: Armor include: d/jingji/npc/obj/official_robe
 - PASS: Armor inherit: d/jingji/npc/obj/official_robe
 - PASS: Equipment setup(): d/jingji/npc/obj/official_robe
@@ -3733,6 +3741,6 @@ Run time: Sun Mar 22 02:07:04 UTC 2026
 ## Summary
 | Result | Count |
 |--------|-------|
-| PASS | 3648 |
+| PASS | 3652 |
 | FAIL | 22 |
-| WARN | 48 |
+| WARN | 52 |

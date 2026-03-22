@@ -1,0 +1,195 @@
+Round 42 - Sun Mar 22 02:15:07 UTC 2026
+[0;34m[02:15:07][0m Using git remote: origin
+[0;34m[02:15:07][0m Pulling latest changes...
+From github.com:Transformer666/es2_mudlib
+ * branch            main       -> FETCH_HEAD
+Already up to date.
+
+=========================================
+  ES2 Agent Pipeline v2
+  Phase: all
+  Start: 2026-03-22 02:15:07
+=========================================
+
+[0;34m[02:15:10][0m === Phase: Analyze (bash-native, no agent) ===
+[0;34m[02:15:10][0m Analyze complete:
+[0;34m[02:15:10][0m   Races: 11/11 | Classes: 9/7 | Sects: 18/18
+[0;34m[02:15:10][0m   Skills: 75 (missing: 40) | Rooms: 485 | NPCs: 308
+[0;34m[02:15:10][0m   Quests: 14 | Equipment: 284
+[0;34m[02:15:10][0m   Total missing: 40
+[0;32m[OK][0m Analyze phase
+[0;34m[02:15:10][0m === Phase: Build ===
+[0;34m[02:15:10][0m Step: Audit area: stub_towns
+## 審查結果
+
+### 8 個 stub 城鎮完整性檢查
+
+| 城鎮 | 房間數 | NPC數 | 狀態 |
+|------|--------|--------|------|
+| 龍安 (longan) | 14 | 12 | **已修復** |
+| 京畿 (jingji) | 14 | 10 | **已修復** |
+| 康平 (kangping) | 14 | 11 | 完整 |
+| 三掩 (sanyen) | 12 | 8 | 完整 |
+| 離 (lee) | 10 | 7 | 完整 |
+| 喬陰 (choyin) | 12 | 8 | 完整 |
+| 百花 (baihua) | 12 | 7 | 完整 |
+| 衛國 (weiguo) | 13 | 9 | 完整 |
+
+### 發現的問題（已修復）
+
+**1. 龍安客棧掌櫃缺少 F_VENDOR**
+- `d/longan/npc/innkeeper.c` — 只有 `inherit F_VILLAGER`，無法賣東西
+- 修復：加入 `inherit F_VENDOR` + merchandise + init/accept_fight/deliver_merchandise
+- 新增食物：`npc/obj/roast_chicken.c`（龍安燒雞）、`npc/obj/local_wine.c`（土釀）
+
+**2. 京畿驛丞缺少 F_VENDOR**
+- `d/jingji/npc/innkeeper.c` — 同上問題
+- 修復：加入 `inherit F_VENDOR` + merchandise + init/accept_fight/deliver_merchandise
+- 新增食物：`npc/obj/longjing_tea.c`（龍井茶）、`npc/obj/steamed_bun.c`（灌湯包）
+
+### 所有城鎮均通過的檢查項目
+- 廣場、街道x2、客棧(INN)、商店、城門、廟(TEMPLE) — 全部齊全
+- 客棧均使用 `inherit INN` + `valid_startroom` + `no_fight`
+- 廟均使用 `inherit TEMPLE` + `replace_program(TEMPLE)`
+- 所有出口雙向連結正確
+- 所有 `set("objects")` 指向的 NPC 檔案均存在
+
+### 建立/修改的檔案（共 6 個）
+1. `d/longan/npc/innkeeper.c` — 修改（加入 F_VENDOR）
+2. `d/longan/npc/obj/roast_chicken.c` — 新增
+3. `d/longan/npc/obj/local_wine.c` — 新增
+4. `d/jingji/npc/innkeeper.c` — 修改（加入 F_VENDOR）
+5. `d/jingji/npc/obj/longjing_tea.c` — 新增
+6. `d/jingji/npc/obj/steamed_bun.c` — 新增
+[0;32m[OK][0m Audit area: stub_towns
+[0;34m[02:22:14][0m Step: Audit skills
+All neigong skills have `halt_exercise` and `exert_function`. 
+
+## 審查結果
+
+### 1. 門派引用的技能（20 個唯一技能名）
+
+| 門派 | 引用技能 |
+|------|---------|
+| 虎刀門 | tiger blade |
+| 寶蓮寺 | staff |
+| 封山派 | fengshan sword |
+| 哭笑門 | sword |
+| 劍甲門 | sword, needle |
+| 龍圖丹派 | longttu neigong, needle |
+| 白象寺 | diamond hammer, staff |
+| 冷梅莊 | lengmei sword |
+| 瑯夷 | dagger |
+| 步玄派 | three rotations |
+| 隱教 | dagger |
+| 玄天教 | sword |
+| 振武軍營 | tactic, pike |
+| 茅山派 | maoshan sword, maoshan neigong, taoshan milu |
+| 天師派 | taiyi sword, ziwei neigong |
+| 雪吟莊 | sword |
+| 天邪派 | phantom sword |
+| 武陀 | five defeat needle, amazing needle |
+
+### 2. Daemon 檔案對應：全部存在
+
+所有 20 個技能名稱都有對應的 `mudlib/daemon/skill/<name>.c` 檔案。
+
+### 3. skill_improved / skill_advanced：全部完整
+
+75 個 skill daemon 檔案全部包含 `skill_improved()` 和 `skill_advanced()`。
+
+### 4. 戰鬥技能 actions 數量：全部 >= 6
+
+所有 16 個戰鬥技能的 `"action"` 數量都 >= 6（多數恰好 6，sword/blade/unarmed 有 8）。
+
+### 5. 內功技能完整性：全部完整
+
+4 個內功技能（maoshan_neigong, longttu_neigong, ziwei_neigong, taoshan_milu）全部具備 `do_exercise`、`halt_exercise`、`exert_function`。
+
+### 總結
+
+- **缺少：0 個** — 所有門派引用的技能都有對應 daemon
+- **不完整：0 個** — 所有 daemon 都具備必要函數
+- **本次建立：0 個**
+- **剩餘待處理：0 個**
+
+技能 daemon 系統完整，無需修補。
+[0;32m[OK][0m Audit skills
+[0;34m[02:23:42][0m Step: Audit quests
+## 任務系統完整性審查報告
+
+### 現有任務總數：15 個
+
+#### 雪亭鎮 — 9 個任務（含 7 謎全部完成）
+
+| # | 謎題 | quest flag | NPC/檔案 | 獎勵 |
+|---|------|-----------|---------|------|
+| 1 | 阿寶在老榕樹等的人是誰？ | `arbao_letter_done` | arbao.c | 80 pts |
+| 2 | 瞎眼婆婆的真實身分？ | `gammer_identity_done` | gammer.c | 120 pts |
+| 3 | 貨棧搬箱子算不算勞動？ | `foreman_crate_done` | foreman.c | 50 pts |
+| 4 | 驛站遺失了幾封信？ | `postman_delivery_done` | postman.c | 100 pts |
+| 5 | 想不想加入振武軍營？ | `recruiter_enlist_done` | recruiter.c | 50 pts |
+| 6 | 破舊的老宅裡藏了什麼？ | `manor_secret_done` | manor_cellar.c | 60 pts |
+| 7 | 黑袍老人的女兒去了哪裡？ | `darkrobe_daughter_done` | darkrobe.c | 150 pts |
+| - | （額外）老乞丐任務 | `old_beggar_done` | old_beggar.c | 200 pts |
+| - | （額外）護送任務 | `escort_guide_done` | escort.c | 30 pts |
+
+#### 五堂鎮 — 6 個任務（6 謎全部完成）
+
+| # | 謎題 | quest flag | NPC/檔案 | 獎勵 |
+|---|------|-----------|---------|------|
+| 1 | 飲血丟在了哪裡？ | `yinxue_found_done` | river_bend.c | 120 pts |
+| 2 | 巫山之中神秘雕像有何秘密？ | `wushan_statue_done` | wushan_secret.c | 200 pts |
+| 3 | 郭布要收的徒弟在哪裡？ | `guobu_apprentice_done` | guobu.c | 80 pts |
+| 4 | 鎮天神廟內藏著誰？ | `temple_master_done` | temple_master.c | 150 pts |
+| 5 | 別館內的欽差來五堂要做甚麼？ | `inspector_case_done` | inspector.c | 80 pts |
+| 6 | 過河的船在哪裡？ | `ferryman_guide_done` | ferryman.c | 50 pts |
+
+### 任務機制一致性檢查
+
+所有 15 個任務均具備：
+- `pending/<id>` 追蹤進度 (set_temp)
+- `quest/<id>_done` 標記完成 (set)
+- `gain_score("quest", N)` 獎勵積分
+- NPC 已載入對應房間的 `set("objects", ...)` 中
+
+### 結論
+
+**已有 15 個任務，雪亭鎮 7 謎 + 五堂鎮 6 謎共 13 個謎題全部已實作，另有 2 個額外任務。本次新增 0 個** — 無缺漏需要補充。
+
+注意：初始掃描時 `grep -v master` 意外排除了 `temple_master.c`，但手動確認後該任務完整存在且運作正常。
+[0;32m[OK][0m Audit quests
+[main 6f1d542] feat: add quests
+ 6 files changed, 110 insertions(+), 2 deletions(-)
+ create mode 100644 mudlib/d/jingji/npc/obj/longjing_tea.c
+ create mode 100644 mudlib/d/jingji/npc/obj/steamed_bun.c
+ create mode 100644 mudlib/d/longan/npc/obj/local_wine.c
+ create mode 100644 mudlib/d/longan/npc/obj/roast_chicken.c
+[0;34m[02:25:03][0m === Phase: Validate ===
+[0;34m[02:25:03][0m Step: Static validation
+## 靜態驗證報告
+
+### 主測試套件
+| 項目 | 數量 |
+|------|------|
+| **PASS** | 3652 |
+| **FAIL** | 22 |
+| **WARN** | 52 |
+
+### 額外檢查
+
+| 檢查項目 | 結果 |
+|----------|------|
+| `set("aggressive", 1)` 誤用 | **PASS** — 0 筆，全部正確使用 `attitude` |
+| `skill_improved` 存在性 | **PASS** — 全部 75 個 skill daemon 皆有 `skill_improved` |
+| lv50+ 掌門有 `vision_of_ghost` | **PASS** — 11 位掌門全部已設定 |
+
+### 已知 FAIL 項目（22 個）
+主要是少數房間的 `inherit` 缺失問題，從輸出可見包括：
+- `d/longan/temple` — Room inherit missing
+- `d/snow/bazar` — Room inherit missing
+- `d/snow/small_temple` — Room inherit missing
+
+完整報告已寫入 `docs/test_report.md`。
+[0;32m[OK][0m Static validation
+[0;34m[02:26:57][0m Pipeline complete: 5 ok, 0 warnings.
