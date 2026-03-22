@@ -1,5 +1,5 @@
 # ES2 MUD Static Validation Report
-Run time: Sun Mar 22 03:51:27 UTC 2026
+Run time: Sun Mar 22 04:09:43 UTC 2026
 
 
 ## Room Validation
@@ -2017,14 +2017,6 @@ Run time: Sun Mar 22 03:51:27 UTC 2026
 - PASS: NPC setup(): d/snow/npc/guard
 - PASS: NPC include: d/snow/npc/ritual_monkey
 - PASS: NPC inherit: d/snow/npc/ritual_monkey
-- PASS: All exits are bidirectional
-
-## Summary
-| Result | Count |
-|--------|-------|
-| PASS | 3681 |
-| FAIL | 24 |
-| WARN | 52 |
 - PASS: NPC set_name: d/snow/npc/ritual_monkey
 - PASS: NPC setup(): d/snow/npc/ritual_monkey
 - PASS: NPC include: d/snow/npc/escort
