@@ -169,114 +169,148 @@ JSONEOF
 phase_build() {
     log "=== Phase: Build ==="
 
-    # Check what's missing
     if [ ! -f docs/missing_content.json ]; then
         warn "docs/missing_content.json not found, running analyze first."
         phase_analyze
     fi
 
-    # --- 2a. Rooms + NPCs: only process stub areas from missing_content.json ---
-    # Read stub towns from analyze results
+    # ================================================================
+    # Priority 1: Original ES2 skills (from mudchina/es2)
+    # ================================================================
+    # List of skills from original ES2 that we're missing (normalized names)
+    local missing_original=""
+    for sk in hammer lotusforce magic magic_array meihua_shou move music mysterrier mystforce mystsword necromancy nine_moon; do
+        if [ ! -f "mudlib/daemon/skill/${sk}.c" ]; then
+            missing_original="$missing_original $sk"
+        fi
+    done
+
+    if [ -n "$missing_original" ]; then
+        # Pick first 2 missing skills per round
+        local skill_count=0
+        for sk in $missing_original; do
+            [ "$skill_count" -ge 2 ] && break
+            skill_count=$((skill_count + 1))
+
+            # Fetch original source from GitHub as reference
+            local sk_hyp=$(echo "$sk" | tr '_' '-')
+            local orig_content=""
+            orig_content=$(gh api "repos/mudchina/es2/contents/daemon/skill/${sk}.c" --jq '.content' 2>/dev/null | base64 -d 2>/dev/null)
+            if [ -z "$orig_content" ]; then
+                orig_content=$(gh api "repos/mudchina/es2/contents/daemon/skill/${sk_hyp}.c" --jq '.content' 2>/dev/null | base64 -d 2>/dev/null)
+            fi
+
+            run_step "Port original skill: $sk" \
+"移植原版 ES2 技能 daemon: $sk
+
+原版程式碼（GBK 簡體，需轉為 UTF-8 繁體）：
+\`\`\`
+$orig_content
+\`\`\`
+
+步驟：
+1. 將上面的原版程式碼轉為 UTF-8 繁體中文
+2. 建立 mudlib/daemon/skill/${sk}.c
+3. 保持原版的 actions/招式/valid_enable/valid_learn 邏輯
+4. 確保有 DAEMON_D->register_skill_daemon(\"$(echo $sk | tr '_' ' ')\")
+5. 如果原版沒有 skill_improved/skill_advanced，補上：
+   - 戰鬥技能：learn >= 500 門檻
+   - 內功/法術：learn >= 1500 門檻
+6. 注意：原版用連字號（如 chaos-steps），我們用底線（chaos_steps）
+   register 時用空格：register_skill_daemon(\"$(echo $sk | tr '_' ' ')\")
+7. 輸出建立的檔案" 20
+
+            if git status --porcelain mudlib/daemon/skill/ 2>/dev/null | grep -q .; then
+                git add mudlib/daemon/skill/ 2>/dev/null
+                git commit -m "feat: port original skill $sk from mudchina/es2" 2>/dev/null || true
+            fi
+        done
+    else
+        log "All original skills ported."
+    fi
+
+    # ================================================================
+    # Priority 2: Quests per area
+    # ================================================================
+    run_step "Build quests" \
+"為各區域建立任務。
+
+1. 讀取 automation/wiki_reference.md 的「城鎮謎題」段落
+2. 掃描已有的任務 NPC：
+   grep -rl 'query(\"quest/' mudlib/d/ | grep -v master
+3. 本輪最多實作 2 個新任務，優先：
+   - 雪亭鎮謎題（7個中尚未完成的）
+   - 五堂鎮謎題（6個中尚未完成的）
+
+任務實作規範：
+- NPC 中加 init() 或 add_action 觸發
+- pending/<quest_id> 追蹤進度
+- quest/<quest_id>_done 標記完成
+- gain_score(\"quest\", N) 給獎勵
+- 確認任務 NPC 載入到房間
+
+重要：有些 NPC 不應該常駐在房間裡，而是任務觸發後才出現。
+例如：上古妖獸（ritual_monkey 等）應該透過任務或特殊條件召喚，
+不應該用 set(\"objects\") 常駐載入。
+如果發現這類 NPC，將其從房間的 objects 移除，改為任務觸發機制。" 25
+
+    if git status --porcelain mudlib/d/ 2>/dev/null | grep -q .; then
+        git add mudlib/d/ 2>/dev/null
+        git commit -m "feat: add quests and fix NPC spawn logic" 2>/dev/null || true
+    fi
+
+    # ================================================================
+    # Priority 3: NPC spawn audit
+    # ================================================================
+    run_step "Audit NPC spawns" \
+"檢查 NPC 出現的時機和地點是否正確。
+
+1. 找出所有 Boss 級 NPC（set_level >= 40）和上古妖獸：
+   grep -rn 'set_level' mudlib/d/*/npc/*.c | 找出 level >= 40 的
+2. 檢查這些 Boss NPC 是否被常駐載入（set(\"objects\")）
+3. 以下 NPC 不應該常駐在房間，應該改為條件觸發：
+   - 上古妖獸：ritual_monkey, inferno_dog, charming_bird, godly_dog,
+     frost_frog, evil_hydra, celestial_bull, devilish_tiger
+   - Boss：wind_god（風神）
+4. 對於不應常駐的 NPC：
+   - 從房間的 set(\"objects\") 中移除
+   - 在房間加上 detail 描述暗示此處可能有特殊生物
+   - 記錄哪些 NPC 被移除，等任務系統實作後再加入觸發機制
+5. 檢查所有野外怪物是否有 set(\"attitude\", \"aggressive\")（不是 set(\"aggressive\", 1)）
+6. 輸出修改清單" 20
+
+    if git status --porcelain mudlib/d/ 2>/dev/null | grep -q .; then
+        git add mudlib/d/ 2>/dev/null
+        git commit -m "fix: audit NPC spawns and remove always-loaded bosses" 2>/dev/null || true
+    fi
+
+    # ================================================================
+    # Priority 4: Stub area expansion (if any left)
+    # ================================================================
     local stub_list=""
     if [ -f docs/missing_content.json ]; then
         stub_list=$(cat docs/missing_content.json | tr -d ' \n' | grep -o '"stub_towns":\[[^]]*\]' | grep -o '"[a-z_]*"' | tr -d '"')
     fi
-    # Fallback: check areas with < 6 rooms
-    if [ -z "$stub_list" ]; then
-        for area_dir in mudlib/d/*/; do
-            [ -d "$area_dir" ] || continue
-            area=$(basename "$area_dir")
-            case "$area" in road|npc|obj) continue ;; esac
-            rc=$(find "$area_dir" -maxdepth 1 -name "*.c" 2>/dev/null | wc -l | tr -d ' ')
-            if [ "$rc" -lt 6 ]; then
-                stub_list="$stub_list $area"
+    if [ -n "$stub_list" ]; then
+        local area_count=0
+        for area in $stub_list; do
+            [ "$area_count" -ge 2 ] && break
+            area_count=$((area_count + 1))
+
+            run_step "Expand area: $area" \
+"擴展 mudlib/d/$area/ 區域。
+
+1. 讀取 automation/CLAUDE.md 的「世界地圖」確認位置
+2. 掃描現有房間和 NPC
+3. 城鎮需要：廣場、街道、客棧(INN)、商店、城門、廟(TEMPLE)
+4. 建立缺少的內容，所有出口雙向連結
+5. 城隍廟用 inherit TEMPLE，客棧用 inherit INN" 20
+
+            if git status --porcelain "mudlib/d/$area/" 2>/dev/null | grep -q .; then
+                git add "mudlib/d/$area/" 2>/dev/null
+                git commit -m "feat: expand area $area" 2>/dev/null || true
             fi
         done
-    fi
-
-    # Process max 3 areas per round to stay within context limits
-    local area_count=0
-    for area in $stub_list; do
-        [ "$area_count" -ge 3 ] && break
-        area_count=$((area_count + 1))
-
-        run_step "Audit area: $area" \
-"審查 mudlib/d/$area/ 區域的完整性，找出缺少的內容。
-
-1. 讀取 automation/CLAUDE.md 的「世界地圖」確認 $area 的地理位置和類型（城鎮/門派HQ/野外）
-2. 掃描 mudlib/d/$area/ 列出所有 .c 檔案（房間）
-3. 掃描 mudlib/d/$area/npc/ 列出所有 NPC
-4. 檢查每個房間的 set(\"exits\") 是否雙向連結
-5. 檢查每個房間的 set(\"objects\") 是否指向存在的 NPC 檔案
-6. 根據區域類型判斷缺少什麼：
-   城鎮至少需要：廣場、街道x2、客棧(INN)、商店、城門、廟(TEMPLE)、客棧老闆、守衛、商人
-   門派HQ至少需要：大門、大廳、掌門室、弟子、掌門NPC(含拜師)
-   野外至少需要：入口、2-3個場景、怪物NPC(aggressive)
-7. 列出缺少的房間和 NPC 清單
-8. 如果什麼都不缺，輸出「$area: complete」然後結束
-9. 如果有缺少的內容，建立缺少的檔案：
-   - 房間：所有出口雙向連結
-   - NPC：確認房間有 set(\"objects\") 載入
-   - 城隍廟用 inherit TEMPLE
-   - 客棧用 inherit INN + valid_startroom + no_fight
-   - 掌門 lv50+ 加 vision_of_ghost
-   - 野外怪物用 set(\"attitude\", \"aggressive\")
-10. 輸出建立了哪些檔案" 25
-
-        # Commit if changes were made
-        if git status --porcelain "mudlib/d/$area/" 2>/dev/null | grep -q .; then
-            git add "mudlib/d/$area/" 2>/dev/null
-            git commit -m "feat: complete area $area (rooms + NPCs)" 2>/dev/null || true
-        fi
-    done
-
-    # --- 2b. Skills: audit and build missing ones ---
-    run_step "Audit skills" \
-"審查技能 daemon 的完整性。
-
-1. 列出所有 mudlib/daemon/sect/*.c 中 set(\"skills\") 引用的技能名稱
-2. 檢查每個技能名稱是否有對應的 mudlib/daemon/skill/<name>.c（空格換底線）
-3. 檢查每個現有 skill daemon 是否有 skill_improved 和 skill_advanced
-4. 檢查每個戰鬥技能是否有至少 6 個 actions（grep -c '\"action\"'）
-5. 列出所有缺少的技能和不完整的技能
-6. 對於缺少的技能（最多處理 3 個），建立 daemon 檔案：
-   - 讀取 automation/wiki_reference.md 確認技能屬於哪個門派
-   - 參考 mudlib/daemon/skill/fengshan_sword.c（門派武功）或 mudlib/daemon/skill/maoshan_neigong.c（內功）
-   - inherit SKILL + register_skill_daemon
-   - 戰鬥技能：actions mapping 至少 6 招，門派武功招式用「招式名」
-   - 內功：do_exercise + halt_exercise + exert_function
-   - skill_improved()（門派用 learn>=1500，基礎用 learn>=500）
-   - skill_advanced()（給屬性加成）
-7. 輸出：缺少N個、本次建立N個、剩餘N個待下輪處理" 25
-
-    if git status --porcelain mudlib/daemon/skill/ 2>/dev/null | grep -q .; then
-        git add mudlib/daemon/skill/ 2>/dev/null
-        git commit -m "feat: add missing skill daemons" 2>/dev/null || true
-    fi
-
-    # --- 2c. Quests: audit and build ---
-    run_step "Audit quests" \
-"審查任務系統的完整性。
-
-1. 掃描所有 mudlib/d/*/npc/*.c 中使用 quest/ flag 的 NPC（排除拜師系統的 master）：
-   grep -rl 'query(\"quest/' mudlib/d/ | grep -v master
-2. 掃描所有 pending/ flag 的使用
-3. 讀取 automation/wiki_reference.md 的「雪亭鎮 7 謎」和「五堂鎮 6 謎」
-4. 比對哪些謎題已有對應任務，哪些還沒有
-5. 對於缺少的任務（最多處理 2 個），選擇最容易實作的：
-   - 優先選擇已有 NPC 但缺任務邏輯的（如 girl.c 阿寶）
-   - 或建立新的簡單任務（對話 → 跑腿 → 獎勵）
-6. 任務實作：
-   - NPC 中加 init() 或 add_action 觸發
-   - pending/<quest_id> 追蹤進度
-   - quest/<quest_id>_done 標記完成
-   - gain_score(\"quest\", N) 給獎勵
-7. 確認任務 NPC 載入到房間
-8. 輸出：已有N個任務、本次新增N個" 25
-
-    if git status --porcelain mudlib/d/ 2>/dev/null | grep -q .; then
-        git add mudlib/d/ 2>/dev/null
-        git commit -m "feat: add quests" 2>/dev/null || true
     fi
 }
 
