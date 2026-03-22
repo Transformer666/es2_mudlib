@@ -101,21 +101,27 @@ phase_analyze() {
     stub_towns="[${stub_towns%,}]"
 
     # Find missing skills referenced by sects
-    local missing_skills=""
-    local missing_skill_count=0
+    # Extract only skill names from set("skills", ({ "xxx", "yyy" })) arrays
+    > /tmp/es2_missing_skills.txt
     for sect_file in mudlib/daemon/sect/*.c; do
         [ -f "$sect_file" ] || continue
-        grep -A20 '"skills"' "$sect_file" 2>/dev/null | grep -o '"[^"]*"' | grep -v 'skills' | tr -d '"' | while read sk; do
+        # Get lines between "skills" and "})" to only capture the skill array
+        sed -n '/"skills"/,/})/p' "$sect_file" 2>/dev/null | \
+            grep -o '"[a-z][a-z ]*"' | tr -d '"' | while read sk; do
             [ -z "$sk" ] && continue
+            # Skip known non-skill keywords
+            case "$sk" in
+                skills|class|name|location|paths|english*|sect*) continue ;;
+            esac
             local sk_file="mudlib/daemon/skill/$(echo "$sk" | tr ' ' '_').c"
             if [ ! -f "$sk_file" ]; then
                 echo "$sk"
             fi
         done
     done | sort -u > /tmp/es2_missing_skills.txt
-    missing_skill_count=$(wc -l < /tmp/es2_missing_skills.txt | tr -d ' ')
-    missing_skills=$(sed 's/.*/"&"/' /tmp/es2_missing_skills.txt | paste -sd',' -)
-    missing_skills="[${missing_skills}]"
+    local missing_skill_count=$(wc -l < /tmp/es2_missing_skills.txt | tr -d ' ')
+    local missing_skills=$(sed 's/.*/"&"/' /tmp/es2_missing_skills.txt | paste -sd',' -)
+    missing_skills="[${missing_skills:-}]"
 
     # Calculate total missing
     local races_missing=$((11 - races))
