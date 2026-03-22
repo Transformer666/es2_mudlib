@@ -182,3 +182,15 @@ All NPCs are loaded in rooms. Here's the complete audit result:
 3 項額外檢查全部 PASS。22 個 FAIL 主要集中在城隍廟/渡口房間缺少正確的 inherit（應使用 `inherit TEMPLE` 或對應的特殊 inherit），以及 1 個 NPC 裝備缺少 setup()。
 [0;32m[OK][0m Static validation
 [0;34m[00:37:44][0m Pipeline complete: 5 ok, 0 warnings.
+[main 4f142c1] feat: auto-implement content via pipeline v2 [2026-03-22 00:37:44]
+ 4 files changed, 381 insertions(+), 1 deletion(-)
+ create mode 100644 docs/loop_logs/round_20260322_002825.log
+To github.com:Transformer666/es2_mudlib.git
+   bd76683..4f142c1  main -> main
+[0;32m[OK][0m Final commit pushed to origin.
+
+=========================================
+  Pipeline complete!
+  Completed: 6 | Warnings: 0
+  End: 2026-03-22 00:37:44
+=========================================
