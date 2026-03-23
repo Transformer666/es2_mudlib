@@ -58,6 +58,12 @@ void die(object killer)
 			"地靈的身軀轟然碎裂﹐化為漫天飛舞的土石。\n"
 			"一柄散發著大地之力的雙手斧和一顆脈動著生命力的靈心\n"
 			"從碎石中緩緩浮現。\n");
+		if( !killer->query("quest/diling_summon_done") ) {
+			killer->set("quest/diling_summon_done", 1);
+			killer->delete_temp("pending/diling_summon_fighting");
+			killer->gain_score("quest", 300);
+			tell_object(killer, "( 你完成了地靈封印任務 )\n");
+		}
 	}
 	::die(killer);
 }

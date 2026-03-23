@@ -50,6 +50,62 @@ void create()
 	set_temp("apply/vision_of_ghost", 1);
 }
 
+void do_hydra_reward(object player);
+
+void relay_say(object ob, string msg)
+{
+	if( !userp(ob) ) return;
+	if( is_fighting() || is_chatting() ) return;
+
+	if( strsrch(msg, "鮫蛟") >= 0 || strsrch(msg, "水") >= 0
+	||  strsrch(msg, "潭") >= 0 || strsrch(msg, "鱗片") >= 0
+	||  strsrch(msg, "hydra") >= 0 || strsrch(msg, "異常") >= 0
+	||  strsrch(msg, "水紋") >= 0 ) {
+		if( ob->query("quest/manglin_hydra_done") ) {
+			do_chat("杞庸微笑道﹕鮫蛟既除﹐這潭水又歸於清澈了。\n");
+			return;
+		}
+		if( ob->query_temp("pending/manglin_hydra") == 2 ) {
+			do_chat(({
+				"杞庸點了點頭﹐說道﹕好﹐你果然不負所望。\n",
+				"杞庸說道﹕這鮫蛟鱗甲堅硬無比﹐我替你取幾片下來 ...\n",
+				(: do_hydra_reward, ob :),
+			}));
+			return;
+		}
+		if( ob->query_temp("pending/manglin_hydra") ) {
+			do_chat("杞庸說道﹕你到潭邊仔細搜尋便是﹐那畜生就藏在水底。\n");
+			return;
+		}
+		do_chat(({
+			"杞庸望著水面﹐若有所思地說道﹕\n",
+			"杞庸說道﹕這潭底近來不太平靜﹐有一條上古鮫蛟潛伏其中。\n",
+			"杞庸說道﹕那畜生已有千年道行﹐生有十二爪﹐兇悍異常。\n",
+			"杞庸說道﹕牠若不除﹐遲早要禍害這片林子裡的生靈。\n",
+			"杞庸看了看你﹐說道﹕你若有心﹐不妨到潭邊搜尋牠的蹤跡。\n",
+		}));
+		ob->set_temp("pending/manglin_hydra", 1);
+		return;
+	}
+}
+
+void do_hydra_reward(object player)
+{
+	object reward;
+
+	if( !player || !present(player, environment()) ) return;
+	if( player->query("quest/manglin_hydra_done") ) return;
+
+	player->set("quest/manglin_hydra_done", 1);
+	player->delete_temp("pending/manglin_hydra");
+	player->gain_score("quest", 120);
+
+	reward = new(__DIR__"obj/hydra_scale");
+	reward->move(player);
+	message_vision("杞庸取出幾片蛟鱗﹐三兩下便編成一件鱗甲﹐遞給$N。\n", player);
+	tell_object(player, "( 你獲得了一件蛟鱗甲 )\n");
+}
+
 int acquire_skill(object ob, string skill)
 {
 	if( is_chatting() )
