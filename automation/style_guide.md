@@ -2,6 +2,20 @@
 
 每次寫 LPC 程式碼時必須遵守以下規則。完整範本見 automation/CLAUDE.md。
 
+## 天條（絕對禁止違反）
+
+1. **不得修改 adm/ 下的核心檔案**（logind.c, combatd.c, chard.c, securityd.c 等），除非明確被要求
+2. **不得修改 std/ 下的標準物件**（char.c, room.c, skill.c 等），除非明確被要求
+3. **不得修改 feature/ 下的功能模組**（skill.c, combat.c, attack.c 等），除非明確被要求
+4. **不得修改 include/ 下的標頭檔**，除非明確被要求
+5. **不得修改 data/ 下的玩家存檔和系統資料**（login/, user/, chinese.o 等）
+6. **不得修改 obj/login.c, obj/user.c, obj/master.c** 等系統物件
+7. **不得引入會導致 compile error 的程式碼** — LPC 不支援 forward reference（函數必須先定義才能呼叫），不支援 `$var` 語法
+8. **新增的程式碼不得影響現有玩家的登入、存檔、戰鬥等核心流程**
+9. **修改任何檔案前必須先讀取該檔案** — 不可盲目修改
+
+違反天條可能導致：所有玩家無法登入、存檔損壞、遊戲崩潰。
+
 ## 房間 (Room)
 - `inherit ROOM`，客棧用 `#include <room.h>` + `inherit INN`
 - `set("short", "地名")` + `set("long", @LONG...LONG)`
