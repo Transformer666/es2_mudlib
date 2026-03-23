@@ -95,6 +95,17 @@ int acquire_skill(object ob, string skill)
             ob->improve_skill(skill, random(ob->query_attr("wis")) + 1);
         }
         break;
+    case "amazing needle":
+        if( !ob->query_learn(skill) ) {
+            if( ob->query_skill("five defeat needle") < 40 ) {
+                say("武陀香主搖了搖頭，說道：你五敗針法尚未純熟﹐不宜學此。\n");
+                return 0;
+            }
+            say("武陀香主點了點頭，說道：好，為師傳你神針術。\n");
+            message_vision("$N將武陀的神針術傳授給$n。\n", this_object(), ob);
+            ob->improve_skill(skill, random(ob->query_attr("wis")) + 1);
+        }
+        break;
     default:
         return 0;
     }

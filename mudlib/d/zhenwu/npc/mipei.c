@@ -96,6 +96,13 @@ int acquire_skill(object ob, string skill)
             ob->improve_skill(skill, random(ob->query_attr("wis")) + 1);
         }
         break;
+    case "pike":
+        if( !ob->query_learn(skill) ) {
+            say("米沛點了點頭，說道：好，為師傳你槍法。\n");
+            message_vision("$N將振武軍的槍法傳授給$n。\n", this_object(), ob);
+            ob->improve_skill(skill, random(ob->query_attr("str")) + 1);
+        }
+        break;
     default:
         return 0;
     }
