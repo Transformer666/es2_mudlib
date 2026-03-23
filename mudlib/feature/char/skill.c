@@ -143,6 +143,10 @@ static mapping skill_gain = ([]);
 mapping query_skill_gain() { return skill_gain; }
 void reset_skill_gain() { skill_gain = ([]); }
 
+// Forward declarations
+void set_skill_cap(string skill, int cap);
+int query_skill_cap(string skill);
+
 // improve_skill()
 //
 // This function improves the skill by adding specific amount to its
