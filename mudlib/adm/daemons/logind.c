@@ -247,12 +247,13 @@ void authorize(object ob) {
 
     user = make_body(ob);
     if( ! user ) {
-
+        write("系統錯誤﹕無法建立角色物件﹐請通知巫師處理。\n");
         destruct(ob);
         return;
     }
 
     if (user->restore()) {
+        string enter_err;
         log_file( "USAGE", sprintf("[%s] %s login from %s\n",
             ctime(time()), (string)user->query("id"), query_ip_name(ob) ) );
 
@@ -266,7 +267,12 @@ void authorize(object ob) {
             }
             write("安全檢查通過。\n");
         }
-        enter_world(ob, user);
+        enter_err = catch(enter_world(ob, user));
+        if( enter_err ) {
+            write("登入時發生錯誤﹕" + enter_err + "\n");
+            if( user ) destruct(user);
+            if( ob ) destruct(ob);
+        }
         return;
     } else {
         if( file_size(user->query_save_file())==-1 ) {
