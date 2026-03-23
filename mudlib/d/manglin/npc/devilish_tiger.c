@@ -1,4 +1,6 @@
 // vim: syntax=lpc
+// NPC: devilish_tiger.c - 狻猊 (quest boss for hunter_beast)
+// Drops tiger_fang on death for quest turn-in
 
 #include <npc.h>
 
@@ -27,4 +29,19 @@ void create()
     }));
     set("attitude", "aggressive");
     setup();
+}
+
+void die(object killer)
+{
+    object fang;
+
+    if( killer && userp(killer) ) {
+        fang = new(__DIR__"obj/tiger_fang");
+        if( fang ) fang->move(environment());
+        tell_object(killer,
+            "狻猊發出最後一聲悲嚎﹐龐大的身軀轟然倒地﹐\n"
+            "漆黑的皮毛上陰氣漸漸消散。\n"
+            "你注意到地上遺落了一顆鋒利的虎牙。\n");
+    }
+    ::die(killer);
 }
