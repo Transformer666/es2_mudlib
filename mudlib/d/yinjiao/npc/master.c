@@ -9,7 +9,7 @@ void create()
     set_attr("con", 20);
     set_attr("dex", 26);
     set_attr("wis", 20);
-    set_attr("cps", 24);
+    set_attr("spi", 24);
     set_race("human");
     set_class("thief");
     set_level(60);
