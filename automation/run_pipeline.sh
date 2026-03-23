@@ -144,10 +144,43 @@ phase_analyze() {
         fi
     done
 
-    # Quest gap: wiki has 13 riddles (xueting 7 + wutang 6), compare with implemented
-    local quest_gap=$((13 - quests))
-    [ "$quest_gap" -lt 0 ] && quest_gap=0
+    # Quest tracking — categorized by type
+    # Town riddles (pipeline can handle)
+    local town_riddle_quests=$quests
 
+    # Main storyline quests (check specific NPCs/flags)
+    local main_quests_total=8
+    local main_quests_done=0
+    # 1. 大邪道人和殘蟻師太
+    grep -rq 'quest/daxie_canyi' mudlib/d/ 2>/dev/null && main_quests_done=$((main_quests_done + 1))
+    # 2. 魚鐵山和劉乙忘玄的陰謀
+    grep -rq 'quest/yutieshan_liuyi' mudlib/d/ 2>/dev/null && main_quests_done=$((main_quests_done + 1))
+    # 3. 武林盟主失蹤
+    grep -rq 'quest/alliance_leader' mudlib/d/ 2>/dev/null && main_quests_done=$((main_quests_done + 1))
+    # 4. 白象寺的秘密
+    grep -rq 'quest/baixiang_secret' mudlib/d/ 2>/dev/null && main_quests_done=$((main_quests_done + 1))
+    # 5. 封鬼慘案
+    grep -rq 'quest/fenggui_case' mudlib/d/ 2>/dev/null && main_quests_done=$((main_quests_done + 1))
+    # 6. 梅影風妻子的藥
+    grep -rq 'quest/meiyingfeng_medicine' mudlib/d/ 2>/dev/null && main_quests_done=$((main_quests_done + 1))
+    # 7. 虎刀門二當家
+    grep -rq 'quest/hudao_second' mudlib/d/ 2>/dev/null && main_quests_done=$((main_quests_done + 1))
+    # 8. 十三靈任務
+    grep -rq 'quest/thirteen_spirits' mudlib/d/ 2>/dev/null && main_quests_done=$((main_quests_done + 1))
+    local main_quests_missing=$((main_quests_total - main_quests_done))
+
+    # Wutang incomplete riddles (have rooms/NPCs but no quest logic)
+    local wutang_incomplete=0
+    # 巫山雕像 — has wushan rooms but no quest
+    if ! grep -rq 'quest/wushan_statue' mudlib/d/wutang/ 2>/dev/null; then
+        wutang_incomplete=$((wutang_incomplete + 1))
+    fi
+    # 神廟藏誰 — has temple but no secret quest
+    if ! grep -rq 'quest/temple_secret' mudlib/d/wutang/ 2>/dev/null; then
+        wutang_incomplete=$((wutang_incomplete + 1))
+    fi
+
+    local quest_gap=$((main_quests_missing + wutang_incomplete))
     local total_missing=$((races_missing + classes_missing + sects_missing + missing_skill_count + stub_count + quest_gap))
 
     # Write JSON
@@ -161,7 +194,9 @@ phase_analyze() {
     "skills": $skills,
     "rooms": $rooms,
     "npcs": $npcs,
-    "quests": $quests,
+    "quests_town": $town_riddle_quests,
+    "quests_main_done": $main_quests_done,
+    "quests_main_total": $main_quests_total,
     "equipment": $equip
   },
   "races": { "required": 11, "implemented": $races, "missing": $races_missing },
@@ -169,14 +204,30 @@ phase_analyze() {
   "sects": { "required": 18, "implemented": $sects, "missing": $sects_missing },
   "skills": { "implemented": $skills, "missing": $missing_skill_count, "missing_list": $missing_skills },
   "areas": { "implemented": $(ls -d mudlib/d/*/ 2>/dev/null | wc -l | tr -d ' '), "stub_towns": $stub_towns },
-  "quests": { "implemented": $quests }
+  "quests": {
+    "town_riddles": $town_riddle_quests,
+    "main_storyline": { "done": $main_quests_done, "total": $main_quests_total },
+    "wutang_incomplete": $wutang_incomplete,
+    "missing_main": [
+$([ $main_quests_done -lt 1 ] && echo '      "大邪道人和殘蟻師太的關係",')
+$([ $main_quests_done -lt 2 ] && echo '      "魚鐵山和劉乙忘玄的陰謀",')
+$([ $main_quests_done -lt 3 ] && echo '      "武林盟主失蹤",')
+$([ $main_quests_done -lt 4 ] && echo '      "白象寺的秘密",')
+$([ $main_quests_done -lt 5 ] && echo '      "封鬼慘案的真相",')
+$([ $main_quests_done -lt 6 ] && echo '      "梅影風妻子的藥",')
+$([ $main_quests_done -lt 7 ] && echo '      "虎刀門二當家的下落",')
+$([ $main_quests_done -lt 8 ] && echo '      "十三靈任務",')
+      "placeholder"
+    ]
+  }
 }
 JSONEOF
 
     log "Analyze complete:"
     log "  Races: $races/11 | Classes: $classes/7 | Sects: $sects/18"
     log "  Skills: $skills (missing: $missing_skill_count) | Rooms: $rooms | NPCs: $npcs"
-    log "  Quests: $quests | Equipment: $equip"
+    log "  Town quests: $town_riddle_quests | Main storyline: $main_quests_done/$main_quests_total | Wutang incomplete: $wutang_incomplete"
+    log "  Equipment: $equip | Stubs: $stub_count"
     log "  Total missing: $total_missing"
     success "Analyze phase"
 }
@@ -311,33 +362,79 @@ $orig_content
     fi
 
     # ================================================================
-    # Priority 2: Quests per area
+    # Priority 2: Quests — incomplete riddles + main storyline
     # ================================================================
-    run_step "Build quests" \
-"為各區域建立任務。
 
-1. 讀取 automation/wiki_reference.md 的「城鎮謎題」段落
-2. 掃描已有的任務 NPC：
-   grep -rl 'query(\"quest/' mudlib/d/ | grep -v master
-3. 本輪最多實作 2 個新任務，優先：
-   - 雪亭鎮謎題（7個中尚未完成的）
-   - 五堂鎮謎題（6個中尚未完成的）
+    # 2a. Fix incomplete town riddles first
+    run_step "Fix incomplete riddles" \
+"檢查五堂鎮有兩個謎題有房間/NPC 但缺乏任務邏輯：
 
-任務實作規範：
-- NPC 中加 init() 或 add_action 觸發
-- pending/<quest_id> 追蹤進度
-- quest/<quest_id>_done 標記完成
-- gain_score(\"quest\", N) 給獎勵
-- 確認任務 NPC 載入到房間
+1. 巫山雕像秘密 — mudlib/d/wutang/wushan_path*.c 存在但沒有 quest 機制
+   需要：在某個 wushan 房間加 detail 或 init 觸發，發現雕像的秘密
+   用 quest/wushan_statue_done flag
 
-重要：有些 NPC 不應該常駐在房間裡，而是任務觸發後才出現。
-例如：上古妖獸（ritual_monkey 等）應該透過任務或特殊條件召喚，
-不應該用 set(\"objects\") 常駐載入。
-如果發現這類 NPC，將其從房間的 objects 移除，改為任務觸發機制。" 25
+2. 鎮天神廟藏著誰 — mudlib/d/wutang/temple_inner.c 存在但沒有秘密
+   需要：在 temple_inner 加一個隱藏的 NPC 或 detail，揭示藏著誰
+   用 quest/temple_secret_done flag
 
-    if git status --porcelain mudlib/d/ 2>/dev/null | grep -q .; then
-        git add mudlib/d/ 2>/dev/null
-        git commit -m "feat: add quests and fix NPC spawn logic" 2>/dev/null || true
+每個任務要有：
+- 觸發條件（examine detail / say 關鍵字）
+- quest flag 標記完成
+- gain_score 獎勵
+- 不要建新的重複 NPC！先搜尋已有的 NPC
+
+天條：不改 adm/std/feature/data，只改 d/ 下的房間和 NPC" 20
+
+    if git status --porcelain mudlib/d/wutang/ 2>/dev/null | grep -q .; then
+        git add mudlib/d/wutang/ 2>/dev/null
+        git commit -m "feat: add quest logic for wutang incomplete riddles" 2>/dev/null || true
+    fi
+
+    # 2b. Main storyline quests — one at a time
+    # Read missing_content.json to find which main quests are not done
+    local next_main_quest=""
+    if ! grep -rq 'quest/meiyingfeng_medicine' mudlib/d/ 2>/dev/null; then
+        next_main_quest="梅影風妻子的藥"
+    elif ! grep -rq 'quest/hudao_second' mudlib/d/ 2>/dev/null; then
+        next_main_quest="虎刀門二當家的下落"
+    elif ! grep -rq 'quest/baixiang_secret' mudlib/d/ 2>/dev/null; then
+        next_main_quest="白象寺的秘密"
+    elif ! grep -rq 'quest/fenggui_case' mudlib/d/ 2>/dev/null; then
+        next_main_quest="封鬼慘案的真相"
+    elif ! grep -rq 'quest/alliance_leader' mudlib/d/ 2>/dev/null; then
+        next_main_quest="武林盟主失蹤"
+    elif ! grep -rq 'quest/daxie_canyi' mudlib/d/ 2>/dev/null; then
+        next_main_quest="大邪道人和殘蟻師太"
+    elif ! grep -rq 'quest/yutieshan_liuyi' mudlib/d/ 2>/dev/null; then
+        next_main_quest="魚鐵山和劉乙忘玄的陰謀"
+    fi
+
+    if [ -n "$next_main_quest" ]; then
+        run_step "Main quest: $next_main_quest" \
+"實作主線任務：$next_main_quest
+
+1. 讀取 automation/wiki_reference.md 的「主線任務」段落了解故事背景
+2. 確認涉及的 NPC 已存在（用 grep 搜尋）：
+   - 梅影風 → mudlib/d/lengmei/npc/meiyingfeng.c
+   - 劉乙忘玄 → mudlib/d/kuxiao/npc/liuyi.c
+   - 魚鐵山 → mudlib/d/xueyin/npc/yutieshan.c
+   - 韓笑 → mudlib/d/hudao/npc/hanxiao.c
+   - 白象寺方丈 → mudlib/d/baixiang/npc/abbot.c
+3. 在已有的 NPC 上加任務對話（relay_say 或 init 觸發）
+4. 不要建新的重複 NPC！
+5. 主線任務比較複雜，本輪只做第一步：
+   - 在相關 NPC 上加觸發對話，給玩家線索
+   - 設 quest flag（如 quest/meiyingfeng_medicine_done）
+   - 不需要完成整個多段任務鏈，先建第一步
+
+天條：不改 adm/std/feature/data" 20
+
+        if git status --porcelain mudlib/d/ 2>/dev/null | grep -q .; then
+            git add mudlib/d/ 2>/dev/null
+            git commit -m "feat: main quest - $next_main_quest (step 1)" 2>/dev/null || true
+        fi
+    else
+        log "All main storyline quests have initial implementation."
     fi
 
     # ================================================================
