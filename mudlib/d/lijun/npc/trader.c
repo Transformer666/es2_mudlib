@@ -1,4 +1,5 @@
 // trader.c
+// Quest: trader_cargo_done - 行商失貨任務
 
 #include <npc.h>
 
@@ -46,4 +47,73 @@ void deliver_merchandise(object customer, mixed item)
 {
 	command("say " + item->name() + "﹐好眼光﹗給你﹗");
 	::deliver_merchandise(customer, item);
+}
+
+int accept_object(object player, object ob)
+{
+	if( !userp(player) ) return 0;
+	if( player->query("quest/trader_cargo_done") ) {
+		do_chat("行商笑道﹕你已經幫過我了﹐這個你自己留著吧。\n");
+		return 0;
+	}
+	if( player->query_temp("pending/trader_cargo") != 1 ) return 0;
+	if( !ob->id("cargo_box") && !ob->id("cargo box") ) {
+		do_chat("行商搖搖頭道﹕這不是我丟的貨啊。\n");
+		return 0;
+	}
+
+	do_chat(({
+		"行商接過貨箱﹐急忙打開查看﹐喜出望外。\n",
+		"行商說道﹕太好了﹗裡面的南方藥材都還在﹗\n",
+		"行商感激道﹕多謝你了﹐恩人﹗這些東西是我全部的本錢。\n",
+		"行商說道﹕不成敬意﹐這點銀子和一頂斗笠請你收下﹗\n",
+		(: give_rewards, player :),
+	}));
+	return 1;
+}
+
+private void give_rewards(object player)
+{
+	object hat;
+
+	if( !player || environment(player) != environment() ) return;
+
+	hat = new(__DIR__"obj/straw_hat");
+	if( hat ) {
+		if( hat->move(player) )
+			hat->move(environment());
+	}
+	player->carry_money("silver", 3);
+	player->set("quest/trader_cargo_done", 1);
+	player->gain_score("quest", 80);
+}
+
+void relay_say(object ob, string msg)
+{
+	if( !userp(ob) ) return;
+	if( is_fighting() || is_chatting() ) return;
+	if( ob->query("quest/trader_cargo_done") ) return;
+
+	if( ob->query_temp("pending/trader_cargo") ) {
+		if( strsrch(msg, "貨") >= 0 || strsrch(msg, "箱") >= 0
+		||  strsrch(msg, "cargo") >= 0 ) {
+			do_chat(
+				"行商說道﹕貨箱掉到河畔西邊的淺灘了﹐你去找找看吧。\n");
+			return;
+		}
+		return;
+	}
+
+	if( strsrch(msg, "河匪") >= 0 || strsrch(msg, "貨") >= 0
+	||  strsrch(msg, "失") >= 0 || strsrch(msg, "幫") >= 0
+	||  strsrch(msg, "cargo") >= 0 ) {
+		do_chat(({
+			"行商嘆了口氣﹐說道﹕別提了﹐前幾天從南邊進了一批藥材 ...\n",
+			"行商說道﹕過河的時候被河匪截住﹐拼了老命才逃上岸 ...\n",
+			"行商說道﹕那箱貨掉到河裡了﹐被水沖到西邊河畔的淺灘上。\n",
+			"行商懇求道﹕那箱貨是我全部的本錢﹐能不能幫我找回來﹖\n",
+		}));
+		ob->set_temp("pending/trader_cargo", 1);
+		return;
+	}
 }
