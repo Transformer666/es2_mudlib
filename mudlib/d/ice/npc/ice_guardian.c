@@ -1,4 +1,6 @@
 // vim: syntax=lpc
+// NPC: ice_guardian.c - 冰域守衛 (quest boss for ice_guardian_challenge)
+// Drops frost_crystal on death
 
 #include <npc.h>
 
@@ -35,4 +37,18 @@ void create()
     carry_object(STOCK_WEAPON("staff"))->wield();
     carry_object(STOCK_ARMOR("cloth"))->wear();
     set_temp("apply/vision_of_ghost", 1);
+}
+
+void die(object killer)
+{
+    object crystal;
+
+    if( killer && userp(killer) ) {
+        crystal = new(__DIR__"obj/frost_crystal");
+        if( crystal ) crystal->move(environment());
+        tell_object(killer,
+            "冰域守衛的身軀轟然碎裂﹐化作無數冰晶散落一地。\n"
+            "在碎冰之中﹐一塊散發著幽藍光芒的寒冰結晶靜靜地躺在那裡。\n");
+    }
+    ::die(killer);
 }

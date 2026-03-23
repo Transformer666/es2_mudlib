@@ -1,4 +1,6 @@
 // vim: syntax=lpc
+// NPC: centipede.c - 大蜈蚣 (quest boss for fog_centipede)
+// Drops venom_sac on death for quest turn-in
 
 #include <npc.h>
 
@@ -27,4 +29,18 @@ void create()
     set("attitude", "aggressive");
     setup();
     set_temp("apply/vision_of_ghost", 1);
+}
+
+void die(object killer)
+{
+    object sac;
+
+    if( killer && userp(killer) ) {
+        sac = new(__DIR__"obj/venom_sac");
+        if( sac ) sac->move(environment());
+        tell_object(killer,
+            "大蜈蚣發出最後一聲淒厲的嘶叫﹐龐大的身軀扭曲了幾下﹐\n"
+            "便不再動彈。牠頭部的毒囊滾落在地上﹐散發著刺鼻的腥臭。\n");
+    }
+    ::die(killer);
 }
