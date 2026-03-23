@@ -15,6 +15,9 @@ LONG
 	"藥櫃" : "藥櫃上密密麻麻的小抽屜裡分門別類地放著各種草藥。\n",
 	"木匾" : "上面龍飛鳳舞地寫著「懸壺濟世」四個大字﹐落款已經模糊不清了。\n",
     ]));
+    set("objects", ([
+	__DIR__"npc/obj/golden_herb" : 3,
+    ]));
     set("exits", ([
 	"south" : __DIR__"lane1",
 	"east"  : "/d/wutuo/entrance",
