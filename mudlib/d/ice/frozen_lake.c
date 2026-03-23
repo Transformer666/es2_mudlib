@@ -10,6 +10,9 @@ void create()
 LONG
 	);
 	set("outdoors", "wilderness");
+	set("detail", ([
+		"冰層" : "冰層下方隱約可見一個巨大的暗影，形狀像是一隻蟾蜍，但體型遠超尋常。冰面上留有一灘黏液的痕跡，觸之刺骨寒冷。\n",
+	]));
 	set("objects", ([
 		__DIR__"npc/ice_wolf" : 1,
 	]));

@@ -13,6 +13,9 @@ void create()
 LONG
 	);
 	set("outdoors", "wild");
+	set("detail", ([
+		"焦痕" : "路旁幾叢灌木的末端呈現焦黑色，像是被某種灼熱的氣息燎過，地上還殘留著幾個奇異的爪印，帶著一股硫磺氣味。\n",
+	]));
 	set("exits", ([
 		"north" : __DIR__"crossroad",
 		"south" : "/d/lijun/entrance",

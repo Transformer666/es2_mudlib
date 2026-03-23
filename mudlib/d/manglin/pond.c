@@ -12,6 +12,9 @@ void create()
 LONG
 	);
 	set("outdoors", "forest");
+	set("detail", ([
+		"水紋" : "潭水深處偶爾會泛起異常的漣漪，彷彿有某種巨大的水中生物潛伏其中。水面上隱約可見幾片大如手掌的鱗片漂浮。\n",
+	]));
 	set("objects", ([
 		__DIR__"npc/qiyong" : 1,
 	]));
