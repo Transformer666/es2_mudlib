@@ -23,6 +23,7 @@ void create()
     set_skill("unarmed", 50);
 
     set("age", 45);
+    set("gender", "male");
     set("attitude", "peaceful");
     set("long",
 	"振武軍營統領米沛﹐身披鐵甲﹐腰懸令旗﹐面容剛毅﹐目光如\n"
