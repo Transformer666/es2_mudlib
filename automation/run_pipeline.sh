@@ -376,6 +376,67 @@ phase_validate() {
 2. 所有 daemon/skill/*.c 有 skill_improved — 用 grep -c 檢查
 3. 所有 lv50+ 掌門有 vision_of_ghost
 報告 PASS/FAIL 數量。" 10
+
+    # --- Chinese dictionary sync ---
+    # 確保所有種族/技能/門派的英文名都有中文翻譯
+    log "Checking Chinese dictionary..."
+    local dict_file="mudlib/data/chinese.o"
+    local missing_translations=""
+
+    if [ -f "$dict_file" ]; then
+        # Check races
+        for pair in "human:人類" "xingtian:刑天" "yenhold:厭火" "yaksha:夜叉" \
+                    "malik:巫首" "woochan:無腸" "jiaojao:焦僥" "dingling:釘靈" \
+                    "asura:阿修羅" "rainnar:雨師妾" "blackteeth:黑齒"; do
+            eng="${pair%%:*}"
+            chn="${pair##*:}"
+            if ! grep -q "$eng" "$dict_file" 2>/dev/null; then
+                missing_translations="$missing_translations $eng:$chn"
+            fi
+        done
+
+        # Check skills
+        for pair in "unarmed:徒手搏鬥" "sword:劍法" "blade:刀法" "dagger:匕首" \
+                    "needle:針法" "staff:棍法" "pike:槍法" "axe:斧法" "whip:鞭法" \
+                    "dodge:閃避" "parry:招架" "force:內功" \
+                    "fengshan sword:封山劍法" "phantom sword:幻影劍法" \
+                    "maoshan sword:茅山劍法" "taiyi sword:太乙劍法" \
+                    "lengmei sword:冷梅劍法" "tiger blade:虎刀" \
+                    "diamond hammer:金剛鎚法" "three rotations:三轉劍法" \
+                    "amazing needle:奇針術" "five defeat needle:五敗針法" \
+                    "tactic:兵法戰術" "maoshan neigong:茅山內功" \
+                    "longttu neigong:龍圖內功" "ziwei neigong:紫微內功" \
+                    "taoshan milu:陶山迷路"; do
+            eng="${pair%%:*}"
+            chn="${pair##*:}"
+            if ! grep -q "$(echo $eng | sed 's/ /[_ ]/g')" "$dict_file" 2>/dev/null; then
+                missing_translations="$missing_translations $eng:$chn"
+            fi
+        done
+
+        if [ -n "$missing_translations" ]; then
+            warn "Missing Chinese translations:$missing_translations"
+            run_step "Fix Chinese dictionary" \
+"mudlib/data/chinese.o 是中英翻譯字典（LPC save 格式），以下翻譯缺少：
+$missing_translations
+
+步驟：
+1. 讀取 mudlib/data/chinese.o 了解現有格式
+2. 用 Edit 工具在 dict mapping 中加入缺少的翻譯
+3. 格式範例：在 dict mapping 中加入 \"english\":\"中文\" 的 key-value pair
+4. 注意保持 LPC save file 的格式正確
+5. 如果不確定格式，輸出現有格式讓我確認" 15
+
+            if git status --porcelain "$dict_file" 2>/dev/null | grep -q .; then
+                git add "$dict_file" 2>/dev/null
+                git commit -m "fix: add missing Chinese translations to dictionary" 2>/dev/null || true
+            fi
+        else
+            log "All translations present."
+        fi
+    else
+        warn "Chinese dictionary file not found: $dict_file"
+    fi
 }
 
 # ============================================================
