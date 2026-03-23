@@ -1,8 +1,29 @@
 # ES2 MUD Static Validation Report
-Run time: Sun Mar 22 06:04:05 UTC 2026
+Run time: Mon Mar 23 01:58:07 UTC 2026
 
 
 ## Room Validation
+- PASS: Room inherit: d/shuilan/inn_hall
+- PASS: Room short desc: d/shuilan/inn_hall
+- PASS: Room setup(): d/shuilan/inn_hall
+- PASS: Room inherit: d/shuilan/street1
+- PASS: Room short desc: d/shuilan/street1
+- PASS: Room setup(): d/shuilan/street1
+- PASS: Room inherit: d/shuilan/store
+- PASS: Room short desc: d/shuilan/store
+- PASS: Room setup(): d/shuilan/store
+- PASS: Room inherit: d/shuilan/square
+- PASS: Room short desc: d/shuilan/square
+- PASS: Room setup(): d/shuilan/square
+- PASS: Room inherit: d/shuilan/street2
+- PASS: Room short desc: d/shuilan/street2
+- PASS: Room setup(): d/shuilan/street2
+- FAIL: Room inherit missing: d/shuilan/temple
+- PASS: Room short desc: d/shuilan/temple
+- PASS: Room setup(): d/shuilan/temple
+- PASS: Room inherit: d/shuilan/ngate
+- PASS: Room short desc: d/shuilan/ngate
+- PASS: Room setup(): d/shuilan/ngate
 - PASS: Room inherit: d/xueyin/yard
 - PASS: Room short desc: d/xueyin/yard
 - PASS: Room setup(): d/xueyin/yard
@@ -348,6 +369,21 @@ Run time: Sun Mar 22 06:04:05 UTC 2026
 - PASS: Room inherit: d/tianxie/training
 - PASS: Room short desc: d/tianxie/training
 - PASS: Room setup(): d/tianxie/training
+- PASS: Room inherit: d/fengbai/inn_hall
+- PASS: Room short desc: d/fengbai/inn_hall
+- PASS: Room setup(): d/fengbai/inn_hall
+- PASS: Room inherit: d/fengbai/street1
+- PASS: Room short desc: d/fengbai/street1
+- PASS: Room setup(): d/fengbai/street1
+- PASS: Room inherit: d/fengbai/square
+- PASS: Room short desc: d/fengbai/square
+- PASS: Room setup(): d/fengbai/square
+- FAIL: Room inherit missing: d/fengbai/temple
+- PASS: Room short desc: d/fengbai/temple
+- PASS: Room setup(): d/fengbai/temple
+- PASS: Room inherit: d/fengbai/ngate
+- PASS: Room short desc: d/fengbai/ngate
+- PASS: Room setup(): d/fengbai/ngate
 - PASS: Room inherit: d/buxuan/quarters
 - PASS: Room short desc: d/buxuan/quarters
 - PASS: Room setup(): d/buxuan/quarters
@@ -819,6 +855,24 @@ Run time: Sun Mar 22 06:04:05 UTC 2026
 - PASS: Room inherit: d/road/road5
 - PASS: Room short desc: d/road/road5
 - PASS: Room setup(): d/road/road5
+- PASS: Room inherit: d/luocheng/inn_hall
+- PASS: Room short desc: d/luocheng/inn_hall
+- PASS: Room setup(): d/luocheng/inn_hall
+- PASS: Room inherit: d/luocheng/wgate
+- PASS: Room short desc: d/luocheng/wgate
+- PASS: Room setup(): d/luocheng/wgate
+- PASS: Room inherit: d/luocheng/street1
+- PASS: Room short desc: d/luocheng/street1
+- PASS: Room setup(): d/luocheng/street1
+- PASS: Room inherit: d/luocheng/store
+- PASS: Room short desc: d/luocheng/store
+- PASS: Room setup(): d/luocheng/store
+- PASS: Room inherit: d/luocheng/square
+- PASS: Room short desc: d/luocheng/square
+- PASS: Room setup(): d/luocheng/square
+- FAIL: Room inherit missing: d/luocheng/temple
+- PASS: Room short desc: d/luocheng/temple
+- PASS: Room setup(): d/luocheng/temple
 - PASS: Room inherit: d/goathill/hillside
 - PASS: Room short desc: d/goathill/hillside
 - PASS: Room setup(): d/goathill/hillside
@@ -1080,6 +1134,24 @@ Run time: Sun Mar 22 06:04:05 UTC 2026
 - PASS: Room inherit: d/hell/path
 - PASS: Room short desc: d/hell/path
 - PASS: Room setup(): d/hell/path
+- PASS: Room inherit: d/shuiyue/inn_hall
+- PASS: Room short desc: d/shuiyue/inn_hall
+- PASS: Room setup(): d/shuiyue/inn_hall
+- PASS: Room inherit: d/shuiyue/wgate
+- PASS: Room short desc: d/shuiyue/wgate
+- PASS: Room setup(): d/shuiyue/wgate
+- PASS: Room inherit: d/shuiyue/egate
+- PASS: Room short desc: d/shuiyue/egate
+- PASS: Room setup(): d/shuiyue/egate
+- PASS: Room inherit: d/shuiyue/street1
+- PASS: Room short desc: d/shuiyue/street1
+- PASS: Room setup(): d/shuiyue/street1
+- PASS: Room inherit: d/shuiyue/square
+- PASS: Room short desc: d/shuiyue/square
+- PASS: Room setup(): d/shuiyue/square
+- FAIL: Room inherit missing: d/shuiyue/temple
+- PASS: Room short desc: d/shuiyue/temple
+- PASS: Room setup(): d/shuiyue/temple
 - PASS: Room inherit: d/death/dark_path
 - PASS: Room short desc: d/death/dark_path
 - PASS: Room setup(): d/death/dark_path
@@ -1389,6 +1461,24 @@ Run time: Sun Mar 22 06:04:05 UTC 2026
 - PASS: Room inherit: d/langyi/passage
 - PASS: Room short desc: d/langyi/passage
 - PASS: Room setup(): d/langyi/passage
+- PASS: Room inherit: d/fengcheng/inn_hall
+- PASS: Room short desc: d/fengcheng/inn_hall
+- PASS: Room setup(): d/fengcheng/inn_hall
+- PASS: Room inherit: d/fengcheng/street1
+- PASS: Room short desc: d/fengcheng/street1
+- PASS: Room setup(): d/fengcheng/street1
+- PASS: Room inherit: d/fengcheng/store
+- PASS: Room short desc: d/fengcheng/store
+- PASS: Room setup(): d/fengcheng/store
+- PASS: Room inherit: d/fengcheng/square
+- PASS: Room short desc: d/fengcheng/square
+- PASS: Room setup(): d/fengcheng/square
+- FAIL: Room inherit missing: d/fengcheng/temple
+- PASS: Room short desc: d/fengcheng/temple
+- PASS: Room setup(): d/fengcheng/temple
+- PASS: Room inherit: d/fengcheng/sgate
+- PASS: Room short desc: d/fengcheng/sgate
+- PASS: Room setup(): d/fengcheng/sgate
 - PASS: Room inherit: d/chuenyu/hot_spring
 - PASS: Room short desc: d/chuenyu/hot_spring
 - PASS: Room setup(): d/chuenyu/hot_spring
@@ -1487,6 +1577,22 @@ Run time: Sun Mar 22 06:04:05 UTC 2026
 - PASS: Room setup(): d/chixiao/village_square
 
 ## NPC Validation
+- PASS: NPC include: d/shuilan/npc/innkeeper
+- PASS: NPC inherit: d/shuilan/npc/innkeeper
+- PASS: NPC set_name: d/shuilan/npc/innkeeper
+- PASS: NPC setup(): d/shuilan/npc/innkeeper
+- PASS: NPC include: d/shuilan/npc/villager
+- PASS: NPC inherit: d/shuilan/npc/villager
+- PASS: NPC set_name: d/shuilan/npc/villager
+- PASS: NPC setup(): d/shuilan/npc/villager
+- PASS: NPC include: d/shuilan/npc/guard
+- PASS: NPC inherit: d/shuilan/npc/guard
+- PASS: NPC set_name: d/shuilan/npc/guard
+- PASS: NPC setup(): d/shuilan/npc/guard
+- PASS: NPC include: d/shuilan/npc/vendor
+- PASS: NPC inherit: d/shuilan/npc/vendor
+- PASS: NPC set_name: d/shuilan/npc/vendor
+- PASS: NPC setup(): d/shuilan/npc/vendor
 - PASS: NPC include: d/xueyin/npc/renegade
 - PASS: NPC inherit: d/xueyin/npc/renegade
 - PASS: NPC set_name: d/xueyin/npc/renegade
@@ -1783,6 +1889,14 @@ Run time: Sun Mar 22 06:04:05 UTC 2026
 - PASS: NPC inherit: d/tianxie/npc/shadow_guard
 - PASS: NPC set_name: d/tianxie/npc/shadow_guard
 - PASS: NPC setup(): d/tianxie/npc/shadow_guard
+- PASS: NPC include: d/fengbai/npc/innkeeper
+- PASS: NPC inherit: d/fengbai/npc/innkeeper
+- PASS: NPC set_name: d/fengbai/npc/innkeeper
+- PASS: NPC setup(): d/fengbai/npc/innkeeper
+- PASS: NPC include: d/fengbai/npc/villager
+- PASS: NPC inherit: d/fengbai/npc/villager
+- PASS: NPC set_name: d/fengbai/npc/villager
+- PASS: NPC setup(): d/fengbai/npc/villager
 - PASS: NPC include: d/buxuan/npc/master
 - PASS: NPC inherit: d/buxuan/npc/master
 - PASS: NPC set_name: d/buxuan/npc/master
@@ -2163,6 +2277,22 @@ Run time: Sun Mar 22 06:04:05 UTC 2026
 - PASS: NPC inherit: d/road/npc/inferno_dog
 - PASS: NPC set_name: d/road/npc/inferno_dog
 - PASS: NPC setup(): d/road/npc/inferno_dog
+- PASS: NPC include: d/luocheng/npc/innkeeper
+- PASS: NPC inherit: d/luocheng/npc/innkeeper
+- PASS: NPC set_name: d/luocheng/npc/innkeeper
+- PASS: NPC setup(): d/luocheng/npc/innkeeper
+- PASS: NPC include: d/luocheng/npc/villager
+- PASS: NPC inherit: d/luocheng/npc/villager
+- PASS: NPC set_name: d/luocheng/npc/villager
+- PASS: NPC setup(): d/luocheng/npc/villager
+- PASS: NPC include: d/luocheng/npc/guard
+- PASS: NPC inherit: d/luocheng/npc/guard
+- PASS: NPC set_name: d/luocheng/npc/guard
+- PASS: NPC setup(): d/luocheng/npc/guard
+- PASS: NPC include: d/luocheng/npc/vendor
+- PASS: NPC inherit: d/luocheng/npc/vendor
+- PASS: NPC set_name: d/luocheng/npc/vendor
+- PASS: NPC setup(): d/luocheng/npc/vendor
 - PASS: NPC include: d/goathill/npc/eagle
 - PASS: NPC inherit: d/goathill/npc/eagle
 - PASS: NPC set_name: d/goathill/npc/eagle
@@ -2383,6 +2513,14 @@ Run time: Sun Mar 22 06:04:05 UTC 2026
 - PASS: NPC inherit: d/hell/npc/diling
 - PASS: NPC set_name: d/hell/npc/diling
 - PASS: NPC setup(): d/hell/npc/diling
+- PASS: NPC include: d/shuiyue/npc/innkeeper
+- PASS: NPC inherit: d/shuiyue/npc/innkeeper
+- PASS: NPC set_name: d/shuiyue/npc/innkeeper
+- PASS: NPC setup(): d/shuiyue/npc/innkeeper
+- PASS: NPC include: d/shuiyue/npc/villager
+- PASS: NPC inherit: d/shuiyue/npc/villager
+- PASS: NPC set_name: d/shuiyue/npc/villager
+- PASS: NPC setup(): d/shuiyue/npc/villager
 - PASS: NPC include: d/death/npc/soul_judge
 - PASS: NPC inherit: d/death/npc/soul_judge
 - PASS: NPC set_name: d/death/npc/soul_judge
@@ -2555,14 +2693,6 @@ Run time: Sun Mar 22 06:04:05 UTC 2026
 - PASS: NPC inherit: d/wutuo/npc/disciple
 - PASS: NPC set_name: d/wutuo/npc/disciple
 - PASS: NPC setup(): d/wutuo/npc/disciple
-- PASS: All exits are bidirectional
-
-## Summary
-| Result | Count |
-|--------|-------|
-| PASS | 3681 |
-| FAIL | 24 |
-| WARN | 52 |
 - PASS: NPC include: d/wutuo/npc/apprentice
 - PASS: NPC inherit: d/wutuo/npc/apprentice
 - PASS: NPC set_name: d/wutuo/npc/apprentice
@@ -2647,6 +2777,22 @@ Run time: Sun Mar 22 06:04:05 UTC 2026
 - PASS: NPC inherit: d/langyi/npc/disciple
 - PASS: NPC set_name: d/langyi/npc/disciple
 - PASS: NPC setup(): d/langyi/npc/disciple
+- PASS: NPC include: d/fengcheng/npc/innkeeper
+- PASS: NPC inherit: d/fengcheng/npc/innkeeper
+- PASS: NPC set_name: d/fengcheng/npc/innkeeper
+- PASS: NPC setup(): d/fengcheng/npc/innkeeper
+- PASS: NPC include: d/fengcheng/npc/villager
+- PASS: NPC inherit: d/fengcheng/npc/villager
+- PASS: NPC set_name: d/fengcheng/npc/villager
+- PASS: NPC setup(): d/fengcheng/npc/villager
+- PASS: NPC include: d/fengcheng/npc/guard
+- PASS: NPC inherit: d/fengcheng/npc/guard
+- PASS: NPC set_name: d/fengcheng/npc/guard
+- PASS: NPC setup(): d/fengcheng/npc/guard
+- PASS: NPC include: d/fengcheng/npc/vendor
+- PASS: NPC inherit: d/fengcheng/npc/vendor
+- PASS: NPC set_name: d/fengcheng/npc/vendor
+- PASS: NPC setup(): d/fengcheng/npc/vendor
 - PASS: NPC include: d/chuenyu/npc/pilgrim
 - PASS: NPC inherit: d/chuenyu/npc/pilgrim
 - PASS: NPC set_name: d/chuenyu/npc/pilgrim
@@ -2803,6 +2949,8 @@ Run time: Sun Mar 22 06:04:05 UTC 2026
 - PASS: Skill daemon register: fork
 - PASS: Skill daemon inherit: gouyee
 - PASS: Skill daemon register: gouyee
+- PASS: Skill daemon inherit: hammer
+- PASS: Skill daemon register: hammer
 - PASS: Skill daemon inherit: iceforce
 - PASS: Skill daemon register: iceforce
 - PASS: Skill daemon inherit: instruments
@@ -2825,6 +2973,8 @@ Run time: Sun Mar 22 06:04:05 UTC 2026
 - PASS: Skill daemon register: liuh_ken
 - PASS: Skill daemon inherit: longttu_neigong
 - PASS: Skill daemon register: longttu_neigong
+- PASS: Skill daemon inherit: lotusforce
+- PASS: Skill daemon register: lotusforce
 - PASS: Skill daemon inherit: maoshan_neigong
 - PASS: Skill daemon register: maoshan_neigong
 - PASS: Skill daemon inherit: maoshan_sword
@@ -2992,6 +3142,8 @@ Run time: Sun Mar 22 06:04:05 UTC 2026
 - PASS: Armor include: d/wutang/npc/obj/jade_token
 - PASS: Armor inherit: d/wutang/npc/obj/jade_token
 - PASS: Equipment setup(): d/wutang/npc/obj/jade_token
+- WARN: No weapon/armor include: d/wutang/npc/obj/golden_herb (may be a generic item)
+- PASS: Equipment setup(): d/wutang/npc/obj/golden_herb
 - PASS: Armor include: d/wutang/npc/obj/amulet
 - PASS: Armor inherit: d/wutang/npc/obj/amulet
 - PASS: Equipment setup(): d/wutang/npc/obj/amulet
@@ -2999,6 +3151,8 @@ Run time: Sun Mar 22 06:04:05 UTC 2026
 - PASS: Equipment setup(): d/wutang/npc/obj/waterskin
 - WARN: No weapon/armor include: d/wutang/npc/obj/manto (may be a generic item)
 - PASS: Equipment setup(): d/wutang/npc/obj/manto
+- WARN: No weapon/armor include: d/wutang/npc/obj/healing_salve (may be a generic item)
+- PASS: Equipment setup(): d/wutang/npc/obj/healing_salve
 - WARN: No weapon/armor include: d/wutang/npc/obj/white_wine (may be a generic item)
 - PASS: Equipment setup(): d/wutang/npc/obj/white_wine
 - WARN: No weapon/armor include: d/wutang/npc/obj/beef_dumpling (may be a generic item)
@@ -3106,6 +3260,8 @@ Run time: Sun Mar 22 06:04:05 UTC 2026
 - PASS: Equipment setup(): d/snow/npc/obj/roast_chicken
 - WARN: No weapon/armor include: d/snow/npc/obj/arrow (may be a generic item)
 - PASS: Equipment setup(): d/snow/npc/obj/arrow
+- WARN: No weapon/armor include: d/snow/npc/obj/wild_fruit (may be a generic item)
+- PASS: Equipment setup(): d/snow/npc/obj/wild_fruit
 - PASS: Weapon include: d/snow/npc/obj/woodblade
 - PASS: Weapon inherit: d/snow/npc/obj/woodblade
 - PASS: Equipment setup(): d/snow/npc/obj/woodblade
@@ -3775,11 +3931,11 @@ Run time: Sun Mar 22 06:04:05 UTC 2026
 - PASS: Equipment setup(): obj/armor/lightning_bomb
 
 ## Exit Bidirectional Validation
-- PASS: All exits are bidirectional
+- FAIL: Exit north -> egate has no south exit back (from entrance)
 
 ## Summary
 | Result | Count |
 |--------|-------|
-| PASS | 3681 |
-| FAIL | 24 |
-| WARN | 52 |
+| PASS | 3836 |
+| FAIL | 30 |
+| WARN | 55 |

@@ -16,6 +16,8 @@ LONG
 	set("exits", ([
 		"south" : __DIR__"hillside",
 		"west" : __DIR__"cliff",
+		"north" : "/d/fengcheng/sgate",
+		"east" : "/d/shuiyue/wgate",
 	]));
 
 	setup();

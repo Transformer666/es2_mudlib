@@ -21,6 +21,7 @@ LONG
 	]));
 	set("exits", ([
 		"southeast" : "/d/lengmei/road",
+		"southwest" : "/d/shuilan/ngate",
 	]));
 
 	setup();

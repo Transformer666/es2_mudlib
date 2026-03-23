@@ -30347,3 +30347,174 @@ Pipeline start: 2026-03-22 05:49:43 (phase: all)
 Same results as already reported. All background tasks have completed and the full validation report stands as summarized above.
 [0;32m[OK][0m Static validation
 [0;34m[06:07:11][0m Pipeline complete: 5 ok, 0 warnings.
+[0;34m[01:32:05][0m Using git remote: origin
+[0;34m[01:32:05][0m Pulling latest changes...
+error: cannot pull with rebase: You have unstaged changes.
+error: please commit or stash them.
+
+Pipeline start: 2026-03-23 01:32:05 (phase: all)
+==============================
+[0;34m[01:32:05][0m === Phase: Analyze (bash-native, no agent) ===
+[0;34m[01:32:06][0m Analyze complete:
+[0;34m[01:32:06][0m   Races: 11/11 | Classes: 9/7 | Sects: 18/18
+[0;34m[01:32:06][0m   Skills: 75 (missing: 0) | Rooms: 494 | NPCs: 309
+[0;34m[01:32:06][0m   Quests: 14 | Equipment: 288
+[0;34m[01:32:06][0m   Total missing: 0
+[0;32m[OK][0m Analyze phase
+[0;34m[01:32:06][0m === Phase: Build ===
+[0;34m[01:32:06][0m Step: Port original skill: hammer
+--- Step: Port original skill: hammer ---
+已建立 `mudlib/daemon/skill/hammer.c`。
+
+內容摘要：
+- **inherit SKILL** + `DAEMON_D->register_skill_daemon("hammer")`
+- **6 招 actions**：猛砸、橫掃、由上而下砸、直搗、重敲、雙手搗 — 全為「瘀傷」類型
+- **valid_enable** 回傳 0（基礎武器技能，無需特殊啟用）
+- **skill_improved**：learn >= 500 門檻首次領悟，之後 `skill * skill * 100 < learn - 500` 公式升級（與 staff.c 一致）
+- **skill_advanced**：每 10 級（level % 10 == 9）且 str < level/4 時加 1 點膂力
+- 保留歷史拼法 `damae`（與其他技能一致）
+[0;32m[OK][0m Port original skill: hammer
+[0;34m[01:33:08][0m Step: Port original skill: lotusforce
+--- Step: Port original skill: lotusforce ---
+已建立 `mudlib/daemon/skill/lotusforce.c`。
+
+**移植內容摘要：**
+
+| 項目 | 說明 |
+|------|------|
+| 門派 | 寶蓮寺 (baolian) — 治療系和尚 |
+| 類型 | 內功 (`valid_enable` = "force") |
+| 原版邏輯保留 | `valid_learn` 檢查 `buddhism >= lotusforce` |
+| exert 功能 | `lotusforce`（練功）、`heal`（自身療傷）、`lifeheal`（為他人療傷） |
+
+**與原版差異：**
+- 原版 `inherit FORCE` + 透過 `exert_function_file` 分檔 → 我們直接 `inherit SKILL` + 內聯 `do_heal`/`do_lifeheal`
+- 原版沒有 `skill_improved`/`skill_advanced` → 已補上（內功門檻 learn >= 1500，stat 提升偏重 sen/gin/kee 均衡，符合治療系定位）
+- 原版沒有 `do_exercise`/`halt_exercise` → 已補上練功循環
+- 簡體 → 繁體，連字號 → 底線
+- 加上 `DAEMON_D->register_skill_daemon("lotusforce")`
+[0;32m[OK][0m Port original skill: lotusforce
+[0;34m[01:35:08][0m Step: Audit sect systems
+--- Step: Audit sect systems ---
+Good — tianyue has a working master NPC but is missing its sect daemon (`daemon/sect/tianyue.c`). That's a significant gap but creating a new daemon is beyond the "fix 3" limit. Let me now produce the final report.
+
+Here is the complete audit report:
+
+## 門派完整性檢查結果
+
+| 門派 | 掌門 NPC | 拜師系統 | class 一致 | 技能教學 | 進階任務 | 狀態 |
+|------|---------|---------|-----------|---------|---------|------|
+| 封山派 fengshan | liudonglu ✓ | 4/4 函數 | warrior ✓ | fengshan sword ✓ | 未實作 | **PASS** |
+| 冷梅莊 lengmei | meiyingfeng ✓ | 4/4 函數 | warrior ✓ | lengmei sword ✓ | 未實作 | **PASS** |
+| 哭笑門 kuxiao | liuyi ✓ | 4/4 函數 | warrior ✓ | sword ✓ | 未實作 | **PASS** |
+| 雪吟莊 xueyin | yutieshan ✓ | 4/4 函數 | warrior ✓ | sword ✓ | 未實作 | **PASS** |
+| 虎刀門 hudao | hanxiao ✓ | 4/4 函數 | warrior ✓ | tiger blade ✓ | 未實作 | **PASS** |
+| 天邪派 tianxie | master ✓ | 4/4 函數 | warrior ✓ | phantom sword ✓ | 未實作 | **PASS** |
+| 寶蓮寺 baolian | master ✓ | 4/4 函數 | monk ✓ | staff ✓ | 未實作 | **PASS** |
+| 白象寺 baixiang | abbot ✓ | 4/4 函數 | monk ✓ | staff+diamond hammer ✓ | 未實作 | **FIXED** |
+| 天月庵 tianyue | master ✓ | 4/4 函數 | monk ✓ | staff ✓ | 未實作 | **FAIL** (缺 sect daemon) |
+| 天師派 tianshi | master ✓ | 4/4 函數 | taoist ✓ | taiyi sword+ziwei neigong ✓ | 未實作 | **FIXED** |
+| 茅山派 maoshan | elder ✓ | 4/4 函數 | taoist ✓ | maoshan sword+neigong+milu ✓ | 未實作 | **FIXED** |
+| 瑯夷 langyi | master ✓ | 4/4 函數 | thief ✓ | dagger ✓ | 未實作 | **PASS** |
+| 隱教 yinjiao | master ✓ | 4/4 函數 | thief ✓ | dagger ✓ | 未實作 | **PASS** |
+| 龍圖丹派 longttu | elder ✓ | 4/4 函數 | alchemist ✓ | longttu neigong+needle ✓ | 未實作 | **PASS** |
+| 武陀 wutuo | master ✓ | 4/4 函數 | alchemist ✓ | five defeat needle ✓ | 未實作 | **WARN** (缺 amazing needle) |
+| 劍甲門 jianjia | master ✓ | 4/4 函數 | alchemist ✓ | sword+needle ✓ | 未實作 | **PASS** |
+| 步玄派 buxuan | master ✓ | 4/4 函數 | scholar ✓ | three rotations ✓ | 未實作 | **PASS** |
+| 玄天教 xuantian | master ✓ | 4/4 函數 | scholar ✓ | sword ✓ | 未實作 | **PASS** |
+| 振武軍營 zhenwu | mipei ✓ | 4/4 函數 | soldier ✓ | tactic ✓ | 未實作 | **WARN** (缺 pike) |
+
+### 本輪修正（3 件）
+
+1. **茅山派** `d/maoshan/npc/elder.c` — acquire_skill 加入 `maoshan neigong` 和 `taoshan milu` 兩個 case
+2. **白象寺** `d/baixiang/npc/abbot.c` — acquire_skill 加入 `diamond hammer` case
+3. **天師派** `d/tianshi/npc/master.c` — acquire_skill 加入 `ziwei neigong` case
+
+### 待修正問題
+
+| 優先級 | 問題 | 說明 |
+|--------|------|------|
+| HIGH | 天月庵缺 `daemon/sect/tianyue.c` | 有房間和 NPC 但無 sect daemon，玩家無法透過系統拜師 |
+| MED | 武陀 acquire_skill 缺 `amazing needle` | sect daemon 有登記但掌門不教 |
+| MED | 振武軍營 acquire_skill 缺 `pike` | sect daemon 有登記但掌門不教 |
+| LOW | 全部 18 門派的進階路線均未實作 | wiki 描述的進階系統（護衛、劍士、軍師等）都尚未有對應程式碼 |
+[0;32m[OK][0m Audit sect systems
+[0;34m[01:37:54][0m Step: Build quests
+--- Step: Build quests ---
+Error: Reached max turns (25)[0;32m[OK][0m Build quests
+[0;34m[01:42:09][0m Step: Audit NPC spawns
+--- Step: Audit NPC spawns ---
+All changes applied. Here's the complete修改清單：
+
+## 修改清單
+
+### 一、從房間移除的常駐 NPC（改為條件觸發）
+
+| NPC | 等級 | 原所在房間 | 新增 detail |
+|-----|------|-----------|-------------|
+| 鬼獫 (inferno_dog) | 35 | `d/road/mountain_road1.c` | 焦痕 — 暗示火犬出沒 |
+| 鸂鷘 (charming_bird) | 35 | `d/oldpine/road1.c` | 羽毛 — 暗示珍禽棲息 |
+| 神獒 (godly_dog) | 50 | `d/green/hill.c` | 爪印 — 暗示猛獸留痕 |
+| 寒蟾 (frost_frog) | 40 | `d/ice/ice_field.c` | 冰晶 — 暗示極寒生物 |
+| 邪蛟 (evil_hydra) | 55 | `d/manglin/path3.c` | 鱗片 — 暗示巨蛇盤踞 |
+| 天牛 (celestial_bull) | 45 | `d/green/grassland_n.c` | 蹄印 — 暗示巨獸經過 |
+| 魔虎 (devilish_tiger) | 45 | `d/manglin/path2.c` | 虎爪痕 — 暗示猛虎磨爪 |
+| 風神 (wind_god) | 80 | `d/latemoon/ruins.c` | 圖案 — 暗示風神降臨 |
+
+### 二、不需修改的 NPC
+
+| NPC | 原因 |
+|-----|------|
+| 靈狙 (ritual_monkey) | 已經是任務觸發機制（`d/snow/tree.c` 的 `summon_monkey`），不常駐 |
+
+### 三、補上 `set("attitude", "aggressive")` 的野外怪物
+
+| NPC | 檔案 |
+|-----|------|
+| 鬼獫 (inferno_dog) | `d/road/npc/inferno_dog.c` |
+| 鸂鷘 (charming_bird) | `d/oldpine/npc/charming_bird.c` |
+
+### 四、檢查結果
+
+- **`set("aggressive", 1)` 錯誤用法**：全 codebase 未發現，所有野外怪物都使用正確的 `set("attitude", "aggressive")`
+- **保留的同房間 NPC**：`d/oldpine/road1.c` 保留 snake、`d/manglin/path2.c` 保留 black_bear（這些是普通怪物）
+
+### 五、待辦：任務系統觸發機制
+
+以上 8 個 NPC 目前不會出現在遊戲中，等任務系統實作後需加入觸發條件（如特定時辰、玩家等級、道具觸發等）才會出現。
+[0;32m[OK][0m Audit NPC spawns
+[0;34m[01:44:47][0m Step: Expand area: stub_towns
+--- Step: Expand area: stub_towns ---
+Error: Reached max turns (20)[0;32m[OK][0m Expand area: stub_towns
+[0;34m[01:57:20][0m === Phase: Validate ===
+[0;34m[01:57:20][0m Step: Static validation
+--- Step: Static validation ---
+## 靜態驗證報告
+
+### 主測試結果
+| 項目 | 數量 |
+|------|------|
+| **PASS** | 3836 |
+| **FAIL** | 30 |
+| **WARN** | 55 |
+
+Exit code 30 = 30 個失敗項。完整報告在 `docs/test_report.md`。
+
+### 額外檢查
+
+| 檢查項 | 結果 |
+|--------|------|
+| `set("aggressive", 1)` 誤用 | **PASS** — 0 筆，全部正確使用 `attitude` |
+| skill daemon 含 `skill_improved` | **PASS** — 全部 76 個 daemon 皆有 (count=1) |
+| lv50+ 掌門有 `vision_of_ghost` | **PASS** — 14 位掌門全部設定 |
+
+### 失敗項摘要（30 FAIL）
+
+主要問題類別：
+- **Room inherit missing** — 城隍廟未用 `inherit TEMPLE`（如 `d/shuilan/temple`、`d/longan/temple`、`d/snow/bazar` 等）
+- **NPC 檢查失敗** — 部分 NPC 缺少必要屬性
+- **雙向出口缺失** — `entrance` 的 north→egate 無對應 south 出口返回
+
+如需查看完整 30 項失敗詳情，可以查閱 `docs/test_report.md`。
+[0;32m[OK][0m Static validation
+[0;34m[01:59:21][0m Pipeline complete: 8 ok, 0 warnings.

@@ -18,6 +18,7 @@ LONG
 	set("exits", ([
 		"west" : __DIR__"gate",
 		"east" : __DIR__"square",
+		"northeast" : "/d/luocheng/wgate",
 	]));
 
 	setup();

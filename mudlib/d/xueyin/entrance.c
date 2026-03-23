@@ -12,6 +12,7 @@ LONG
     set("exits", ([
         "west" : "/d/snow/ebridge",
         "east" : __DIR__"yard",
+        "north" : "/d/shuiyue/egate",
     ]));
 
     setup();
