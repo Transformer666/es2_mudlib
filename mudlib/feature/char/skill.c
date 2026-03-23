@@ -175,11 +175,6 @@ improve_skill(string skill, int amount)
     SKILL_D(skill)->skill_improved(this_object(), skill);
 }
 
-// advance_skill()
-//
-// This function advances the level of a skill by adding specific amount
-// to the skill level.
-
 // set_skill_cap()
 //
 // Sets the maximum level (重) a character can reach for a specific skill.
@@ -201,6 +196,11 @@ int query_skill_cap(string skill)
     if( !cap ) return 200;  // default: all skills can reach 200
     return cap;
 }
+
+// advance_skill()
+//
+// This function advances the level of a skill by adding specific amount
+// to the skill level.
 
 varargs void advance_skill(string skill, int amount)
 {

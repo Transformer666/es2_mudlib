@@ -141,7 +141,7 @@ int accept_object(object player, object ob)
 				"老乞婆吃完西瓜﹐忽然渾身一震﹐一股靈氣在經脈中流動。\n",
 				"老乞婆站起身來﹐精神煥發﹐與先前判若兩人。\n",
 				"老乞婆微笑道﹕多謝你了﹐好心人。這兩樣東西送給你﹐算是老婆子的一點心意。\n",
-				(: give_rewards, $1 :),
+				(: give_rewards, this_player() :),
 			}));
 			return 1;
 		}
