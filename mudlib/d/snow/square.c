@@ -11,10 +11,9 @@ void create()
 人歇息聊天﹐樹旁還有一個水缸供路人取水解渴。
 LONG
 	);
-	set("objects", ([ /* sizeof() == 1 */
+	set("objects", ([
 		__DIR__"npc/obj/pot" : 1,
 		__DIR__"npc/gammer" : 1,
-		__DIR__"npc/arbao" : 1,
 		__DIR__"npc/junkman": 1,
 	]));
 	set("detail", ([ /* sizeof() == 2 */
