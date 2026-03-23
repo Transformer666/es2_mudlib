@@ -132,7 +132,23 @@ phase_analyze() {
     [ "$classes_missing" -lt 0 ] && classes_missing=0
     local sects_missing=$((18 - sects))
     [ "$sects_missing" -lt 0 ] && sects_missing=0
-    local total_missing=$((races_missing + classes_missing + sects_missing + missing_skill_count))
+    # Count stub areas (< 6 rooms)
+    local stub_count=0
+    for area_dir in mudlib/d/*/; do
+        [ -d "$area_dir" ] || continue
+        local area=$(basename "$area_dir")
+        case "$area" in road|npc|obj) continue ;; esac
+        local rc=$(find "$area_dir" -maxdepth 1 -name "*.c" 2>/dev/null | wc -l | tr -d ' ')
+        if [ "$rc" -lt 6 ]; then
+            stub_count=$((stub_count + 1))
+        fi
+    done
+
+    # Quest gap: wiki has 13 riddles (xueting 7 + wutang 6), compare with implemented
+    local quest_gap=$((13 - quests))
+    [ "$quest_gap" -lt 0 ] && quest_gap=0
+
+    local total_missing=$((races_missing + classes_missing + sects_missing + missing_skill_count + stub_count + quest_gap))
 
     # Write JSON
     cat > docs/missing_content.json << JSONEOF
