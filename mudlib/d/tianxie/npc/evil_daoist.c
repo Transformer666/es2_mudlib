@@ -49,7 +49,24 @@ void create()
     add_temp("apply/damage", 40);
     add_temp("apply/armor", 80);
 
+    set("attitude", "aggressive");
+
     carry_object("/obj/area/obj/longsword")->wield();
     carry_object("/obj/area/obj/cloth")->wear();
     set_temp("apply/vision_of_ghost", 1);
+}
+
+void die(object killer)
+{
+    if( killer && userp(killer) ) {
+        tell_object(killer,
+            "大邪道人慘笑一聲﹐身形化作一團黑霧﹐漸漸消散在暗影之中。\n"
+            "他臨去前的笑聲迴盪在練功場中﹐令人毛骨悚然。\n");
+        if( !killer->query("quest/evil_daoist_trial_done") ) {
+            killer->set("quest/evil_daoist_trial_done", 1);
+            killer->gain_score("quest", 200);
+            killer->delete_temp("pending/evil_daoist_trial");
+        }
+    }
+    ::die(killer);
 }

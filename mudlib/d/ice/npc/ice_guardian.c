@@ -49,6 +49,11 @@ void die(object killer)
         tell_object(killer,
             "冰域守衛的身軀轟然碎裂﹐化作無數冰晶散落一地。\n"
             "在碎冰之中﹐一塊散發著幽藍光芒的寒冰結晶靜靜地躺在那裡。\n");
+        if( !killer->query("quest/ice_guardian_challenge_done") ) {
+            killer->set("quest/ice_guardian_challenge_done", 1);
+            killer->gain_score("quest", 150);
+            killer->delete_temp("pending/ice_guardian");
+        }
     }
     ::die(killer);
 }
