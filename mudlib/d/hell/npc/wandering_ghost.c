@@ -29,5 +29,6 @@ void create()
         "遊蕩鬼魂發出一聲淒厲的哀嚎。\n",
         "遊蕩鬼魂的身影忽明忽暗﹐似乎隨時會消散。\n",
     }));
+    set("attitude", "aggressive");
     setup();
 }
