@@ -10,6 +10,9 @@ void create()
 LONG
 	);
 	set("outdoors", "wilderness");
+	set("detail", ([
+		"腳印" : "水潭邊的泥地上有幾個深陷的巨大蹄印﹐比牛蹄大上數倍﹐印痕周圍的草地像是被踐踏後枯萎﹐空氣中殘留著一股異樣的腥氣。\n",
+	]));
 	set("exits", ([
 		"west" : __DIR__"stream",
 	]));
