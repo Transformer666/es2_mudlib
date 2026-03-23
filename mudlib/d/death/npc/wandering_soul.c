@@ -22,6 +22,7 @@ void create()
     set("long",
         "一個飄忽不定的半透明身影，面容模糊不清。這是一個迷失在死\n"
         "域中的遊魂，不知已在此徘徊了多少年。\n");
+    set("attitude", "aggressive");
     set("chat_chance", 5);
     set("chat_msg", ({
         "遊魂發出微弱的嗚咽聲。\n",

@@ -23,6 +23,7 @@ void create()
     set("long",
         "一具散發著幽綠磷火的骷髏，手持一把鏽跡斑斑的大刀，機械\n"
         "般地守護著白骨荒原。它的眼眶中閃爍著詭異的光芒。\n");
+    set("attitude", "aggressive");
     set("chat_chance", 4);
     set("chat_msg", ({
         "骨衛的骨骼喀喀作響，它似乎在巡邏。\n",
