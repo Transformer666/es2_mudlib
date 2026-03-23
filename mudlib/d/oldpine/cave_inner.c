@@ -1,10 +1,11 @@
 // Room: /d/oldpine/cave_inner.c
 // Quest: bandit_hostage_rescue
-// Flow: defeat bandit_chief -> untie captive -> captive thanks player -> reward
+// Flow: enter room -> bandit_chief spawns if not defeated -> defeat chief -> untie captive -> reward
 
 inherit ROOM;
 
 void give_rescue_reward(object player);
+void try_spawn_chief();
 
 void create()
 {
@@ -17,7 +18,6 @@ void create()
 LONG
 	);
 	set("objects", ([
-		__DIR__"npc/bandit_chief" : 1,
 		__DIR__"npc/captive" : 1,
 	]));
 	set("exits", ([
@@ -29,8 +29,28 @@ LONG
 
 void init()
 {
+	object player;
+
 	add_action("do_untie", "untie");
 	add_action("do_untie", "rescue");
+
+	player = this_player();
+	if( player && !player->query("quest/bandit_hostage_rescue_done") )
+		call_out("try_spawn_chief", 1);
+}
+
+void try_spawn_chief()
+{
+	object chief;
+
+	chief = present("bandit_chief", this_object());
+	if( chief ) return;
+
+	chief = new(__DIR__"npc/bandit_chief");
+	chief->move(this_object());
+	message("vision",
+		"一個虎背熊腰的大漢從木箱後面站了起來﹐冷冷地看著你。\n",
+		this_object());
 }
 
 int do_untie(string arg)
