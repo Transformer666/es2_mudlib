@@ -12,6 +12,9 @@ void create()
 LONG
 	);
 	set("outdoors", "road");
+	set("objects", ([
+		__DIR__"npc/wounded_merchant" : 1,
+	]));
 	set("exits", ([
 		"west"  : __DIR__"crossroad",
 		"east"  : __DIR__"road5",
@@ -20,5 +23,4 @@ LONG
 	]));
 
 	setup();
-	replace_program(ROOM);
 }
