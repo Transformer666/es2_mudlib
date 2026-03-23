@@ -12,9 +12,11 @@ void create()
 怕的生物棲息在這裡。
 LONG
 	);
-	set("objects", ([
-		__DIR__"npc/red_dragon" : 1,
+	set("detail", ([
+		"爪痕" : "深入岩壁的巨大爪痕，似乎是某種強大生物所留。\n",
+		"碎骨" : "散落的碎骨上有灼燒的痕跡，此處的主人顯然極為危險。\n",
 	]));
+	set("no_clean_up", 1);
 	set("exits", ([
 		"south" : __DIR__"herb_garden",
 	]));

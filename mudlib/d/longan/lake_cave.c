@@ -12,9 +12,11 @@ void create()
 空氣中，偶爾傳來低沉的龍吟，令人膽寒。
 LONG
 	);
-	set("objects", ([
-		__DIR__"npc/black_dragon" : 1,
+	set("detail", ([
+		"鱗片" : "巨大的漆黑鱗片散落在地，每一片都有巴掌大小，堅硬如鐵。\n",
+		"爪痕" : "深深的爪痕遍佈洞壁，不知是何等兇猛的生物留下的。\n",
 	]));
+	set("no_clean_up", 1);
 	set("exits", ([
 		"south" : __DIR__"garden",
 	]));

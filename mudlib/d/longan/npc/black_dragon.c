@@ -13,7 +13,7 @@ void create()
     set_attr("int", 20);
     set_attr("spi", 25);
     set_attr("wis", 18);
-    set_race("human");
+    set_race("dragon");
     set_class("commoner");
     set_level(65);
     advance_stat("gin", 250);
@@ -25,6 +25,7 @@ void create()
     set_skill("parry", 70);
     set_skill("force", 90);
 
+    set("attitude", "aggressive");
     set("age", 2000);
     set("gender", "male");
     set("long", "一條漆黑如墨的巨龍盤踞在湖底洞穴之中，龍鱗閃爍著幽暗的光芒，一雙血紅的眼睛死死盯著你。\n");

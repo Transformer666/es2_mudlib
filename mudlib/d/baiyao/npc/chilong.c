@@ -13,7 +13,7 @@ void create()
 	set_attr("int", 18);
 	set_attr("spi", 28);
 	set_attr("wis", 16);
-	set_race("human");
+	set_race("dragon");
 	set_class("commoner");
 	set_level(70);
 	advance_stat("gin", 300);
@@ -25,6 +25,7 @@ void create()
 	set_skill("parry", 65);
 	set_skill("force", 100);
 
+	set("attitude", "aggressive");
 	set("age", 3000);
 	set("gender", "male");
 	set("long",

@@ -13,7 +13,7 @@ void create()
     set_attr("int", 18);
     set_attr("spi", 22);
     set_attr("wis", 15);
-    set_race("human");
+    set_race("dragon");
     set_class("commoner");
     set_level(65);
     advance_stat("gin", 250);
@@ -25,6 +25,7 @@ void create()
     set_skill("parry", 65);
     set_skill("force", 85);
 
+    set("attitude", "aggressive");
     set("age", 1500);
     set("gender", "male");
     set("long", "一條通體赤紅的巨龍蟄伏在石洞深處，鱗片如燃燒的烈焰般灼目，灼熱的氣息從巨口中噴湧而出。\n");
