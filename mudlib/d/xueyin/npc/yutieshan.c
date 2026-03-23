@@ -6,11 +6,11 @@ inherit F_FIGHTER;
 
 void create()
 {
-    set_name("魚鐵山", ({"yutieshan", "yu_tieshan"}));
+    set_name("魚鐵山", ({"master", "yutieshan", "yu_tieshan"}));
     set_attr("str", 24);
     set_attr("con", 24);
     set_attr("dex", 20);
-    set_attr("cor", 22);
+    set_attr("spi", 22);
     set_race("human");
     set_class("warrior");
     set_level(60);
