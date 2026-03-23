@@ -33,9 +33,11 @@ GIT_REMOTE=$(git remote -v | grep -m1 'Transformer666' | awk '{print $1}')
 GIT_REMOTE=${GIT_REMOTE:-"origin"}
 log "Using git remote: $GIT_REMOTE"
 
-# Pull latest
+# Pull latest (stash any local changes first)
 log "Pulling latest changes..."
+git stash -q 2>/dev/null
 git pull "$GIT_REMOTE" main 2>&1 | tee -a $LOG_FILE || warn "Pull failed, continuing with local state."
+git stash pop -q 2>/dev/null || true
 
 echo "" >> $LOG_FILE
 echo "Pipeline start: $START_TIME (phase: $PHASE)" >> $LOG_FILE
