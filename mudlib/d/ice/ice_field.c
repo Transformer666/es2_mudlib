@@ -10,8 +10,8 @@ void create()
 LONG
 	);
 	set("outdoors", "wilderness");
-	set("objects", ([
-		__DIR__"npc/frost_frog" : 1,
+	set("detail", ([
+		"冰晶" : "冰面上散佈著一些奇異的冰晶，呈現出不自然的藍綠色，似乎是某種極寒生物留下的痕跡。\n",
 	]));
 	set("exits", ([
 		"south" : __DIR__"entrance",

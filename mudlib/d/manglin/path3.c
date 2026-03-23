@@ -13,8 +13,8 @@ void create()
 LONG
 	);
 	set("outdoors", "forest");
-	set("objects", ([
-		__DIR__"npc/evil_hydra" : 1,
+	set("detail", ([
+		"鱗片" : "地上散落著幾片巨大的鱗片，隱隱散發著毒氣，似乎有某種巨型蛇類在此盤踞。\n",
 	]));
 	set("exits", ([
 		"south" : __DIR__"path2",

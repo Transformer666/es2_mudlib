@@ -19,6 +19,7 @@ void create()
     set_skill("dodge", 60);
     set("age", 500);
     set("gender", "male");
+    set("attitude", "aggressive");
     set("long", "一隻渾身散發著灼熱氣息的火犬，牠的毛髮如同燃燒的火焰，週身團團熱氣，令人難以靠近。\n");
     set("chat_chance", 3);
     set("chat_msg", ({

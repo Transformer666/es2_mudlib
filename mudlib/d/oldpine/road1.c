@@ -15,7 +15,9 @@ LONG
 	set("outdoors", "forest");
 	set("objects", ([
 		__DIR__"npc/snake" : 1,
-		__DIR__"npc/charming_bird" : 1,
+	]));
+	set("detail", ([
+		"羽毛" : "地上散落著幾根七彩斑斕的羽毛，似乎有某種珍奇的鳥類在此出沒。\n",
 	]));
 	set("exits", ([
 		"northwest" : "/d/snow/sgate",

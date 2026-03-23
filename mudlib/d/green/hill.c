@@ -10,8 +10,8 @@ void create()
 LONG
 	);
 	set("outdoors", "wilderness");
-	set("objects", ([
-		__DIR__"npc/godly_dog" : 1,
+	set("detail", ([
+		"爪印" : "丘陵上的泥土裡有幾個巨大的爪印，看起來是某種體型龐大的猛獸留下的，痕跡還很新鮮。\n",
 	]));
 	set("exits", ([
 		"south" : __DIR__"grassland_n",

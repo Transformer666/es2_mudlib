@@ -19,6 +19,7 @@ void create()
     set_skill("dodge", 75);
     set("age", 500);
     set("gender", "male");
+    set("attitude", "aggressive");
     set("long", "一隻身形端莊高雅的風鳥，漂亮的羽毛在陽光下折射出七彩光芒，優雅地棲息在古松枝頭。\n");
     set("chat_chance", 3);
     set("chat_msg", ({

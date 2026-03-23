@@ -15,7 +15,9 @@ LONG
 	set("outdoors", "forest");
 	set("objects", ([
 		__DIR__"npc/black_bear" : 1,
-		__DIR__"npc/devilish_tiger" : 1,
+	]));
+	set("detail", ([
+		"虎爪痕" : "幾棵大樹的樹幹上有深深的爪痕，看起來是某種巨型猛虎磨爪留下的，令人不寒而慄。\n",
 	]));
 	set("exits", ([
 		"south" : __DIR__"path1",

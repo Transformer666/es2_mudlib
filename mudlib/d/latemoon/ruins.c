@@ -10,8 +10,8 @@ void create()
 LONG
 	);
 	set("outdoors", "wilderness");
-	set("objects", ([
-		__DIR__"npc/wind_god" : 1,
+	set("detail", ([
+		"圖案" : "地面上的古老圖案似乎描繪著一尊掌控狂風的神祇，圖案四周的空氣偶爾會無故旋動，彷彿這裡的風有著自己的意志。\n",
 	]));
 	set("exits", ([
 		"south" : __DIR__"pavilion",

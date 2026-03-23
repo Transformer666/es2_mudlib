@@ -10,8 +10,8 @@ void create()
 LONG
 	);
 	set("outdoors", "wilderness");
-	set("objects", ([
-		__DIR__"npc/celestial_bull" : 1,
+	set("detail", ([
+		"蹄印" : "草地上有幾個深深的蹄印，比普通牛的蹄印大上數倍，四周的草被踩得一片凌亂。\n",
 	]));
 	set("exits", ([
 		"south" : __DIR__"entrance",
