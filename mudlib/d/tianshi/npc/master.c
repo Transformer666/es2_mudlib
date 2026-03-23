@@ -96,6 +96,13 @@ int acquire_skill(object ob, string skill)
             ob->improve_skill(skill, random(ob->query_attr("spi")) + 1);
         }
         break;
+    case "ziwei neigong":
+        if( !ob->query_learn(skill) ) {
+            say("天師掌教點了點頭，說道：好，貧道傳你紫微內功。\n");
+            message_vision("$N將天師派的紫微內功心法傳授給$n。\n", this_object(), ob);
+            ob->improve_skill(skill, random(ob->query_attr("spi")) + 1);
+        }
+        break;
     default:
         return 0;
     }

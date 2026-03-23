@@ -101,6 +101,20 @@ int acquire_skill(object ob, string skill)
             ob->improve_skill(skill, random(ob->query_attr("spi")) + 1);
         }
         break;
+    case "maoshan neigong":
+        if( !ob->query_learn(skill) ) {
+            say("長老點了點頭，說道：好，貧道傳你茅山內功心法。\n");
+            message_vision("$N將茅山內功的吐納之法傳授給$n。\n", this_object(), ob);
+            ob->improve_skill(skill, random(ob->query_attr("spi")) + 1);
+        }
+        break;
+    case "taoshan milu":
+        if( !ob->query_learn(skill) ) {
+            say("長老點了點頭，說道：好，貧道傳你道山秘籙。\n");
+            message_vision("$N將道山秘籙的符咒之術傳授給$n。\n", this_object(), ob);
+            ob->improve_skill(skill, random(ob->query_attr("spi")) + 1);
+        }
+        break;
     default:
         return 0;
     }

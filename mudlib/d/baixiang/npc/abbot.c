@@ -99,6 +99,13 @@ int acquire_skill(object ob, string skill)
             ob->improve_skill(skill, random(ob->query_attr("con")) + 1);
         }
         break;
+    case "diamond hammer":
+        if( !ob->query_learn(skill) ) {
+            say("方丈點了點頭，說道：好，老衲傳你金剛鎚法。\n");
+            message_vision("$N將白象寺金剛鎚法的入門心要傳授給$n。\n", this_object(), ob);
+            ob->improve_skill(skill, random(ob->query_attr("str")) + 1);
+        }
+        break;
     default:
         return 0;
     }
