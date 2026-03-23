@@ -40,23 +40,23 @@ while true; do
     ROUND=$((ROUND + 1))
 
     if [ "$MAX_ROUNDS" -gt 0 ] && [ "$ROUND" -gt "$MAX_ROUNDS" ]; then
-        echo -e "${GREEN}[$(date +"%H:%M:%S")]${NC} Completed $MAX_ROUNDS rounds. Exiting."
+        echo "${GREEN}[$(date +"%H:%M:%S")]${NC} Completed $MAX_ROUNDS rounds. Exiting."
         break
     fi
 
     ROUND_LOG="$LOG_DIR/round_$(date +"%Y%m%d_%H%M%S").log"
 
-    echo -e "${BLUE}[$(date +"%H:%M:%S")]${NC} === Round $ROUND starting ==="
+    echo "${BLUE}[$(date +"%H:%M:%S")]${NC} === Round $ROUND starting ==="
     echo "Round $ROUND - $(date)" > "$ROUND_LOG"
 
     # Run the pipeline
     bash automation/run_pipeline.sh 2>&1 | tee -a "$ROUND_LOG"
-    EXIT_CODE=${PIPESTATUS[0]}
+    EXIT_CODE=$?
 
     if [ "$EXIT_CODE" -eq 0 ]; then
-        echo -e "${GREEN}[$(date +"%H:%M:%S")]${NC} Round $ROUND completed successfully."
+        echo "${GREEN}[$(date +"%H:%M:%S")]${NC} Round $ROUND completed successfully."
     else
-        echo -e "${YELLOW}[$(date +"%H:%M:%S")]${NC} Round $ROUND finished with warnings (exit: $EXIT_CODE)."
+        echo "${YELLOW}[$(date +"%H:%M:%S")]${NC} Round $ROUND finished with warnings (exit: $EXIT_CODE)."
     fi
 
     # Check if there's more work to do
@@ -74,11 +74,11 @@ while true; do
     fi
 
     if [ "$MAX_ROUNDS" -gt 0 ] && [ "$ROUND" -ge "$MAX_ROUNDS" ]; then
-        echo -e "${GREEN}[$(date +"%H:%M:%S")]${NC} Completed $MAX_ROUNDS rounds. Exiting."
+        echo "${GREEN}[$(date +"%H:%M:%S")]${NC} Completed $MAX_ROUNDS rounds. Exiting."
         break
     fi
 
-    echo -e "${BLUE}[$(date +"%H:%M:%S")]${NC} Sleeping ${INTERVAL} minutes before next round..."
+    echo "${BLUE}[$(date +"%H:%M:%S")]${NC} Sleeping ${INTERVAL} minutes before next round..."
     sleep $((INTERVAL * 60))
 done
 
