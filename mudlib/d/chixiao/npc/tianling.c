@@ -1,4 +1,5 @@
 // NPC: /d/chixiao/npc/tianling.c - 天靈 Boss NPC
+// Quest-triggered: summoned by throwing 3 elemental weapons into wishing pool
 
 #include <npc.h>
 
@@ -53,11 +54,34 @@ void create()
 
 void die(object killer)
 {
+	object dagger, eye;
+
 	if( killer && userp(killer) ) {
 		tell_object(killer,
 			"天靈的身軀漸漸消散﹐化為點點金光。\n"
 			"一把閃爍著靈光的匕首和一顆散發著柔和光芒的靈眼\n"
 			"從光芒中緩緩落下。\n");
+
+		if( !killer->query("quest/tianling_summon_done") ) {
+			killer->set("quest/tianling_summon_done", 1);
+			killer->gain_score("quest", 300);
+			killer->delete_temp("pending/tianling_summon_fighting");
+			killer->delete_temp("pending/tianling_offerings");
+			tell_object(killer,
+				"你感到一股溫暖的靈力湧入體內﹐天靈的力量認可了你。\n");
+		}
+
+		dagger = new(__DIR__"obj/tianling_dagger");
+		if( dagger ) {
+			if( dagger->move(killer) )
+				dagger->move(environment());
+		}
+
+		eye = new(__DIR__"obj/tianling_eye");
+		if( eye ) {
+			if( eye->move(killer) )
+				eye->move(environment());
+		}
 	}
 	::die(killer);
 }

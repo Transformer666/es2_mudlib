@@ -1,4 +1,5 @@
 // NPC: /d/chixiao/npc/diling.c - 地靈 Boss NPC
+// Quest-triggered: summoned by pouring spirit wine + using talisman at well
 
 #include <npc.h>
 
@@ -53,11 +54,33 @@ void create()
 
 void die(object killer)
 {
+	object axe, heart;
+
 	if( killer && userp(killer) ) {
 		tell_object(killer,
 			"地靈的身軀轟然碎裂﹐化為漫天飛舞的土石。\n"
 			"一柄散發著大地之力的雙手斧和一顆脈動著生命力的靈心\n"
 			"從碎石中緩緩浮現。\n");
+
+		if( !killer->query("quest/diling_summon_done") ) {
+			killer->set("quest/diling_summon_done", 1);
+			killer->gain_score("quest", 300);
+			killer->delete_temp("pending/diling_summon_fighting");
+			tell_object(killer,
+				"你感到一股厚重的大地之力湧入體內﹐地靈的力量認可了你。\n");
+		}
+
+		axe = new(__DIR__"obj/diling_axe");
+		if( axe ) {
+			if( axe->move(killer) )
+				axe->move(environment());
+		}
+
+		heart = new(__DIR__"obj/diling_heart");
+		if( heart ) {
+			if( heart->move(killer) )
+				heart->move(environment());
+		}
 	}
 	::die(killer);
 }
