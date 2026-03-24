@@ -121,6 +121,22 @@ void relay_say(object me, string msg)
 		return;
 	}
 
+	if( strsrch(msg, "墓碑") >= 0 || strsrch(msg, "碑文") >= 0
+	||  strsrch(msg, "碑") >= 0 || strsrch(msg, "趙子清") >= 0 ) {
+		if( me->query("quest/stele_prayer_done") ) {
+			do_chat("守墓人說道﹕自從你祭拜了那塊墓碑﹐這裡的陰氣確實消散了不少。多謝你。\n");
+			return;
+		}
+		do_chat(({
+			"守墓人沉吟片刻﹐說道﹕你問那塊墓碑﹖\n",
+			"守墓人說道﹕南邊的荒塚裡有一塊碑﹐上面刻的字比別的都清楚。\n",
+			"守墓人嘆道﹕那是一個姓趙的書生﹐年紀輕輕就含冤而死。\n",
+			"守墓人說道﹕老朽每隔些日子就幫他擦擦碑面﹐別的也做不了什麼。\n",
+			"守墓人低聲說道﹕如果你有心﹐去那塊碑前祭拜一下吧﹐也許能讓那可憐的人安息。\n",
+		}));
+		return;
+	}
+
 	if( strsrch(msg, "古墓") >= 0 || strsrch(msg, "tomb") >= 0 ) {
 		if( me->query_temp("pending/gravekeeper_pendant") )
 			do_chat("守墓人說道﹕古墓就在東邊﹐穿過墳場就能看到了。裡面有殭屍﹐你小心。\n");
