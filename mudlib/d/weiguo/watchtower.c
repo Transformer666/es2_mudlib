@@ -13,7 +13,8 @@ void create()
 LONG
     );
     set("exits", ([
-        "east" : __DIR__"square",
+        "east"  : __DIR__"square",
+        "north" : __DIR__"training_ground",
     ]));
 
     set("objects", ([ __DIR__"npc/sentry" : 1 ]));

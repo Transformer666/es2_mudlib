@@ -20,6 +20,7 @@ LONG
     ]));
     set("exits", ([
         "west" : __DIR__"yamen",
+        "east" : __DIR__"stable",
     ]));
     set("no_fight", 1);
 

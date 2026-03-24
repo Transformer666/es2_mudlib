@@ -17,6 +17,7 @@ LONG
 	set("no_fight", 1);
 	set("exits", ([
 		"west" : __DIR__"street",
+		"south" : __DIR__"east_path",
 	]));
 	set("objects", ([
 		__DIR__"npc/hall_keeper" : 1,

@@ -14,6 +14,7 @@ LONG
     );
     set("exits", ([
         "south" : __DIR__"barracks",
+        "west"  : __DIR__"training_ground",
     ]));
     set("no_fight", 1);
     set("objects", ([ __DIR__"npc/armorer" : 1 ]));
