@@ -19,7 +19,9 @@ LONG
         "香爐" : "一座鐵鑄的大香爐﹐爐中插滿了線香﹐青煙裊裊﹐瀰漫著淡淡的檀香味。\n",
     ]));
     set("exits", ([
+        "north" : __DIR__"ngate",
         "south" : __DIR__"square",
+        "east"  : __DIR__"yamen",
     ]));
 
     setup();

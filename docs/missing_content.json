@@ -1,19 +1,19 @@
 {
   "summary": {
-    "total_missing": 0,
+    "total_missing": 3,
     "races": 11,
     "classes": 9,
-    "sects": 18,
-    "skills": 75,
-    "rooms": 494,
-    "npcs": 309,
-    "quests": 14,
-    "equipment": 288
+    "sects": 19,
+    "skills": 87,
+    "rooms": 619,
+    "npcs": 367,
+    "quests": 57,
+    "equipment": 332
   },
   "races": { "required": 11, "implemented": 11, "missing": 0 },
   "classes": { "required": 7, "implemented": 9, "missing": 0 },
-  "sects": { "required": 18, "implemented": 18, "missing": 0 },
-  "skills": { "implemented": 75, "missing": 0, "missing_list": [] },
-  "areas": { "implemented": 54, "stub_towns": [] },
-  "quests": { "implemented": 14 }
+  "sects": { "required": 18, "implemented": 19, "missing": 0 },
+  "skills": { "implemented": 87, "missing": 0, "missing_list": [] },
+  "areas": { "implemented": 61, "stub_towns": [] },
+  "quests": { "implemented": 57 }
 }

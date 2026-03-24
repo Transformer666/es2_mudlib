@@ -19,6 +19,7 @@ LONG
     set("exits", ([
         "north" : __DIR__"street1",
         "south" : "/d/goathill/peak",
+        "west"  : __DIR__"stable",
     ]));
 
     setup();

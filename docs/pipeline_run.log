@@ -30518,3 +30518,212 @@ Exit code 30 = 30 個失敗項。完整報告在 `docs/test_report.md`。
 如需查看完整 30 項失敗詳情，可以查閱 `docs/test_report.md`。
 [0;32m[OK][0m Static validation
 [0;34m[01:59:21][0m Pipeline complete: 8 ok, 0 warnings.
+From github.com:Transformer666/es2_mudlib
+ * branch            main       -> FETCH_HEAD
+error: cannot rebase: You have unstaged changes.
+error: Please commit or stash them.
+
+Pipeline start: 2026-03-24 01:02:25 (phase: all)
+==============================
+[0;34m[01:02:28][0m === Phase: Analyze (bash-native, no agent) ===
+[0;34m[01:02:29][0m Analyze complete:
+[0;34m[01:02:29][0m   Races: 11/11 | Classes: 9/7 | Sects: 19/18
+[0;34m[01:02:29][0m   Skills: 87 (missing: 0) | Rooms: 619 | NPCs: 367
+[0;34m[01:02:29][0m   Quests: 57 | Equipment: 332
+[0;34m[01:02:29][0m   Total missing: 3
+[0;32m[OK][0m Analyze phase
+[0;34m[01:02:29][0m === Phase: Build ===
+[0;34m[01:02:29][0m All original skills ported.
+[0;34m[01:02:29][0m Step: Audit sects batch 1:  baixiang baolian buxuan fengshan hudao jianjia
+--- Step: Audit sects batch 1:  baixiang baolian buxuan fengshan hudao jianjia ---
+All skill daemon files exist. Let me summarize the checks:
+
+| 門派 | 掌門房間 | 房間存在 | NPC 載入 | 三函數 | 技能 daemon |
+|------|---------|---------|---------|--------|------------|
+| baixiang | /d/baixiang/main_hall | ✓ | npc/abbot | ✓ | staff ✓, diamond_hammer ✓ |
+| baolian | /d/baolian/hall | ✓ | npc/master | ✓ | staff ✓ |
+| buxuan | /d/buxuan/study | ✓ | npc/master | ✓ | three_rotations ✓ |
+| fengshan | /d/fengshan/main_hall | ✓ | npc/liudonglu | ✓ | fengshan_sword ✓ |
+| hudao | /d/hudao/hall | ✓ | npc/hanxiao | ✓ | tiger_blade ✓ |
+| jianjia | /d/jianjia/hall | ✓ | npc/master | ✓ | sword ✓, needle ✓ |
+
+**batch 1: all OK**
+[0;32m[OK][0m Audit sects batch 1:  baixiang baolian buxuan fengshan hudao jianjia
+[0;34m[01:03:12][0m Step: Audit sects batch 2:  kuxiao langyi lengmei longttu maoshan tianshi
+--- Step: Audit sects batch 2:  kuxiao langyi lengmei longttu maoshan tianshi ---
+All checks pass for all 6 sects:
+
+| 檢查項目 | kuxiao | langyi | lengmei | longttu | maoshan | tianshi |
+|---|---|---|---|---|---|---|
+| 掌門房間存在 | hall.c | hall.c | hall.c | study.c | lingyun.c | hall.c |
+| 房間載入掌門 NPC | liuyi | master | meiyingfeng | elder | elder | master |
+| accept_apprentice | OK | OK | OK | OK | OK | OK |
+| init_apprentice | OK | OK | OK | OK | OK | OK |
+| acquire_skill | OK | OK | OK | OK | OK | OK |
+| 技能 daemon 存在 | sword | dagger | lengmei_sword | needle, longttu_neigong | maoshan_sword, maoshan_neigong, taoshan_milu | taiyi_sword, ziwei_neigong |
+
+**batch 2: all OK**
+[0;32m[OK][0m Audit sects batch 2:  kuxiao langyi lengmei longttu maoshan tianshi
+[0;34m[01:04:31][0m Step: Audit sects batch 3:  tianxie tianyue wutuo xuantian xueyin yinjiao
+--- Step: Audit sects batch 3:  tianxie tianyue wutuo xuantian xueyin yinjiao ---
+Good — skill daemons register with space names; filenames use underscores but the mapping is by `register_skill_daemon`. Now let me check if the wutuo master is missing `set("gender")` since I noticed it wasn't set.
+
+Let me also verify the tianxie master has no `set("gender")` — but actually the task is about 拜師系統 and 技能教學 correctness, not gender. Let me focus on the checklist:
+
+**Summary of findings:**
+
+| 門派 | location | 房間載入掌門 | accept/init/acquire_skill | 技能 daemon |
+|------|----------|-------------|--------------------------|-------------|
+| 天邪 tianxie | `/d/tianxie/hall` | `npc/master` ✓ | 全有 ✓ | phantom sword → `phantom_sword.c` ✓ |
+| 天月 tianyue | `/d/tianyue/hall` | `npc/master` ✓ | 全有 ✓ | staff → `staff.c` ✓ |
+| 武陀 wutuo | `/d/wutuo/hall` | `npc/master` ✓ | 全有 ✓ | five defeat needle → `five_defeat_needle.c` ✓, amazing needle → `amazing_needle.c` ✓ |
+| 玄天 xuantian | `/d/xuantian/hall` | `npc/master` ✓ | 全有 ✓ | sword → `sword.c` ✓ |
+| 雪吟 xueyin | `/d/xueyin/hall` | `npc/yutieshan` ✓ | 全有 ✓ | sword → `sword.c` ✓ |
+| 隱教 yinjiao | `/d/yinjiao/hall` | `npc/master` ✓ | 全有 ✓ | dagger → `dagger.c` ✓ |
+
+**batch 3: all OK**
+[0;32m[OK][0m Audit sects batch 3:  tianxie tianyue wutuo xuantian xueyin yinjiao
+[0;34m[01:05:31][0m Step: Audit sects batch 4:  zhenwu
+--- Step: Audit sects batch 4:  zhenwu ---
+batch 4: all OK
+
+**zhenwu (振武軍營)** 檢查結果：
+
+| 項目 | 狀態 |
+|---|---|
+| 掌門房間 `/d/zhenwu/command` | 存在 |
+| 房間載入掌門 NPC `npc/mipei` | 有 |
+| `accept_apprentice` | 有 (line 49) |
+| `init_apprentice` | 有 (line 66) |
+| `acquire_skill` | 有 (line 86)，教 tactic + pike |
+| `daemon/skill/tactic.c` | 存在 |
+| `daemon/skill/pike.c` | 存在 |
+
+全部正確，無需修正。
+[0;32m[OK][0m Audit sects batch 4:  zhenwu
+[0;34m[01:05:54][0m Step: Build quests
+--- Step: Build quests ---
+All boss NPCs are properly quest-triggered, not permanent. Regular mobs (wolves, bears, boars) are correctly loaded as permanent `set("objects")`.
+
+**Summary: All 13 town puzzles are already fully implemented.**
+
+- **雪亭鎮 7 謎** — all complete:
+  1. 阿寶送信 (`arbao_letter_done`, gain_score 80)
+  2. 瞎眼婆婆身分 (`gammer_identity_done`, gain_score 120)
+  3. 貨棧搬箱子 (`foreman_crate_done`, gain_score 50)
+  4. 驛站遺失信件 (`postman_delivery_done`, gain_score 100)
+  5. 振武軍營招募 (`recruiter_enlist_done`, gain_score 50)
+  6. 破舊老宅秘密 (`manor_secret_done`, gain_score 60)
+  7. 黑袍老人女兒 (`darkrobe_daughter_done`, gain_score 150)
+  - Bonus: 靈狙現身 (`ritual_monkey_encounter_done`, gain_score 80)
+  - Bonus: 鐵匠黑鐵 (`smith_black_iron_done`, gain_score 60)
+
+- **五堂鎮 6 謎** — all complete:
+  1. 飲血劍 (`yinxue_found_done`, gain_score 120) — at river_bend.c
+  2. 巫山秘密雕像 (`wushan_statue_done`, gain_score 200)
+  3. 郭布收徒 (`guobu_apprentice_done`, gain_score)
+  4. 鎮天神廟 (`temple_master_done`, gain_score 150)
+  5. 欽差調查 (`inspector_case_done`, gain_score)
+  6. 渡船夫 (`ferryman_guide_done`, gain_score 50)
+
+- **Boss NPC 生成機制** — all correct: ritual_monkey, diling, tianling, evil_hydra, ice_guardian 都透過任務觸發 `new()` + `call_out()` 機制召喚，沒有任何被錯誤地放在 `set("objects")` 中。
+
+本輪無需新增任務，兩個城鎮的謎題都已完整實作。
+[0;32m[OK][0m Build quests
+[0;34m[01:07:37][0m Step: Audit NPC spawns
+--- Step: Audit NPC spawns ---
+All data collected. Here's the完整報告：
+
+---
+
+## NPC 出現時機與地點檢查報告
+
+### 1. 上古妖獸與 Boss 級 NPC 狀態
+
+| NPC | 等級 | 所在區域 | 是否常駐 (set_objects) | 目前生成方式 |
+|-----|------|----------|----------------------|-------------|
+| 風神 wind_god | 80 | latemoon | **否** | 無生成機制（孤兒 NPC） |
+| 鮫蛟 evil_hydra | 55 | manglin | **否** | 任務觸發 (manglin/pond.c) |
+| 天獒 godly_dog | 50 | green | **否** | 無生成機制（孤兒 NPC） |
+| 饕餮 celestial_bull | 45 | green | **否** | 無生成機制（孤兒 NPC） |
+| 狻猊 devilish_tiger | 45 | manglin | **否** | 任務觸發 (manglin/path2.c) |
+| 寒蟾 frost_frog | 40 | ice | **否** | 無生成機制（孤兒 NPC） |
+| 鸂鷘 charming_bird | 35 | oldpine | **否** | 無生成機制（孤兒 NPC） |
+| 鬼獫 inferno_dog | 35 | road | **否** | 無生成機制（孤兒 NPC） |
+| 靈狙 ritual_monkey | 30 | snow | **否** | 任務觸發 (snow/tree.c) |
+
+### 2. 關鍵發現
+
+**好消息：沒有 Boss/上古妖獸被常駐載入。** 所有 9 個目標 NPC 都不在任何房間的 `set("objects")` 中。
+
+**已正確實作任務觸發的（3 個）：**
+- `ritual_monkey` — snow/tree.c 中放置食物觸發
+- `devilish_tiger` — manglin/path2.c 中搜索虎蹤觸發 (hunter_beast 任務)
+- `evil_hydra` — manglin/pond.c 中搜索水面觸發 (manglin_hydra 任務)
+
+**孤兒 NPC（6 個，有檔案但無生成機制）：**
+- `wind_god` (lv80) — 需要任務系統觸發
+- `godly_dog` (lv50) — 需要任務系統觸發
+- `celestial_bull` (lv45) — 需要任務系統觸發
+- `frost_frog` (lv40) — 需要任務系統觸發
+- `charming_bird` (lv35) — 需要任務系統觸發
+- `inferno_dog` (lv35) — 需要任務系統觸發
+
+### 3. aggressive 態度檢查
+
+- `set("aggressive", 1)` — **全域搜索結果：0 筆**，沒有任何 NPC 使用錯誤寫法
+- 所有野外攻擊性怪物都正確使用 `set("attitude", "aggressive")`
+- 上古妖獸中已設定 aggressive 的：godly_dog, celestial_bull, frost_frog, inferno_dog, devilish_tiger, evil_hydra, wind_god — 全部正確
+
+### 4. 結論與建議
+
+**無需修改任何房間檔案** — 因為這些 Boss NPC 本來就沒有被常駐載入。
+
+**待辦（未來任務系統實作時）：**
+需要為以下 6 個孤兒 NPC 建立觸發機制：
+
+| NPC | 建議觸發區域 | 備註 |
+|-----|-------------|------|
+| wind_god (lv80) | d/latemoon | 晚月教最終 Boss |
+| godly_dog (lv50) | d/green | 青田野外 Boss |
+| celestial_bull (lv45) | d/green | 青田野外 Boss |
+| frost_frog (lv40) | d/ice | 冰原野外 Boss |
+| charming_bird (lv35) | d/oldpine | 古松嶺野外 Boss |
+| inferno_dog (lv35) | d/road | 路上野外 Boss |
+
+這些 NPC 檔案已完整（有等級、技能、態度設定），只差觸發任務的房間互動邏輯。可以用 `/implement-quest` 為它們建立觸發任務。
+[0;32m[OK][0m Audit NPC spawns
+[0;34m[01:10:24][0m Step: Expand area: stub_towns
+--- Step: Expand area: stub_towns ---
+Error: Reached max turns (20)[0;32m[OK][0m Expand area: stub_towns
+[0;34m[01:17:06][0m === Phase: Validate ===
+[0;34m[01:17:06][0m Step: Static validation
+--- Step: Static validation ---
+## 靜態驗證報告
+
+### 主測試結果
+| | 數量 |
+|---|---|
+| **PASS** | 4395 |
+| **FAIL** | 81 |
+| **WARN** | 84 |
+
+### 額外檢查
+
+| 檢查項目 | 結果 |
+|---|---|
+| `set("aggressive", 1)` 誤用 | **PASS** — 0 筆（全部正確使用 attitude） |
+| skill daemon 有 `skill_improved` | **PASS** — 全部 85 個 daemon 皆有（count ≥ 1） |
+| lv50+ NPC 有 `vision_of_ghost` | **PASS** — 全部 61 個 lv50+ NPC 皆有設定 |
+
+### 主要失敗項目（81 FAIL）
+
+失敗集中在兩類：
+
+1. **Temple inherit 缺失**（5 筆）— `d/shuilan/temple`、`d/xueyin/temple`、`d/sanyen/inner_temple`、`d/sanyen/temple`、`d/wenguo/temple` 缺少正確的 TEMPLE inherit
+2. **出口單向連結**（~76 筆）— 大量房間的出口缺少反向連結，例如 `west -> shop` 無對應 `east` 回來
+
+需要修復嗎？
+[0;32m[OK][0m Static validation
+[0;34m[01:20:29][0m Checking Chinese dictionary...
+[1;33m[WARN][0m Missing Chinese translations: xingtian:刑天 yaksha:夜叉 dingling:釘靈 asura:阿修羅 fengshan sword:封山劍法 phantom sword:幻影劍法 maoshan sword:茅山劍法 taiyi sword:太乙劍法 lengmei sword:冷梅劍法 diamond hammer:金剛鎚法 three rotations:三轉劍法 amazing needle:奇針術 five defeat needle:五敗針法 tactic:兵法戰術 maoshan neigong:茅山內功 longttu neigong:龍圖內功 ziwei neigong:紫微內功 taoshan milu:陶山迷路
