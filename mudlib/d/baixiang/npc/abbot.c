@@ -85,6 +85,55 @@ int init_apprentice(object me)
     }
 }
 
+void relay_say(object me, string msg)
+{
+    if( is_fighting() || is_chatting() ) return;
+
+    if( strsrch(msg, "梅影風") >= 0 || strsrch(msg, "冷梅") >= 0
+    ||  strsrch(msg, "藥") >= 0 || strsrch(msg, "medicine") >= 0 ) {
+        if( me->query("quest/meiyingfeng_medicine_step1") ) {
+            do_chat(({
+                "方丈雙手合十﹐說道﹕阿彌陀佛﹐施主已知藥方之事。\n",
+                "方丈說道﹕那味「雪蓮淨心草」﹐生於黑風嶺深處﹐極為難尋。\n",
+                "方丈說道﹕施主若要前往﹐務必小心。\n",
+            }));
+            return;
+        }
+
+        if( !me->query_temp("pending/meiyingfeng_medicine") ) {
+            do_chat("方丈微微一笑﹐說道﹕阿彌陀佛﹐施主有何指教﹖\n");
+            return;
+        }
+
+        do_chat(({
+            "方丈神色微變﹐說道﹕阿彌陀佛﹐梅莊主的夫人染病了﹖\n",
+            "方丈沉吟片刻﹐說道﹕老衲在古卷中確曾見過一帖古方 ...\n",
+            "方丈說道﹕此方名為「淨心散」﹐需以「雪蓮淨心草」為主藥。\n",
+            "方丈說道﹕只是此草極為罕見﹐據說只生長在黑風嶺的深處。\n",
+            "方丈說道﹕而且 ...\n",
+            "方丈壓低聲音﹐說道﹕老衲近日聽聞一些不尋常的傳言。\n",
+            "方丈說道﹕有人說魚鐵山和劉乙忘玄最近走動頻繁﹐似乎在謀劃什麼。\n",
+            "方丈說道﹕此事或許與梅莊主夫人的病有關﹐也或許無關﹐施主自行斟酌。\n",
+            "方丈雙手合十﹐說道﹕阿彌陀佛﹐願施主一路平安。\n",
+            (: $1->set("quest/meiyingfeng_medicine_step1", 1) :),
+            (: $1->delete_temp("pending/meiyingfeng_medicine") :),
+        }));
+        return;
+    }
+
+    if( strsrch(msg, "淨心") >= 0 || strsrch(msg, "雪蓮") >= 0 ) {
+        if( me->query("quest/meiyingfeng_medicine_step1") ) {
+            do_chat(({
+                "方丈說道﹕「雪蓮淨心草」形如蓮花﹐色如白雪﹐散發淡淡清香。\n",
+                "方丈說道﹕黑風嶺山高路險﹐聽說韓笑曾去過那裡﹐或許他知道些什麼。\n",
+            }));
+        }
+        else
+            do_chat("方丈微微搖頭﹐說道﹕老衲不知施主所指為何。\n");
+        return;
+    }
+}
+
 int acquire_skill(object ob, string skill)
 {
     if( is_chatting() )

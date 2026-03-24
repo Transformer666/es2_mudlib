@@ -81,6 +81,35 @@ int init_apprentice(object me)
     }
 }
 
+void relay_say(object me, string msg)
+{
+    if( is_fighting() || is_chatting() ) return;
+
+    if( strsrch(msg, "梅影風") >= 0 || strsrch(msg, "冷梅") >= 0
+    ||  strsrch(msg, "藥") >= 0 ) {
+        do_chat(({
+            "魚鐵山臉色微微一沉。\n",
+            "魚鐵山冷冷道﹕梅影風的家事﹐與我雪吟莊何干﹖\n",
+            "魚鐵山說道﹕你若無事﹐便請回吧。\n",
+        }));
+        return;
+    }
+
+    if( strsrch(msg, "劉乙") >= 0 || strsrch(msg, "哭笑") >= 0 ) {
+        do_chat("魚鐵山哼了一聲﹐說道﹕劉乙忘玄那個瘋子﹐提他做什麼。\n");
+        return;
+    }
+
+    if( strsrch(msg, "陰謀") >= 0 || strsrch(msg, "勾結") >= 0 ) {
+        do_chat(({
+            "魚鐵山猛地站起身來﹐一股殺氣從身上散發出來。\n",
+            "魚鐵山怒道﹕你在含沙射影什麼﹗\n",
+            "魚鐵山深吸一口氣﹐坐了回去﹐冷冷道﹕出去。\n",
+        }));
+        return;
+    }
+}
+
 int acquire_skill(object ob, string skill)
 {
     if( is_chatting() )

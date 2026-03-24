@@ -81,6 +81,43 @@ int init_apprentice(object me)
     }
 }
 
+void relay_say(object me, string msg)
+{
+    if( is_fighting() || is_chatting() ) return;
+
+    if( strsrch(msg, "妻子") >= 0 || strsrch(msg, "夫人") >= 0
+    ||  strsrch(msg, "藥") >= 0 || strsrch(msg, "medicine") >= 0 ) {
+        if( me->query("quest/meiyingfeng_medicine_step1") ) {
+            do_chat("梅影風輕嘆一聲﹐說道﹕多謝你費心﹐方丈若有消息﹐還望轉告。\n");
+            return;
+        }
+
+        if( me->query_temp("pending/meiyingfeng_medicine") ) {
+            do_chat(({
+                "梅影風眉頭微皺﹐說道﹕你去找過白象寺方丈了嗎﹖\n",
+                "梅影風說道﹕方丈精通佛門醫理﹐或許能救內子。\n",
+            }));
+            return;
+        }
+
+        do_chat(({
+            "梅影風神情一黯﹐沉默了片刻。\n",
+            "梅影風說道﹕內子 ... 她染了一種怪病﹐已經臥床多日。\n",
+            "梅影風說道﹕我遍訪名醫﹐用盡各種靈藥﹐都不見好轉。\n",
+            "梅影風說道﹕聽聞白象寺方丈精通佛門古方﹐也許他會知道解法。\n",
+            "梅影風深深看了你一眼﹐說道﹕若你有暇﹐能否替我去白象寺問問方丈﹖\n",
+            "梅影風說道﹕冷梅莊事務纏身﹐我一時脫不開身 ...\n",
+            (: $1->set_temp("pending/meiyingfeng_medicine", 1) :),
+        }));
+        return;
+    }
+
+    if( strsrch(msg, "冷梅") >= 0 || strsrch(msg, "劍法") >= 0 ) {
+        do_chat("梅影風淡淡說道﹕冷梅劍法以寒梅傲雪之意入劍﹐非心志堅毅者不可修習。\n");
+        return;
+    }
+}
+
 int acquire_skill(object ob, string skill)
 {
     if( is_chatting() )

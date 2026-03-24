@@ -82,6 +82,35 @@ int init_apprentice(object me)
     }
 }
 
+void relay_say(object me, string msg)
+{
+    if( is_fighting() || is_chatting() ) return;
+
+    if( strsrch(msg, "梅影風") >= 0 || strsrch(msg, "冷梅") >= 0
+    ||  strsrch(msg, "藥") >= 0 ) {
+        do_chat(({
+            "劉乙忘玄臉上的笑容忽然僵住﹐隨即又恢復如常。\n",
+            "劉乙忘玄半哭半笑道﹕梅影風的事﹖哈哈 ... 嗚嗚 ... 我怎麼會知道。\n",
+            "劉乙忘玄說道﹕你去問別人吧﹐別來煩我。\n",
+        }));
+        return;
+    }
+
+    if( strsrch(msg, "魚鐵山") >= 0 || strsrch(msg, "雪吟") >= 0 ) {
+        do_chat("劉乙忘玄眼神一閃﹐忽哭忽笑道﹕魚鐵山﹖不熟不熟﹐哈哈 ... 嗚嗚 ...\n");
+        return;
+    }
+
+    if( strsrch(msg, "陰謀") >= 0 || strsrch(msg, "勾結") >= 0 ) {
+        do_chat(({
+            "劉乙忘玄的笑容驟然收斂﹐目光冰冷地看了你一眼。\n",
+            "劉乙忘玄說道﹕什麼陰謀﹖你在說什麼﹖\n",
+            "劉乙忘玄忽然又笑了起來﹐說道﹕哈哈 ... 嗚嗚 ... 年輕人﹐話別亂說。\n",
+        }));
+        return;
+    }
+}
+
 int acquire_skill(object ob, string skill)
 {
     if( is_chatting() )

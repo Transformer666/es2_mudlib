@@ -81,6 +81,36 @@ int init_apprentice(object me)
     }
 }
 
+void relay_say(object me, string msg)
+{
+    if( is_fighting() || is_chatting() ) return;
+
+    if( strsrch(msg, "梅影風") >= 0 || strsrch(msg, "冷梅") >= 0 ) {
+        if( me->query("quest/meiyingfeng_medicine_step1") )
+            do_chat(({
+                "韓笑收斂了笑容﹐說道﹕梅莊主的夫人病了﹖這事我倒是有所耳聞。\n",
+                "韓笑說道﹕黑風嶺我去過幾回﹐那裡確實有些珍稀藥草。\n",
+                "韓笑壓低聲音﹐說道﹕不過你要小心劉乙忘玄和魚鐵山﹐他們最近很不對勁。\n",
+            }));
+        else
+            do_chat("韓笑哈哈一笑﹐說道﹕梅影風﹖她劍法倒是不錯﹐可惜太冷了些。\n");
+        return;
+    }
+
+    if( strsrch(msg, "劉乙") >= 0 || strsrch(msg, "魚鐵山") >= 0 ) {
+        do_chat(({
+            "韓笑的笑容淡了幾分﹐說道﹕那兩個人 ... 最近跟他們走得太近可不是好事。\n",
+            "韓笑說道﹕我虎刀門向來光明磊落﹐不屑與人暗中勾結。\n",
+        }));
+        return;
+    }
+
+    if( strsrch(msg, "黑風") >= 0 ) {
+        do_chat("韓笑說道﹕黑風嶺山高路險﹐多的是毒蟲猛獸﹐沒點本事別去。\n");
+        return;
+    }
+}
+
 int acquire_skill(object ob, string skill)
 {
     if( is_chatting() )
