@@ -15,7 +15,8 @@ LONG
 		__DIR__"npc/merchant" : 1,
 	]));
 	set("exits", ([
-		"east" : __DIR__"nstreet",
+		"east"  : __DIR__"nstreet",
+		"south" : __DIR__"back_alley",
 	]));
 
 	setup();

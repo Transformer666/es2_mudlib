@@ -17,7 +17,7 @@ LONG
 		__DIR__"npc/gate_guard" : 2,
 	]));
 	set("exits", ([
-		"south" : "/d/road/road4",
+		"south" : __DIR__"sgate",
 		"north" : __DIR__"street",
 	]));
 

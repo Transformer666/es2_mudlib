@@ -17,7 +17,7 @@ LONG
 		__DIR__"npc/sentry" : 1,
 	]));
 	set("exits", ([
-		"east"  : "/d/road/wild_path1",
+		"east"  : __DIR__"egate",
 		"north" : __DIR__"street",
 		"west"  : __DIR__"back_street",
 	]));

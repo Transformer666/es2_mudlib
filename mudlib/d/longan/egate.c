@@ -18,8 +18,9 @@ LONG
 		__DIR__"npc/guard" : 2,
 	]));
 	set("exits", ([
-		"east" : "/d/road/road2",
-		"west" : __DIR__"entrance",
+		"east"  : "/d/road/road2",
+		"west"  : __DIR__"entrance",
+		"south" : __DIR__"east_street",
 	]));
 
 	setup();

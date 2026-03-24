@@ -18,6 +18,7 @@ LONG
 	set("no_fight", 1);
 	set("exits", ([
 		"west" : __DIR__"nstreet",
+		"east" : __DIR__"east_lane",
 	]));
 
 	setup();

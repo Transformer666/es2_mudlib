@@ -17,10 +17,10 @@ LONG
 		__DIR__"npc/guard" : 1,
 	]));
 	set("exits", ([
-		"north" : "/d/heifeng/road2",
+		"north" : __DIR__"ngate",
 		"south" : __DIR__"square",
-		"east" : __DIR__"pillar",
-		"west" : __DIR__"weapon_shop",
+		"east"  : __DIR__"pillar",
+		"west"  : __DIR__"weapon_shop",
 	]));
 
 	setup();

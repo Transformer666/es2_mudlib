@@ -15,6 +15,7 @@ LONG
 	set("exits", ([
 		"west"   : __DIR__"square",
 		"north"  : __DIR__"alley",
+		"east"   : __DIR__"east_street",
 	]));
 	set("objects", ([
 		__DIR__"npc/merchant" : 1,

@@ -17,6 +17,7 @@ LONG
 	]));
 	set("exits", ([
 		"north" : __DIR__"entrance",
+		"west"  : __DIR__"bamboo_grove",
 	]));
 
 	setup();

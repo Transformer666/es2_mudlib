@@ -16,8 +16,8 @@ LONG
 		__DIR__"npc/guard" : 1,
 	]));
 	set("exits", ([
-		"west" : "/d/oldpine/road3",
-		"east" : __DIR__"street",
+		"west"  : __DIR__"wgate",
+		"east"  : __DIR__"street",
 		"south" : __DIR__"path",
 		"north" : __DIR__"back_street",
 	]));
