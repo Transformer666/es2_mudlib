@@ -112,6 +112,21 @@ void relay_say(object me, string msg)
         return;
     }
 
+    if( strsrch(msg, "二當家") >= 0 || strsrch(msg, "趙鐵虎") >= 0
+    ||  strsrch(msg, "鐵虎") >= 0 ) {
+        if( me->query("quest/hudao_erdangjia_step1") )
+            do_chat(({
+                "梅影風微微蹙眉﹐說道﹕虎刀門的趙鐵虎﹖我倒是見過幾面。\n",
+                "梅影風說道﹕此人忠厚老實﹐是韓笑的左膀右臂。\n",
+                "梅影風若有所思﹐說道﹕他失蹤了﹖這倒奇怪 ...\n",
+                "梅影風說道﹕我之前聽韓笑提過﹐趙鐵虎一直在查劉乙忘玄和魚鐵山的事。\n",
+                "梅影風說道﹕如果他真的去了黑風嶺﹐恐怕凶多吉少。那兩人絕非善類。\n",
+            }));
+        else
+            do_chat("梅影風淡淡說道﹕虎刀門的事﹐我不太清楚。\n");
+        return;
+    }
+
     if( strsrch(msg, "冷梅") >= 0 || strsrch(msg, "劍法") >= 0 ) {
         do_chat("梅影風淡淡說道﹕冷梅劍法以寒梅傲雪之意入劍﹐非心志堅毅者不可修習。\n");
         return;

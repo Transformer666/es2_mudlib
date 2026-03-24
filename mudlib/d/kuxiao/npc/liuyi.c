@@ -96,6 +96,20 @@ void relay_say(object me, string msg)
         return;
     }
 
+    if( strsrch(msg, "二當家") >= 0 || strsrch(msg, "趙鐵虎") >= 0
+    ||  strsrch(msg, "鐵虎") >= 0 ) {
+        if( me->query("quest/hudao_erdangjia_step1") )
+            do_chat(({
+                "劉乙忘玄的笑容僵了一瞬﹐隨即又大笑起來。\n",
+                "劉乙忘玄說道﹕趙鐵虎﹖哈哈 ... 嗚嗚 ... 虎刀門的人找我做什麼﹖\n",
+                "劉乙忘玄眼珠轉了轉﹐說道﹕我可沒見過什麼趙鐵虎﹐你別亂攀扯。\n",
+                "劉乙忘玄忽然壓低聲音﹐說道﹕不過 ... 黑風嶺那邊最近不太平﹐哈哈 ...\n",
+            }));
+        else
+            do_chat("劉乙忘玄半哭半笑道﹕什麼二當家﹖不認識﹐哈哈 ... 嗚嗚 ...\n");
+        return;
+    }
+
     if( strsrch(msg, "魚鐵山") >= 0 || strsrch(msg, "雪吟") >= 0 ) {
         do_chat("劉乙忘玄眼神一閃﹐忽哭忽笑道﹕魚鐵山﹖不熟不熟﹐哈哈 ... 嗚嗚 ...\n");
         return;

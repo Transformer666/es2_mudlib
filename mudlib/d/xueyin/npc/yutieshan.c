@@ -95,6 +95,19 @@ void relay_say(object me, string msg)
         return;
     }
 
+    if( strsrch(msg, "二當家") >= 0 || strsrch(msg, "趙鐵虎") >= 0
+    ||  strsrch(msg, "鐵虎") >= 0 ) {
+        if( me->query("quest/hudao_erdangjia_step1") )
+            do_chat(({
+                "魚鐵山的眼神驟然凌厲起來﹐隨即恢復平靜。\n",
+                "魚鐵山冷冷道﹕虎刀門的人﹐關我何事﹖\n",
+                "魚鐵山說道﹕你到處打聽別人的家務事﹐嫌命長了嗎﹖\n",
+            }));
+        else
+            do_chat("魚鐵山哼了一聲﹐說道﹕不知道你在說什麼。\n");
+        return;
+    }
+
     if( strsrch(msg, "劉乙") >= 0 || strsrch(msg, "哭笑") >= 0 ) {
         do_chat("魚鐵山哼了一聲﹐說道﹕劉乙忘玄那個瘋子﹐提他做什麼。\n");
         return;

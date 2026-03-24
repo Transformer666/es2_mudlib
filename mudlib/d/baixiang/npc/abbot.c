@@ -121,6 +121,25 @@ void relay_say(object me, string msg)
         return;
     }
 
+    if( strsrch(msg, "二當家") >= 0 || strsrch(msg, "趙鐵虎") >= 0
+    ||  strsrch(msg, "鐵虎") >= 0 ) {
+        if( me->query("quest/hudao_erdangjia_step1") ) {
+            do_chat(({
+                "方丈雙手合十﹐說道﹕阿彌陀佛﹐施主問的是虎刀門的趙施主﹖\n",
+                "方丈沉吟片刻﹐說道﹕半月前確有一位魁梧漢子來過白象寺。\n",
+                "方丈說道﹕他向老衲打聽黑風嶺深處的路﹐說要去查一件要緊的事。\n",
+                "方丈說道﹕老衲勸他不要獨自前往﹐但他心意已決。\n",
+                "方丈說道﹕他臨走時說﹐若他三日不回﹐便請老衲轉告韓施主。\n",
+                "方丈神色凝重﹐說道﹕可惜他走後再無消息﹐老衲也甚為掛念。\n",
+                "方丈說道﹕老衲隱約聽聞﹐黑風嶺近來有不尋常的人出沒 ...\n",
+                "方丈說道﹕施主若要去尋他﹐萬事小心。阿彌陀佛。\n",
+            }));
+        }
+        else
+            do_chat("方丈微微搖頭﹐說道﹕阿彌陀佛﹐老衲不知施主所指何人。\n");
+        return;
+    }
+
     if( strsrch(msg, "淨心") >= 0 || strsrch(msg, "雪蓮") >= 0 ) {
         if( me->query("quest/meiyingfeng_medicine_step1") ) {
             do_chat(({
