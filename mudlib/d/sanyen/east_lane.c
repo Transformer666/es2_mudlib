@@ -13,7 +13,6 @@ void create()
 LONG
 	);
 	set("exits", ([
-		"west" : __DIR__"market",
 		"south" : __DIR__"old_well",
 	]));
 

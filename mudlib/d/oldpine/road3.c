@@ -19,7 +19,7 @@ LONG
 		"north" : __DIR__"road2",
 		"south" : __DIR__"road4",
 		"northeast" : __DIR__"cliff",
-		"east" : "/d/kangping/entrance",
+		"east" : "/d/kangping/wgate",
 	]));
 
 	setup();
