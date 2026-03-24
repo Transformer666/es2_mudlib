@@ -98,6 +98,8 @@ int accept_object(object ob, object item)
 
 void relay_say(object ob, string msg)
 {
+    int stage;
+
     if( !userp(ob) ) return;
     if( is_fighting() || is_chatting() ) return;
 
@@ -108,7 +110,7 @@ void relay_say(object ob, string msg)
         return;
     }
 
-    int stage = ob->query_temp("pending/field_boar");
+    stage = ob->query_temp("pending/field_boar");
 
     if( !stage || stage == 0 ) {
         if( strsrch(msg, "幫") >= 0 || strsrch(msg, "忙") >= 0

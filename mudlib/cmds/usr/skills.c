@@ -34,6 +34,7 @@ string *knowledge_level_desc = ({
 });
 
 string skill_level(string, int);
+string skill_cap_desc(int);
 
 mapping _skill;
 
@@ -90,7 +91,7 @@ int main(object me, string arg)
 
     map = ob->query_skill_map();
     if( mapp(map) ) mapped = values(map);
-    else mapped = ({});
+    else { map = ([]); mapped = ({}); }
 
     sname = sort_array( show_all ? keys(_skill) : sname,
         (: _skill[$2] - _skill[$1] :));

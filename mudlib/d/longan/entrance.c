@@ -17,6 +17,7 @@ LONG
 		__DIR__"npc/guard" : 2,
 	]));
 	set("exits", ([
+		"west"  : "/d/qianchang/egate",
 		"east"  : "/d/road/road2",
 		"north" : __DIR__"street",
 		"south" : __DIR__"egate",

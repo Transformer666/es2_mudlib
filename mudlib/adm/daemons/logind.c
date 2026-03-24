@@ -107,7 +107,7 @@ void logon (object ob) {
     for(i=0; i<sizeof(usr); i++) {
         if( !environment(usr[i]) ) login_cnt++;
         else if( wizardp(usr[i]) ) {
-            if( !usr[i]->link()->query("invis") ) wiz_cnt++;
+            if( usr[i]->link() && !usr[i]->link()->query("invis") ) wiz_cnt++;
         }
         else ppl_cnt++;
     }

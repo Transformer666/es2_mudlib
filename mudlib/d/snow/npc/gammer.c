@@ -123,7 +123,7 @@ void relay_say(object ob, string arg)
 					"瞎眼老太婆說道﹕偷遍天下﹐從未失手 ... 只可惜老頭子死後﹐一切都不一樣了。\n",
 					"瞎眼老太婆嘆了口氣﹐說道﹕你既然有心打聽﹐老婆子便告訴你 — 我就是當年的鬼手趙嫂。\n",
 					"你心中一驚﹐沒想到這個瞎了眼的老太婆﹐竟然就是江湖上赫赫有名的鬼手趙嫂﹗\n",
-					(: give_identity_reward, $1 :),
+					(: give_identity_reward, ob :),
 				}));
 				return;
 			}

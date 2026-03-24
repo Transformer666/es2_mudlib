@@ -6,7 +6,7 @@ void create()
 {
     set("short", "水月村東口");
     set("long", @LONG
-這裡是水月村的東邊出口﹐一條小路穿過竹林向東延伸﹐通往
+這裡是水月村的南邊出口﹐一條小路穿過竹林向南延伸﹐通往
 雪吟莊的方向。竹林中不時傳來鳥鳴聲﹐清風拂過竹葉沙沙作響﹐
 十分清幽。
 LONG
@@ -14,7 +14,7 @@ LONG
     set("outdoors", "village");
     set("exits", ([
         "west" : __DIR__"square",
-        "east" : "/d/xueyin/entrance",
+        "south" : "/d/xueyin/entrance",
     ]));
 
     setup();

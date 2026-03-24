@@ -81,7 +81,7 @@ void init()
 		do_chat(({
 			"驛站官員高興地說道﹕你把信送到了﹖太好了﹗\n",
 			"驛站官員說道﹕這是一點酬勞﹐請你收下。\n",
-			(: give_reward, $1 :),
+			(: give_reward, this_player() :),
 		}));
 		this_player()->delete_temp("pending/postman_done");
 		return;

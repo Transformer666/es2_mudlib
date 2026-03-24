@@ -8,6 +8,8 @@
 inherit F_VILLAGER;
 
 void tell_story(object player);
+void set_pending(object player);
+void give_reward(object player);
 void receive_bracelet(object player);
 
 void create()
