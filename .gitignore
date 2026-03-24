@@ -20,3 +20,12 @@
 # local configuration files
 neolith.conf
 neolith.local.conf
+
+# generated / runtime files
+__pycache__/
+mud.log
+nohup.out
+restart.sh
+docs/loop_logs/
+docs/pipeline_run.log
+docs/missing_content.json
