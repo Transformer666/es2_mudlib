@@ -93,12 +93,14 @@ void init()
 
 void relay_say(object ob, string msg)
 {
+	int stage;
+
 	if( !userp(ob) ) return;
 	if( is_fighting() || is_chatting() ) return;
 
 	if( ob->query("quest/postman_delivery_done") ) return;
 
-	int stage = ob->query_temp("pending/postman_deliver");
+	stage = ob->query_temp("pending/postman_deliver");
 
 	if( !stage || stage == 0 ) {
 		if( strsrch(msg, "幫") >= 0 || strsrch(msg, "送信") >= 0

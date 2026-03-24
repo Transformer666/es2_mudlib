@@ -36,6 +36,8 @@ void init()
 
 int do_search(string arg)
 {
+	object ob;
+
 	if( arg != "水邊" && arg != "物件" && arg != "地面" && arg != "鱗片" )
 		return 0;
 
@@ -67,7 +69,7 @@ int do_search(string arg)
 			this_player());
 	}
 
-	object ob = new(__DIR__"npc/obj/jade_pendant");
+	ob = new(__DIR__"npc/obj/jade_pendant");
 	ob->move(this_player());
 	tell_object(this_player(), "( 你獲得了一枚舊玉佩 )\n");
 	return 1;

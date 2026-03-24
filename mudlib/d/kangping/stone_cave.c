@@ -35,6 +35,8 @@ void init()
 
 int do_search(string arg)
 {
+	object ob;
+
 	if( arg != "草藥" && arg != "火靈草" && arg != "角落" && arg != "洞壁" )
 		return 0;
 
@@ -66,7 +68,7 @@ int do_search(string arg)
 			this_player());
 	}
 
-	object ob = new(__DIR__"npc/obj/fire_herb");
+	ob = new(__DIR__"npc/obj/fire_herb");
 	ob->move(this_player());
 	tell_object(this_player(), "( 你獲得了一株火靈草 )\n");
 	return 1;

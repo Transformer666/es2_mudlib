@@ -36,7 +36,9 @@ void init()
 
 int do_search(string arg)
 {
-	object me = this_player();
+	object me, shell;
+
+	me = this_player();
 
 	if( !me ) return 0;
 
@@ -54,8 +56,6 @@ int do_search(string arg)
 		write("你已經找到龜殼了﹐趕快拿回去還給算命先生吧。\n");
 		return 1;
 	}
-
-	object shell;
 
 	write("你蹲下身子﹐在那堆破木箱和竹筐之間仔細翻找。\n");
 	say(me->query("name") + "蹲下身子在巷子裡翻翻找找。\n");
