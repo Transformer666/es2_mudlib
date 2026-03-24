@@ -1,5 +1,5 @@
 # ES2 MUD Static Validation Report
-Run time: Tue Mar 24 01:18:05 UTC 2026
+Run time: Tue Mar 24 04:23:07 UTC 2026
 
 
 ## Room Validation
@@ -2470,10 +2470,6 @@ Run time: Tue Mar 24 01:18:05 UTC 2026
 - PASS: NPC inherit: d/snow/npc/old_beggar
 - PASS: NPC set_name: d/snow/npc/old_beggar
 - PASS: NPC setup(): d/snow/npc/old_beggar
-- PASS: NPC include: d/snow/npc/arbao
-- PASS: NPC inherit: d/snow/npc/arbao
-- PASS: NPC set_name: d/snow/npc/arbao
-- PASS: NPC setup(): d/snow/npc/arbao
 - PASS: NPC include: d/snow/npc/meiyingfeng
 - PASS: NPC inherit: d/snow/npc/meiyingfeng
 - PASS: NPC set_name: d/snow/npc/meiyingfeng
@@ -4529,40 +4525,17 @@ Run time: Tue Mar 24 01:18:05 UTC 2026
 - FAIL: Exit north -> temple has no south exit back (from sgate)
 - FAIL: Exit north -> entrance has no south exit back (from street)
 - FAIL: Exit north -> egate has no south exit back (from entrance)
-- FAIL: Exit south -> inn has no north exit back (from north_street)
-- FAIL: Exit east -> smithy has no west exit back (from north_street)
-- FAIL: Exit west -> east_street has no east exit back (from warehouse)
-- FAIL: Exit west -> market has no east exit back (from east_street)
 - FAIL: Exit west -> street2 has no east exit back (from market)
 - FAIL: Exit north -> street1 has no south exit back (from street2)
 - FAIL: Exit east -> street1 has no west exit back (from teahouse)
 - FAIL: Exit west -> street1 has no east exit back (from shop)
-- FAIL: Exit north -> ancestral_hall has no south exit back (from east_path)
-- FAIL: Exit west -> farm has no east exit back (from well)
-- FAIL: Exit west -> back_alley has no east exit back (from old_well)
-- FAIL: Exit east -> west_street has no west exit back (from abandoned_house)
-- FAIL: Exit east -> armory has no west exit back (from training_ground)
-- FAIL: Exit south -> watchtower has no north exit back (from training_ground)
-- FAIL: Exit west -> smithy has no east exit back (from east_street)
-- FAIL: Exit south -> shop has no north exit back (from east_street)
-- FAIL: Exit north -> lake has no south exit back (from bridge)
-- FAIL: Exit west -> shop has no east exit back (from east_path)
 - FAIL: Exit south -> road3 has no north exit back (from fengbai_road)
 - FAIL: Exit west -> store has no east exit back (from street2)
 - FAIL: Exit north -> temple has no south exit back (from herb_garden)
 - FAIL: Exit east -> square has no west exit back (from training_ground)
 - FAIL: Exit west -> entrance has no east exit back (from pond)
 - FAIL: Exit west -> well has no east exit back (from back_alley)
-- FAIL: Exit west -> garden has no east exit back (from stable)
-- FAIL: Exit east -> library has no west exit back (from teahouse)
 - FAIL: Exit east -> street1 has no west exit back (from shop)
-- FAIL: Exit east -> sstreet has no west exit back (from teahouse)
-- FAIL: Exit west -> bookshop has no east exit back (from east_lane)
-- FAIL: Exit south -> yamen has no north exit back (from east_lane)
-- FAIL: Exit north -> shop has no south exit back (from back_alley)
-- FAIL: Exit west -> back_street has no east exit back (from weapon_shop)
-- FAIL: Exit east -> back_street has no west exit back (from creek)
-- FAIL: Exit east -> path has no west exit back (from bamboo_grove)
 - FAIL: Exit north -> store has no south exit back (from street2)
 - FAIL: Exit west -> back_street has no east exit back (from east_path)
 - FAIL: Exit north -> inn has no south exit back (from south_alley)
@@ -4575,6 +4548,6 @@ Run time: Tue Mar 24 01:18:05 UTC 2026
 ## Summary
 | Result | Count |
 |--------|-------|
-| PASS | 4395 |
-| FAIL | 81 |
+| PASS | 4391 |
+| FAIL | 58 |
 | WARN | 84 |
