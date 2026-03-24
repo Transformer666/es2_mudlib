@@ -547,21 +547,7 @@ phase_validate() {
 
         if [ -n "$missing_translations" ]; then
             warn "Missing Chinese translations:$missing_translations"
-            run_step "Fix Chinese dictionary" \
-"mudlib/data/chinese.o 是中英翻譯字典（LPC save 格式），以下翻譯缺少：
-$missing_translations
-
-步驟：
-1. 讀取 mudlib/data/chinese.o 了解現有格式
-2. 用 Edit 工具在 dict mapping 中加入缺少的翻譯
-3. 格式範例：在 dict mapping 中加入 \"english\":\"中文\" 的 key-value pair
-4. 注意保持 LPC save file 的格式正確
-5. 如果不確定格式，輸出現有格式讓我確認" 15
-
-            if git status --porcelain "$dict_file" 2>/dev/null | grep -q .; then
-                git add "$dict_file" 2>/dev/null
-                git commit -m "fix: add missing Chinese translations to dictionary" 2>/dev/null || true
-            fi
+            warn "需要在遊戲內由 admin 用 translate 指令手動加翻譯（天條禁止自動修改 data/）"
         else
             log "All translations present."
         fi
