@@ -21,6 +21,7 @@ LONG
 	"north" : __DIR__"sstreet1",
 	"west" : "/d/wutang/gate",
 	"southeast" : "/d/qiaoyin/gate",
+	"east" : __DIR__"field",
   ]));
 
   setup();
