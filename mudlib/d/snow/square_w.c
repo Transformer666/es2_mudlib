@@ -17,6 +17,7 @@ LONG
 	"west" : __DIR__"inn_hall",
 	"east" : __DIR__"square",
 	"north" : __DIR__"bug_room",
+	"northeast" : "/d/zhenwu/gate",
     ]));
     set("objects", ([
 	"/d/snow/obj/stone" : 1,
