@@ -13,9 +13,10 @@ LONG
 	);
 	set("outdoors", "snow");
 	// 沒有設 no_fight，所以可以在這裡 kill 練手。
-	set("objects", ([ /* sizeof() == 2 */
+	set("objects", ([ /* sizeof() == 3 */
 		__DIR__"npc/rabbit" : 1,
 		__DIR__"npc/mouse" : 1,
+		__DIR__"npc/herbfarmer" : 1,
 	]));
 	set("exits", ([ /* sizeof() == 2 */
 		"west" : __DIR__"sgate",

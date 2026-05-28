@@ -18,6 +18,7 @@ LONG
 	]));
 	set("objects", ([
 		__DIR__"npc/herbalist": 1,
+		__DIR__"npc/axing": 1,
 	]));
 
 	setup();
