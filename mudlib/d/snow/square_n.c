@@ -14,6 +14,7 @@ LONG
 	set("exits", ([ /* sizeof() == 2 */
 		"north" : __DIR__"nstreet1",
 		"south" : __DIR__"square",
+		"east" : "/d/eastmarket/market1",
 	]));
 	set("objects", ([
 		__DIR__"npc/child1" : 1,

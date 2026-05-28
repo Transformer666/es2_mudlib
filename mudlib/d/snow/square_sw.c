@@ -15,6 +15,7 @@ LONG
 		"west" : __DIR__"wstreet1",
 		"east" : __DIR__"square_s",
 		"north" : __DIR__"square_w",
+		"southwest" : "/d/hanmei/gate",
 ]));
 	set("outdoors", "snow");
 
