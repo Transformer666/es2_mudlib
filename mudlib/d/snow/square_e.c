@@ -7,12 +7,14 @@ void create()
 	set("short", "廣場");
 	set("long", @LONG
 這裡是雪亭鎮廣場東邊﹐往東是一條僻靜的巷子﹐西邊有一株高大
-的榕樹﹐南邊是一家打鐵鋪子﹐不過店門不在這一邊。
+的榕樹﹐南邊是一家打鐵鋪子﹐不過店門不在這一邊。往東北的山道上去
+﹐隱約可見一座道家牌坊﹐想是天師派的山門。
 LONG
 	);
-	set("exits", ([ /* sizeof() == 2 */
+	set("exits", ([ /* sizeof() == 3 */
 		"east" : __DIR__"epath",
 		"west" : __DIR__"square",
+		"northeast" : "/d/tianshi/gate",
 ]));
 	set("outdoors", "snow");
 
