@@ -17,10 +17,10 @@ LONG
   );
   set("outdoors", "snow");
   set("connect-p", 1);
-  set("exits", ([ /* sizeof() == 1 */
+  set("exits", ([ /* sizeof() == 2 */
 	"north" : __DIR__"sstreet1",
+	"west" : "/d/wutang/gate",
 //	"southeast" : "/d/oldpine/road1",
-//	"west" : "/d/newcamp/gate",
   ]));
 
   setup();
