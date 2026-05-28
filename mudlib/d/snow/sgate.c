@@ -20,7 +20,7 @@ LONG
   set("exits", ([ /* sizeof() == 2 */
 	"north" : __DIR__"sstreet1",
 	"west" : "/d/wutang/gate",
-//	"southeast" : "/d/oldpine/road1",
+	"southeast" : "/d/qiaoyin/gate",
   ]));
 
   setup();
