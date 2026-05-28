@@ -18,6 +18,7 @@ LONG
 		"east" : __DIR__"lane1",
 		"west" : __DIR__"square_e",
 		"south" : __DIR__"herb_shop",
+		"down" : "/d/langyi/lair",
 	]));
 
 	setup();
