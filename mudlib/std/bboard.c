@@ -105,6 +105,22 @@ do_help(string arg)
   return 1;
 }
 
+// 問題回報板（board_id=="bugs"）專用：把回報寫成一個 queue 檔，
+// 由外部 tools/bug-issue-bridge.py 讀取並開成 GitHub issue。
+// 用獨立檔（檔名含 time+random）避免 JSON 跳脫與並發覆寫問題。
+private void
+queue_bug_report(mapping note, string text)
+{
+    string qf;
+
+    qf = DATA_DIR + "board/bugq_" + note["time"] + "_" + random(1000000) + ".txt";
+    write_file(qf,
+	"TITLE: " + note["title"] + "\n" +
+	"AUTHOR: " + note["author"] + "\n" +
+	"TIME: " + note["time"] + "\n" +
+	"---\n" + text + "\n");
+}
+
 // This is the callback function to process the string returned from the
 // editor defined in F_EDIT of player object.
 void
@@ -130,6 +146,14 @@ done_post(object me, mapping note, string text)
     tell_object(me, "留言完畢。\n");
 
     save();
+
+    // 只有「啟用 GitHub 橋接」的 instance（正式機 / GCP）才把回報落地給 bridge。
+    // 判斷依據：data/github_bridge.enabled 這個 marker 檔存在與否。
+    // 本機 dev 沒有 marker → 不產生 queue 檔 → 永遠不會開 issue。
+    if( query("board_id") == "bugs"
+    &&	file_size(DATA_DIR + "github_bridge.enabled") >= 0 )
+	queue_bug_report(note, text);
+
     return;
 }
 
