@@ -17,6 +17,7 @@ LONG
 		"east" : __DIR__"smithy",
 		"north" : __DIR__"square",
 		"south" : __DIR__"sstreet1",
+		"southwest" : "/d/baixiang/gate",
 ]));
 
 	setup();
