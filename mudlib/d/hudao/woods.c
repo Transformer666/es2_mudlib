@@ -27,6 +27,7 @@ LONG
 	set("exits", ([
 		"north" : "/d/snow/sgate",
 		"south" : __DIR__"gate",
+		"east" : __DIR__"deepwoods",
 	]));
 
 	setup();
