@@ -98,6 +98,11 @@ int init_apprentice(object me)
 		me->set_skill("amazing-needle", 0);
 		me->map_skill("needle", "amazing-needle");
 
+		// 同時授予龍圖心經（內功）﹐使弟子戰鬥時力道能隨內功成長。
+		me->set_skill("force", 0);
+		me->set_skill("dragon force", 0);
+		me->map_skill("force", "dragon force");
+
 		message_vision(
 			"$N取出一匣銀針﹐捻起一枚﹐將武陀灸術【驚異二針】的入門針法一招一式地傳授給$n。\n",
 			this_object(), me);

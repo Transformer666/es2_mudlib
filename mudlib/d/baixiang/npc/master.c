@@ -98,6 +98,11 @@ int init_apprentice(object me)
 		me->set_skill("rid-evil", 0);
 		me->map_skill("staff", "rid-evil");
 
+		// 同時授予蓮華心法（內功）﹐使弟子戰鬥時力道能隨內功成長。
+		me->set_skill("force", 0);
+		me->set_skill("lotus force", 0);
+		me->map_skill("force", "lotus force");
+
 		message_vision(
 			"$N取過一根禪杖﹐將金剛伏魔杖法的入門杖訣緩緩傳授給$n。\n",
 			this_object(), me);

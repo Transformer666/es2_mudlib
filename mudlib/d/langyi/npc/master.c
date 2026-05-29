@@ -97,6 +97,11 @@ int init_apprentice(object me)
 		me->set_skill("blood dagger", 0);
 		me->map_skill("dagger", "blood dagger");
 
+		// 同時授予瑯夷派內功﹐使弟子戰鬥時力道能隨內功成長。
+		me->set_skill("force", 0);
+		me->set_skill("longyeforce", 0);
+		me->map_skill("force", "longyeforce");
+
 		message_vision(
 			"$N反手抽出一柄匕首﹐將血魂匕法的入門殺招一招一式地傳授給$n。\n",
 			this_object(), me);

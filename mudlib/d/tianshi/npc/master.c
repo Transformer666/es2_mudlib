@@ -94,6 +94,11 @@ int init_apprentice(object me)
 		me->set_skill("taoism-fire", 0);
 		me->map_skill("magic", "taoism-fire");
 
+		// 同時授予丹陽神功（內功）﹐使弟子戰鬥時力道能隨內功成長。
+		me->set_skill("force", 0);
+		me->set_skill("sun force", 0);
+		me->map_skill("force", "sun force");
+
 		message_vision(
 			"$N取過一道朱符﹐將天師道法【火術】的入門口訣緩緩傳授給$n。\n",
 			this_object(), me);

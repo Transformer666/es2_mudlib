@@ -95,6 +95,11 @@ int init_apprentice(object me)
 		me->set_skill("dragon god", 0);
 		me->map_skill("pike", "dragon god");
 
+		// 同時授予瘋虎功（內功）﹐使弟子戰鬥時力道能隨內功成長。
+		me->set_skill("force", 0);
+		me->set_skill("tiger force", 0);
+		me->map_skill("force", "tiger force");
+
 		message_vision(
 			"$N抄起一桿長槍﹐將龍神槍法的入門槍勢一招一式地傳授給$n。\n",
 			this_object(), me);

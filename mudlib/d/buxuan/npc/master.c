@@ -99,6 +99,11 @@ int init_apprentice(object me)
 		me->set_skill("buxuan-sword", 0);
 		me->map_skill("sword", "buxuan-sword");
 
+		// 同時授予步玄心法（內功）﹐使弟子戰鬥時力道能隨內功成長。
+		me->set_skill("force", 0);
+		me->set_skill("myst-force", 0);
+		me->map_skill("force", "myst-force");
+
 		message_vision(
 			"$N取過一柄長劍﹐將小步玄劍的入門劍訣緩緩傳授給$n。\n",
 			this_object(), me);
