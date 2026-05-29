@@ -18,6 +18,9 @@ LONG
 		"兵器架" : "兵器架上的刀槍棍棒都擦得雪亮﹐看得出鏢局上下都是練家子。\n",
 		"鏢箱" : "幾口沉甸甸的鏢箱貼著紅紙封條﹐上面寫著押往喬陰、雪亭等地的字樣。\n",
 	]));
+	set("objects", ([
+		__DIR__"npc/biaotou" : 1,
+	]));
 	set("outdoors", "wutang");
 	set("no_fight", 1);
 	set("exits", ([ /* sizeof() == 1 */
