@@ -243,6 +243,8 @@ fight (object me, object victim, string skill, mapping action, object weapon)
         me->add_combat_message( stringp(defend_msg) ? defend_msg
                 : "但是沒中" );
         damage = -1;
+        // 閃避成功 → 練「閃躲(dodge)」(依 docs/02-03「挨打練閃躲」)。僅玩家被攻擊時。
+        if( userp(victim) ) victim->improve_skill("dodge", 1 + random(2));
     }
     else
     {
@@ -252,6 +254,8 @@ fight (object me, object victim, string skill, mapping action, object weapon)
         me->set_temp("absorb_message", 0);
         strength -= (int)victim->absorb(ability, strength,
                 weapon ? weapon : me);
+        // 格擋嘗試(absorb=parry_using) → 練「拆招(parry)」(依 docs/02-03)。僅玩家被攻擊時。
+        if( userp(victim) ) victim->improve_skill("parry", 1);
         absorb_msg = me->query_temp("absorb_message");
         me->add_combat_message( "，" );
         me->add_combat_message( stringp(absorb_msg) ? absorb_msg
