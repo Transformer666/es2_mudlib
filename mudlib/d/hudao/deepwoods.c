@@ -29,6 +29,8 @@ LONG
 	]));
 	set("exits", ([
 		"west" : __DIR__"woods",
+		// 群獸踏出的新獸徑齊指北面天靈山——循之而北﹐便是近來野獸出沒的野獸山林。
+		"north" : __DIR__"wild/path",
 	]));
 
 	setup();
