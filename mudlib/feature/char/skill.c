@@ -167,6 +167,36 @@ improve_skill(string skill, int amount)
     if( undefinedp(skills[skill]) ) skills[skill] = 0;
 
     SKILL_D(skill)->skill_improved(this_object(), skill);
+
+    // --- 學習進度(learned) → 技能等級(skills) 轉換（依 docs/02-03 重建）---
+    // 原開源 mudlib 缺此轉換：base /std/skill 無 skill_improved、亦無練功指令，
+    // 故 study/戰鬥只會累積 learned[]，技能等級永不上升。依「技能天賦」設計補上：
+    //   * 每個技能有 140~200 的天賦(潛能)上限，首次習得時隨機決定（算命仙可揭示）。
+    //   * learned 為累積值；跨過門檻 (等級+1)^2 即升一級，封頂於天賦。
+    //   * 拜師 set_skill 直接給的高等級不受影響（只 ++、不 --；要再自習超越得大量 learned）。
+    {
+        int talent, lvl;
+
+        talent = query("talent/" + skill);
+        if( !talent ) {
+            talent = 140 + random(61);              // 140 ~ 200
+            set("talent/" + skill, talent);
+        }
+
+        lvl = skills[skill];
+        while( lvl < talent && learned[skill] >= (lvl+1)*(lvl+1) )
+            lvl++;
+        if( lvl > skills[skill] ) {
+            skills[skill] = lvl;                    // 直接升等（advance_skill 在本檔後段定義，避免前向參考）
+            if( skills[skill] > skills[best_skill] ) best_skill = skill;
+        }
+    }
+}
+
+// 查詢某技能的天賦(潛能)上限（140~200；尚未習得回 0）。供算命等用。
+int query_talent(string skill)
+{
+    return query("talent/" + skill);
 }
 
 // advance_skill()
