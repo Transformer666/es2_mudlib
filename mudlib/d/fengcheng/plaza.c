@@ -13,7 +13,7 @@ void create()
 聚著看熱鬧的閒人、賣藝的江湖客、相馬的牙人﹐人聲鼎沸﹐塞外的
 胡笳聲遠遠飄來。廣場東邊一座青布卦攤前圍著不少人﹐聽說那位神
 算子算得極準。往南回到大街﹐往東便是那神算子的卦攤﹐往北一座
-飛簷高挑的茶樓。
+飛簷高挑的茶樓﹔廣場西側一條土道蜿蜒而下﹐遠通西陲的港城檒城。
 LONG
 	);
 	set("detail", ([
@@ -28,10 +28,11 @@ LONG
 		__DIR__"npc/citizen" : 1,
 	]));
 	set("outdoors", "fengcheng");
-	set("exits", ([ /* sizeof() == 3 */
+	set("exits", ([ /* sizeof() == 4 */
 		"south" : __DIR__"street",
 		"east" : __DIR__"fortune",
 		"north" : __DIR__"teahouse",
+		"west" : "/d/fancheng/gate",
 	]));
 
 	setup();
