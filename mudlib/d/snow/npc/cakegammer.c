@@ -68,10 +68,10 @@ private void give_reward(object who)
 
 	coin = new("/obj/money/coin");
 	coin->set_amount(50);
-	if( coin->move(who) ) coin->move(environment());
+	if( !coin->move(who) ) coin->move(environment());
 
 	manto = new("/obj/food/manto");
-	if( manto->move(who) ) manto->move(environment());
+	if( !manto->move(who) ) manto->move(environment());
 
 	who->gain_score("survive", 100);
 

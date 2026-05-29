@@ -76,13 +76,13 @@ private void give_reward(object who)
 
 	coin = new("/obj/money/coin");
 	coin->set_amount(300);
-	if( coin->move(who) ) coin->move(environment());
+	if( !coin->move(who) ) coin->move(environment());
 
 	berry = new("/obj/medication/boar_berry");
-	if( berry->move(who) ) berry->move(environment());
+	if( !berry->move(who) ) berry->move(environment());
 
 	cake = new("/obj/food/mooncake");
-	if( cake->move(who) ) cake->move(environment());
+	if( !cake->move(who) ) cake->move(environment());
 
 	who->gain_score("survive", 300);
 	who->gain_score("explorer fame", 150);
