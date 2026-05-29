@@ -23,6 +23,7 @@ LONG
 	]));
 	set("objects", ([
 		__DIR__"npc/runner" : 1,
+		__DIR__"npc/archivist" : 1,
 	]));
 	set("outdoors", "qiaoyin");
 	set("exits", ([ /* sizeof() == 1 */
