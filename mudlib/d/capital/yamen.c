@@ -25,6 +25,7 @@ LONG
 	set("outdoors", "capital");
 	set("objects", ([
 		__DIR__"npc/official" : 1,
+		__DIR__"npc/gateman" : 1,
 	]));
 	set("exits", ([ /* sizeof() == 1 */
 		"west" : __DIR__"plaza",

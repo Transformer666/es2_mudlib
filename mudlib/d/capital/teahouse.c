@@ -25,6 +25,7 @@ LONG
 	set("objects", ([
 		__DIR__"npc/teamaster" : 1,
 		__DIR__"npc/commoner" : 1,
+		__DIR__"npc/patrolman" : 1,
 	]));
 	set("no_fight", 1);
 	set("exits", ([ /* sizeof() == 1 */
