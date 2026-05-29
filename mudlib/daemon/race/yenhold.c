@@ -37,7 +37,11 @@ void setup(object ob)
     ob->add_temp("apply/defense", 20);
     ob->add_temp("apply/armor_vs_fire", 50);
 
-    // TODO: active ability 吐火
+    // 主動技能「吐火」：指令實作於 /cmds/std/spitfire.c（中文別名 吐火.c）。
+    // 該指令位於所有玩家共用的 /cmds/std/ 搜尋路徑，並在指令內以
+    // query_race()=="yenhold" 自我限制，因此只有厭火能用，無須在此 add_path。
+    // （race daemon 的 setup() 在 daemon context 執行，無法替玩家 add_action，
+    //  見 doc/efuns/add_action：定義指令的物件須與玩家同處一室。）
 }
 
 void initialize(object ob)
