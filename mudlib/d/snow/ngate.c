@@ -16,7 +16,7 @@ LONG
   set("connect-p", 1);
   set("exits", ([ /* sizeof() == 1 */
 	"south" : __DIR__"nstreet2",
-//	"north" : "/d/goat/sroad1",
+	"north" : "/d/yinjiao/sroad",
   ]));
   set("objects", ([
 	__DIR__"npc/garrison": 4,
