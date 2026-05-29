@@ -95,6 +95,11 @@ int init_apprentice(object me)
 		me->set_skill("lunmay", 0);
 		me->map_skill("sword", "lunmay");
 
+		// 同時授予寒梅心法（內功）﹐使弟子戰鬥時力道能隨內功成長。
+		me->set_skill("force", 0);
+		me->set_skill("hainmay force", 0);
+		me->map_skill("force", "hainmay force");
+
 		message_vision(
 			"$N取過一柄長劍﹐將冷梅劍法的入門劍訣緩緩傳授給$n。\n",
 			this_object(), me);
