@@ -8,8 +8,8 @@ void create()
 	set("long", @LONG
 這是一塊被踩得結結實實的空地﹐四周插著幾根練拳用的木樁﹐場
 中央立著一個纏滿麻布的練功木人﹐供鎮上初學武藝的少年捶打練手。
-角落堆著幾捆稻草﹐空氣裡飄著塵土跟汗水的氣味。往西沿著小徑回到
-郊野。
+角落堆著幾捆稻草﹐空氣裡飄著塵土跟汗水的氣味。往北是一座圍著土
+牆的練武堂﹐往西沿著小徑回到郊野。
 LONG
 	);
 	set("detail/木樁",
@@ -21,8 +21,9 @@ LONG
 	set("objects", ([ /* sizeof() == 1 */
 		__DIR__"npc/dummy" : 1,
 	]));
-	set("exits", ([ /* sizeof() == 1 */
+	set("exits", ([ /* sizeof() == 2 */
 		"west" : __DIR__"field",
+		"north" : __DIR__"martialhall",
 	]));
 
 	setup();

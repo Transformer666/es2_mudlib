@@ -267,6 +267,12 @@ fight (object me, object victim, string skill, mapping action, object weapon)
                 damage = me->inflict_damage(strength, victim);
                 me->gain_score("unarmed mastery", random(me->query_attr("int")/3));
             }
+            // 命中即練該門攻擊技藝（依 docs/02-03「打假人練兵器拳腳」/實戰練功）。
+            // 原開源 combat 只給「精熟」score、卻從不 improve_skill，故戰鬥永遠
+            // 不漲技能等級。此處補上：improve_skill 累積 learned→等級轉換
+            // (見 feature/char/skill.c)，封頂於天賦。只練玩家(NPC 技能固定)。
+            if( stringp(skill) && userp(me) )
+                me->improve_skill(skill, 1 + random(2));
         }
         else damage = 0;
     }
