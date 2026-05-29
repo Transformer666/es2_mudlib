@@ -25,8 +25,9 @@ LONG
 	]));
 	set("outdoors", "qiaoyin");
 	set("no_fight", 1);
-	set("exits", ([ /* sizeof() == 1 */
+	set("exits", ([ /* sizeof() == 2 */
 		"west" : __DIR__"square",
+		"east" : "/d/fonxan/gate",
 	]));
 
 	setup();
