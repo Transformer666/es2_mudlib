@@ -28,9 +28,10 @@ LONG
 	set("objects", ([
 		__DIR__"npc/commoner" : 1,
 	]));
-	set("exits", ([ /* sizeof() == 2 */
+	set("exits", ([ /* sizeof() == 3 */
 		"east" : __DIR__"plaza",
 		"south" : __DIR__"teahouse",
+		"north" : "/d/qingxie/path",
 	]));
 
 	setup();
