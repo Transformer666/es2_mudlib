@@ -39,7 +39,10 @@ void setup(object ob)
     ob->add_temp("apply/armor", 100);
     ob->add_temp("apply/move", 50);
 
-    // TODO: active ability 祭舞
+    // 主動技能 祭舞 (戰舞)：見 /cmds/std/wardance.c（中文別名 /cmds/std/祭舞.c）。
+    // 指令以 query_race()=="headless" 自鎖；daemon 不能替玩家 add_action
+    // （setup 在 daemon context 跑），故此處只留指引，不掛 action。
+    //   見 memory/patterns/content-race-active.md。
 }
 
 void initialize(object ob)

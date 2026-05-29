@@ -37,7 +37,10 @@ void setup(object ob)
     ob->add_temp("apply/defense", 15);
     ob->add_temp("apply/awarness", 100);
 
-    // TODO: active ability 逃逸躲藏
+    // 主動技能 遁 (逃逸躲藏)：見 /cmds/std/vanish.c（中文別名 /cmds/std/遁.c）。
+    // 指令以 query_race()=="jiaojao" 自鎖；daemon 不能替玩家 add_action
+    // （setup 在 daemon context 跑），故此處只留指引，不掛 action。
+    //   見 memory/patterns/content-race-active.md。
     // TODO: equipment 焦僥靴
 }
 
