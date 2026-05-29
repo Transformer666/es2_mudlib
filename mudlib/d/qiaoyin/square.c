@@ -24,6 +24,7 @@ LONG
 	set("objects", ([
 		__DIR__"npc/runner" : 1,
 		__DIR__"npc/scholar" : 1,
+		__DIR__"npc/teller" : 1,
 	]));
 	set("outdoors", "qiaoyin");
 	set("exits", ([ /* sizeof() == 4 */
