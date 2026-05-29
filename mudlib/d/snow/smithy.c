@@ -20,8 +20,9 @@ LONG
 		"鐵器" : "這些鐵器有鍋子、鏟子、鐵鎚、耕田用的鋤頭、犁等等。\n",
 	]));
 	set("no_clean_up", 0);
-	set("objects", ([ /* sizeof() == 1 */
+	set("objects", ([ /* sizeof() == 2 */
 		__DIR__"npc/smith" : 1,
+		__DIR__"npc/swordsmith" : 1,    // 劍甲門傳人 陳學亮，提供 enchant 強化服務
 	]));
 	set("exits", ([ /* sizeof() == 1 */
 		"west" : __DIR__"square_s",
