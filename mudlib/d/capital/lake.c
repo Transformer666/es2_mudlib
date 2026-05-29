@@ -11,8 +11,9 @@ void create()
 舫往來﹐湖心一座小島上隱約可見一角飛簷。岸邊立著幾方供人憑欄
 遠眺的石磯﹐文人雅士常來此泛舟賦詩﹐達官貴人也愛在此修築別業
 。然而老人們私下相傳﹐這湖底深處另有玄機﹐入夜後時有異響﹐尋
-常人輕易不敢久留。湖南岸一座精緻的茶館飄出茶香﹐往東則回到恢
-宏的皇城廣場。
+常人輕易不敢久留。湖南岸一座精緻的茶館飄出茶香﹐西岸一座青磚
+灰瓦的官廨森然而立﹐簷下佩刀的巡卒按劍肅立﹐往東則回到恢宏的
+皇城廣場。
 LONG
 	);
 	set("detail", ([
@@ -28,10 +29,11 @@ LONG
 	set("objects", ([
 		__DIR__"npc/commoner" : 1,
 	]));
-	set("exits", ([ /* sizeof() == 3 */
+	set("exits", ([ /* sizeof() == 4 */
 		"east" : __DIR__"plaza",
 		"south" : __DIR__"teahouse",
 		"north" : "/d/qingxie/path",
+		"west" : "/d/danei/office",
 	]));
 
 	setup();
