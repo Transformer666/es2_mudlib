@@ -11,7 +11,8 @@ void create()
 巨大的條石砌成﹐足可並馳六馬﹐門楣上一方漢白玉的石額﹐「京畿
 」二字以飛白御筆鐫成﹐金光燦然。甲冑鮮明的禁軍衛士分列兩側﹐
 按劍肅立﹐盤查得格外森嚴。城外一條筆直的官道往西通往喬陰縣城
-﹔進得城門往北﹐便是帝都赫赫有名的朱雀大街了。
+﹐往東則通往近畿顯貴開府置第的羅城﹔進得城門往北﹐便是帝都赫
+赫有名的朱雀大街了。
 LONG
 	);
 	set("detail", ([
@@ -25,9 +26,10 @@ LONG
 	set("objects", ([
 		__DIR__"npc/guard" : 1,
 	]));
-	set("exits", ([ /* sizeof() == 2 */
+	set("exits", ([ /* sizeof() == 3 */
 		"west" : "/d/qiaoyin/gate",
 		"north" : __DIR__"avenue",
+		"east" : "/d/luocheng/gate",
 	]));
 
 	setup();
