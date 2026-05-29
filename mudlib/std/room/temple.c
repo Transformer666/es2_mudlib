@@ -9,6 +9,7 @@ void
 setup()
 {
   string long_desc = query("long");
+  ::setup();			// 鏈到 ROOM::setup（觸發 reset 生成 objects 內的 NPC/物件）
   set("long_desc", long_desc);
   set("long", (: temple_long :));
 }

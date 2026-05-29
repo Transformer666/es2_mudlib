@@ -19,7 +19,8 @@ LONG
 	"south" : __DIR__"wstreet3",
   ]));
   set("objects", ([
-	__DIR__"npc/oldman": 1
+	__DIR__"npc/oldman": 1,
+	__DIR__"npc/clerk": 1,
   ]));
 
   setup();

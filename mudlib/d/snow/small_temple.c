@@ -21,6 +21,9 @@ LONG
   set("exits", ([
 	"west" : __DIR__"nstreet1",
   ]));
+  set("objects", ([
+	__DIR__"npc/keeper" : 1,
+  ]));
 
   setup();
   replace_program(TEMPLE);
