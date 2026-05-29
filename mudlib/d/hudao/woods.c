@@ -21,6 +21,9 @@ LONG
 		"刀痕" : "細看那幾道嵌入松幹的刀痕﹐刀口齊整深峻﹐入木竟有數寸﹐刀勢剛猛霸烈﹐絕非尋常刀客所能為。\n",
 	]));
 	set("outdoors", "hudao");
+	set("objects", ([
+		__DIR__"npc/hunter" : 1,
+	]));
 	set("exits", ([
 		"north" : "/d/snow/sgate",
 		"south" : __DIR__"gate",
