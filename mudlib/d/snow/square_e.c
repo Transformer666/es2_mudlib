@@ -10,7 +10,8 @@ void create()
 的榕樹﹐南邊是一家打鐵鋪子﹐不過店門不在這一邊。往東北的山道上去
 ﹐隱約可見一座道家牌坊﹐想是天師派的山門﹔往東南的小徑上﹐則飄
 來陣陣藥香﹐想是龍圖丹派的所在﹔往西北雲霧繚繞的石階上去﹐隱隱
-傳來誦咒之聲﹐想是茅山派的道觀。
+傳來誦咒之聲﹐想是茅山派的道觀﹔往西南的松林間隱隱透出木魚梵唱
+﹐想是寶蓮寺的山門。
 LONG
 	);
 	set("exits", ([ /* sizeof() == 4 */
@@ -19,6 +20,7 @@ LONG
 		"northeast" : "/d/tianshi/gate",
 		"southeast" : "/d/longtu/gate",
 		"northwest" : "/d/maoshan/gate",
+		"southwest" : "/d/baolian/gate",
 ]));
 	set("outdoors", "snow");
 
