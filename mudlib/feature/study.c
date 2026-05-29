@@ -83,7 +83,10 @@ int study_content(object me)
 
     if( me->query_stat("sen") < cost
     ||	me->query_stat("gin") < cost
-    ||	me->query_stat("fatigue") >= me->query_stat_maximum("fatigue") ) {
+    ||	(me->query_stat_maximum("fatigue") > 0 && me->query_stat("fatigue") >= me->query_stat_maximum("fatigue")) ) {
+	// fatigue stat 在本 mudlib 從未初始化(全碼僅此處提及)，max 恆為 0 → 原式 0>=0
+	// 會讓任何 study 在第一拍就「精神不繼」中斷、永遠學不到。故僅在 fatigue 有上限時
+	// 才套用；否則由 gin/sen 消耗自然節制研讀。
 	tell_object(me, "你覺得精神不繼，無法再繼續研讀了。\n");
 	return 0;
     }
