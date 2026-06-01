@@ -8,7 +8,8 @@ void create()
 	set("long", @LONG
 這裡是雪亭鎮南門外的一片郊野﹐草棚就在西邊不遠處。野地上長
 著半人高的雜草﹐不時有野兔田鼠在草叢間鑽動。往東踩出一條被人走
-得發白的小徑﹐通往鎮民平日練拳習武的練功場。
+得發白的小徑﹐通往鎮民平日練拳習武的練功場﹔往南另有一條田間小
+路穿過水田﹐通往鎮南一座李姓聚族而居的莊稼村子——李家村。
 LONG
 	);
 	set("outdoors", "snow");
@@ -18,9 +19,10 @@ LONG
 		__DIR__"npc/mouse" : 1,
 		__DIR__"npc/herbfarmer" : 1,
 	]));
-	set("exits", ([ /* sizeof() == 2 */
+	set("exits", ([ /* sizeof() == 3 */
 		"west" : __DIR__"sgate",
 		"east" : __DIR__"drill",
+		"south" : "/d/lijia/entry",
 	]));
 
 	setup();
