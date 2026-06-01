@@ -26,6 +26,8 @@ LONG
 		__DIR__"npc/teamaster" : 1,
 		__DIR__"npc/commoner" : 1,
 		__DIR__"npc/patrolman" : 1,
+		// 主線七「鎮邪求聖」的委託人——掛單後海茶館、精通鎮邪之道的雲遊高僧。
+		__DIR__"npc/monk" : 1,
 	]));
 	set("no_fight", 1);
 	set("exits", ([ /* sizeof() == 1 */
