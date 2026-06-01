@@ -92,6 +92,38 @@ private void give_reward(object who)
 		who);
 }
 
+// 收下批文：玩家把師爺的批文(official reply)帶回交(give)給廟祝﹐確認任務已送達
+// (quest/main_omen==2)﹐即同步領賞並把旗標推進為 3（完成）。
+// 注意：原本只在 do_ask q==2 提示「把批文交給廟祝」﹐卻從未定義 accept_object﹐
+//   give_reward 成了孤函永不被呼叫——主線「卯木之兆」卡死在旗標 2、領不到賞、
+//   且 main_omen 永遠到不了 3﹐連帶 elder.c(main_omen2 gate main_omen>=3) 以後
+//   整條主線都進不去。此函補上收件、給賞、推進旗標的缺口。
+// 採同步給賞（非延遲 do_chat）﹐免玩家於回呼前離場致批文已被 give 銷除、賞卻沒領、
+//   旗標卻記完成而卡關（與 d/fancheng boatman 一致的修法）。
+int accept_object(object who, object ob)
+{
+	if( ob->id("official reply") ) {
+		// 未送達 / 已完成：婉拒，不收下（避免吞批文、不重複給賞）
+		if( who->query("quest/main_omen") != 2 ) {
+			do_chat((: command,
+				"say 這紙批文 ... 少俠且自個兒收著罷，時候未到。" :));
+			return 0;
+		}
+		// 已送達：同步領賞、推進旗標為 3（批文由 give 指令於本函回 1 後自行銷除）
+		give_reward(who);
+		who->set("quest/main_omen", 3);
+		do_chat(({
+			(: command, "say 啊﹐這正是師爺的批文﹗少俠果然不負所託﹐將密報送到了官府﹐老朽這顆懸著的心總算落了地。" :),
+			(: command, "say 卯木之事既已上達官府﹐想必會差人來查。少俠這趟辛苦﹐區區薄酬方纔已奉上﹐萬望笑納。日後若再聽見甚麼風聲﹐還望多留個心。" :),
+		}));
+		return 1;
+	}
+
+	// 其餘物事：婉拒，不收下（避免吞掉玩家的尋常物品）
+	do_chat((: command, "say 這個老朽用不上﹐少俠還是自個兒留著罷。" :));
+	return 0;
+}
+
 int do_ask(string arg)
 {
 	object me = this_player();
