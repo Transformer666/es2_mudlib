@@ -33,6 +33,8 @@ LONG
 	]));
 	set("exits", ([
 		"west" : __DIR__"depths",
+		// 東角那道石縫側身鑽出﹐便是天靈山麓——主線八「天靈降魔」上山尋摩雲決戰之路。
+		"east" : "/d/tianling/ascent",
 	]));
 
 	setup();
