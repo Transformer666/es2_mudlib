@@ -38,7 +38,9 @@ void setup(object ob)
 
     // TODO: passive ability 四元素防禦+10 (per-element armor keys e.g. armor_vs_fire;
     //       only armor_vs_fire confirmed present in dict, others unverified)
-    // TODO: active ability 餵 5 條小蛇
+    // active ability 餵 5 條小蛇：見 /cmds/std/feedsnake.c（中文別名 餵蛇/馴蛇），
+    //   每條小蛇 new /obj/race/rainnar_snake 移入玩家並 add_temp apply/armor+defense，
+    //   上限 5 條（指令自我把關，race daemon 不替玩家 add_action，見 content-race-active.md）。
     // TODO: equipment 雨師妾袍
 }
 
