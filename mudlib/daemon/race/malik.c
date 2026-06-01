@@ -37,7 +37,12 @@ void setup(object ob)
     ob->add_temp("apply/defense", 50);
     ob->add_temp("apply/armor", 10);
 
-    // TODO: passive ability 通天眼
+    // 通天眼：能察覺隱藏 / 潛行的人物。
+    //   visible() (std/char.c:448)：pending/hidden > query_ability("awarness") 才隱形。
+    //   query_ability("awarness") (combat.c:128-131) 會加上 query_temp("apply/awarness")。
+    //   給 +60 足以洞穿一般 vanish/sneak（藏匿值約 10-30）。
+    ob->add_temp("apply/awarness", 60);
+
     // TODO: active ability 採靈氣回神
     // TODO: equipment 巫首項鍊 spi+2
 }

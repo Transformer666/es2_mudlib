@@ -36,8 +36,15 @@ void setup(object ob)
     // 被動加成：防+20 四元素+10
     ob->add_temp("apply/defense", 20);
 
-    // TODO: passive ability 四元素防禦+10 (per-element armor keys e.g. armor_vs_fire;
-    //       only armor_vs_fire confirmed present in dict, others unverified)
+    // 四元素防禦 +10：四元素中只有「火」有確認會被引擎讀取的 apply key。
+    //   apply/armor_vs_fire 已由 chinese.o 字典 (=火焰傷害防禦力)、yenhold.c:38、
+    //   devour.c:170 證實為真實鍵，故此處先實作火元素那一面。
+    ob->add_temp("apply/armor_vs_fire", 10);
+
+    // TODO: passive ability 其餘三元素 (冰/風/雷) 防禦 +10。
+    //   armor_vs_ice / armor_vs_wind / armor_vs_thunder 等鍵未在字典或任何
+    //   feature/std 程式碼中出現，無法確認引擎會讀取，故不臆造；待元素傷害系統
+    //   一般化後補上對應 apply key。
     // active ability 餵 5 條小蛇：見 /cmds/std/feedsnake.c（中文別名 餵蛇/馴蛇），
     //   每條小蛇 new /obj/race/rainnar_snake 移入玩家並 add_temp apply/armor+defense，
     //   上限 5 條（指令自我把關，race daemon 不替玩家 add_action，見 content-race-active.md）。

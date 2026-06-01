@@ -37,8 +37,18 @@ void setup(object ob)
     ob->add_temp("apply/defense", 50);
     ob->add_temp("apply/attack", 25);
 
-    // TODO: passive ability 陰陽眼/通天眼
-    // TODO: active ability 吞鬼 devour
+    // 陰陽眼：能看見鬼魂 (life_form=="ghost") 的人物。
+    //   std/char.c::visible() 第 452-453 行：鬼魂對沒有 apply/vision_of_ghost
+    //   的觀看者不可見；夜叉天生具備此能力。chinese.o 字典 vision_of_ghost=陰陽眼。
+    ob->add_temp("apply/vision_of_ghost", 1);
+
+    // 通天眼：能察覺隱藏 / 潛行的人物。
+    //   visible() 第 448 行：pending/hidden > 觀看者 query_ability("awarness") 才隱形。
+    //   query_ability("awarness") (combat.c:128-131) 會加上 query_temp("apply/awarness")。
+    //   vanish/sneak 的藏匿值約 10-30；給 +60 足以洞穿一般潛行，但低於焦僥/吞鬼飽和的 +100。
+    ob->add_temp("apply/awarness", 60);
+
+    // TODO: active ability 吞鬼 devour（見 /cmds/std/devour.c，已實作）
 }
 
 void initialize(object ob)

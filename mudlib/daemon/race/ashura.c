@@ -37,8 +37,18 @@ void setup(object ob)
     ob->add_temp("apply/attack", 30);
     ob->add_temp("apply/intimidate", 30);
 
-    // TODO: passive ability 陰陽眼
-    // TODO: active ability 混亂 / 吞屍
+    // 陰陽眼：能看見鬼魂 (life_form=="ghost") 的人物。
+    //   std/char.c::visible() 第 452-453 行：鬼魂對沒有 apply/vision_of_ghost
+    //   的觀看者不可見；阿修羅天生具備此能力。chinese.o 字典 vision_of_ghost=陰陽眼。
+    ob->add_temp("apply/vision_of_ghost", 1);
+
+    // TODO: passive ability 混亂時主動攻擊。
+    //   引擎目前沒有乾淨的「混亂 / 狂暴自動攻擊」掛勾：feature/char/attack.c:391
+    //   只依 query("attitude")=="aggressive" 觸發 COMBAT_D->auto_fight（屬 NPC 主動性，
+    //   非「玩家受混亂時隨機攻擊」機制），且 race daemon 在 setup() 屬 daemon context
+    //   不能替玩家掛 heart_beat / add_action。需另寫一個狀態效果模組（追蹤混亂計時 +
+    //   每跳隨機選 environment 內目標 auto_fight），故此處暫不實作。
+    // TODO: active ability 吞屍
     // TODO: equipment 修羅之面
 }
 
