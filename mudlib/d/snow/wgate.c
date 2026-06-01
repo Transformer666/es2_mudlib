@@ -14,8 +14,9 @@ create()
 LONG
   );
   set("outdoors", "snow");
-  set("exits", ([ /* sizeof() == 1 */
+  set("exits", ([ /* sizeof() == 2 */
 	"east" : __DIR__"wstreet3",
+	"west" : "/d/wuling/road",
 //	"northwest" : "/d/graveyard/grave1",
   ]));
 
