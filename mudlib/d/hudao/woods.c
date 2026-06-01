@@ -28,6 +28,9 @@ LONG
 		"north" : "/d/snow/sgate",
 		"south" : __DIR__"gate",
 		"east" : __DIR__"deepwoods",
+		// 林子西緣那道被山風削出的隘口﹐入山便是黑風山——一片群獸更猛、
+		// 自成一格的高階獵場(承野獸山林黑熊往上一級﹐不涉主線)。
+		"west" : "/d/heifeng/entry",
 	]));
 
 	setup();
