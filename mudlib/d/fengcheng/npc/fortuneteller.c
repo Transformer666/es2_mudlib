@@ -189,10 +189,17 @@ int do_ask(string arg)
 
 		// 打聽中（已接任務）：持卦錢則提示交還領賞，否則報還線索進度
 		if( q == 1 ) {
-			// 已尋回卦錢：提示把卦錢交(give)還神算子（領賞在 accept_object）
+			// 已尋回卦錢、且持錢在身：ask 即當作交還——驗錢、給賞、完成。
+			// 此路不經 give 指令﹐故須在此自行銷除玩家手裡的卦錢（與 accept_object
+			// 經 give 指令回 1 後自動銷除卦錢等效﹐免玩家留著「已交」的錢重複觸發）。
 			if( present("gua coin", me) ) {
-				do_chat((: command,
-					"say 施主把那枚龜甲卦錢尋著啦﹖快、快交(give)與老朽瞧瞧——若真是老朽失落的那枚﹐這副卦錢便又成數了﹗（give 龜甲卦錢 給 fortuneteller）" :));
+				object coin = present("gua coin", me);
+				message_vision(
+					"$N雙手把那枚龜甲卦錢奉與神算子。神算子凝目一看﹐\n"
+					"指尖摩挲著錢背的篆『卜』字﹐花白的長鬚都顫了起來。\n", me);
+				// 先同步給賞、記旗標﹐再銷除卦錢（與 accept_object 經 give 等效）。
+				settle_quest(me);
+				if( coin ) destruct(coin);
 				return 1;
 			}
 

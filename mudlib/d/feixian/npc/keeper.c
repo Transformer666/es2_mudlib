@@ -168,12 +168,20 @@ int do_ask(string arg)
 				return 1;
 			}
 
-			// 三家齊核：提示把收帳冊交(give)還掌櫃（領賞在 accept_object）
+			// 三家齊核、且持收帳冊在身：ask 即當作回報——驗冊、給賞、完成。
+			// 此路不經 give 指令﹐故須在此自行銷除玩家手裡的收帳冊（與 accept_object
+			// 經 give 指令回 1 後自動銷除收帳冊等效﹐免玩家留著「已交」的冊重複觸發）。
+			// 註：上面已先補發過失落的收帳冊﹐故能行到此處必持冊在身。
 			if( n >= 3 ) {
-				if( present("tab ledger", me) )
-					do_chat((: command,
-						"say 三家的賒帳都核齊啦﹖好哇好哇——快把那本收帳冊交(give)還小老兒﹐小老兒這就對帳銷帳﹗（give 收帳冊 給 keeper）" :));
-				else
+				if( present("tab ledger", me) ) {
+					object book = present("tab ledger", me);
+					message_vision(
+						"$N雙手把那本收帳冊奉還掌櫃。掌櫃接過攤在櫃上﹐撥著算盤\n"
+						"逐筆與店裡的帳簿核對﹐眉頭漸漸舒展開來。\n", me);
+					// 先同步給賞、記旗標﹐再銷除收帳冊（與 accept_object 經 give 等效）。
+					settle_quest(me);
+					if( book ) destruct(book);
+				} else
 					do_chat((: command,
 						"say 咦﹐那本收帳冊呢﹖客官莫不是失落了﹖沒了冊子﹐小老兒這帳可對不成。客官仔細尋尋﹐尋著了再來。" :));
 				return 1;

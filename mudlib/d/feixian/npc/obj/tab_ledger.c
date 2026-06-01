@@ -27,7 +27,8 @@ void create()
 			"清風茶行、雜貨鋪三處﹐各把代記的賒帳條子核對謄錄回來﹐\n"
 			"再交還掌櫃對帳。\n"
 			"你可以分頭去 ask 酒保 / 茶博士 / 雜貨郎 about 賒帳﹐\n"
-			"三家都核過了﹐再 give 收帳冊 給掌櫃對帳。\n");
+			"三家都核過了﹐再回客棧 ask keeper about 散帳對帳\n"
+			"（或 give tab ledger to keeper）。\n");
 		set("no_sell", 1);
 		set("no_steal", 1);
 	}

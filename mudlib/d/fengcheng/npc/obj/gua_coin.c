@@ -27,7 +27,8 @@ void create()
 			"禍福的隨身卦錢之一﹐前些日子在廣場的朔風裡失落了﹐輾轉\n"
 			"落到市集小吃攤上。少了這枚卦錢湊不成一副﹐那神算子便掐\n"
 			"算不靈了。\n"
-			"該把它交還卦攤的神算子﹕give 龜甲卦錢 給 fortuneteller。\n");
+			"該把它交還卦攤的神算子﹕ask fortuneteller about 龜甲\n"
+			"（或 give gua coin to fortuneteller）。\n");
 		set("no_sell", 1);
 		set("no_steal", 1);
 	}

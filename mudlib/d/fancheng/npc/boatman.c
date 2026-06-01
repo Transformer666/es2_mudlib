@@ -159,14 +159,21 @@ int do_ask(string arg)
 			int got_wood  = me->query("quest/fancheng_sea_wood");
 			int got_tally = me->query("quest/fancheng_sea_tally");
 
-			// 兩樁齊備：提示把領料木牌交(give)給老船匠（領賞在 accept_object）
+			// 兩樁齊備、且持木牌在身：ask 即當作送件處理——驗牌、給賞、完成。
+			// 此路不經 give 指令﹐故須在此自行銷除玩家手裡的木牌（與 accept_object
+			// 經 give 指令回 1 後自動銷除木牌等效﹐免玩家留著「已交」的牌重複觸發）。
 			if( got_wood && got_tally ) {
-				if( present("wood tally", me) )
+				if( present("wood tally", me) ) {
+					object tally = present("wood tally", me);
+					message_vision(
+						"$N雙手把那面領料木牌奉與船屋老人。老船匠瞇眼接過﹐\n"
+						"就著天光反覆驗看牌上的官押火印﹐連連頷首。\n", me);
+					// 先同步給賞、記旗標﹐再銷除木牌（與 accept_object 經 give 等效）。
+					settle_quest(me);
+					if( tally ) destruct(tally);
+				} else
 					do_chat((: command,
-						"say 木料的來路問著了﹐劉統領的木牌也討來了﹖好哇好哇——快把那面領料木牌交(give)給老朽﹐老朽這就憑它去料場下料﹗（give 木牌 給 boatman）" :));
-				else
-					do_chat((: command,
-						"say 咦﹐那面領料木牌呢﹖客官莫不是失落了﹖快回衛兵所尋劉統領補一面來﹐老朽驗看了纔好下料。" :));
+						"say 咦﹐那面領料木牌呢﹖客官莫不是失落了﹖快回衛兵所尋劉統領補一面來﹐老朽驗看了纔好下料。（補得木牌後﹐ask boatman about 龍骨﹐或 give wood tally to boatman）" :));
 				return 1;
 			}
 
