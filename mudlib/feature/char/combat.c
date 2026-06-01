@@ -249,7 +249,12 @@ inflict_damage (int strength, object victim)
 	if( ! damage && force_sk != "force" )
 	    damage = SKILL_D("force")->inflict_damage(strength, victim);
 
-	return damage;
+	// FIX(2026-06-01): 內功(force) 是被動「力道」乘數，force daemon 依設計多不實作
+	// inflict_damage()（回 0），daemon/skill/force.c 亦為空。原本在此無條件 return damage，
+	// 導致**任何 force-mapped 角色（拜過師/學過內功者）徒手攻擊恆 0 傷**——連重裝 sect
+	// 角色都打不死任何東西（練武堂/野獸山林/摩雲 等「打不死」皆此因；持武器走 equip.c 不受影響）。
+	// 改為：僅當 force 真的產出傷害才回傳，否則 fall through 用下方預設物理公式。
+	if( damage ) return damage;
     }
 
     damage = 1 + strength/10000 + random(strength/10000);
