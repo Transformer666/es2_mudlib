@@ -80,20 +80,29 @@ void init()
 		do_chat((: command, "say 噓 ... 別讓婆婆知道我在這裡 ..." :));
 }
 
-private void give_comb(object player)
+// 把紅木梳子交到玩家手上（先複製到自己身上，再 give 出去）。
+// 回傳 1 表示梳子確實落在玩家身上，0 表示沒交成（玩家離場/負荷過重）。
+// 採同步交付（直接呼叫，非延遲 do_chat）——梳子是入盜賊一行的唯一鑰匙，
+// 若放進延遲回呼又逢玩家於梳子交出前離場，便會「hungry 已清、梳子沒給、
+// 玩家再也餵不了食物討不到梳子」而永久卡死（與 keeper/boatman 一致的修法）。
+private int give_comb(object player)
 {
 	object comb;
 
 	if( !player || environment(player)!=environment() ) {
 		command("say 咦 ... 人呢﹖");
-		return;
+		return 0;
 	}
 	comb = new(__DIR__"obj/comb");
 	comb->move(this_object());
 	command("give comb to " + player->query("id"));
+	// 確認梳子真的到了玩家身上（give 失敗則梳子仍在阿寶身上，視為沒交成）
+	return present("annatto comb", player) ? 1 : 0;
 }
 
-private void exchange(string food_name, object player)
+// 吃下玩家給的食物（純氣氛＋扣食量）。梳子的交付不在此處，改由 accept_object
+// 同步處理，確保交不成時不會把 hungry 清掉。
+private void eat_food(string food_name, object player)
 {
 	set_stat_current("food", 0);
 	command("eat " + food_name);
@@ -118,10 +127,16 @@ int accept_object(object me, object ob)
 			return 0;
 		}
 
-		hungry = 0;
 		command("smile");
 		command("say 啊 .. 太好了﹗真謝謝你﹗ ...");
-		do_chat(({ (: exchange, ob->query("id"), me :), (: give_comb, me :) }));
+		// 同步吃下食物並當場把梳子交給玩家（玩家此刻正在給食，必在場）。
+		// 只有梳子確實交出後，才清掉 hungry——否則保留 hungry 讓玩家能再餵
+		// 食物重試討梳子，杜絕「梳子沒到手卻再也討不到」的軟鎖。
+		eat_food(ob->query("id"), me);
+		if( give_comb(me) )
+			hungry = 0;
+		// do_chat 僅作收尾氣氛對白，不再夾帶交付梳子的閉包。
+		do_chat((: command, "say 噓 ... 別讓婆婆知道我在這裡 ..." :));
 		return 1;
 	}
 	if(ob->id("__ID_CHALLIE__")){
@@ -221,3 +236,5 @@ void set_fon_temp(object me)
 	if( me->query_temp("try/fon")!=48 )	return;
 	me->set_temp("try/fon",50);
 }
+
+// vim: set ts=4 sw=4 syntax=lpc
