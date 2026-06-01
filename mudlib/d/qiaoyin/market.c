@@ -28,10 +28,11 @@ LONG
 	]));
 	set("outdoors", "qiaoyin");
 	set("no_fight", 1);
-	set("exits", ([ /* sizeof() == 3 */
+	set("exits", ([ /* sizeof() == 4 */
 		"west" : __DIR__"square",
 		"east" : "/d/fonxan/gate",
 		"south" : "/d/wuto/gate",
+		"northeast" : "/d/feixian/crossroad",
 	]));
 
 	setup();
