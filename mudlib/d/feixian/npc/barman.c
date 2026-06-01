@@ -1,4 +1,8 @@
-// barman.c -- 錢記酒樓的酒保（F_VENDOR 供應酒食﹐沿用既有食物物件 + 本地滷味）
+// barman.c -- 錢記酒樓的酒保（F_VENDOR 供應酒食﹐沿用既有食物物件 + 本地滷味）。
+//             兼斐縣非戰鬥支線「悅客來的散帳」的一處核帳點：玩家持悅客來
+//             客棧掌櫃的收帳冊來核錢記酒樓代記的賒帳（ask barman about 賒帳）。
+//             僅推進該支線旗標（quest/feixian_tab_tavern / _count）﹐不給賞、
+//             不動別的任務旗標﹐核帳一次即記﹐重問不重複計數。
 
 #include <npc.h>
 
@@ -60,6 +64,45 @@ int do_ask(string arg)
 		do_chat(({
 			(: command, "say 客官是頭一回到斐縣罷﹖咱這小縣城別的沒有﹐就五向路口那五條道岔得新鮮﹐外鄉人來了十個有九個要在路碑前轉上半晌哩。" :),
 			(: command, "say 咱錢記的女兒紅是自家窖裡埋足了年頭的﹐配上後堂那鍋老滷﹐管教客官吃了還想再來。" :),
+		}));
+		return 1;
+	}
+
+	// 賒帳：非戰鬥支線「悅客來的散帳」的核帳點（須已接任務、且持收帳冊在身）
+	if( arg == "barman about 賒帳"
+	||  arg == "barman about 散帳"
+	||  arg == "barman about 收帳冊"
+	||  arg == "barman about 帳"
+	||  arg == "barman about tab" ) {
+		object me = this_player();
+
+		// 未接任務 / 已交差：只當尋常打聽，不核帳、不記旗標
+		if( me->query("quest/feixian_tab") != 1 ) {
+			do_chat((: command,
+				"say 賒帳﹖客官打聽這個做甚﹖咱錢記是有幾位相熟的客商記在悅客來帳上的酒飯錢﹐都是老相與了﹐客官若不是掌櫃打發來核帳的﹐這帳本酒保可不便給生人看。" :));
+			return 1;
+		}
+
+		// 接了任務卻沒帶收帳冊：提示先去掌櫃處領冊
+		if( !present("tab ledger", me) ) {
+			do_chat((: command,
+				"say 客官是悅客來掌櫃打發來核帳的﹖那得先問掌櫃討了那本收帳冊來﹐酒保纔好對著謄錄。空著手﹐這帳可沒法核。" :));
+			return 1;
+		}
+
+		// 已核過本家：純氣氛，不重複計數
+		if( me->query("quest/feixian_tab_tavern") ) {
+			do_chat((: command,
+				"say 錢記這幾筆酒帳﹐方纔已替客官核對謄錄在收帳冊上了。客官且去清風茶行、雜貨鋪那兩處﹐把另兩家的也核齊了罷。" :));
+			return 1;
+		}
+
+		// 首次核帳：記本家旗標、總數 +1
+		me->set("quest/feixian_tab_tavern", 1);
+		me->add("quest/feixian_tab_count", 1);
+		do_chat(({
+			(: command, "say 哦﹐掌櫃打發客官來核散帳的﹖難為他還記掛著這幾筆。客官把收帳冊攤開﹐酒保這就把錢記代記的賒帳給客官念。" :),
+			(: command, "say 城南來的綢緞客賒過三回女兒紅、兩碟滷味﹐城北那走鏢的賒過一頓酒飯——都記在悅客來帳上的。酒保替客官一筆筆對著謄錄清楚了﹐客官收好冊子﹐再去別家核罷。" :),
 		}));
 		return 1;
 	}

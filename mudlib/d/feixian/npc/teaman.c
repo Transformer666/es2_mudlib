@@ -1,4 +1,8 @@
-// teaman.c -- 清風茶行的茶博士（F_VENDOR 供應茶點吃食）
+// teaman.c -- 清風茶行的茶博士（F_VENDOR 供應茶點吃食）。
+//             兼斐縣非戰鬥支線「悅客來的散帳」的一處核帳點：玩家持悅客來
+//             客棧掌櫃的收帳冊來核清風茶行代記的賒帳（ask teaman about 賒帳）。
+//             僅推進該支線旗標（quest/feixian_tab_tea / _count）﹐不給賞、
+//             不動別的任務旗標﹐核帳一次即記﹐重問不重複計數。
 
 #include <npc.h>
 
@@ -58,6 +62,45 @@ int do_ask(string arg)
 		do_chat(({
 			(: command, "say 斐縣雖小﹐倒是個有來歷的去處。城中那五向路口﹐五條道通著五處地界﹐打喬陰來的、進山去的﹐都得打這兒過﹐斐縣這名號﹐便是這般傳開的。" :),
 			(: command, "say 客官若往南邊山裡走﹐途中有座武陀灸堂﹐裡頭的針灸艾灸是出了名的妙手回春﹐進山前不妨先去討個平安。" :),
+		}));
+		return 1;
+	}
+
+	// 賒帳：非戰鬥支線「悅客來的散帳」的核帳點（須已接任務、且持收帳冊在身）
+	if( arg == "teaman about 賒帳"
+	||  arg == "teaman about 散帳"
+	||  arg == "teaman about 收帳冊"
+	||  arg == "teaman about 帳"
+	||  arg == "teaman about tab" ) {
+		object me = this_player();
+
+		// 未接任務 / 已交差：只當尋常打聽，不核帳、不記旗標
+		if( me->query("quest/feixian_tab") != 1 ) {
+			do_chat((: command,
+				"say 賒帳﹖客官這話從何說起。咱清風茶行是替悅客來代記過幾位茶客的茶點錢﹐都是相與多年的舊主顧﹐客官若非掌櫃打發來核帳的﹐這帳目茶博士可不好與外人說。" :));
+			return 1;
+		}
+
+		// 接了任務卻沒帶收帳冊：提示先去掌櫃處領冊
+		if( !present("tab ledger", me) ) {
+			do_chat((: command,
+				"say 客官是悅客來掌櫃打發來核帳的﹖那須得先問掌櫃討那本收帳冊來﹐茶博士纔好對著謄錄。空著手﹐這帳核不得。" :));
+			return 1;
+		}
+
+		// 已核過本家：純氣氛，不重複計數
+		if( me->query("quest/feixian_tab_tea") ) {
+			do_chat((: command,
+				"say 清風這幾筆茶帳﹐方纔已替客官核對謄錄在收帳冊上了。客官且往錢記酒樓、雜貨鋪那兩處﹐把另兩家的也核齊了罷。" :));
+			return 1;
+		}
+
+		// 首次核帳：記本家旗標、總數 +1
+		me->set("quest/feixian_tab_tea", 1);
+		me->add("quest/feixian_tab_count", 1);
+		do_chat(({
+			(: command, "say 哦﹐原來是掌櫃打發客官來核散帳的。難得他這般細心。客官把收帳冊攤開﹐茶博士這就把清風代記的賒帳一筆筆與客官對。" :),
+			(: command, "say 有位常來的教書先生賒過幾壺雨前、幾碟桂花糕﹐還有位過路的客商賒過一席茶點——都掛在悅客來帳上。茶博士替客官對著謄錄清楚了﹐客官收好冊子﹐再去別家核罷。" :),
 		}));
 		return 1;
 	}

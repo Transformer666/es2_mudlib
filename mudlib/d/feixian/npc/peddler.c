@@ -1,9 +1,15 @@
-// peddler.c -- 斐縣雜貨鋪的雜貨郎（F_VENDOR 販售既有的乾糧吃食與傷藥）
+// peddler.c -- 斐縣雜貨鋪的雜貨郎（F_VENDOR 販售既有的乾糧吃食與傷藥）。
+//             兼斐縣非戰鬥支線「悅客來的散帳」的一處核帳點：玩家持悅客來
+//             客棧掌櫃的收帳冊來核雜貨鋪代記的賒帳（ask peddler about 賒帳）。
+//             僅推進該支線旗標（quest/feixian_tab_shop / _count）﹐不給賞、
+//             不動別的任務旗標﹐核帳一次即記﹐重問不重複計數。
 
 #include <npc.h>
 
 inherit F_VILLAGER;
 inherit F_VENDOR;
+
+int do_ask(string arg);
 
 void create()
 {
@@ -42,6 +48,68 @@ void init()
 {
 	::init();
 	add_action("do_vendor_list", "list");
+	add_action("do_ask", "ask");
+}
+
+int do_ask(string arg)
+{
+	if( !arg )
+		return notify_fail("你想問這雜貨郎些甚麼﹖（試試 ask peddler about 賒帳）\n");
+
+	// 賒帳：非戰鬥支線「悅客來的散帳」的核帳點（須已接任務、且持收帳冊在身）
+	if( arg == "peddler about 賒帳"
+	||  arg == "peddler about 散帳"
+	||  arg == "peddler about 收帳冊"
+	||  arg == "peddler about 帳"
+	||  arg == "vendor about 賒帳"
+	||  arg == "shopkeeper about 賒帳"
+	||  arg == "peddler about tab" ) {
+		object me = this_player();
+
+		// 未接任務 / 已交差：只當尋常打聽，不核帳、不記旗標
+		if( me->query("quest/feixian_tab") != 1 ) {
+			do_chat((: command,
+				"say 賒帳﹖客官問這個做甚﹖小店是替悅客來代記過幾位過路客商的零碎賒帳﹐都是相與的舊例﹐客官若不是掌櫃打發來核帳的﹐這帳本子可不便隨意給人瞧。" :));
+			return 1;
+		}
+
+		// 接了任務卻沒帶收帳冊：提示先去掌櫃處領冊
+		if( !present("tab ledger", me) ) {
+			do_chat((: command,
+				"say 客官是悅客來掌櫃打發來核帳的﹖那得先問掌櫃討了那本收帳冊來﹐小老兒纔好對著謄錄。空著手﹐這帳沒法核哪。" :));
+			return 1;
+		}
+
+		// 已核過本家：純氣氛，不重複計數
+		if( me->query("quest/feixian_tab_shop") ) {
+			do_chat((: command,
+				"say 小店這幾筆零碎賒帳﹐方纔已替客官核對謄錄在收帳冊上了。客官且往錢記酒樓、清風茶行那兩處﹐把另兩家的也核齊了罷。" :));
+			return 1;
+		}
+
+		// 首次核帳：記本家旗標、總數 +1
+		me->set("quest/feixian_tab_shop", 1);
+		me->add("quest/feixian_tab_count", 1);
+		do_chat(({
+			(: command, "say 哦﹐掌櫃打發客官來核散帳的﹖難為他想得周全。客官把收帳冊攤開﹐小老兒這就把雜貨鋪代記的賒帳與客官對。" :),
+			(: command, "say 有趕路的客商賒過乾糧傷藥、火石蠟燭﹐零零碎碎也記了幾筆在悅客來帳上。小老兒替客官一筆筆對著謄錄清楚了﹐客官收好冊子﹐三家核齊了﹐便回客棧尋掌櫃對帳罷。" :),
+		}));
+		return 1;
+	}
+
+	// 斐縣本地閒談（純氣氛﹐與街坊各 NPC 一致的指路口吻）
+	if( arg == "peddler about 斐縣"
+	||  arg == "peddler about 縣前街"
+	||  arg == "peddler about 雜貨鋪"
+	||  arg == "peddler about feixian" ) {
+		do_chat(({
+			(: command, "say 客官是頭一回逛咱這縣前街罷﹖小店是這街東頭貨色最齊的雜貨鋪了﹐過日子的零碎物事、趕路的乾糧傷藥﹐大半尋得著。" :),
+			(: command, "say 街西那座土地祠香火旺﹐街南頭便是縣衙﹐往北回了五向路口﹐東西南北的鋪子茶樓都齊全。客官慢慢逛便是。" :),
+		}));
+		return 1;
+	}
+
+	return notify_fail("雜貨郎搖著蒲扇憨憨一笑﹕客官要買些甚麼﹐只管 list 來瞧。\n");
 }
 
 int accept_fight(object ob)
