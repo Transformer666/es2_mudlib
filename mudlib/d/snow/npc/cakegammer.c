@@ -105,11 +105,13 @@ int do_ask(string arg)
 
 	// 已送達，回來領賞
 	if( q == 2 ) {
+		// 同步給賞、即記旗標（give_reward 為直接 new+move﹐玩家此刻必在場）。
+		// 不把給賞放進延遲的 do_chat——免玩家於回呼前離場致賞沒領、旗標卻記完成而卡關。
+		give_reward(me);
 		me->set("quest/snow_newbie", 3);
 		do_chat(({
 			"張婆婆聽說阿福收到了點心﹐笑得合不攏嘴。\n",
 			(: command, "say 真是個熱心腸的好孩子﹐這點東西你拿著﹐別嫌少﹗" :),
-			(: give_reward, me :),
 		}));
 		return 1;
 	}

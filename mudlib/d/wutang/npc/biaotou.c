@@ -148,10 +148,12 @@ int accept_object(object who, object ob)
 		return 1;
 	}
 
+	// 同步給賞、即記旗標（give_reward 為直接 new+move﹐玩家此刻必在場）。
+	// 不把給賞放進延遲的 do_chat——免玩家於回呼前離場致賞沒領、旗標卻記完成而卡關。
+	give_reward(who);
 	who->set("quest/wutang_cargo", 3);
 	do_chat(({
 		(: command, "say 封條完好﹐正是張員外那只漆盒﹗朋友辦事真是俐落﹗" :),
-		(: give_reward, who :),
 		(: command, "say 這點酬勞朋友拿著﹐匕首防身﹐月餅充飢。日後過五堂鎮﹐鏢局便是朋友的去處﹗" :),
 	}));
 	return 1;

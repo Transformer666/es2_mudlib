@@ -206,10 +206,12 @@ int accept_object(object who, object ob)
 			return 1;
 		}
 
+		// 同步給賞、即記旗標（give_reward 為直接 new+move﹐玩家此刻必在場）。
+		// 不把給賞放進延遲的 do_chat——免玩家於回呼前離場致賞沒領、旗標卻記完成而卡關。
+		give_reward(who);
 		who->set("quest/main_omen4", 3);
 		do_chat(({
 			(: command, "say 守木老者的識獸帖 ... 老朽識字不多﹐可這上頭的話﹐看得老朽脊梁骨發涼。" :),
-			(: give_reward, who :),
 			(: command, "say 這點銅錢與山豬果﹐少俠帶在身上﹐防身充飢。少俠肯為這滿山的生靈奔走﹐老朽這把老骨頭﹐承你的情了﹗" :),
 		}));
 		return 1;

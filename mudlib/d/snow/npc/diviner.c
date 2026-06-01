@@ -211,10 +211,12 @@ int accept_object(object who, object ob)
 			return 1;
 		}
 
+		// 同步給賞、即記旗標（give_reward 為直接 new+move﹐玩家此刻必在場）。
+		// 不把給賞放進延遲的 do_chat——免玩家於回呼前離場致賞沒領、旗標卻記完成而卡關。
+		give_reward(who);
 		who->set("quest/main_omen5", 3);
 		do_chat(({
 			(: command, "say 這便是群獸朝靈的去向麼 ... 嘶﹗少俠瞧這獸徑的脈絡﹐百川歸海﹐齊指天靈山——還有這團黑影﹐果然是摩雲。老道推算多時﹐今日總算坐實了。" :),
-			(: give_reward, who :),
 			(: command, "say 這點銅錢與丹藥﹐少俠收著防身。少俠肯為這天下蒼生涉險勘察﹐老道這方外之人﹐承你的情了﹗" :),
 		}));
 		return 1;

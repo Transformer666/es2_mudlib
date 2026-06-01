@@ -155,10 +155,12 @@ int accept_object(object who, object ob)
 		return 1;
 	}
 
+	// 同步給賞、即記旗標（give_reward 為直接 new+move﹐玩家此刻必在場）。
+	// 不把給賞放進延遲的 do_chat——免玩家於回呼前離場致賞沒領、旗標卻記完成而卡關。
+	give_reward(who);
 	who->set("quest/snow_newbie2", 3);
 	do_chat(({
 		(: command, "say 正是這味草藥﹗大哥辦事真俐落﹗" :),
-		(: give_reward, who :),
 		(: command, "say 這把匕首大哥拿著防身﹐山豬果累了能提提神。日後常來啊﹗" :),
 	}));
 	return 1;

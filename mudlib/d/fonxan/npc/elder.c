@@ -303,10 +303,12 @@ int accept_object(object who, object ob)
 			return 1;
 		}
 
+		// 同步給賞、即記旗標（give_reward 為直接 new+move﹐玩家此刻必在場）。
+		// 不把給賞放進延遲的 do_chat——免玩家於回呼前離場致賞沒領、旗標卻記完成而卡關。
+		give_reward(who);
 		who->set("quest/main_omen2", 3);
 		do_chat(({
 			(: command, "say 正是那卷殘卷﹗老朽這半部《封鬼遺錄》﹐總算補齊了﹗少俠辦事真是俐落﹗" :),
-			(: give_reward, who :),
 			(: command, "say 這點薄禮少俠拿著﹐銅錢防身﹐傷藥備急﹐這柄封山佩劍便贈與少俠了。" :),
 		}));
 		return 1;
@@ -325,10 +327,12 @@ int accept_object(object who, object ob)
 			return 1;
 		}
 
+		// 同步給賞、即記旗標（give_reward3 為直接 new+move﹐玩家此刻必在場）。
+		// 不把給賞放進延遲的 do_chat——免玩家於回呼前離場致賞沒領、旗標卻記完成而卡關。
+		give_reward3(who);
 		who->set("quest/main_omen3", 3);
 		do_chat(({
 			(: command, "say 這便是聖木的殘片麼 ... 嘶﹐其上封印之力果然將盡。守木老者所言﹐看來半分不假。" :),
-			(: give_reward3, who :),
 			(: command, "say 少俠這一趟﹐功不可沒。此事老朽即刻飛書稟報掌門﹐少俠且先歇息﹐養精蓄銳——只怕來日這場禍事﹐還要仰仗你。" :),
 		}));
 		return 1;

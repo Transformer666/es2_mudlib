@@ -219,10 +219,12 @@ int accept_object(object who, object ob)
 			return 1;
 		}
 
+		// 同步給賞、即記旗標（give_reward 為直接 new+move﹐玩家此刻必在場）。
+		// 不把給賞放進延遲的 do_chat——免玩家於回呼前離場致賞沒領、旗標卻記完成而卡關。
+		give_reward(who);
 		who->set("quest/main_omen6", 3);
 		do_chat(({
 			(: command, "say 這便是摩雲今時的爪痕麼 ... 嘶﹗少俠瞧這爪距、這崩石的紋路——不錯﹐正是摩雲那一脈的爪法﹐老朽祖父留下的圖譜上記著呢。這青黑戾氣 ... 牠果真退往天靈山麓蓄勢去了。" :),
-			(: give_reward, who :),
 			(: command, "say 這點銅錢與丹藥﹐少俠收著防身。少俠肯為這天下蒼生涉那獸窟之險﹐老朽承你的情了——往後上天靈山尋摩雲決戰﹐還要靠少俠這身本事啊﹗" :),
 		}));
 		return 1;

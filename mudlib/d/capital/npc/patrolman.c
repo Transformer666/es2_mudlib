@@ -169,10 +169,12 @@ int accept_object(object who, object ob)
 		return 1;
 	}
 
+	// 同步給賞、即記旗標（give_reward 為直接 new+move﹐玩家此刻必在場）。
+	// 不把給賞放進延遲的 do_chat——免玩家於回呼前離場致賞沒領、旗標卻記完成而卡關。
+	give_reward(who);
 	who->set("quest/capital_errand", 3);
 	do_chat(({
 		(: command, "say 正是尚書府門房的回執﹗密函既已送到﹐這趟差事壯士辦得漂亮﹗" :),
-		(: give_reward, who :),
 		(: command, "say 這點酬勞壯士拿著﹐山豬果提神﹐月餅充飢。日後巡院有事﹐還要請壯士多多幫襯﹗" :),
 	}));
 	return 1;

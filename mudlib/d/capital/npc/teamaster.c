@@ -161,10 +161,12 @@ int accept_object(object who, object ob)
 		return 1;
 	}
 
+	// 同步給賞、即記旗標（give_reward 為直接 new+move﹐玩家此刻必在場）。
+	// 不把給賞放進延遲的 do_chat——免玩家於回呼前離場致賞沒領、旗標卻記完成而卡關。
+	give_reward(who);
 	who->set("quest/houhai_tea", 3);
 	do_chat(({
 		(: command, "say 正是我那包雨前龍井﹗油紙都還裹得好好的﹐茶葉一星半點沒糟蹋——客官真是我的恩人哪﹗" :),
-		(: give_reward, who :),
 		(: command, "say 客官嚐嚐這頭茬的龍井﹐配著月餅最是相宜。對了﹐這幾日後海湖夜半屢有異響﹐連畫舫都不敢往湖心去﹐西岸那座巡院的官爺們也進進出出的﹐不知又在查辦甚麼大案子哩——客官在京畿走動﹐自個兒留神著些。" :),
 	}));
 	return 1;
