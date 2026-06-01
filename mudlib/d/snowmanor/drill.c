@@ -20,6 +20,7 @@ LONG
 		"步法" : "場心白灰畫出的步法方位縱橫交錯﹐踩踏得模糊難辨﹐依稀能看出是某種講究進退騰挪的身法步樁﹐想是莊中武學的根基。\n",
 	]));
 	set("objects", ([
+		__DIR__"npc/instructor" : 1,
 		__DIR__"npc/retainer" : 1,
 	]));
 	set("outdoors", "snowmanor");
