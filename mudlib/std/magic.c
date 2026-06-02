@@ -88,6 +88,14 @@ cast_spell(object me, string spl, object target)
         return 0;
     }
 
+    // 非戰之地不可施展攻擊法術（與 combatd.c::fight 的 no_fight 規則一致、
+    // 否則玩家可在和平房如客棧內隔空打人）。
+    if( environment(me)->query("no_fight")
+    && !target->query("unprotect_mark") && !me->query("unprotect_mark") ) {
+        notify_fail("這裡是清靜之地，不可動手施法。\n");
+        return 0;
+    }
+
     // 神(sen)消耗檢查。
     cost = sp["sen"];
     if( me->query_stat("sen") < cost ) {
@@ -121,9 +129,12 @@ cast_spell(object me, string spl, object target)
     target->receive_damage(damage, me, me);
     COMBAT_D->report_status(target);
 
-    // 特效：凍結 → 對象短暫無法行動。
-    if( sp["effect"] == "freeze" && objectp(target) && !target->is_busy() )
+    // 特效：凍結 → 對象短暫無法行動（並出訊息，使凍結可見）。
+    if( sp["effect"] == "freeze" && objectp(target) && living(target)
+    && !target->is_busy() ) {
+        message_vision(HIC "$n被森森寒氣凍得周身一滯，動作為之一頓！" NOR "\n", me, target);
         target->start_busy(1);
+    }
 
     // 練法術技能 + 精熟（僅玩家；NPC 技能固定）。
     if( userp(me) )
