@@ -22,6 +22,7 @@
 #define CHANNEL_D "/adm/daemons/channeld.c"
 #define CHAR_D "/adm/daemons/chard.c"
 #define CHINESE_D "/adm/daemons/chinesed.c"
+#define CLAN_D "/daemon/misc/clan.c"
 #define COMBAT_D "/adm/daemons/combatd.c"
 #define COMMAND_D "/adm/daemons/cmd_d.c"
 #define DAEMON_D "/adm/daemons/daemond.c"

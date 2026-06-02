@@ -51,20 +51,24 @@ void init()
 int do_members()
 {
     object *usr, temp, me;
-    string nick, title;
+    string nick, title, clan, *online_ids, uid;
+    mapping members;
     int i, j;
+    string *offline;
     me = this_player();
-    usr = users();
-	
+
     if( !me->query("clan/clan_name") ) {
 	log_file("CLAN", sprintf("[%s] destruct symbol of %s(%s)\n",
             ctime(time()), me->name(), me->query("id")));
  	destruct(this_object());
+	return 1;
     }
 
-    if( wiz_level(usr[i]) > wiz_level(me) && !usr[i]->visible(me) )
-	usr -= ({ usr[i] });
+    clan = me->query("clan/clan_name");
+    // 修正原本在 filter/sort 之前就以未初始化的 i 索引 usr[i] 的 bug：
+    // 隱形高階巫師的過濾改用 filter_visible() 在正確時機 (membership 過濾後) 套用。
     usr = filter_array( users(), "filter_clan", this_object() );
+    usr = filter_array( usr, "filter_visible", this_object() );
     usr = sort_array( usr, "sort_usrs", this_object() );
     if ( sizeof(usr) ) {
 	i = sizeof(usr);
@@ -98,8 +102,28 @@ int do_members()
 		usr[i]->query("clan/rank"),
 		usr[i]->query("level"),	title, nick, usr[i]->name(),
 		capitalize(usr[i]->query("id")) ); } }
-	} else 
-	    write("似乎沒有任何幫派成員在線上....。\n");
+    } else
+	write("似乎沒有任何幫派成員在線上....。\n");
+
+    // 從中央幫派 daemon 列出離線成員 (線上者已於上方顯示, 此處排除)。
+    members = CLAN_D->query_members(clan);
+    if( mapp(members) && sizeof(members) ) {
+	online_ids = ({ });
+	for( i = 0; i < sizeof(usr); i++ )
+	    online_ids += ({ usr[i]->query("id") });
+	offline = keys(members) - online_ids;
+	if( sizeof(offline) ) {
+	    write("\n離線成員 (共 " + sizeof(offline) + " 位):\n"
+"========================================================================\n");
+	    for( i = 0; i < sizeof(offline); i++ ) {
+		uid = offline[i];
+		printf("【%s】%s\n",
+		    (members[uid] == 3) ? "幫主" :
+		    (members[uid] == 2) ? "長老" : "幫眾",
+		    capitalize(uid) );
+	    }
+	}
+    }
 
     return 1;
 }
@@ -110,12 +134,21 @@ int sort_usrs(object u1, object u2)
 }
 
 int filter_clan(object ob)
-{        
+{
     object me = this_player();
     if( ob->query("clan/clan_name") == me->query("clan/clan_name") ) {
 	return 1;
     }
     return 0;
+}
+
+// 過濾掉隱形且階級高於觀看者的巫師 (僅用於成員列表顯示, 不影響頻道收訊)。
+int filter_visible(object ob)
+{
+    object me = this_player();
+    if( wiz_level(ob) > wiz_level(me) && !ob->visible(me) )
+	return 0;
+    return 1;
 }
 
 int do_chat(string arg)

@@ -15,7 +15,7 @@ int main(object me, string arg)
     if( !arg ) {
 	seteuid( getuid() );
 	write("目前已有的幫派如下: \n\n");
-        write( read_file("/obj/CLAN") );
+        write( CLAN_D->list_clans() );
 	write("\n欲加入一個幫派請找長老級以上玩家申請加入幫派。\n");
 	return 1;
     }
@@ -43,6 +43,8 @@ int main(object me, string arg)
 	    me->query("id")) );
 	clan_line("本人宣佈, 即刻起退出" + me->query("clan/clan_name")
 	    + "。\n");
+	// 自中央幫派 daemon 移除本人 (在刪除玩家 clan/* 快取之前先取得幫名)。
+	CLAN_D->remove_member(me->query("clan/clan_name"), me->query("id"));
 	me->delete("clan/clan_name");
 	me->delete("clan/clan_level");
 	me->delete("clan/nick");
@@ -110,6 +112,9 @@ int main(object me, string arg)
 	    who->set("clan/nick", "無");
 	    who->set("clan/clan_level", 1);
 
+	    // 在中央幫派 daemon 登錄新幫眾 (職等1), 離線亦可查得。
+	    CLAN_D->add_member(me->query("clan/clan_name"), who->query("id"), 1);
+
 	    log_file("CLAN", sprintf("[%s] %s: %s(%s) accepts %s(%s)\n",
 		ctime(time()), me->query("clan/clan_name"), me->name(),
 		me->query("id"), who->name(), who->query("id")));
@@ -147,6 +152,8 @@ int main(object me, string arg)
 	    me->query("id"), who->name(), who->query("id")) );
 	tell_object(who, HIY"你已經不再是" +
 	    who->query("clan/clan_name") + "的幫眾了。\n"NOR);
+	// 自中央幫派 daemon 移除被逐者 (在刪除其 clan/* 快取之前先取得幫名)。
+	CLAN_D->remove_member(who->query("clan/clan_name"), who->query("id"));
 	who->delete("clan/clan_name");
 	who->delete("clan/clan_nick");
 	who->delete("clan/clan_level");
@@ -181,6 +188,11 @@ int main(object me, string arg)
 	    who->set("clan/rank", me->query("clan/rank"));
 	    tell_object(who, HIY"你的職位由長老升為" +
 	    	me->query("clan/rank") + "。\n"NOR);
+	    // 中央幫派 daemon: 讓位 - who 升幫主(3), me 降長老(2)。
+	    CLAN_D->set_member_level(me->query("clan/clan_name"),
+		who->query("id"), 3);
+	    CLAN_D->set_member_level(me->query("clan/clan_name"),
+		me->query("id"), 2);
 	    me->delete("clan/elder");
 	    me->set("clan/clan_level", 2);
 	    me->set("clan/rank", "長老");
@@ -216,7 +228,7 @@ int main(object me, string arg)
 	if( who->query("level") < 20 ) 
 	    return notify_fail("此人能力不足以擔當長老之職。\n");
 
-	clan_line("即刻起, " + who->name() + "升為" + 
+	clan_line("即刻起, " + who->name() + "升為" +
 	    me->query("clan/clan_name") + "長老。\n");
 	seteuid( getuid() );
 	me->add("clan/elder", 1);
@@ -224,6 +236,9 @@ int main(object me, string arg)
 	    who->delete("clan/elder");
 	who->set("clan/clan_level", 2);
 	who->set("clan/rank", "長老");
+	// 中央幫派 daemon: 升任長老(職等2)。
+	CLAN_D->set_member_level(me->query("clan/clan_name"),
+	    who->query("id"), 2);
 	log_file("CLAN", sprintf("[%s] %s: %s(%s) promotes %s(%s)\n",
 	    ctime(time()), me->query("clan/clan_name"), me->name(),
 	    me->query("id"), who->name(), who->query("id")) );
@@ -247,6 +262,9 @@ int main(object me, string arg)
 	me->add("clan/elder", -1);
 	who->set("clan/clan_level", 1);
 	who->set("clan/rank","幫眾");
+	// 中央幫派 daemon: 降為幫眾(職等1)。
+	CLAN_D->set_member_level(me->query("clan/clan_name"),
+	    who->query("id"), 1);
 	log_file("CLAN", sprintf("[%s] %s: %s(%s) demotes %s(%s)\n",
 	    ctime(time()), me->query("clan/clan_name"), me->name(),
 	    me->query("id"), who->name(), who->query("id")) );

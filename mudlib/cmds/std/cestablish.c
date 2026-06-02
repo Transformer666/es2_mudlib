@@ -21,8 +21,7 @@ int main(object me, string arg)
 		if( me->query_temp("clan/sign_number") < 2 ) return
 			notify_fail("你至少得找兩個副手來幫忙才能建幫。\n");
 		write("目前已有的幫派如下: \n\n");
-		seteuid(ROOT_UID);
-		write( read_file("/obj/CLAN") );
+		write( CLAN_D->list_clans() );
 		write("\n在幫名決定之前, 可隨時以指令:q脫離建幫手續。請\n");
 		write("創一具風格的全新幫派。請輸入幫派名: ");
 		input_to("get_clan_name", me);
@@ -102,9 +101,10 @@ private void confirm_name(string yn, object me)
 
 private void get_clan_rank(string arg, object me)
 {
-	if( strlen(arg) > 4 ) {
+	if( strlen(arg) > 12 ) {	// >12 bytes ≈ >4 漢字。原 >4(byte) 誤拒「幫主/門主/掌門」等 2 字中文稱號(各 6 bytes)、連提示範例都過不了。
 		write("稱號過長, 請重新輸入: ");
 		input_to("get_clan_rank", me);
+		return;			// BUG-fix：原缺 return → 過長仍 fall through、照設稱號+重複問確認、令 input_to 錯亂。
 	}
 	seteuid(getuid(me));
 	me->set("clan/rank", arg);
@@ -130,6 +130,11 @@ private void confirm_rank(string yn, object me)
                 input_to("get_clan_rank", me);
                 return;
         }
+	// 在中央幫派 daemon 建立持久化紀錄, 並把創幫者登錄為幫主(職等3)。
+	CLAN_D->register_clan(me->query("clan/clan_name"), me->query("id"));
+	CLAN_D->add_member(me->query("clan/clan_name"), me->query("id"), 3);
+	// 標記此人已用掉「一生一次」的建幫機會 (修正原本只檢查卻從不設定的 bug)。
+	me->set("clan/create", 1);
 #ifdef SAVE_USER
         me->save();
 #endif
@@ -137,7 +142,7 @@ private void confirm_rank(string yn, object me)
 	+"已由"+me->name()+"創立完成, 開始招收幫眾!!\n"NOR, users());
 	mark = new("/obj/clan_symbol");
 	mark->move(me);
-	return;		
+	return;
 }
 
 
