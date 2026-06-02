@@ -22,7 +22,7 @@
 
 #include <ansi.h>
 
-inherit SKILL;
+inherit "/std/magic";
 
 mapping *actions = ({
   ([
@@ -102,10 +102,19 @@ attack_using (object me, object opponent, object weapon)
   damage = COMBAT_D->fight(me, opponent, "moon magic", actions[random(sizeof(actions))], weapon);
 }
 
-int
-valid_enable (string usage)
+// ── 主動施法(cast)：本門咒文表 + 技能名（valid_enable/cast_spell 由 /std/magic 提供）──
+string magic_skill() { return "moon magic"; }
+
+mapping query_spells()
 {
-  return 0;
+  return ([
+    "月華" :     ([ "id":"yuehua",  "sen":8,  "power":10, "type":"陰寒",
+        "action":HIW "$N纖手結印﹐口誦月華真言﹐一道清冷銀芒悄無聲息地點向$n！" NOR ]),
+    "太陰寒月" : ([ "id":"taiyin",  "sen":16, "power":20, "type":"陰寒",
+        "action":HIW "$N凝神運法﹐素手輕揚﹐一式『太陰寒月』化作森森月華寒光﹐如水籠罩$n！" NOR ]),
+    "太陰七損" : ([ "id":"qisun",   "sen":30, "power":34, "type":"陰寒",
+        "action":HIW "$N雙掌一合﹐周身月華暴湧﹐一式『太陰七損』清輝沖天暴漲﹐森寒地席捲$n！" NOR ]),
+  ]);
 }
 
 // vim: set ts=4 sw=4 syntax=lpc

@@ -7,7 +7,7 @@
 
 #include <ansi.h>
 
-inherit SKILL;
+inherit "/std/magic";
 
 mapping *actions = ({
   ([
@@ -87,10 +87,19 @@ attack_using (object me, object opponent, object weapon)
   damage = COMBAT_D->fight(me, opponent, "youmin", actions[random(sizeof(actions))], weapon);
 }
 
-int
-valid_enable (string usage)
+// ── 主動施法(cast)：本門咒文表 + 技能名（valid_enable/cast_spell 由 /std/magic 提供）──
+string magic_skill() { return "youmin"; }
+
+mapping query_spells()
 {
-  return 0;
+  return ([
+    "幽箭" :     ([ "id":"youjian", "sen":8,  "power":10, "type":"幽冥之氣",
+        "action":HIM "$N口誦真言﹐掐訣引魂﹐指尖凝起一點幽光化作一箭﹐破空射向$n！" NOR ]),
+    "幽冥三箭" : ([ "id":"youming", "sen":16, "power":20, "type":"幽冥之氣",
+        "action":HIM "$N凝神運法﹐袖中黃符燃起﹐一式『幽冥三箭』化作三道幽箭﹐連珠攢射$n！" NOR ]),
+    "九幽奪魄" : ([ "id":"jiuyou",  "sen":30, "power":34, "type":"幽冥之氣",
+        "action":HIM "$N雙指一彈﹐周身幽冥之氣暴漲﹐一式『九幽奪魄』數道幽箭破空攢射﹐直奪$n魂魄！" NOR ]),
+  ]);
 }
 
 // vim: set ts=4 sw=4 syntax=lpc

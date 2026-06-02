@@ -7,7 +7,7 @@
 
 #include <ansi.h>
 
-inherit SKILL;
+inherit "/std/magic";
 
 mapping *actions = ({
   ([
@@ -87,10 +87,19 @@ attack_using (object me, object opponent, object weapon)
   damage = COMBAT_D->fight(me, opponent, "taoism-freeze", actions[random(sizeof(actions))], weapon);
 }
 
-int
-valid_enable (string usage)
+// ── 主動施法(cast)：本門咒文表 + 技能名（valid_enable/cast_spell 由 /std/magic 提供）──
+string magic_skill() { return "taoism-freeze"; }
+
+mapping query_spells()
 {
-  return 0;
+  return ([
+    "寒星" :     ([ "id":"hanxing", "sen":8,  "power":10, "type":"寒傷",
+        "action":HIC "$N口誦真言﹐掐訣一引﹐一點晶瑩的寒星脫手飛出﹐「嗤」地射向$n！" NOR ]),
+    "玄冰封脈" : ([ "id":"xuanbing","sen":16, "power":20, "type":"凍傷",
+        "action":HIC "$N足踏罡步﹐袖中素符凝霜﹐一式『玄冰封脈』化作冰晶寒流﹐激射$n！" NOR ]),
+    "玄武凝寒" : ([ "id":"xuanwu",  "sen":30, "power":34, "type":"凍傷", "effect":"freeze",
+        "action":HIW "$N凝神運法﹐周身寒氣暴漲﹐一式『玄武凝寒』霜華沖天暴卷﹐當頭澆向$n﹐將其凍封當場！" NOR ]),
+  ]);
 }
 
 // vim: set ts=4 sw=4 syntax=lpc

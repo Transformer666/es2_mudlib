@@ -7,7 +7,7 @@
 
 #include <ansi.h>
 
-inherit SKILL;
+inherit "/std/magic";
 
 mapping *actions = ({
   ([
@@ -87,10 +87,19 @@ attack_using (object me, object opponent, object weapon)
   damage = COMBAT_D->fight(me, opponent, "taoism-fire", actions[random(sizeof(actions))], weapon);
 }
 
-int
-valid_enable (string usage)
+// ── 主動施法(cast)：本門咒文表 + 技能名（valid_enable/cast_spell 由 /std/magic 提供）──
+string magic_skill() { return "taoism-fire"; }
+
+mapping query_spells()
 {
-  return 0;
+  return ([
+    "火球" :     ([ "id":"huoqiu", "sen":8,  "power":10, "type":"灼傷",
+        "action":HIR "$N口誦真言﹐掐訣一引﹐一團赤紅的火球脫手飛出﹐「轟」地罩向$n！" NOR ]),
+    "離火" :     ([ "id":"lihuo",  "sen":16, "power":20, "type":"灼傷",
+        "action":HIR "$N足踏罡步﹐袖中朱符燃起﹐一式『離火燎原』化作火舌烈焰﹐席捲$n！" NOR ]),
+    "朱雀焚天" : ([ "id":"zhuque", "sen":30, "power":34, "type":"灼傷",
+        "action":HIR "$N凝神運法﹐周身真火暴漲﹐一式『朱雀焚天』赤焰沖天而起﹐當頭澆向$n！" NOR ]),
+  ]);
 }
 
 // vim: set ts=4 sw=4 syntax=lpc
