@@ -31,17 +31,23 @@ int main(object me, string arg)
 	target = 0;
     }
 
+    // BUG-fix(2026-06-02 adversarial review)：原 `!target->query(...)` 在無對象
+    // (cast 不帶 on)時 target==0 → 對 0 呼叫方法、一旦有 no_magic 房即 crash。
+    // 加 (target && ...) 防呆；訊息亦改為 no_magic 語意。
     if( environment(me)->query("no_magic")
     && !me->is_fighting(target)
-    && !target->query("unprotect_mark") ) {
-	    tell_object(me, "這裡不准戰鬥。\n");
+    && !(target && target->query("unprotect_mark")) ) {
+	    tell_object(me, "這裡法力受制，不能施展法術。\n");
 	    return 1;
     }
 
     spl = replace_string( spl, " ", "_");
 
+    // BUG-fix：未 enable 時 skill_mapped("spells") 回傳原字串 "spells"，
+    // SKILL_D("spells") 因無 /daemon/skill/spells.c 而 fallback 成 DAEMON_D 本體。
+    // 加 `!= "spells"` 確保真已指派咒文系才派發(否則落到下方 notify_fail 提示)。
     notify_fail("你請先用 enable 指令選擇你要使用的咒文系。\n");
-    if( stringp(spells = me->skill_mapped("spells")) )
+    if( stringp(spells = me->skill_mapped("spells")) && spells != "spells" )
 	return (int)SKILL_D(spells)->cast_spell(me, spl, target);
 
     return 0;
