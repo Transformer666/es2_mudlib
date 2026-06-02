@@ -199,6 +199,13 @@ fight (object me, object victim, string skill, mapping action, object weapon)
 
         /* 當使用內功，以極低的功力百分比戰鬥時，有機會 gin_cost = 0 */
         gin_cost = random(2 + force_bonus/30000);
+
+        // 內功隨實戰運使而精進（決策 B-1）：原 combat 從不練 force → query_skill("force")
+        // 永遠停在拜師初值 → force_bonus 近乎不長、內功流派的傷害放大成形不了。比照攻擊／
+        // 閃躲／招架技能，於運使內功攻擊時練 force。僅玩家、且已 map 真心法(非 generic
+        // "force")者(force_bonus 公式之先決條件)。improve_skill 自封頂於天賦。
+        if( userp(me) && force_skill != "force" )
+            me->improve_skill("force", 1);
     }
 
     /* 命中率: 攻擊能力 + 攻擊技能 + 招式係數 */
