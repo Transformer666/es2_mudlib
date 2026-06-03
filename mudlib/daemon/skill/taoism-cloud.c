@@ -20,6 +20,8 @@ create()
 {
     seteuid(getuid());
     DAEMON_D->register_skill_daemon("taoism-cloud");
+    // 登錄中文名﹐使 enable / skills 等顯示「素雲書」而非英文代號 taoism-cloud。
+    CHINESE_D->add_translate("taoism-cloud", "素雲書");
     setup();
 }
 
