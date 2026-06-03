@@ -214,8 +214,24 @@ make_corpse(object victim, object killer)
 	    // 必是 kill/偷襲/法術等致死性交手。(is_killing 狀態在 die() 已被
 	    // remove_all_killer 清除，故此處改以「受害者是否清白」為等價判準。)
 	    // killer != victim 排除自殺；level>1 與本區塊既有反神風隊精神一致。
+	    //
+	    // ADD(2026-06-03, F-Phase-3): 相互結仇 (mutual personal vendetta) 例外。
+	    // 依 docs/04-玩家社群與文化/02-結仇與PvP.md「結仇系統」── 私人結仇是
+	    // 玩家與玩家「自願」結下的恩怨 (與門派 grudge 的 "vendetta_mark" 命名
+	    // 空間不同﹐此處用 "enmity/")。當 killer 與 victim 早已「相互結仇」
+	    // (雙方各自的 enmity 紀錄裡對方那筆 mutual==1﹐見 cmds/std/enmity.c)﹐
+	    // 此乃雙方合意、正當的仇家相搏 ── 性質等同「殺紅人不變紅」(docs:任何
+	    // 玩家都可無代價地殺紅人)﹐故 killer 不因此淪為紅人。
+	    // 只放行「相互」結仇﹔單方結仇 (mutual==0) 不能剝奪清白受害者的保護﹐
+	    // 以免有人靠片面宣告就合法獵殺他人。其餘後果 (屍體/業力等) 一概照舊。
 	    if( killer != victim
 	    && !victim->query("unprotect_mark")
+	    && !( mapp(killer->query("enmity"))
+		&& mapp(killer->query("enmity")[victim->query("id")])
+		&& killer->query("enmity")[victim->query("id")]["mutual"]
+		&& mapp(victim->query("enmity"))
+		&& mapp(victim->query("enmity")[killer->query("id")])
+		&& victim->query("enmity")[killer->query("id")]["mutual"] )
 	    && victim->query("level") > 1 ) {
 		killer->set("unprotect_mark", 1);
 		tell_object(killer, HIR
