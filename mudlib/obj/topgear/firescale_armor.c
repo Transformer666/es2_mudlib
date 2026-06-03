@@ -47,7 +47,7 @@ void create()
 			"的主件。\n");
 		set("wear_msg",
 			"$N將那件暗紅的火鱗胸鎧束上身軀﹐鱗甲相疊處微微一亮﹐隱隱透出一股逼人的熱氣。\n");
-		set("remove_msg", "$N卸下身上的火鱗胸鎧﹐那股逼人的熱氣也隨之斂去。\n");
+		set("unequip_msg", "$N卸下身上的火鱗胸鎧﹐那股逼人的熱氣也隨之斂去。\n");
 		set("apply_armor/armor", ([
 			"armor"   : 18,
 			"attack"  : 18,

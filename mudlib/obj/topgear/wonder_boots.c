@@ -41,7 +41,7 @@ void create()
 			"分閃躲騰挪之便。\n");
 		set("wear_msg",
 			"$N換上那雙瑩白的六合玲瓏靴﹐靴上清芒微微流轉﹐步履登時輕靈了幾分。\n");
-		set("remove_msg", "$N脫下六合玲瓏靴﹐身法似乎也隨之沉滯了下來。\n");
+		set("unequip_msg", "$N脫下六合玲瓏靴﹐身法似乎也隨之沉滯了下來。\n");
 		set("apply_armor/feet_eq", ([
 			"defense" : 15,
 			"armor"   : 5,
