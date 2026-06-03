@@ -67,6 +67,50 @@ int main(object me, string arg)
 	return 1;
     }
 
+    // function: status - 一覽本幫的交戰 / 結盟 / 領地狀態 (任何幫眾皆可)。
+    // (Phase-3) 無參數子指令，故置於 sscanf 切割之前 (同 treasury)。
+    if( arg == "status" ) {
+	string clan;
+	string *wars, *allies, *terr;
+	int j;
+
+	if( !me->query("clan/clan_name") )
+	    return notify_fail("你並非幫派成員。\n");
+	clan = me->query("clan/clan_name");
+	wars   = CLAN_D->query_wars(clan);
+	allies = CLAN_D->query_allies(clan);
+	terr   = CLAN_D->query_territory(clan);
+	write(HIY"【"+clan+"】幫派現況\n"NOR);
+	write(HIR"  交戰: "NOR
+	    + (sizeof(wars) ? implode(wars, "、") : "（無，天下太平）") + "\n");
+	for( j = 0; j < sizeof(wars); j++ )
+	    write(sprintf("        對【%s】戰功累計 %d 筆\n",
+		wars[j], CLAN_D->query_war_score(clan, wars[j])));
+	write(HIG"  結盟: "NOR
+	    + (sizeof(allies) ? implode(allies, "、") : "（無）") + "\n");
+	write(HIC"  領地: "NOR
+	    + (sizeof(terr) ? implode(terr, "、") : "（無）") + "\n");
+	return 1;
+    }
+
+    // function: territory - 列出本幫所有領地 (任何幫眾皆可)。
+    if( arg == "territory" ) {
+	string clan;
+	string *terr;
+
+	if( !me->query("clan/clan_name") )
+	    return notify_fail("你並非幫派成員。\n");
+	clan = me->query("clan/clan_name");
+	terr = CLAN_D->query_territory(clan);
+	if( !sizeof(terr) ) {
+	    write(HIC"【"+clan+"】目前尚未占據任何領地。\n"NOR);
+	    return 1;
+	}
+	write(HIC"【"+clan+"】目前的勢力範圍:\n"NOR);
+	write("  " + implode(terr, "\n  ") + "\n");
+	return 1;
+    }
+
     // following function should classify function name
     if( sscanf(arg, "%s %s", arg, target)!=2 )
 	return notify_fail("請用help ccmd查詢正確的指令格式。\n");
