@@ -272,9 +272,10 @@ statistic_destroyed(object ob, mapping flag)
 // FIX(2026-06-03, F-Phase-2): 死亡永損 (permadeath stat loss).
 // 依 docs/04-玩家社群與文化/02-結仇與PvP.md「復活流程」與「紅人代價」：
 // 玩家死亡（形體歸 0）復活後會永損精氣神(gin/kee/sen)最大值，不可逆。
-// 使用者決策 F =「遵循原 ES2 嚴苛永損 + 開放多帳號」── 採全死亡通殺(非只 PK)的嚴苛版。
+// 使用者決策 F =「遵循原 ES2 嚴苛永損」。校正(2026-06-03，使用者回報原 ES2 永損是
+// 「機率性」、扣量也較小)：改為機率性 ── 約 1/4 死亡才永損，且觸發時幅度較小(2%)。
 //
-// 損失量：每項 MAX 減 5%（至少 1 點，若該項 MAX 仍高於下限）。
+// 損失量：觸發時每項 MAX 減 2%（至少 1 點，若該項 MAX 仍高於下限）。
 // 下限(floor)：與 statistic_destroyed() 同一套對應 ── gin↔dex、kee↔con、sen↔spi，
 // MAX 永不低於對應屬性值（屬性是該資源的天生底線）。
 //
@@ -294,7 +295,7 @@ permadestroy_one(object ob, string stat, string attr)
     // 已在下限或以下，不再扣（嚴苛但仍保底）。
     if( max <= floor ) return;
 
-    loss = max / 20;                    // 5%
+    loss = max / 50;                    // 2%（校正：原 5% 偏重，使用者回報原 ES2 扣量較小）
     if( loss < 1 ) loss = 1;            // 至少掉 1，避免低數值角色完全免疫
     if( max - loss < floor )            // 不可跌破屬性下限
         loss = max - floor;
@@ -310,6 +311,10 @@ permadestroy_one(object ob, string stat, string attr)
 void
 death_permadestroy(object ob)
 {
+    // 機率性永損（校正 2026-06-03，使用者回報原 ES2 永損是機率性、非每死必損）：
+    // 僅約 1/4 死亡會傷及根本；多數死亡（~75%）不損精氣神上限。
+    if( random(100) >= 25 ) return;
+
     permadestroy_one(ob, "gin", "dex");
     permadestroy_one(ob, "kee", "con");
     permadestroy_one(ob, "sen", "spi");

@@ -224,6 +224,18 @@ make_corpse(object victim, object killer)
 	    // 玩家都可無代價地殺紅人)﹐故 killer 不因此淪為紅人。
 	    // 只放行「相互」結仇﹔單方結仇 (mutual==0) 不能剝奪清白受害者的保護﹐
 	    // 以免有人靠片面宣告就合法獵殺他人。其餘後果 (屍體/業力等) 一概照舊。
+	    //
+	    // ADD(2026-06-03, D-Phase-3): 幫戰 (sanctioned clan war) 例外。
+	    // 依 docs/04-玩家社群與文化/01-幫會與社群.md 的幫會制度 + 本專案 Phase-3
+	    // 幫戰設計：兩個幫派經幫主以 ccmd war 正式「相互宣戰」(CLAN_D 雙向記錄﹐
+	    // query_war(a,b)==query_war(b,a)﹐見 daemon/misc/clan.c)後﹐其成員在戰場上
+	    // 互相格殺乃「正當幫戰」── 性質與「相互結仇之仇殺」「殺紅人」相同﹐屬雙方
+	    // (透過各自幫派) 合意的對抗﹐故 killer 不因此淪為紅人。
+	    // 與結仇例外採完全相同的結構與護欄：只是「多一條 && !( ... )」短路掉
+	    // unprotect_mark﹐其餘 (屍體/業力/pk_record/捕頭…) 一律照舊、毫不更動。
+	    // 安全性同理：CLAN_D->query_war 為幫派層級的「相互」交戰判準﹐單方無法
+	    // 片面宣告 (declare_war 一律雙向寫入)﹐故不會被拿來合法獵殺清白玩家﹔
+	    // 必須雙方都是有效幫派成員 (clan_name 為 daemon 既有幫派) 且兩幫互為交戰。
 	    if( killer != victim
 	    && !victim->query("unprotect_mark")
 	    && !( mapp(killer->query("enmity"))
@@ -232,6 +244,14 @@ make_corpse(object victim, object killer)
 		&& mapp(victim->query("enmity"))
 		&& mapp(victim->query("enmity")[killer->query("id")])
 		&& victim->query("enmity")[killer->query("id")]["mutual"] )
+	    && !( stringp(killer->query("clan/clan_name"))
+		&& stringp(victim->query("clan/clan_name"))
+		&& killer->query("clan/clan_name")
+		    != victim->query("clan/clan_name")
+		&& CLAN_D->query_war( killer->query("clan/clan_name"),
+			victim->query("clan/clan_name") )
+		&& CLAN_D->query_war( victim->query("clan/clan_name"),
+			killer->query("clan/clan_name") ) )
 	    && victim->query("level") > 1 ) {
 		killer->set("unprotect_mark", 1);
 		tell_object(killer, HIR
@@ -243,6 +263,19 @@ make_corpse(object victim, object killer)
 		    killer->name() + "渾身散發出一股令人膽寒的血腥煞氣！\n",
 		    environment(killer), killer);
 	    }
+
+	    // ADD(2026-06-03, D-Phase-3): 幫戰戰功計分 (purely additive)。
+	    // 兩幫確實交戰時﹐替 killer 一方記一筆戰功 (CLAN_D->tally_war_kill
+	    // 內部會再驗一次 query_war﹐非交戰回 -1 不計)。完全獨立於上面的紅人
+	    // 判定﹐不影響屍體 / 業力 / 任何既有流程。
+	    if( stringp(killer->query("clan/clan_name"))
+	    && stringp(victim->query("clan/clan_name"))
+	    && killer->query("clan/clan_name")
+		!= victim->query("clan/clan_name")
+	    && CLAN_D->query_war( killer->query("clan/clan_name"),
+		    victim->query("clan/clan_name") ) )
+		CLAN_D->tally_war_kill( killer->query("clan/clan_name"),
+		    victim->query("clan/clan_name") );
 
             // 若是此人曾殺過人, 且時間少於某段時間, 則記錄上加一筆, 否則,
 	    // 便重設時間記錄

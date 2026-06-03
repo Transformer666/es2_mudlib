@@ -201,6 +201,152 @@ int main(object me, string arg)
 	return 1;
     }
 
+    // ======================================================================
+    // Phase-3 (decision D)：幫戰(war/peace)、結盟(ally/unally)、領地(claim)。
+    //
+    // 這幾個子指令的 <target> 是「幫派名稱」(war/peace/ally/unally) 或
+    // 「領地名稱」(claim)，而非玩家 id，故全部置於下方 find_player(target)
+    // 之前處理 (與 deposit/withdraw/rank 同列)。權限一律限幫主 (clan_level==3)。
+    // 實際狀態變動全部委派給 CLAN_D，本檔只做權限與輸入檢查、廣播與記錄。
+    // ======================================================================
+
+    // function: war - 幫主向另一個幫派宣戰，雙方進入交戰狀態。
+    if( arg == "war" ) {
+	string clan;
+
+	if( !me->query("clan/clan_name") )
+	    return notify_fail("你並非幫派成員。\n");
+	clan = me->query("clan/clan_name");
+	if( me->query("clan/clan_level") < 3 )
+	    return notify_fail("只有幫主才能對外宣戰。\n");
+	if( target == clan )
+	    return notify_fail("總不能對自己的幫派宣戰吧?\n");
+	if( !CLAN_D->query_clan(target) )
+	    return notify_fail("江湖上並無「" + target + "」這個幫派。\n");
+	if( CLAN_D->query_war(clan, target) )
+	    return notify_fail("本幫與【" + target + "】早已是交戰之局了。\n");
+	if( CLAN_D->query_ally(clan, target) )
+	    return notify_fail("【" + target
+		+ "】是本幫盟友，要宣戰請先以 ccmd unally "
+		+ target + " 解除盟約。\n");
+	if( !CLAN_D->declare_war(clan, target) )
+	    return notify_fail("宣戰失敗。\n");
+	log_file("CLAN", sprintf("[%s] %s: %s(%s) declares WAR on %s\n",
+	    ctime(time()), clan, me->name(), me->query("id"), target));
+	clan_line(HIR"本幫即刻起向【" + target + "】宣戰! 凡我幫眾，"
+	    "於戰場上格殺該幫之人乃是正當幫戰，不論紅黑!\n"NOR);
+	message("system", HIR"天朝公告: 【" + clan + "】向【" + target
+	    + "】宣戰，江湖再起波瀾!\n"NOR, users());
+	return 1;
+    }
+
+    // function: peace - 幫主與另一個交戰中的幫派休戰。
+    if( arg == "peace" ) {
+	string clan;
+
+	if( !me->query("clan/clan_name") )
+	    return notify_fail("你並非幫派成員。\n");
+	clan = me->query("clan/clan_name");
+	if( me->query("clan/clan_level") < 3 )
+	    return notify_fail("只有幫主才能議和休戰。\n");
+	if( !CLAN_D->query_clan(target) )
+	    return notify_fail("江湖上並無「" + target + "」這個幫派。\n");
+	if( !CLAN_D->query_war(clan, target) )
+	    return notify_fail("本幫與【" + target + "】並未交戰，何來休戰?\n");
+	if( !CLAN_D->end_war(clan, target) )
+	    return notify_fail("休戰失敗。\n");
+	log_file("CLAN", sprintf("[%s] %s: %s(%s) makes PEACE with %s\n",
+	    ctime(time()), clan, me->name(), me->query("id"), target));
+	clan_line(HIG"本幫即刻起與【" + target + "】休戰，干戈暫息。\n"NOR);
+	message("system", HIG"天朝公告: 【" + clan + "】與【" + target
+	    + "】握手言和，刀兵入庫。\n"NOR, users());
+	return 1;
+    }
+
+    // function: ally - 幫主與另一個幫派結盟 (雙方狀態)。
+    if( arg == "ally" ) {
+	string clan;
+
+	if( !me->query("clan/clan_name") )
+	    return notify_fail("你並非幫派成員。\n");
+	clan = me->query("clan/clan_name");
+	if( me->query("clan/clan_level") < 3 )
+	    return notify_fail("只有幫主才能與他幫結盟。\n");
+	if( target == clan )
+	    return notify_fail("自己跟自己結什麼盟?\n");
+	if( !CLAN_D->query_clan(target) )
+	    return notify_fail("江湖上並無「" + target + "」這個幫派。\n");
+	if( CLAN_D->query_ally(clan, target) )
+	    return notify_fail("本幫與【" + target + "】早已是盟友了。\n");
+	if( CLAN_D->query_war(clan, target) )
+	    return notify_fail("本幫正與【" + target
+		+ "】交戰，要結盟請先以 ccmd peace "
+		+ target + " 休戰。\n");
+	if( !CLAN_D->add_ally(clan, target) )
+	    return notify_fail("結盟失敗。\n");
+	log_file("CLAN", sprintf("[%s] %s: %s(%s) allies with %s\n",
+	    ctime(time()), clan, me->name(), me->query("id"), target));
+	clan_line(HIG"本幫即刻起與【" + target + "】結為盟友，守望相助!\n"NOR);
+	message("system", HIG"天朝公告: 【" + clan + "】與【" + target
+	    + "】締結盟約!\n"NOR, users());
+	return 1;
+    }
+
+    // function: unally - 幫主解除與某盟友幫派的盟約。
+    if( arg == "unally" ) {
+	string clan;
+
+	if( !me->query("clan/clan_name") )
+	    return notify_fail("你並非幫派成員。\n");
+	clan = me->query("clan/clan_name");
+	if( me->query("clan/clan_level") < 3 )
+	    return notify_fail("只有幫主才能解除盟約。\n");
+	if( !CLAN_D->query_clan(target) )
+	    return notify_fail("江湖上並無「" + target + "」這個幫派。\n");
+	if( !CLAN_D->query_ally(clan, target) )
+	    return notify_fail("本幫與【" + target + "】並非盟友。\n");
+	if( !CLAN_D->remove_ally(clan, target) )
+	    return notify_fail("解除盟約失敗。\n");
+	log_file("CLAN", sprintf("[%s] %s: %s(%s) unallies %s\n",
+	    ctime(time()), clan, me->name(), me->query("id"), target));
+	clan_line(HIY"本幫即刻起與【" + target + "】解除盟約。\n"NOR);
+	return 1;
+    }
+
+    // function: claim - 幫主把一塊地域納入本幫領地。
+    // 預設可宣示「腳下這間房間所在的地域」(target=="here")，或直接給地域名。
+    // 領地先到先得：已被他幫占據者無法搶占 (CLAN_D->add_territory 會擋)。
+    if( arg == "claim" ) {
+	string clan, area, owner;
+
+	if( !me->query("clan/clan_name") )
+	    return notify_fail("你並非幫派成員。\n");
+	clan = me->query("clan/clan_name");
+	if( me->query("clan/clan_level") < 3 )
+	    return notify_fail("只有幫主才能為本幫宣示領地。\n");
+	// "here" → 取腳下房間所在的地域 (outdoors 標籤)，否則直接用所給名稱。
+	if( target == "here" ) {
+	    if( !environment(me) )
+		return notify_fail("你現在這個地方無法宣示為領地。\n");
+	    area = environment(me)->query("outdoors");
+	    if( !stringp(area) || area == "" )
+		area = base_name(environment(me));
+	} else
+	    area = target;
+	owner = CLAN_D->query_territory_owner(area);
+	if( owner == clan )
+	    return notify_fail("「" + area + "」已是本幫的領地了。\n");
+	if( stringp(owner) )
+	    return notify_fail("「" + area + "」已被【" + owner
+		+ "】占據，須待其釋出方能宣示。\n");
+	if( !CLAN_D->add_territory(clan, area) )
+	    return notify_fail("宣示領地失敗。\n");
+	log_file("CLAN", sprintf("[%s] %s: %s(%s) claims territory %s\n",
+	    ctime(time()), clan, me->name(), me->query("id"), area));
+	clan_line(HIC"本幫即刻起將「" + area + "」納入勢力範圍!\n"NOR);
+	return 1;
+    }
+
     // function 4: nick - change clan nickname
     if( arg == "nick" ) {
 	me->set("clan/nick", target);
@@ -460,23 +606,30 @@ write(@HELP
    5. ccmd join <玩家id>: 申請加入幫派
    6. ccmd treasury: 查詢本幫金庫餘額
    7. ccmd deposit <金額>: 把身上的錢存入本幫金庫
+   8. ccmd status: 一覽本幫的交戰/結盟/領地現況
+   9. ccmd territory: 列出本幫所有領地
 HELP
 	);
 
     if( me->query("clan/clan_level") > 1 ) {
 write(@HELP
-   8. ccmd accept <玩家id>: 接受加入幫派申請
-   9. ccmd kickout <玩家id>: 取消該玩家之幫派資格
-  10. ccmd withdraw <金額>: 自本幫金庫提錢入袋 (限長老級以上)
+  10. ccmd accept <玩家id>: 接受加入幫派申請
+  11. ccmd kickout <玩家id>: 取消該玩家之幫派資格
+  12. ccmd withdraw <金額>: 自本幫金庫提錢入袋 (限長老級以上)
 HELP
         );
     }
 
     if( me->query("clan/clan_level") > 2 ) {
 write(@HELP
-  11. ccmd promote <玩家id>: 提昇幫眾職等
-  12. ccmd demote <玩家id>: 降低幫眾職等
-  13. ccmd rank <職等1~3> <稱號>: 更改某職等的階級稱號 (限幫主)
+  13. ccmd promote <玩家id>: 提昇幫眾職等
+  14. ccmd demote <玩家id>: 降低幫眾職等
+  15. ccmd rank <職等1~3> <稱號>: 更改某職等的階級稱號 (限幫主)
+  16. ccmd war <幫派名>: 向另一幫派宣戰 (限幫主)
+  17. ccmd peace <幫派名>: 與交戰幫派休戰 (限幫主)
+  18. ccmd ally <幫派名>: 與另一幫派結盟 (限幫主)
+  19. ccmd unally <幫派名>: 解除與某幫派的盟約 (限幫主)
+  20. ccmd claim <地域名|here>: 將一塊地域納入本幫領地 (限幫主)
 HELP
 	);
     }
