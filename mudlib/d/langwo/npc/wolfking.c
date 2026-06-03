@@ -85,6 +85,48 @@ int accept_fight(object ob)
 	return 1;
 }
 
+// 頂級裝備(top-tier gear)稀有掉落（決策 G）：狼王為 lvl40 巔峰之獸，伏誅後除必掉
+// 的普通戰利品「狼王獠牙」外，另有 WOLFKING_TOPGEAR_PCT 的機率自其屍身遺落一件頂
+// 裝——隨機為神兵「蒼狼噬月刀」、或頂防「火鱗胸鎧」/「六合玲瓏靴」其一。頂裝極稀，
+// 故走機率掉落。此鉤子於 ::die() 之後執行（屍體已由 char.c::die()→make_corpse 生
+// 成並登錄 query_temp("corpse")），將頂裝直接置入屍體。
+//
+// 機制(corpse-drop)：clone 頂裝 → 移入 query_temp("corpse")(屍體)；屍體不存(極端
+//   情形)則退置於房間地面。神兵起手即頂住 enchant_cap(見 obj/topgear/*.c)，不破壞
+//   強化系統建立的戰鬥平衡。
+#define WOLFKING_TOPGEAR_PCT    20      // 頂裝掉落機率(%)。極稀——調此值即調稀有度。
+
+private mixed *wolfking_topgear = ({   // 頂裝掉落池（隨機取一）。
+	"/obj/topgear/canglang_blade",      // 蒼狼噬月刀（blade，神兵）
+	"/obj/topgear/firescale_armor",     // 火鱗胸鎧（body armor，頂防）
+	"/obj/topgear/wonder_boots",        // 六合玲瓏靴（feet_eq，頂防）
+});
+
+// 稀有頂裝掉落：擲骰中獎則自掉落池隨機 clone 一件頂裝，置入狼王屍身。
+// who = 下手者(真實玩家)；於 ::die() 之後呼叫，corpse 已存在於 temp("corpse")。
+private void drop_topgear(object who)
+{
+	object corpse, loot;
+	string file;
+
+	if( !who ) return;
+	if( random(100) >= WOLFKING_TOPGEAR_PCT ) return;  // 未中獎，無頂裝。
+
+	file = wolfking_topgear[random(sizeof(wolfking_topgear))];
+	loot = new(file);
+	if( !objectp(loot) ) return;
+
+	// 置入屍體；屍體不存則退置於房間地面（防萬一）。
+	corpse = query_temp("corpse");
+	if( !objectp(corpse) || !loot->move(corpse) )
+		loot->move(environment());
+
+	message_vision(
+		HIY "蒼狼王那龐然的屍身轟然倒地之際﹐自牠滿是累累白骨的巢穴血肉之間﹐"
+		"竟『噹』地滑落一件寒光懾人的奇珍——想是這頭狼窩之主生前不知撕碎了"
+		"多少行旅豪客﹐連這等連城之寶也一併沒入了牠的巢中﹗\n" NOR);
+}
+
 // 掉落戰利品：狼王伏誅時﹐於下手者(真實玩家)面前掉落一枚狼王獠牙（可變賣）。
 // 以 if(!who->move(...)) ...move(environment()) 慣式給物（玩家此刻必在場﹐防萬一）。
 private void drop_trophy(object who)
@@ -115,7 +157,12 @@ void die()
 		drop_trophy(killer);
 
 	// 屍體/bounty/善後悉依 std/char/npc.c::die()（恒呼﹐不可略）。
+	// 須先呼 ::die()(屍體於此生成並登錄 temp("corpse"))，再擲頂裝掉落入屍。
 	::die();
+
+	// 頂裝(top-tier gear)稀有掉落（決策 G）：下手者須為真實玩家﹐機率置頂裝入屍身。
+	if( objectp(killer) && killer != this_object() && userp(killer) )
+		drop_topgear(killer);
 }
 
 // vim: set ts=4 sw=4 syntax=lpc

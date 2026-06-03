@@ -115,6 +115,48 @@ void init()
 			NOR);
 }
 
+// 頂級裝備(top-tier gear)稀有掉落（決策 G）：摩雲為 lvl50 最終 boss，伏誅後有
+// MOYUN_TOPGEAR_PCT 的機率自其屍身中遺落一件頂裝神兵——隨機為「斬龍斧」(妖塔
+// 系列，doc 名)或「玄霜劍」其一。頂裝極稀，故走機率掉落而非必掉；此鉤子於
+// ::die() 之後執行（屆時屍體已由 char.c::die()→make_corpse 生成並登錄於
+// query_temp("corpse")），將神兵直接置入屍體，玩家須 search/取屍 方得。
+//
+// 機制(corpse-drop)：clone 神兵 → 移入 query_temp("corpse")(屍體)；屍體不存
+//   (極端情形)則退而置於房間地面。神兵以 new() clone，每把各擁獨立 dp(per-
+//   clone dbase)，互不干涉。神兵起手即頂住 enchant_cap(見各 obj/topgear/*.c)，
+//   不破壞強化系統建立的戰鬥平衡。
+#define MOYUN_TOPGEAR_PCT   25      // 頂裝掉落機率(%)。極稀——調此值即調稀有度。
+
+private mixed *moyun_topgear = ({    // 頂裝掉落池（隨機取一）。
+	"/obj/topgear/zhanlong_axe",     // 斬龍斧（twohanded axe，doc 妖塔系列）
+	"/obj/topgear/xuanshuang_sword", // 玄霜劍（sword）
+});
+
+// 稀有頂裝掉落：擲骰中獎則自掉落池隨機 clone 一件神兵，置入摩雲屍身。
+// who = 下手者(真實玩家)；於 ::die() 之後呼叫，corpse 已存在於 temp("corpse")。
+private void drop_topgear(object who)
+{
+	object corpse, loot;
+	string file;
+
+	if( !who ) return;
+	if( random(100) >= MOYUN_TOPGEAR_PCT ) return;     // 未中獎，無頂裝。
+
+	file = moyun_topgear[random(sizeof(moyun_topgear))];
+	loot = new(file);
+	if( !objectp(loot) ) return;
+
+	// 置入屍體；屍體不存則退置於房間地面（防萬一）。
+	corpse = query_temp("corpse");
+	if( !objectp(corpse) || !loot->move(corpse) )
+		loot->move(environment());
+
+	message_vision(
+		HIY "摩雲那龐然的屍身轟然委地之際﹐自牠虯結的皮肉骨血之間﹐"
+		"竟『噹』地滑落一件寒光懾人的神兵——想是這頭獸王生前不知吞噬"
+		"了多少英雄豪傑﹐連這等連城之珍也一併沒入了牠的腹中﹗\n" NOR);
+}
+
 // 給決戰大賞：銅錢、金液丹、洗銀劍﹐並授存活/俠義之舉/聲望/武名等大筆閱歷。
 // （以 if(!x->move(who)) x->move(environment()) 慣式給物。）
 private void give_reward(object who)
@@ -180,7 +222,12 @@ void die()
 	}
 
 	// 屍體/bounty/善後悉依 std/char/npc.c::die()（恒呼﹐不可略）。
+	// 須先呼 ::die()(屍體於此生成並登錄 temp("corpse"))，再擲頂裝掉落入屍。
 	::die();
+
+	// 頂裝(top-tier gear)稀有掉落（決策 G）：下手者須為真實玩家﹐機率置神兵入屍身。
+	if( objectp(killer) && killer != this_object() && userp(killer) )
+		drop_topgear(killer);
 }
 
 // vim: set ts=4 sw=4 syntax=lpc
