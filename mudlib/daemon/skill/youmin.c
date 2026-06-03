@@ -92,12 +92,15 @@ string magic_skill() { return "youmin"; }
 
 mapping query_spells()
 {
+  // 茅山靈雲觀「幽冥三箭」系咒術﹐每式施展皆須焚一張「正陽符」引氣
+  // (見 docs/03-門派與武功/02-道士-天師與茅山.md：幽冥三箭消耗正陽符)。
+  // "fu":"zhengyang fu" 一鍵接通 /std/magic.c 的符閘：施法前驗符、施成燃符。
   return ([
-    "幽箭" :     ([ "id":"youjian", "sen":8,  "power":10, "type":"幽冥之氣",
+    "幽箭" :     ([ "id":"youjian", "sen":8,  "power":10, "type":"幽冥之氣", "fu":"zhengyang fu",
         "action":HIM "$N口誦真言﹐掐訣引魂﹐指尖凝起一點幽光化作一箭﹐破空射向$n！" NOR ]),
-    "幽冥三箭" : ([ "id":"youming", "sen":16, "power":20, "type":"幽冥之氣",
+    "幽冥三箭" : ([ "id":"youming", "sen":16, "power":20, "type":"幽冥之氣", "fu":"zhengyang fu",
         "action":HIM "$N凝神運法﹐袖中黃符燃起﹐一式『幽冥三箭』化作三道幽箭﹐連珠攢射$n！" NOR ]),
-    "九幽奪魄" : ([ "id":"jiuyou",  "sen":30, "power":34, "type":"幽冥之氣",
+    "九幽奪魄" : ([ "id":"jiuyou",  "sen":30, "power":34, "type":"幽冥之氣", "fu":"zhengyang fu",
         "action":HIM "$N雙指一彈﹐周身幽冥之氣暴漲﹐一式『九幽奪魄』數道幽箭破空攢射﹐直奪$n魂魄！" NOR ]),
   ]);
 }

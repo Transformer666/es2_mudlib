@@ -40,6 +40,7 @@ cast_spell(object me, string spl, object target)
     mapping spells, sp;
     string sk, nm, action, dtype;
     int cost, power, skill, damage;
+    object fu;
 
     if( !objectp(me) || !stringp(spl) ) return 0;
 
@@ -103,6 +104,20 @@ cast_spell(object me, string spl, object target)
         return 0;
     }
 
+    // 符(talisman)消耗檢查 ── 僅當咒文表標了 "fu" 鍵(茅山符咒)才生效；
+    // 未標 fu 的咒術(天師 taoism-fire/freeze/wind/thunder/cloud、moon-magic)
+    // 此段完全略過、不受影響。標 fu 者(茅山 youmin 幽冥三箭系)須身上備有對
+    // 應的符且張數>=1，否則施法失敗(不扣神/不開戰)。
+    fu = 0;
+    if( stringp(sp["fu"]) ) {
+        fu = present(sp["fu"], me);
+        if( !objectp(fu) || (int)fu->query_amount() < 1 ) {
+            notify_fail("你身上沒有施展此法所需的"
+                + (fu ? (string)fu->name() : (string)sp["fu"]) + "。\n");
+            return 0;
+        }
+    }
+
     // ── 通過所有檢查，正式施法（之後不再失敗）──
     // 若尚未交戰則開戰。
     if( !me->is_fighting(target) ) {
@@ -112,6 +127,11 @@ cast_spell(object me, string spl, object target)
     }
 
     me->consume_stat("sen", cost);
+
+    // 燃符：標了 "fu" 鍵的茅山符咒﹐施法成功時焚去一張對應的符
+    // (符歸零時 combined.c 會自動 destruct)。未標 fu 的咒術 fu 為 0﹐此段略過。
+    if( objectp(fu) )
+        fu->add_amount(-1);
 
     // 法術傷害：神/技能驅動。skill 0→~power；100→~2-3x；200→~3-4.5x。可調。
     skill = me->query_skill(sk);
