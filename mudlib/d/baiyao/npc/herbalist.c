@@ -50,11 +50,18 @@ void create()
 		"采藥老人慢悠悠地道﹕老朽在這百藥谷裡采了五十年藥﹐哪一味該幾時採、怎麼炮製﹐閉著眼也錯不了哩。\n",
 	}));
 
-	// 核心﹕販售 refine（煉丹）真正讀取的兩味藥材﹐外加一味傷藥增色。
-	// 整數為初始庫存份數﹔售價取自物件 query("value")（靈芝 200、當歸 120 文）。
+	// 核心﹕販售 refine（煉丹）配方表 (cmds/std/refine.c) 真正讀取的全部藥材﹐
+	// 讓玩家備齊任一爐丹方。整數為初始庫存份數﹔售價取自物件 query("value")：
+	//   COMBINED_ITEM 取 base_value（靈芝 200、當歸 120 文）﹔
+	//   REAGENT_ITEM  取 unit_value×weight（辰砂 300、枸杞 500、番木鱉 1050、鶴頂紅 3000 文）。
+	// 認物以英文 id 為準﹐買法如 buy cinnabar from laoren、buy crane dye from laoren。
 	set("merchandise", ([
-		"/obj/reagent/lingzhi"          : 50,   // 靈芝（refine 配方藥材）
-		"/obj/reagent/danggui"          : 50,   // 當歸（refine 配方藥材）
+		"/obj/reagent/lingzhi"          : 50,   // 靈芝（COMBINED_ITEM）
+		"/obj/reagent/danggui"          : 50,   // 當歸（COMBINED_ITEM）
+		"/obj/reagent/cinnabar"         : 30,   // 辰砂（汞護爐，金液丹/小還丹等）
+		"/obj/reagent/medlar"           : 40,   // 枸杞（清毒/醒神/養心等）
+		"/obj/reagent/strychin"         : 10,   // 番木鱉（劇毒罕材，大還丹）
+		"/obj/reagent/crane_dye"        : 10,   // 鶴頂紅（劇毒罕材，甘靈清毒丹）
 		"/obj/medication/boar_berry"    : 20,   // 山豬果（傷藥，增色）
 	]));
 
@@ -86,7 +93,7 @@ int do_ask(string arg)
 	||  arg == "laoren about alchemy" ) {
 		do_chat(({
 			(: command, "say 客官也曉得煉丹﹖那便是同道了。煉丹最要緊的是藥材地道——靈芝平補、當歸活血﹐一爐養氣丹少了哪一味都不成。" :),
-			(: command, "say 老朽這藥廬裡﹐靈芝、當歸都是現成曬乾的﹐客官 list 一看便知。買齊了藥材﹐尋一處架著丹爐的丹房﹐方士便可起火煉丹了。" :),
+			(: command, "say 老朽這藥廬裡﹐靈芝、當歸、辰砂、枸杞﹐連那劇毒的番木鱉、鶴頂紅都備著﹐客官 list 一看便知。買齊了藥材﹐尋一處架著丹爐的丹房﹐方士便可起火煉丹了。" :),
 			(: command, "say 聽聞雪亭鎮、龍圖丹派那邊都有丹房丹爐。客官若拜在丹派門下做了方士﹐備齊我這兒的靈芝當歸﹐refine（煉丹）一試便知好歹。" :),
 		}));
 		return 1;
@@ -107,6 +114,44 @@ int do_ask(string arg)
 	||  arg == "laoren about danggui" ) {
 		do_chat((: command,
 			"say 當歸補血活血﹐藥圃裡栽著一畦﹐根莖肥碩、氣味芳香﹐也是入爐煉丹的常用藥材。要買便道一聲 buy danggui from laoren。" :));
+		return 1;
+	}
+
+	// 辰砂（汞）
+	if( arg == "laoren about 辰砂"
+	||  arg == "herbalist about 辰砂"
+	||  arg == "laoren about 汞"
+	||  arg == "laoren about cinnabar" ) {
+		do_chat((: command,
+			"say 辰砂是一種紅色礦砂﹐加熱便得水銀（汞）﹐煉小還丹、金液丹這等療傷靈丹﹐須以汞護住丹爐才壓得住火候。買法是 buy cinnabar from laoren。" :));
+		return 1;
+	}
+
+	// 枸杞
+	if( arg == "laoren about 枸杞"
+	||  arg == "herbalist about 枸杞"
+	||  arg == "laoren about medlar" ) {
+		do_chat((: command,
+			"say 枸杞性平味甘﹐谷中藥圃多的是﹐清毒、醒神、養心的丹方都少不了它。要買道一聲 buy medlar from laoren。" :));
+		return 1;
+	}
+
+	// 番木鱉
+	if( arg == "laoren about 番木鱉"
+	||  arg == "herbalist about 番木鱉"
+	||  arg == "laoren about strychin" ) {
+		do_chat((: command,
+			"say 番木鱉含著劇毒﹐尋常人碰不得﹐唯有煉大還丹這等內外俱癒的極品仙丹方用得上一味﹐價也不菲。要買道一聲 buy strychin from laoren。" :));
+		return 1;
+	}
+
+	// 鶴頂紅
+	if( arg == "laoren about 鶴頂紅"
+	||  arg == "herbalist about 鶴頂紅"
+	||  arg == "laoren about crane dye"
+	||  arg == "laoren about crane_dye" ) {
+		do_chat((: command,
+			"say 鶴頂紅也是一味劇毒﹐偏偏甘靈清毒丹要以毒攻毒﹐少不得它。客官買時道一聲 buy crane dye from laoren﹐留神莫要誤食。" :));
 		return 1;
 	}
 

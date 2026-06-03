@@ -24,6 +24,9 @@ LONG
 ",
 	]));
 	set("outdoors", "snow");
+	set("objects", ([
+		__DIR__"npc/zhangling" : 1,
+	]));
 	set("exits", ([
 		"north" : __DIR__"hall",
 		"east" : __DIR__"danfang",

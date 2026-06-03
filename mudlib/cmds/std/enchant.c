@@ -1,21 +1,29 @@
-// enchant.c -- 劍甲門「強化」武器服務
+// enchant.c -- 劍甲門「強化」武器服務（強化之術 enchance）
 //
-// 玩家手持武器、站在劍甲門傳人面前時，可用 enchant（或中文 強化）把
-// 手中武器的「傷害上限」往上提升一級，每級花費銀兩，到該武器種類的
-// 上限為止。比照黃金祭煉（golden_bless）：v1 只升不毀，無損毀風險。
+// 玩家手持武器、站在劍甲門傳人面前、且已習得強化之術時，可用 enchant
+// （或中文 強化）替手中兵器開鋒淬煉。每強化一級，依序把兵器的傷害上界、
+// 力量修正、乘數等級往該武器種類的上限推進，到三項皆滿為止。
 //
-// 設計與來源：memory/specs/combat-formulas.md「武器強化上限」表。
-// 各武器種類的傷害上限對應 identify.c 顯示的「傷害力」上界，
-// 即 dp->roll + dp->multipler * dp->range。本指令以 +1 dp->range
-// 為一級，逼近但不超過該種類上限。乘數（dp->multipler）不動，
-// 留在原 setup_*() 範圍內。
+// 兩種祭煉（見 docs/02-遊戲系統與機制/05-裝備與強化.md）：
+//   * golden  黃金祭煉：每次耗 2.5 兩黃金（= 25000 文）。只升不毀，無風險。
+//   * silver  神力祭煉：耗「神」(sen) 改品質，較廉；但兵器若非獨一無二
+//             (unique / no_drop)，失敗時有機會毀器。
+//   無參數時 = golden（向後相容；原指令即黃金行為）。
+//
+// 設計與來源：docs 05「強化上限表」、docs 06 強化之術習得條件。
+// 上限三欄對應 identify.c 所顯示的三項數值：
+//   傷害力     = dp->roll + dp->multipler        ～ dp->roll + dp->multipler*dp->range
+//   力量修正   = dp->bonus  (%)
+//   乘數等級   = dp->multipler
+// 故 cap 表三欄 ({傷害上界, 力修上界, 乘數上界}) 分別夾住
+//   roll+multipler*range、bonus、multipler。
 //
 // 武器傷害資料模型（已讀 feature/equip.c + include/combat.h 確認）：
 //   武器以 set("damage/"+skill, dp) 存一個 class damage_parameter，
 //   欄位 multipler/range/bonus/roll。每個 clone 在 create() 內各自
 //   new() 一份（dbase 為每物件獨立，見 feature/dbase.c），故直接改
 //   clone 上的 dp 是「逐把武器」生效，不會污染樣板或其他 clone。
-//   inflict_damage() 每次攻擊讀 dp 算傷害（equip.c:255），改 range
+//   inflict_damage() 每次攻擊讀 dp 算傷害（equip.c），改 dp 任一欄
 //   會立即反映在傷害與 identify 顯示上。
 
 #include <ansi.h>
@@ -25,38 +33,45 @@ inherit F_CLEAN_UP;
 
 private void create() { seteuid(getuid()); }
 
-// 各武器種類的傷害上限（identify 顯示的傷害力上界）與一次強化的銀兩花費。
-// key = damage/<skill> 的 skill 名（武器物件 init_damage 設定的名稱）。
-// 數值取自 combat-formulas.md「武器強化上限」表的「傷害」上界欄。
-private mapping damage_cap = ([
-    "axe"               : 135,
-    "secondhand axe"    : 135,
-    "twohanded axe"     : 260,
-    "blade"             : 110,
-    "secondhand blade"  : 110,
-    "twohanded blade"   : 210,
-    "blunt"             : 100,
-    "secondhand blunt"  : 100,
-    "twohanded blunt"   : 190,
-    "dagger"            : 75,
-    "secondhand dagger" : 75,
-    "needle"            : 75,
-    "secondhand needle" : 75,
-    "sword"             : 110,
-    "secondhand sword"  : 110,
-    "twohanded sword"   : 210,
-    "pike"              : 176,
-    "secondhand pike"   : 176,
-    "twohanded pike"    : 176,
-    "staff"             : 158,
-    "secondhand staff"  : 158,
-    "twohanded staff"   : 158,
-    "whip"              : 110,
+// 各武器種類的強化上限。key = damage/<skill> 的 skill 名
+//（武器物件 init_damage 設定的名稱，與 query_temp("weapon") 的鍵一致）。
+// 值為三元組 ({ 傷害上界, 力修上界(%), 乘數上界 })，數值取自 docs 05
+//「強化上限表」。傷害上界即 identify 顯示的傷害力上界 roll+multipler*range。
+private mapping enchant_cap = ([
+    //                       傷害   力修  乘數
+    "axe"               : ({ 135,   200,  5 }),
+    "secondhand axe"    : ({ 135,   200,  5 }),
+    "twohanded axe"     : ({ 260,   300,  5 }),
+    "blade"             : ({ 110,   200,  4 }),
+    "secondhand blade"  : ({ 110,   200,  4 }),
+    "twohanded blade"   : ({ 210,   300,  4 }),
+    "blunt"             : ({ 100,   300,  6 }),
+    "secondhand blunt"  : ({ 100,   300,  6 }),
+    "twohanded blunt"   : ({ 190,   450,  6 }),
+    "dagger"            : ({  75,   100,  3 }),
+    "secondhand dagger" : ({  75,   100,  3 }),
+    "needle"            : ({  75,   100,  3 }),
+    "secondhand needle" : ({  75,   100,  3 }),
+    "sword"             : ({ 110,   150,  5 }),
+    "secondhand sword"  : ({ 110,   150,  5 }),
+    "twohanded sword"   : ({ 210,   225,  5 }),
+    "pike"              : ({ 176,   150,  6 }),
+    "secondhand pike"   : ({ 176,   150,  6 }),
+    "twohanded pike"    : ({ 176,   150,  6 }),
+    "staff"             : ({ 158,   375,  4 }),
+    "secondhand staff"  : ({ 158,   375,  4 }),
+    "twohanded staff"   : ({ 158,   375,  4 }),
+    "whip"              : ({ 110,   100,  6 }),
 ]);
 
-// 一次強化花費的銀兩（兩）。價錢隨已強化次數遞增，避免無腦堆滿。
-#define BASE_SILVER     5
-#define STEP_SILVER     3
+// 黃金祭煉：每次固定 2.5 兩黃金。1 兩黃金 = 10000 文，故 25000 文。
+#define GOLDEN_COST     25000
+
+// 神力祭煉：耗「神」(sen) 與少量銀錢。較廉，但非獨一兵器有毀器風險。
+#define SILVER_SEN      30      // 每次祭煉耗神
+#define BASE_SILVER     3       // 神力祭煉基礎銀兩
+#define STEP_SILVER     2       // 每強化一級遞增的銀兩
+#define SILVER_FAIL_PCT 20      // 神力祭煉失敗（毀器）機率（%）
 
 // 找出此房間裡的劍甲門傳人（NPC 以 set("enchant_master", 1) 標記）。
 private object find_master(object me)
@@ -86,13 +101,23 @@ private mixed find_wielded(object me)
     return 0;
 }
 
+// 是否習得強化之術。gate 於「會這門手藝」即可（法術60+lv10+精熟50000 是
+// 陳學亮『傳授』時的條件，由教學端把關；此處只看玩家是否已學）。
+// 兼容劍甲門門人（family/family_name 目前未填即回 0，不會誤放他人）。
+private int can_enchant(object me)
+{
+    return me->query_skill("enchance") > 0
+        || me->query("family/family_name") == "劍甲門";
+}
+
 int main(object me, string arg)
 {
     object master, weapon;
-    string skill;
+    string skill, mode;
     class damage_parameter dp;
-    mixed wielded;
-    int cap, cur_top, max_range, new_range, level, price;
+    mixed wielded, cap;
+    int dmg_cap, bonus_cap, mult_cap;
+    int cur_top, max_range, level, price, advanced;
 
     if( me->is_busy() ) return notify_fail("你現在沒有空﹗\n");
 
@@ -103,6 +128,16 @@ int main(object me, string arg)
     if( master->is_fighting() )
         return notify_fail(master->name() + "正忙著﹐沒空理你。\n");
 
+    // 技能門檻：須習得強化之術（或為劍甲門門人）。
+    if( !can_enchant(me) )
+        return notify_fail(master->name()
+            + "搖頭道﹕你未習得強化之術﹐老朽幫不上忙。\n");
+
+    // 祭煉方式：golden（黃金，預設、不毀）或 silver（神力，較廉、可能毀器）。
+    mode = arg ? lower_case(arg) : "golden";
+    if( mode != "golden" && mode != "silver" )
+        return notify_fail("祭煉之法只有 golden（黃金）與 silver（神力）兩種。\n");
+
     wielded = find_wielded(me);
     if( !wielded )
         return notify_fail("你得先手持一把想要強化的兵器。\n");
@@ -112,63 +147,144 @@ int main(object me, string arg)
     if( !classp(dp = weapon->query("damage/" + skill)) )
         return notify_fail("這把兵器似乎無法強化。\n");
 
-    if( undefinedp(cap = damage_cap[skill]) )
+    if( !arrayp(cap = enchant_cap[skill]) )
         return notify_fail(master->name() + "端詳半晌﹐搖頭道﹕這種兵刃我可強化不來。\n");
+    dmg_cap   = cap[0];
+    bonus_cap = cap[1];
+    mult_cap  = cap[2];
 
-    // 目前的傷害上界 = identify 顯示的傷害力上界 = roll + multipler*range。
-    // 一級 = range +1，但夾住使上界不超過 cap。先算出強化後的 range，
-    // 若無法再升（已達/逼近上限）就拒絕、不收錢。
-    cur_top = dp->roll + dp->multipler * dp->range;
-    max_range = (cap - dp->roll) / dp->multipler;       // 不超過 cap 的最大 range
-    new_range = dp->range + 1;
-    if( new_range > max_range ) new_range = max_range;
-    if( new_range <= dp->range || cur_top >= cap ) {
+    // 推進方案（每級只進一步，依序逼近三項上限）：
+    //   1. 傷害上界 roll+multipler*range 未滿 -> range +1（夾住不超過 dmg_cap）。
+    //   2. 傷害已逼近上限、力修未滿 -> bonus +N（夾住不超過 bonus_cap）。
+    //   3. 力修已滿、乘數未滿 -> multipler +1；乘數一升傷害上界亦升，
+    //      故同時夾住 roll+multipler*range <= dmg_cap（必要時連帶調降 range）。
+    //   三項皆滿 -> 已臻化境，拒絕不收費。
+    cur_top  = dp->roll + dp->multipler * dp->range;
+    advanced = 0;
+
+    // 步驟 1：傷害上界 +1 級（range +1），夾住不超過 dmg_cap。
+    if( cur_top < dmg_cap && dp->multipler > 0 ) {
+        max_range = (dmg_cap - dp->roll) / dp->multipler;   // 不超過 cap 的最大 range
+        if( dp->range + 1 <= max_range ) {
+            dp->range = dp->range + 1;
+            advanced = 1;
+        } else if( dp->range < max_range ) {
+            dp->range = max_range;
+            advanced = 1;
+        }
+    }
+
+    // 步驟 2：傷害已到頂，改提升力量修正。
+    if( !advanced && dp->bonus < bonus_cap ) {
+        int step = bonus_cap / 10;                          // 每級約進上限的一成
+        if( step < 5 ) step = 5;
+        dp->bonus = dp->bonus + step;
+        if( dp->bonus > bonus_cap ) dp->bonus = bonus_cap;
+        advanced = 1;
+    }
+
+    // 步驟 3：傷害與力修皆到頂，改提升乘數等級（連帶夾住傷害上界）。
+    if( !advanced && dp->multipler < mult_cap ) {
+        dp->multipler = dp->multipler + 1;
+        // 乘數升高使傷害上界 roll+multipler*range 跟著漲，夾回 dmg_cap 之內。
+        if( dp->multipler > 0 ) {
+            max_range = (dmg_cap - dp->roll) / dp->multipler;
+            if( max_range < 1 ) max_range = 1;
+            if( dp->range > max_range ) dp->range = max_range;
+        }
+        advanced = 1;
+    }
+
+    if( !advanced ) {
         message_vision("$N拿起$n手中的兵器細看﹐讚道﹕此器已臻化境﹐"
             "再強也是徒勞了。\n", master, me);
         return 1;
     }
 
-    // 計價：依已強化次數遞增。
     level = weapon->query("enchant");
     if( !intp(level) ) level = 0;
-    price = (BASE_SILVER + STEP_SILVER * level) * 100;   // 兩 -> 文（1 兩銀 = 100 文）
 
+    if( mode == "golden" ) {
+        // 黃金祭煉：固定 2.5 兩黃金（25000 文），只升不毀。
+        price = GOLDEN_COST;
+        switch( me->can_afford(price) ) {
+        case 0:
+            return notify_fail("黃金祭煉一次需要二兩半黃金﹐你身上的黃金不夠。\n");
+        case 2:
+            return notify_fail("你沒有足夠的零錢﹐師傅也找不開。\n");
+        }
+        me->pay_money(price);
+
+        weapon->set("damage/" + skill, dp);
+        weapon->set("enchant", level + 1);
+
+        message_vision("$N接過$n手中的" + weapon->name() + NOR + "﹐",
+            master, me);
+        message_vision("$N以黃金為引祭入爐火﹐取出後在鐵砧上叮叮噹噹一陣猛打﹐"
+            "復又淬火開鋒﹐遞還給$n。\n", master, me);
+        message_vision("$n手中的" + weapon->name() + NOR + "似乎較先前更為鋒利了﹗\n",
+            me, master);
+        return 1;
+    }
+
+    // 神力祭煉：耗「神」(sen) 與少量銀錢；較廉，但非獨一兵器有毀器風險。
+    if( me->query_stat("sen") < SILVER_SEN )
+        return notify_fail("你的精神不足以引動神力祭煉。\n");
+
+    price = (BASE_SILVER + STEP_SILVER * level) * 100;       // 兩 -> 文（1 兩銀 = 100 文）
     switch( me->can_afford(price) ) {
     case 0:
-        return notify_fail(sprintf("強化這把兵器需要 %d 兩銀子﹐你身上的錢不夠。\n",
+        return notify_fail(sprintf("神力祭煉這把兵器需要 %d 兩銀子﹐你身上的錢不夠。\n",
             price / 100));
     case 2:
         return notify_fail("你沒有足夠的零錢﹐師傅也找不開。\n");
     }
+    me->consume_stat("sen", SILVER_SEN);
     me->pay_money(price);
 
-    // 強化：每個 clone 各自一份 dp（已於 feature/equip.c init_damage 每次 new() +
-    // feature/dbase.c 每物件獨立 dbase 確認），直接改寫是「逐把武器」生效。
-    dp->range = new_range;
+    message_vision("$N接過$n手中的" + weapon->name() + NOR + "﹐"
+        "凝神運起神力灌注其中。\n", master, me);
+
+    // 失敗判定：唯有「非獨一無二」(unique / no_drop) 的兵器才可能在祭煉中毀去。
+    if( !weapon->query("unique") && !weapon->query("no_drop")
+    &&  random(100) < SILVER_FAIL_PCT )
+    {
+        string wname = weapon->name();      // 先存名字，毀器後物件即不可讀。
+
+        message_vision(HIR "$N手中的" + wname + HIR
+            "受神力反噬﹐「噹」地一聲應聲碎裂﹐化作齏粉散落滿地﹗\n" NOR, master);
+        destruct(weapon);
+        return 1;
+    }
+
+    // 祭煉成功：寫回 dp 並提升強化級數。
     weapon->set("damage/" + skill, dp);
     weapon->set("enchant", level + 1);
 
-    message_vision("$N接過$n手中的" + weapon->name() + NOR + "﹐",
-        master, me);
-    message_vision("$N將兵器架上爐火中燒得通紅﹐取出後在鐵砧上叮叮噹噹一陣猛打﹐"
-        "復又淬火開鋒﹐遞還給$n。\n", master, me);
+    message_vision("神力流轉﹐$N將兵刃淬鍊一新﹐遞還給$n。\n", master, me);
     message_vision("$n手中的" + weapon->name() + NOR + "似乎較先前更為鋒利了﹗\n",
         me, master);
-
     return 1;
 }
 
 int help(object me)
 {
     write(@HELP
-指令格式﹕enchant     （中文﹕強化）
+指令格式﹕enchant            （中文﹕強化）
+          enchant golden     （黃金祭煉﹐預設）
+          enchant silver     （神力祭煉）
 
-當你站在劍甲門傳人面前﹐手持一把兵器時﹐可用此指令請師傅替你的兵刃
-開鋒強化。每強化一級﹐兵器的傷害上限便會提高一些﹐並收取若干銀兩﹔
-強化次數越多﹐收費越貴。各種兵器都有其強化上限﹐到頂之後便無法再強。
+當你習得劍甲門的強化之術﹐站在劍甲門傳人面前、手持一把兵器時﹐可用此
+指令請師傅替你的兵刃開鋒強化。每強化一級﹐兵器會依序在傷害、力量修正、
+乘數等級三項上往該種兵器的上限推進﹐三項皆滿之後便無法再強。
 
-強化前後可用 wield 手持兵器、再用 identify <兵器> 檢視傷害力數值的變化。
-此服務只升不毀﹐儘可放心。
+兩種祭煉之法﹕
+  golden（黃金祭煉）─ 每次耗二兩半黃金﹐只升不毀﹐儘可放心﹔不帶參數時即此法。
+  silver（神力祭煉）─ 耗損精神與少許銀兩﹐較為省錢﹔但兵器若非獨一無二之物﹐
+                      祭煉失手時有可能當場毀去﹐慎用。
+
+強化前後可用 wield 手持兵器、再用 identify <兵器> 檢視傷害力、力量修正、
+乘數等級的變化。
 HELP
     );
     return 1;
