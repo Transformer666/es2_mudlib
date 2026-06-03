@@ -80,6 +80,7 @@
 #define ROOM "/std/room"
 #define DOOR_ROOM       "/std/room/doorroom"
 #define SKILL "/std/skill"
+#define FORCE "/std/force"       // 內功心法共用基底（exert 打坐修煉 + valid_enable）
 
 // User IDs
 

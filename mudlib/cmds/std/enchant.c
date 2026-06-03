@@ -118,6 +118,7 @@ int main(object me, string arg)
     mixed wielded, cap;
     int dmg_cap, bonus_cap, mult_cap;
     int cur_top, max_range, level, price, advanced;
+    int new_range, new_bonus, new_mult;
 
     if( me->is_busy() ) return notify_fail("你現在沒有空﹗\n");
 
@@ -159,17 +160,26 @@ int main(object me, string arg)
     //   3. 力修已滿、乘數未滿 -> multipler +1；乘數一升傷害上界亦升，
     //      故同時夾住 roll+multipler*range <= dmg_cap（必要時連帶調降 range）。
     //   三項皆滿 -> 已臻化境，拒絕不收費。
-    cur_top  = dp->roll + dp->multipler * dp->range;
-    advanced = 0;
+    //
+    // 重要（by-reference 陷阱）：dp(class damage_parameter) 在本 driver 是傳參考﹐
+    // 直接寫 dp->range 等欄位會即時改到兵器所存的同一份 dp。故此處只把「強化後的
+    // 新值」算進 new_range/new_bonus/new_mult 三個區域變數﹐等到付款(黃金)或耗神
+    // (神力)成功後才真正寫回 dp(見下方兩處)。否則付不起錢/神不足而中途 return 的
+    // 失敗祭煉﹐也會把兵器白白練上去——等於免費強化(spam 失敗即可練滿)的破綻。
+    cur_top   = dp->roll + dp->multipler * dp->range;
+    new_range = dp->range;
+    new_bonus = dp->bonus;
+    new_mult  = dp->multipler;
+    advanced  = 0;
 
     // 步驟 1：傷害上界 +1 級（range +1），夾住不超過 dmg_cap。
     if( cur_top < dmg_cap && dp->multipler > 0 ) {
         max_range = (dmg_cap - dp->roll) / dp->multipler;   // 不超過 cap 的最大 range
-        if( dp->range + 1 <= max_range ) {
-            dp->range = dp->range + 1;
+        if( new_range + 1 <= max_range ) {
+            new_range = new_range + 1;
             advanced = 1;
-        } else if( dp->range < max_range ) {
-            dp->range = max_range;
+        } else if( new_range < max_range ) {
+            new_range = max_range;
             advanced = 1;
         }
     }
@@ -178,19 +188,19 @@ int main(object me, string arg)
     if( !advanced && dp->bonus < bonus_cap ) {
         int step = bonus_cap / 10;                          // 每級約進上限的一成
         if( step < 5 ) step = 5;
-        dp->bonus = dp->bonus + step;
-        if( dp->bonus > bonus_cap ) dp->bonus = bonus_cap;
+        new_bonus = dp->bonus + step;
+        if( new_bonus > bonus_cap ) new_bonus = bonus_cap;
         advanced = 1;
     }
 
     // 步驟 3：傷害與力修皆到頂，改提升乘數等級（連帶夾住傷害上界）。
     if( !advanced && dp->multipler < mult_cap ) {
-        dp->multipler = dp->multipler + 1;
+        new_mult = dp->multipler + 1;
         // 乘數升高使傷害上界 roll+multipler*range 跟著漲，夾回 dmg_cap 之內。
-        if( dp->multipler > 0 ) {
-            max_range = (dmg_cap - dp->roll) / dp->multipler;
+        if( new_mult > 0 ) {
+            max_range = (dmg_cap - dp->roll) / new_mult;
             if( max_range < 1 ) max_range = 1;
-            if( dp->range > max_range ) dp->range = max_range;
+            if( new_range > max_range ) new_range = max_range;
         }
         advanced = 1;
     }
@@ -215,6 +225,10 @@ int main(object me, string arg)
         }
         me->pay_money(price);
 
+        // 付款成功後才寫回新值（dp 為傳參考，提前寫會造成免費強化破綻）。
+        dp->range     = new_range;
+        dp->bonus     = new_bonus;
+        dp->multipler = new_mult;
         weapon->set("damage/" + skill, dp);
         weapon->set("enchant", level + 1);
 
@@ -257,7 +271,10 @@ int main(object me, string arg)
         return 1;
     }
 
-    // 祭煉成功：寫回 dp 並提升強化級數。
+    // 祭煉成功（未毀器）：付神付錢都過了才寫回新值（dp 為傳參考）。
+    dp->range     = new_range;
+    dp->bonus     = new_bonus;
+    dp->multipler = new_mult;
     weapon->set("damage/" + skill, dp);
     weapon->set("enchant", level + 1);
 
