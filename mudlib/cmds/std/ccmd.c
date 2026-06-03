@@ -56,10 +56,106 @@ int main(object me, string arg)
 #endif
 	return 1;
     }
- 
+
+    // function: treasury - 查詢本幫金庫餘額 (任何幫眾皆可)。
+    if( arg == "treasury" ) {
+	if( !me->query("clan/clan_name") )
+	    return notify_fail("你並非幫派成員。\n");
+	write(HIY"【"+me->query("clan/clan_name")+"】金庫目前餘額: "
+	    + CLAN_D->query_treasury(me->query("clan/clan_name"))
+	    + " 文。\n"NOR);
+	return 1;
+    }
+
     // following function should classify function name
-    if( sscanf(arg, "%s %s", arg, target)!=2 ) 
+    if( sscanf(arg, "%s %s", arg, target)!=2 )
 	return notify_fail("請用help ccmd查詢正確的指令格式。\n");
+
+    // function: deposit - 任何幫眾把身上的錢存入金庫。
+    // (置於 find_player 之前: 參數為金額/稱號而非玩家 id)
+    if( arg == "deposit" ) {
+	int amount;
+	string clan;
+
+	if( !me->query("clan/clan_name") )
+	    return notify_fail("你並非幫派成員。\n");
+	clan = me->query("clan/clan_name");
+	if( sscanf(target, "%d", amount) != 1 || amount <= 0 )
+	    return notify_fail("指令格式: ccmd deposit <金額>。\n");
+	if( (int)me->can_afford(amount) != 1 )
+	    return notify_fail("你身上沒有這麼多現錢﹐或湊不出整數。\n");
+	me->pay_money(amount);
+	CLAN_D->deposit(clan, amount);
+	log_file("CLAN", sprintf("[%s] %s: %s(%s) deposits %d\n",
+	    ctime(time()), clan, me->name(), me->query("id"), amount));
+	clan_line(me->name() + "存入金庫 " + amount + " 文﹐金庫餘額 "
+	    + CLAN_D->query_treasury(clan) + " 文。\n");
+	return 1;
+    }
+
+    // function: withdraw - 幫主/長老(職等>=2) 自金庫提錢入袋。
+    if( arg == "withdraw" ) {
+	int amount;
+	string clan;
+	object coin;
+
+	if( !me->query("clan/clan_name") )
+	    return notify_fail("你並非幫派成員。\n");
+	clan = me->query("clan/clan_name");
+	if( me->query("clan/clan_level") < 2 )
+	    return notify_fail("只有長老級以上才能動用金庫。\n");
+	if( sscanf(target, "%d", amount) != 1 || amount <= 0 )
+	    return notify_fail("指令格式: ccmd withdraw <金額>。\n");
+	if( CLAN_D->query_treasury(clan) < amount )
+	    return notify_fail("金庫裡沒有這麼多錢。\n");
+
+	// 給玩家錢: clone 一份 coin、設額、move 進玩家身上
+	// (combined.c::move 會與身上既有 coin 自動合併)。
+	seteuid( getuid() );
+	coin = new("/obj/money/coin");
+	coin->set_amount(amount);
+	if( !coin->move(me) ) {
+	    destruct(coin);
+	    return notify_fail("你身上帶不了這許多錢﹐提少一點吧。\n");
+	}
+	// 入袋成功才自金庫扣款 (withdraw 失敗會回 -1﹐理應已被上面餘額檢查擋掉)。
+	if( CLAN_D->withdraw(clan, amount) < 0 ) {
+	    // 理論上不會發生: 防守性回補並退回剛給的錢。
+	    if( coin = present("coin_money", me) )
+		coin->add_amount( - amount );
+	    return notify_fail("金庫餘額不足﹐提領失敗。\n");
+	}
+	log_file("CLAN", sprintf("[%s] %s: %s(%s) withdraws %d\n",
+	    ctime(time()), clan, me->name(), me->query("id"), amount));
+	clan_line(me->name() + "自金庫提出 " + amount + " 文﹐金庫餘額 "
+	    + CLAN_D->query_treasury(clan) + " 文。\n");
+	return 1;
+    }
+
+    // function: rank - 幫主(職等3) 重新命名某職等的階級稱號。
+    if( arg == "rank" ) {
+	int level;
+	string title, clan;
+
+	if( !me->query("clan/clan_name") )
+	    return notify_fail("你並非幫派成員。\n");
+	clan = me->query("clan/clan_name");
+	if( me->query("clan/clan_level") < 3 )
+	    return notify_fail("只有幫主才能更改階級稱號。\n");
+	if( sscanf(target, "%d %s", level, title) != 2 )
+	    return notify_fail("指令格式: ccmd rank <職等1~3> <稱號>。\n");
+	if( level < 1 || level > 3 )
+	    return notify_fail("職等只能是 1(幫眾)、2(長老) 或 3(幫主)。\n");
+	// >12 bytes ≈ >4 漢字。原 cestablish 曾用 strlen>4(byte) 誤拒 2 字中文(各 6 bytes)﹐此處改用 12 放行 4 漢字。
+	if( strlen(title) > 12 )
+	    return notify_fail("稱號過長﹐請用四個漢字以內。\n");
+	if( !CLAN_D->set_rank_title(clan, level, title) )
+	    return notify_fail("更改階級稱號失敗。\n");
+	log_file("CLAN", sprintf("[%s] %s: %s(%s) renames rank %d to %s\n",
+	    ctime(time()), clan, me->name(), me->query("id"), level, title));
+	clan_line("本幫職等" + level + "的稱號即刻起改為「" + title + "」。\n");
+	return 1;
+    }
 
     // function 4: nick - change clan nickname
     if( arg == "nick" ) {
@@ -318,24 +414,30 @@ write(@HELP
    3. ccmd leave: 叛幫
    4. ccmd nick <敘述>: 更改你在幫派的匿稱
    5. ccmd join <玩家id>: 申請加入幫派
+   6. ccmd treasury: 查詢本幫金庫餘額
+   7. ccmd deposit <金額>: 把身上的錢存入本幫金庫
 HELP
 	);
 
     if( me->query("clan/clan_level") > 1 ) {
 write(@HELP
-   6. ccmd accept <玩家id>: 接受加入幫派申請
-   7. ccmd kickout <玩家id>: 取消該玩家之幫派資格
+   8. ccmd accept <玩家id>: 接受加入幫派申請
+   9. ccmd kickout <玩家id>: 取消該玩家之幫派資格
+  10. ccmd withdraw <金額>: 自本幫金庫提錢入袋 (限長老級以上)
 HELP
         );
     }
 
     if( me->query("clan/clan_level") > 2 ) {
 write(@HELP
-   8. ccmd promote <玩家id>: 提昇幫眾職等
-   9. ccmd demote <玩家id>: 降低幫眾職等
+  11. ccmd promote <玩家id>: 提昇幫眾職等
+  12. ccmd demote <玩家id>: 降低幫眾職等
+  13. ccmd rank <職等1~3> <稱號>: 更改某職等的階級稱號 (限幫主)
 HELP
 	);
     }
 	return 1;
 }
+
+// vim: set ts=4 sw=4 syntax=lpc
 

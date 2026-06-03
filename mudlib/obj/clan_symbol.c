@@ -51,9 +51,9 @@ void init()
 int do_members()
 {
     object *usr, temp, me;
-    string nick, title, clan, *online_ids, uid;
-    mapping members;
-    int i, j;
+    string nick, title, clan, *online_ids, uid, rtitle;
+    mapping members, ranks;
+    int i, j, lvl;
     string *offline;
     me = this_player();
 
@@ -65,6 +65,10 @@ int do_members()
     }
 
     clan = me->query("clan/clan_name");
+    // 從中央幫派 daemon 取得本幫的階級稱號 mapping ([ level:title ])﹐
+    // 供線上/離線成員依其職等查得對應稱號 (幫主可用 ccmd rank 改名)。
+    ranks = CLAN_D->query_ranks(clan);
+    if( !mapp(ranks) ) ranks = ([ 3:"幫主", 2:"長老", 1:"幫眾" ]);
     // 修正原本在 filter/sort 之前就以未初始化的 i 索引 usr[i] 的 bug：
     // 隱形高階巫師的過濾改用 filter_visible() 在正確時機 (membership 過濾後) 套用。
     usr = filter_array( users(), "filter_clan", this_object() );
@@ -84,22 +88,27 @@ int do_members()
 		title = usr[i]->query("title"); }
             else title = "平民";
 
-	    if( usr[i]->query("clan/clan_level") == 3 ) {
+	    // 階級稱號改以中央 ranks mapping 依職等查得 (可被 ccmd rank 改名)﹐
+	    // 查無時退回該玩家身上的 clan/rank 快取。
+	    lvl = usr[i]->query("clan/clan_level");
+	    rtitle = stringp(ranks[lvl]) ? ranks[lvl] : usr[i]->query("clan/rank");
+
+	    if( lvl == 3 ) {
 		printf(HIY
-		"【%s】"NOR"[%-2d %|12s] %-25s %s(%s)\n"NOR, 
-		usr[i]->query("clan/rank"),
+		"【%s】"NOR"[%-2d %|12s] %-25s %s(%s)\n"NOR,
+		rtitle,
 		usr[i]->query("level"), title, nick, usr[i]->name(),
 		capitalize(usr[i]->query("id")) ); }
-	    else if( usr[i]->query("clan/clan_level") == 2  ) {
+	    else if( lvl == 2  ) {
 		printf(HIG
 		"【%s】"NOR"[%-2d %|12s] %-25s %s(%s)\n"NOR,
-		usr[i]->query("clan/rank"),
+		rtitle,
 		usr[i]->query("level"),	title, nick, usr[i]->name(),
 		capitalize(usr[i]->query("id")) ); }
 	    else {
 		printf(
 		"【%s】[%-2d %|12s] %-25s %s(%s)\n"NOR,
-		usr[i]->query("clan/rank"),
+		rtitle,
 		usr[i]->query("level"),	title, nick, usr[i]->name(),
 		capitalize(usr[i]->query("id")) ); } }
     } else
@@ -117,10 +126,10 @@ int do_members()
 "========================================================================\n");
 	    for( i = 0; i < sizeof(offline); i++ ) {
 		uid = offline[i];
-		printf("【%s】%s\n",
-		    (members[uid] == 3) ? "幫主" :
-		    (members[uid] == 2) ? "長老" : "幫眾",
-		    capitalize(uid) );
+		lvl = members[uid];
+		rtitle = stringp(ranks[lvl]) ? ranks[lvl] :
+		    (lvl == 3) ? "幫主" : (lvl == 2) ? "長老" : "幫眾";
+		printf("【%s】%s\n", rtitle, capitalize(uid) );
 	    }
 	}
     }
@@ -275,4 +284,6 @@ int do_clan_reset(string arg)
 
     return 1;
 }
+
+// vim: set ts=4 sw=4 syntax=lpc
 

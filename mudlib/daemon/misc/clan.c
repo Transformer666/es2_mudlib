@@ -198,6 +198,41 @@ query_hall(string name)
     return clans[name]["hall"];
 }
 
+// query_ranks - 回傳某幫的階級稱號 mapping ([ level:title ])（不存在回傳 0）。
+mapping
+query_ranks(string name)
+{
+    if( !stringp(name) || undefinedp(clans[name]) ) return 0;
+    if( !mapp(clans[name]["ranks"]) )
+        clans[name]["ranks"] = ([ 3:"幫主", 2:"長老", 1:"幫眾" ]);
+    return copy(clans[name]["ranks"]);
+}
+
+// query_rank_title - 回傳某幫某職等的階級稱號（不存在或未設定回傳 0）。
+string
+query_rank_title(string name, int level)
+{
+    if( !stringp(name) || undefinedp(clans[name]) ) return 0;
+    if( !mapp(clans[name]["ranks"]) ) return 0;
+    if( undefinedp(clans[name]["ranks"][level]) ) return 0;
+    return clans[name]["ranks"][level];
+}
+
+// set_rank_title - 重新命名某幫某職等(1..3)的階級稱號。回傳 1 成功，0 失敗。
+int
+set_rank_title(string name, int level, string title)
+{
+    if( !stringp(name) || undefinedp(clans[name]) ) return 0;
+    if( level < 1 || level > 3 ) return 0;
+    if( !stringp(title) || title == "" ) return 0;
+    if( !mapp(clans[name]["ranks"]) )
+        clans[name]["ranks"] = ([ 3:"幫主", 2:"長老", 1:"幫眾" ]);
+    clans[name]["ranks"][level] = title;
+    log_event(name, "職等 " + level + " 的稱號變更為「" + title + "」。");
+    save();
+    return 1;
+}
+
 // deposit - 存入金庫（Phase 2 將由幫派指令呼叫）。回傳新餘額，失敗回傳 -1。
 int
 deposit(string name, int amount)
