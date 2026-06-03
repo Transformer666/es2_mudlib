@@ -2,6 +2,7 @@
 
 #pragma save_binary
 
+#include <ansi.h>
 #include <login.h>
 #include <statistic.h>
 
@@ -201,7 +202,33 @@ make_corpse(object victim, object killer)
 	}
 	// set marks on PKer -dragoon
 	if( userp(killer) && userp(victim) ) {
-            // 若是此人曾殺過人, 且時間少於某段時間, 則記錄上加一筆, 否則, 
+	    // FIX(2026-06-03, F-Phase-2): 紅人系統 (red-name)。
+	    // 依 docs/04-玩家社群與文化/02-結仇與PvP.md「紅人系統 > 變紅條件」：
+	    //   「非紅人 kill 非紅人 → 自身變紅人」。
+	    // 受害者若本身是紅人，殺他屬「正義制裁」(docs:任何玩家都可以無代價地殺紅人)，
+	    // 殺人者不變紅；唯有殺死清白(非紅)玩家才會變紅。
+	    //
+	    // 為何能避免「比武(fight)誤殺變紅」：consensual fight 只建立 fight 關係、
+	    // 非 kill 模式，combat.c::receive_damage 在非 kill 模式下不會消耗 HP，
+	    // 故切磋不會打到形體歸 0、不會走到這裡產生玩家屍體 ── 能抵達本區塊者，
+	    // 必是 kill/偷襲/法術等致死性交手。(is_killing 狀態在 die() 已被
+	    // remove_all_killer 清除，故此處改以「受害者是否清白」為等價判準。)
+	    // killer != victim 排除自殺；level>1 與本區塊既有反神風隊精神一致。
+	    if( killer != victim
+	    && !victim->query("unprotect_mark")
+	    && victim->query("level") > 1 ) {
+		killer->set("unprotect_mark", 1);
+		tell_object(killer, HIR
+		    "你殺害了清白之人，雙手沾滿鮮血，從此成了人人得而誅之的"
+		    HIW "紅人" HIR "！\n"
+		    "你已失去非戰區的保護，任何人都能對你痛下殺手，"
+		    "且你日後身死將永損精氣神，再難挽回……\n" NOR);
+		message("vision",
+		    killer->name() + "渾身散發出一股令人膽寒的血腥煞氣！\n",
+		    environment(killer), killer);
+	    }
+
+            // 若是此人曾殺過人, 且時間少於某段時間, 則記錄上加一筆, 否則,
 	    // 便重設時間記錄
 	    // 加上設限: 必需lv>1才會增加, 以防神風特攻隊以另類方式 pk
             if( killer->query("last_pk_time")

@@ -267,6 +267,58 @@ statistic_destroyed(object ob, mapping flag)
     return 1;
 }
 
+// death_permadestroy()
+//
+// FIX(2026-06-03, F-Phase-2): 死亡永損 (permadeath stat loss).
+// 依 docs/04-玩家社群與文化/02-結仇與PvP.md「復活流程」與「紅人代價」：
+// 玩家死亡（形體歸 0）復活後會永損精氣神(gin/kee/sen)最大值，不可逆。
+// 使用者決策 F =「遵循原 ES2 嚴苛永損 + 開放多帳號」── 採全死亡通殺(非只 PK)的嚴苛版。
+//
+// 損失量：每項 MAX 減 5%（至少 1 點，若該項 MAX 仍高於下限）。
+// 下限(floor)：與 statistic_destroyed() 同一套對應 ── gin↔dex、kee↔con、sen↔spi，
+// MAX 永不低於對應屬性值（屬性是該資源的天生底線）。
+//
+// 必須在 CHAR_D->make_ghost(ob) 之前呼叫：make_ghost() 會把當下的 kee MAX
+// 快照進 living["kee"]（chard.c ~267-269），日後 make_living() 再據此還原；
+// 若在 make_ghost 之後才扣，kee 的損失會被該快照/還原蓋掉而失效。
+// gin/sen 不被 make_ghost 快照，於此扣除即為永久。
+
+private void
+permadestroy_one(object ob, string stat, string attr)
+{
+    int max, floor, loss;
+
+    max = ob->query_stat_maximum(stat);
+    floor = ob->query_attr(attr);
+
+    // 已在下限或以下，不再扣（嚴苛但仍保底）。
+    if( max <= floor ) return;
+
+    loss = max / 20;                    // 5%
+    if( loss < 1 ) loss = 1;            // 至少掉 1，避免低數值角色完全免疫
+    if( max - loss < floor )            // 不可跌破屬性下限
+        loss = max - floor;
+
+    if( loss > 0 ) {
+        ob->advance_stat(stat, -loss);  // advance_stat 直接調整 stats_max[stat]
+        // 同步把 effective/current 壓回新上限內，避免顯示值高於新 MAX。
+        ob->heal_stat(stat, 0);
+        ob->supplement_stat(stat, 0);
+    }
+}
+
+void
+death_permadestroy(object ob)
+{
+    permadestroy_one(ob, "gin", "dex");
+    permadestroy_one(ob, "kee", "con");
+    permadestroy_one(ob, "sen", "spi");
+
+    tell_object(ob, HIR
+        "\n你在鬼門關前走了一遭，大病一場，元氣大傷，"
+        "只覺精氣神俱損，再難回復昔日巔峰……\n\n" NOR);
+}
+
 // statistic_exhausted()
 //
 // This function is called when the character of this race has exhausted
@@ -303,6 +355,9 @@ statistic_exhausted(object ob, mapping flag)
 	    //log_file("PLAYER_DIE",
 		//sprintf("[%s] %s killed by %s\n",
 			//ctime(time()), ob->short(1), killer->short(1)));
+	    // FIX(2026-06-03, F-Phase-2): 死亡永損須在 make_ghost 之前，
+	    // 否則 kee 損失會被 make_ghost 的快照/還原蓋掉（見 death_permadestroy 註解）。
+	    death_permadestroy(ob);
 	    CHAR_D->make_ghost(ob);
 	    break;
 	}
