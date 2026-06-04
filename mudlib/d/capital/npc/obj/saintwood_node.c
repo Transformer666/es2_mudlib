@@ -65,6 +65,7 @@ int do_kan(string arg)
 {
 	object me = this_player();
 	object weapon, node;
+	string eq;
 	int n;
 
 	if( !me ) return 0;
@@ -77,19 +78,16 @@ int do_kan(string arg)
 	if( node != this_object() ) return 0;
 
 	// 須持聖劍穿靈、且已 wield 之——聖木之節堅逾精鐵﹐凡刀不能傷。
+	// 兵器一經 wield﹐其 query("equipped") 即為 "weapon/<skill>"(見 feature/equip.c)；
+	// 故「穿靈在身且 equipped 以 weapon/ 起首」即為已執穿靈。
 	weapon = present("chuanling", me);
-	if( !objectp(weapon) || weapon->query("equipped") != "wield" ) {
-		// 退而求其次：以「正在 wield 的兵器是否為穿靈」判定（相容不同 equip 旗標）。
-		object *wielded = me->query_temp("weapon/wielded");
-		if( !objectp(weapon)
-		|| (arrayp(wielded) && member_array(weapon, wielded) < 0) ) {
-			return notify_fail(
-				HIY "你提刀朝那聖木節重重斫落﹐『噹』地一聲火星四濺﹐虎口"
-				"震得生疼﹐那堅逾精鐵的聖木節上﹐卻連半分痕跡也不曾留下——古"
-				"碑分明說過﹕唯那柄以聖木心節為胎的聖劍『穿靈』﹐方能斫斷此"
-				"節。你還是先尋出穿靈、握在手中(wield chuanling)再來罷。\n" NOR);
-		}
-	}
+	eq = objectp(weapon) ? weapon->query("equipped") : 0;
+	if( !objectp(weapon) || !stringp(eq) || eq[0..6] != "weapon/" )
+		return notify_fail(
+			HIY "你提刀朝那聖木節重重斫落﹐『噹』地一聲火星四濺﹐虎口"
+			"震得生疼﹐那堅逾精鐵的聖木節上﹐卻連半分痕跡也不曾留下——古"
+			"碑分明說過﹕唯那柄以聖木心節為胎的聖劍『穿靈』﹐方能斫斷此"
+			"節。你還是先尋出穿靈、握在手中(wield chuanling)再來罷。\n" NOR);
 
 	// 斫斷本節。
 	message_vision(
