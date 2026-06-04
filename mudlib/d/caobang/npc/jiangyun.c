@@ -1,24 +1,28 @@
-// jiangyun.c -- 漕幫禮堂的耆宿「江隕」(uid: jiangyun)。純氣氛閒談 NPC：
-//               不接任務、不交物、不動旗標。
+// jiangyun.c -- 漕幫禮堂的耆宿「江隕」(uid: jiangyun)。
 //
 // 【設定 / canon】依 ES2 設定﹐江隕是漕幫在京畿的老前輩、漕幫「四鬼問環」支線的關鍵人﹕
-//   他授予玩家「四鬼」的指環﹐玩家持環往訪赤魈／青蛛／濁魚／旱魃 四鬼。本幫亦以江隕
-//   為名義上的創幫者——漕幫禮堂（/d/caobang/hall）於 create() 內即以 uid "jiangyun"
-//   向 CLAN_D 登錄漕幫(register_clan)。
+//   他授予玩家「四鬼招喚環」﹐玩家持環往卯天樹下開封、誅赤魈／青蛛／濁魚／旱魃 四鬼。
+//   本幫亦以江隕為名義上的創幫者——漕幫禮堂（/d/caobang/hall）於 create() 內即以 uid
+//   "jiangyun" 向 CLAN_D 登錄漕幫(register_clan)。
 //
-// 【A-gated TODO】「四鬼問環」（江隕授環 → 赤魈/青蛛/濁魚/旱魃）繫於另一樁尚未拍板的
-//   主線抉擇(決策 A)﹐故本檔【不】實作任何授環 / 問環任務﹕江隕只是位話裡藏著舊事、
-//   點到「四鬼」為止的氣氛耆宿。
-//   == 待決策 A 拍板後再補（此處一律不做、不設旗標）==
-//     - 江隕授玩家「四鬼之環」(指環實物)
-//     - 持環問訪 赤魈 / 青蛛 / 濁魚 / 旱魃 的四鬼支線
-//   本檔絕不讀寫任何 四鬼 / 旋芒 / main_omen / 主線 旗標﹔對白裡的「四鬼」純為 canon 氣氛。
+// 【正史主線第五章「四鬼任務」quest-giver】（決策 A 已拍板、序章直通 canon﹐本檔遂實作
+//   授環/交差）﹕
+//   * 接任務：玩家須先了結第四章蜈蚣之患(quest/main_canon4_done >= 1)。江隕授「四鬼招喚
+//     環」(d/chimei/npc/obj/ghost_ring) 並 set quest/main_canon5 = 1。同步授環(handler 內
+//     直接 new+move﹐非延遲 do_chat——承同步交付之教訓)。
+//   * 進行中：提醒往卯天樹下『用 環』開封、誅四鬼。
+//   * 交差：四鬼盡誅(main_canon5 == 2、四鬼之 die() 計數達 4 時推進)且持「星光環」
+//     (starlight_ring)歸來→同步發獎 give_reward5 + set quest/main_canon5_done = 1﹐並導入
+//     第六章四神 lead。
+//   * 未達門檻(main_canon4_done < 1)：僅給「時機未到」氣氛對白(原 A-gated 鋪墊)。
 
 #include <npc.h>
-
-inherit F_VILLAGER;
+#include <ansi.h>
 
 int do_ask(string arg);
+private int sigui_quest(object me);
+private void give_ghost_ring(object who);
+private void give_reward5(object who);
 
 void create()
 {
@@ -56,7 +60,7 @@ void init()
 int do_ask(string arg)
 {
 	if( !arg )
-		return notify_fail("你想向這位老前輩請教甚麼﹖（試試 ask jiangyun about 漕幫）\n");
+		return notify_fail("你想向這位老前輩請教甚麼﹖（試試 ask jiangyun about 漕幫／四鬼）\n");
 
 	// 漕幫：江隕道出漕幫的源流與不結仇的幫風
 	if( arg == "jiangyun about 漕幫"
@@ -72,27 +76,117 @@ int do_ask(string arg)
 		return 1;
 	}
 
-	// 四鬼：canon 核心引子——只給氣氛舊事﹐絕不授環、不接任務、不設旗標
+	// 四鬼：正史主線第五章 quest-giver——接任務／進行中／交差／門檻未達 四態
 	if( arg == "jiangyun about 四鬼"
 	||  arg == "jiangyun about 環"
+	||  arg == "jiangyun about 招喚環"
 	||  arg == "jiangyun about 指環"
-	||  arg == "jiangyun about 舊事"
+	||  arg == "jiangyun about 封印"
+	||  arg == "jiangyun about 卯天樹"
+	||  arg == "jiangyun about 星光環"
 	||  arg == "jiangyun about 赤魈"
 	||  arg == "jiangyun about 青蛛"
 	||  arg == "jiangyun about 濁魚"
-	||  arg == "jiangyun about 旱魃" ) {
+	||  arg == "jiangyun about 旱魃"
+	||  arg == "jiangyun about quest"
+	||  arg == "elder jiangyun about 四鬼" ) {
+		return sigui_quest(this_player());
+	}
+
+	return notify_fail("江隕望著東去的河水﹐淡淡道﹕有些事﹐時候未到﹐多問無益。客官且自便罷。（試試 ask jiangyun about 漕幫／四鬼）\n");
+}
+
+// 第五章四鬼任務狀態機。who=this_player()。同步授環/發獎、旗標與授受綁定（承同步交付教訓）。
+private int sigui_quest(object me)
+{
+	if( !me ) return 0;
+
+	// 已完成：四神 lead 尾聲（不重複發獎）。
+	if( me->query("quest/main_canon5_done") >= 1 ) {
 		do_chat(({
-			(: command, "say （江隕的神色倏地凝重起來﹐枯瘦的手在那具鐵錨上停了一停）客官 ... 也聽說了『四鬼』麼﹖" :),
-			(: command, "say 唉。那是一樁壓在老朽心頭數十年的舊因果了。當年有四個人﹐喚作赤魈、青蛛、濁魚、旱魃﹐因著一段恩怨﹐散落於天下四方 ... 老朽手裡﹐還留著一枚當年的舊環﹐本該交付一個有緣、有膽識的後生﹐持環去尋這四鬼﹐了結這段因果。" :),
-			(: command, "say 只是 ... （江隕搖了搖頭﹐長嘆一聲）這環何時能交、該交與何人﹐眼下還有一樁更大的關節未曾分曉﹐時機未到。客官且記下這四個名字﹐來日因緣際會﹐自有分曉。今日﹐老朽只能說到這裡了。" :),
+			(: command, "say 少俠誅盡了卯天樹下的山林川原四鬼、得了那枚星光環﹐這壓在老朽心頭數十年的舊因果﹐總算了結了大半。" :),
+			(: command, "say 那枚星光環﹐少俠須好生收著——環身那四道古篆所鎮的﹐原與火、天龍、雷、風四方神祇之力同源。他日少俠若集得火神、雷神、風神、天龍四神的完整封印﹐以四片神印嵌入這星光環﹐另有一番驚天動地的造化。四神之事﹐凶險更勝四鬼﹐少俠好自為之。" :),
 		}));
-		// TODO(decision-A)：「四鬼問環」(授環→赤魈/青蛛/濁魚/旱魃)整條支線繫於主線抉擇 A。
-		//   抉擇拍板前﹐本處【不】new 任何指環、【不】接任務、【不】設 四鬼/旋芒/主線 旗標﹔
-		//   僅以上列對白作 canon 氣氛鋪墊。待 A 拍板後﹐再於此實作授環與問環流程。
 		return 1;
 	}
 
-	return notify_fail("江隕望著東去的河水﹐淡淡道﹕有些事﹐時候未到﹐多問無益。客官且自便罷。（試試 ask jiangyun about 漕幫）\n");
+	// 交差：四鬼盡誅(main_canon5 == 2)且持星光環歸來→同步發獎、記 _done。
+	if( me->query("quest/main_canon5") == 2 && present("starlight ring", me) ) {
+		give_reward5(me);
+		me->set("quest/main_canon5_done", 1);
+		do_chat(({
+			(: command, "say （江隕的目光落在少俠手中那枚流轉著星河微芒的奇環上﹐渾濁的老眼霎時迸出一線精光﹐枯瘦的手微微一顫）這 ... 這是星光環﹗少俠當真把那山林川原四鬼盡數誅了﹖﹗" :),
+			(: command, "say 好﹗好﹗好﹗三百年的鎮鬼封印、數十年壓在老朽心頭的舊因果﹐今日總算是了了﹗少俠這份膽識與功業﹐老朽這把老骨頭﹐生受了﹗這點薄禮並些須歷練﹐萬莫推辭。" :),
+		}));
+		return 1;
+	}
+
+	// 進行中：已接環、未誅盡——提醒往卯天樹下開封誅鬼。
+	if( me->query("quest/main_canon5") >= 1 ) {
+		do_chat(({
+			(: command, "say 少俠既已接了這枚四鬼招喚環﹐便往那卯天樹下封印之地去罷——於卯天樹下『用 環』(use ring)﹐催動環上四道古篆﹐便能開那鎮鬼的封印﹐將山林川原四鬼盡數引出。" :),
+			(: command, "say 赤魈、青蛛、濁魚、旱魃﹐這四鬼皆是長生不滅的元神之鬼﹐凶厲非常﹐尤以那原鬼旱魃為最。少俠須將四鬼盡數誅了﹐方得那枚了結因果的星光環。卯天樹在赤魈村深處的赤魈森林盡頭——自漕幫碼頭循水路乘船﹐可往赤魈村去。" :),
+		}));
+		return 1;
+	}
+
+	// 接任務：須先了結蜈蚣之患(main_canon4_done)。同步授環 + 旗標 1。
+	if( me->query("quest/main_canon4_done") >= 1 ) {
+		give_ghost_ring(me);
+		me->set("quest/main_canon5", 1);
+		do_chat(({
+			(: command, "say （江隕定定地看了少俠半晌﹐忽地長身而起﹐渾濁的老眼裡迸出久違的精光）少俠便是了結了京畿那蜈蚣之患的那位罷﹖守木尊者的訊息﹐已隨水路傳到老朽耳中了。" :),
+			(: command, "say 京畿聖木之節既為巨蜈蝕斷﹐鎮在卯天樹下那座三百年的鬼封﹐便也跟著鬆了——山林川原四鬼﹐怕是要應劫而出了。老朽等的這個有膽識的後生﹐看來便是少俠你了。" :),
+			(: command, "say （江隕自懷中鄭重取出一枚古樸厚重的青銅指環﹐雙手奉上）這枚四鬼招喚環﹐是當年布鎮卯天樹下封印之人所遺﹐環身刻著赤魈、青蛛、濁魚、旱魃四鬼的古篆。少俠持此環往卯天樹下﹐『用 環』開那封印﹐將四鬼引出而一一誅之﹐斷這四方厲鬼之患罷﹗卯天樹在赤魈村深處——自漕幫碼頭乘船﹐可往赤魈村去。" :),
+		}));
+		return 1;
+	}
+
+	// 門檻未達(尚未了結蜈蚣之患)：時機未到的氣氛鋪墊兼伏筆。
+	do_chat(({
+		(: command, "say （江隕的神色倏地凝重起來﹐枯瘦的手在那具鐵錨上停了一停）客官 ... 也聽說了『四鬼』麼﹖" :),
+		(: command, "say 唉。那是一樁壓在老朽心頭數十年的舊因果了。當年那布鎮卯天樹下的山林川原四鬼——赤魈、青蛛、濁魚、旱魃——皆是長生不滅的元神之鬼。老朽手裡﹐還留著一枚當年鎮鬼的舊環﹐本該交付一個有緣、有膽識的後生﹐持環去開那封印、了結這段因果。" :),
+		(: command, "say 只是 ...（江隕搖了搖頭﹐長嘆一聲）這環何時能交﹐繫於京畿那株聖木的氣數。聖木之節一日不斷﹐卯天樹下的鬼封便一日穩固﹐四鬼沉睡不出﹐這環便交不得。客官且記下這四個名字﹐待京畿聖木有變之日﹐再來尋老朽罷。" :),
+	}));
+	return 1;
+}
+
+// 同步授「四鬼招喚環」。who=玩家。防重複授環。
+private void give_ghost_ring(object who)
+{
+	object ring;
+	if( !who ) return;
+	if( present("ghost ring", who) ) return;
+	ring = new("/d/chimei/npc/obj/ghost_ring");
+	if( !objectp(ring) ) return;
+	if( !ring->move(who) ) ring->move(environment());
+}
+
+// 第五章交差獎賞（同步發放﹐較第四章再加碼——四鬼為迄今最難之 arc）。星光環為主獎、
+// 已由四鬼末一頭掉落﹔此處乃漕幫的謝禮與江湖歷練。
+private void give_reward5(object who)
+{
+	object coin, pill;
+
+	if( !who || environment(who) != environment() ) return;
+
+	coin = new("/obj/money/coin");
+	coin->set_amount(2800);
+	if( !coin->move(who) ) coin->move(environment());
+
+	pill = new("/obj/medication/alchemist/major_heal_pill");
+	if( !pill->move(who) ) pill->move(environment());
+
+	who->gain_score("survive", 2800);
+	who->gain_score("emprise", 900);
+	who->gain_score("reputation", 500);
+	who->gain_score("martial fame", 540);
+	who->gain_score("explorer fame", 200);
+
+	message_vision(
+		HIY "江隕鄭重自懷中取出一串沉甸甸的銅錢、一帖上好的療傷丹藥﹐雙手交"
+		"到$N手裡﹔又顫巍巍地朝$N深深一揖——這一揖﹐是替那困守卯天樹下封印三"
+		"百年的天下蒼生﹐謝過少俠的。\n" NOR, who);
 }
 
 int accept_fight(object ob)
