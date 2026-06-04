@@ -4,6 +4,10 @@
 // 東角那道石縫側身鑽出﹐外頭便是天靈山麓一道亂石嶙峋的坡道﹐青黑戾氣自山上漫
 // 下﹐愈往上行愈是濃重。往下(down)可退回密窟﹐往上(up)循坡而行﹐直抵邪障隘口
 // (cleft.c)。此處戾氣已重﹐然尚非決戰之地﹐設 no_fight。
+//
+// 支線「白猿贈書」(docs 05 L123「千年白猿 @ 天靈山 → 無名古籍」)：本室虯松亂石、
+//   山野荒僻﹐正合那守山千年的白猿盤桓﹐遂於 set("objects") 生成 npc/baiyuan.c。
+//   因生成 NPC﹐本室遂不再 replace_program(鏡 tower_top：有 objects 之房不 replace)。
 
 inherit ROOM;
 
@@ -28,12 +32,17 @@ LONG
 	]));
 	set("outdoors", "tianling");
 	set("no_fight", 1);
+	set("objects", ([
+		// 支線「白猿贈書」：盤桓於這天靈山麓虯松亂石間的千年白猿(docs 05 L123)，
+		//   一句 ask 贈無名古籍。本室既於 set("objects") 生成 NPC，遂不 replace_program
+		//   (鏡 tower_top 之做法：有 objects 之房不 replace_program)。
+		__DIR__"npc/baiyuan" : 1,
+	]));
 	set("exits", ([
 		"down" : "/d/hudao/wild/lair",
 		"up" : __DIR__"cleft",
 	]));
 
 	setup();
-	replace_program(ROOM);
 }
 // vim: set ts=4 sw=4 syntax=lpc

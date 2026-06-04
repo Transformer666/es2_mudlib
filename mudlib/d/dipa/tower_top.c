@@ -40,6 +40,9 @@ LONG
 	set("outdoors", "capital");
 	set("objects", ([
 		__DIR__"npc/diling_spirit" : 1,
+		// 支線「塔頂贈寶」：亙古守此絕頂的黑袍怪人(docs 05 L122)，一句 ask 贈
+		//   封神寶鏡 + 離玄光熾。與地靈並存——絕不覆蓋上方第八章地靈之生成。
+		__DIR__"npc/heipao" : 1,
 	]));
 	set("exits", ([ /* sizeof() == 1 */
 		// 循旋梯而下退回塔基(與塔基 up 出口互為往返)。

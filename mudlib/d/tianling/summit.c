@@ -63,9 +63,12 @@ LONG
 	set("objects", ([
 		__DIR__"npc/huitiangui" : 1,
 	]));
-	// arc 終點：絕巔之上更無去路﹐唯往下退回絕巔石徑。
+	// 往下退回絕巔石徑﹔悔天鬼伏誅、霧靄潰散後﹐石壇符陣透出清光﹐循之而上(up)﹐
+	// 可至人靈魂泉(soulwell.c)——正史第十章「技能重置」之地（人靈之樸換轉生丹、重凝
+	// 大成、開啟十三靈終局）。
 	set("exits", ([
 		"down" : __DIR__"climb",
+		"up"   : __DIR__"soulwell",
 	]));
 
 	setup();
