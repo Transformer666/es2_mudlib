@@ -35,7 +35,7 @@ void windgod_drop_seal(object who)
 
 	if( !who ) return;
 
-	loot = new(__DIR__"npc/obj/seal_wind");
+	loot = new(__DIR__"obj/seal_wind");
 	if( !objectp(loot) ) return;
 
 	corpse = query_temp("corpse");

@@ -35,7 +35,7 @@ void dragongod_drop_seal(object who)
 
 	if( !who ) return;
 
-	loot = new(__DIR__"npc/obj/seal_dragon");
+	loot = new(__DIR__"obj/seal_dragon");
 	if( !objectp(loot) ) return;
 
 	corpse = query_temp("corpse");
