@@ -19,9 +19,17 @@
 //   仞雲海之上、映著日月星三光的人靈魂泉。往下(down)可退回天靈絕巔。
 //
 // 此室置一泓魂泉與「人靈之樸」(npc/renling.c)——重置之師。設 no_fight（清淨之地、無
-//   boss 戰，本章為換丹/重置章）。本室既定義自訂函式（無），純房間 + set objects，
-//   依 lesson #11 可 replace_program；惟為穩妥計（鏡 summit/ascent 純房間範式），此處
-//   replace_program(ROOM)。
+//   boss 戰，本章為換丹/重置章）。
+//
+// 【第十一章終局接縫】悔天鬼(實為第三章之 boss 餘緒)既誅、大成既凝，魂泉北面那道
+//   清光門徑(north)方通往十三靈殿(lingdian.c)——正史第十一章「十三靈終局」之地。唯
+//   已證大成(quest/main_canon10_done >= 1)且隨身懸佩終局聖物「日月神薛」(present
+//   "sun moon relic")者，方得入殿了結那盤桓三百年、應劫而生的十三靈之患；殿東再過，
+//   便是侮天鬼幽窟、主線終點。此門禁由本室 valid_leave 就 north 方向把關。
+//
+// 【lesson #11】本室原為純設定室、曾 replace_program(ROOM)；今既新增 valid_leave
+//   自訂函式，純設定室條件已破——故「移除」replace_program(ROOM)，鏡 abyss.c/den.c
+//   保留函式之做法（有 valid_leave 者絕不可 replace_program）。
 
 #include <ansi.h>
 
@@ -57,12 +65,38 @@ LONG
 	set("objects", ([
 		__DIR__"npc/renling" : 1,
 	]));
-	// 自天靈絕巔(summit)拾級而上而至；往下退回絕巔。
+	// 自天靈絕巔(summit)拾級而上而至；往下退回絕巔。魂泉北面那道清光門徑(north)
+	// 通往十三靈殿(lingdian.c)——第十一章終局之地；唯已證大成且懸日月神薛者得入
+	// (由 valid_leave 就 north 把關)。
 	set("exits", ([
-		"down" : __DIR__"summit",
+		"down"  : __DIR__"summit",
+		"north" : __DIR__"lingdian",
 	]));
 
 	setup();
-	replace_program(ROOM);
+	// 註：本室定義 valid_leave 自訂函式，依 lesson #11 不得 replace_program。
+}
+
+// 把關：往北循清光門徑入十三靈殿(第十一章終局接縫)，須玩家(userp)已證第十章大成
+// (quest/main_canon10_done >= 1)且隨身懸佩終局聖物「日月神薛」(present "sun moon
+// relic"，戴著仍在背包亦算)——其餘方向(down)及預設門禁悉依 ::valid_leave。回傳
+// 0(notify_fail) 即擋下移動。
+int valid_leave(object ob, string dir)
+{
+	// 先走預設門禁邏輯；不過則直接擋下。
+	if( !::valid_leave(ob, dir) ) return 0;
+
+	// 僅就通往十三靈殿的 north 方向把關，其餘方向放行。
+	if( dir == "north" )
+	{
+		if( !ob || !userp(ob)
+		 || ob->query("quest/main_canon10_done") < 1
+		 || !present("sun moon relic", ob) )
+			return notify_fail(
+				"未證大成、未懸日月神薛者，那道往北的清光門徑便不為你而開"
+				"——你縱踏前一步，門徑也只在指尖化作一泓澄澈的清光，悄然斂去。\n");
+	}
+
+	return 1;
 }
 // vim: set ts=4 sw=4 syntax=lpc
