@@ -12,6 +12,9 @@ void create()
 LONG
 	);
 	set("outdoors", "snow");
+	set("objects", ([ /* sizeof() == 1 */
+		__DIR__"npc/xiaoliying" : 1,
+	]));
 	set("exits", ([ /* sizeof() == 1 */
 		"south" : __DIR__"ruin2",
 ]));

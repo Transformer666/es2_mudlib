@@ -23,6 +23,7 @@ LONG
 	"/d/snow/npc/cakegammer" : 1,
 	"/d/snow/npc/diviner" : 1,
 	"/d/snow/npc/beastking" : 1,
+	"/d/snow/npc/liufeng" : 1,
   ]));
   set("valid_startroom", 1);
   set("no_fight",1);

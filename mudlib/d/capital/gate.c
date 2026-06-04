@@ -25,6 +25,10 @@ LONG
 	set("outdoors", "capital");
 	set("objects", ([
 		__DIR__"npc/guard" : 1,
+		// 京畿支線「樵夫贈帶」之贈物人——自城西釘靈古墓外林子裡挑柴入城、歇腳於
+		// 城門下販薪的老樵夫阿拓﹐閒談投緣便解贈腰間那條「縛柴麻絛帶」腰帶
+		// （docs 05 L107 阿拓一列﹔釘靈古墓一域未建﹐暫掛京畿城門 main 門戶）。
+		__DIR__"npc/atuo" : 1,
 	]));
 	set("exits", ([ /* sizeof() == 3 */
 		"west" : "/d/qiaoyin/gate",
