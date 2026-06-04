@@ -15,7 +15,7 @@
 //   金，多半也就化干戈為玉帛了——只是這人情往來的銀錢，少說也得 500 兩黃金。
 //
 // 機制（service / item-giver 收費型 NPC；旗標存玩家身上：quest/rongfu_done）：
-//   收費走 give：玩家 `give 500 兩 gold to laoda`（或 give <N> 兩 gold to laoda，
+//   收費走 give：玩家 `give 500 gold to laoda`（或 give <N> gold to laoda，
 //   N >= 500），於 accept_object() 內處理——
 //     - 已斡旋過（quest/rongfu_done >= 1）：double-grant 防呆，不重收錢、
 //       不重複斡旋，改述「早為你了結了」之言，退還金錢（return 0）。
@@ -121,7 +121,7 @@ void create()
 		"上、綠林裡都還留著三分薄面。城裡江湖人與官兵結下的死仇，旁人\n"
 		"解不開的，他遞句話、擺桌酒、塞錠金，多半也就化干戈為玉帛了。\n"
 		"你若是與官兵結了仇怨想托他斡旋，得先得了海大富的信任，再備上\n"
-		"五百兩黃金的人情——give 500 兩 gold to laoda 便是。\n");
+		"五百兩黃金的人情——give 500 gold to laoda 便是。\n");
 	set("chat_chance", 4);
 	set("chat_msg", ({
 		"榮老大端著茶盞，慢條斯理地吹著浮沫，眼皮也不抬地聽底下管事回話。\n",
@@ -139,7 +139,7 @@ private void tell_how_to_pay(object ob)
 	tell_object(ob,
 		HIY "榮老大撚著長鬚，淡淡道：海大富既肯為你引見，這事便好說。你備上 "
 		+ GOLD_COST + " 兩黃金的人情，交與老夫——give " + GOLD_COST
-		+ " 兩 gold to laoda——老夫往衙門裡走動走動，這官兵的仇怨，自為你了結。\n" NOR);
+		+ " gold to laoda——老夫往衙門裡走動走動，這官兵的仇怨，自為你了結。\n" NOR);
 }
 
 // say-handler / ask 指路：僅作氣氛與指路提示，不經手錢與旗標。
@@ -169,7 +169,7 @@ void relay_say(object ob, string arg)
 	tell_how_to_pay(ob);
 }
 
-// 收費走 give：玩家 give <N> 兩 gold to laoda 觸發此函。
+// 收費走 give：玩家 give <N> gold to laoda 觸發此函。
 // who 為給予者；ob 為交來之物（足額時 give 指令會在本函回 1 後自行 destruct）。
 int accept_object(object who, object ob)
 {

@@ -101,6 +101,10 @@ private void do_donate(object who)
 	// 同步回贈金屋內丹（直接 new+move﹔絕不放進延遲 do_chat）。
 	grant_jinwu(who);
 
+	// 捐獻回饋（鏡 jieyan/sanctifier 範式予閱歷/聲望﹐地靈鏈一環）。
+	who->gain_score("emprise", 60);
+	who->gain_score("explorer fame", 30);
+
 	message_vision(
 		HIY "太陽鳥金喙一啟﹐自$N掌心輕輕銜過那枚赭紅的大環丹﹐昂首一聲清越長"
 		"鳴﹐火紅的羽翼霍然大張——一縷澄澈的日華自牠羽間流瀉而下﹐將那枚丹引溫"
@@ -183,9 +187,11 @@ int accept_object(object who, object ob)
 			return 0;
 		}
 
-		// 同步換丹（收走大環丹、回贈金屋內丹、記旗標﹔do_donate 內 destruct-LAST）。
-		do_donate(who);
-		return 1;
+		// 換丹只走已驗證的 ask-path：give.c 尾碼會對已 destruct 之丹引誤報「不願收
+		// 下」（功能成功、提示矛盾），故此處不在 accept_object 內換丹（鏡 sanctifier
+		// 把消耗導去 ask-path 之範式）：婉退大環丹、導向 ask。
+		do_chat((: command, "say 少俠把那大環丹收好，口頭與太陽鳥說一聲便是：ask sunbird about 捐獻。" :));
+		return 0;
 	}
 
 	// 其餘物事：婉拒、不收下（避免吞掉玩家的尋常物品）。
