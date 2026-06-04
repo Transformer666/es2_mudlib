@@ -66,6 +66,18 @@ inherit SKILL;
 #define WIS_ARMOR           20      // 賦予：護甲(apply/armor)加成量。
 #define WIS_DURATION        30      // 賦予：buff 持續秒數(call_out 以秒計)。
 
+// 前置宣告：本檔多個函式於定義前先被引用(enough_score 用 query_score_of、tactic_function
+// 之 switch 用各 do_*)，LPC 須先宣告否則「Undefined function」編譯失敗(已驗踩坑)。
+private int enough_score(object me, int cost);
+private int query_score_of(object me);
+private void spend_score(object me, int cost);
+int do_first_aid(object me, object target);
+int do_charge(object me, object target);
+int do_mass_aid(object me, object target);
+int do_supply(object me, object target);
+int do_money(object me, object target);
+int do_wis(object me, object target);
+
 private void
 create()
 {
