@@ -5,6 +5,17 @@ create()
 {
 }
 
+// 升級精氣神成長（docs 02/01）：每升一級，精(dex)/氣(con)/神(spi)依「屬性÷除數」隨機提升。
+// 書生：精5/氣3/神3（精成長最慢、神氣偏快）。
+void
+advance_level (object me)
+{
+	if (!objectp(me)) return;
+	me->advance_stat("gin", 1 + random(me->query_attr("dex") / 5));
+	me->advance_stat("kee", 1 + random(me->query_attr("con") / 3));
+	me->advance_stat("sen", 1 + random(me->query_attr("spi") / 3));
+}
+
 string
 query_rank (object obj, string politness)
 {
