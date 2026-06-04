@@ -28,6 +28,17 @@
 //   d/longdao/npc/obj/chaos_heart)、main_canon7=2；持心歸來交差(main_canon7==2)→同步發獎
 //   give_reward7 + main_canon7_done=1，開天靈/地靈兩條 arc lead（赤魈村許願池 天命刃+eye
 //   ／地氣塔頂 悍地斧+heart）。授印/發獎同步綁定（承同步交付教訓）。
+//
+// 【正史主線第八章「天靈/地靈任務」quest-giver】（tianling_quest）：須先了結第七章渾沌獸
+//   之患(main_canon7_done >= 1)。天靈、地靈兩條 sibling sub-quest 共此狀態機，開約後 set
+//   main_canon8=1：天靈在赤魈村許願池(d/chimei/wishpool，自村 west)、地靈在京畿地氣塔頂
+//   (d/dipa/tower_top，自皇城廣場 down→塔基→up→塔頂)。降天靈(d/chimei/npc/tianling_spirit)
+//   得天命刃(d/chimei/npc/obj/fate_dagger)+天靈之眼(d/chimei/npc/obj/sky_eye)、main_canon8
+//   =2；降地靈(d/dipa/npc/diling_spirit)得悍地斧(d/dipa/npc/obj/quake_axe)+地靈之心(d/dipa/
+//   npc/obj/earth_heart)、main_canon8=3。本章主獎皆由二靈逐玩家 die() 掉落，江隕只開約、
+//   交差發謝禮。持眼+心歸來交差(main_canon8==3)→同步發獎 give_reward8 + main_canon8_done=1，
+//   導入第九章日月神薛(京畿神社 donate eye+heart+星光環 ring)。docs 列的火雷風雨四神武器/
+//   聖木殘根→炎日箭→太陽槍 物鏈乃敘事鋪陳，已抽象入接任務對白，不另造 sub-chain。
 
 #include <npc.h>
 #include <ansi.h>
@@ -36,11 +47,13 @@ int do_ask(string arg);
 private int sigui_quest(object me);
 private int sishen_quest(object me);
 private int hundun_quest(object me);
+private int tianling_quest(object me);
 private void give_ghost_ring(object who);
 private void give_chaos_seal(object who);
 private void give_reward5(object who);
 private void give_reward6(object who);
 private void give_reward7(object who);
+private void give_reward8(object who);
 
 void create()
 {
@@ -137,7 +150,25 @@ int do_ask(string arg)
 		return hundun_quest(this_player());
 	}
 
-	return notify_fail("江隕望著東去的河水﹐淡淡道﹕有些事﹐時候未到﹐多問無益。客官且自便罷。（試試 ask jiangyun about 漕幫／四鬼／四神／渾沌獸）\n");
+	// 天靈/地靈：正史主線第八章 quest-giver——接任務／進行中／交差／門檻未達 四態。
+	// 門檻：須先了結第七章渾沌獸之患(quest/main_canon7_done >= 1)。天靈(赤魈村許願池→
+	// 天命刃+天靈之眼)與地靈(地氣塔頂→悍地斧+地靈之心)兩條 sibling sub-quest 共此狀態機。
+	if( arg == "jiangyun about 天靈"
+	||  arg == "jiangyun about 地靈"
+	||  arg == "jiangyun about 天命刃"
+	||  arg == "jiangyun about 悍地斧"
+	||  arg == "jiangyun about 天靈之眼"
+	||  arg == "jiangyun about 地靈之心"
+	||  arg == "jiangyun about 許願池"
+	||  arg == "jiangyun about 地氣塔"
+	||  arg == "jiangyun about 日月神薛"
+	||  arg == "jiangyun about spirit"
+	||  arg == "elder jiangyun about 天靈"
+	||  arg == "elder jiangyun about 地靈" ) {
+		return tianling_quest(this_player());
+	}
+
+	return notify_fail("江隕望著東去的河水﹐淡淡道﹕有些事﹐時候未到﹐多問無益。客官且自便罷。（試試 ask jiangyun about 漕幫／四鬼／四神／渾沌獸／天靈／地靈）\n");
 }
 
 // 第五章四鬼任務狀態機。who=this_player()。同步授環/發獎、旗標與授受綁定（承同步交付教訓）。
@@ -330,7 +361,7 @@ private int hundun_quest(object me)
 	if( me->query("quest/main_canon7_done") >= 1 ) {
 		do_chat(({
 			(: command, "say 少俠以渾沌印記自七彩石招出了那頭隨地流竄的渾沌獸、又將牠降伏，得了那枚渾沌之心、一片完整印記——這壓在老朽心頭最後一樁因果，總算也了結了。" :),
-			(: command, "say 少俠且記下這往後兩樁去處：其一，天靈之事——往那赤魈村的許願池去，可解得『天命刃』(dagger of fate)與一枚『眼』；其二，地靈之事——須登那地氣塔頂，可得『悍地斧』(twohanded axe)與一枚『心』。集齊那心、眼，並這枚渾沌之心、那枚星光環，往京畿神社獻與日月神薛，再戰那侮天鬼的終局之路，便豁然在望了。去罷，少俠。" :),
+			(: command, "say 少俠且記下這往後兩樁去處：其一，天靈之事——往那赤魈村的許願池去，可解得『天命刃』(dagger of fate)與一枚『眼』；其二，地靈之事——須登那地氣塔頂，可得『悍地斧』(twohanded axe)與一枚『心』。集齊那心、眼，並這枚渾沌之心、那枚星光環，往京畿神社獻與日月神薛，再戰那侮天鬼的終局之路，便豁然在望了。這天、地二靈之事，少俠細問老朽便是(ask jiangyun about 天靈／地靈)。去罷，少俠。" :),
 		}));
 		return 1;
 	}
@@ -343,7 +374,7 @@ private int hundun_quest(object me)
 		do_chat(({
 			(: command, "say （江隕的目光落在少俠手中那枚七彩流轉、混沌未分的完整印記上，渾濁的老眼霎時迸出畢生最盛的精光，枯瘦的雙手抖得幾乎握不住）這 ... 這是渾沌之心！少俠當真以那渾沌印記自七彩石招出了那頭隨地流竄的渾沌獸、又把牠降了？！" :),
 			(: command, "say 好！好！好！自蜈蚣之患所留那枚破碎的印記、歷四鬼、歷四神、終又降了這天地初開的渾沌獸——三百年的因果，今日總算在少俠手中見了終局的曙光！這點薄禮並些須歷練，少俠萬莫推辭，老朽這把老骨頭，生受了！" :),
-			(: command, "say 少俠且聽老朽道明往後兩樁去處：其一，天靈之事——往那赤魈村的許願池去，可解得『天命刃』(dagger of fate)與一枚『眼』；其二，地靈之事——須登那地氣塔頂，可得『悍地斧』(twohanded axe)與一枚『心』。集齊那心、眼，並這枚渾沌之心、那枚星光環，往京畿神社獻與日月神薛，再戰侮天鬼的終局之路，便豁然在望了。" :),
+			(: command, "say 少俠且聽老朽道明往後兩樁去處：其一，天靈之事——往那赤魈村的許願池去，可解得『天命刃』(dagger of fate)與一枚『眼』；其二，地靈之事——須登那地氣塔頂，可得『悍地斧』(twohanded axe)與一枚『心』。集齊那心、眼，並這枚渾沌之心、那枚星光環，往京畿神社獻與日月神薛，再戰侮天鬼的終局之路，便豁然在望了。這天、地二靈之事，少俠細問老朽便是(ask jiangyun about 天靈／地靈)。" :),
 		}));
 		return 1;
 	}
@@ -414,6 +445,107 @@ private void give_reward7(object who)
 		HIY "江隕鄭重自懷中取出一串迄今最為沉甸甸的銅錢、一帖上好的療傷丹藥﹐雙手"
 		"交到$N手裡﹔復又顫巍巍地離座而起﹐朝$N深深一揖到地、久久不起——這一揖﹐是"
 		"替那困於這三百年因果、終盼得渾沌獸伏誅的天下蒼生﹐謝過少俠的。\n" NOR, who);
+}
+
+// 第八章天靈/地靈任務狀態機。who=this_player()。承第七章交差所伏「天靈(赤魈村許願池→
+// 天命刃+眼)／地靈(地氣塔頂→悍地斧+心)」兩條 sibling sub-quest 之 lead——接任務／進行
+// 中／交差／門檻未達 四態。本章主獎(天命刃/天靈之眼/悍地斧/地靈之心)皆由二靈 die() 逐
+// 玩家掉落，江隕此處只開約、交差發謝禮(同步發獎，承同步交付教訓)。旗標 main_canon8：
+//   0(未接)→1(已接)→2(天靈已斃、得眼+刃)→3(地靈已斃、得心+斧)→_done(交差)。
+private int tianling_quest(object me)
+{
+	if( !me ) return 0;
+
+	// 已完成：日月神薛 lead 尾聲（不重複發獎）。
+	if( me->query("quest/main_canon8_done") >= 1 ) {
+		do_chat(({
+			(: command, "say 少俠降了赤魈村許願池的天靈、得了天命刃與天靈之眼，又登地氣塔頂降了地靈、得了悍地斧與地靈之心——這天、地二靈的因果，總算也了結了。" :),
+			(: command, "say 如今少俠手中，心、眼、那枚四神之力齊備的星光環俱已齊備。再無別話了，少俠——便往京畿神社去罷，將這天靈之眼、地靈之心，連同那枚星光環，一併獻與神社中那位日月神薛(donate eye／donate heart／donate ring)。心、眼、環三者既獻，那再戰侮天鬼、了結十三靈的終局之路，便豁然在望了。去罷，少俠，天下蒼生，都在等著少俠這最後一程。" :),
+		}));
+		return 1;
+	}
+
+	// 交差：天、地二靈盡誅(main_canon8 == 3、二靈 die() 推進)且持眼+心歸來→同步發謝禮、
+	// 記 _done。眼/心/天命刃/悍地斧皆玩家自二靈屍身所得、續持往日月神薛 arc，此處不取走。
+	if( me->query("quest/main_canon8") == 3
+	&&  present("sky eye", me)
+	&&  present("earth heart", me) ) {
+		give_reward8(me);
+		me->set("quest/main_canon8_done", 1);
+		do_chat(({
+			(: command, "say （江隕的目光落在少俠手中那枚流轉著澄澈天光的天靈之眼、與那枚流轉著沉雄土光的地靈之心上，渾濁的老眼霎時迸出畢生未有的精光，枯瘦的雙手抖得幾乎握不住）這 ... 這是天靈之眼，與地靈之心！少俠當真把赤魈村許願池的天靈、地氣塔頂的地靈，盡數降了？！" :),
+			(: command, "say 好！好！好！自蜈蚣之患、歷四鬼、歷四神、降渾沌獸，又了結了這天、地二靈——三百年的因果，今日總算在少俠手中走到了終局的門前！這點薄禮並些須歷練，少俠萬莫推辭，老朽這把老骨頭，生受了！" :),
+			(: command, "say 少俠且聽老朽道明這最後一程的去處：如今心、眼，並那枚四神之力齊備的星光環俱已齊備——少俠須往京畿神社去，將這天靈之眼、地靈之心，連同那枚星光環，一併獻與神社中那位日月神薛(donate eye／donate heart／donate ring)。心、眼、環三者既獻，那再戰侮天鬼、了結十三靈的終局之路，便豁然在望了。" :),
+		}));
+		return 1;
+	}
+
+	// 進行中（天靈已斃、地靈未斃）：提醒登地氣塔頂降地靈。
+	if( me->query("quest/main_canon8") == 2 ) {
+		do_chat(({
+			(: command, "say 少俠既已降了赤魈村許願池的天靈、得了那柄天命刃與一枚天靈之眼，便只剩那地靈一樁了。" :),
+			(: command, "say 那地靈，盤踞在京畿地氣塔的塔頂——自皇城廣場一隅那道深嵌地底的石階下行(down)，便至那矗於京畿地脈之上的地氣塔塔基；循塔心那道黃石旋梯盤旋而上(up)，便登臨那地氣磅礡的塔頂。那地靈是司一方地氣的厚土之靈，沉雄磅礡，凶險更勝那天靈，少俠須得有備而往、好自為之。降了地靈，必得一枚地靈之心、一柄悍地斧(twohanded axe)，再持那心、眼回來尋老朽覆命。" :),
+		}));
+		return 1;
+	}
+
+	// 進行中（天、地二靈俱未斃）：提醒往二地降二靈。
+	if( me->query("quest/main_canon8") >= 1 ) {
+		do_chat(({
+			(: command, "say 少俠既已接了這天、地二靈之事，便往那二處去罷。其一，天靈——往那赤魈村去，自村中循西邊那道少有人行的小徑(west)下山腳，便至那終年不涸的許願池。許願池上應天地靈氣所鍾的天靈之所，少俠持渾沌之心、星光環引動池水，那司一方天命的天靈便會應引而現。降之，必得一柄天命刃(dagger of fate)與一枚天靈之眼。" :),
+			(: command, "say 其二，地靈——須登那京畿地氣塔的塔頂。自皇城廣場一隅那道深嵌地底的石階下行(down)，至那矗於京畿地脈之上的地氣塔塔基，再循塔心黃石旋梯盤旋而上(up)，便登臨地氣磅礡的塔頂。那司一方地氣的地靈應引而現，降之，必得一柄悍地斧(twohanded axe)與一枚地靈之心。天、地二靈俱降、心眼俱得，再持回來尋老朽覆命。" :),
+		}));
+		return 1;
+	}
+
+	// 接任務：須先了結第七章渾沌獸之患(main_canon7_done >= 1)。同步啟旗標 1。
+	// 本章主獎皆由二靈掉落，此處不另授物，只開天、地二靈之約。
+	if( me->query("quest/main_canon7_done") >= 1 ) {
+		me->set("quest/main_canon8", 1);
+		do_chat(({
+			(: command, "say （江隕定定地看了少俠半晌，渾濁的老眼裡那一線精光久久不散）少俠既以渾沌印記自七彩石招出了渾沌獸、又把牠降伏、得了那枚渾沌之心，老朽便把這最後兩樁去處，也一併託付了罷。" :),
+			(: command, "say 少俠須知：這世間有天、地二靈，分司一方天命與地氣。其一，天靈——盤踞在赤魈村後那一泓終年不涸、天地靈氣所鍾的許願池上。自赤魈村循西邊那道少有人行的小徑(west)下山腳，便至那許願池；少俠持渾沌之心、星光環引動池水，那司一方天命的天靈便會應引而現——降之，必得一柄天命刃(dagger of fate)與一枚天靈之眼。" :),
+			(: command, "say 其二，地靈——盤踞在京畿地氣塔的塔頂。古來相傳，須以聖木殘根、金屋內丹煉就炎日箭、太陽槍，循四神之力層層引動，方能登臨那地氣磅礡的塔頂；如今少俠既已降了渾沌獸、嵌齊了星光環，這層層的引動，老朽已替少俠暗中疏通——少俠但自皇城廣場一隅那道深嵌地底的石階下行(down)，至那地氣塔塔基，再循塔心黃石旋梯盤旋而上(up)，便能登臨塔頂。那司一方地氣的地靈應引而現，降之，必得一柄悍地斧(twohanded axe)與一枚地靈之心。" :),
+			(: command, "say 天、地二靈俱降、那心、眼俱得，少俠再持回來尋老朽覆命。集齊那心、眼，並這枚四神之力齊備的星光環，便可往京畿神社獻與日月神薛，再戰侮天鬼的終局之路，便在眼前了。二靈凶險不在渾沌獸之下，少俠好自為之。" :),
+		}));
+		return 1;
+	}
+
+	// 門檻未達(尚未了結渾沌獸之患)：時機未到的氣氛鋪墊兼伏筆。
+	do_chat(({
+		(: command, "say （江隕搖了搖頭，長嘆一聲）少俠也聽說了那分司天命、地氣的『天靈』與『地靈』麼？一在赤魈村那終年不涸的許願池上，一在京畿地氣塔的塔頂，皆是凶險不下於那渾沌獸的厲靈。" :),
+		(: command, "say 只是 ... 那是後話了。少俠手裡若無那降了渾沌獸方得的渾沌之心，這天、地二靈之事，老朽便是說了，也是枉然。客官且先去了結那渾沌獸之患、得了渾沌之心，再來尋老朽問這天靈、地靈罷。" :),
+	}));
+	return 1;
+}
+
+// 第八章交差謝禮（同步發放﹐較第七章再加碼——天、地二靈為迄今最末、亦最險之 arc）。本
+// 章主獎(天命刃/天靈之眼/悍地斧/地靈之心)皆由二靈逐玩家掉落、玩家自始持有並續持往日月
+// 神薛 arc﹐此處乃漕幫的謝禮與江湖歷練﹐不取走任何信物。
+private void give_reward8(object who)
+{
+	object coin, pill;
+
+	if( !who || environment(who) != environment() ) return;
+
+	coin = new("/obj/money/coin");
+	coin->set_amount(12000);
+	if( !coin->move(who) ) coin->move(environment());
+
+	pill = new("/obj/medication/alchemist/major_heal_pill");
+	if( !pill->move(who) ) pill->move(environment());
+
+	who->gain_score("survive", 12000);
+	who->gain_score("emprise", 4000);
+	who->gain_score("reputation", 2000);
+	who->gain_score("martial fame", 2200);
+	who->gain_score("explorer fame", 900);
+
+	message_vision(
+		HIY "江隕鄭重自懷中取出一串迄今最為沉甸甸的銅錢、一帖上好的療傷丹藥﹐雙手"
+		"交到$N手裡﹔復又顫巍巍地離座而起﹐朝$N深深一揖到地、久久不起——這一揖﹐是"
+		"替那困於這三百年因果、終盼得天、地二靈伏誅、終局在望的天下蒼生﹐謝過少俠的。\n"
+		NOR, who);
 }
 
 int accept_fight(object ob)
