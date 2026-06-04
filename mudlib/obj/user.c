@@ -13,6 +13,7 @@ inherit F_FLAG;
 // private prototypes
 
 private void user_dump(int type);
+private void accrue_karma();
 
 // variables
 
@@ -84,6 +85,58 @@ int save() {
     return res;
 }
 
+// 在生業力累積 (decision E)。業力是「投胎(轉種族)」的中性成本貨幣，原本只能
+// 靠「真死轉世」在 logind.c::reincarnate() 賺取，導致高業力種族 (夜叉/巫首/
+// 阿修羅，25~35 點) 幾乎無法達成。這裡讓「活著上線」也能慢慢累積業力，使長期
+// 上線的玩家能逐步達標 ── 完全比照 docs/02-遊戲系統與機制/04-業力與聲望.md：
+//
+//   業力 = 人物等級；上限不超過「上線時數總天數 × 2」。
+//
+// 設計（中性，不涉善惡/殺業/紅人，亦不更動任何投胎門檻）：
+//   * 業力存在 link (連線) 物件上，比照 logind.c / reincarnate.c 以
+//     link->query("karma") 讀、link->add("karma", n) 寫。body 與 link 的 euid
+//     同為玩家 uid，故通過 login.c::add() 的 USER_PROTECT (比照 tune.c 以
+//     me->link()->set(...) 寫 link 的慣例)。
+//   * 「上線總天數」直接取 link 的累積 time_aged ── 那是角色自創角起的「真實
+//     上線秒數」累計值 (login.c::update_age() 只 ::add 不歸零)，正是
+//     logind.c::reincarnate() 計 max_karma_gain 用的同一來源。
+//       online_days = link_time_aged / 86400
+//   * 上限 cap = min( query_level(), online_days * 2 )，與 docs 完全一致：
+//     上線天數夠多時業力可達「等於等級」，但永不超過「天數×2」。
+//   * 每次只補「差額」並夾住上限 (絕不超過 cap)，故反覆呼叫亦安全、不會 overshoot。
+//
+// KARMA_PER_DAY：每「上線一天」朝 cap 推進的點數 (純速率參數，可由設計者調整；
+//   夾在 cap 內，故調大只是更快達標，永不破上限)。
+#define KARMA_PER_DAY   1
+
+private void accrue_karma() {
+    int cap, cur, online_days, gain;
+
+    if (!objectp(my_link))
+        return;
+
+    // 上線總天數取自 link 的累積 time_aged (真實上線秒數，永不歸零)。
+    online_days = (int)my_link->query("time_aged") / 86400;
+
+    // 上限完全比照 docs：min(等級, 上線天數 × 2)。
+    cap = query_level();
+    if (online_days * 2 < cap)
+        cap = online_days * 2;
+
+    cur = (int)my_link->query("karma");
+    if (cur >= cap)
+        return;                     // 已達(或超過)上限，不再累積，亦不回收。
+
+    // 每天朝 cap 推進 KARMA_PER_DAY 點，但夾住上限、只補差額，絕不 overshoot。
+    gain = KARMA_PER_DAY;
+    if (cur + gain > cap)
+        gain = cap - cur;
+    if (gain <= 0)
+        return;
+
+    my_link->add("karma", gain);
+}
+
 // This function updates player's age, called by heart_beat()
 private void heart_beat() {
     ::heart_beat();
@@ -101,6 +154,11 @@ private void heart_beat() {
     if ((int)query("time_aged") >= 86400) {
         add("age", 1);
         delete("time_aged");
+        // 在生業力：每「上線滿一天」朝 docs 上限推進一次 (先刷新 link 的
+        // 累積上線秒數，再依 min(等級, 天數×2) 夾住補差額)。
+        if (objectp(my_link))
+            my_link->update_age();
+        accrue_karma();
     }
 
     if (objectp(my_link))
@@ -286,3 +344,5 @@ nomask int set_stat_maximum(string what, int val) {
     USER_PROTECT();
     return ::set_stat_maximum(what, val);
 }
+
+// vim: set ts=4 sw=4 syntax=lpc
