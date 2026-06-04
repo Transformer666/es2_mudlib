@@ -231,6 +231,23 @@ private void give_reward4(object who)
 		"枚破碎的印記﹐尊者卻又還回$N手中﹐道是『他日另有大用』。\n" NOR, who);
 }
 
+// 第九章「日月神薛」捐獻：同步授「日月神薛」(npc/obj/sun_moon_relic)。who=捐獻的玩家﹔
+// 同步交付（於 do_ask handler 內、記 _done 旗標後、destruct 三信物前直接呼叫﹐玩家此刻
+// 必在場）。防重複授薛：玩家若已持有日月神薛﹐不再重發。
+private void give_relic9(object who)
+{
+	object relic;
+
+	if( !who || environment(who) != environment() ) return;
+
+	// 防重複授薛。
+	if( present("sun moon relic", who) ) return;
+
+	relic = new("/d/capital/npc/obj/sun_moon_relic");
+	if( !objectp(relic) ) return;
+	if( !relic->move(who) ) relic->move(environment());
+}
+
 int do_ask(string arg)
 {
 	object me = this_player();
@@ -290,6 +307,109 @@ int do_ask(string arg)
 
 	if( is_fighting() || is_chatting() )
 		return notify_fail("守木尊者正闔目誦持﹐溫養著掌心那縷聖木餘力﹐沒空理你。\n");
+
+	// ════════════════════════════════════════════════════════════════════
+	// 正史第九章「日月神薛」（捐獻章、無 boss 戰）：京畿神社聖木淨室即捐獻之地﹐守木尊
+	// 者即捐獻受理人。旗標 quest/main_canon9 + 防重領 quest/main_canon9_done。入門條件：
+	// 須先了結第八章天、地二靈(quest/main_canon8_done >= 1)。流程（見檔頭詳述）：
+	//   _done            : 日月神薛已成——純劇情伏筆(技能重置/十三靈)﹐不重複給賞
+	//   8_done 且三物俱在 : 捐獻——設 9=1、記 9_done=1（皆於 destruct 前）﹐同步授日月神薛、
+	//                      gain_score、高潮 message﹐末了 destruct 眼/心/星光環(destruct-LAST)
+	//   8_done（缺物）    : 設 9=1﹐道明須帶齊天靈之眼、地靈之心、與星光環來獻
+	//   8_done < 1        : 時機未到——只道日月神薛舊事
+	// 此塊置於第四章/主線七邏輯之前﹐但僅就第九章 topics 把關（topics 互斥﹐不誤入下方第
+	// 四章/主線七既有邏輯﹐互不干涉）。
+	// ════════════════════════════════════════════════════════════════════
+	if( arg == "sanctifier about 日月神薛"
+	||  arg == "sanctifier about 神薛"
+	||  arg == "sanctifier about 捐獻"
+	||  arg == "sanctifier about 獻"
+	||  arg == "sanctifier about 日月"
+	||  arg == "wood sage about 日月神薛"
+	||  arg == "wood sage about 神薛"
+	||  arg == "wood sage about 捐獻"
+	||  arg == "wood sage about 獻"
+	||  arg == "sage about 日月神薛"
+	||  arg == "sage about 神薛"
+	||  arg == "sage about 捐獻"
+	||  arg == "sanctifier about donate"
+	||  arg == "sanctifier about relic"
+	||  arg == "wood sage about donate"
+	||  arg == "wood sage about relic" ) {
+
+		// 第九章已捐獻畢（main_canon9_done）：日月神薛已成——只給朝向技能重置/十三靈的純
+		// 劇情伏筆﹐不重複給賞、不開新任務。
+		if( me->query("quest/main_canon9_done") >= 1 ) {
+			do_chat(({
+				(: command, "say 那日月神薛既成﹐日之天光、月之地氣、星之神威三力交融於一﹐已盡歸少俠頸間護持了。三百年的因果﹐自蜈蚣、四鬼、四神、渾沌獸、以至天地二靈﹐一路走到這聖木舊址的同獻一獻——老衲守此一脈數十載﹐總算親見了這終局的曙光。" :),
+				(: command, "say 少俠且記下這最後一程的去處：持此日月神薛﹐少俠那一身武學﹐已堪行那『技能重置(reset)』、洗去舊力、重凝大成了。重置之後﹐再憑這日月星三光的護持﹐去了結那盤桓三百年、應劫而生的『十三靈』之患——了了十三靈﹐方能再戰那侮天鬼、了結這天地間最後一樁因果。去罷﹐少俠﹐天下蒼生﹐都在等著少俠這最後一程。" :),
+			}));
+			return 1;
+		}
+
+		// 捐獻：已了結第八章二靈(main_canon8_done >= 1)且三物俱在(眼+心+星光環)→同步授日
+		// 月神薛、記 _done。⚠ 旗標(9 / 9_done)與授薛、gain_score、message 全置於三物 destruct
+		// 「之前」﹔三物 destruct 殿後（destruct-LAST﹐承 lesson #10）。
+		if( me->query("quest/main_canon8_done") >= 1
+		&&  present("sky eye", me)
+		&&  present("earth heart", me)
+		&&  present("starlight ring", me) ) {
+			// 先推進旗標（皆於 destruct 之前）。
+			me->set("quest/main_canon9", 1);
+			me->set("quest/main_canon9_done", 1);
+
+			// 同步授「日月神薛」（直接 new+move﹐玩家此刻必在場﹔絕不放進延遲 do_chat）。
+			give_relic9(me);
+
+			// 冠絕全 arc 之厚賞（較第八章 give_reward8 同檔再加碼——終局聖物之成）。
+			me->gain_score("survive", 16000);
+			me->gain_score("emprise", 5000);
+			me->gain_score("reputation", 2600);
+			me->gain_score("martial fame", 2800);
+			me->gain_score("explorer fame", 1200);
+
+			message_vision(
+				HIY "守木尊者起身﹐引$N至那截焦黑的聖木樹樁之前﹐命$N將天靈之眼、地"
+				"靈之心、那枚四神之力齊備的星光環一一供於樹樁斷口的青芒之上。尊者枯瘦"
+				"的雙手結起一個古樸的手印﹐口誦梵唄﹐將那縷蟄伏三百年的聖木餘力盡數引"
+				"出——只見那一輪澄澈的日光自天靈之眼中升起、一彎沉雄的月華自地靈之心中"
+				"漫開、一圈璀璨的四神星輝自星光環上環流﹐三光於聖木青芒之中轟然交融、"
+				"熔鑄為一﹗一方流轉著日月星三光的神薛自那交融的光華中緩緩凝成﹐尊者鄭"
+				"重將這方『日月神薛』掛上$N頸項。那三件信物﹐則化作三縷流光﹐盡數沒入"
+				"了神薛之中。\n" NOR, me);
+
+			do_chat(({
+				(: command, "say 成了——日之天光、月之地氣、星之神威﹐三力交融於這一方日月神薛之中了﹗少俠歷蜈蚣、四鬼、四神、渾沌獸、以至天地二靈﹐集得這日(眼)、月(心)、星(星光環)三者於聖木舊址同獻——老衲守此一脈數十載﹐今日總算親見了這終局聖物之成﹗" :),
+				(: command, "say 少俠且戴穩了這方神薛(wear relic)﹐日月星三光自會護持少俠周身。憑此神薛之力﹐少俠那一身武學﹐已堪行那『技能重置(reset)』、洗去舊力、重凝大成了。重置之後﹐再去了結那應劫而生、盤桓三百年的『十三靈』之患——了了十三靈﹐方能再戰那侮天鬼、了結這天地間最後一樁因果。此去十三靈凶險更勝二靈﹐少俠憑這日月神薛護持﹐好自為之罷﹗" :),
+			}));
+
+			// ⚠ 三件信物既沒入神薛﹐destruct 殿後（必置於上方旗標/授薛/gain_score/message
+			// 「之後」——destruct-LAST﹐承 lesson #10：destruct 後同函式其後碼不保證續行）。
+			destruct(present("sky eye", me));
+			destruct(present("earth heart", me));
+			destruct(present("starlight ring", me));
+			return 1;
+		}
+
+		// 已了結第八章二靈(main_canon8_done >= 1)但三物未齊：開捐獻之約(main_canon9=1)﹐道
+		// 明須帶齊天靈之眼、地靈之心、與星光環三者來獻。
+		if( me->query("quest/main_canon8_done") >= 1 ) {
+			me->set("quest/main_canon9", 1);
+			do_chat(({
+				(: command, "say 少俠便是降了赤魈村許願池的天靈、地氣塔頂的地靈﹐又集齊四神之力嵌齊了星光環的少俠罷﹖漕幫江隕的訊息﹐早已隨地脈傳到了這聖木淨室。少俠了結天、地二靈、走到這終局的門前﹐當真是功在天下。" :),
+				(: command, "say 這聖木舊址所鍾的清正餘力﹐三百年來蟄伏未散﹐為的便是等少俠這一獻。少俠須帶齊三物來獻於這焦黑的樹樁之前：其一﹐自天靈靈光所凝、流轉著澄澈天光的『天靈之眼』﹐是為『日』﹔其二﹐自地靈地氣所凝、流轉著沉雄土光的『地靈之心』﹐是為『月』﹔其三﹐那枚四神之力齊備、流轉著星河微芒的『星光環』﹐是為『星』。" :),
+				(: command, "say 三物俱備﹐少俠便來尋老衲——ask sanctifier about 捐獻。老衲自以這縷聖木餘力為引﹐將日、月、星三光交融、開光熔鑄成那一方『日月神薛』﹐授與少俠。憑此神薛﹐少俠方堪行那技能重置、了結十三靈、再戰侮天鬼的終局之路。少俠且把那三物收好﹐莫要遺落了。" :),
+			}));
+			return 1;
+		}
+
+		// 門檻未達(尚未了結第八章二靈)：時機未到——只道日月神薛的舊事﹐不開捐獻。
+		do_chat(({
+			(: command, "say 少俠也聽說了這聖木舊址所成的『日月神薛』麼﹖那是日之天光、月之地氣、星之神威三力交融、開光熔鑄而成的終局聖物——憑它﹐方堪行那技能重置、了結十三靈、再戰侮天鬼。" :),
+			(: command, "say 只是 ... 那是後話了。少俠手裡若無那降了天、地二靈方得的天靈之眼、地靈之心﹐並那枚四神之力齊備的星光環﹐這日月神薛之事﹐老衲便是說了﹐也是枉然。少俠且先去尋那漕幫的江隕老前輩﹐了結了天、地二靈之患、集齊心、眼、星光環三者﹐再來這聖木淨室尋老衲捐獻罷。" :),
+		}));
+		return 1;
+	}
 
 	// ════════════════════════════════════════════════════════════════════
 	// 正史第四章「蜈蚣war」：須先完成第三章(quest/main_canon3_done >= 1)﹐守木尊者
