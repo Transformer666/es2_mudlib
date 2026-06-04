@@ -45,6 +45,7 @@
 inherit F_VILLAGER;
 
 int do_ask(string arg);
+private void give_reward2(object who);
 
 void create()
 {
@@ -90,8 +91,27 @@ void init()
 	add_action("do_ask", "ask");
 	if( this_player() && interactive(this_player()) ) {
 		int q = this_player()->query("quest/main_canon1");
-		if( this_player()->query("quest/main_canon1_done") )
+
+		// 第一章已領賞者：依第二章「混沌珠」旗標(main_canon2)給對應招呼。
+		// 招呼一律走單一 do_chat（is_chatting 期間 do_ask 早退、待招呼畢方應——
+		// 鏡第一章 proven 之 is_chatting 把關）。
+		if( this_player()->query("quest/main_canon1_done") ) {
+			int q2 = this_player()->query("quest/main_canon2");
+			if( this_player()->query("quest/main_canon2_done") )
+				do_chat((: command,
+					"say 少俠回來了。那混沌珠貧道已封鎮妥當——只是天靈絕巔那真兇一日尚在﹐這禍事便一日難了啊。" :));
+			else if( q2 >= 3 )
+				do_chat((: command,
+					"say 少俠把那混沌珠奪回來了麼﹖那至邪之物萬不可久執在身﹐快給貧道瞧瞧——ask shoushan about 混沌珠。" :));
+			else if( q2 == 1 || q2 == 2 )
+				do_chat((: command,
+					"say 少俠﹐那守珠的骨屍妖王與鬼王噬魂——這一身一魂的兩大守護﹐可曾破了﹖混沌珠的下落﹐就在那幽冥噬魂窟裡。" :));
+			else
+				do_chat((: command,
+					"say 少俠來得正好——那混沌珠的下落﹐貧道已自骨符上參得透徹了。少俠可要聽貧道細說﹖ask shoushan about 混沌珠。" :));
 			return;
+		}
+
 		if( q == 1 || q == 2 )
 			do_chat((: command,
 				"say 少俠﹐那兩頭潰散殘部為首的孽畜——老龍與吞風獅——可曾掃平﹖那縷邪念的去向﹐還得從牠們身上尋。" :));
@@ -134,6 +154,42 @@ private void give_reward(object who)
 		"到$N手裡。\n" NOR, who);
 }
 
+// 第二章「混沌珠」領賞：第二章遠較序章兇險(下幽冥、破萬骨煉身之妖王與司魂之鬼
+// 王)﹐故賞較序章更厚——銅錢 1000(序章 600)、金液丹一帖(序章為次一級的續命金丹)、
+// 繞指柔劍一柄(unique 名劍﹐勝序章洗銀劍)﹐並授遠厚於序章的聲望/內丹(score)等閱
+// 歷(reputation/emprise/survive/martial fame 皆顯著加碼)。同步交付——於 do_ask
+// handler 內直接呼叫﹐玩家此刻必在場（環境校驗在前）。神兵頂裝仍由兩 boss 各以
+// 機率掉落﹐此處不重複發頂裝(免架空 boss 掉落、破壞平衡)。
+private void give_reward2(object who)
+{
+	object coin, pill, sword;
+
+	if( !who || environment(who) != environment() ) return;
+
+	coin = new("/obj/money/coin");
+	coin->set_amount(1000);
+	if( !coin->move(who) ) coin->move(environment());
+
+	pill = new("/obj/medication/alchemist/aquapill");
+	if( !pill->move(who) ) pill->move(environment());
+
+	sword = new("/d/snow/npc/obj/slasher_sword");
+	if( !sword->move(who) ) sword->move(environment());
+
+	// 聲望/內丹(score) boost：較序章 give_reward 顯著加碼（第二章難度更高）。
+	who->gain_score("survive", 1800);
+	who->gain_score("emprise", 600);
+	who->gain_score("reputation", 350);
+	who->gain_score("martial fame", 360);
+	who->gain_score("explorer fame", 150);
+
+	message_vision(
+		HIY "守山道人將那顆翻滾著人面鬼影的混沌珠以聖木牌青芒重重裹住、"
+		"收入袖中﹐神色凝重而欣慰。他長舒一口氣﹐自懷中取出一串沉甸甸的"
+		"銅錢、一帖金液丹、並一柄劍刃微顫的名劍『繞指柔劍』﹐鄭重地交到"
+		"$N手裡——又以指尖在$N眉心一點﹐傳了一縷溫養精氣的內丹真意。\n" NOR, who);
+}
+
 int do_ask(string arg)
 {
 	object me = this_player();
@@ -145,8 +201,12 @@ int do_ask(string arg)
 		&&   arg != "shoushan about 主線"
 		&&   arg != "shoushan about 任務"
 		&&   arg != "shoushan about 摩雲"
+		&&   arg != "shoushan about 幽冥"
+		&&   arg != "shoushan about 骨屍妖王"
+		&&   arg != "shoushan about 鬼王噬魂"
 		&&   arg != "shoushan daoist about 混沌珠"
 		&&   arg != "shoushan daoist about 邪念"
+		&&   arg != "shoushan daoist about 幽冥"
 		&&   arg != "mountain warden about 混沌珠"
 		&&   arg != "shoushan about quest"
 		&&   arg != "shoushan about task") )
@@ -173,11 +233,72 @@ int do_ask(string arg)
 
 	q = me->query("quest/main_canon1");
 
-	// 已領過序章之賞：只加深朝向下一章（骨屍妖王/鬼王噬魂/混沌珠）的伏筆，不重複給賞、不開新任務。
+	// ============================================================
+	// 正史第二章「混沌珠」：第一章領賞(main_canon1_done)後，本 NPC 即由序章領賞人
+	// 轉為第二章的委託人與領賞人。第二章旗標 quest/main_canon2 (0→1→2→3) + 防重
+	// 領旗標 quest/main_canon2_done。流程鏡第一章之 proven 機制：
+	//   0          : 接任務 -> 道破混沌珠落於幽冥骨屍妖王手中、命少俠下幽冥奪珠，
+	//                 旗標設為 1（並開 abyss.c 淵下骨階之門禁）
+	//   1          : 已下幽冥，命破骨殿骨屍妖王 -> 由 skeleton_king.c::die() 推進為 2
+	//   2          : 命再破噬魂窟鬼王噬魂 -> 由 soul_devourer.c::die() 推進為 3，
+	//                 並自鬼王噬魂屍身掉落混沌珠
+	//   3          : 持混沌珠回幽壑領賞 -> 同步交付 give_reward2()、記 main_canon2_done
+	//   _done      : 只給朝向下一章(天靈絕巔真兇)的 oblique 伏筆，不重複給賞、不開新任務
+	// 入門條件沿用上方序章兩道閘（main_omen8>=3、隨身淨邪聖木牌）——幽冥邪念尤熾，
+	// 無聖物護持斷不可深入，與第一章一脈相承。
+	// ============================================================
 	if( me->query("quest/main_canon1_done") ) {
+		int q2 = me->query("quest/main_canon2");
+
+		// 已領過第二章之賞：只加深朝向下一章（天靈絕巔的真兇/動物war 終 boss）的
+		// oblique 伏筆，不重複給賞、不開新任務。
+		// LORE-FLAG: 此「天靈絕巔的真兇」即 docs 主線樹「天靈山悔天鬼/動物war 終
+		//   boss」﹐然 docs 另有「侮天鬼(最終 boss)」「侮藥王鬼(混沌珠 group)」三個
+		//   形近名諱﹐究係 1/2/3 個角色 identity 未明﹐待 user 裁定。故此處一概
+		//   obliquely 指代﹐「不」落悔天鬼/侮天鬼/侮藥王鬼任一確切名諱。
+		if( me->query("quest/main_canon2_done") ) {
+			do_chat(({
+				(: command, "say 混沌珠既已交在貧道手裡﹐這聚天下戾氣為一的至邪之物﹐貧道自會借京畿神社聖木餘力﹐尋一處清淨地將它封鎮起來——少俠了結了骨屍妖王與鬼王噬魂這守珠的一身一魂﹐已是大功一件了。" :),
+				(: command, "say 只是 ... 那珠上殘留的氣息﹐與噬魂窟鬼壁所刻的鬼篆﹐都隱隱指向同一處——天靈山那雲遮霧繞的絕巔之上﹐分明還盤踞著一個驅策這一切的真兇。摩雲也好、骨屍妖王也罷﹐皆不過是牠手中的爪牙。那真兇的名諱﹐古籍語焉不詳、眾說紛紜﹐貧道一時也不敢妄斷。" :),
+				(: command, "say 珠雖奪了﹐那盤踞天靈絕巔的真兇一日尚在﹐這天靈山的禍事便一日難言真個了結。少俠且先歇息將養﹐探明了上絕巔的門道、辨明了那真兇的來歷﹐貧道自會再來相告——這最後一程﹐怕才是真正的兇險。" :),
+			}));
+			return 1;
+		}
+
+		// 第二章已奪珠（旗標 3）：理應持混沌珠回來領賞
+		if( q2 >= 3 ) {
+			if( present("chaos pearl", me) ) {
+				// 同步給賞、即記 _done（give_reward2 為直接 new+move﹐玩家此刻必在場）。
+				// 不把給賞放進延遲 do_chat——免玩家於回呼前離場致賞沒領而卡關
+				// （此乃第一章習得之教訓：延遲領賞會 soft-lock）。
+				give_reward2(me);
+				me->set("quest/main_canon2_done", 1);
+				do_chat(({
+					(: command, "say 少俠把那珠子給貧道 ... 唔﹗好一股徹骨的至邪之氣﹗這便是那『聚天下戾氣為一、至邪不祥』的混沌珠了——骨屍妖王與鬼王噬魂這守珠的一身一魂﹐少俠竟都破了﹐當真是天大的功德﹗" :),
+					(: command, "say 這至邪之物﹐斷不可久執在凡人身上﹐貧道這便借京畿神社聖木餘力﹐將它封鎮起來。少俠深入幽冥、奪此邪珠﹐斷了那縷牽動滿山獸亂的邪念所依——這份功勞﹐貧道必稟明守木尊者﹐記在少俠名下。" :),
+					(: command, "say 這一爐內丹、這帖丹藥、並這件護身之物﹐是貧道與尊者的一點心意﹐少俠萬莫推辭。只是 ... 珠雖奪了﹐那盤踞天靈絕巔、驅策這一切的真兇一日尚在﹐這禍事便一日未了。少俠且養精蓄銳﹐這最後一程﹐怕才是真正的硬仗。" :),
+				}));
+			}
+			else
+				do_chat((: command,
+					"say 少俠不是說那鬼王噬魂的屍身裡墜下了混沌珠麼﹖那珠子至邪不祥﹐萬不可遺落在那幽冥之地——快回噬魂窟﹐自鬼王噬魂屍身中尋了那混沌珠來給貧道。" :));
+			return 1;
+		}
+
+		// 第二章進行中（旗標 1 或 2）：提示去向
+		if( q2 == 1 || q2 == 2 ) {
+			do_chat((: command,
+				"say 那混沌珠由骨屍妖王以萬骨煉身鎮其形、鬼王噬魂司魂魄佐其守﹐一身一魂、互為表裡。少俠且循那邪念淵下的骨階深入幽冥﹐先破了骨殿那以萬骨煉身的骨屍妖王﹐萬骨之鎖一開﹐再往北深入噬魂窟﹐斬了那司魂的鬼王噬魂——守珠的兩大守護盡除﹐那混沌珠方能到手。" :));
+			return 1;
+		}
+
+		// 尚未接第二章（旗標 0）：道破混沌珠落於幽冥骨屍妖王手中，命少俠下幽冥奪珠，旗標設為 1
+		me->set("quest/main_canon2", 1);
 		do_chat(({
-			(: command, "say 那片骨符﹐貧道已參詳明白——混沌珠如今正落在天靈山更深處那頭『骨屍妖王』的手裡。那妖王以無數枯骨煉成己身﹐又有『鬼王噬魂』與牠互為表裡﹐層層守著那顆至邪之珠。" :),
-			(: command, "say 少俠掃平了摩雲的潰散殘部﹐這場動物war的第一鏈算是斷了。然混沌珠一日不毀﹐那縷邪念便一日有所依憑——往後深入幽冥、奪那混沌珠、會一會骨屍妖王﹐還得靠少俠這身本事。貧道且在這幽壑替少俠守著前路﹐探明了下一程的門道﹐自會相告。" :),
+			(: command, "say 少俠來得正好﹗那片骨符﹐貧道已參詳得透徹——那驅策摩雲一脈的至邪之物『混沌珠』﹐如今正落在天靈山更深處幽冥之中﹐由一頭喚作『骨屍妖王』的邪物把持。牠以這滿山潰散的孽畜、與歷代葬身此山的枯骨煉成己身﹐萬骨為甲、千骸為軀﹐尋常刀兵難入其身。" :),
+			(: command, "say 那骨屍妖王並非孤身守珠——另有一縷亙古的厲鬼『鬼王噬魂』與牠互為表裡﹕骨屍妖王煉其『身』、鬼王噬魂司其『魂』﹐一身一魂、共鎮那顆混沌珠於幽冥噬魂窟。混沌珠一日不毀﹐那縷牽動滿山獸亂的邪念便一日有所依憑——這顆至邪之珠﹐非奪回、毀去不可。" :),
+			(: command, "say 貧道在這幽壑守候多時﹐已替少俠在那邪念淵下尋出了一道入幽冥的骨階。少俠且循那骨階深入幽冥——先過骨殿﹐破了那以萬骨煉身的骨屍妖王﹔再入噬魂窟﹐斬了那司魂的鬼王噬魂。守珠的一身一魂盡除﹐那混沌珠便可奪回。" :),
+			(: command, "say 切記﹕幽冥深處的邪念﹐比這幽壑還要陰寒熾烈十倍﹐少俠那面淨邪聖木牌﹐萬萬不可離身﹗奪得了混沌珠﹐速速回這幽壑來尋貧道——此去兇險萬端﹐萬望珍重﹗" :),
 		}));
 		return 1;
 	}
@@ -219,13 +340,17 @@ int do_ask(string arg)
 	return 1;
 }
 
-// 序章領賞走 ask-path 為主（ask shoushan about 混沌珠）。玩家若改以 give 交付
-// 骨符﹐道人不收下（回 0、骨符留在玩家身上）﹐只提示改用 ask——如此既不吞掉
-// 線索信物﹐領賞邏輯亦集中於 do_ask 一處（同步給賞、防重領）﹐免兩處重複。
+// 領賞(序章與第二章)俱走 ask-path 為主（ask shoushan about 混沌珠）。玩家若改以
+// give 交付骨符/混沌珠﹐道人皆不收下（回 0、信物留在玩家身上）﹐只提示改用 ask——
+// 如此既不吞掉信物﹐領賞邏輯亦集中於 do_ask 一處（同步給賞、防重領）﹐免兩處重複。
 int accept_object(object who, object ob)
 {
 	if( ob->id("bone talisman") ) {
 		do_chat((: command, "say 這骨符乾係重大﹐少俠且收好﹐口頭問我便是——ask shoushan about 混沌珠﹐貧道自當為少俠參詳。" :));
+		return 0;
+	}
+	if( ob->id("chaos pearl") ) {
+		do_chat((: command, "say 這混沌珠至邪不祥﹐少俠且先收好、莫遞來遞去——口頭與我說一聲便是﹕ask shoushan about 混沌珠﹐貧道自當為少俠定奪這至邪之物的處置。" :));
 		return 0;
 	}
 	do_chat((: command, "say 貧道一個守山的出家人﹐了無長物﹐這個受不起﹐少俠還是自個兒留著罷。" :));
