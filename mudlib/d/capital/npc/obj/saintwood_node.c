@@ -103,11 +103,10 @@ int do_kan(string arg)
 		me->set("quest/main_canon4_nodes", n);
 	}
 
-	// 本節既斷，destruct。
-	destruct(this_object());
-
 	// 三節盡斷﹕推進旗標 1->2、開蜈穴（須身負第四章旗標==1 之真實玩家方推進；
 	// 旗標非 1 者僅作斫斷風味，不推進——防越界與重覆）。
+	// ⚠ 此段務必置於 destruct(this_object()) 之前：destruct 後本物即毀﹐Neolith
+	//   不再執行其後同函式碼﹐旗標就永遠推不到 2、蜈穴永不開（本章曾因此卡關）。
 	if( n >= SAINTWOOD_NODE_TOTAL
 	&&	userp(me)
 	&&	me->query("quest/main_canon4") == 1 ) {
@@ -120,6 +119,9 @@ int do_kan(string arg)
 			"的爪足摩挲之聲自黑暗深處潮水般捲來——那啃噬聖木三百年的巨蜈﹐就"
 			"要自牠的蜈穴中竄出來了﹗(往深處 in 可入蜈穴)\n" NOR);
 	}
+
+	// 本節既斷，destruct（必置於推進邏輯之後）。
+	destruct(this_object());
 
 	return 1;
 }
