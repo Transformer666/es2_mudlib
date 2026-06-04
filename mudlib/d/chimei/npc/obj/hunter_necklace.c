@@ -1,4 +1,4 @@
-// hunter_necklace.c -- 赤魈森林獵人(d/chimei/npc/lieren.c)相贈的避邪信物：獸牙項鍊。
+// hunter_necklace.c -- 赤魈森林獵人(d/chimei/npc/hunter.c)相贈的避邪信物：獸牙項鍊。
 //
 // 來歷（承接 canon：docs 05 L106「獵人@赤魈森林 給 necklace」）：
 //   赤魈森林深處那位以打獵為生的老獵人，在這四鬼出沒的凶險山林裡討了半輩子生

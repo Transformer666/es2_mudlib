@@ -37,6 +37,10 @@ LONG
 		//   一句 ask 贈無名古籍。本室既於 set("objects") 生成 NPC，遂不 replace_program
 		//   (鏡 tower_top 之做法：有 objects 之房不 replace_program)。
 		__DIR__"npc/baiyuan" : 1,
+		// 支線「開光穿靈」(docs 05 L118「少楊 @ 天靈山 → 開光穿靈（需火神之眼）」)：
+		//   天靈山麓守木一脈後人少楊，盤膝於此以三昧離火為持劍少俠開光穿靈。本室既已生成
+		//   NPC、不 replace_program，遂於此 set("objects") 追加一行(不奪既有白猿)。
+		__DIR__"npc/shaoyang" : 1,
 	]));
 	set("exits", ([
 		"down" : "/d/hudao/wild/lair",
