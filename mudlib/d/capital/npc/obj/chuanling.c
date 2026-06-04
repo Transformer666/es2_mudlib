@@ -21,7 +21,11 @@
 #include <ansi.h>
 #include <weapon.h>
 
-inherit F_UNIQUE;
+// 不 inherit F_UNIQUE：穿靈乃逐玩家 clone+move 交付的任務聖劍(每位悔天鬼-slayer
+// 各須一把)﹐而 F_UNIQUE 之 violate_unique() 僅於 room set("objects")／npc 載入路
+// 徑(std/room.c、std/char/npc.c)被觸發、強制全域單例——逐玩家給劍不走該路徑﹐然為
+// 免多人持劍時的任何意外自毀﹐此處鏡頂裝 xuanshuang_sword 之做法：僅以 set("unique",
+// 1) 作風味標記﹐不 inherit F_UNIQUE。
 inherit F_SWORD;
 
 void create()
