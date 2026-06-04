@@ -33,4 +33,19 @@ query_rank (object obj, string politness)
 	}
 }
 
+// brother_praise()（docs 02-04 L24-32,45-47 同職業互讚加職業聲望）：方士由 cmds/usr/
+// praise.c 呼叫，me=讚揚者、ob=被讚揚者。docs 未列方士專屬聲望軸，依指示退用通用
+// 「聲望」軸 = score key "reputation"（data/chinese.o：score of reputation = 聲望；不臆造新軸）。
+void
+brother_praise (object me, object ob)
+{
+	int lvl;
+
+	if (!objectp(me) || !objectp(ob)) return;
+	lvl = ob->query_level();
+	if (lvl < 2) lvl = 2;
+	ob->gain_score("reputation", lvl - 1);
+	me->gain_score("reputation", 1);
+}
+
 // vim: set ts=4 sw=4 syntax=lpc

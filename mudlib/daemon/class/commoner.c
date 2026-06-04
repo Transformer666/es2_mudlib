@@ -33,3 +33,15 @@ query_rank (object obj, string politness)
 	}
 }
 
+// brother_praise()（docs 02-04 L24-32,45-47）：平民無門派、無專業聲望軸（docs L34、
+// 且 praise.c help 言「本身仍屬平民身份…聲望之提升效果較差」）。cmds/usr/praise.c:42 以
+// pro!="commoner" 守衛，平民互讚不會走到這裡；此處留同簽名 no-op 以維持各 class daemon
+// 介面一致、避免日後其他呼叫端誤觸 undefined function。不另給聲望（平民無職業聲望）。
+void
+brother_praise (object me, object ob)
+{
+	// 平民無職業聲望軸，刻意不給分；保留同簽名空實作。
+}
+
+// vim: set ts=4 sw=4 syntax=lpc
+

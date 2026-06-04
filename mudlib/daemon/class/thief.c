@@ -33,4 +33,19 @@ query_rank (object obj, string politness)
 	}
 }
 
+// brother_praise()（docs 02-04 L31,47「盜賊 praise → 黑道聲望」）：同職業互讚由
+// cmds/usr/praise.c 呼叫，me=讚揚者、ob=被讚揚者。盜賊對應「黑道聲望」軸 = score key
+// "negative fame"（data/chinese.o：score of negative fame = 黑道聲望）。
+void
+brother_praise (object me, object ob)
+{
+	int lvl;
+
+	if (!objectp(me) || !objectp(ob)) return;
+	lvl = ob->query_level();
+	if (lvl < 2) lvl = 2;
+	ob->gain_score("negative fame", lvl - 1);
+	me->gain_score("negative fame", 1);
+}
+
 // vim: set ts=4 sw=4 syntax=lpc

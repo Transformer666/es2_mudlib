@@ -3,11 +3,13 @@
  *  Summary: Studying and learning from objects.
  */
 
+#include <ansi.h>
 #include <dbase.h>
 #include <name.h>
 
 int study_content(object me);
 int halt_study(object me, object from, string how);
+void enlighten_int(object me);
 
 int study_ob(object me)
 {
@@ -84,9 +86,11 @@ int study_content(object me)
     if( me->query_stat("sen") < cost
     ||	me->query_stat("gin") < cost
     ||	(me->query_stat_maximum("fatigue") > 0 && me->query_stat("fatigue") >= me->query_stat_maximum("fatigue")) ) {
-	// fatigue stat 在本 mudlib 從未初始化(全碼僅此處提及)，max 恆為 0 → 原式 0>=0
-	// 會讓任何 study 在第一拍就「精神不繼」中斷、永遠學不到。故僅在 fatigue 有上限時
-	// 才套用；否則由 gin/sen 消耗自然節制研讀。
+	// 玩家角色的 fatigue 由 /adm/daemons/chard.c::setup_char 初始化(max 100、
+	// current 0、TYPE_WASTING 隨時間遞減)，故此處 query_stat_maximum>0 為真、
+	// 疲勞達上限即中斷研讀——符合 cmds/std/study.c help 所述機制。
+	// 對未設 fatigue 的實體(NPC/測試物件) max 為 0，跳過此閘、改由 gin/sen 消耗節制，
+	// 避免「max 恆 0 → 0>=0」在第一拍誤判精神不繼而永遠學不到。
 	tell_object(me, "你覺得精神不繼，無法再繼續研讀了。\n");
 	return 0;
     }
@@ -111,9 +115,42 @@ int study_content(object me)
 		1 + random(me->query_attr("int")));
 	me->supplement_stat("fatigue", gain);
 	me->damage_stat("sen", gain);
+
+	// 悟性書：blueprint 以 set("enlighten/int", 上限) 標示(鏡 content 的
+	// skill→上限 範式、用 required/skill/... 同款巢狀路徑)。一般書無此欄、
+	// query 回 0 → 整段跳過，不影響既有書本。docs 06「書本系統」L116-118:
+	// 悟性書提升悟性(int)。每次成功研讀有機會 +1，越高越難、且不得超過書的上限。
+	enlighten_int(me);
     }
 
     return 1;
+}
+
+// enlighten_int()
+//
+// 悟性書研讀時嘗試提升「悟性」(int) 屬性。
+//   * 觸發條件：本拍 study 確實有 gain(學到東西)，純掛機不長悟性。
+//   * 上限：min(書的 enlighten/int, ATTRVAL_MAX=50)。set_attr 對玩家本就拒絕
+//     >50 的值(見 feature/attribute.c)，故雙重保險、絕不無限增長。
+//   * 機率：越接近(或超過)上限越不易成長；每次至多 +1(鏡 humanoid.c
+//     advance_level 升屬性的 +1 範式)，不會一次暴漲。
+void enlighten_int(object me)
+{
+    int cap, cur;
+
+    if( (cap = query("enlighten/int")) <= 0 ) return;	// 非悟性書
+    if( cap > 50 ) cap = 50;				// 對齊 ATTRVAL_MAX
+
+    cur = me->query_attr("int", 1);			// 取未受 apply 影響的本值
+    if( cur >= cap ) return;				// 已達(或超過)此書能教的上限
+
+    // 成功率隨悟性升高而下降：random(cur) < (cap-cur) 時成長。
+    // 例：cur 低於 cap 越多越易成；cur 接近 cap 時機率趨近 0。
+    if( random(cur + 1) < cap - cur ) {
+	if( me->set_attr("int", cur + 1) ) {		// set_attr 回 0 代表被夾住/未初始化
+	    tell_object(me, HIW "你福至心靈，似乎對許多事情的領悟又深了一層！\n" NOR);
+	}
+    }
 }
 
 int halt_study(object me, object from, string how)
@@ -125,4 +162,6 @@ int halt_study(object me, object from, string how)
 		write("你停止研讀" + name() + "上面記載的內容。\n");
 		return 1;
 }
+
+// vim: set ts=4 sw=4 syntax=lpc
 

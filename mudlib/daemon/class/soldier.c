@@ -33,4 +33,19 @@ query_rank (object obj, string politness)
 	}
 }
 
+// brother_praise()（docs 02-04 L33「戰場功勳｜軍人」）：同職業互讚由 cmds/usr/praise.c
+// 呼叫，me=讚揚者、ob=被讚揚者。軍人對應「戰場功勳」軸 = score key "military service"
+// （data/chinese.o：score of military service = 戰場功勳）。
+void
+brother_praise (object me, object ob)
+{
+	int lvl;
+
+	if (!objectp(me) || !objectp(ob)) return;
+	lvl = ob->query_level();
+	if (lvl < 2) lvl = 2;
+	ob->gain_score("military service", lvl - 1);
+	me->gain_score("military service", 1);
+}
+
 // vim: set ts=4 sw=4 syntax=lpc

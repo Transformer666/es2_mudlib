@@ -36,3 +36,22 @@ query_rank (object obj, string politness)
 	}
 }
 
+// brother_praise()（docs 02-04 業力與聲望 L24-32,45-47「武者 praise → 武林聲望」）：
+// 由 cmds/usr/praise.c 在「同職業互讚」時呼叫，me=讚揚者、ob=被讚揚者。
+// 武者對應「武林聲望」軸 = score key "martial fame"（見 data/chinese.o：
+// score of martial fame = 武林聲望）。在 praise.c 已給的 reputation 之外，
+// 額外給被讚者武林聲望、讚者亦得少許，作為同門互讚之專業獎勵。
+void
+brother_praise (object me, object ob)
+{
+	int lvl;
+
+	if (!objectp(me) || !objectp(ob)) return;
+	lvl = ob->query_level();
+	if (lvl < 2) lvl = 2;
+	ob->gain_score("martial fame", lvl - 1);
+	me->gain_score("martial fame", 1);
+}
+
+// vim: set ts=4 sw=4 syntax=lpc
+

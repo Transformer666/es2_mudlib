@@ -33,4 +33,20 @@ query_rank (object obj, string politness)
 	}
 }
 
+// brother_praise()（docs 02-04 L24-32「聲望軸（職業專屬）」）：同職業互讚由
+// cmds/usr/praise.c 呼叫，me=讚揚者、ob=被讚揚者。書生（文壇）對應現有「文學造詣」
+// 聲望軸 = score key "literary fame"（data/chinese.o：score of literary fame = 文學造詣，
+// 與 martial/negative fame 同屬 fame 類；不臆造新軸）。
+void
+brother_praise (object me, object ob)
+{
+	int lvl;
+
+	if (!objectp(me) || !objectp(ob)) return;
+	lvl = ob->query_level();
+	if (lvl < 2) lvl = 2;
+	ob->gain_score("literary fame", lvl - 1);
+	me->gain_score("literary fame", 1);
+}
+
 // vim: set ts=4 sw=4 syntax=lpc
