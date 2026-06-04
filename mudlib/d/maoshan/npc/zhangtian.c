@@ -108,7 +108,7 @@ void init()
 }
 
 // ─────────────────────────────────────────────────────────────────────────
-// 對白(風味 + 指路)：do_ask / do_say
+// 對白(風味 + 指路)：do_ask
 //
 // docs 轉職程序「找張天 → say 古董/戒指 → 二爺 → 10g → 鳳盈盈 → 附近石壁 →
 // 三層茅山石陣」以對白風味重現﹐末了一律指向「進階 茅山劍士」這個唯一授技入口
@@ -137,23 +137,16 @@ int do_ask(string arg)
 		&& arg != "zhangtian about maoshan swordsman") )
 		return notify_fail("你想問小霸王張天甚麼﹖（試試 ask zhangtian about 古董／戒指／石陣）\n");
 
-	return talk_zhangtian();
-}
+	if( is_fighting() || is_chatting() )
+		return notify_fail("小霸王張天正凝神望著石陣﹐沒空理你。\n");
 
-// docs 程序原作 say 古董/戒指 觸發﹐故 say 含關鍵字時亦走同一段對白指路。
-int do_say(string arg)
-{
-	if( !arg ) return 0;
-
-	if( strsrch(arg, "古董") >= 0 || strsrch(arg, "戒指") >= 0
-	||  strsrch(arg, "石陣") >= 0 || strsrch(arg, "二爺") >= 0
-	||  strsrch(arg, "鳳盈盈") >= 0 || strsrch(arg, "茅山劍士") >= 0 ) {
-		// 先讓玩家那句 say 正常顯示(回 0 放行給 /cmds/std/say.c)﹐張天再答話。
-		// 為使對白接在玩家發言之後﹐這裡直接觸發 talk﹐再回 0 讓 say 繼續走。
-		talk_zhangtian();
-		return 0;
-	}
-	return 0;
+	do_chat(({
+		(: command, "say 嘿﹐你也曉得這茅山遺址的門道﹖鳳掌門當年內疚而死﹐就葬在這兒﹐墓前這三層石陣裡頭﹐藏的可是失傳的茅山劍法、茅山心經。" :),
+		(: command, "say 我早年在外頭跟個喚作『二爺』的古董販子手裡﹐花十兩金子﹐淘換來一枚刻著茅山符文的舊戒指﹐這才尋著了開石陣的門徑。" :),
+		(: command, "say 你若是三觀出身、修為又練到了家﹐我便指點你在這石壁劍痕、三層石陣間參悟一番——成了﹐你就是這世上罕有的『茅山劍士』了。" :),
+		(: command, "say 廢話少說﹐有本事便在我面前『進階 茅山劍士』﹗石陣認不認你﹐一試便知。" :),
+	}));
+	return 1;
 }
 
 // ─────────────────────────────────────────────────────────────────────────
