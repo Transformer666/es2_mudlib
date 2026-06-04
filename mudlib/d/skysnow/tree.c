@@ -23,6 +23,8 @@
 //   做法），故本室乃純房間，可 replace_program(ROOM)。本室為四鬼戰場，「不」設
 //   no_fight。
 
+#include <ansi.h>
+
 inherit ROOM;
 
 int do_use(string arg);
@@ -58,7 +60,9 @@ LONG
 	]));
 
 	setup();
-	replace_program(ROOM);
+	// ⚠ 不可 replace_program(ROOM)：本室有自訂 init()(add_action do_use) 與 do_use()，
+	//   replace_program 會連同 program 一併剝除它們→「用 環」開封指令失效(曾因此卡關)。
+	//   有自訂函式(valid_leave/do_X/init add_action)的房間一律不得 replace_program。
 }
 
 void init()

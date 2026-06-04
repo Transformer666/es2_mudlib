@@ -28,7 +28,7 @@ inherit F_FINGER_EQ;
 
 void create()
 {
-	set_name(HIR "四鬼招喚環" NOR, ({ "ghost ring", "summon ring", "ring" }) );
+	set_name(HIR "四鬼招喚環" NOR, ({ "ghost ring", "summon ring", "ring", "四鬼招喚環", "招喚環", "環" }) );
 	set_weight(300);
 	setup_finger_eq();
 
