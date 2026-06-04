@@ -246,9 +246,10 @@ int do_advance(object me, string branch)
 	me->set("rank", b["rank"]);
 	me->set("title", b["title"]);
 
-	// 授茅山心經(內功)。
-	me->set_skill("force", 0);
-	me->set_skill(b["force"][1], 0);
+	// 授茅山心經(內功)。保留玩家原 force 槽火候(不歸零)，僅在未習過茅山心經時補初始 0，
+	// 再把 force 槽映至茅山心經(承既驗範式 d/maoshan/npc/master.c:285，避免抹除既有二轉內功)。
+	if( undefinedp(me->query_skill(b["force"][1], 1)) )
+		me->set_skill(b["force"][1], 0);
 	me->map_skill("force", b["force"][1]);
 
 	// 授茅山劍法(劍)﹐並把 sword 對應到茅山劍法。
