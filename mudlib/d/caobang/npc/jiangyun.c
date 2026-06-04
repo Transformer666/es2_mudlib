@@ -21,8 +21,10 @@
 
 int do_ask(string arg);
 private int sigui_quest(object me);
+private int sishen_quest(object me);
 private void give_ghost_ring(object who);
 private void give_reward5(object who);
+private void give_reward6(object who);
 
 void create()
 {
@@ -93,7 +95,22 @@ int do_ask(string arg)
 		return sigui_quest(this_player());
 	}
 
-	return notify_fail("江隕望著東去的河水﹐淡淡道﹕有些事﹐時候未到﹐多問無益。客官且自便罷。（試試 ask jiangyun about 漕幫／四鬼）\n");
+	// 四神：正史主線第六章 quest-giver——接任務／進行中／交差／門檻未達 四態。
+	// 門檻：須先了結第五章四鬼之患(quest/main_canon5_done >= 1)。
+	if( arg == "jiangyun about 四神"
+	||  arg == "jiangyun about 神印"
+	||  arg == "jiangyun about 星光環"
+	||  arg == "jiangyun about 天龍島"
+	||  arg == "jiangyun about 火神"
+	||  arg == "jiangyun about 天龍"
+	||  arg == "jiangyun about 雷神"
+	||  arg == "jiangyun about 風神"
+	||  arg == "jiangyun about 渾沌獸"
+	||  arg == "elder jiangyun about 四神" ) {
+		return sishen_quest(this_player());
+	}
+
+	return notify_fail("江隕望著東去的河水﹐淡淡道﹕有些事﹐時候未到﹐多問無益。客官且自便罷。（試試 ask jiangyun about 漕幫／四鬼／四神）\n");
 }
 
 // 第五章四鬼任務狀態機。who=this_player()。同步授環/發獎、旗標與授受綁定（承同步交付教訓）。
