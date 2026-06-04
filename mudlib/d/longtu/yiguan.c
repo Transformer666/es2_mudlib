@@ -28,6 +28,7 @@ LONG
 	]));
 	set("objects", ([
 		__DIR__"npc/master" : 1,
+		__DIR__"npc/jiang" : 1,
 	]));
 	set("exits", ([
 		"south" : __DIR__"yard",

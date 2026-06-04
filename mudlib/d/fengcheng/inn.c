@@ -20,6 +20,7 @@ LONG
 	set("objects", ([
 		__DIR__"npc/keeper" : 1,
 		__DIR__"npc/waiter" : 1,
+		__DIR__"npc/haidafu" : 1,
 	]));
 	set("detail", ([
 		"炭火" : "前廳兩只大銅盆裡燒著熊熊的炭火﹐這北地苦寒﹐客棧裡終年不熄火盆﹐進門的客人無不先湊到火邊烤一烤凍僵的手腳。\n",
