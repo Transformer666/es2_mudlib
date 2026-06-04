@@ -56,6 +56,30 @@
 //     不放進延遲 do_chat closure——免玩家於回呼前離場致賞沒領而卡關（前三章習得之
 //     教訓：延遲領賞會 soft-lock）。穿靈/聖木殘根/破碎的印記玩家若改以 give 交付﹐
 //     尊者皆不收下（回 0、信物留玩家身上）﹐只提示改用 ask。
+//
+// ════════════════════════════════════════════════════════════════════════════
+// 正史主線第九章「日月神薛」：守木尊者即本章捐獻受理人（捐獻章、非 boss 戰）
+// ════════════════════════════════════════════════════════════════════════════
+//   故事背景（承接第八章 jiangyun.c：玩家降天、地二靈﹐得天靈之眼(日)、地靈之心(月)﹐
+//     並早於第五/六章得四神之力齊備的星光環(星)）：江隕交差時已指引——集齊心、眼、星
+//     光環三者﹐往京畿神社獻與「日月神薛」。少俠既至神社聖木淨室﹐守木尊者便以那縷聖
+//     木餘力為引﹐受理少俠同獻日(眼)、月(心)、星(星光環)三物﹐將三力交融、開光熔鑄成
+//     一方終局聖物「日月神薛」(npc/obj/sun_moon_relic) 相授。捐獻畢﹐三物沒入薛中、引
+//     入後續技能重置(reset)與十三靈的終局。
+//
+//   任務流程（旗標存在玩家身上：quest/main_canon9 + 防重領 quest/main_canon9_done﹔
+//     captures docs 05 L65「donate eye+heart+星光環 → 日月神薛」）。入門條件：須先完成
+//     第八章天、地二靈(quest/main_canon8_done >= 1)。此為捐獻章、無 boss 戰：
+//     _done   : 日月神薛已成——只給朝向技能重置/十三靈的純劇情伏筆﹐不重複給賞
+//     8_done 且三物俱在（present sky eye + earth heart + starlight ring）：捐獻——先設
+//               main_canon9=1、再記 main_canon9_done=1（皆置於 destruct 之前）﹐同步 new+
+//               move 授「日月神薛」﹐gain_score 冠絕全 arc 之厚賞﹐高潮 message﹐末了方
+//               destruct 那三件信物(眼/心/星光環﹐destruct-LAST)。對白接引技能重置/十三靈。
+//     8_done（缺物）：set main_canon9=1﹐道明須帶齊天靈之眼、地靈之心、與星光環來獻。
+//     8_done < 1   : 時機未到——只道日月神薛的舊事﹐不開捐獻。
+//   給賞/捐獻為同步交付（於 do_ask handler 內直接 new+move﹐且記 _done 旗標於 destruct
+//     之前）﹐絕不放進延遲 do_chat closure（承同步交付教訓）。三件信物 destruct 務必殿
+//     後（destruct-LAST﹐承 lesson #10：destruct 後同函式其後碼不保證續行）。
 
 #include <npc.h>
 #include <ansi.h>
@@ -65,6 +89,7 @@ inherit F_VILLAGER;
 int do_ask(string arg);
 private void give_chuanling(object who);
 private void give_reward4(object who);
+private void give_relic9(object who);
 
 void create()
 {
@@ -243,7 +268,24 @@ int do_ask(string arg)
 		&&   arg != "sage about 穿靈"
 		&&   arg != "sanctifier about centipede"
 		&&   arg != "sanctifier about chuanling"
-		&&   arg != "wood sage about centipede") )
+		&&   arg != "wood sage about centipede"
+		// 第九章「日月神薛」topics（捐獻 eye+heart+星光環 → 日月神薛，非 villain-name-gated）
+		&&   arg != "sanctifier about 日月神薛"
+		&&   arg != "sanctifier about 神薛"
+		&&   arg != "sanctifier about 捐獻"
+		&&   arg != "sanctifier about 獻"
+		&&   arg != "sanctifier about 日月"
+		&&   arg != "wood sage about 日月神薛"
+		&&   arg != "wood sage about 神薛"
+		&&   arg != "wood sage about 捐獻"
+		&&   arg != "wood sage about 獻"
+		&&   arg != "sage about 日月神薛"
+		&&   arg != "sage about 神薛"
+		&&   arg != "sage about 捐獻"
+		&&   arg != "sanctifier about donate"
+		&&   arg != "sanctifier about relic"
+		&&   arg != "wood sage about donate"
+		&&   arg != "wood sage about relic") )
 		return notify_fail("你想問這位尊者甚麼﹖（試試 ask sanctifier about 聖物）\n");
 
 	if( is_fighting() || is_chatting() )
