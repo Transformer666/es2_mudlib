@@ -4,6 +4,8 @@
 
 inherit F_VILLAGER;
 
+int do_ask(string arg);     // 主線伏筆 lore：預言式口吻(純劇情，不給物)
+
 void create()
 {
 	set_name("瞎眼老太婆", ({ "blind gammer", "gammer", "__ID_GAMMER__" }) );
@@ -162,6 +164,7 @@ int accept_fight()
 
 void init()
 {
+    add_action("do_ask", "ask");        // 主線伏筆 lore；務必在下方任何早退之前註冊
     if( environment(this_object())->query("connect-p") ) {
 	command("say 口渴了, 來喝口水...\n");
         message_vision("$N緩緩走回大水缸邊。\n", this_object());
@@ -207,3 +210,44 @@ int accept_object(object player, object ob)
 		return 1;
 	}
 }
+
+// 主線伏筆 lore(純劇情，不給物)：瞎眼老太婆雖目不能視，卻聽得見常人聽不見的東西。
+//   她以一種半瘋半癲的預言口吻，零星吐露侮天鬼破封、十三靈、三百年災變的徵兆，
+//   替主線埋下隱晦伏筆。採 do_ask(ask gammer about <topic>)，與既有 relay_say
+//   (try/fon 趙丰/柳東蘆任務鏈)互不相干。handler 守衛 is_fighting()/is_chatting()。
+int do_ask(string arg)
+{
+	if( !arg ) return notify_fail("你想問瞎眼老太婆甚麼？(試試 ask gammer about 侮天鬼)\n");
+	if( is_fighting() || is_chatting() )
+		return notify_fail("瞎眼老太婆側著耳朵似在傾聽甚麼，恍若未聞。\n");
+
+	if( arg == "gammer about 侮天鬼" || arg == "gammer about 鬼"
+	 || arg == "gammer about wutiangui" ) {
+		do_chat(({
+			"瞎眼老太婆渾濁的盲眼忽地睜大，壓低嗓子道：噓 ... 你也聞著那股子腥氣了麼？三百年前破土而出的那東西，從沒真個被封死過 ...\n",
+			(: command, "say 老婆子我眼瞎了，心卻亮著哪。夜深人靜時，我聽得見地底下有甚麼在喘氣、在等 ... 等著把這天下又拖回那不見天日的濁世裡去。" :),
+		}));
+		return 1;
+	}
+	if( arg == "gammer about 十三靈" || arg == "gammer about 靈"
+	 || arg == "gammer about shisanling" ) {
+		do_chat(({
+			"瞎眼老太婆掐著指頭喃喃低語，像在數著甚麼看不見的數目。\n",
+			(: command, "say 十三盞燈 ... 滅了多少了？老婆子數不清嘍。當年是十三位靈護著這人間的，如今散的散、隱的隱 ... 燈火若都熄了，這天，可就要塌嘍。" :),
+			(: command, "say 百年一輪迴，輪到了，自有那命中註定的人來把燈重新點上 ... 那人是誰呢？老婆子瞧不見，瞧不見哪。" :),
+		}));
+		return 1;
+	}
+	if( arg == "gammer about 災變" || arg == "gammer about 三百年"
+	 || arg == "gammer about 預言" || arg == "gammer about 天命" ) {
+		do_chat(({
+			"瞎眼老太婆仰起臉，那雙看不見的眼睛卻彷彿望進了極遠的地方。\n",
+			(: command, "say 三百年前聖木一斷，這天下的氣數便跟著斷了一截 ... 老婆子小時候就聽人說，惡鬼六百年要與天賭一回，輸贏都在人心的善惡之間。" :),
+			(: command, "say 你身上 ... 嗯？有點意思。罷了罷了，老婆子多嘴。記著老婆子一句：刀光劍影都是小事，真正要當心的，是那藏在人心底、連自己都瞧不見的那點惡。去罷。" :),
+		}));
+		return 1;
+	}
+	return notify_fail("瞎眼老太婆側著耳朵：你問的是 ... 侮天鬼？十三靈？還是三百年前那場災變？\n");
+}
+
+// vim: set ts=4 sw=4 syntax=lpc

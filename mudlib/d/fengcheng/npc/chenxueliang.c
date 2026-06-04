@@ -53,7 +53,9 @@
 
 #include <ansi.h>
 #include <npc.h>
-#include <weapon.h>
+// 註：開光乃對玩家身上的炫芒「物件」呼叫 sword->setup_sword()/set("apply_weapon/...")，
+//     方法呼叫於武器物件、本 NPC 毋須引 <weapon.h>；引之反與 F_VILLAGER 之 nomask
+//     weight/encumbrance 衝突致本檔編譯失敗、NPC 無法載入（承 shaoyang.c 同坑，故移除）。
 
 #define XUANMANG_OB	"/d/fengcheng/npc/obj/xuanmang"
 

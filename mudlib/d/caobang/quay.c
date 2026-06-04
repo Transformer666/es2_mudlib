@@ -28,6 +28,11 @@ LONG
 	]));
 	set("outdoors", "capital");
 	set("no_fight", 1);
+	set("objects", ([
+		// 漕運碼頭掌事的攬頭周老大：漕幫任務「起點」的發籌人。
+		// ask zhoulaoda about 差事 -> 發漕幫竹籌 + 開 quest/caobang_start。
+		__DIR__"npc/zhoulaoda" : 1,
+	]));
 	set("exits", ([ /* sizeof() == 1 */
 		"west" : __DIR__"wharf",
 	]));

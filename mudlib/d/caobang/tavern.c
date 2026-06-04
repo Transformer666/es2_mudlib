@@ -29,6 +29,9 @@ LONG
 	set("no_fight", 1);
 	set("objects", ([
 		__DIR__"npc/dangjia" : 1,
+		// 酒館外討飯的老乞丐：漕幫任務「起源」線索人（落魄的漕幫舊人）。
+		// ask beggar about 漕幫 -> 指向漕運碼頭的周老大領籌（串接起點）。不給物、不設旗標。
+		__DIR__"npc/beggar" : 1,
 	]));
 	set("exits", ([ /* sizeof() == 1 */
 		"northeast" : __DIR__"wharf",

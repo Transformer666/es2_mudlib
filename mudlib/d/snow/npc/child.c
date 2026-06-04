@@ -5,6 +5,7 @@
 inherit F_VILLAGER;
 
 void timeto_eat();
+int do_ask(string arg);     // 主線伏筆 lore：侮天鬼/十三靈/三百年災變(純劇情，不給物)
 
 void create()
 {
@@ -57,6 +58,7 @@ void timeto_eat()
 void init()
 {
 	::init();
+	add_action("do_ask", "ask");        // 主線伏筆 lore；務必在下方早退之前註冊
 	if( is_fighting() || is_chatting() ) return;
 	
 	if( this_player()->query_temp("try/fon")==10 ){
@@ -235,6 +237,44 @@ void set_fon_temp(object me)
 {
 	if( me->query_temp("try/fon")!=48 )	return;
 	me->set_temp("try/fon",50);
+}
+
+// 主線伏筆 lore(純劇情，不給物)：阿寶是個耳朵尖的市井小姑娘，平日蹲在老榕樹上，
+//   聽過往的客商、說書的、還有她那瞎眼婆婆嘴裡漏出的種種怪談——侮天鬼破封、
+//   十三靈護世、三百年前那場災變。她說得半懂不懂，卻替主線埋下一串伏筆。
+//   採 do_ask(ask arbao about <topic>)，與既有 relay_say(try/fon 任務鏈)互不相干。
+//   handler 守衛 is_fighting()/is_chatting()，不擾既有對話動畫。
+int do_ask(string arg)
+{
+	if( !arg ) return notify_fail("你想問阿寶甚麼？(試試 ask arbao about 侮天鬼)\n");
+	if( is_fighting() || is_chatting() )
+		return notify_fail("阿寶正忙著，沒空理你。\n");
+
+	if( arg == "arbao about 侮天鬼" || arg == "arbao about 鬼"
+	 || arg == "arbao about wutiangui" ) {
+		do_chat(({
+			(: command, "say 噓——你怎麼也問這個？說書的先生講過，三百年前皇城裡有一株頂頂老的聖木被人砍斷了，封在地底下的「侮天鬼」就那麼鑽了出來 ..." :),
+			(: command, "say 阿寶我聽了直起雞皮疙瘩呢！聽說那惡鬼把咱們人當成 ... 當成吃食的！壞人裡頭最壞的那個，背後說不定就是牠 ..." :),
+		}));
+		return 1;
+	}
+	if( arg == "arbao about 十三靈" || arg == "arbao about 靈"
+	 || arg == "arbao about shisanling" ) {
+		do_chat(({
+			(: command, "say 十三靈呀？婆婆喝多了會念叨——好久好久以前，有位大英雄砍了那惡鬼的頭，天上就生出十三位靈來，把人間的髒東西都掃乾淨了，這才有了如今的好山好水。" :),
+			(: command, "say 婆婆說那十三靈百年就要重生一回呢 ... 阿寶聽不大懂，只覺得這故事怪嚇人的。" :),
+		}));
+		return 1;
+	}
+	if( arg == "arbao about 災變" || arg == "arbao about 三百年"
+	 || arg == "arbao about 大火" || arg == "arbao about 災難" ) {
+		do_chat(({
+			(: command, "say 三百年前那場大災變？嗯 ... 客商們閒磕牙說，就是打那聖木斷了、惡鬼出世起，這天朝便一年不如一年，江湖上也愈發不太平了。" :),
+			(: command, "say 連咱們雪亭鎮西頭那座鬧鬼的破宅子，聽說也是好些年前一把無名大火燒的 ... 阿寶我才不敢晚上往那邊去呢！" :),
+		}));
+		return 1;
+	}
+	return notify_fail("阿寶眨眨眼：這個阿寶可不曉得 ... 你問問侮天鬼、十三靈，或是三百年前那場災變？\n");
 }
 
 // vim: set ts=4 sw=4 syntax=lpc

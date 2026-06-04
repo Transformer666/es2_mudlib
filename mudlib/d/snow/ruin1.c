@@ -29,6 +29,10 @@ LONG
 		"west" : __DIR__"lane1",
 		"east" : __DIR__"egate",
 ]));
+	// 黑衣老人：枯守此破舊大宅前院的玄衣老者(item-giver 贈玉髮簪)。
+	set("objects", ([
+		__DIR__"npc/heiyilaoren" : 1,
+]));
 
 	setup();
 }
