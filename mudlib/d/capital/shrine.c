@@ -25,6 +25,8 @@ LONG
 	set("objects", ([
 		__DIR__"npc/sunbird" : 1,
 		__DIR__"npc/shrinekeeper" : 1,
+		// docs 支線 item-giver：京畿神社織衣老者李再延﹐贈六靈玄衣(防具)。
+		__DIR__"npc/lizaiyan" : 1,
 	]));
 	// TODO: 依設定﹐神社可 donate eye/heart/ring 給日月神薛﹐功德箱免練聲望；
 	//       此處先作景觀與氣氛﹐捐獻 / 還願機制待 daemon 完備後再實作。

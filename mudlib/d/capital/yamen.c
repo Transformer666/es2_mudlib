@@ -27,6 +27,8 @@ LONG
 	set("objects", ([
 		__DIR__"npc/official" : 1,
 		__DIR__"npc/gateman" : 1,
+		__DIR__"npc/zhonghao" : 1,
+		__DIR__"npc/liuerye" : 1,
 	]));
 	set("exits", ([ /* sizeof() == 2 */
 		"west" : __DIR__"plaza",

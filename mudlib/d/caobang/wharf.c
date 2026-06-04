@@ -37,6 +37,9 @@ LONG
 	set("objects", ([
 		__DIR__"npc/abang" : 1,
 		__DIR__"npc/ayi" : 1,
+		// 京畿渡口結庵誦經的方外高僧戒言大師（docs 支線「渡口贈玉」贈物人）：
+		// ask jieyan about 玉佩，可得其溫養多年的黃玉佩。
+		"/d/capital/npc/jieyan" : 1,
 	]));
 	set("exits", ([ /* sizeof() == 5 */
 		"west" : "/d/capital/yamen",

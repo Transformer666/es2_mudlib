@@ -29,6 +29,7 @@ LONG
 	set("objects", ([
 		__DIR__"npc/elder" : 1,
 		__DIR__"npc/villager" : 1,
+		__DIR__"npc/agui" : 1,
 	]));
 	set("outdoors", "kangping");
 	set("no_fight", 1);
