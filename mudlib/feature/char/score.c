@@ -114,6 +114,13 @@ gain_score(string course, int xp)
     if( undefinedp(score_gain[course]) ) score_gain[course] = xp;
     else score_gain[course] += xp;
 
+    // 頂級稱號重評 hook（業力與聲望系統，daemon/misc/title.c）：score 軸是頂級稱號
+    // (邪魔/武聖/隱士/大元帥 等) 的主要門檻，任何 score 變動都可能跨過或跌破門檻，故
+    // 在此重評並換掛該稱號的戰鬥加成。TITLE_D 內部便宜、自帶 objectp 檢查，可頻繁呼叫。
+    // 加成走 temp(apply/*)，登出即清，靠玩家上線後的 survive/戰鬥 gain_score 自動重掛。
+    if( query_race() && query_class() )
+	TITLE_D->recalc(this_object());
+
     // 升級門檻 lazy-init（依 docs/02-03 重建升級系統）：原碼從未呼叫 set_target_score，
     // target_score 恆空 → 升級永不觸發。此處為未達上限的角色補上「江湖歷練」門檻。
     if( query_level() < query_max_level() && !query("target_score/survive") )
