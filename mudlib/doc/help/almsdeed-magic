@@ -1,0 +1,9 @@
+大悲咒 (almsdeed magic)
+
+大悲咒是寶蓮寺善想一脈的進階(二轉)佛門咒法，基礎技能為法術(magic)，由入門善想禪法(kindness magic)精進而成。
+這是寶蓮寺與天月庵共通的「善想禪要」核心，以大悲願力濟世度人、增益同袍、降伏邪魔，是寶蓮治療輔助一脈的看家咒法。
+施法時結大悲手印、口誦大悲神咒，一縷莊嚴的金紅梵光裹著願力震懾敵人，傷之以大悲願海之力。
+習得後以 map_skill("magic","almsdeed magic") 對應，戰鬥中即以大悲咒的招式出手；亦可 enable magic with almsdeed magic 後 cast 主動施咒。
+其威力與神耗高於入階善想禪法、低於最高階長生禪法(longevity magic)，定位上以慈悲濟世、療傷增益為本旨。
+
+// vim: set ts=4 sw=4 syntax=lpc

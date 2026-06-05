@@ -1,0 +1,8 @@
+天師道法【桃山密籙】 (taoism of conviction)
+
+桃山密籙是天師派朱衣一脈二轉「朱衣真傳」所授的上乘道法，基礎技能為法術(magic)。
+桃山密籙原書載狂雷咒、寒冰咒、炎殺咒、亂風咒四式，可短時降低目標對應的元素防禦，再以 dispel 解除效果；習得條件為紫薇心經 100 加桃仙任務。
+施法時捻訣誦籙、足踏密籙罡步，袖中桃符無風自燃，一式『炎殺』烈焰裹著煞氣傷敵。
+習得後以 map_skill("magic","taoism of conviction") 對應，戰鬥中即以本道法出手；亦可 enable magic with taoism of conviction 後 cast 主動施法降目標元素防(fire/freeze/wind/thunder)，再以 dispel 強解掛在目標身上的降防。
+
+// vim: set ts=4 sw=4 syntax=lpc

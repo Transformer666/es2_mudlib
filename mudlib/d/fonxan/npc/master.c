@@ -285,17 +285,22 @@ int do_advance(object me, string branch)
 //   數，已有任一柄(含其他屍體/房間/玩家身上者)則不再掉(回 0)，故同一件神兵全服唯一。
 //   下手者須為真實玩家(userp)。結構鏡 d/langwo/npc/wolfking.c::die()：先 ::die()(屍體於此
 //   生成並登錄 temp("corpse"))，再於屍體內置入掉落物(唯一掉落須在屍體生成「後」入屍)。
-//   docs/02-遊戲系統與機制/05-裝備與強化.md L151：柳東蘆→玄蘇劍/火鱗衣。神兵取 obj/topgear
-//   之頂級劍(起手即頂 enchant_cap，不破壞強化平衡)，契合「青嶂劍翁」劍派掌門。
+//   docs/02-遊戲系統與機制/05-裝備與強化.md L151：柳東蘆→玄蘇劍。**第二位以後**的殺者
+//   (神兵已被先前殺者取走、全服唯一) 改得對應的普通劍「青嶂劍」(非 unique)，使每次擊殺
+//   仍有像樣兵刃可得、不致空手。神兵起手即頂 enchant_cap、不破壞強化平衡，契合劍派掌門。
+//   (玄霜劍 xuanshuang_sword 屬天靈山獸王摩雲一系，故柳東蘆另立其 docs 本名玄蘇劍，互不衝突。)
 //   (LOOT_D 巨集需 globals.h，npc.h 未含，故逕用字面路徑——等義 call_other。)
 // ─────────────────────────────────────────────────────────────────────────
-#define FONXAN_UNIQUE_LOOT  "/obj/topgear/xuanshuang_sword"  // 神兵 玄霜劍(頂級劍)
+#define FONXAN_UNIQUE_LOOT  "/obj/topgear/xuansu_sword"            // 神兵 玄蘇劍(全服唯一)
+#define FONXAN_NORMAL_LOOT  "/d/fonxan/npc/obj/qingzhang_sword"    // 普通 青嶂劍(神兵已現世時替代)
 
 void die();
-private void drop_unique(object who);
+private void drop_signature(object who);
 
-// 全服唯一掉落：下手者須為真實玩家；於 ::die() 之後呼叫，corpse 已生成於 temp("corpse")。
-private void drop_unique(object who)
+// 簽名掉落：下手者須為真實玩家；於 ::die() 之後呼叫，corpse 已生成於 temp("corpse")。
+//   先試掉全服唯一神兵「玄蘇劍」(LOOT_D->unique_drop)；世界已有一柄則回 0，改掉普通的
+//   「青嶂劍」(new)，使第二位以後的殺者仍得一柄對應的封山劍、不致空手。
+private void drop_signature(object who)
 {
 	object corpse, loot;
 
@@ -304,13 +309,23 @@ private void drop_unique(object who)
 	corpse = query_temp("corpse");
 	if( !objectp(corpse) ) return;
 
-	// 全服唯一：LOOT_D 盤點世界現存該神兵 clone 數，已有任一柄則回 0(不再掉)。
+	// 全服唯一神兵：LOOT_D 盤點世界現存玄蘇劍 clone 數，無則 new 一柄入屍、回該物件。
 	loot = "/daemon/misc/loot.c"->unique_drop(FONXAN_UNIQUE_LOOT, corpse);
-	if( !objectp(loot) ) return;
+	if( objectp(loot) ) {
+		message_vision(HIY
+			"柳東蘆頹然倒地之際﹐腰間那柄不起眼的長劍「噹」地脫鞘墜地——劍身青鋼幽碧、"
+			"氣勢沉沉如負山嶽﹐赫然便是封山一脈代代相承、唯掌門一人佩之的鎮派神兵"
+			"「玄蘇劍」﹗\n" NOR);
+		return;
+	}
 
-	message_vision(HIY
-		"柳東蘆頹然倒地之際﹐腰間那柄不起眼的長劍「噹」地脫鞘墜地——劍身青鋒湛湛、"
-		"隱隱透出一層森森寒霜﹐赫然便是封山掌門畢生佩藏、江湖久已絕跡的一柄神兵﹗\n" NOR);
+	// 神兵已現世於他處(全服唯一) → 改掉落普通的青嶂劍(非 unique)，使本次擊殺仍有兵刃可得。
+	loot = new(FONXAN_NORMAL_LOOT);
+	if( !objectp(loot) ) return;
+	if( !loot->move(corpse) ) loot->move(environment());
+
+	message_vision(HIR
+		"柳東蘆頹然倒地﹐腰間佩劍「噹」地墜落——是一柄封山派門人慣用的青嶂劍。\n" NOR);
 }
 
 // 死亡：先 ::die()(屍體/bounty/善後悉依 std/char/npc.c::die()﹐恒呼不可略﹐屍體於此生成
@@ -324,7 +339,7 @@ void die()
 	::die();
 
 	if( objectp(killer) && killer != this_object() && userp(killer) )
-		drop_unique(killer);
+		drop_signature(killer);
 }
 
 // vim: set ts=4 sw=4 syntax=lpc

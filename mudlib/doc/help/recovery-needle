@@ -1,0 +1,9 @@
+三自回針法 (recovery-needle)
+
+武陀灸堂一脈的自療針術，基礎技能為針術（needle），歸於灸術（cauterization）一系以 acupuncture 指令施放。
+三自回者，以針引氣自回己身三圍——精、氣、神，是武陀方士無須仰人即可自我回補的看家手段，代價是累積疲勞（fatigue）。
+施術須先 enable cauterization with recovery-needle，再 acupuncture gin up 回精、acupuncture kee up 回氣、acupuncture sen up 回神（連字號寫法亦可）；回補自動封頂於上限，每次並增加一定疲勞。
+定位為自我續戰補給，效果即時生效；惟疲勞累積至上限將無法研讀，須拿捏施用節奏。
+針招本身亦帶「回元歸經」等蓄勢氣象，但其本旨在自回三圍而非攻敵。
+
+// vim: set ts=4 sw=4 syntax=lpc

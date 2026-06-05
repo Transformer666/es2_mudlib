@@ -1,0 +1,9 @@
+神農之術 (alchemy-medication)
+
+神農之術是龍圖丹派方士所修的封丹之術，屬於法術（magic）一類，掛在 magic 槽上施放。
+此術專為封煉青銅丹鼎而設，方士藉青、白、赤、紫、黃、灰、黑七色印訣，封住或解開丹鼎，
+以成就濟世活人的丹藥之道。
+習得後須先 enable magic with alchemy-medication，再以 conjure 施法：
+「conjure green seal on reactor」可封住青銅丹鼎，「conjure green dispel on reactor」則解開丹鼎。
+封、解各耗約十五點神（sen），須通過技能檢查方能行法，故修為不足者無法成事。
+目前以綠印一脈最為齊備，其餘六色印訣的特殊封印效果尚待後續開展。

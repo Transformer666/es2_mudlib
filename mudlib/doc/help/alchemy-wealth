@@ -1,0 +1,9 @@
+黃白之術 (alchemy-wealth)
+
+龍圖丹派（alchemist.dragon）方士的點石成金祕法，屬法術（magic）一類，掛在 magic 槽以 conjure 指令施放，而非戰鬥招式。
+此術以金印、銀印封物，將身上一件物品就地化作等值的真金白銀，是龍圖方士公認的賺錢好門路之一。
+施法須先 enable magic with alchemy-wealth，再 conjure gold seal on <物品> 化物為黃金，或 conjure silver seal on <物品> 化物為碎銀；原物隨之化去。
+每次施術耗神（sen）十五點，無論成敗皆扣；價值滿五百文的貴重之物還須技能等級高過物價除以一萬，火候不足便鎮不住其物性而點不動。
+化成的錢額等於物品價值：黃金每枚折一萬文，碎銀每枚折一百文，不足一枚者進位算。修煉者多以神農之術配黃白之術為主要收益。
+
+// vim: set ts=4 sw=4 syntax=lpc

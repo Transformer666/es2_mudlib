@@ -1,0 +1,8 @@
+茅山幻術 (taoism of nature)
+
+茅山派隱風觀(進階／二轉)所授的上乘幻咒，是一門法術(magic)技能，召役獸靈以制敵。
+此術以「召獸」為長，攻擊一系以幻化的獸靈撲咬傷敵(走法術 spells 槽、cast 施法)。
+另有四式具名召喚(走 conjure 指令)：喚犬(dog)絆纏定身、喚猿(monkey)摸竊敵物、喚蟒(hydra)吞噬非玩家、喚雨(rain)群補周圍玩家精氣神。
+召喚四式各消神(sen)，命中時各焚一張「先天符」；攻擊咒術與召獸四式互不相礙，可同時掛上。
+習得後以 enable spells with taoism of nature 施攻擊咒、以 enable magic with taoism of nature 召獸，
+再 conjure dog on <目標> 等施展具名召喚。隱風觀不收夜叉、形天、厭火、黑齒等種族，屬拜師階段門檻。

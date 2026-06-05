@@ -1,0 +1,7 @@
+茅山道法【奇門術】 (mao-shan-mysticism)
+
+茅山幻霧觀二轉之上乘秘法，屬法術技能，掛在 magic 槽、走 conjure 指令施展。
+它不是攻擊咒術，而是位移、役鬼、控屍的奇門之術，與素雲書、遁甲書同一定位。修習門檻為茅山奇術（taoism of darkness）達 100 以上；掛法為 enable magic with mao-shan-mysticism，可與攻擊用的鬼火咒（enable spells with taoism of darkness）兩槽並用、互不相礙。
+全術五式：記憶之術（conjure memory）記下當前房間為傳送點、翔空之術（conjure recall）飛回記錄點、集靈之術（conjure collect）分解同房屍體取一縷陰魂、通靈之術（conjure slave on 目標）役陰魂附入一般 NPC 令其護衛施法者、噬魂之術（conjure devour）犧牲一名被控目標以大量回補氣（kee）神（sen）。
+可控陰魂數上限與本身靈性（spi）相關；通靈之術對玩家與動物無效。
+施法者鍵入 conjure <式名>（或中文式名）即施展，是茅山役使陰魂、奇門遁形的看家秘法。

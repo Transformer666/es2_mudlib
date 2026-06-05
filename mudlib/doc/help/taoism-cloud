@@ -1,0 +1,7 @@
+素雲書 (taoism-cloud)
+
+素雲書是天師派獨傳的駕雲之術，屬於法術（magic）一類，掛在 magic 槽上施放，專供趕路傳送之用。
+與走 spells 槽、用 cast 施放的攻擊咒術（如天師烈焰、寒冰）不同，素雲書走 magic 槽、用 conjure 施放，
+故道士可同時 enable spells 修攻擊咒、enable magic with taoism-cloud 修駕雲術，兩不相礙。
+玩家約十級時與張齡對話習得，習後 enable magic with taoism-cloud，再以「conjure <地點代號或中文地名>」駕雲飛往該地。
+每次駕雲耗約五十點神（sen），技能等級決定可達之處，從雪亭鎮的飲風客棧到遠方的天龍島，隨修為漸次開通。

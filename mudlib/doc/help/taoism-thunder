@@ -1,0 +1,7 @@
+天師道法【雷法】 (taoism-thunder)
+
+天師派紫衣（雷）分支的根本道法，屬法術技能，掛在 spells 槽、走 cast 指令施展。
+掛法為 enable spells with taoism-thunder，戰鬥中以 cast <咒名> 施放具名雷咒；元素傷害經 magic 引擎折算對象雷抗後施加，施法消耗神（sen）。
+雷法四式：澤雷（swamp thunder，sen 5、傷害 50%）、爆雷（blaster thunder，sen 50、傷害 25% 另附目標當前神識八分之一的穿防附加）、神光雷（divine thunder，sen 75、對目標神傷 33% 並無視抗性削其神識）、六卦熒雷（hexagram thunder，sen 90、傷害 175%）。
+本派可與九龍門搭配：九龍超載（overload）旗標一旦立起，下次天師咒基礎傷害加成 50%，施咒後即清除（六卦熒雷會吃加成但不清旗標）。
+施法者鍵入 cast swamp thunder 等即施展，是天師雷部弟子的看家攻擊道法。

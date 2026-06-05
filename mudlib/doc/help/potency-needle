@@ -1,0 +1,8 @@
+引源針法 (potency-needle)
+
+武陀灸堂一脈的輔助針術，是龍圖武陀方士用以強化狀態的針法，基礎技能型別為針術(needle)。
+引源者，引動體內源氣以強化各種狀態。共有四種引源效果：
+緩疲勞(fatigue)削減目標疲勞值；強警(awareness)提升警覺；強動(move)提升行動力；強元素(element)提升元素抗性。
+其中強警、強動、強元素三者對同一目標不可同時施加，互斥擇一；緩疲勞則不受此限。
+習得後須掛上灸術槽施用：enable cauterization with potency-needle ，再 acupuncture awareness to <目標> 等，
+即依指定的引源名為目標運針。每次運針耗神(sen)，為己方或隊友臨戰前的輔助強化手段。
