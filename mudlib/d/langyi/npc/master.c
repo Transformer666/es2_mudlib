@@ -1,4 +1,4 @@
-// master.c -- 瑯夷派黑龍堂主
+// master.c -- 瑯夷派堂主 吳長貴（無常鬼）
 
 #include <npc.h>
 
@@ -6,8 +6,8 @@ inherit F_VILLAGER;
 
 void create()
 {
-	set_name("瑯夷堂主", ({ "thief master", "master", "thief", "rogue" }));
-	set("nickname", "黑龍左使");
+	set_name("吳長貴", ({ "wu changgui", "master", "thief", "rogue" }));
+	set("nickname", "無常鬼");
 	set_attr("str", 20);
 	set_attr("dex", 30);
 	set_attr("int", 25);
@@ -20,8 +20,8 @@ void create()
 	set_level(40);
 	set_class("thief");
 	set("sect", "瑯夷派");
-	set("rank", "黑龍左使");
-	set("title", "瑯夷派黑龍左使");
+	set("rank", "瑯夷盜");
+	set("title", "瑯夷派弟子");
 
 	set_skill("unarmed", 60);
 	set_skill("dodge", 130);
@@ -39,13 +39,13 @@ void create()
 
 	set("age", 44);
 	set("long",
-		"這位便是瑯夷派的黑龍堂主﹐一身玄黑勁裝﹐腰束軟帶﹐帶上斜插\n"
+		"這位便是瑯夷派的堂主吳長貴﹐一身玄黑勁裝﹐腰束軟帶﹐帶上斜插\n"
 		"著兩柄寒光森森的匕首。他身形精瘦﹐步履無聲﹐一雙眼睛深陷而\n"
-		"銳利﹐顧盼之間隱隱透著一股噬人的殺氣。瑯夷派黑龍左使一脈以\n"
-		"匕首暗算、潛行取命名動黑道﹐堂主浸淫血魂匕法數十年﹐出手見\n"
-		"血﹐從無虛發﹐江湖人稱「黑龍左使」。他久居這地底堂口﹐唯有\n"
-		"身手機敏、心性夠狠的後輩﹐方有機會拜入門下﹐學得這一身殺人\n"
-		"的本事。\n");
+		"銳利﹐顧盼之間隱隱透著一股噬人的殺氣。瑯夷派一脈以匕首暗算、\n"
+		"潛行取命名動黑道﹐吳長貴浸淫血魂匕法數十年﹐出手見血﹐從無\n"
+		"虛發﹐取人性命如索鬼勾魂﹐江湖人稱「無常鬼」。他久居這地底\n"
+		"堂口﹐唯有身手機敏、心性夠狠的後輩﹐方有機會拜入門下﹐學得\n"
+		"這一身殺人的本事。\n");
 	setup();
 }
 
@@ -55,26 +55,26 @@ int accept_apprentice(object me)
 
 	// 已有師門者不收
 	if( me->query_class() != "commoner" ) {
-		do_chat("瑯夷堂主把玩著手中匕首﹐冷笑道﹕你既已入別派﹐道兒已定﹐何苦再來自討沒趣﹖\n");
+		do_chat("吳長貴把玩著手中匕首﹐冷笑道﹕你既已入別派﹐道兒已定﹐何苦再來自討沒趣﹖\n");
 		return 0;
 	}
 
 	// 須先在江湖上歷練過方可入夥
 	if( me->query_level() < 1 ) {
-		do_chat("瑯夷堂主斜睨了你一眼﹐說道﹕乳臭未乾的雛兒﹐且去江湖上滾過一遭再來罷。\n");
+		do_chat("吳長貴斜睨了你一眼﹐說道﹕乳臭未乾的雛兒﹐且去江湖上滾過一遭再來罷。\n");
 		return 0;
 	}
 
 	// 匕法暗算全憑一身機敏﹐手腳遲鈍者難成氣候（門檻甚低﹐尋常人皆可入）
 	if( me->query_attr("dex") < 14 ) {
-		do_chat("瑯夷堂主上下打量了你一番﹐搖頭道﹕你手腳這般遲鈍﹐學不來我這偷天換日的手藝。\n");
+		do_chat("吳長貴上下打量了你一番﹐搖頭道﹕你手腳這般遲鈍﹐學不來我這偷天換日的手藝。\n");
 		return 0;
 	}
 
 	do_chat(({
-		"瑯夷堂主眯起眼睛﹐將你細細打量了一番。\n",
-		"瑯夷堂主壓低聲音道﹕入了我瑯夷派﹐刀頭舔血﹐見不得光﹐你可怕了﹖\n",
-		"瑯夷堂主嘿嘿一笑﹕也罷﹐瞧你還算機靈﹐我便收你入黑龍左使門下﹐傳你這套吃飯的本事。\n",
+		"吳長貴眯起眼睛﹐將你細細打量了一番。\n",
+		"吳長貴壓低聲音道﹕入了我瑯夷派﹐刀頭舔血﹐見不得光﹐你可怕了﹖\n",
+		"吳長貴嘿嘿一笑﹕也罷﹐瞧你還算機靈﹐我便收你入我瑯夷派門下﹐傳你這套吃飯的本事。\n",
 	}));
 	return 1;
 }
@@ -82,7 +82,7 @@ int accept_apprentice(object me)
 int init_apprentice(object me)
 {
 	if( me->query_class() != "commoner" ) {
-		do_chat("瑯夷堂主把匕首一收﹐說道﹕你既已另投他處﹐快滾罷。\n");
+		do_chat("吳長貴把匕首一收﹐說道﹕你既已另投他處﹐快滾罷。\n");
 		return 1;
 	}
 
@@ -90,8 +90,8 @@ int init_apprentice(object me)
 		seteuid(getuid());
 		me->set_class("thief");
 		me->set("sect", "瑯夷派");
-		me->set("rank", "黑龍左使");
-		me->set("title", "瑯夷派黑龍左使");
+		me->set("rank", "瑯夷盜");
+		me->set("title", "瑯夷派弟子");
 
 		me->set_skill("dagger", 0);
 		me->set_skill("blood dagger", 0);
@@ -106,8 +106,8 @@ int init_apprentice(object me)
 			"$N反手抽出一柄匕首﹐將血魂匕法的入門殺招一招一式地傳授給$n。\n",
 			this_object(), me);
 		do_chat(({
-			"瑯夷堂主說道﹕從今日起﹐你便是我瑯夷派黑龍左使門下的人了。\n",
-			"瑯夷堂主沉聲道﹕到演武場對著草人勤練匕法﹐出手要快、要狠、要無聲。\n",
+			"吳長貴說道﹕從今日起﹐你便是我瑯夷派門下的弟子了。\n",
+			"吳長貴沉聲道﹕到演武場對著草人勤練匕法﹐出手要快、要狠、要無聲。\n",
 		}));
 	}
 }
@@ -122,6 +122,10 @@ int init_apprentice(object me)
 // 故所授為匕法/針法/劍法/槍法/盜門內功——以此驗證通用「進階」指令 + do_advance
 // 模型可第四度跨職業(武者/道士/和尚之外)套用。
 //
+// 註：入門 rank/title 為基礎瑯夷派稱(rank="瑯夷盜"、title="瑯夷派弟子")﹔
+//     「黑龍左使」非入門稱號﹐乃下方 thief.adv 二轉之進階分支名(暗殺型分支)﹐
+//     僅在 query_advance_branches() 的進階表中作為分支 rank/title 使用。
+//
 // 與前五門的關鍵差異(職業特性)：
 //   * 入門武功為匕法(dagger)﹐入門時 map_skill("dagger","blood dagger")(血魂匕法)﹐
 //     入門火候門檻即以 "blood dagger" 計(對應武者的 lunmay/fonxansword/bawang
@@ -133,10 +137,10 @@ int init_apprentice(object me)
 //     另設第二道 cor(膽識)門檻(戰鬥賊搶攻所需)。
 //
 // 三大分支(見 docs/03-門派與武功/05-盜賊-瑯夷隱教.md §進階分支(兩派共通))：
-//   黑龍左使  ── docs 明列之暗殺型分支。內功 黑龍真氣 heilong-force + 匕法 奪命血魂匕
-//                shadow dagger(主) + 針法 驚異二針 amazing-needle(副)。docs 載其
-//                「攻擊狀態脫離有機會一擊必殺、偷襲/暗算/殺手本能、消除疲勞內功」。
-//                最早開放、門檻最低。
+//   黑龍左使  ── docs 明列之 thief.adv 暗殺型二轉分支(非入門稱)。內功 黑龍真氣
+//                heilong-force + 匕法 奪命血魂匕 shadow dagger(主) + 針法 驚異二針
+//                amazing-needle(副)。docs 載其「攻擊狀態脫離有機會一擊必殺、偷襲/
+//                暗算/殺手本能、消除疲勞內功」。最早開放、門檻最低。
 //   黑龍右使  ── docs 明列之用毒型分支。內功 龍涎毒功 venom-force + 毒匕 噬魂毒匕
 //                venom dagger(主)。docs 載其「將身上的毒傳遞給敵人(不進戰鬥即毒殺)、
 //                適合暗殺掌門級 NPC」。門檻居中。
@@ -232,7 +236,7 @@ int do_advance(object me, string branch)
 
 	// 分支名無效（含未指定）。
 	if( !branch || undefinedp(branches[branch]) ) {
-		do_chat("瑯夷堂主把玩著匕首冷笑道﹕我瑯夷派進階只有「黑龍左使」、「黑龍右使」、"
+		do_chat("吳長貴把玩著匕首冷笑道﹕我瑯夷派進階只有「黑龍左使」、「黑龍右使」、"
 		        "「金蛇門人」三路﹐你要走哪一門﹖\n");
 		return notify_fail("");
 	}
@@ -240,39 +244,39 @@ int do_advance(object me, string branch)
 
 	// 須為瑯夷派入門弟子方可進階（非本派/平民一律不收）。
 	if( me->query("sect") != "瑯夷派" ) {
-		do_chat("瑯夷堂主斜睨道﹕你又非我瑯夷派的人﹐進階之事從何談起﹖且先拜入本門再說。\n");
+		do_chat("吳長貴斜睨道﹕你又非我瑯夷派的人﹐進階之事從何談起﹖且先拜入本門再說。\n");
 		return notify_fail("");
 	}
 
 	// 已轉過階者不得再轉。
 	if( stringp(me->query("sect_branch")) ) {
-		do_chat("瑯夷堂主冷笑道﹕你既已選定「" + me->query("sect_branch") +
+		do_chat("吳長貴冷笑道﹕你既已選定「" + me->query("sect_branch") +
 		        "」一路﹐黑道規矩貴在專一﹐豈可朝三暮四﹖\n");
 		return notify_fail("");
 	}
 
 	// 等級門檻。
 	if( me->query_level() < b["level"] ) {
-		do_chat("瑯夷堂主斜睨了你一眼﹐搖頭道﹕你火候尚淺﹐且再到江湖上滾過些時日﹐"
+		do_chat("吳長貴斜睨了你一眼﹐搖頭道﹕你火候尚淺﹐且再到江湖上滾過些時日﹐"
 		        "待修為到了再來罷。\n");
 		return notify_fail("");
 	}
 
 	// 入門匕法(血魂匕法 blood dagger)火候門檻。
 	if( me->query_skill("blood dagger", 1) < b["blood dagger"] ) {
-		do_chat("瑯夷堂主冷哼道﹕你連我血魂匕法的根基都未練透﹐如何學得這上乘殺著﹖"
+		do_chat("吳長貴冷哼道﹕你連我血魂匕法的根基都未練透﹐如何學得這上乘殺著﹖"
 		        "且回演武場對草人勤練去。\n");
 		return notify_fail("");
 	}
 
 	// 屬性門檻（盜賊以身手機敏為本﹐金蛇門人另重膽識）。
 	if( me->query_attr(b["attr"]) < b["attr_min"] ) {
-		do_chat("瑯夷堂主上下打量了你一番﹐搖頭道﹕你手腳還不夠機敏﹐撐不起這一路殺手的"
+		do_chat("吳長貴上下打量了你一番﹐搖頭道﹕你手腳還不夠機敏﹐撐不起這一路殺手的"
 		        "本事﹐勉強習之徒送了性命。\n");
 		return notify_fail("");
 	}
 	if( !undefinedp(b["attr2"]) && me->query_attr(b["attr2"]) < b["attr2_min"] ) {
-		do_chat("瑯夷堂主嗤笑道﹕你膽氣還嫩﹐當不了刀頭舔血的戰鬥賊﹐且去再磨磨膽子。\n");
+		do_chat("吳長貴嗤笑道﹕你膽氣還嫩﹐當不了刀頭舔血的戰鬥賊﹐且去再磨磨膽子。\n");
 		return notify_fail("");
 	}
 
@@ -316,8 +320,8 @@ int do_advance(object me, string branch)
 		"$N反手抽出一柄匕首﹐刃光內斂殺機暗藏﹐而後將一身「" + branch +
 		"」的上乘殺手本事傾囊傳授給$n。\n", this_object(), me);
 	do_chat(({
-		"瑯夷堂主嘿嘿一笑﹕好﹗從今日起﹐你便是我瑯夷派的「" + b["rank"] + "」了。\n",
-		"瑯夷堂主沉聲道﹕" + b["desc"] + "\n",
+		"吳長貴嘿嘿一笑﹕好﹗從今日起﹐你便是我瑯夷派的「" + b["rank"] + "」了。\n",
+		"吳長貴沉聲道﹕" + b["desc"] + "\n",
 	}));
 	return 1;
 }

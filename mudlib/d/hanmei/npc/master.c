@@ -1,4 +1,4 @@
-// master.c -- 冷梅莊主
+// master.c -- 冷梅莊主 梅影風
 
 #include <npc.h>
 
@@ -6,7 +6,7 @@ inherit F_VILLAGER;
 
 void create()
 {
-	set_name("冷梅莊主", ({ "lunmay master", "master", "lunmay" }));
+	set_name("梅影風", ({ "may yin fong", "lunmay master", "master", "lunmay" }));
 	set("nickname", "傲梅劍客");
 	set_attr("str", 24);
 	set_attr("dex", 26);
@@ -38,11 +38,11 @@ void create()
 
 	set("age", 48);
 	set("long",
-		"這位便是冷梅莊主﹐一身月白長袍﹐腰懸長劍﹐眉宇間透著一股清\n"
-		"冷孤傲之氣。冷梅莊是雪亭鎮一帶聲名卓著的劍派﹐莊主自幼苦練家\n"
-		"傳的冷梅劍法﹐劍勢如寒梅綻放﹐冷冽中暗藏凌厲殺機﹐江湖人稱「\n"
-		"傲梅劍客」。他平日深居莊中﹐潛心劍道﹐唯有資質清正的年輕人才\n"
-		"有機會拜入他的門下﹐習得這一身傲視群雄的劍法。\n");
+		"這位便是冷梅莊主梅影風﹐一身月白長袍﹐腰懸長劍﹐眉宇間透著一\n"
+		"股清冷孤傲之氣。冷梅莊是雪亭鎮一帶聲名卓著的劍派﹐他自幼苦練家\n"
+		"傳的冷梅劍法﹐劍勢如寒梅綻放﹐冷冽中暗藏凌厲殺機﹐江湖人稱「傲\n"
+		"梅劍客」。他平日深居莊中﹐潛心劍道﹐唯有資質清正的年輕人才有機\n"
+		"會拜入他的門下﹐習得這一身傲視群雄的劍法。\n");
 	setup();
 	carry_object("/d/snow/npc/obj/silversword")->wield();
 }
@@ -53,26 +53,26 @@ int accept_apprentice(object me)
 
 	// 已有師門者不收
 	if( me->query_class() != "commoner" ) {
-		do_chat("冷梅莊主搖了搖頭﹐說道﹕你既已入別派﹐何苦再來攪擾﹖\n");
+		do_chat("梅影風搖了搖頭﹐說道﹕你既已入別派﹐何苦再來攪擾﹖\n");
 		return 0;
 	}
 
 	// 須年滿一定等級﹐心性沉穩方可習劍
 	if( me->query_level() < 1 ) {
-		do_chat("冷梅莊主說道﹕你根基未穩﹐且去歷練一番再來罷。\n");
+		do_chat("梅影風說道﹕你根基未穩﹐且去歷練一番再來罷。\n");
 		return 0;
 	}
 
 	// 冷梅劍法講究靈動﹐機敏不足者難窺堂奧
 	if( me->query_attr("dex") < 18 ) {
-		do_chat("冷梅莊主端詳了你一會﹐說道﹕你筋骨太過遲鈍﹐學不得我這路劍法。\n");
+		do_chat("梅影風端詳了你一會﹐說道﹕你筋骨太過遲鈍﹐學不得我這路劍法。\n");
 		return 0;
 	}
 
 	do_chat(({
-		"冷梅莊主上下打量了你一番﹐微微頷首。\n",
-		"冷梅莊主說道﹕我冷梅莊的劍法﹐講究一個「傲」字﹐你可受得了這份清苦﹖\n",
-		"冷梅莊主說道﹕也罷﹐我便收你做個記名弟子﹐傳你冷梅劍法。\n",
+		"梅影風上下打量了你一番﹐微微頷首。\n",
+		"梅影風說道﹕我冷梅莊的劍法﹐講究一個「傲」字﹐你可受得了這份清苦﹖\n",
+		"梅影風說道﹕也罷﹐我便收你做個記名弟子﹐傳你冷梅劍法。\n",
 	}));
 	return 1;
 }
@@ -80,7 +80,7 @@ int accept_apprentice(object me)
 int init_apprentice(object me)
 {
 	if( me->query_class() != "commoner" ) {
-		do_chat("冷梅莊主揮了揮手﹐說道﹕你既已另投他師﹐去吧。\n");
+		do_chat("梅影風揮了揮手﹐說道﹕你既已另投他師﹐去吧。\n");
 		return 1;
 	}
 
@@ -104,8 +104,8 @@ int init_apprentice(object me)
 			"$N取過一柄長劍﹐將冷梅劍法的入門劍訣緩緩傳授給$n。\n",
 			this_object(), me);
 		do_chat(({
-			"冷梅莊主說道﹕從今日起﹐你便是我冷梅莊的劍士了。\n",
-			"冷梅莊主說道﹕劍道無窮﹐你且到演武場勤加練習﹐莫負了這身劍法。\n",
+			"梅影風說道﹕從今日起﹐你便是我冷梅莊的劍士了。\n",
+			"梅影風說道﹕劍道無窮﹐你且到演武場勤加練習﹐莫負了這身劍法。\n",
 		}));
 	}
 }
@@ -187,7 +187,7 @@ int do_advance(object me, string branch)
 
 	// 分支名無效（含未指定）。
 	if( !branch || undefinedp(branches[branch]) ) {
-		do_chat("冷梅莊主搖頭道﹕本莊進階只有「劍士」、「古劍門傳人」、「虎督」三路﹐"
+		do_chat("梅影風搖頭道﹕本莊進階只有「劍士」、「古劍門傳人」、「虎督」三路﹐"
 		        "你說的是哪一門﹖\n");
 		return notify_fail("");
 	}
@@ -195,34 +195,34 @@ int do_advance(object me, string branch)
 
 	// 須為冷梅莊入門弟子方可進階（非本派/平民一律不收）。
 	if( me->query("sect") != "冷梅莊" ) {
-		do_chat("冷梅莊主冷冷道﹕你又非我冷梅莊弟子﹐進階之事從何談起﹖且先拜入本門再說。\n");
+		do_chat("梅影風冷冷道﹕你又非我冷梅莊弟子﹐進階之事從何談起﹖且先拜入本門再說。\n");
 		return notify_fail("");
 	}
 
 	// 已轉過階者不得再轉。
 	if( stringp(me->query("sect_branch")) ) {
-		do_chat("冷梅莊主道﹕你既已選定「" + me->query("sect_branch") +
+		do_chat("梅影風道﹕你既已選定「" + me->query("sect_branch") +
 		        "」一路﹐劍道貴在專一﹐豈可朝三暮四﹖\n");
 		return notify_fail("");
 	}
 
 	// 等級門檻。
 	if( me->query_level() < b["level"] ) {
-		do_chat("冷梅莊主端詳了你一會﹐搖頭道﹕你火候尚淺﹐且再歷練些時日﹐"
+		do_chat("梅影風端詳了你一會﹐搖頭道﹕你火候尚淺﹐且再歷練些時日﹐"
 		        "待修為到了再來罷。\n");
 		return notify_fail("");
 	}
 
 	// 入門劍法(冷梅劍法 lunmay)火候門檻。
 	if( me->query_skill("lunmay", 1) < b["lunmay"] ) {
-		do_chat("冷梅莊主道﹕你連我冷梅劍法的根基都未練透﹐如何學得這上乘劍訣﹖"
+		do_chat("梅影風道﹕你連我冷梅劍法的根基都未練透﹐如何學得這上乘劍訣﹖"
 		        "且回演武場勤練去。\n");
 		return notify_fail("");
 	}
 
 	// 屬性門檻（各分支重不同根骨）。
 	if( me->query_attr(b["attr"]) < b["attr_min"] ) {
-		do_chat("冷梅莊主搖頭道﹕你的根骨還撐不起這一路劍法﹐勉強習之徒傷己身。\n");
+		do_chat("梅影風搖頭道﹕你的根骨還撐不起這一路劍法﹐勉強習之徒傷己身。\n");
 		return notify_fail("");
 	}
 
@@ -250,8 +250,8 @@ int do_advance(object me, string branch)
 		"$N橫劍於膝﹐閉目凝神片刻﹐而後將一身「" + branch +
 		"」的上乘劍訣傾囊傳授給$n。\n", this_object(), me);
 	do_chat(({
-		"冷梅莊主朗聲道﹕好﹗從今日起﹐你便是我冷梅莊的「" + b["rank"] + "」了。\n",
-		"冷梅莊主道﹕" + b["desc"] + "\n",
+		"梅影風朗聲道﹕好﹗從今日起﹐你便是我冷梅莊的「" + b["rank"] + "」了。\n",
+		"梅影風道﹕" + b["desc"] + "\n",
 	}));
 	return 1;
 }

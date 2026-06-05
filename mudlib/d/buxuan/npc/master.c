@@ -1,4 +1,4 @@
-// master.c -- 步玄派掌門
+// master.c -- 步玄派掌門 駱易（玄機居士）
 
 #include <npc.h>
 
@@ -6,7 +6,7 @@ inherit F_VILLAGER;
 
 void create()
 {
-	set_name("步玄掌門", ({ "scholar master", "master", "scholar", "teacher" }));
+	set_name("駱易", ({ "luo yi", "scholar master", "master", "scholar", "teacher" }));
 	set("nickname", "玄機居士");
 	set_attr("str", 20);
 	set_attr("dex", 26);
@@ -57,26 +57,26 @@ int accept_apprentice(object me)
 
 	// 已有師門者不收
 	if( me->query_class() != "commoner" ) {
-		do_chat("步玄掌門輕搖折扇﹐說道﹕你既已入別派﹐道途已定﹐何苦再來﹖\n");
+		do_chat("駱易輕搖折扇﹐說道﹕你既已入別派﹐道途已定﹐何苦再來﹖\n");
 		return 0;
 	}
 
 	// 須先在江湖上歷練過方可入門
 	if( me->query_level() < 1 ) {
-		do_chat("步玄掌門微笑道﹕你塵緣未了﹐且去歷練一番再來罷。\n");
+		do_chat("駱易微笑道﹕你塵緣未了﹐且去歷練一番再來罷。\n");
 		return 0;
 	}
 
 	// 步玄劍法全憑悟性參詳﹐悟性過低者難窺門徑（門檻甚低﹐尋常人皆可入）
 	if( me->query_attr("int") < 14 ) {
-		do_chat("步玄掌門端詳了你一會﹐搖頭道﹕你悟性閉塞﹐難參我這路劍法。\n");
+		do_chat("駱易端詳了你一會﹐搖頭道﹕你悟性閉塞﹐難參我這路劍法。\n");
 		return 0;
 	}
 
 	do_chat(({
-		"步玄掌門上下打量了你一番﹐微微頷首。\n",
-		"步玄掌門說道﹕我步玄派書生一脈﹐以劍佐文、以步藏機﹐你可有這份慧心﹖\n",
-		"步玄掌門合扇笑道﹕也罷﹐你既悟性不俗﹐我便收你入步玄門下﹐傳你步玄劍法。\n",
+		"駱易上下打量了你一番﹐微微頷首。\n",
+		"駱易說道﹕我步玄派書生一脈﹐以劍佐文、以步藏機﹐你可有這份慧心﹖\n",
+		"駱易合扇笑道﹕也罷﹐你既悟性不俗﹐我便收你入步玄門下﹐傳你步玄劍法。\n",
 	}));
 	return 1;
 }
@@ -84,7 +84,7 @@ int accept_apprentice(object me)
 int init_apprentice(object me)
 {
 	if( me->query_class() != "commoner" ) {
-		do_chat("步玄掌門搖了搖折扇﹐說道﹕你既已另投他派﹐去吧。\n");
+		do_chat("駱易搖了搖折扇﹐說道﹕你既已另投他派﹐去吧。\n");
 		return 1;
 	}
 
@@ -108,8 +108,8 @@ int init_apprentice(object me)
 			"$N取過一柄長劍﹐將小步玄劍的入門劍訣緩緩傳授給$n。\n",
 			this_object(), me);
 		do_chat(({
-			"步玄掌門說道﹕從今日起﹐你便是我步玄派居士門下的弟子了。\n",
-			"步玄掌門說道﹕劍道無涯﹐你且到演武場勤加錘鍊﹐莫負了這身劍法。\n",
+			"駱易說道﹕從今日起﹐你便是我步玄派居士門下的弟子了。\n",
+			"駱易說道﹕劍道無涯﹐你且到演武場勤加錘鍊﹐莫負了這身劍法。\n",
 		}));
 	}
 }
@@ -238,7 +238,7 @@ int do_advance(object me, string branch)
 
 	// 分支名無效（含未指定）。
 	if( !branch || undefinedp(branches[branch]) ) {
-		do_chat("步玄掌門輕搖折扇道﹕我步玄派進階只有「居士」、「奇門劍士」、"
+		do_chat("駱易輕搖折扇道﹕我步玄派進階只有「居士」、「奇門劍士」、"
 		        "「逍遙居士」三路﹐你欲修哪一脈劍法﹖\n");
 		return notify_fail("");
 	}
@@ -246,38 +246,38 @@ int do_advance(object me, string branch)
 
 	// 須為步玄派入門弟子方可進階（非本派/平民一律不收）。
 	if( me->query("sect") != "步玄派" ) {
-		do_chat("步玄掌門搖頭道﹕你又非我步玄門下﹐進階之事從何談起﹖且先拜入本派再說。\n");
+		do_chat("駱易搖頭道﹕你又非我步玄門下﹐進階之事從何談起﹖且先拜入本派再說。\n");
 		return notify_fail("");
 	}
 
 	// 已轉過階者不得再轉。
 	if( stringp(me->query("sect_branch")) ) {
-		do_chat("步玄掌門道﹕你既已選定「" + me->query("sect_branch") +
+		do_chat("駱易道﹕你既已選定「" + me->query("sect_branch") +
 		        "」一脈﹐劍道貴在專一﹐豈可見異思遷﹖\n");
 		return notify_fail("");
 	}
 
 	// 等級門檻。
 	if( me->query_level() < b["level"] ) {
-		do_chat("步玄掌門端詳了你一會﹐搖頭道﹕你火候尚淺﹐且再潛修些時日﹐"
+		do_chat("駱易端詳了你一會﹐搖頭道﹕你火候尚淺﹐且再潛修些時日﹐"
 		        "待修為到了再來罷。\n");
 		return notify_fail("");
 	}
 
 	// 入門劍法(小步玄劍 buxuan-sword)火候門檻。
 	if( me->query_skill("buxuan-sword", 1) < b["buxuan-sword"] ) {
-		do_chat("步玄掌門道﹕你連我小步玄劍的根基都未練透﹐如何駕馭這上乘劍訣﹖"
+		do_chat("駱易道﹕你連我小步玄劍的根基都未練透﹐如何駕馭這上乘劍訣﹖"
 		        "且回演武場勤練去。\n");
 		return notify_fail("");
 	}
 
 	// 屬性門檻（步玄以機敏為本﹐逍遙居士另有第二道悟性門檻）。
 	if( me->query_attr(b["attr"]) < b["attr_min"] ) {
-		do_chat("步玄掌門搖頭道﹕你的根骨還撐不起這一路劍法﹐勉強習之徒耗心神。\n");
+		do_chat("駱易搖頭道﹕你的根骨還撐不起這一路劍法﹐勉強習之徒耗心神。\n");
 		return notify_fail("");
 	}
 	if( !undefinedp(b["attr2"]) && me->query_attr(b["attr2"]) < b["attr2_min"] ) {
-		do_chat("步玄掌門搖頭道﹕你悟性未足﹐參不透虛空斬與逍遙遊的玄奧﹐"
+		do_chat("駱易搖頭道﹕你悟性未足﹐參不透虛空斬與逍遙遊的玄奧﹐"
 		        "且去多念些書再參修參修。\n");
 		return notify_fail("");
 	}
@@ -322,8 +322,8 @@ int do_advance(object me, string branch)
 		"$N橫劍於膝﹐閉目凝神片刻﹐而後將一身「" + branch +
 		"」的上乘劍訣傾囊傳授給$n。\n", this_object(), me);
 	do_chat(({
-		"步玄掌門合扇笑道﹕好﹗從今日起﹐你便是我步玄派的「" + b["rank"] + "」了。\n",
-		"步玄掌門道﹕" + b["desc"] + "\n",
+		"駱易合扇笑道﹕好﹗從今日起﹐你便是我步玄派的「" + b["rank"] + "」了。\n",
+		"駱易道﹕" + b["desc"] + "\n",
 	}));
 	return 1;
 }

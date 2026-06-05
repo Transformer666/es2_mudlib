@@ -1,4 +1,4 @@
-// master.c -- 白象寺方丈
+// master.c -- 白象寺方丈 無念大師
 
 #include <npc.h>
 
@@ -6,7 +6,7 @@ inherit F_VILLAGER;
 
 void create()
 {
-	set_name("白象寺方丈", ({ "bonze master", "master", "monk", "abbot" }));
+	set_name("無念大師", ({ "wunian", "master", "monk", "abbot", "bonze" }));
 	set("nickname", "伏魔尊者");
 	set_attr("str", 26);
 	set_attr("dex", 22);
@@ -56,26 +56,26 @@ int accept_apprentice(object me)
 
 	// 已有師門者不收
 	if( me->query_class() != "commoner" ) {
-		do_chat("白象寺方丈雙手合十﹐宣了聲佛號﹕施主既已入別派﹐緣分已定﹐何苦再來﹖\n");
+		do_chat("無念大師雙手合十﹐宣了聲佛號﹕施主既已入別派﹐緣分已定﹐何苦再來﹖\n");
 		return 0;
 	}
 
 	// 須先在江湖上歷練過方可入門
 	if( me->query_level() < 1 ) {
-		do_chat("白象寺方丈微笑道﹕施主塵緣未了﹐且去歷練一番再來罷。\n");
+		do_chat("無念大師微笑道﹕施主塵緣未了﹐且去歷練一番再來罷。\n");
 		return 0;
 	}
 
 	// 羅漢杖法須以慈悲心降魔﹐慧根過低者難窺門徑（門檻甚低﹐尋常人皆可入）
 	if( me->query_attr("wis") < 14 ) {
-		do_chat("白象寺方丈端詳了你一會﹐搖頭道﹕施主慧根閉塞﹐難參我這路佛法。\n");
+		do_chat("無念大師端詳了你一會﹐搖頭道﹕施主慧根閉塞﹐難參我這路佛法。\n");
 		return 0;
 	}
 
 	do_chat(({
-		"白象寺方丈上下打量了你一番﹐微微頷首。\n",
-		"白象寺方丈道﹕我白象寺羅漢一脈﹐以杖降魔﹐施主可有這份慈悲心﹖\n",
-		"白象寺方丈宣了聲佛號﹕善哉善哉﹐你既與我佛有緣﹐老衲便收你入羅漢門下﹐傳你金剛伏魔杖法。\n",
+		"無念大師上下打量了你一番﹐微微頷首。\n",
+		"無念大師道﹕我白象寺羅漢一脈﹐以杖降魔﹐施主可有這份慈悲心﹖\n",
+		"無念大師宣了聲佛號﹕善哉善哉﹐你既與我佛有緣﹐老衲便收你入羅漢門下﹐傳你金剛伏魔杖法。\n",
 	}));
 	return 1;
 }
@@ -83,7 +83,7 @@ int accept_apprentice(object me)
 int init_apprentice(object me)
 {
 	if( me->query_class() != "commoner" ) {
-		do_chat("白象寺方丈雙手合十﹐道﹕施主既已另投他派﹐去吧。\n");
+		do_chat("無念大師雙手合十﹐道﹕施主既已另投他派﹐去吧。\n");
 		return 1;
 	}
 
@@ -107,8 +107,8 @@ int init_apprentice(object me)
 			"$N取過一根禪杖﹐將金剛伏魔杖法的入門杖訣緩緩傳授給$n。\n",
 			this_object(), me);
 		do_chat(({
-			"白象寺方丈宣了聲佛號﹕從今日起﹐你便是我白象寺羅漢門下的弟子了。\n",
-			"白象寺方丈道﹕武學無涯﹐你且到演武場勤加錘鍊﹐莫負了這身杖法。\n",
+			"無念大師宣了聲佛號﹕從今日起﹐你便是我白象寺羅漢門下的弟子了。\n",
+			"無念大師道﹕武學無涯﹐你且到演武場勤加錘鍊﹐莫負了這身杖法。\n",
 		}));
 	}
 }
@@ -236,7 +236,7 @@ int do_advance(object me, string branch)
 
 	// 分支名無效（含未指定）。
 	if( !branch || undefinedp(branches[branch]) ) {
-		do_chat("白象寺方丈雙手合十﹐宣了聲佛號﹕本寺進階只有「羅漢」、「禪師」、"
+		do_chat("無念大師雙手合十﹐宣了聲佛號﹕本寺進階只有「羅漢」、「禪師」、"
 		        "「降魔尊者」三路﹐施主欲修哪一門佛法﹖\n");
 		return notify_fail("");
 	}
@@ -244,38 +244,38 @@ int do_advance(object me, string branch)
 
 	// 須為白象寺入門弟子方可進階（非本派/平民一律不收）。
 	if( me->query("sect") != "白象寺" ) {
-		do_chat("白象寺方丈搖頭道﹕施主又非我白象寺門下﹐進階之事從何談起﹖且先拜入本寺再說。\n");
+		do_chat("無念大師搖頭道﹕施主又非我白象寺門下﹐進階之事從何談起﹖且先拜入本寺再說。\n");
 		return notify_fail("");
 	}
 
 	// 已轉過階者不得再轉。
 	if( stringp(me->query("sect_branch")) ) {
-		do_chat("白象寺方丈宣了聲佛號﹕施主既已選定「" + me->query("sect_branch") +
+		do_chat("無念大師宣了聲佛號﹕施主既已選定「" + me->query("sect_branch") +
 		        "」一脈﹐佛法貴在精專﹐豈可見異思遷﹖\n");
 		return notify_fail("");
 	}
 
 	// 等級門檻。
 	if( me->query_level() < b["level"] ) {
-		do_chat("白象寺方丈端詳了你一會﹐搖頭道﹕施主火候尚淺﹐且再潛修些時日﹐"
+		do_chat("無念大師端詳了你一會﹐搖頭道﹕施主火候尚淺﹐且再潛修些時日﹐"
 		        "待修為到了再來罷。\n");
 		return notify_fail("");
 	}
 
 	// 入門杖法(金剛伏魔杖法 rid-evil)火候門檻。
 	if( me->query_skill("rid-evil", 1) < b["rid-evil"] ) {
-		do_chat("白象寺方丈道﹕施主連我金剛伏魔杖法的根基都未練透﹐如何駕馭這上乘武功﹖"
+		do_chat("無念大師道﹕施主連我金剛伏魔杖法的根基都未練透﹐如何駕馭這上乘武功﹖"
 		        "且回演武場勤練去。\n");
 		return notify_fail("");
 	}
 
 	// 屬性門檻（各分支重不同根骨﹕羅漢/尊者重力、禪師重慧根禪定）。
 	if( me->query_attr(b["attr"]) < b["attr_min"] ) {
-		do_chat("白象寺方丈搖頭道﹕施主的根骨還撐不起這一路功夫﹐勉強習之徒傷己身。\n");
+		do_chat("無念大師搖頭道﹕施主的根骨還撐不起這一路功夫﹐勉強習之徒傷己身。\n");
 		return notify_fail("");
 	}
 	if( !undefinedp(b["attr2"]) && me->query_attr(b["attr2"]) < b["attr2_min"] ) {
-		do_chat("白象寺方丈宣了聲佛號﹕施主筋骨未足以承這降魔尊者的刀法剛勁﹐"
+		do_chat("無念大師宣了聲佛號﹕施主筋骨未足以承這降魔尊者的刀法剛勁﹐"
 		        "且去再淬鍊淬鍊這副皮囊。\n");
 		return notify_fail("");
 	}
@@ -320,8 +320,8 @@ int do_advance(object me, string branch)
 		"$N合什誦了聲佛號﹐寶相莊嚴﹐將一身「" + branch +
 		"」的上乘佛門武功傾囊傳授給$n。\n", this_object(), me);
 	do_chat(({
-		"白象寺方丈宣了聲佛號﹕善哉﹗從今日起﹐你便是我白象寺的「" + b["rank"] + "」了。\n",
-		"白象寺方丈道﹕" + b["desc"] + "\n",
+		"無念大師宣了聲佛號﹕善哉﹗從今日起﹐你便是我白象寺的「" + b["rank"] + "」了。\n",
+		"無念大師道﹕" + b["desc"] + "\n",
 	}));
 	return 1;
 }

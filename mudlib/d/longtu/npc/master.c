@@ -1,4 +1,4 @@
-// master.c -- 龍圖丹派掌門神醫
+// master.c -- 龍圖丹派掌門 陳維俠（牙山居士）
 
 #include <npc.h>
 
@@ -6,8 +6,8 @@ inherit F_VILLAGER;
 
 void create()
 {
-	set_name("龍圖丹師", ({ "alchemist master", "master", "physician", "doctor" }));
-	set("nickname", "杏林神醫");
+	set_name("陳維俠", ({ "chen weixia", "master", "alchemist", "physician", "doctor" }));
+	set("nickname", "牙山居士");
 	set_attr("str", 18);
 	set_attr("dex", 26);
 	set_attr("int", 28);
@@ -21,7 +21,7 @@ void create()
 	set_class("alchemist");
 	set("sect", "龍圖丹派");
 	set("rank", "掌門");
-	set("title", "龍圖丹派掌門神醫");
+	set("title", "龍圖丹派掌門");
 
 	set_skill("unarmed", 50);
 	set_skill("dodge", 100);
@@ -40,11 +40,11 @@ void create()
 
 	set("age", 58);
 	set("long",
-		"這位便是龍圖丹派的掌門神醫﹐一身青布道袍洗得發白﹐鬚眉皆已\n"
+		"這位便是龍圖丹派的掌門陳維俠﹐一身青布道袍洗得發白﹐鬚眉皆已\n"
 		"花白﹐面色卻紅潤如嬰﹐雙目溫和而有神。他腰間懸著一只盛放銀\n"
 		"針的錦匣﹐袖中常帶藥香。龍圖丹派以煉丹施針、懸壺濟世名動江\n"
 		"湖﹐掌門浸淫龍圖心經與武陀灸術數十年﹐一手驚異二針出神入化\n"
-		"﹐針到病除﹐活人無數﹐江湖人尊稱一聲「杏林神醫」。他久居醫\n"
+		"﹐針到病除﹐活人無數﹐江湖人尊稱一聲「牙山居士」。他久居醫\n"
 		"館坐堂施診﹐唯有心存仁念、悟性不俗的後輩﹐方有機會拜入門下\n"
 		"﹐習得這一身濟世活人的醫術針法。\n");
 	setup();
@@ -56,26 +56,26 @@ int accept_apprentice(object me)
 
 	// 已有師門者不收
 	if( me->query_class() != "commoner" ) {
-		do_chat("龍圖丹師捻著鬚﹐溫言道﹕你既已入別派﹐醫緣已定﹐何苦再來﹖\n");
+		do_chat("陳維俠捻著鬚﹐溫言道﹕你既已入別派﹐醫緣已定﹐何苦再來﹖\n");
 		return 0;
 	}
 
 	// 須先在江湖上歷練過方可入門
 	if( me->query_level() < 1 ) {
-		do_chat("龍圖丹師說道﹕你塵緣未歷﹐且去江湖上走動一番再來罷。\n");
+		do_chat("陳維俠說道﹕你塵緣未歷﹐且去江湖上走動一番再來罷。\n");
 		return 0;
 	}
 
 	// 醫道針法全憑一身悟性參詳﹐悟性過低者難窺門徑（門檻甚低﹐尋常人皆可入）
 	if( me->query_attr("int") < 14 ) {
-		do_chat("龍圖丹師端詳了你一會﹐搖頭道﹕你悟性閉塞﹐難參經絡藥性之奧﹐學不來我這路醫術。\n");
+		do_chat("陳維俠端詳了你一會﹐搖頭道﹕你悟性閉塞﹐難參經絡藥性之奧﹐學不來我這路醫術。\n");
 		return 0;
 	}
 
 	do_chat(({
-		"龍圖丹師上下打量了你一番﹐微微頷首。\n",
-		"龍圖丹師說道﹕我龍圖丹派以針藥濟世﹐你可有這份救人的仁心﹖\n",
-		"龍圖丹師捻鬚一笑﹕也罷﹐你既心存仁念、悟性不俗﹐我便收你為徒﹐傳你這一身醫術針法。\n",
+		"陳維俠上下打量了你一番﹐微微頷首。\n",
+		"陳維俠說道﹕我龍圖丹派以針藥濟世﹐你可有這份救人的仁心﹖\n",
+		"陳維俠捻鬚一笑﹕也罷﹐你既心存仁念、悟性不俗﹐我便收你為徒﹐傳你這一身醫術針法。\n",
 	}));
 	return 1;
 }
@@ -83,7 +83,7 @@ int accept_apprentice(object me)
 int init_apprentice(object me)
 {
 	if( me->query_class() != "commoner" ) {
-		do_chat("龍圖丹師擺了擺手﹐說道﹕你既已另投他派﹐去吧。\n");
+		do_chat("陳維俠擺了擺手﹐說道﹕你既已另投他派﹐去吧。\n");
 		return 1;
 	}
 
@@ -107,9 +107,9 @@ int init_apprentice(object me)
 			"$N取出一匣銀針﹐捻起一枚﹐將武陀灸術【驚異二針】的入門針法一招一式地傳授給$n。\n",
 			this_object(), me);
 		do_chat(({
-			"龍圖丹師說道﹕從今日起﹐你便是我龍圖丹派醫師門下的弟子了。\n",
-			"龍圖丹師叮囑道﹕醫者父母心﹐你且到演武場對著銅人勤練針法﹐辨穴施針﹐莫負了這身醫術。\n",
-			"龍圖丹師又道﹕丹房裡架著丹爐﹐你備齊藥材﹐便可在爐前 refine（煉丹）煉製丹藥。\n",
+			"陳維俠說道﹕從今日起﹐你便是我龍圖丹派醫師門下的弟子了。\n",
+			"陳維俠叮囑道﹕醫者父母心﹐你且到演武場對著銅人勤練針法﹐辨穴施針﹐莫負了這身醫術。\n",
+			"陳維俠又道﹕丹房裡架著丹爐﹐你備齊藥材﹐便可在爐前 refine（煉丹）煉製丹藥。\n",
 		}));
 	}
 }
@@ -229,7 +229,7 @@ int do_advance(object me, string branch)
 
 	// 分支名無效（含未指定）。
 	if( !branch || undefinedp(branches[branch]) ) {
-		do_chat("龍圖丹師捻鬚道﹕我龍圖丹派進階只有「杏林神手」、「劍甲門傳人」、"
+		do_chat("陳維俠捻鬚道﹕我龍圖丹派進階只有「杏林神手」、「劍甲門傳人」、"
 		        "「龍圖丹師」三路﹐你欲修哪一門醫術﹖\n");
 		return notify_fail("");
 	}
@@ -237,39 +237,39 @@ int do_advance(object me, string branch)
 
 	// 須為龍圖丹派入門弟子方可進階（非本派/平民一律不收）。
 	if( me->query("sect") != "龍圖丹派" ) {
-		do_chat("龍圖丹師搖頭道﹕你又非我龍圖丹派門下﹐進階之事從何談起﹖且先拜入本門再說。\n");
+		do_chat("陳維俠搖頭道﹕你又非我龍圖丹派門下﹐進階之事從何談起﹖且先拜入本門再說。\n");
 		return notify_fail("");
 	}
 
 	// 已轉過階者不得再轉。
 	if( stringp(me->query("sect_branch")) ) {
-		do_chat("龍圖丹師捻鬚道﹕你既已選定「" + me->query("sect_branch") +
+		do_chat("陳維俠捻鬚道﹕你既已選定「" + me->query("sect_branch") +
 		        "」一脈﹐醫道貴在專精﹐豈可見異思遷﹖\n");
 		return notify_fail("");
 	}
 
 	// 等級門檻。
 	if( me->query_level() < b["level"] ) {
-		do_chat("龍圖丹師端詳了你一會﹐搖頭道﹕你火候尚淺﹐且再潛修些時日﹐"
+		do_chat("陳維俠端詳了你一會﹐搖頭道﹕你火候尚淺﹐且再潛修些時日﹐"
 		        "待修為到了再來罷。\n");
 		return notify_fail("");
 	}
 
 	// 入門針法(武陀灸術【驚異二針】 amazing-needle)火候門檻。
 	if( me->query_skill("amazing-needle", 1) < b["amazing-needle"] ) {
-		do_chat("龍圖丹師道﹕你連我驚異二針的根基都未練透﹐如何駕馭這上乘醫術﹖"
+		do_chat("陳維俠道﹕你連我驚異二針的根基都未練透﹐如何駕馭這上乘醫術﹖"
 		        "且回演武場對著銅人勤練針法去。\n");
 		return notify_fail("");
 	}
 
 	// 屬性門檻（方士以悟性為本﹐部分分支另有第二道屬性門檻）。
 	if( me->query_attr(b["attr"]) < b["attr_min"] ) {
-		do_chat("龍圖丹師搖頭道﹕你悟性未足﹐尚參不透這一脈醫術的奧妙﹐"
+		do_chat("陳維俠搖頭道﹕你悟性未足﹐尚參不透這一脈醫術的奧妙﹐"
 		        "勉強學之徒亂心神。\n");
 		return notify_fail("");
 	}
 	if( !undefinedp(b["attr2"]) && me->query_attr(b["attr2"]) < b["attr2_min"] ) {
-		do_chat("龍圖丹師搖頭道﹕你慧根尚淺﹐參不透龍圖一脈丹道、針法的至理﹐"
+		do_chat("陳維俠搖頭道﹕你慧根尚淺﹐參不透龍圖一脈丹道、針法的至理﹐"
 		        "且去再參修參修。\n");
 		return notify_fail("");
 	}
@@ -303,8 +303,8 @@ int do_advance(object me, string branch)
 		"$N取出一匣銀針﹐捻針凝神﹐將一身「" + branch +
 		"」的上乘醫術針法傾囊傳授給$n。\n", this_object(), me);
 	do_chat(({
-		"龍圖丹師捻鬚含笑道﹕善哉﹗從今日起﹐你便是我龍圖丹派的「" + b["rank"] + "」了。\n",
-		"龍圖丹師道﹕" + b["desc"] + "\n",
+		"陳維俠捻鬚含笑道﹕善哉﹗從今日起﹐你便是我龍圖丹派的「" + b["rank"] + "」了。\n",
+		"陳維俠道﹕" + b["desc"] + "\n",
 	}));
 	return 1;
 }

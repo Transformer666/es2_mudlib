@@ -1,4 +1,4 @@
-// master.c -- 天師派掌教真人
+// master.c -- 天師派掌教真人 郭布（號朱衣真人）
 
 #include <npc.h>
 
@@ -6,7 +6,7 @@ inherit F_VILLAGER;
 
 void create()
 {
-	set_name("天師掌教", ({ "taoist master", "master", "priest" }));
+	set_name("郭布", ({ "guo bu", "taoist master", "master", "priest" }));
 	set("nickname", "朱衣真人");
 	set_attr("str", 20);
 	set_attr("dex", 22);
@@ -37,9 +37,9 @@ void create()
 
 	set("age", 56);
 	set("long",
-		"這位便是天師派的掌教真人﹐一身朱紅道袍﹐頭戴蓮花冠﹐手執一\n"
+		"這位便是天師派的掌教真人郭布﹐一身朱紅道袍﹐頭戴蓮花冠﹐手執一\n"
 		"柄拂塵﹐面色紅潤﹐雙目炯炯有神﹐周身隱隱透著一股溫煦的火氣。天\n"
-		"師派朱衣一脈以火證道﹐掌教真人浸淫火術數十年﹐一身道法已臻化境\n"
+		"師派朱衣一脈以火證道﹐郭布浸淫火術數十年﹐一身道法已臻化境\n"
 		"﹐江湖人稱「朱衣真人」。他久居三清殿中潛修大道﹐唯有靈性不俗、\n"
 		"與火有緣的後輩﹐方有機會拜入朱衣門下﹐習得這一身焚天煉地的道法\n"
 		"。\n");
@@ -52,26 +52,26 @@ int accept_apprentice(object me)
 
 	// 已有師門者不收
 	if( me->query_class() != "commoner" ) {
-		do_chat("天師掌教輕拂拂塵﹐說道﹕你既已入別派﹐道緣已定﹐何苦再來﹖\n");
+		do_chat("郭布輕拂拂塵﹐說道﹕你既已入別派﹐道緣已定﹐何苦再來﹖\n");
 		return 0;
 	}
 
 	// 須先在江湖上歷練過方可入道
 	if( me->query_level() < 1 ) {
-		do_chat("天師掌教說道﹕你塵緣未了﹐且去歷練一番再來罷。\n");
+		do_chat("郭布說道﹕你塵緣未了﹐且去歷練一番再來罷。\n");
 		return 0;
 	}
 
 	// 火術全憑靈性引動﹐靈性過低者難窺門徑（門檻甚低﹐尋常人皆可入）
 	if( me->query_attr("spi") < 14 ) {
-		do_chat("天師掌教端詳了你一會﹐搖頭道﹕你靈性閉塞﹐與火無緣﹐難學我這路道法。\n");
+		do_chat("郭布端詳了你一會﹐搖頭道﹕你靈性閉塞﹐與火無緣﹐難學我這路道法。\n");
 		return 0;
 	}
 
 	do_chat(({
-		"天師掌教上下打量了你一番﹐微微頷首。\n",
-		"天師掌教說道﹕我天師派朱衣一脈﹐以火證道﹐你可有這份道心﹖\n",
-		"天師掌教說道﹕也罷﹐你既與火有緣﹐我便收你入朱衣門下﹐傳你天師道法。\n",
+		"郭布上下打量了你一番﹐微微頷首。\n",
+		"郭布說道﹕我天師派朱衣一脈﹐以火證道﹐你可有這份道心﹖\n",
+		"郭布說道﹕也罷﹐你既與火有緣﹐我便收你入朱衣門下﹐傳你天師道法。\n",
 	}));
 	return 1;
 }
@@ -79,7 +79,7 @@ int accept_apprentice(object me)
 int init_apprentice(object me)
 {
 	if( me->query_class() != "commoner" ) {
-		do_chat("天師掌教揮了揮拂塵﹐說道﹕你既已另投他派﹐去吧。\n");
+		do_chat("郭布揮了揮拂塵﹐說道﹕你既已另投他派﹐去吧。\n");
 		return 1;
 	}
 
@@ -103,8 +103,8 @@ int init_apprentice(object me)
 			"$N取過一道朱符﹐將天師道法【火術】的入門口訣緩緩傳授給$n。\n",
 			this_object(), me);
 		do_chat(({
-			"天師掌教說道﹕從今日起﹐你便是我天師派朱衣門下的弟子了。\n",
-			"天師掌教說道﹕道法無涯﹐你且到演法場對火參修﹐莫負了這身道法。\n",
+			"郭布說道﹕從今日起﹐你便是我天師派朱衣門下的弟子了。\n",
+			"郭布說道﹕道法無涯﹐你且到演法場對火參修﹐莫負了這身道法。\n",
 		}));
 	}
 }
@@ -217,7 +217,7 @@ int do_advance(object me, string branch)
 
 	// 分支名無效（含未指定）。
 	if( !branch || undefinedp(branches[branch]) ) {
-		do_chat("天師掌教輕拂拂塵道﹕我天師派進階只有「朱衣真傳」、「素雲道人」、"
+		do_chat("郭布輕拂拂塵道﹕我天師派進階只有「朱衣真傳」、「素雲道人」、"
 		        "「太乙真人」三路﹐你欲修哪一脈道法﹖\n");
 		return notify_fail("");
 	}
@@ -225,38 +225,38 @@ int do_advance(object me, string branch)
 
 	// 須為天師派入門弟子方可進階（非本派/平民一律不收）。
 	if( me->query("sect") != "天師派" ) {
-		do_chat("天師掌教搖頭道﹕你又非我天師派門下﹐進階之事從何談起﹖且先拜入本門再說。\n");
+		do_chat("郭布搖頭道﹕你又非我天師派門下﹐進階之事從何談起﹖且先拜入本門再說。\n");
 		return notify_fail("");
 	}
 
 	// 已轉過階者不得再轉。
 	if( stringp(me->query("sect_branch")) ) {
-		do_chat("天師掌教道﹕你既已選定「" + me->query("sect_branch") +
+		do_chat("郭布道﹕你既已選定「" + me->query("sect_branch") +
 		        "」一脈﹐道貴專一﹐豈可見異思遷﹖\n");
 		return notify_fail("");
 	}
 
 	// 等級門檻。
 	if( me->query_level() < b["level"] ) {
-		do_chat("天師掌教端詳了你一會﹐搖頭道﹕你道行尚淺﹐且再潛修些時日﹐"
+		do_chat("郭布端詳了你一會﹐搖頭道﹕你道行尚淺﹐且再潛修些時日﹐"
 		        "待修為到了再來罷。\n");
 		return notify_fail("");
 	}
 
 	// 入門火術(天師道法【火術】 taoism-fire)火候門檻。
 	if( me->query_skill("taoism-fire", 1) < b["taoism-fire"] ) {
-		do_chat("天師掌教道﹕你連我天師火術的根基都未練透﹐如何駕馭這上乘道法﹖"
+		do_chat("郭布道﹕你連我天師火術的根基都未練透﹐如何駕馭這上乘道法﹖"
 		        "且回演法場對火參修去。\n");
 		return notify_fail("");
 	}
 
 	// 屬性門檻（道士以靈性為本﹐部分分支另有第二道屬性門檻）。
 	if( me->query_attr(b["attr"]) < b["attr_min"] ) {
-		do_chat("天師掌教搖頭道﹕你的靈性還引動不了這一脈道法﹐勉強修之徒耗心神。\n");
+		do_chat("郭布搖頭道﹕你的靈性還引動不了這一脈道法﹐勉強修之徒耗心神。\n");
 		return notify_fail("");
 	}
 	if( !undefinedp(b["attr2"]) && me->query_attr(b["attr2"]) < b["attr2_min"] ) {
-		do_chat("天師掌教搖頭道﹕你悟性未足﹐尚參不透四系雙修的玄奧﹐"
+		do_chat("郭布搖頭道﹕你悟性未足﹐尚參不透四系雙修的玄奧﹐"
 		        "且去再參修參修。\n");
 		return notify_fail("");
 	}
@@ -290,8 +290,8 @@ int do_advance(object me, string branch)
 		"$N拂塵一揚﹐口誦真言﹐將一身「" + branch +
 		"」的上乘道法傾囊傳授給$n。\n", this_object(), me);
 	do_chat(({
-		"天師掌教含笑道﹕善哉﹗從今日起﹐你便是我天師派的「" + b["rank"] + "」了。\n",
-		"天師掌教道﹕" + b["desc"] + "\n",
+		"郭布含笑道﹕善哉﹗從今日起﹐你便是我天師派的「" + b["rank"] + "」了。\n",
+		"郭布道﹕" + b["desc"] + "\n",
 	}));
 	return 1;
 }

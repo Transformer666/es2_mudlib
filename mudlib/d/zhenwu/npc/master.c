@@ -6,7 +6,7 @@ inherit F_VILLAGER;
 
 void create()
 {
-	set_name("振武統領", ({ "soldier master", "master", "general", "commander" }));
+	set_name("魯熙年", ({ "lu xinian", "soldier master", "master", "general", "commander" }));
 	set("nickname", "鎮北將軍");
 	set_attr("str", 28);
 	set_attr("dex", 24);
@@ -53,26 +53,26 @@ int accept_apprentice(object me)
 
 	// 已有師門者不收
 	if( me->query_class() != "commoner" ) {
-		do_chat("振武統領把長槍頓地一震﹐沉聲道﹕你既已入別派﹐軍籍難改﹐何苦再來﹖\n");
+		do_chat("魯熙年把長槍頓地一震﹐沉聲道﹕你既已入別派﹐軍籍難改﹐何苦再來﹖\n");
 		return 0;
 	}
 
 	// 須先在江湖上歷練過方可從軍
 	if( me->query_level() < 1 ) {
-		do_chat("振武統領上下打量了你一眼﹐喝道﹕乳臭未乾的雛兒﹐且去歷練一番再來投軍罷。\n");
+		do_chat("魯熙年上下打量了你一眼﹐喝道﹕乳臭未乾的雛兒﹐且去歷練一番再來投軍罷。\n");
 		return 0;
 	}
 
 	// 槍陣廝殺全憑一身膂力﹐筋骨孱弱者扛不起這桿長槍（門檻甚低﹐尋常人皆可入）
 	if( me->query_attr("str") < 14 ) {
-		do_chat("振武統領搖頭道﹕你這身子骨連長槍都端不穩﹐如何上陣殺敵﹖且去練壯了再來。\n");
+		do_chat("魯熙年搖頭道﹕你這身子骨連長槍都端不穩﹐如何上陣殺敵﹖且去練壯了再來。\n");
 		return 0;
 	}
 
 	do_chat(({
-		"振武統領抱起雙臂﹐將你細細打量了一番。\n",
-		"振武統領朗聲道﹕我振武軍營軍法森嚴﹐操練如熬煉鋼鐵﹐你可吃得了這份苦﹖\n",
-		"振武統領哈哈一笑﹕也罷﹐瞧你還算有把子力氣﹐我便收你入軍隊統領門下﹐傳你這套殺敵的槍法。\n",
+		"魯熙年抱起雙臂﹐將你細細打量了一番。\n",
+		"魯熙年朗聲道﹕我振武軍營軍法森嚴﹐操練如熬煉鋼鐵﹐你可吃得了這份苦﹖\n",
+		"魯熙年哈哈一笑﹕也罷﹐瞧你還算有把子力氣﹐我便收你入軍隊統領門下﹐傳你這套殺敵的槍法。\n",
 	}));
 	return 1;
 }
@@ -80,7 +80,7 @@ int accept_apprentice(object me)
 int init_apprentice(object me)
 {
 	if( me->query_class() != "commoner" ) {
-		do_chat("振武統領把長槍一收﹐說道﹕你既已另投他處﹐去吧。\n");
+		do_chat("魯熙年把長槍一收﹐說道﹕你既已另投他處﹐去吧。\n");
 		return 1;
 	}
 
@@ -104,8 +104,8 @@ int init_apprentice(object me)
 			"$N抄起一桿長槍﹐將龍神槍法的入門槍勢一招一式地傳授給$n。\n",
 			this_object(), me);
 		do_chat(({
-			"振武統領朗聲道﹕從今日起﹐你便是我振武軍營軍隊統領門下的兵了。\n",
-			"振武統領沉聲道﹕到校場領桿長槍勤加操練﹐槍要沉、步要穩、心要狠﹐莫墮了我軍威。\n",
+			"魯熙年朗聲道﹕從今日起﹐你便是我振武軍營軍隊統領門下的兵了。\n",
+			"魯熙年沉聲道﹕到校場領桿長槍勤加操練﹐槍要沉、步要穩、心要狠﹐莫墮了我軍威。\n",
 		}));
 	}
 }
@@ -238,7 +238,7 @@ int do_advance(object me, string branch)
 
 	// 分支名無效（含未指定）。
 	if( !branch || undefinedp(branches[branch]) ) {
-		do_chat("振武統領把長槍頓地一震﹐沉聲道﹕我振武軍營進階只有「軍隊統領」、"
+		do_chat("魯熙年把長槍頓地一震﹐沉聲道﹕我振武軍營進階只有「軍隊統領」、"
 		        "「怒濤先鋒」、「振武軍師」三路﹐你要投哪一營﹖\n");
 		return notify_fail("");
 	}
@@ -246,38 +246,38 @@ int do_advance(object me, string branch)
 
 	// 須為振武軍營入門弟子方可進階（非本派/平民一律不收）。
 	if( me->query("sect") != "振武軍營" ) {
-		do_chat("振武統領冷哼一聲﹕你又非我振武軍營的兵﹐進階之事從何談起﹖且先投軍入伍再說。\n");
+		do_chat("魯熙年冷哼一聲﹕你又非我振武軍營的兵﹐進階之事從何談起﹖且先投軍入伍再說。\n");
 		return notify_fail("");
 	}
 
 	// 已轉過階者不得再轉。
 	if( stringp(me->query("sect_branch")) ) {
-		do_chat("振武統領搖頭道﹕你既已編入「" + me->query("sect_branch") +
+		do_chat("魯熙年搖頭道﹕你既已編入「" + me->query("sect_branch") +
 		        "」一營﹐軍令如山、軍籍難改﹐豈可朝三暮四﹖\n");
 		return notify_fail("");
 	}
 
 	// 等級門檻。
 	if( me->query_level() < b["level"] ) {
-		do_chat("振武統領上下打量了你一眼﹐搖頭道﹕你資歷尚淺﹐且再歷練些時日﹐"
+		do_chat("魯熙年上下打量了你一眼﹐搖頭道﹕你資歷尚淺﹐且再歷練些時日﹐"
 		        "待戰陣磨得熟了再來罷。\n");
 		return notify_fail("");
 	}
 
 	// 入門槍法(龍神槍法 dragon god)火候門檻。
 	if( me->query_skill("dragon god", 1) < b["dragon god"] ) {
-		do_chat("振武統領喝道﹕你連我龍神槍法的根基都未練透﹐如何駕馭這上乘軍中絕學﹖"
+		do_chat("魯熙年喝道﹕你連我龍神槍法的根基都未練透﹐如何駕馭這上乘軍中絕學﹖"
 		        "且回校場勤練去。\n");
 		return notify_fail("");
 	}
 
 	// 屬性門檻（統領/先鋒重膂力﹐軍師重悟性慧根﹐部分分支另有第二道屬性門檻）。
 	if( me->query_attr(b["attr"]) < b["attr_min"] ) {
-		do_chat("振武統領搖頭道﹕你的根骨還撐不起這一營的本事﹐勉強習之徒傷己身。\n");
+		do_chat("魯熙年搖頭道﹕你的根骨還撐不起這一營的本事﹐勉強習之徒傷己身。\n");
 		return notify_fail("");
 	}
 	if( !undefinedp(b["attr2"]) && me->query_attr(b["attr2"]) < b["attr2_min"] ) {
-		do_chat("振武統領搖頭道﹕你悟性慧根未足﹐參不透軍師這套運籌帷幄的本事﹐"
+		do_chat("魯熙年搖頭道﹕你悟性慧根未足﹐參不透軍師這套運籌帷幄的本事﹐"
 		        "且去再磨練磨練。\n");
 		return notify_fail("");
 	}
@@ -322,8 +322,8 @@ int do_advance(object me, string branch)
 		"$N把長槍頓地一震﹐肅然點將﹐而後將一身「" + branch +
 		"」的軍中絕學傾囊傳授給$n。\n", this_object(), me);
 	do_chat(({
-		"振武統領朗聲道﹕好﹗從今日起﹐你便升任我振武軍營的「" + b["rank"] + "」了。\n",
-		"振武統領沉聲道﹕" + b["desc"] + "\n",
+		"魯熙年朗聲道﹕好﹗從今日起﹐你便升任我振武軍營的「" + b["rank"] + "」了。\n",
+		"魯熙年沉聲道﹕" + b["desc"] + "\n",
 	}));
 	return 1;
 }
