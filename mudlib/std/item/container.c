@@ -6,6 +6,12 @@ inherit ITEM;
 
 void setup()
 {
+	// 必須先呼 ::setup()：ITEM::setup()(std/item.c) 做 seteuid(getuid()) 與
+	//   set_default_object(clone 的藍本 dbase 回退)。漏呼會使**所有** CONTAINER_ITEM
+	//   的 clone euid=0、dbase 無藍本回退——丹鼎 new() 報 *Attempt to create object
+	//   without effective UID、只設藍本的 identity 旗標在 clone 上讀不到(見 lesson #13)。
+	//   COMBINED_ITEM(std/item/combined.c) 一向有呼 ::setup()，此處補齊以與之一致。
+	::setup();
 	if( !query("exits") )
 		set("exits/out", (: environment :));
 }
