@@ -95,6 +95,58 @@ carry_money(string type, int amount)
     ob->set_amount(amount);
 }
 
+// carry_random_weapon(chance [, wield]) :
+//   Opt-in convenience for combat NPCs.  With `chance`% probability, asks
+//   PREFIX_D for a level-appropriate material-prefixed weapon (青銅/太陽/天龍...)
+//   and moves it onto this NPC.  Call this from a mob's create() *after*
+//   setup() (so query_level() is meaningful).  Returns the weapon object,
+//   or 0 when nothing was generated.
+//
+//   - master copies never generate equipment (mirrors carry_object()).
+//   - fully defensive: if PREFIX_D is missing or doesn't expose
+//     random_prefixed_weapon(), this silently no-ops and never breaks boot.
+//   - `wield` defaults to 1 (NPC wields the weapon if it can); pass 0 to just
+//     carry it so the mob can pick it up / be looted for it.
+varargs object
+carry_random_weapon(int chance, int wield)
+{
+    object daemon, weapon;
+    int level;
+
+    // Don't let the master copy clone equipment.
+    if( !clonep() ) return 0;
+
+    if( chance <= 0 ) return 0;
+    if( random(100) >= chance ) return 0;
+
+    // Resolve the prefix daemon defensively. If the system isn't installed
+    // yet (sibling task), do nothing rather than error out the whole NPC.
+    if( catch(daemon = load_object(PREFIX_D)) || !objectp(daemon) )
+        return 0;
+    if( !function_exists("random_prefixed_weapon", daemon) )
+        return 0;
+
+    level = query_level();
+    if( level <= 0 ) level = 1;
+
+    weapon = daemon->random_prefixed_weapon(level);
+    if( !objectp(weapon) ) return 0;
+
+    if( !weapon->move(this_object()) ) {
+        // Couldn't carry it (weight/blocked) -- drop in environment if we can,
+        // otherwise dispose of it so no orphan weapon leaks.
+        if( !environment() || !weapon->move(environment()) )
+            destruct(weapon);
+        return 0;
+    }
+
+    // By default, wield it (no arg -> wield_as default skill on the weapon).
+    if( wield != 0 && function_exists("wield", weapon) )
+        weapon->wield();
+
+    return weapon;
+}
+
 int is_chatting() { return functionp(next_chat) != 0; }
 
 int is_npc() { return 1; }

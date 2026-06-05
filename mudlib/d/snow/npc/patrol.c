@@ -24,6 +24,10 @@ void create()
     carry_object( STOCK_ARMOR("cloth") )->wear();
     // Wiled the sword when protecting someone. (Just for cool :P)
     carry_object( STOCK_WEAPON("broadsword"));
+
+    // 小怪機率性掉落隨機前綴武器：8% 機率多帶一把材質前綴武器（不自動 wield﹐
+    // 純帶在身上供拾用/掉落）。PREFIX_D 未安裝時自動無作用。
+    carry_random_weapon(8, 0);
 }
 
 

@@ -29,6 +29,10 @@ create()
   setup();
   carry_object("/obj/area/obj/cloth")->wear();
   carry_object("/obj/area/obj/shortsword")->wield();
+
+  // 小怪機率性掉落隨機前綴武器：盜匪型小怪 15% 機率帶一把材質前綴武器﹐
+  // 並改持該武器（若有產生）。PREFIX_D 未安裝時自動無作用﹐不影響開機。
+  carry_random_weapon(15);
 }
 
 int

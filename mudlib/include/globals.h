@@ -25,6 +25,7 @@
 #define CLAN_D "/daemon/misc/clan.c"
 #define TITLE_D "/daemon/misc/title.c"
 #define LOOT_D "/daemon/misc/loot.c"
+#define PREFIX_D "/daemon/misc/weapon_prefix.c"
 #define COMBAT_D "/adm/daemons/combatd.c"
 #define COMMAND_D "/adm/daemons/cmd_d.c"
 #define DAEMON_D "/adm/daemons/daemond.c"

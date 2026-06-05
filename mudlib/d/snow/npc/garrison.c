@@ -26,6 +26,10 @@ void create()
     setup();
     carry_object( STOCK_ARMOR("cloth") )->wear();
     carry_object( STOCK_WEAPON("broadsword") )->wield();
+
+    // 小怪機率性掉落隨機前綴武器：10% 機率帶一把與等級相稱的材質前綴武器，
+    // 並改持該武器（若有產生）。PREFIX_D 未安裝時自動無作用，不影響開機。
+    carry_random_weapon(10);
 }
 
 void init()

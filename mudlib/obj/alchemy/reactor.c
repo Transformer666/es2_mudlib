@@ -47,19 +47,29 @@ int do_prepare(string arg);
 
 void create()
 {
+    // CONTAINER_ITEM (std/item/container.c) 的 setup() 漏呼 ::setup()﹐故 ITEM::setup 內的
+    //   seteuid(getuid()) 不會跑﹐clone 出來的鼎 euid=0。結丹時 do_prepare 用 new() 生丹藥﹐
+    //   無 euid 會 "Attempt to create object without effective UID" 而靜默中止(丹結不出)。
+    //   故此處自行補 seteuid(getuid())﹐使 clone 持有效 euid 方能 new()。(系統性 bug 詳見
+    //   PROGRESS「container.c::setup 漏 ::setup()」記載﹐待人決定是否修共用基底。)
+    seteuid(getuid());
     set_name("青銅丹鼎", ({ "bronze reactor", "reactor", "丹鼎", "鼎" }));
     set_weight(8000);
     set_max_encumbrance(60000);     // 容得下 5 份配方(每份 base_weight 100)綽綽有餘。
-    if( !clonep() ) {
-        set("unit", "座");
-        set("value", 250);          // docs L31：青銅丹鼎 250 文。
-        set("long",
-            "一座古樸的青銅丹鼎﹐鼎身斑駁泛著銅綠﹐三足兩耳﹐鼎腹寬深可盛藥料。\n"
-            "煉丹時須先以「green seal」封住鼎口聚住藥氣﹐置入丹爐受火煉化﹐\n"
-            "火候煉足後解封﹐再 prepare 結成丹藥。\n");
-        // query("reactor")：供丹爐辨識「這是丹鼎」用。
-        set("reactor", 1);
-    }
+    // 注意：不可用 if(!clonep()) 只設藍本。CONTAINER_ITEM (std/item/container.c) 的 setup()
+    //   未呼 ::setup()﹐故其 clone 不會被 set_default_object 掛上藍本﹐dbase 失去「藍本回退」
+    //   (feature/dbase.c L51)。於是只設藍本的 identity 旗標 (reactor) 在 clone 上 query 回 0﹐
+    //   封丹/入爐/結丹全部失效。故這些設定一律「無條件」設於每個 instance。
+    //   (COMBINED_ITEM 的 setup() 有呼 ::setup()﹐故 mixture/firewood 不受此累——詳見 PROGRESS
+    //    「container.c::setup 漏 ::setup()」系統性 bug 記載﹐待人決定是否修共用基底。)
+    set("unit", "座");
+    set("value", 250);          // docs L31：青銅丹鼎 250 文。
+    set("long",
+        "一座古樸的青銅丹鼎﹐鼎身斑駁泛著銅綠﹐三足兩耳﹐鼎腹寬深可盛藥料。\n"
+        "煉丹時須先以「green seal」封住鼎口聚住藥氣﹐置入丹爐受火煉化﹐\n"
+        "火候煉足後解封﹐再 prepare 結成丹藥。\n");
+    // query("reactor")：供丹爐辨識「這是丹鼎」用 (identity 旗標﹐每個 instance 必設)。
+    set("reactor", 1);
     // 丹鼎是「盛料的容器」而非「可進入的房間」。CONTAINER_ITEM::setup 會在
     // query("exits") 為空時自動補上 exits/out(使之可 enter / go out)﹐這對丹鼎並
     // 不合理﹐故先擺一個空 exits 佔位﹐令其 setup 不再加 out(do_look 的 go out 提示

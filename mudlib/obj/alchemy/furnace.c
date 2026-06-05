@@ -76,20 +76,23 @@ private void stop_fire();
 
 void create()
 {
+    // 同 reactor.c：CONTAINER_ITEM 的 setup() 漏呼 ::setup()﹐clone 的爐 euid=0。雖丹爐本身
+    //   目前未直接 new()﹐仍補 seteuid(getuid()) 與丹鼎一致﹐免日後爐內生物件(如灰燼)踩同坑。
+    seteuid(getuid());
     set_name("青銅丹爐", ({ "bronze furnace", "furnace", "丹爐", "爐" }));
     set_weight(20000);
     set_max_encumbrance(80000);     // 容得下丹鼎 + 數十根松柴。
-    if( !clonep() ) {
-        set("unit", "座");
-        set("value", 10000);        // docs L33：1 兩黃金 = 10000 文。
-        set("long",
-            "一座厚重的青銅丹爐﹐爐膛深廣﹐爐壁焦黑﹐底下留著進柴的爐口。\n"
-            "煉丹時把封好的丹鼎置於爐膛(put reactor in furnace)﹐設定爐位\n"
-            "(setup furnace toward <方位>)﹐點火(ignite firewood)後投入松柴﹐\n"
-            "守爐文武﹐待火候煉足﹐便能結丹。\n");
-        // query("furnace")：供丹鼎 / put 指令辨識「這是丹爐」用。
-        set("furnace", 1);
-    }
+    // 同 reactor.c：CONTAINER_ITEM 的 setup() 漏呼 ::setup()﹐clone 無藍本回退﹐故 identity
+    //   旗標 (furnace) 與設定一律「無條件」設於每個 instance﹐不可用 if(!clonep()) 只設藍本。
+    set("unit", "座");
+    set("value", 10000);        // docs L33：1 兩黃金 = 10000 文。
+    set("long",
+        "一座厚重的青銅丹爐﹐爐膛深廣﹐爐壁焦黑﹐底下留著進柴的爐口。\n"
+        "煉丹時把封好的丹鼎置於爐膛(put reactor in furnace)﹐設定爐位\n"
+        "(setup furnace toward <方位>)﹐點火(ignite firewood)後投入松柴﹐\n"
+        "守爐文武﹐待火候煉足﹐便能結丹。\n");
+    // query("furnace")：供丹鼎 / put 指令辨識「這是丹爐」用 (identity 旗標﹐每個 instance 必設)。
+    set("furnace", 1);
     // 丹爐是「盛鼎燃柴的爐具」而非「可進入的房間」。同 reactor.c：擺空 exits 佔位﹐
     // 抑制 CONTAINER_ITEM::setup 自動補的 exits/out（免玩家 enter furnace）。
     set("exits", ([ ]));
