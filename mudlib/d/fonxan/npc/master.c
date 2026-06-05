@@ -1,6 +1,7 @@
 // master.c -- 封山派掌門 柳東蘆
 
 #include <npc.h>
+#include <ansi.h>
 
 inherit F_VILLAGER;
 
@@ -277,4 +278,53 @@ int do_advance(object me, string branch)
 	}));
 	return 1;
 }
+
+// ─────────────────────────────────────────────────────────────────────────
+// 全服唯一掉落：柳東蘆(封山掌門)伏誅後，其畢生佩劍自屍身遺落——全服任何時刻至多一柄。
+//   走 LOOT_D("/daemon/misc/loot.c")->unique_drop(藍本, 屍體)：盤點世界現存該神兵 clone
+//   數，已有任一柄(含其他屍體/房間/玩家身上者)則不再掉(回 0)，故同一件神兵全服唯一。
+//   下手者須為真實玩家(userp)。結構鏡 d/langwo/npc/wolfking.c::die()：先 ::die()(屍體於此
+//   生成並登錄 temp("corpse"))，再於屍體內置入掉落物(唯一掉落須在屍體生成「後」入屍)。
+//   docs/02-遊戲系統與機制/05-裝備與強化.md L151：柳東蘆→玄蘇劍/火鱗衣。神兵取 obj/topgear
+//   之頂級劍(起手即頂 enchant_cap，不破壞強化平衡)，契合「青嶂劍翁」劍派掌門。
+//   (LOOT_D 巨集需 globals.h，npc.h 未含，故逕用字面路徑——等義 call_other。)
+// ─────────────────────────────────────────────────────────────────────────
+#define FONXAN_UNIQUE_LOOT  "/obj/topgear/xuanshuang_sword"  // 神兵 玄霜劍(頂級劍)
+
+void die();
+private void drop_unique(object who);
+
+// 全服唯一掉落：下手者須為真實玩家；於 ::die() 之後呼叫，corpse 已生成於 temp("corpse")。
+private void drop_unique(object who)
+{
+	object corpse, loot;
+
+	if( !objectp(who) ) return;
+
+	corpse = query_temp("corpse");
+	if( !objectp(corpse) ) return;
+
+	// 全服唯一：LOOT_D 盤點世界現存該神兵 clone 數，已有任一柄則回 0(不再掉)。
+	loot = "/daemon/misc/loot.c"->unique_drop(FONXAN_UNIQUE_LOOT, corpse);
+	if( !objectp(loot) ) return;
+
+	message_vision(HIY
+		"柳東蘆頹然倒地之際﹐腰間那柄不起眼的長劍「噹」地脫鞘墜地——劍身青鋒湛湛、"
+		"隱隱透出一層森森寒霜﹐赫然便是封山掌門畢生佩藏、江湖久已絕跡的一柄神兵﹗\n" NOR);
+}
+
+// 死亡：先 ::die()(屍體/bounty/善後悉依 std/char/npc.c::die()﹐恒呼不可略﹐屍體於此生成
+//   並登錄 temp("corpse"))﹐再於下手者為真實玩家時﹐自屍身遺落全服唯一的神兵。
+void die()
+{
+	object killer;
+
+	killer = last_damage_giver();
+
+	::die();
+
+	if( objectp(killer) && killer != this_object() && userp(killer) )
+		drop_unique(killer);
+}
+
 // vim: set ts=4 sw=4 syntax=lpc
