@@ -42,8 +42,8 @@ int set_sealed(int flag);
 int query_sealed();
 int count_mixture();
 void recheck_unknown_mix();
+int receive_object(object ob, int from_inventory);
 int do_prepare(string arg);
-private object furnace_of();
 
 void create()
 {
@@ -60,12 +60,20 @@ void create()
         // query("reactor")：供丹爐辨識「這是丹鼎」用。
         set("reactor", 1);
     }
+    // 丹鼎是「盛料的容器」而非「可進入的房間」。CONTAINER_ITEM::setup 會在
+    // query("exits") 為空時自動補上 exits/out(使之可 enter / go out)﹐這對丹鼎並
+    // 不合理﹐故先擺一個空 exits 佔位﹐令其 setup 不再加 out(do_look 的 go out 提示
+    // 亦隨之消失)。容器的 put/get 語意(accept_object/hold_object/receive_object)不受影響。
+    set("exits", ([ ]));
     setup();
 }
 
 void init()
 {
     // prepare：結丹（docs L65）。掛在丹鼎上﹐玩家身邊有鼎即可用。
+    // 注意：init() 在玩家進入丹鼎所在環境(房間 / 玩家身上)時觸發﹐故須先
+    // get reactor from furnace（火候煉足、熄火後 hold_object 即放行）把鼎取到
+    // 房間 / 身上﹐方得 prepare。此正合 docs L65「get all from reactor; prepare」。
     add_action("do_prepare", "prepare");
 }
 
@@ -148,11 +156,14 @@ int accept_object(object player, object ob)
     return 1;
 }
 
-// receive_object -- 物件實際移入鼎內後回呼(get.c 用此辨識容器﹐put 後驅動亦呼)。
-//   移入完成才能正確統計﹐故在此重判不知名配方旗標。
+// receive_object -- 物件移入鼎內前由 feature/move.c::move 回呼(回 0 則拒收)。
+//   先讓 base(F_MOVE) 做完重量 / 件數守則﹐再排一次延後的不知名配方重判——
+//   move.c 在本函式回 1「之後」才真正 move_object(ob)﹐故須 call_out(...,0) 延到
+//   下一輪 ob 已在鼎內方統計得準(不可在此即時 recheck﹐那時 ob 尚未入鼎)。
 int receive_object(object ob, int from_inventory)
 {
-    recheck_unknown_mix();
+    if( !::receive_object(ob, from_inventory) ) return 0;
+    call_out("recheck_unknown_mix", 0);
     return 1;
 }
 
@@ -166,14 +177,6 @@ int hold_object(object ob)
     }
     // 解封狀態：允許取出﹐取後旗標待下一動作重算(此處延後 call_out 重算﹐免取料當下統計到自己)。
     call_out("recheck_unknown_mix", 0);
-    return 0;
-}
-
-// furnace_of -- 本鼎當前所在的丹爐(若被 put 進丹爐)。否則回 0。
-private object furnace_of()
-{
-    object env = environment(this_object());
-    if( objectp(env) && env->query("furnace") ) return env;
     return 0;
 }
 
@@ -240,8 +243,10 @@ int do_prepare(string arg)
         pill_ob = new(pill_path);
         if( !objectp(pill_ob) ) { burnt += n; destruct(ob); continue; }
 
-        // 成品多為 COMBINED_ITEM(有 amount)﹐一次結 n 粒﹔否則逐粒 clone。
-        if( pill_ob->query_amount() != 0 || function_exists("set_amount", pill_ob) ) {
+        // 成品丹藥皆為 COMBINED_ITEM(有 set_amount/amount﹐見 obj/medication/
+        // alchemist/*.c)﹐一次結 n 粒﹔保險起見以 function_exists 守一道﹐
+        // 無 set_amount 的異種藍本則逐粒 clone。
+        if( function_exists("set_amount", pill_ob) ) {
             pill_ob->set_amount(n);
             pill_ob->move(me);
         } else {

@@ -22,14 +22,18 @@
 //         火候衝過 max_heat 仍燒：過熱 -> 鼎 set("overheated",1)﹐燒焦(docs L79-80)。
 //
 // === 火候累積模型(數值來源見上﹐未明處集中於此 #define 並標明) ===
-//   docs：130-150 kW 維持「10 分」-> 火候 800-820 kJ。
+//   docs：130-150 kW(13-15 根松柴)維持「10 分」-> 火候落 800-820 kJ。
 //   以 TICK_SECONDS 秒一跳的 call_out 累積﹕10 分 = 600 秒 = 600/TICK_SECONDS 跳。
 //   每跳火候增量 dHeat = power(kW) * TICK_SECONDS / HEAT_DIVISOR。
-//   令 135 kW(窗中值) 跑滿 600 秒恰達 810 kJ(窗中值)﹐反解 HEAT_DIVISOR：
+//   令 135 kW(功率窗中值) 跑滿 600 秒(10 分)恰達 810 kJ(火候窗中值)﹐反解：
 //     810 = 135 * 600 / HEAT_DIVISOR  ->  HEAT_DIVISOR = 100。
-//   故 13 根(130kW)10 分 -> 780﹔15 根(150kW)10 分 -> 900﹔落窗端點略寬﹐
-//   符合 docs「13-15 根」與「800-820」的 trade-off(根數多則更快達標亦更易過熱)。
-//   此 HEAT_DIVISOR 為「未明確標示的換算係數」﹐集中於此便於日後校調。
+//   故 TICK=15 時﹐130kW -> 19.5/跳、150kW -> 22.5/跳﹐約 40 跳(10 分)逼近窗。
+//
+//   「準確落窗」之關鍵(否則一跳就可能從 798 衝到 820 以上)：burn() 在「火候尚
+//   未達 min_h、但加一跳會衝過 max_h」時﹐把火候「收」到恰落窗中(min_h..max_h)﹐
+//   模擬方士臨門收火。如此只要功率落在 [min_power,max_power](13-15 根)﹐火候
+//   必穩穩落窗 -> 成丹﹔功率過大(根數逾窗)時收火失準﹐才會過熱燒焦。
+//   此 HEAT_DIVISOR / 收火邏輯為「docs 未明示的換算與控火細節」﹐集中於此便於校調。
 //
 // === 可驗(wiz/debug)途徑 ===
 //   火候須真火慢熬 10 分﹐不利測試。故加：
@@ -63,6 +67,7 @@ inherit CONTAINER_ITEM;
 // 前置宣告(lesson #12)。
 private object reactor_in();
 private int total_firewood_kw();
+private int *heat_window();
 int do_setup(string arg);
 int do_ignite(string arg);
 void burn();
@@ -85,6 +90,9 @@ void create()
         // query("furnace")：供丹鼎 / put 指令辨識「這是丹爐」用。
         set("furnace", 1);
     }
+    // 丹爐是「盛鼎燃柴的爐具」而非「可進入的房間」。同 reactor.c：擺空 exits 佔位﹐
+    // 抑制 CONTAINER_ITEM::setup 自動補的 exits/out（免玩家 enter furnace）。
+    set("exits", ([ ]));
     setup();
 }
 
@@ -118,6 +126,29 @@ private int total_firewood_kw()
         kw += n * (int)ob->query("kw_each");
     }
     return kw;
+}
+
+// heat_window -- 取本爐當前所煉丹方的火候/功率窗 ({ min_h, max_h, min_p, max_p })。
+//   來源：鼎內任一份 mixture 對應成品的 produce_param(見 mixture.c / 各丹藥檔)。
+//   找不到(空鼎 / 載不起)則回 docs 小還丹後備值 DEFAULT_*。burn() 收火與
+//   check_heat() 判定共用此窗﹐確保兩處數值一致(單一真相源)。
+private int *heat_window()
+{
+    object reactor, ob;
+    mapping pp = 0;
+    int min_h, max_h, min_p, max_p;
+
+    reactor = reactor_in();
+    if( reactor ) {
+        foreach(ob in all_inventory(reactor)) {
+            if( ob->query("mixture") ) { pp = ob->query_produce_param(); break; }
+        }
+    }
+    min_h = (pp && pp["min_heat"])       ? pp["min_heat"]       : DEFAULT_MIN_HEAT;
+    max_h = (pp && pp["max_heat"])       ? pp["max_heat"]       : DEFAULT_MAX_HEAT;
+    min_p = (pp && pp["min_heat_power"]) ? pp["min_heat_power"] : DEFAULT_MIN_POWER;
+    max_p = (pp && pp["max_heat_power"]) ? pp["max_heat_power"] : DEFAULT_MAX_POWER;
+    return ({ min_h, max_h, min_p, max_p });
 }
 
 // === 容器守則 ===
@@ -162,6 +193,7 @@ int do_setup(string arg)
 {
     object me = this_player();
     string what, val, dir;
+    int hv;
 
     if( !objectp(me) ) return 0;
     if( !arg || arg == "" )
@@ -182,13 +214,14 @@ int do_setup(string arg)
     }
 
     // 形式二(wiz/debug)：setup furnace heat <值>
-    if( sscanf(arg, "%s heat %s", what, val) == 2
-    ||  sscanf(arg, "%s 火候 %s", what, val) == 2 ) {
+    // 字串轉整數沿用本庫慣例 sscanf(s,"%d",v)（非 to_int﹐to_int 本庫只用於數值運算）。
+    if( sscanf(arg, "%s heat %d", what, hv) == 2
+    ||  sscanf(arg, "%s 火候 %d", what, hv) == 2 ) {
         if( !id(what) ) return 0;
         if( !wizardp(me) )
             return notify_fail("凡人煉丹須老老實實生火守爐﹐哪能憑空調火候。\n");
-        set("heat", to_int(val));
-        tell_object(me, sprintf("(debug)火候直接設為 %d kJ﹐隨即判定。\n", to_int(val)));
+        set("heat", hv);
+        tell_object(me, sprintf("(debug)火候直接設為 %d kJ﹐隨即判定。\n", hv));
         check_heat();
         return 1;
     }
@@ -239,7 +272,8 @@ int do_ignite(string arg)
 void burn()
 {
     object reactor;
-    int power, dheat;
+    int power, dheat, heat;
+    int *win, min_h, max_h, min_p, max_p;
 
     if( !query("lit") ) return;
 
@@ -259,9 +293,22 @@ void burn()
     }
     set("power", power);
 
+    win = heat_window();
+    min_h = win[0]; max_h = win[1]; min_p = win[2]; max_p = win[3];
+
     // 累積火候：dHeat = power(kW) * TICK_SECONDS / HEAT_DIVISOR(見檔頭推導)。
+    heat  = (query("heat") || 0);
     dheat = power * TICK_SECONDS / HEAT_DIVISOR;
-    set("heat", (query("heat") || 0) + dheat);
+    heat += dheat;
+
+    // 臨門收火：功率落窗(13-15 根)且這一跳會從「未達 min_h」直接衝過 max_h﹐
+    // 表方士此時收火﹐把火候恰收進窗中(取窗中值)﹐確保穩穩成丹而非過頭。
+    // 功率不在窗(根數逾窗)時不收火﹐任其衝過 -> check_heat 判過熱燒焦。
+    if( power >= min_p && power <= max_p
+    &&  (query("heat") || 0) < min_h && heat > max_h )
+        heat = (min_h + max_h) / 2;
+
+    set("heat", heat);
 
     check_heat();
 
@@ -278,22 +325,15 @@ void burn()
 //   - 其餘 -> 續燒。
 void check_heat()
 {
-    object reactor, ob;
-    mapping pp = 0;
+    object reactor;
     int heat, power;
-    int min_h, max_h, min_p, max_p;
+    int *win, min_h, max_h, min_p, max_p;
 
     reactor = reactor_in();
     if( !reactor ) return;
 
-    // 取火候窗：問鼎內任一份 mixture 對應成品的 produce_param。
-    foreach(ob in all_inventory(reactor)) {
-        if( ob->query("mixture") ) { pp = ob->query_produce_param(); break; }
-    }
-    min_h = (pp && pp["min_heat"]) ? pp["min_heat"] : DEFAULT_MIN_HEAT;
-    max_h = (pp && pp["max_heat"]) ? pp["max_heat"] : DEFAULT_MAX_HEAT;
-    min_p = (pp && pp["min_heat_power"]) ? pp["min_heat_power"] : DEFAULT_MIN_POWER;
-    max_p = (pp && pp["max_heat_power"]) ? pp["max_heat_power"] : DEFAULT_MAX_POWER;
+    win = heat_window();        // 與 burn() 收火共用同一火候/功率窗(單一真相源)。
+    min_h = win[0]; max_h = win[1]; min_p = win[2]; max_p = win[3];
 
     heat  = query("heat") || 0;
     power = total_firewood_kw();
@@ -322,7 +362,11 @@ void check_heat()
     }
 
     // 達標：火候落窗、功率落窗 -> 火候煉成﹐熄火待結丹。
-    if( heat >= min_h && heat <= max_h && power >= min_p && power <= max_p ) {
+    //   功率窗只在「正在燒火(query lit)」時檢查(正規流程：松柴根數須對)﹔
+    //   wiz/debug 直接 set 火候時並未生火(power 可能為 0)﹐此時只認火候落窗﹐
+    //   讓巫師得以快速驗證結丹(見檔頭可驗途徑)。
+    if( heat >= min_h && heat <= max_h
+    &&  (!query("lit") || (power >= min_p && power <= max_p)) ) {
         reactor->set("heat_ok", 1);
         reactor->set("overheated", 0);
         set("lit", 0);

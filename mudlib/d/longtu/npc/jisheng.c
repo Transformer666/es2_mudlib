@@ -21,10 +21,14 @@
 //     driver 試。do_buy_mixture 只在 arg 形如「mixture for <丹方>」時 return 1 消化﹔
 //     否則 return 0﹐讓 "buy X from Y" 照舊落到 /cmds/std/buy。
 //   * 收錢﹕鏡 /cmds/std/buy.c 範式——me->can_afford(price)→me->pay_money(price)。
-//   * 出貨﹕new(MIXTURE_PATH) 出一份藥引並以 init_mixture(丹方) 烙上目標丹方(由器材/
-//     daemon agent 提供之 mixture 物件實作該 apply)﹐move 到買家身上。本檔**只引用**
-//     mixture 物件 id/路徑﹐**不建** mixture 物件本身(由另一 agent 建)。catch 包住
-//     new()﹐mixture 檔未就緒時優雅報「暫缺」而不致 NPC 載入失敗。
+//   * 出貨﹕new(MIXTURE_PATH) 出一份藥引(/obj/alchemy/mixture﹐COMBINED_ITEM﹐由器材
+//     agent 建)﹐以 set_pill(成品丹藥檔) 烙上目標丹方﹐move 到買家身上。本檔**只引用**
+//     mixture 物件之路徑/apply﹐**不建** mixture 物件本身。catch 包住 new()﹐mixture
+//     檔未就緒時優雅報「暫缺」而不致 NPC 載入失敗。
+//   * 價格﹕以 mixture 物件自身的 query("value") 為準(單一真相源)——mixture::set_pill
+//     會依該丹 mixture_value 重算 base_value(小還丹 250*37=9250 文=92兩50文/份﹐合
+//     docs L60)。本掌櫃不另立價表﹐免與 mixture agent 分歧﹔DEFAULT_PRICE 僅作 list
+//     顯示與 mixture 檔未就緒時的保底。
 //
 // 認物以英文 id 為準(feature/name.c::id() 只比對 set_name 第二參數)。
 
@@ -37,14 +41,20 @@ int do_buy_mixture(string arg);
 int do_list_mixture(string arg);
 private mapping recipe_book();
 private string canon_recipe(string s);
+private string price_string(int v);
 
-// 藥引出貨物件——由器材/daemon agent 提供﹐本檔僅引用其路徑/id﹐不建此檔。
-#define MIXTURE_PATH    "/obj/medication/alchemist/mixture"
+// 藥引出貨物件——由器材 agent 提供(obj/alchemy/mixture.c)﹐本檔僅引用其路徑/apply﹐
+// 不建此檔。其 id 為 mixture/配方/丹方﹐set_pill(成品路徑) 烙丹方並重算 value。
+#define MIXTURE_PATH    "/obj/alchemy/mixture"
 
-// 每份藥引售價﹕92兩50文 = 9250 文(docs L57)。原作對 mixture 採統一份價(藥引乃
-// 半成藥料﹐入爐後方依火候結成各丹)﹐故此處對各丹方採同一份價﹐以 mapping 留作
-// 日後分丹方調價之餘地﹔未列者一律 DEFAULT_PRICE。
+// DEFAULT_PRICE﹕92兩50文 = 9250 文(docs L60﹐小還丹方份價)。買賣時實際售價以 set_pill
+// 後 mixture 物件自身 query("value") 為單一真相源﹔此值僅作 mixture 檔未就緒時的保底。
 #define DEFAULT_PRICE   9250
+
+// MIXTURE_PRICE_FACTOR﹕list 顯示用——藥引份價 = 成品丹藥 mixture_value * 此係數
+// (鏡 obj/alchemy/mixture.c::set_pill 之換算﹕小還丹 mixture_value 250 * 37 = 9250 文)。
+// 僅供「逐丹方估價」展示﹔真正收費仍以買賣時 mixture 物件 value 為準﹐二者一致。
+#define MIXTURE_PRICE_FACTOR    37
 
 void create()
 {
@@ -132,6 +142,8 @@ int do_list_mixture(string arg)
 {
 	mapping book;
 	string list, key, path, cname;
+	object blueprint;
+	int price, mv;
 
 	if( is_fighting() ) return 0;
 	// 帶參數而非指本掌櫃時不應答﹐讓其他 list 行為照舊。
@@ -141,14 +153,18 @@ int do_list_mixture(string arg)
 	list = "";
 	foreach(key, path in book) {
 		if( key[0] < 128 ) continue;        // 只取中文名那條
-		cname = (string)load_object(path)->query("name");
+		blueprint = load_object(path);
+		cname = (string)blueprint->query("name");
 		if( !cname ) cname = key;
+		// 逐丹方估價﹕mixture_value * 係數(鏡 mixture.c::set_pill)﹔無則保底。
+		mv = (int)blueprint->query("mixture_value");
+		price = (mv > 0) ? mv * MIXTURE_PRICE_FACTOR : DEFAULT_PRICE;
 		list += sprintf("  %-30s：%s\n",
-			cname + "藥引", price_string(DEFAULT_PRICE));
+			cname + "藥引", price_string(price));
 	}
 	if( list=="" ) return 0;
 
-	write(name() + "替你報出可配的丹方藥引(每份" + price_string(DEFAULT_PRICE) + ")﹕\n");
+	write(name() + "替你報出可配的丹方藥引份價﹕\n");
 	write("-------------------------------------------------------------\n");
 	write(list);
 	write("以「buy mixture for <丹方> from keeper」購買﹐如 buy mixture for minor heal pill from keeper。\n");
@@ -177,9 +193,16 @@ int do_buy_mixture(string arg)
 	me = this_player();
 	if( !me || !arg ) return 0;
 
-	// 只認 "...mixture for ..." 形式﹔不含 " for " 一律放行給標準 buy。
-	if( sscanf(arg, "%s for %s", what, recipe) != 2 )
+	// 只認 "...mixture for ..." 形式﹔不含 " for " 時﹐若是衝著本掌櫃買 mixture(打成
+	// "buy mixture from keeper" 之類)﹐給個正確語法提示﹔其餘一律放行給標準 buy。
+	if( sscanf(arg, "%s for %s", what, recipe) != 2 ) {
+		if( (sscanf(arg, "mixture from %s", targ)==1 && id(targ))
+		||  arg=="mixture" || arg=="藥引" ) {
+			do_chat(name() + "笑道﹕買藥引得指明哪一爐丹方﹐譬如 buy mixture for minor heal pill。先 list 瞧瞧本鋪配得哪些。\n");
+			return 1;
+		}
 		return 0;
+	}
 
 	// 允許 "buy mixture for 小還丹 from keeper"﹕剝掉尾端的 "from <某人>"。
 	if( sscanf(recipe, "%s from %s", recipe, targ) == 2 ) {
@@ -208,35 +231,38 @@ int do_buy_mixture(string arg)
 
 	path  = recipe_book()[recipe];
 	cname = (string)load_object(path)->query("name") || recipe;
-	price = DEFAULT_PRICE;
 
-	// 收錢(鏡 /cmds/std/buy.c)﹕can_afford 回 0 不夠、2 零錢不足。
-	switch( me->can_afford(price) ) {
-	case 0:
-		do_chat(name() + "看了看你的荷包﹐婉言道﹕這藥引一份要" + price_string(price)
-			+ "﹐客官的錢怕是不夠。\n");
-		return 1;
-	case 2:
-		do_chat(name() + "為難道﹕你這錢小號找不開﹐換些零碎銀錢來罷。\n");
-		return 1;
-	}
-
-	// 出貨﹕clone 一份藥引並烙上目標丹方。mixture 物件由另一 agent 建﹐故 catch 包住﹔
-	// 物件未就緒時報「暫缺」並不扣錢。
+	// 出貨﹕clone 一份藥引並 set_pill 烙上目標丹方。mixture 物件由器材 agent 建﹐故
+	// catch 包住﹔物件未就緒時報「暫缺」並不扣錢。
 	err = catch(mix = new(MIXTURE_PATH));
 	if( err || !objectp(mix) ) {
 		do_chat(name() + "翻了翻藥屜﹐歉然道﹕不巧﹐配藥引的料剛缺了﹐客官改日再來。\n");
 		return 1;
 	}
 
-	// 把目標丹方烙上藥引(mixture 物件實作 init_mixture(成品路徑)﹐由另一 agent 提供)﹔
-	// 若該 apply 尚未實作﹐至少 set 一個旗標供其讀取﹐不致出錯。
-	if( function_exists("init_mixture", mix) )
-		mix->init_mixture(path);
-	else
-		mix->set("mixture_for", path);
+	// 烙丹方﹕mixture::set_pill(成品路徑) 會同步重算 base_value/value(單一真相源)。
+	if( function_exists("set_pill", mix) )
+		mix->set_pill(path);
 
-	// 確認出貨後才扣錢(前置都過了)。
+	// 售價以 mixture 物件自身 value 為準(set_pill 已依丹方重算)﹔讀不到則保底 DEFAULT。
+	price = (int)mix->query("value");
+	if( price < 1 ) price = DEFAULT_PRICE;
+
+	// 收錢(鏡 /cmds/std/buy.c)﹕can_afford 回 0 不夠、2 零錢不足。錢不足則銷毀已 clone
+	// 的藥引(不留遊魂)﹐不扣錢。
+	switch( me->can_afford(price) ) {
+	case 0:
+		destruct(mix);
+		do_chat(name() + "看了看你的荷包﹐婉言道﹕這藥引一份要" + price_string(price)
+			+ "﹐客官的錢怕是不夠。\n");
+		return 1;
+	case 2:
+		destruct(mix);
+		do_chat(name() + "為難道﹕你這錢小號找不開﹐換些零碎銀錢來罷。\n");
+		return 1;
+	}
+
+	// 確認可付後才扣錢、交貨(前置都過了)。
 	me->pay_money(price);
 	mix->move(me);
 
