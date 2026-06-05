@@ -35,9 +35,10 @@
 //   取 me->skill_mapped("magic")(= 已掛上的法術系 key﹐此處須 `enable magic with
 //   taoism of nature`)﹐將 <式> 之空白換為底線後﹐呼 SKILL_D(key)->conjure_magic
 //   (me, spl, target)。本檔接到 spl ∈ {dog,monkey,hydra,rain}(或中文喚犬/喚猿/
-//   喚蟒/喚雨)即自行施展﹔其餘 spl 落回 ::conjure_magic(/std/magic 基底﹐回
-//   notify_fail)。此乃 daemon/skill/taoism-cloud.c::conjure_magic(同走 magic 槽、
-//   conjure 指令)的同型結構。
+//   喚蟒/喚雨)即自行施展﹔其餘 spl 逕自 notify_fail 後回 0(注意 /std/magic 基底
+//   只提供 cast_spell、並無 conjure_magic﹐故不可落回 ::conjure_magic﹐否則 undefined
+//   call)。此乃 daemon/skill/taoism-cloud.c::conjure_magic(同走 magic 槽、conjure
+//   指令、不識之式即 notify_fail 回 0)的同型結構。
 //
 // 注意：本門攻擊咒術(query_spells 之喚獸/百獸朝元/幻霧噬靈)走 spells 槽、cast
 //   指令﹔召獸四式走 magic 槽、conjure 指令。二者互不相礙﹐玩家可同時
@@ -267,7 +268,8 @@ tn_need_target(object me, object target)
 // ── conjure_magic(me, spl, [target]) ──
 //   玩家：cmds/std/conjure.c 傳 (me, 式名(空白已換底線), 對象或0)。
 //   NPC ：std/char/npc.c::conjure_magic 傳 (me, magic)﹐target 省略。
-// 本檔接召獸四式﹔其餘 spl 落回 ::conjure_magic(/std/magic 基底)。
+// 本檔接召獸四式(dog/monkey/hydra/rain)﹔不識之式逕自 notify_fail 回 0
+// (/std/magic 基底無 conjure_magic﹐不可落回 ::conjure_magic)。
 // 失敗回 0(並 notify_fail 給玩家路徑)﹐成功回 1。
 varargs int
 conjure_magic(object me, string spl, object target)
