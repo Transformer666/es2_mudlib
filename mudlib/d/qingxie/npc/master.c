@@ -44,6 +44,9 @@ void create()
 		"嘯﹐守若銅牆﹐縱是成名高手亦難在他杖下討得便宜﹐人稱「哭笑判\n"
 		"官」。他坐鎮青邪宮中﹐極少現身﹐唯有心志夠狠、根骨夠硬的人﹐\n"
 		"方有機會拜入門下﹐習得這一身護法絕學。\n");
+	// 結仇標記：殺青邪宮哭笑門 NPC 會在玩家身上累積 vendetta/chin﹐其後青邪
+	// 一派 NPC 一見此玩家便主動圍攻（機制見 chard.c 累積、attack.c init() 觸發）。
+	set("vendetta_mark", "chin");
 	setup();
 	carry_object("/d/snow/npc/obj/cane")->wield();
 }

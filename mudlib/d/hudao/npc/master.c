@@ -46,6 +46,9 @@ void create()
 		"撲、快狠決絕的刀道﹐江湖中人敬畏地喚他一聲「嘯林刀王」。他收\n"
 		"徒不問出身﹐只重一個「膽」字﹐唯有心性剽悍、敢於亮刀的後生﹐\n"
 		"方有機緣入他門下﹐習得這一身殺伐果決的快刀。\n");
+	// 結仇標記：殺虎刀門 NPC 會在玩家身上累積 vendetta/tiger﹐其後虎刀門
+	// NPC 一見此玩家便主動圍攻（機制見 chard.c 累積、attack.c init() 觸發）。
+	set("vendetta_mark", "tiger");
 	setup();
 	carry_object("/obj/area/obj/blade")->wield();
 }

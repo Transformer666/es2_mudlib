@@ -67,8 +67,11 @@ inherit F_VILLAGER;
 
 #define GOLD_COST   500     // 斡旋所需黃金（兩）
 #define SOLDIER_FACTIONS ({ "soldier", "garrison", "scout", "guard" })
+#define SOLDIER_MARK    "authority"     // 官兵陣營持久結仇 mark（query("vendetta/authority")）
 
-// 化解官兵仇恨：掃出當前載入、仍記恨 who、且屬官兵陣營的 NPC，逐一雙向解仇。
+// 化解官兵仇恨：掃出當前載入、仍記恨 who、且屬官兵陣營的 NPC，逐一雙向解仇；
+// 並【additive】清除玩家身上持久的官兵結仇值 query("vendetta/authority")，
+// 使日後新載入的官兵 NPC 不再因該 mark 而於 init() 自動圍攻（持久結仇歸零）。
 // 回傳實際化解的官兵數目（供回報訊息參考）。
 private int mediate_soldier_enmity(object who)
 {
@@ -93,6 +96,15 @@ private int mediate_soldier_enmity(object who)
 		foe->remove_killer(who);
 		who->remove_killer(foe);
 	}
+
+	// 持久結仇歸零（additive）：清玩家身上 query("vendetta/authority")。
+	// vendetta 累積／圍攻機制見 adm/daemons/chard.c:305-306（殺官兵 +1）、
+	// feature/char/attack.c:386（進房 init() 查此值非零即自動開打）。
+	// delete("vendetta/authority") 經 feature/dbase.c:65-79 對 slash-path 做
+	// 巢狀 map_delete——只刪 vendetta 下的 authority 鍵，不動其他派別之 mark。
+	if( who->query("vendetta/" + SOLDIER_MARK) )
+		who->delete("vendetta/" + SOLDIER_MARK);
+
 	return n;
 }
 

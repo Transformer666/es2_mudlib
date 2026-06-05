@@ -45,6 +45,9 @@ void create()
 		"制動、以正禦邪﹐江湖人尊稱一聲「青嶂劍翁」。他平日深居山中﹐\n"
 		"潛心劍道﹐唯有心性端方、根骨堪造的後輩﹐方有機會拜入門下﹐習\n"
 		"得這一身守正不阿的劍法。\n");
+	// 結仇標記：殺封山派 NPC 會在玩家身上累積 vendetta/fonxan﹐其後封山派
+	// NPC 一見此玩家便主動圍攻（機制見 chard.c 累積、attack.c init() 觸發）。
+	set("vendetta_mark", "fonxan");
 	setup();
 	carry_object("/d/snow/npc/obj/silversword")->wield();
 }

@@ -44,6 +44,7 @@
 inherit F_VILLAGER;
 
 #define KUXIAO_SECT     "哭笑門"     // 哭笑門 faction 判定值（query("sect")）
+#define KUXIAO_MARK     "chin"       // 青邪/哭笑門陣營持久結仇 mark（query("vendetta/chin")）
 
 int do_ask(string arg);
 
@@ -75,6 +76,15 @@ private int mediate_kuxiao_enmity(object who)
 		foe->remove_killer(who);
 		who->remove_killer(foe);
 	}
+
+	// 持久結仇歸零（additive）：清玩家身上 query("vendetta/chin")。
+	// vendetta 累積／圍攻機制見 adm/daemons/chard.c:305-306（殺帶 mark 之 NPC +1）、
+	// feature/char/attack.c:386（進房 init() 查此值非零即自動開打）。
+	// delete("vendetta/chin") 經 feature/dbase.c:65-79 對 slash-path 做巢狀
+	// map_delete——只刪 vendetta 下的 chin 鍵，不動其他派別之 mark。
+	if( who->query("vendetta/" + KUXIAO_MARK) )
+		who->delete("vendetta/" + KUXIAO_MARK);
+
 	return n;
 }
 
@@ -170,6 +180,7 @@ int do_ask(string arg)
 	||  arg == "ku about grudge" ) {
 		object me;
 		int cleared;
+		int had_mark;
 
 		me = this_player();
 		if( !me || !interactive(me) )
@@ -183,10 +194,14 @@ int do_ask(string arg)
 			return 1;
 		}
 
-		// gate：玩家須當真與哭笑門一派結了仇（場上有仍記恨此玩家之哭笑門 NPC）
-		//   方有可解。先化解、後依結果說辭；化解＝0 則表此刻並無此派之仇。
+		// gate：玩家須當真與哭笑門一派結了仇方有可解。仇怨有二態——
+		//   (1) 場上有仍記恨此玩家之哭笑門 NPC（transient killer）；
+		//   (2) 玩家身上有持久結仇 query("vendetta/chin")（即便此刻無此派 NPC 在場）。
+		// 兩者任一成立即可斡旋。先記下持久 mark 之有無（mediate 內會清掉），
+		//   再 mediate（同時做 transient 雙向解仇＋清持久 vendetta/chin）。
+		had_mark = me->query("vendetta/" + KUXIAO_MARK) ? 1 : 0;
 		cleared = mediate_kuxiao_enmity(me);
-		if( cleared <= 0 ) {
+		if( cleared <= 0 && !had_mark ) {
 			command("say 解仇﹖你眼下並未惹上我哭笑門的人﹐何來仇怨可解﹖");
 			command("say 哪日真與青邪宮那幫人結了死仇﹐再來尋我這落魄左使罷。");
 			return 1;
@@ -195,13 +210,21 @@ int do_ask(string arg)
 		// ── 同步交付（全在 handler 內直接完成，不走延遲 do_chat）──
 		// 1. 設永久旗標（鐵則 #10 精神：關鍵狀態先落地）
 		me->set("quest/kuwuwang_done", 1);
-		// 2. cleared 已由 mediate_kuxiao_enmity 完成雙向解仇，此處只述其事。
+		// 2. mediate_kuxiao_enmity 已完成 transient 雙向解仇＋清持久 vendetta/chin，
+		//    此處只述其事。cleared>0 述當場 NPC 數；cleared==0（持久結仇但無 NPC
+		//    在場，had_mark 為真才到此）則述舊怨一筆勾銷。
 		command("say 嘿 ... 你也惹上了青邪宮的人﹖也罷﹐看在同門一場的份上﹐這人情我替你了了。");
 		command("say 哭笑門的仇怨﹐終究要哭笑門的人來了。劉乙忘玄那筆舊帳是我的﹐你這當口的恩怨﹐就此一筆勾銷。");
-		tell_object(me,
-			"哭無望擱下酒盞﹐半邊臉似笑非笑﹐取出一方褪色的舊門牌在掌心摩挲﹐口中念念\n"
-			"有詞。你只覺方才還對你橫眉立目、必欲除之而後快的哭笑門人﹐眼前 " + cleared +
-			" 名與你\n結仇者﹐竟似一夕之間忘了你這號人物﹐恩怨盡釋。\n");
+		if( cleared > 0 )
+			tell_object(me,
+				"哭無望擱下酒盞﹐半邊臉似笑非笑﹐取出一方褪色的舊門牌在掌心摩挲﹐口中念念\n"
+				"有詞。你只覺方才還對你橫眉立目、必欲除之而後快的哭笑門人﹐眼前 " + cleared +
+				" 名與你\n結仇者﹐竟似一夕之間忘了你這號人物﹐恩怨盡釋。\n");
+		else
+			tell_object(me,
+				"哭無望擱下酒盞﹐半邊臉似笑非笑﹐取出一方褪色的舊門牌在掌心摩挲﹐口中念念\n"
+				"有詞。你心頭一鬆——你與哭笑門那段宿怨﹐自此一筆勾銷﹐日後與青邪宮的人\n"
+				"打照面﹐再不必擔心他們認出舊仇、拔刀相向了。\n");
 		return 1;
 	}
 

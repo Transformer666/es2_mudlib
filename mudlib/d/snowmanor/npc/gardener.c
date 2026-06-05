@@ -23,6 +23,10 @@ void create()
 		"一名雪吟莊的老園丁﹐布衣芒鞋﹐腰間別著一把修枝的剪子﹐手\n"
 		"指被泥土染得發黑。他佝著背在花木間慢慢侍弄﹐話極少﹐偶爾抬\n"
 		"眼看你一下﹐又默默低下頭去﹐似是早已學會了在這莊上少說少問。\n");
+	// 結仇標記：園丁雖是下人﹐亦屬雪吟莊一脈﹔殺之會在玩家身上累積
+	// vendetta/snow﹐其後雪吟莊 NPC 一見此玩家便主動圍攻（機制見 chard.c
+	// 累積、attack.c init() 觸發﹐與官兵 authority 同理）。
+	set("vendetta_mark", "snow");
 	set("chat_chance", 3);
 	set("chat_msg", ({
 		"園丁蹲在墨竹旁﹐一聲不響地修剪著枝葉。\n",
@@ -34,7 +38,7 @@ void create()
 	carry_money("coin", 20);
 }
 
-// 園丁雖是下人﹐被打也要拼命掙扎。結仇機制未實作﹐此處僅作自衛反擊。
+// 園丁雖是下人﹐被打也要拼命掙扎。雪吟莊結仇已透過 vendetta_mark 接上。
 int accept_fight(object ob)
 {
 	do_chat((: command, "say 你 ... 你要做甚﹖救命啊﹗" :));

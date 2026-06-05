@@ -27,6 +27,10 @@ void create()
 		"一名雪吟莊的家丁﹐身著藏青勁裝﹐腰按一柄單刀﹐站得筆直如\n"
 		"松。他眼神警惕﹐神情肅然﹐將過往的人一一打量﹐顯是受過嚴格\n"
 		"操練﹐絕非尋常看門的莊客。\n");
+	// 結仇標記：家丁護院﹐是雪吟莊一脈﹔殺之會在玩家身上累積 vendetta/snow﹐
+	// 其後雪吟莊 NPC 一見此玩家便主動圍攻（機制見 chard.c 累積、attack.c
+	// init() 觸發﹐與官兵 authority 同理）。
+	set("vendetta_mark", "snow");
 	set("chat_chance", 3);
 	set("chat_msg", ({
 		"家丁按著腰間單刀﹐警惕地將你上下打量了一番。\n",
@@ -39,7 +43,7 @@ void create()
 	carry_money("coin", 60);
 }
 
-// 莊丁護院﹐受襲必還手。結仇機制未實作﹐此處僅作自衛反擊。
+// 莊丁護院﹐受襲必還手。雪吟莊結仇已透過 vendetta_mark 接上。
 int accept_fight(object ob)
 {
 	do_chat((: command, "say 大膽﹗竟敢在雪吟莊撒野﹗來人哪﹗" :));
