@@ -36,15 +36,18 @@ void setup(object ob)
     // 被動加成：防+20 四元素+10
     ob->add_temp("apply/defense", 20);
 
-    // 四元素防禦 +10：四元素中只有「火」有確認會被引擎讀取的 apply key。
-    //   apply/armor_vs_fire 已由 chinese.o 字典 (=火焰傷害防禦力)、yenhold.c:38、
-    //   devour.c:170 證實為真實鍵，故此處先實作火元素那一面。
+    // 四元素「物理向」防禦 +10(火)：apply/armor_vs_fire 由 resist_damage 讀﹐已由
+    //   chinese.o 字典 (=火焰傷害防禦力)、yenhold.c:38、devour.c:170 證實為真實鍵。
     ob->add_temp("apply/armor_vs_fire", 10);
 
-    // TODO: passive ability 其餘三元素 (冰/風/雷) 防禦 +10。
-    //   armor_vs_ice / armor_vs_wind / armor_vs_thunder 等鍵未在字典或任何
-    //   feature/std 程式碼中出現，無法確認引擎會讀取，故不臆造；待元素傷害系統
-    //   一般化後補上對應 apply key。
+    // 四元素「法術向」防禦 +10(火/冰/風/雷)：apply/<elem>_def 為 /std/magic.c 元素引擎
+    //   (magic_element_resist﹐2026-06-05 已建)折算元素魔法傷害所讀的百分比抗性鍵﹐
+    //   持久 query + 暫時 query_temp 加總(鏡 query_attr)。雨師妾被動四元素防禦(docs
+    //   03-種族設定.md L41「四元素防禦」)經此鍵對天師火/茅山雷/玄衣風/寒冰諸元素咒
+    //   一體生效﹐補齊原 TODO 的冰/風/雷三面(以引擎鍵而非未確認的 armor_vs_* 鍵)。
+    foreach( string elem in ({ "fire", "freeze", "wind", "thunder" }) )
+        ob->add_temp("apply/" + elem + "_def", 10);
+
     // active ability 餵 5 條小蛇：見 /cmds/std/feedsnake.c（中文別名 餵蛇/馴蛇），
     //   每條小蛇 new /obj/race/rainnar_snake 移入玩家並 add_temp apply/armor+defense，
     //   上限 5 條（指令自我把關，race daemon 不替玩家 add_action，見 content-race-active.md）。

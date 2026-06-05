@@ -30,6 +30,37 @@ int valid_enable(string usage)
     return usage == "spells";
 }
 
+// ── 元素-效果引擎（additive 新增﹐2026-06-05）────────────────────────
+// 供各 cast daemon(繼承本基底)呼叫的共用元素/效果工具。**不動既有
+// cast_spell/query_spells**﹐純新增。元素鍵：fire/freeze/wind/thunder。
+// 抗性鍵：apply/<elem>_def(百分比)。讀法鏡 feature/attribute.c::query_attr
+// (持久 query + 暫時 query_temp 加總)﹐故 set("apply/fire_def",N) 的固定抗性
+// 與 magic_element_debuff/buff 經 add_temp 的動態增減皆會被傷害公式看見。
+// 全部前置宣告(lesson #12：定義前引用須先宣告﹐否則編譯失敗 / lazy-load 靜默失敗)。
+
+// 元素抗性硬上限：最多減 75% 傷害。集中於此便於調整。
+#define MAGIC_RESIST_CAP   75
+
+// 前置宣告(forward declarations)──────────────────────────────────
+private int   magic_clamp(int v, int lo, int hi);
+private int   magic_element_resist(object victim, string elem);
+int           magic_element_damage(object victim, int base, string elem, int ignore_resist);
+void          magic_recover_onhit(object caster, int dmg, int pct);
+void          magic_delay(object target, int n);
+void          magic_element_debuff(object victim, string elem, int amt, int dur);
+void          magic_element_buff(object who, string elem, int amt, int dur);
+// call_out 回呼(到期復原)──以 add_temp(-N) 把先前增減「抵銷」﹐不可 delete_temp
+// (鏡 daemon/skill/royal_force.c::rf_end_royal﹐保住其他來源的同鍵增減)。
+void          magic_element_debuff_end(object victim, string elem, int amt);
+void          magic_element_buff_end(object who, string elem, int amt);
+
+// ── 增益(bless)引擎：暫時加屬性(apply/<attr>)﹐dur 秒後復原 ───────────
+// query_attr 讀 apply/<attr>(feature/attribute.c:29 query_temp("apply/"+what))﹐
+// 故 add_temp("apply/str",N) 暫時提升該屬性﹐call_out 後以 add_temp(-N) 抵銷
+// (鏡 strategy.c::do_wis / royal_force.c::rf_end_royal﹐不可 delete_temp)。
+void          magic_attr_buff(object who, string attr, int amt, int dur);
+void          magic_attr_buff_end(object who, string attr, int amt);
+
 // cast_spell(me, spl, [target])
 //   玩家：cmds/std/cast.c 傳 (me, 咒名, 對象或0)。
 //   NPC ：std/char/npc.c 傳 (me, 咒名)，target 省略 → 取當前敵人。
@@ -164,6 +195,121 @@ cast_spell(object me, string spl, object target)
     me->start_busy(2);
 
     return 1;
+}
+
+// ════════════════════════════════════════════════════════════════════
+// 元素-效果引擎實作（additive 新增。以上 cast_spell 一律未動）
+// ════════════════════════════════════════════════════════════════════
+
+// 內部夾值工具(本檔不依賴 min/max efun──mudlib 中查無此二 efun 之使用)。
+private int
+magic_clamp(int v, int lo, int hi)
+{
+    if( v < lo ) return lo;
+    if( v > hi ) return hi;
+    return v;
+}
+
+// 取目標對某元素之有效抗性百分比(0..MAGIC_RESIST_CAP)。
+// 讀法鏡 feature/attribute.c::query_attr：持久 query + 暫時 query_temp 加總﹐
+// 使固定抗性(set)與動態增減(add_temp)皆生效。負抗性視為 0﹐封頂於 CAP。
+private int
+magic_element_resist(object victim, string elem)
+{
+    int r;
+
+    if( !objectp(victim) || !stringp(elem) ) return 0;
+    r = (int)victim->query("apply/" + elem + "_def")
+      + (int)victim->query_temp("apply/" + elem + "_def");
+    return magic_clamp(r, 0, MAGIC_RESIST_CAP);
+}
+
+// 依元素抗性折算實際傷害。ignore_resist 非 0 時穿防直接回 base。
+int
+magic_element_damage(object victim, int base, string elem, int ignore_resist)
+{
+    int resist;
+
+    if( base <= 0 ) return 0;
+    if( ignore_resist ) return base;
+
+    resist = magic_element_resist(victim, elem);
+    return base * (100 - resist) / 100;
+}
+
+// 法術吸取：施法者依本次傷害的 pct% 回補精/氣/神「當前值」。
+// supplement_stat 補 current 且自動封頂於 heal/max(feature/statistic.c)。
+void
+magic_recover_onhit(object caster, int dmg, int pct)
+{
+    int amt;
+
+    if( !objectp(caster) || dmg <= 0 || pct <= 0 ) return;
+    amt = dmg * pct / 100;
+    if( amt <= 0 ) return;
+    caster->supplement_stat("gin", amt);
+    caster->supplement_stat("kee", amt);
+    caster->supplement_stat("sen", amt);
+}
+
+// 定人：使目標短暫無法行動 n 個 heart_beat(start_busy﹐既有 freeze 特效同機制)。
+void
+magic_delay(object target, int n)
+{
+    if( !objectp(target) || !living(target) || n <= 0 ) return;
+    target->start_busy(n);
+}
+
+// 降元素防：對目標的 apply/<elem>_def 暫時 -amt﹐dur 秒後復原。
+// 用 add_temp(-amt) + call_out("..._end", dur) 後 add_temp(+amt)﹐不可 delete_temp
+// (鏡 daemon/skill/royal_force.c 模型﹐保住其他來源的同鍵增減)。
+void
+magic_element_debuff(object victim, string elem, int amt, int dur)
+{
+    if( !objectp(victim) || !stringp(elem) || amt <= 0 || dur <= 0 ) return;
+    victim->add_temp("apply/" + elem + "_def", -amt);
+    call_out("magic_element_debuff_end", dur, victim, elem, amt);
+}
+
+void
+magic_element_debuff_end(object victim, string elem, int amt)
+{
+    if( !objectp(victim) || !stringp(elem) ) return;
+    victim->add_temp("apply/" + elem + "_def", amt);
+}
+
+// 元素防禦 buff：對 who 的 apply/<elem>_def 暫時 +amt﹐dur 秒後復原。
+void
+magic_element_buff(object who, string elem, int amt, int dur)
+{
+    if( !objectp(who) || !stringp(elem) || amt <= 0 || dur <= 0 ) return;
+    who->add_temp("apply/" + elem + "_def", amt);
+    call_out("magic_element_buff_end", dur, who, elem, amt);
+}
+
+void
+magic_element_buff_end(object who, string elem, int amt)
+{
+    if( !objectp(who) || !stringp(elem) ) return;
+    who->add_temp("apply/" + elem + "_def", -amt);
+}
+
+// 屬性增益(bless)：對 who 的 apply/<attr> 暫時 +amt﹐dur 秒後復原。
+// query_attr(feature/attribute.c:29)讀 apply/<attr>﹐故此增益即時生效於屬性。
+// 復原用 add_temp(-amt)(鏡 strategy.c::end_wis)﹐不可 delete_temp。
+void
+magic_attr_buff(object who, string attr, int amt, int dur)
+{
+    if( !objectp(who) || !stringp(attr) || amt <= 0 || dur <= 0 ) return;
+    who->add_temp("apply/" + attr, amt);
+    call_out("magic_attr_buff_end", dur, who, attr, amt);
+}
+
+void
+magic_attr_buff_end(object who, string attr, int amt)
+{
+    if( !objectp(who) || !stringp(attr) ) return;
+    who->add_temp("apply/" + attr, -amt);
 }
 
 // vim: set ts=4 sw=4 syntax=lpc
