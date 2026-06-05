@@ -1,22 +1,35 @@
-// 天師道法【罡風咒】 taoism-wind -- 天師派玄衣弟子的入門風術
+// 天師道法【風符】 taoism-wind -- 天師派玄衣弟子的入門風術
 //
-// 這是一門法術(magic)技能﹐天師派玄衣(風)分支的根本道法。本檔比照
-// 素衣冰咒 daemon (taoism-freeze.c) 的結構建立﹐使技能可被指派與習練。
+// 這是一門法術(magic)技能﹐天師派玄衣(風)分支的根本道法。本檔比照已 live 驗
+// 正確之 taoism-fire.c 的結構建立﹐使技能可被指派與習練(attack_using)﹐並接上
+// 主動施法(cast)：query_spells() 列具名咒、override cast_spell() 依
+// docs(03-門派與武功/02-道士-天師與茅山.md「玄衣派(風)→ taoism-storm」L104-111)
+// 的咒名/sen/delay/傷害%/特效逐式施展。
 //
-// === 具名咒 cast(2026-06-05 接通元素-效果引擎) ===
-// docs/03-門派與武功/02-道士-天師與茅山.md「玄衣派(風)— taoism-storm」(L104)
-// 風符四式逐項對齊﹐以本檔既有三式承載 docs 效果(同火/冰範式﹐elem="wind")：
-//   docs 疾風  quick storm  25% (條件足時下次三重催咒) → 風刃(入門﹐附「催咒」提示)
-//   docs 暴風  crazy storm  33% (命中忽視風抗)        → 玄風裂脈(pierce 穿風抗)
-//   docs 轉輪大風 whirl storm 125%/delay 3            → 青龍御風(高耗、施後 delay 3)
-// 風術為「純風元素傷害」一系﹐故各式 elem="wind"﹐傷害一律經
-// /std/magic.c::magic_element_damage 折算對象風抗(apply/wind_def)。本檔
-// override cast_spell：沿用 /std/magic 基底之全部驗證(神/距離/和平房/開戰/
-// 練技/吟誦)﹐僅將「傷害套用」改走引擎(穿抗 + 風抗折算)並補各式具名特效。
+// 元素傷害走 /std/magic 引擎：magic_element_damage(victim,base,"wind",ignore)
+// 折算對象風抗(apply/wind_def)後﹐以 victim->receive_damage(dmg,me,me) 施加
+// (與物理攻擊同終點﹐消氣 kee)。各咒之 base = docs 傷害% × 法術力道(力道公式同
+// /std/magic 基底 cast_spell：power*(100+skill)/100 + random)。
+//
+// 風符四式(docs L108-111﹐咒名/sen/delay/傷害% 嚴格對齊)：
+//   疾風     quick storm  sen 10 delay 1  傷害 25%(技能滿足條件下次必三重催咒)。
+//   暴風     crazy storm  sen 30 delay 1  傷害 33%(命中時忽視風抗)。
+//   飛戮風   killer storm sen 50 delay 1  傷害 75%。
+//   轉輪大風 whirl storm  sen 75 delay 3  傷害 125%。
 
 #include <ansi.h>
 
 inherit "/std/magic";
+
+// 各咒參數集中於此便於平衡微調。力道基數(power)取與既有簡式咒同量級﹔
+// docs 傷害%(pct)套於力道之上。sen/delay/element 一律對齊 docs L108-111。
+#define TW_ELEM             "wind"
+
+// 力道基數(供既有 cast_spell 力道公式 power*(100+skill)/100 用)。
+#define TW_QUICK_POWER      10
+#define TW_CRAZY_POWER      18
+#define TW_KILLER_POWER     24
+#define TW_WHIRL_POWER      30
 
 mapping *actions = ({
   ([
@@ -38,7 +51,7 @@ mapping *actions = ({
     "damage_type":	"風傷"
   ]),
   ([
-    "action":		"$N凝神運法﹐一式『玄風裂脈』激射$n的$l",
+    "action":		"$N凝神運法﹐一式『飛戮風』激射$n的$l",
     "dodge":		-15,
     "damage":		10,
     "damage_type":	"風傷"
@@ -62,7 +75,7 @@ mapping *actions = ({
     "damage_type":	"風傷"
   ]),
   ([
-    "action":		"$N雙掌一推﹐一式『青龍御風』狂飆暴卷﹐席捲$n的$l",
+    "action":		"$N雙掌一推﹐一式『轉輪大風』狂飆暴卷﹐席捲$n的$l",
     "dodge":		0,
     "damage":		10,
     "damage_type":	"風傷"
@@ -72,6 +85,12 @@ mapping *actions = ({
 string *interattack = ({
   "$N默運風訣﹐指間隱隱透出一縷罡芒﹐靜待施法的時機。\n",
 });
+
+// ── 前置宣告(lesson #12：定義前引用之函式一律前置宣告)──────────────
+// query_spells/magic_skill 為繼承 /std/magic 之覆寫(inherited)﹐恆可解析﹐
+// 不另前置宣告(鏡 taoism-fire.c)。下列為本檔覆寫/新增者。
+varargs int    cast_spell(object me, string spl, object target);
+private object tw_resolve_target(object me, object target);
 
 private void
 create()
@@ -96,164 +115,152 @@ attack_using (object me, object opponent, object weapon)
   damage = COMBAT_D->fight(me, opponent, "taoism-wind", actions[random(sizeof(actions))], weapon);
 }
 
-// ── 主動施法(cast)：本門咒文表 + 技能名（valid_enable 由 /std/magic 提供；
-//    cast_spell 於本檔 override 以接通元素-效果引擎）──
+// ── 主動施法(cast)：本門技能名與咒文表(valid_enable 由 /std/magic 提供)──
 string magic_skill() { return "taoism-wind"; }
 
-// 前置宣告(lesson #12：定義前引用之函式一律先前置宣告﹐免編譯 Undefined
-// function / daemon lazy-load 靜默失敗回 DAEMON_D 自身)。
-varargs int cast_spell(object me, string spl, object target);
-
-// 風符具名咒(docs L104「玄衣派(風)— taoism-storm」風符四式)。各式 elem="wind"﹐
-// 傷害經 magic_element_damage 折算風抗(apply/wind_def)。效果旗標(供本檔 override 讀)：
-//   "pierce":1     命中忽視風抗(docs 暴風 crazy storm「命中忽視風抗」)。
-//   "multicast":1  施法後提示「催咒」可期(docs 疾風「條件足時下次三重催咒」)。
-//   "delay":N      施法者施後 start_busy N(無則沿基底 2；docs 轉輪大風 delay 3)。
+// 咒文表：id/sen/delay/power(力道基數)/pct(docs 傷害%)/type/action。
+// pierce=命中忽視風抗(docs 暴風「命中時忽視風抗」)﹔
+// multicast=施後氣象提示(docs 疾風「技能滿足條件下次必三重催咒」之氣象鋪陳)。
+// sen/delay/pct 一律嚴格對齊 docs L108-111。
 mapping query_spells()
 {
   return ([
-    // 疾風 quick storm：入門風刃﹐附「催咒」氣象提示(docs 疾風 25%/三重催咒)。
-    "風刃" :     ([ "id":"fengren", "sen":10, "power":10, "type":"罡風",
-        "elem":"wind", "delay":1, "multicast":1,
-        "action":HIG "$N口誦真言﹐掐訣一引﹐一片鋒銳的風刃脫手飛出﹐「咻」地割向$n！" NOR ]),
-    // 暴風 crazy storm：命中忽視風抗(docs 暴風 33%/忽視風抗)。
-    "玄風裂脈" : ([ "id":"xuanfeng","sen":16, "power":20, "type":"罡風",
-        "elem":"wind", "delay":1, "pierce":1,
-        "action":HIG "$N足踏罡步﹐袖中玄符鼓盪﹐一式『玄風裂脈』化作罡氣風刃﹐無視罡風護體激射$n！" NOR ]),
-    // 轉輪大風 whirl storm：高耗大威﹐施後吟誦較久(docs 轉輪大風 125%/delay 3)。
-    "青龍御風" : ([ "id":"qinglong","sen":30, "power":40, "type":"罡風",
-        "elem":"wind", "delay":3,
-        "action":HIG "$N凝神運法﹐周身罡風暴漲﹐一式『青龍御風』狂飆沖天暴卷﹐當頭捲向$n！" NOR ]),
+    "疾風" :     ([ "id":"quick",  "sen":10, "delay":1, "power":TW_QUICK_POWER,  "pct":25,  "type":"風傷",
+        "multicast":1,
+        "action":HIG "$N口誦真言﹐掐訣一引﹐一陣疾風脫手飛出﹐「咻」地割向$n！" NOR ]),
+    "暴風" :     ([ "id":"crazy",  "sen":30, "delay":1, "power":TW_CRAZY_POWER,  "pct":33,  "type":"風傷",
+        "pierce":1,
+        "action":HIG "$N足踏罡步﹐袖中玄符鼓盪﹐一式『暴風』化作罡氣風刃﹐無視罡風護體激射$n！" NOR ]),
+    "飛戮風" :   ([ "id":"killer", "sen":50, "delay":1, "power":TW_KILLER_POWER, "pct":75,  "type":"風傷",
+        "action":HIG "$N凝神運法﹐周身罡風暴漲﹐一式『飛戮風』化作千百道風刃﹐鋪天蓋地戮向$n！" NOR ]),
+    "轉輪大風" : ([ "id":"whirl",  "sen":75, "delay":3, "power":TW_WHIRL_POWER,  "pct":125, "type":"風傷",
+        "action":HIG "$N默運玄功﹐周身狂飆暴卷﹐一式『轉輪大風』狂風如輪沖天暴捲﹐當頭捲向$n！" NOR ]),
   ]);
 }
 
-// ── override cast_spell：沿用 /std/magic 基底驗證流程﹐傷害改走元素引擎 ──
-// 與 /std/magic.c::cast_spell 同序(驗證→開戰→消神→燃符→傷害→練技→吟誦)﹐
-// 僅「傷害套用」一步改為：magic_element_damage(target, base, "wind", pierce)
-// 折算風抗(穿抗式直回 base)﹐並補各式具名特效(催咒提示 / 施後 delay)。
+// 取施法對象：未指定時取當前敵人首個(鏡 /std/magic 基底 cast_spell 之 query_enemy)。
+private object
+tw_resolve_target(object me, object target)
+{
+  object *es;
+
+  if( objectp(target) ) return target;
+  es = me->query_enemy();
+  if( arrayp(es) ) {
+    es -= ({ 0 });
+    if( sizeof(es) ) return es[0];
+  }
+  return 0;
+}
+
+// override cast_spell：依本門具名咒之 docs 規格施展(元素傷害走 /std/magic 引擎)。
+// 驗證流程鏡 /std/magic 基底 cast_spell(sen 檢查、對象檢查、no_fight、開戰串接)﹐
+// 之後依咒分派傷害與特效。未命中本門咒名/id 者落回 ::cast_spell(/std/magic 基底)。
 varargs int
 cast_spell(object me, string spl, object target)
 {
-    mapping spells, sp;
-    string sk, nm, action, dtype, elem;
-    int cost, power, skill, base, damage, busy;
-    object fu;
+  mapping spells, sp;
+  string sk, nm, action, dtype;
+  int cost, force, skill, base, dmg, ignore;
 
-    if( !objectp(me) || !stringp(spl) ) return 0;
+  if( !objectp(me) || !stringp(spl) ) return 0;
 
-    sk = magic_skill();
-    spells = query_spells();
-    if( !sk || !mapp(spells) || !sizeof(spells) ) {
-        notify_fail("你還沒有可施展的法術。\n");
-        return 0;
-    }
+  sk = magic_skill();
+  spells = query_spells();
+  if( !sk || !mapp(spells) || !sizeof(spells) ) {
+    notify_fail("你還沒有可施展的法術。\n");
+    return 0;
+  }
 
-    // 找咒文：先比中文名、再比英文 id。
-    sp = spells[spl];
-    if( !mapp(sp) ) foreach( nm, mapping m in spells )
-        if( mapp(m) && m["id"] == spl ) { sp = m; break; }
-    if( !mapp(sp) ) {
-        notify_fail("你不會「" + spl + "」這道法術。\n");
-        return 0;
-    }
+  // 找咒文：先比中文名、再比英文 id。未命中則落回基底 cast_spell。
+  sp = spells[spl];
+  if( !mapp(sp) ) foreach( nm, mapping m in spells )
+    if( mapp(m) && m["id"] == spl ) { sp = m; break; }
+  if( !mapp(sp) )
+    return ::cast_spell(me, spl, target);
 
-    // 須已習得本門法術。
-    if( me->query_skill(sk) <= 0 && !me->query_learn(sk) ) {
-        notify_fail("你並未習得「" + to_chinese(sk) + "」。\n");
-        return 0;
-    }
+  // 須已習得本門法術。
+  if( me->query_skill(sk) <= 0 && !me->query_learn(sk) ) {
+    notify_fail("你並未習得「" + to_chinese(sk) + "」。\n");
+    return 0;
+  }
 
-    // 取施法對象（cast 未指定時取當前敵人）。
-    if( !objectp(target) ) {
-        object *es = me->query_enemy();
-        if( arrayp(es) ) {
-            es -= ({ 0 });
-            if( sizeof(es) ) target = es[0];
-        }
-    }
-    if( !objectp(target) || !living(target)
-    ||  target->query("life_form") == "ghost" ) {
-        notify_fail("你要對誰施展法術？（cast " + spl + " on <對象>）\n");
-        return 0;
-    }
-    if( target == me ) {
-        notify_fail("你不能對自己施展攻擊法術。\n");
-        return 0;
-    }
-    if( environment(me) != environment(target) ) {
-        notify_fail("施法對象不在這裡。\n");
-        return 0;
-    }
+  // 取施法對象並驗證。
+  target = tw_resolve_target(me, target);
+  if( !objectp(target) || !living(target)
+  ||  target->query("life_form") == "ghost" ) {
+    notify_fail("你要對誰施展法術？（cast " + spl + " on <對象>）\n");
+    return 0;
+  }
+  if( target == me ) {
+    notify_fail("你不能對自己施展攻擊法術。\n");
+    return 0;
+  }
+  if( environment(me) != environment(target) ) {
+    notify_fail("施法對象不在這裡。\n");
+    return 0;
+  }
 
-    // 非戰之地不可施展攻擊法術。
-    if( environment(me)->query("no_fight")
-    && !target->query("unprotect_mark") && !me->query("unprotect_mark") ) {
-        notify_fail("這裡是清靜之地，不可動手施法。\n");
-        return 0;
-    }
+  // 非戰之地不可施展攻擊法術(與基底 cast_spell / combatd.c 規則一致)。
+  if( environment(me)->query("no_fight")
+  && !target->query("unprotect_mark") && !me->query("unprotect_mark") ) {
+    notify_fail("這裡是清靜之地，不可動手施法。\n");
+    return 0;
+  }
 
-    // 神(sen)消耗檢查。
-    cost = sp["sen"];
-    if( me->query_stat("sen") < cost ) {
-        notify_fail("你的神識不足以運使這道法術。\n");
-        return 0;
-    }
+  // 神(sen)消耗檢查。
+  cost = sp["sen"];
+  if( me->query_stat("sen") < cost ) {
+    notify_fail("你的神識不足以運使這道法術。\n");
+    return 0;
+  }
 
-    // 符(talisman)消耗檢查(風符未標 fu﹐此段略過；保留以與基底契約一致)。
-    fu = 0;
-    if( stringp(sp["fu"]) ) {
-        fu = present(sp["fu"], me);
-        if( !objectp(fu) || (int)fu->query_amount() < 1 ) {
-            notify_fail("你身上沒有施展此法所需的"
-                + (fu ? (string)fu->name() : (string)sp["fu"]) + "。\n");
-            return 0;
-        }
-    }
+  // ── 通過所有檢查，正式施法(之後不再失敗)──
+  if( !me->is_fighting(target) ) {
+    me->kill_ob(target);
+    if( userp(target) ) target->fight_ob(me);
+    else target->kill_ob(me);
+  }
 
-    // ── 通過所有檢查，正式施法 ──
-    if( !me->is_fighting(target) ) {
-        me->kill_ob(target);
-        if( userp(target) ) target->fight_ob(me);
-        else target->kill_ob(me);
-    }
+  me->consume_stat("sen", cost);
 
-    me->consume_stat("sen", cost);
-    if( objectp(fu) )
-        fu->add_amount(-1);
+  // 力道：神/技能驅動(公式同 /std/magic 基底 cast_spell)。
+  skill = me->query_skill(sk);
+  force = (int)sp["power"] * (100 + skill) / 100;
+  force += random(force / 2 + 1);
 
-    // 基礎傷害(神/技能驅動﹐同基底公式)。
-    skill = me->query_skill(sk);
-    power = sp["power"];
-    base = power * (100 + skill) / 100;
-    base += random(base / 2 + 1);
+  // base 傷害：docs 傷害%(pct)×力道。
+  base = force * (int)sp["pct"] / 100;
 
-    // 施法訊息。
-    action = sp["action"];
-    if( !stringp(action) ) action = "$N唸動咒文﹐一道罡風激射向$n！";
-    message_vision(action + "\n", me, target);
+  // 元素傷害折算抗性(暴風 pierce=1 穿風抗直回 base)。
+  ignore = sp["pierce"] ? 1 : 0;
+  dmg = magic_element_damage(target, base, TW_ELEM, ignore);
 
-    // ── 元素引擎：依風抗(apply/wind_def)折算實傷﹐pierce 則穿抗直回 base ──
-    elem = stringp(sp["elem"]) ? sp["elem"] : "wind";
-    damage = magic_element_damage(target, base, elem, sp["pierce"]);
+  // 施法訊息。
+  action = sp["action"];
+  if( !stringp(action) ) action = "$N唸動風咒﹐一道罡風激射向$n！";
+  message_vision(action + "\n", me, target);
 
-    dtype = sp["type"]; if( !stringp(dtype) ) dtype = "罡風";
-    target->receive_damage(damage, me, me);
+  // 套用傷害(與物理攻擊同走 receive_damage﹐消氣 kee)。
+  dtype = sp["type"]; if( !stringp(dtype) ) dtype = "風傷";
+  if( dmg > 0 ) {
+    target->receive_damage(dmg, me, me);
     COMBAT_D->report_status(target);
+  }
 
-    // 催咒提示(docs 疾風「條件足時下次三重催咒」)：技高者氣象更盛。僅提示﹐
-    // 不臆造多重催咒機制(屬未接的咒文技巧系統﹐待 docs 咒文技巧公式定案)。
-    if( sp["multicast"] && userp(me) && skill >= 50 )
-        tell_object(me, HIG "你罡風咒法漸入化境﹐隱隱有催動三重罡風之兆。\n" NOR);
+  // 催咒提示(docs 疾風「技能滿足條件下次必三重催咒」)：技高者氣象更盛。僅提示﹐
+  // 不臆造多重催咒機制(屬未接的咒文技巧系統﹐待 docs 咒文技巧公式定案)。
+  if( sp["multicast"] && userp(me) && skill >= 50 )
+    tell_object(me, HIG "你罡風咒法漸入化境﹐隱隱有催動三重罡風之兆。\n" NOR);
 
-    // 練法術技能 + 精熟（僅玩家）。
-    if( userp(me) )
-        me->improve_skill(sk, 1 + random(2));
+  // 練法術技能 + 精熟(僅玩家)。
+  if( userp(me) )
+    me->improve_skill(sk, 1 + random(2));
 
-    // 吟誦/運法後短暫無法行動(各式 delay﹐無則沿基底 2)。
-    busy = sp["delay"]; if( busy <= 0 ) busy = 2;
-    me->start_busy(busy);
+  // 吟誦/運法後短暫無法行動(施法時間 delay﹐對齊 docs)。
+  me->start_busy(sp["delay"] ? (int)sp["delay"] : 1);
 
-    return 1;
+  return 1;
 }
 
 // vim: set ts=4 sw=4 syntax=lpc
