@@ -100,7 +100,12 @@ void drop_invitation()
 void relay_say(object ob, string msg)
 {
     if( ob==this_object() ) return;
-    if( ob != query("pending_requester") ) 
+    // 護衛：只回應真人玩家。NPC 說話一律不理——否則兩個會 command("say") 的 NPC 同房，會
+    //   say→relay_say→say 互相回授成無止盡 say-storm(這是全 mudlib 唯一缺護衛的 relay_say，
+    //   是真正的 say-loop 樣板，見 runtime-gotchas #14)。戰鬥/chat 動畫中亦不回。
+    if( !ob || !userp(ob) ) return;
+    if( is_fighting() || is_chatting() ) return;
+    if( ob != query("pending_requester") )
         do_chat((: command, "say 這裡沒有你說話的餘地﹐給我閉嘴﹗":));
     else {
         if( msg!="英雄帖" ) {

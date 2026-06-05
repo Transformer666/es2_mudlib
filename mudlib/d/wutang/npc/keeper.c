@@ -29,7 +29,10 @@ void create()
 void init()
 {
 	::init();
-	if( !is_fighting() )
+	// 只對「真人玩家」招呼。原僅檢查 !is_fighting()，漫遊鎮民(townsman)或店小二等 NPC 進客棧
+	// 也會觸發 do_chat 招呼→玩家視角不斷洗版招呼(使用者回報的「無限迴圈」)。補 interactive()
+	// 護衛(與 biaotou/washerwoman 一致)，並除去未來 relay_say NPC 同房時的 say-loop 火種。
+	if( this_player() && interactive(this_player()) && !is_fighting() )
 		do_chat((: command, "say 客官裡邊請﹗打尖住店都使得﹗" :));
 }
 

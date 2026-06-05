@@ -37,7 +37,9 @@ void create()
 void init()
 {
 	::init();
-	if( !is_fighting() )
+	// 同 keeper：只對真人招呼。十字路口是漫遊鎮民(townsman)必經，缺 interactive 護衛會被 NPC
+	// 反覆觸發招呼洗版。
+	if( this_player() && interactive(this_player()) && !is_fighting() )
 		do_chat((: command, "say 這位朋友面生得很﹐是過路的吧﹖" :));
 }
 
