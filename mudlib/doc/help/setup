@@ -1,0 +1,20 @@
+遊戲制度 (setup)
+
+這篇總覽天朝帝國制度中各項數值的意義與彼此的關係，各項細節另有專文。
+人物根基是八屬性：膂力(str)、膽識(cor)、悟性(int)、靈性(spi)、定力
+(cps)、機敏(dex)、根骨(con)、慧根(wis)，可用 score 查看。膂力膽識主
+攻、定力慧根主守、機敏管閃躲、悟性管學習、靈性慧根通法術，詳見
+help attribute。
+三維資源是精、氣、神：精(gin)是形體血量，歸零即死；氣(kee)是內力，
+施展武功所耗；神(sen)是法力，施展法術所耗。精看機敏、氣看根骨、神看
+靈性，上限隨升級成長，可用 hp 查看（詳見 help gin、help kee、
+help sen）。
+成長軸是經驗與等級：江湖歷練攢夠便升級，升級時屬性有機會提升，精氣
+神依職業各有成長；另有實戰經驗、武學之道、兵刃拳腳精熟等專項，是
+進階與稱號的門檻（詳見 help experience、help level）。
+戰鬥數值由屬性與精氣神換算出攻勢、守勢、技巧、力道六項派生能力，
+傷害大小看力道，力道來自屬性、兵器與內功（詳見 help combat、
+help dodge、help parry）。
+此外尚有業力（help karma，投胎的本錢）、聲望（help fame）、稱號
+（help title）、天賦（help talent）、裝備強化（help equipment、
+help enchant）等制度，皆有專文可查；輸入 help all 可見全部主題。

@@ -21,8 +21,8 @@ int main(object me, string arg)
 
     if( !wizardp(me)
     &&  (last_save = me->query_temp("last_save"))
-    &&  (delta_t = (time()/60 - last_save)) < 5 ) {
-        return notify_fail("不用急, " +delta_t+ " 分鐘前你才剛儲存過, " +(5 - delta_t)+ " 分鐘後再試吧。\n");
+    &&  (delta_t = (time()/60 - last_save)) < 1 ) {
+        return notify_fail("不用急, 1 分鐘內只能儲存一次。\n");
     }
 
 #ifdef SAVE_USER
@@ -45,7 +45,7 @@ int help(object me)
 指令格式﹕save
 
 把你辛苦奮鬥的結果存起來。為了提升系統效率, 目前兩次 save 之時間間距最短為
-五分鐘。 quit 時系統會試著幫你 save。
+一分鐘。系統每隔數分鐘也會自動幫你存檔, quit、死亡、斷線時亦會自動 save。
 see also: quit, backup
 HELP
     );

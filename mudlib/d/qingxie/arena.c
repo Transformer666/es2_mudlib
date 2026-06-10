@@ -20,6 +20,10 @@ LONG
 		"宮牆" : "四周的宮牆以玄黑的條石砌得極高﹐牆頭遍插鐵蒺藜﹐將演武場圍得針插不入﹐連場中的喊殺之聲也被牢牢困在牆內。\n",
 	]));
 	set("outdoors", "qingxie");
+	// 沒有設 no_fight，可在此 kill 玄鐵樁練功（沿用 /d/snow/drill.c 範式）。
+	set("objects", ([
+		__DIR__"npc/dummy" : 1,
+	]));
 	set("exits", ([
 		"west" : __DIR__"hall",
 	]));

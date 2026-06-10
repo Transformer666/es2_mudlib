@@ -2,6 +2,32 @@
 
 inherit ROOM;
 
+// 把玩家輸入的中文錢幣名映成 /obj/money/ 下的英文 money_id。
+// 只映射白名單內的別名﹐其餘原樣返回﹐交由原有的
+// present()/file_size() 檢查把關。
+private string normalize_money(string m)
+{
+    switch(m) {
+    case "文":
+    case "文錢":
+    case "錢":
+    case "銅":
+    case "銅錢":
+    case "銅板":
+        return "coin";
+    case "銀":
+    case "銀子":
+    case "白銀":
+    case "碎銀":
+        return "silver";
+    case "金":
+    case "金子":
+    case "黃金":
+        return "gold";
+    }
+    return m;
+}
+
 void init()
 {
     add_action("do_convert", "convert");
@@ -50,11 +76,14 @@ int do_convert(string arg)
     if( !arg || sscanf(arg, "%d %s to %s", amount, from, to)!=3 )
         return notify_fail("指令格式﹕convert <數量> <貨幣種類> to <貨幣種類>\n");
 
+    from = normalize_money(from);
+    to = normalize_money(to);
+
     seteuid(getuid());
     from_ob = present(from + "_money", this_player());
     to_ob = present(to + "_money", this_player());
     if( !to_ob && file_size("/obj/money/" + to + ".c") < 0 )
-        return notify_fail("你想兌換哪一種錢﹖\n");
+        return notify_fail("你想兌換哪一種錢﹖本莊通用的錢幣有金(gold)、銀(silver)、文(coin)三種。\n");
 
     if( !from_ob )        return notify_fail("你身上沒有這種貨幣。\n");
     if( amount < 1 )    return notify_fail("兌換貨幣一次至少要兌換一個。\n");
@@ -105,19 +134,23 @@ int do_deposit(string arg)
     }
 
     if( bond->query_balance() != this_player()->query("bank_account") ) {
-        write("錢莊發現金契上的帳目不對﹐沒收了你的金契。\n");
-        destruct(bond);
-        return 1;
+        log_file("bank", sprintf("[%s] %s: bond mismatch on deposit, bond=%d account=%d\n",
+            ctime(time()), geteuid(this_player()),
+            bond->query_balance(), this_player()->query("bank_account")));
+        bond->set_balance(this_player()->query("bank_account"));
+        write("錢莊查對帳簿﹐發現金契上的帳目不符﹐為你重簽了一張金契。\n");
     }
 
     if( !arg || sscanf(arg, "%d %s", amount, money)!=2 )
         return notify_fail("指令格式﹕deposit <數量> <貨幣種類>。\n");
 
+    money = normalize_money(money);
+
     if( amount < 0 )
         return notify_fail("你不能存入零以下的錢幣。\n");
-        
+
     if( !money_ob = present(money + "_money", this_player()) )
-        return notify_fail("你身上沒有這種錢幣。\n");
+        return notify_fail("你身上沒有這種錢幣。本莊通用的錢幣有金(gold)、銀(silver)、文(coin)三種。\n");
 
     if( money_ob->query_amount() < amount )
         return notify_fail("你身上沒有這麼多的" + money_ob->name() + "。\n");
@@ -148,22 +181,26 @@ int do_withdraw(string arg)
     }
 
     if( bond->query_balance() != this_player()->query("bank_account") ) {
-        write("錢莊發現金契上的帳目不對﹐沒收了你的金契。\n");
-        destruct(bond);
-        return 1;
+        log_file("bank", sprintf("[%s] %s: bond mismatch on withdraw, bond=%d account=%d\n",
+            ctime(time()), geteuid(this_player()),
+            bond->query_balance(), this_player()->query("bank_account")));
+        bond->set_balance(this_player()->query("bank_account"));
+        write("錢莊查對帳簿﹐發現金契上的帳目不符﹐為你重簽了一張金契。\n");
     }
 
     if( !arg || sscanf(arg, "%d %s", amount, money)!=2 )
         return notify_fail("指令格式﹕withdraw <數量> <貨幣種類>。\n");
 
+    money = normalize_money(money);
+
     if( amount < 0 )
         return notify_fail("你不能提領零以下的貨幣。\n");
 
-    if( amount > 30000) 
-        return notify_fail("你不能一次領太多。\n");    
+    if( amount > 30000)
+        return notify_fail("你不能一次領太多。\n");
 
     if( file_size("obj/money/" + money + ".c") < 0 )
-	return notify_fail("你要提領哪一種錢﹖\n");
+	return notify_fail("你要提領哪一種錢﹖本莊通用的錢幣有金(gold)、銀(silver)、文(coin)三種。\n");
 
     if( catch(money_ob = new("/obj/money/" + money)) ) return 0;
 

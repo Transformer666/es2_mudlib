@@ -19,6 +19,10 @@ LONG
 		"兵器架" : "廊下兵器架上一柄柄長劍排列得齊齊整整﹐劍鞘鋥亮﹐保養得一塵不染﹐透著巡院的森嚴規矩。\n",
 		"值房" : "院東一排值房青磚灰瓦﹐是巡卒輪值巡夜之餘歇宿之所﹐簷下掛著輪值的牌籤。\n",
 	]));
+	// 沒有設 no_fight，可在此 kill 木人樁練功（沿用 /d/snow/drill.c 範式）。
+	set("objects", ([
+		__DIR__"npc/dummy" : 1,
+	]));
 	set("exits", ([
 		"north" : __DIR__"hall",
 		"south" : __DIR__"office",

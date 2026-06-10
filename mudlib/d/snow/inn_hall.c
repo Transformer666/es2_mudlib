@@ -35,9 +35,11 @@ LONG
 	"竹簾" : "竹簾用來隔開客人用膳跟廚房的爐灶﹐但是擋不住從廚房飄出來的香氣。",
 	"櫃臺" : "櫃臺後面陳列著一罈罈貼著紅紙條的酒缸﹐這些是客棧掌櫃視如性命的陳年老酒﹐如果你有興趣﹐不妨問問掌櫃有關這些陳年老酒賣是不賣。",
   ]));
-  set("exits", ([ /* sizeof() == 2 */
+  set("exits", ([ /* sizeof() == 4 */
 	"west" : __DIR__"inn_kitchen",
 	"east" : __DIR__"square_w",
+	"up" : __DIR__"inn_upstairs",
+	"southwest" : __DIR__"inn_stable",
   ]));
 
   setup();

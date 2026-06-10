@@ -25,6 +25,13 @@ LONG
 即透﹐正是隱教金蛇門人慣用的奪命利器。
 ",
 	]));
+	// 沒有設 no_fight，可在此 kill 草人練匕法（沿用 /d/snow/drill.c 範式）；
+	// 兵器架上的匕首小刀供取用，reset 時 std/room.c 會自動補齊缺失的 clone。
+	set("objects", ([
+		__DIR__"npc/dummy" : 1,
+		"/obj/area/obj/dagger" : 1,
+		"/obj/area/obj/knife" : 1,
+	]));
 	set("exits", ([
 		"west" : __DIR__"altar",
 	]));

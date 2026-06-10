@@ -21,17 +21,47 @@ static string *sym_dee = ({ "子","丑","寅","卯","辰","巳","午","未","申
 
 mapping dict = ([]);
 
+// 核心詞條：建角選單(logind)與 score 身分句必用的性別/種族/評價軸譯名。
+// 字典檔 restore 失敗或舊檔缺詞時（症狀：score 直出 malehuman），boot 即補種自癒。
+// 只補缺、絕不覆蓋既有值，保住 runtime 經 add_translate() 累積的詞條。
+static mapping core_dict = ([
+    "male":       "男性",
+    "female":     "女性",
+    // 可玩種族（logind.c user_race）＋隱藏種族 avatar
+    "human":      "人類",
+    "headless":   "形天",
+    "malik":      "巫首",
+    "yaksa":      "夜叉",
+    "ashura":     "阿修羅",
+    "dingling":   "釘靈",
+    "woochan":    "無腸",
+    "jiaojao":    "焦僥",
+    "blackteeth": "黑齒",
+    "yenhold":    "厭火",
+    "rainnar":    "雨師妾",
+    "avatar":     "人類",
+    "score of survive": "江湖歷練",
+]);
+
 void add_translate( string key, string chinz );
 void remove_translate( string key );
 
 void create()
 {
+    string k, v;
+    int dirty;
+
     seteuid(getuid());
     restore();
     if (mapp(dict))
         debug_message (sprintf ("dictionary restored %d words", sizeof(dict)));
-    else
+    else {
+	dict = ([]);
 	debug_message ("dictionary initialized.");
+    }
+    foreach(k, v in core_dict)
+        if( undefinedp(dict[k]) ) { dict[k] = v; dirty = 1; }
+    if( dirty ) save();
 }
 
 void remove() { save(); }

@@ -92,7 +92,7 @@ long()
 	    notes[i]["author"],
 	    ctime(notes[i]["time"])[0..9]
 	);
-    return msg += "\n=== " + query("name") + "使用方法請見 help board，留言版約可容納 " +BOARD_CAPACITY+ " 篇留言 ===\n";
+    return msg += "\n=== " + query("name") + "使用方法請見 help board，留言板約可容納 " +BOARD_CAPACITY+ " 篇留言 ===\n";
 }
 
 int

@@ -21,6 +21,10 @@ LONG
 		"石" : "場邊一方青石上鐫著「刀要快、人要狠」六個血紅大字﹐筆畫深刻如刀劈斧鑿﹐相傳是歷代門主以指血濡刀﹐一刀一畫親手鐫成﹐告誡弟子持刀者當有虎狼之決。\n",
 	]));
 	set("outdoors", "hudao");
+	// 沒有設 no_fight，可在此 kill 木人樁練刀（沿用 /d/snow/drill.c 範式）。
+	set("objects", ([
+		__DIR__"npc/dummy" : 1,
+	]));
 	set("exits", ([
 		"west" : __DIR__"hall",
 	]));

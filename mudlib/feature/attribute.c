@@ -62,3 +62,12 @@ varargs void init_attribute (mapping base) {
         if (undefinedp(attribute[name]))
             attribute[name] = value;
 }
+
+// clear_attribute()
+//
+// 把屬性整個清成「未定義」。init_attribute() 刻意只填 undefinedp 的鍵
+// (保護每次登入 setup_char 的 no-arg 重呼叫，不可改動)，因此「投胎」這類
+// 要依新種族重 roll 屬性的操作，必須先呼叫本函式清空，再經
+// set_race() -> RACE_D->initialize() -> init_attribute(base) 重填。
+// 玩家物件對 call_other 的保護見 obj/user.c 的 nomask 包裝。
+void clear_attribute() { attribute = ([]); }

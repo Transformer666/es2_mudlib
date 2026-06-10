@@ -103,8 +103,18 @@ int main (object me, string arg) {
         ob->query_stat("fatigue"), ob->query_stat_maximum("fatigue")
     );
 
+    // query() 回傳的是 dbase 實體 mapping 參照，原地塞 key 會寫進玩家存檔，
+    // 故一律先複製（+= ([]) 產生新 mapping）再動。
     score = ob->query ("score");
-    if (mapp (score)) {
+    if (!mapp (score))
+        score = ([]);
+    else
+        score += ([]);
+    // 1 級新角尚無任何 score 紀錄：補一筆 survive 0，讓升級門檻（如 [100]）
+    // 從 1 級起就看得到，與 2 級後「江湖歷練 100 [300]」的顯示語意一致。
+    if (undefinedp (score["survive"]) && ob->query_target_score ("survive") > 0)
+        score["survive"] = 0;
+    if (sizeof (score)) {
         string c;
         int xp;
 

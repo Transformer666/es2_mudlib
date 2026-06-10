@@ -17,9 +17,12 @@ mapping query_notified();
 void clear_statistic_flags();
 
 int query_stat(string what);
-int query_stat_current(string what);
-int query_stat_effective(string what);
-int query_stat_maximum(string what);
+// 下三式回傳型別須與 feature/statistic.c 實作一致為 mixed：呼叫端以 undefinedp()
+// 區分「stat 未定義」與「stat==0」，undefined 必須能穿透。型別不符會讓玩家在
+// 建角/update 首次編譯時看到 "Return type doesn't match prototype" 警告。
+mixed query_stat_current(string what);
+mixed query_stat_effective(string what);
+mixed query_stat_maximum(string what);
 mixed query_stat_regenerate(string what);
 int set_stat_current(string what, int val);
 int set_stat_effective(string what, int val);

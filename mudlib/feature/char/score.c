@@ -165,7 +165,20 @@ gain_score(string course, int xp)
 
 int query_target_score(string course)
 {
-    return query("target_score/" + course);
+    int v, lvl;
+
+    v = query("target_score/" + course);
+
+    // 1 級新角尚未經 gain_score 的 lazy-init，target_score 恆空，score 指令
+    // 看不到升級門檻（如 [100]）。survive 軸補上與 set_level_target 同式的
+    // fallback（base × level²）。純供顯示：升級判定（gain_score、
+    // set_target_score）皆走 raw query("target_score/...")，不受影響。
+    if( !v && course == "survive" && query_level() < query_max_level() ) {
+        lvl = query_level();
+        if( lvl < 1 ) lvl = 1;
+        return LEVEL_SCORE_BASE * lvl * lvl;
+    }
+    return v;
 }
 
 void set_target_score(string course, int xp)

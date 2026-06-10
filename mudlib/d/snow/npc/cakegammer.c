@@ -20,6 +20,18 @@ void create()
 	set_class("commoner");
 	set_level(2);
 
+	// FIX(2026-06-10, npc-physique): 明定八項屬性，蓋掉 set_level 觸發的
+	// 隨機屬性——否則 dex 滾到最高時，體格句會與「手腳雖然慢了」矛盾。
+	// str 最高：搭配年齡分級後顯示「雖然上了年紀，身子骨卻依然硬朗結實」。
+	set_attr("str", 15);
+	set_attr("con", 14);
+	set_attr("cps", 14);
+	set_attr("wis", 14);
+	set_attr("int", 13);
+	set_attr("spi", 13);
+	set_attr("cor", 12);
+	set_attr("dex", 10);
+
 	set("gender", "female");
 	set("age", 68);
 	set("long",

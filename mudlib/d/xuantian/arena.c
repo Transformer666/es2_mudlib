@@ -26,6 +26,12 @@ LONG
 光滑﹐隱隱透著一股久經錘鍊的劍氣。
 ",
 	]));
+	// 沒有設 no_fight，可在此 kill 木人樁練功（沿用 /d/snow/drill.c 範式）；
+	// 兵器架上的木劍供取用試招，reset 時 std/room.c 會自動補齊缺失的 clone。
+	set("objects", ([
+		__DIR__"npc/dummy" : 1,
+		"/obj/area/obj/woodsword" : 2,
+	]));
 	set("exits", ([
 		"east" : __DIR__"hall",
 	]));

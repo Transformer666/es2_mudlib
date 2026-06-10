@@ -72,7 +72,7 @@ int accept_apprentice(object me)
 	do_chat(({
 		"魯熙年抱起雙臂﹐將你細細打量了一番。\n",
 		"魯熙年朗聲道﹕我振武軍營軍法森嚴﹐操練如熬煉鋼鐵﹐你可吃得了這份苦﹖\n",
-		"魯熙年哈哈一笑﹕也罷﹐瞧你還算有把子力氣﹐我便收你入軍隊統領門下﹐傳你這套殺敵的槍法。\n",
+		"魯熙年哈哈一笑﹕也罷﹐瞧你還算有把子力氣﹐我便收你入我振武軍營門下﹐傳你這套殺敵的槍法。\n",
 	}));
 	return 1;
 }
@@ -88,8 +88,8 @@ int init_apprentice(object me)
 		seteuid(getuid());
 		me->set_class("soldier");
 		me->set("sect", "振武軍營");
-		me->set("rank", "軍隊統領");
-		me->set("title", "振武軍營軍隊統領");
+		me->set("rank", "新兵");
+		me->set("title", "振武軍營新兵");
 
 		me->set_skill("pike", 0);
 		me->set_skill("dragon god", 0);
@@ -104,7 +104,7 @@ int init_apprentice(object me)
 			"$N抄起一桿長槍﹐將龍神槍法的入門槍勢一招一式地傳授給$n。\n",
 			this_object(), me);
 		do_chat(({
-			"魯熙年朗聲道﹕從今日起﹐你便是我振武軍營軍隊統領門下的兵了。\n",
+			"魯熙年朗聲道﹕從今日起﹐你便是我振武軍營門下的一名新兵了。\n",
 			"魯熙年沉聲道﹕到校場領桿長槍勤加操練﹐槍要沉、步要穩、心要狠﹐莫墮了我軍威。\n",
 		}));
 	}

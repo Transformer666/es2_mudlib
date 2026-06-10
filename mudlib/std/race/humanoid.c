@@ -111,7 +111,7 @@ string query_appearance(object ob)
 {
     mapping attr;
     string a, best_a;
-    int num;
+    int num, age;
 
     if( !mapp(attr = ob->query_attribute()) ) return "";
 
@@ -119,10 +119,21 @@ string query_appearance(object ob)
     foreach(a, num in attr)
 	if( num > attr[best_a] ) best_a = a;
 
+    // FIX(2026-06-10, npc-physique): 體格句依年齡分級。原本只看最高屬性，
+    // 六七十歲的老人家也會顯示「虎背熊腰」「身手矯捷」，與自身描述矛盾。
+    // 只調整 str/dex 兩句（其餘措辭與年齡無衝突），措辭保持種族中性。
+    age = ob->query("age");
+
     switch(best_a)
     {
-	case "str": return "長得虎背熊腰，看起來相當孔武有力";
-	case "dex": return "生得猿臂狼腰，身手定然十分矯捷";
+	case "str":
+	    if( age >= 50 ) return "雖然上了年紀，身子骨卻依然硬朗結實";
+	    if( age && age <= 12 ) return "年紀雖小，身子骨卻十分結實";
+	    return "長得虎背熊腰，看起來相當孔武有力";
+	case "dex":
+	    if( age >= 50 ) return "雖然上了年紀，手腳依然俐落";
+	    if( age && age <= 12 ) return "年紀雖小，手腳卻十分伶俐";
+	    return "生得猿臂狼腰，身手定然十分矯捷";
 	case "cor": return "看起來膽識過人，一副天不怕地不怕的模樣";
 	case "cps": return "舉手投足間神色從容，頗有泰山崩於前面不改色的氣派";
 	case "int": return "看起來十分機伶，想必聰穎過人";

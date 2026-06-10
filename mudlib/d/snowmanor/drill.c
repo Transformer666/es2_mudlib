@@ -19,9 +19,11 @@ LONG
 		"兵器架" : "場邊兵器架上刀槍棍棒一應俱全﹐多是操演用的鈍器與木製傢伙﹐卻也夾著幾柄開了刃的真傢伙﹐刃口卷了又磨﹐磨了又卷。\n",
 		"步法" : "場心白灰畫出的步法方位縱橫交錯﹐踩踏得模糊難辨﹐依稀能看出是某種講究進退騰挪的身法步樁﹐想是莊中武學的根基。\n",
 	]));
+	// 沒有設 no_fight，場角的木人樁可 kill 練功（沿用 /d/snow/drill.c 範式）。
 	set("objects", ([
 		__DIR__"npc/instructor" : 1,
 		__DIR__"npc/retainer" : 1,
+		__DIR__"npc/dummy" : 1,
 	]));
 	set("outdoors", "snowmanor");
 	set("exits", ([

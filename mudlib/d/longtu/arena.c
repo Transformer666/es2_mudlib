@@ -25,6 +25,10 @@ LONG
 ",
 	]));
 	set("outdoors", "snow");
+	// 沒有設 no_fight，可在此 kill 銅人練功（沿用 /d/snow/drill.c 範式）。
+	set("objects", ([
+		__DIR__"npc/dummy" : 1,
+	]));
 	set("exits", ([
 		"west" : __DIR__"danfang",
 	]));

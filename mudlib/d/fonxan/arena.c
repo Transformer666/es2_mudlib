@@ -20,6 +20,12 @@ LONG
 		"石碑" : "場邊一方青石碑上鐫著「劍不離手」四個遒勁大字﹐相傳是某位掌門親手所刻﹐告誡弟子劍道無止境﹐唯有日夜不輟方有所成。\n",
 	]));
 	set("outdoors", "fonxan");
+	// 沒有設 no_fight，可在此 kill 木人樁練功（沿用 /d/snow/drill.c 範式）；
+	// 劍架上的木劍供取用試招，reset 時 std/room.c 會自動補齊缺失的 clone。
+	set("objects", ([
+		__DIR__"npc/dummy" : 1,
+		"/obj/area/obj/woodsword" : 2,
+	]));
 	set("exits", ([
 		"west" : __DIR__"hall",
 	]));

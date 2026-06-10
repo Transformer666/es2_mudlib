@@ -5,9 +5,13 @@
 //   故投胎只『換種族』，等級(level) 與技能(skills/learned) 全數保留。
 //
 // 已驗證的機制（動工前實讀 mudlib 原碼）：
-//   * set_race(race)：feature/char/score.c。只重設種族/職業被動屬性
-//     (RACE_D->initialize、CLASS_D->initialize 重 roll 體質)，
-//     完全不動 skills[]/learned[]/level──正是投胎要的原語。
+//   * set_race(race)：feature/char/score.c。改種族名後呼叫 RACE_D->initialize
+//     重 roll 體質──但 init_attribute/init_statistic (feature/attribute.c、
+//     feature/statistic.c) 都「只填 undefinedp 的鍵」(保護每次登入 setup_char
+//     的 no-arg 重呼叫)，對既有角色是 no-op。故本指令投胎前必須先
+//     clear_attribute() + delete_stat(gin/kee/sen) 把種族決定的欄位清成未定義，
+//     再讓 set_race 依新種族重 roll (見 confirm_reincarnate 內註解)。
+//     set_race 完全不動 skills[]/learned[]/level──等級與技能自然保留。
 //   * 業力存在「連線(link)物件」上 (obj/login.c，inherit F_DBASE)：
 //       讀：me->link()->query("karma")            (login.c::query 無保護，隨處可讀)
 //       扣：me->link()->add("karma", -成本)        (login.c::set/add 受 USER_PROTECT)
@@ -30,6 +34,7 @@
 
 #include <ansi.h>
 #include <login.h>
+#include <statistic.h>      // TYPE_HEALTH：重掛精氣神/HP 的回復器用
 
 inherit F_CLEAN_UP;
 
@@ -130,6 +135,12 @@ int main(object me, string arg)
     if( me->is_busy() )
         return notify_fail("你正忙著，沒辦法靜下心來參透輪迴。\n");
 
+    // 鬼魂不可用本指令投胎 (鬼魂另有死亡轉世流程 LOGIN_D->reincarnate)。
+    // 本指令會重 roll 精氣神，會破壞鬼魂特有的設定 (kee 已刪、gin/sen 走
+    // TYPE_WASTING，見 adm/daemons/chard.c::setup_char)。
+    if( me->query("life_form") == "ghost" )
+        return notify_fail("你如今魂魄無依，得先還陽或轉世，方能再論投胎換族之事。\n");
+
     // 種族合法性 (真實可投胎種族、且非現種族)。
     if( err = validate_race(me, race) )
         return notify_fail(err);
@@ -148,6 +159,8 @@ int main(object me, string arg)
         "你打算投胎轉世成「%s」(%s)。\n" NOR
         "這將" HIR "重塑你的根骨體質" NOR "並耗去 " HIM "%d" NOR " 點業力"
         "（你目前的等級與所有武學技能" HIG "都會保留" NOR "）。\n"
+        HIR "注意：八維屬性與精氣神將重置為新種族的出生之資，"
+        "前世修練所積的素質增益不會隨魂而來。\n" NOR
         "你確定要投胎嗎(y/n)﹖", to_chinese(race), race, cost));
     input_to("confirm_reincarnate", me, race);
     return 1;
@@ -178,6 +191,10 @@ private void confirm_reincarnate(string yn, object me, string race)
         tell_object(me, "你正在激戰之中，沒辦法靜下心來參透輪迴。\n");
         return;
     }
+    if( me->query("life_form") == "ghost" ) {   // 確認期間死了：擋下，免得
+        tell_object(me, "你已是一縷幽魂，此刻投不得胎。\n");   // 重 roll 毀掉鬼魂狀態
+        return;
+    }
     if( validate_race(me, race) ) {
         tell_object(me, "投胎之事有變，這個種族此刻投不得。\n");
         return;
@@ -200,10 +217,33 @@ private void confirm_reincarnate(string yn, object me, string race)
     // 1) 扣業力 (link 物件；本指令 euid==ROOT，通過 USER_PROTECT)。
     link->add("karma", -cost);
 
-    // 2) 換種族。set_race 只重設種族/職業被動屬性，不動等級與技能。
+    // 2) 換種族。init_attribute/init_statistic 都「只填 undefinedp 的鍵」，
+    //    老角色屬性與精氣神上限早已定義，直接 set_race 會是 no-op (只改種族
+    //    名字串，素質完全不換)。故先把「種族決定的欄位」清成未定義，再讓
+    //    set_race -> RACE_D->initialize 依新種族重 roll；等級/職業/技能/
+    //    score/任務旗標/年齡一概不碰。
+    me->clear_attribute();      // 八維屬性 (obj/user.c 有 USER_PROTECT 包裝)
+    me->delete_stat("gin");     // 精氣神：上限/heal/現值/回復器全清，
+    me->delete_stat("kee");     //   由新種族 init_statistic 重設上限
+    me->delete_stat("sen");
     me->set_race(race);
 
-    // 3) 投胎演出 (脫胎換骨)。
+    // 3) 重建衍生值：HP 上限照建角公式 con*5 (adm/daemons/chard.c::setup_char)，
+    //    heal_stat(0)/supplement_stat(0) 把 effective/current 夾回新上限內
+    //    (仿 std/race/humanoid.c 的 clamp 慣例)；TYPE_HEALTH 會把剛清掉的
+    //    精氣神 current/effective 補滿到新上限並重掛回復器。
+    //    ※ 不可圖方便改呼叫 CHAR_D->setup_char()：它會 set_temp("apply", ...)
+    //      整個重置暫時加成，穿戴中武器/防具的加成會全部消失。
+    //    (food/water 上限依舊屬性，下次登入 humanoid.c::setup 會無條件重算。)
+    me->set_stat_maximum("HP", (int)me->query_attr("con") * 5);
+    me->heal_stat("HP", 0);
+    me->supplement_stat("HP", 0);
+    me->set_stat_regenerate("HP", TYPE_HEALTH);
+    me->set_stat_regenerate("gin", TYPE_HEALTH);
+    me->set_stat_regenerate("kee", TYPE_HEALTH);
+    me->set_stat_regenerate("sen", TYPE_HEALTH);
+
+    // 4) 投胎演出 (脫胎換骨)。
     message_vision(HIM
         "\n$N周身光華流轉，三魂七魄似被一隻無形大手攬入輪迴，"
         "再睜眼時已是脫胎換骨、面目一新。\n" NOR, me);
@@ -236,6 +276,9 @@ int help(object me)
 投胎只會「轉換你的種族」──你的新身軀會依新種族重塑根骨體質，但你過往
 所修的一切武學技能、以及累積的等級與江湖歷練，都會原封不動地隨魂而來，
 不必從頭重練。
+
+但須留意：重塑根骨是脫胎換骨之變──八維屬性與精、氣、神都會重置為新種
+族的「出生之資」，前世升級修練所累積的素質增益，並不會隨魂帶到新身軀。
 
 投胎是重大且不可逆的轉變，下達指令後會再問一次是否確定(y/n)，確認後才
 會真正投胎並扣除業力。戰鬥之中或身有他務時無法投胎。

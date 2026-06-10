@@ -20,6 +20,9 @@ private void accrue_karma();
 static object my_link;
 private int last_age_set;
 
+// 週期 autosave 的心跳計數 (static 不會被 save_object 寫入存檔)。
+private static int autosave_beats;
+
 // implementations
 
 private void create() {
@@ -83,6 +86,14 @@ int save() {
     res = ::save();
     clean_up_autoload();        // To save memory
     return res;
+}
+
+// 死亡當下立即存檔，免得戰死後當機、斷線時遺失上次 save 之後的進度。
+// 真死轉世 (reincarnate) 砍存檔屬既有設計，不受此影響。
+void die() {
+    ::die();
+    if (userp(this_object()))
+        catch(save());
 }
 
 // 在生業力累積 (decision E)。業力是「投胎(轉種族)」的中性成本貨幣，原本只能
@@ -164,6 +175,15 @@ private void heart_beat() {
     if (objectp(my_link))
         my_link->update_age();
 
+    // 週期 autosave：heart_beat 每 2 秒一跳，120 跳約 4 分鐘存檔一次，
+    // 免得當機、斷線時遺失上次 save 之後的所有進度。重設為 random(10)
+    // 打散相位，避免全服玩家同一跳一起寫檔。
+    if (++autosave_beats >= 120) {
+        autosave_beats = random(10);
+        if (userp(this_object()))
+            catch(save());
+    }
+
     if (interactive(this_object()) && query_idle(this_object()) >= IDLE_TIMEOUT)
         user_dump(DUMP_IDLE);
 }
@@ -200,6 +220,9 @@ private void user_dump(int type) {
       tell_object(this_object(), CYN "你聽到一個細小的聲音說道：節能愛地球，請勿長時間掛機發呆～～\n" NOR);
       tell_object(this_object(), HIW "\n一個小小的，長著白色翅膀的生物忽然出現，抓著你的手在鍵盤上敲了 quit 命令。\n\n" NOR);
       tell_room(environment(), "一陣風吹來﹐將發呆中的" + query("name") + "化為一堆飛灰﹐消失了。\n", ({this_object()}));
+      // 先存檔再踢線，免得 quit 因 is_busy 之類提前中止而沒存到。
+      if (userp(this_object()))
+        catch(save());
       // change cmd: quit to quit ! -Dragoon
       cmd_quit("!");
       break;
@@ -212,6 +235,11 @@ private void user_dump(int type) {
  */
 private void net_dead() {
     set_heart_beat(0);
+
+    // 斷線當下立即儲存身體資料，免得 NET_DEAD_TIMEOUT 強制 quit 之前
+    // 這段空窗遺失進度。
+    if (userp(this_object()))
+        catch(save());
 
     if (objectp(my_link)) {
         my_link->save();
@@ -343,6 +371,11 @@ nomask int set_attr(string what, int value) {
 nomask int set_stat_maximum(string what, int val) {
     USER_PROTECT();
     return ::set_stat_maximum(what, val);
+}
+
+nomask void clear_attribute() {
+    USER_PROTECT();
+    ::clear_attribute();
 }
 
 // vim: set ts=4 sw=4 syntax=lpc

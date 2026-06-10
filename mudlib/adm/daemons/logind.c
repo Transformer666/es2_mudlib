@@ -822,18 +822,24 @@ int set_wizlock(int level) {
 
 static int list_user_race(object link) {
     string msg, race;
-    int karma;
+    int karma, cost, affordable;
 
     karma = link->query("karma");
     msg = "";
+    affordable = 0;
     foreach (race in user_race) {
-        if( RACE_D(race)->query("karma") > karma ) continue;
+        cost = (int)RACE_D(race)->query("karma");
+        if( cost > karma ) {
+            msg += sprintf("%-25s %d 點業力（業力不足）\n",
+                    to_chinese(race) + "(" + race + ")", cost );
+            continue;
+        }
+        affordable++;
         msg += sprintf("%-25s %d 點業力\n",
-                to_chinese(race) + "(" + race + ")",
-                RACE_D(race)->query("karma") );
+                to_chinese(race) + "(" + race + ")", cost );
     }
 
-    if (msg=="") {
+    if (!affordable) {
         write ("你所剩的業力已經沒有辦法投胎轉世了！\n");
         return 0;
     }
