@@ -12,6 +12,10 @@ void set_class(string new_class)
 
     set("class", new_class);
     if( query_level() && query_race() ) {
+	// 載 RACE_D/CLASS_D daemon 前先確保自身有 euid。房間 reset()(heart_beat 驅動、無
+	//   this_player/euid 之 context)新載入的 NPC，在此 set_*→daemon initialize 會踩
+	//   *Can't load objects when no effective user 而生成失敗（NPC 因而不在房，見 lesson #15）。
+	if( !geteuid() ) seteuid(getuid());
 	delete("target_score");
 	RACE_D(query_race())->initialize(this_object());
 	CLASS_D(new_class)->initialize(this_object());
@@ -24,6 +28,7 @@ void set_race(string new_race)
 
     set("race", new_race);
     if( query_level() && query_class() ) {
+	if( !geteuid() ) seteuid(getuid());	// 同 set_class：load daemon 前確保有 euid。
 	delete("target_score");
 	RACE_D(new_race)->initialize(this_object());
 	CLASS_D(query_class())->initialize(this_object());;
@@ -38,6 +43,7 @@ void set_level(int lvl)
     if( lvl > 999 ) error("character level must less than 999.\n");
     set("level", lvl);
     if( query_race() && query_class() ) {
+	if( !geteuid() ) seteuid(getuid());	// 同 set_class：load daemon 前確保有 euid。
 	delete("target_score");
 	RACE_D(query_race())->initialize(this_object());
 	CLASS_D(query_class())->initialize(this_object());
