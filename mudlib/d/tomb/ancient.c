@@ -33,6 +33,9 @@ LONG
 	set("no_fight", 1);
 	set("exits", ([
 		"down" : __DIR__"tombpath",
+		// 西出接碧幽部落村口(d/biyou/entrance)——碧幽部落即依此古墓場而居的守墓
+		// 山寨﹐就近接通(僅加一道出口﹐不動其餘設定﹔本房仍為純房間可 replace)。
+		"west" : "/d/biyou/entrance",
 	]));
 
 	setup();
