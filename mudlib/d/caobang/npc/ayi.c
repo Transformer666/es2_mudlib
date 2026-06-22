@@ -1,13 +1,20 @@
-// ayi.c -- 運河渡口的漕幫小船工「阿義」。純氣氛閒談 NPC：不接任務、不交物、不動旗標。
+// ayi.c -- 運河渡口的漕幫小船工「阿義」。漕幫支線「四鬼問環」第二步線索人。
 //
-// 【設定 / canon】依 ES2 設定﹐阿邦、阿義是漕幫渡口的船工﹐本是漕幫「四鬼問環」
-//   支線的起點關鍵人（領玩家入漕幫、引見幫中耆宿江隕﹐由江隕授「四鬼」之環）。
+// 【設定 / canon】依 ES2 設定﹐阿邦、阿義是漕幫渡口的船工（docs 05 L103）﹐領玩家入
+//   漕幫、引向幫中耆宿江隕（由江隕授「四鬼」之環﹐docs 05 L105）。阿義嘴快耳尖、熱心
+//   指路。
 //
-// 【A-gated TODO】「四鬼問環」整條主線支線﹐其開展繫於另一樁尚未拍板的主線抉擇(決策 A)﹐
-//   因此本檔【不】實作任何任務﹕阿義只是個嘴快熱心、會替玩家指路（往禮堂尋江隕、宋安江）
-//   的氣氛小船工﹐點到 canon 角色為止。
-//   == 待決策 A 拍板後再補的支線（此處一律不做、不設旗標）：見 abang.c 同段註記。==
-//   本檔絕不讀寫任何 四鬼 / 旋芒 / main_omen / 主線 旗標。
+// 【支線「四鬼問環」第二步（quest/caobang_clue_b）】（決策 A 已拍板）：
+//   玩家持籌、得了阿邦的線索(quest/caobang_clue_a)後﹐向阿義 ask about 四鬼﹐阿義便把
+//   渡口上聽來的下一段風聲——酒館外那討飯的老乞丐原是漕幫舊人、最曉得江爺與四鬼的根
+//   底——說與玩家﹐再指去尋那老乞丐。同步記 quest/caobang_clue_b = 1。
+//   * 未持籌 / 未得 clue_a：只給氣氛、指去先尋阿邦問起（不記旗標）。
+//   * 持籌且已得 clue_a：道線索、記 clue_b、指向酒館外老乞丐（記旗標在 do_chat 之前）。
+//   本支線自成 quest/caobang_* 旗標﹐絕不讀寫任何 旋芒 / main_canon / main_omen 旗標。
+//
+// 【同步交付】本步只設旗標、不交物﹐旗標一律在 do_chat 氣氛對白之前直接 set。
+//
+// 【runtime 鐵則】本 NPC 有 do_ask / init，**不** replace_program（#11）。
 
 #include <npc.h>
 
@@ -49,6 +56,8 @@ void init()
 
 int do_ask(string arg)
 {
+	object me = this_player();
+
 	if( !arg )
 		return notify_fail("你想跟這小船工打聽甚麼﹖（試試 ask ayi about 漕幫）\n");
 
@@ -67,18 +76,47 @@ int do_ask(string arg)
 		return 1;
 	}
 
-	// 江隕：canon 引子（授「四鬼」之環的人）——此處只氣氛點題﹐不接任何任務
+	// 四鬼問環 第二步（quest/caobang_clue_b）：承阿邦線索，道下一段風聲、指向老乞丐。
+	if( arg == "ayi about 四鬼"
+	||  arg == "ayi about 舊環"
+	||  arg == "ayi about 問環"
+	||  arg == "ayi about 線索"
+	||  arg == "ayi about sigui" ) {
+
+		if( is_fighting() || is_chatting() )
+			return notify_fail("阿義正手腳麻利地理著纜﹐一時顧不上你。\n");
+
+		// 未持籌 / 未得 clue_a：只給氣氛、指去先尋阿邦問起，不記旗標。
+		if( me->query("quest/caobang_start") < 1 || !present("caobang tally", me) ) {
+			do_chat((: command, "say 客官面生﹐連咱漕幫的竹籌都還沒揣著哩﹗『四鬼』這等幫裡的舊事﹐我可不敢跟外人混說。客官要當真有心問﹐先去碼頭尋周老大領了籌子﹐再來。(ask zhoulaoda about 差事)" :));
+			return 1;
+		}
+		if( me->query("quest/caobang_clue_a") < 1 ) {
+			do_chat((: command, "say 哎呀客官﹐這事可不興沒頭沒腦地問我﹗你先去尋邦哥——就是那老船工阿邦﹐他跑船的年頭比我長﹐這四鬼的風聲﹐該先聽他說個頭緒。(ask abang about 四鬼)" :));
+			return 1;
+		}
+
+		// 持籌、已得 clue_a：同步記 clue_b（在 do_chat 之前），道線索、指向老乞丐。
+		if( me->query("quest/caobang_clue_b") < 1 )
+			me->set("quest/caobang_clue_b", 1);
+		do_chat(({
+			(: command, "say （阿義往四下瞄了一眼﹐神祕兮兮地湊近）邦哥讓你來問我的﹖嘿﹐那四鬼舊環的事﹐我也只聽了個風聲——可我曉得誰曉得得最清楚﹗" :),
+			(: command, "say 客官打渡口往西南拐﹐有座飄著酒旗的小酒館﹐門外蹲著個討飯的老乞丐。客官莫小瞧那老叫花子——他年輕時也是這河上跑船的漕幫舊人﹐落魄了才討飯的。幫裡的老人都說﹐江爺那枚四鬼舊環的根底﹐連同當年布那封印的舊事﹐這滿渡口﹐就數那老乞丐曉得得最透。" :),
+			(: command, "say 客官揣著籌子去尋他﹐問他這『四鬼』的源流——他若肯說﹐你再回禮堂尋江爺﹐這環的因由便齊全了。(ask beggar about 四鬼)" :),
+		}));
+		return 1;
+	}
+
+	// 江隕 / 宋安江：canon 引子——純氣氛點題、指路（不記旗標）
 	if( arg == "ayi about 江隕"
 	||  arg == "ayi about 江爺"
 	||  arg == "ayi about jiangyun"
-	||  arg == "ayi about 四鬼"
 	||  arg == "ayi about 宋安江"
 	||  arg == "ayi about songanjiang" ) {
 		do_chat(({
 			(: command, "say 宋爺就是禮堂的分舵主宋安江﹐管著咱京畿這一處的大小幫務﹐人最是爽利仗義﹐客官到了禮堂自會見著。" :),
-			(: command, "say 江爺嘛 ... 江隕老爺子﹐輩分高得很﹐就在禮堂裡頭。聽幫裡的老人講﹐江爺手裡頭壓著一樁天大的舊事﹐甚麼『四鬼』的淵源 ... 唉﹐這個我也只是聽個風聲﹐當不得真。客官真好奇﹐自個兒去禮堂尋江爺﹐當面討教罷﹗" :),
+			(: command, "say 江爺嘛 ... 江隕老爺子﹐輩分高得很﹐就在禮堂裡頭。聽幫裡的老人講﹐江爺手裡頭壓著一樁天大的舊事﹐甚麼『四鬼』的淵源 ... 客官真好奇﹐揣著籌子來問我（ask ayi about 四鬼）﹐我才好跟你說個風聲。" :),
 		}));
-		// TODO(decision-A)：「四鬼問環」支線繫於主線抉擇 A﹐拍板前不接任務、不設任何旗標。
 		return 1;
 	}
 

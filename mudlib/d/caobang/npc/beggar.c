@@ -6,11 +6,17 @@
 //   肯為人奔走，便指點來客去尋漕運碼頭的攬頭周老大領籌入夥（漕幫任務「起點」，
 //   見 zhoulaoda.c）。漕幫這條線「起源」於他這幾句指點。
 //
-// 【任務分工】本檔做的是漕幫這條線的「起源」——純線索 / 串接：
-//     - do_ask 給漕幫由來、自身落魄的舊事，並明確指向「漕運碼頭的周老大」。
-//     - 【不】給物、【不】設任何旗標：發籌、開 quest/caobang_start 一律由起點的
-//       周老大(zhoulaoda.c)負責；本檔只是把玩家引向那裡。
-//   亦【不】讀寫任何 四鬼 / 旋芒 / main_omen / 主線 旗標（A-gated，見 abang.c 同段）。
+// 【任務分工】本檔身兼漕幫這條線的兩個角色：
+//   (1)「起源」——純線索 / 串接：do_ask 給漕幫由來、自身落魄的舊事，並明確指向「漕運
+//       碼頭的周老大」領籌（發籌、開 quest/caobang_start 一律由起點周老大負責，本檔不發籌）。
+//   (2) 漕幫支線「四鬼問環」第三步（quest/caobang_clue_c）：玩家持籌、循阿邦→阿義一路問
+//       到這位最曉得內情的漕幫舊人。老乞丐道出他親歷的四鬼舊環的根底，再指玩家回禮堂尋江
+//       隕覆命——同步記 quest/caobang_clue_c = 1。
+//     * 未持籌 / 未得 clue_b：只給氣氛、指去先尋阿邦／阿義問起（不記旗標）。
+//     * 持籌且已得 clue_b：道線索、記 clue_c、指回江隕（記旗標在 do_chat 之前）。
+//   本支線自成 quest/caobang_* 旗標﹐絕不讀寫任何 旋芒 / main_canon / main_omen 旗標。
+//
+// 【同步交付】本步只設旗標、不交物﹐旗標一律在 do_chat 氣氛對白之前直接 set。
 //
 // 【runtime 鐵則】本 NPC 有 do_ask / init，**不** replace_program（#11）。
 //   do_ask 以 is_fighting()/is_chatting() 守衛（#10）；無延遲交付（純氣氛/劇情對白）。
@@ -58,6 +64,8 @@ void init()
 
 int do_ask(string arg)
 {
+	object me = this_player();
+
 	if( !arg )
 		return notify_fail("你想跟這老乞丐打聽甚麼？（試試 ask beggar about 漕幫）\n");
 
@@ -76,6 +84,35 @@ int do_ask(string arg)
 			(: command, "say 客官面生，頭一回到咱這渡口罷？看你這身手腳，倒像是塊跑船的料 ... 嘿，別嫌老叫花子多嘴。" :),
 			(: command, "say 咱漕幫管著這天下的漕運，幫眾數十萬，沿著大運河南北分舵林立，勢力大著哩——難得的是，這麼大一個幫，在江湖上卻從不與人結仇，跑船的圖個四方通達、和氣生財。" :),
 			(: command, "say 客官若真有心入夥、替幫裡辦事，老叫花子指你一條道：往東沿河到漕運碼頭去，尋那掌事的攬頭周老大，跟他領一枚漕幫的竹籌——憑那籌子，往北禮堂裡尋宋爺、江爺，自有你的去處。(ask zhoulaoda about 差事)" :),
+		}));
+		return 1;
+	}
+
+	// 四鬼問環 第三步（quest/caobang_clue_c）：道四鬼舊環的根底，指回禮堂尋江隕覆命。
+	if( arg == "beggar about 四鬼"
+	||  arg == "beggar about 舊環"
+	||  arg == "beggar about 問環"
+	||  arg == "beggar about 線索"
+	||  arg == "beggar about sigui" ) {
+
+		// 未持籌 / 未起差事：只給氣氛、指去先尋周老大領籌，不記旗標。
+		if( me->query("quest/caobang_start") < 1 || !present("caobang tally", me) ) {
+			do_chat((: command, "say （老乞丐渾濁的眼睛掃過你，搖了搖頭）客官連咱漕幫的籌子都沒揣著，這四鬼的舊事，老叫花子可不敢混說。先往東到碼頭尋周老大領了竹籌，再來問罷。(ask zhoulaoda about 差事)" :));
+			return 1;
+		}
+		// 未得 clue_b（沒循阿邦→阿義問到這兒）：只給氣氛、指去先尋二位船工問起。
+		if( me->query("quest/caobang_clue_b") < 1 ) {
+			do_chat((: command, "say 客官好端端地，怎跑來問老叫花子這個？這四鬼的舊事，得有個來路。客官先去渡口尋那兩個船工——老的阿邦、小的阿義，順著他二人的話頭問下來，再來尋老子，老子才好接著往下說。(ask abang about 四鬼)" :));
+			return 1;
+		}
+
+		// 持籌、已得 clue_b：同步記 clue_c（在 do_chat 之前），道根底、指回江隕。
+		if( me->query("quest/caobang_clue_c") < 1 )
+			me->set("quest/caobang_clue_c", 1);
+		do_chat(({
+			(: command, "say （老乞丐渾濁的老眼霎時透出一線精光，捧著破瓦缽的手微微一顫）是阿邦、阿義那兩個小子，叫你來問老子的四鬼舊事？嘿……他二人只聽了個風聲，這事的根底，怕是這滿渡口，就剩老子一個還記得清了。" :),
+			(: command, "say 客官坐下，聽老子說。當年布鎮那卯天樹下封印的，是位了不得的高人；那枚刻著赤魈、青蛛、濁魚、旱魃四鬼古篆的舊銅環，便是他鎮鬼之後遺下的。老子年輕時跑船，親眼見那高人把環交到江隕江爺手裡，囑他守著、等一個有膽識肯為人奔走的後生，來把這樁四鬼的因果了結了。江爺這一守，便守了幾十年哪。" :),
+			(: command, "say 客官你揣著籌子，一路從邦哥、義小子問到老子這兒，肯為這檔子閒事奔走——老子瞧著，你倒真有幾分當年那高人說的『後生』的樣子。去罷，回北頭禮堂尋江爺，把這一路問來的四鬼源流跟他說（ask jiangyun about 問環），他自會認下你這份心。" :),
 		}));
 		return 1;
 	}

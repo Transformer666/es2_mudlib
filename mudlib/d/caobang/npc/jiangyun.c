@@ -5,6 +5,20 @@
 //   本幫亦以江隕為名義上的創幫者——漕幫禮堂（/d/caobang/hall）於 create() 內即以 uid
 //   "jiangyun" 向 CLAN_D 登錄漕幫(register_clan)。
 //
+// 【漕幫支線「四鬼問環」終點 quest-giver】（旗標自成 quest/caobang_*﹐與下方正史主線
+//   main_canon* 旗標完全獨立、互不讀寫）：
+//   這是序章漕幫這條道上、正史第五章四鬼任務【之前】的一段「問環」支線。玩家先向漕運
+//   碼頭周老大領漕幫竹籌(quest/caobang_start)﹐持籌循渡口船工阿邦→阿義→酒館外老乞丐
+//   三步 ask-path 問出四鬼舊環的源流(quest/caobang_clue_a/b/c)﹐再回禮堂向江隕覆命﹕
+//     * topic「問環」(及 四鬼問環／舊環／古篆拓／拓本／sigui token)：見 siguihuan_quest()。
+//     * 須持竹籌(caobang tally)且三段線索齊全(caobang_clue_a/b/c 皆 >=1)﹐方授「四鬼古篆拓」
+//       (d/caobang/npc/obj/sigui_token)+ set quest/caobang_done = 1（同步授物：handler 內直接
+//       new+move﹐在設旗標之前——承同步交付教訓）。完成後純氣氛、防重領；拓本遺失補發、不重置。
+//   本支線終獎「四鬼古篆拓」是一幅四鬼古篆的拓本【信物】﹐刻意與正史那枚開封用的「四鬼招喚
+//   環」(ghost ring)分作不同物件、不同 id、不同階段——拓本是漕幫認下玩家「問環之功」的記認、
+//   兼正史授環的敘事引子﹐而非開封聖物。topic「問環」與下方正史「四鬼」topic(關鍵字 四鬼／環／
+//   招喚環／封印／卯天樹／星光環…)【無任何重疊】﹐二線並行不悖。
+//
 // 【正史主線第五章「四鬼任務」quest-giver】（決策 A 已拍板、序章直通 canon﹐本檔遂實作
 //   授環/交差）﹕
 //   * 接任務：玩家須先了結第四章蜈蚣之患(quest/main_canon4_done >= 1)。江隕授「四鬼招喚
@@ -44,10 +58,12 @@
 #include <ansi.h>
 
 int do_ask(string arg);
+private int siguihuan_quest(object me);
 private int sigui_quest(object me);
 private int sishen_quest(object me);
 private int hundun_quest(object me);
 private int tianling_quest(object me);
+private void give_sigui_token(object who);
 private void give_ghost_ring(object who);
 private void give_chaos_seal(object who);
 private void give_reward5(object who);
@@ -105,6 +121,18 @@ int do_ask(string arg)
 			(: command, "say 客官若有心入夥﹐這禮堂的分舵主宋安江﹐人最爽利﹐入幫的章程﹐尋他問便是。老朽老了﹐如今只在這禮堂裡看看舊旗、守守舊事罷了。" :),
 		}));
 		return 1;
+	}
+
+	// 四鬼問環：漕幫支線終點——驗三段線索齊全、授「四鬼古篆拓」+ set caobang_done。
+	// topic 與下方正史「四鬼」topic 無重疊（不含 四鬼／環／招喚環…等正史關鍵字）。
+	if( arg == "jiangyun about 問環"
+	||  arg == "jiangyun about 四鬼問環"
+	||  arg == "jiangyun about 舊環"
+	||  arg == "jiangyun about 古篆拓"
+	||  arg == "jiangyun about 拓本"
+	||  arg == "jiangyun about sigui token"
+	||  arg == "elder jiangyun about 問環" ) {
+		return siguihuan_quest(this_player());
 	}
 
 	// 四鬼：正史主線第五章 quest-giver——接任務／進行中／交差／門檻未達 四態
@@ -168,7 +196,83 @@ int do_ask(string arg)
 		return tianling_quest(this_player());
 	}
 
-	return notify_fail("江隕望著東去的河水﹐淡淡道﹕有些事﹐時候未到﹐多問無益。客官且自便罷。（試試 ask jiangyun about 漕幫／四鬼／四神／渾沌獸／天靈／地靈）\n");
+	return notify_fail("江隕望著東去的河水﹐淡淡道﹕有些事﹐時候未到﹐多問無益。客官且自便罷。（試試 ask jiangyun about 漕幫／問環／四鬼／四神／渾沌獸／天靈／地靈）\n");
+}
+
+// 漕幫支線「四鬼問環」終點狀態機。who=this_player()。同步授「四鬼古篆拓」(信物)、旗標
+// 與授受綁定（承同步交付教訓）。本支線旗標自成 quest/caobang_*﹐與正史 main_canon* 完全
+// 獨立、互不讀寫。
+private int siguihuan_quest(object me)
+{
+	if( !me ) return 0;
+
+	if( is_fighting() || is_chatting() )
+		return notify_fail("江隕正凝望著「漕」字大旗出神﹐一時無暇答話。\n");
+
+	// 已完成：純氣氛、防重領（拓本遺失則補發、不重置進度）。
+	if( me->query("quest/caobang_done") >= 1 ) {
+		if( !present("sigui token", me) ) {
+			// 同步補發：give_sigui_token 直接 new+move（玩家此刻必在場）；do_chat 只留氣氛。
+			give_sigui_token(me);
+			do_chat((: command, "say 少俠那幅四鬼古篆拓怎不見了？那是老朽認下少俠問環之功的記認﹐丟不得。罷了﹐老朽再拓一幅與你——這回好生收著。" :));
+			return 1;
+		}
+		do_chat(({
+			(: command, "say 少俠循著竹籌﹐一路從渡口的阿邦、阿義﹐問到那落魄的漕幫舊人﹐又把這四鬼舊環的源流問了個齊全——老朽守了幾十年的這樁心事﹐今日總算遇著個肯為它奔走的後生了。" :),
+			(: command, "say 少俠手中那幅四鬼古篆拓﹐好生收著。他日京畿那株聖木之節若當真為甚麼變故所斷、卯天樹下鎮鬼的封印一鬆——少俠再來尋老朽（ask jiangyun about 四鬼），老朽自會把那枚真能開封誅鬼的舊環﹐正式交在少俠手裡。" :),
+		}));
+		return 1;
+	}
+
+	// 未持籌 / 未起差事：指去碼頭尋周老大領籌（不記旗標）。
+	if( me->query("quest/caobang_start") < 1 || !present("caobang tally", me) ) {
+		do_chat((: command, "say （江隕淡淡看你一眼）客官連咱漕幫的竹籌都不曾揣著﹐這四鬼問環的舊事﹐老朽便是說了﹐客官也接不住。客官若有心入夥﹐先往渡口東頭的漕運碼頭﹐尋那攬頭周老大領一枚竹籌罷。(ask zhoulaoda about 差事)" :));
+		return 1;
+	}
+
+	// 持籌、線索未齊：指去循阿邦→阿義→老乞丐把四鬼源流問齊（不記旗標）。
+	if( me->query("quest/caobang_clue_c") < 1 ) {
+		do_chat(({
+			(: command, "say （江隕的目光在少俠腰間那枚竹籌上一掠﹐微微頷首）少俠是揣著籌子來的——是咱漕幫的人了。只是這四鬼舊環的因由﹐千頭萬緒﹐老朽不好沒頭沒腦地說與你。" :),
+			(: command, "say 少俠且去渡口走一遭﹕先尋那老船工阿邦﹐再循他的話頭問年輕的阿義﹐末了去酒館外尋那討飯的老乞丐——那老叫花子是漕幫的舊人﹐這四鬼舊環的根底﹐就數他曉得得最透。少俠把這一路的源流問齊了﹐再回來尋老朽覆命。(ask abang about 四鬼)" :),
+		}));
+		return 1;
+	}
+
+	// 線索齊全(clue_c 在)﹐首次覆命：同步授「四鬼古篆拓」、即記 caobang_done。
+	// 先給物、後記旗標——免於回呼前離場致拓本沒領、旗標卻記完成而卡關（#同步交付）。
+	give_sigui_token(me);
+	me->set("quest/caobang_done", 1);
+	do_chat(({
+		(: command, "say （江隕定定地看了少俠半晌﹐渾濁的老眼裡迸出久違的精光）少俠竟揣著竹籌﹐一路從阿邦、阿義﹐問到那落魄的老乞丐﹐把老朽這四鬼舊環的源流﹐問了個齊全——肯為這檔子與己無干的舊事如此奔走的後生﹐老朽等了幾十年了。" :),
+		(: command, "say 不瞞少俠﹕老朽手裡確有一枚當年布鎮卯天樹下封印之人所遺的舊銅環﹐環身刻著赤魈、青蛛、濁魚、旱魃四鬼的古篆。只是那環真能開封誅鬼——這樁干係太大﹐繫於京畿那株聖木的氣數﹐時候未到﹐老朽還交付不得。" :),
+		(: command, "say （江隕取過那枚舊環﹐在一方素絹上以濃墨將環身四道古篆細細拓下﹐又補了一行小楷﹐雙手疊好奉與少俠）這幅四鬼古篆拓﹐少俠收著——是老朽認下少俠這份問環之功的記認。他日聖木之節若有變故、鬼封一鬆﹐少俠再來尋老朽（ask jiangyun about 四鬼）﹐老朽自會把那枚開封的舊環﹐正式交在少俠手裡。去罷﹐少俠﹐好生留著這幅拓本。" :),
+	}));
+	return 1;
+}
+
+// 同步授「四鬼古篆拓」(支線信物)。who=玩家。防重複授物（身上已有則不重授）。
+// 先試 move 到玩家身上﹐不成（負重等）則落在環境地上——絕不靜默丟失。
+private void give_sigui_token(object who)
+{
+	object token;
+
+	if( !who || environment(who) != environment() ) return;
+	if( present("sigui token", who) ) return;
+
+	token = new("/d/caobang/npc/obj/sigui_token");
+	if( !objectp(token) ) return;
+	if( !token->move(who) ) token->move(environment());
+
+	who->gain_score("emprise", 120);
+	who->gain_score("reputation", 80);
+	who->gain_score("explorer fame", 60);
+
+	message_vision(
+		HIY "江隕鄭重自懷中取出一枚古樸厚重的青銅舊環﹐又取一方素絹、一錠濃墨﹐"
+		"將那環身四道詰屈如蟲的古篆細細拓下﹐補了一行小楷﹐疊得方正﹐雙手交到"
+		"$N手裡——這幅四鬼古篆拓﹐是漕幫認下$N問環之功的記認。\n" NOR,
+		who);
 }
 
 // 第五章四鬼任務狀態機。who=this_player()。同步授環/發獎、旗標與授受綁定（承同步交付教訓）。
@@ -546,6 +650,20 @@ private void give_reward8(object who)
 		"交到$N手裡﹔復又顫巍巍地離座而起﹐朝$N深深一揖到地、久久不起——這一揖﹐是"
 		"替那困於這三百年因果、終盼得天、地二靈伏誅、終局在望的天下蒼生﹐謝過少俠的。\n"
 		NOR, who);
+}
+
+// 收物防呆：本支線純 ask-path、不收物（無 give-turn-in）。婉拒玩家遞來的物事、不吞玩家
+// 物品（尤不收回那幅四鬼古篆拓信物）。回 0＝give 命令不轉移、物事留在玩家身上。
+int accept_object(object who, object ob)
+{
+	if( ob && ob->id("sigui token") ) {
+		do_chat((: command,
+			"say 這拓本既拓與了少俠﹐便是少俠問環之功的記認﹐收回去——他日鬼封一鬆﹐少俠憑它來尋老朽便是。" :));
+		return 0;
+	}
+	do_chat((: command,
+		"say 老朽一個守舊事的閒人﹐受不起少俠的東西﹐少俠還是自個兒留著罷。" :));
+	return 0;
 }
 
 int accept_fight(object ob)

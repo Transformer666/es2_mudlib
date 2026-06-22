@@ -21,6 +21,7 @@ LONG
 	]));
 	set("objects", ([
 		__DIR__"npc/citizen" : 1,
+		__DIR__"npc/laocangtou" : 1,
 	]));
 	set("outdoors", "qiaoyin");
 	set("no_fight", 1);

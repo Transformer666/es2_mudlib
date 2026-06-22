@@ -25,6 +25,7 @@ void create()
 	set("title", "隱教聖女");
 
 	set_skill("unarmed", 60);
+	set_skill("eagle-claw", 60);
 	set_skill("dodge", 130);
 	set_skill("parry", 90);
 	set_skill("force", 120);
@@ -33,6 +34,8 @@ void create()
 	set_skill("serpent dagger", 150);
 	map_skill("force", "yinjiao force");
 	map_skill("dagger", "serpent dagger");
+	// 隱教招牌徒手武功﹕鷹爪功﹐徒手時以此招出手(見 daemon/skill/eagle-claw.c)。
+	map_skill("unarmed", "eagle-claw");
 
 	advance_stat("gin", 220);
 	advance_stat("kee", 200);
@@ -99,6 +102,11 @@ int init_apprentice(object me)
 		me->set_skill("serpent dagger", 0);
 		me->map_skill("dagger", "serpent dagger");
 
+		// 隱教招牌徒手武功﹕鷹爪功(獨步武林的徒手搏鬥)﹐徒手時以此招出手。
+		me->set_skill("unarmed", 0);
+		me->set_skill("eagle-claw", 0);
+		me->map_skill("unarmed", "eagle-claw");
+
 		// 同時授予隱教心法﹐使弟子戰鬥時力道能隨內功成長。
 		me->set_skill("force", 0);
 		me->set_skill("yinjiao force", 0);
@@ -109,6 +117,7 @@ int init_apprentice(object me)
 			this_object(), me);
 		do_chat(({
 			"利丰華說道﹕從今日起﹐你便是我隱教金蛇門下的人了。\n",
+			"利丰華屈指如爪﹐沉聲道﹕我隱教另有一門獨步武林的徒手絕學「鷹爪功」﹐空手時十指便是利刃﹐抓撕扣鎖、見血封喉﹐你一併記下。\n",
 			"利丰華沉聲道﹕到演武場對著草人勤練匕法﹐出手要快、要狠、要無聲﹐如金蛇噬人。\n",
 		}));
 	}
