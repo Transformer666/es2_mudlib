@@ -68,6 +68,23 @@ inherit SKILL;
 #define COMBO_COST          7       // [預設] 連擊門檻/耗點(>6﹐觸發 self delay 2)。
 #define COMBO_HITS          3       // [預設] 連擊追擊次數(額外 me->attack(target) N 次)。
 
+// ── 蝶影幻步 diepying：瑯夷派/盜賊「脫離戰鬥」專屬絕招(docs/03-門派與武功/
+//    05-盜賊-瑯夷隱教.md L43「蝶影幻步：perform 脫離戰鬥(非常好用)」)。───────────
+// 屬「脫戰」型絕招(非攻擊)﹐沿用既有 perform 框架(累點/扣點/perform 指令)﹐效果
+// 比照焦僥「遁」(cmds/std/vanish.c)的已驗範式：remove_all_killer 徹底脫戰 + 隨機
+// 換房 + set_temp("pending/hidden") 斂息隱匿。與通用三式(攻擊型)不同﹐本式以脫身
+// 為旨﹐故不對「目標」造成傷害﹐目標僅作 perform 指令格式所需的當前交手對象。
+// 為「核心招式」而設門檻：限瑯夷派(thief)弟子方可施展(對齊 d/langyi/npc/master.c
+// 之 set("sect","瑯夷派"))﹐杜絕通用脫戰被全服濫用、破壞平衡。
+#define DIEPYING_NAME       "diepying"   // 蝶影幻步：脫離當前戰鬥並竄房隱匿。
+#define DIEPYING_COST       5       // [預設] 蝶影幻步門檻/耗點(≤6﹐不觸發 delay 2﹐
+                                    //   脫身招宜輕巧﹐比照定人 hold 之 5 點尺度)。
+#define DIEPYING_SEN        30      // [預設] 蝶影幻步耗神(sen﹐凝神運步﹐比照 vanish
+                                    //   /翔空之術之中等尺度﹐低於翔空 50)。
+#define DIEPYING_KEE        30      // [預設] 蝶影幻步耗氣(kee﹐縱躍竄逃所耗體力)。
+#define DIEPYING_HIDE_BASE  10      // [預設] 脫身後斂息隱匿基值(鏡 vanish.c)。
+#define DIEPYING_SECT       "瑯夷派" // 限瑯夷派弟子(對齊 d/langyi/npc/master.c)。
+
 // docs L101 唯一硬數字：一次施放耗點 > DELAY_THRESHOLD 者﹐施招者 self delay。
 #define DELAY_THRESHOLD     6       // docs：「perform >6 點 delay 2」。
 #define SELF_DELAY          2       // docs：delay 2 個 heart_beat。
@@ -81,6 +98,7 @@ private int spend_and_delay(object me, int cost);
 private int do_ignoredef(object me, object target);
 private int do_hold(object me, object target);
 private int do_combo(object me, object target);
+private int do_diepying(object me, object target);
 
 private void
 create()
@@ -168,6 +186,7 @@ perform_action(object me, string skill, string act, object target)
     case IGNOREDEF_NAME: return do_ignoredef(me, target);
     case HOLD_NAME:      return do_hold(me, target);
     case COMBO_NAME:     return do_combo(me, target);
+    case DIEPYING_NAME:  return do_diepying(me, target);
     default:
         return notify_fail("你並不會「" + act + "」這一招絕招。\n"
             "(通用絕招﹕" IGNOREDEF_NAME "(無視防禦)、"
@@ -274,6 +293,98 @@ do_combo(object me, object target)
     tell_object(me, sprintf(HIW
         "你施出絕招連擊﹐攻勢綿綿不絕﹗(耗 %d 點絕招點﹐隨後微微一頓)\n" NOR,
         COMBO_COST));
+    return 1;
+}
+
+// ── diepying 蝶影幻步：瑯夷派/盜賊脫離戰鬥的專屬絕招。docs L43。──────────────────
+// 沿用既有 perform 框架(累點/扣點)﹐效果鏡焦僥「遁」(cmds/std/vanish.c)的已驗範式﹕
+//   1. 限瑯夷派弟子(對齊 d/langyi/npc/master.c 之 set("sect","瑯夷派"))。
+//   2. 扣絕招點(DIEPYING_COST)﹐再驗/扣神(sen)氣(kee)──消耗資源。
+//   3. me->remove_all_killer() 徹底脫戰(連 killer 帶 enemy 清掉﹐見 feature/char/
+//      attack.c:245﹔remove_all_enemy 對正 kill 自己之敵無效﹐故用 remove_all_killer)。
+//   4. 隨機挑當前房間一出口竄房(讀 env->query("exits")﹐鏡 vanish.c / go.c escape)﹐
+//      竄房成功則 set_temp("pending/hidden", N) 斂息隱匿(引擎隱匿屬性﹐見 sneak.c)。
+//      無路/出口壞/移動失敗時退而原地藏身(脫戰仍算數)──比照 vanish.c 之各退路。
+// 本式不傷目標(target 僅為 perform 指令格式所需之當前交手對象)﹐故扣點後逕行脫身。
+// runtime 鐵則：本式不涉 ::die()/destruct()(#10)、不 replace_program(#11)。
+private int
+do_diepying(object me, object target)
+{
+    object env, dest;
+    mapping exits;
+    string *dirs, dir;
+    mixed d;
+    int hide, fighting;
+
+    // 限瑯夷派弟子方可施展(核心招式﹐杜絕通用脫戰被全服濫用)。
+    if( me->query("sect") != DIEPYING_SECT )
+        return notify_fail("蝶影幻步乃瑯夷派脫身的看家本領﹐外人縱知其名﹐亦施展不來。\n");
+
+    env = environment(me);
+    if( !objectp(env) )
+        return notify_fail("你身處虛無之地﹐無從施展蝶影幻步。\n");
+
+    // 脫身得有路可竄(戰鬥中尤須有路可逃﹐鏡 vanish.c)。
+    exits = env->query("exits");
+    if( !mapp(exits) || !sizeof(exits) )
+        return notify_fail("四面無路﹐你被困在此處﹐蝶影幻步也施展不開﹗\n");
+
+    // 扣絕招點(門檻 ≤6﹐不觸發 self delay)。點不足則 spend_and_delay 已 notify_fail。
+    if( !spend_and_delay(me, DIEPYING_COST) )
+        return 0;
+
+    // 再驗神(sen)氣(kee)是否足夠運步(扣點已成﹐此處不足則退還絕招點以免白扣)。
+    if( me->query_stat("sen") < DIEPYING_SEN || me->query_stat("kee") < DIEPYING_KEE ) {
+        me->set_temp(PERFORM_POINT_KEY, query_perform_point(me) + DIEPYING_COST);
+        return notify_fail(sprintf(
+            "你神氣不繼﹐凝不起蝶影幻步的身法(需神 %d、氣 %d)。\n",
+            DIEPYING_SEN, DIEPYING_KEE));
+    }
+    me->consume_stat("sen", DIEPYING_SEN);
+    me->consume_stat("kee", DIEPYING_KEE);
+
+    fighting = me->is_fighting();
+
+    message_vision(HIC
+        "$N身形倏地一幻﹐如翩翩蝶影般飄忽錯落﹐運起瑯夷派的「蝶影幻步」﹐眨眼便要抽身而去﹗\n"
+        NOR, me);
+
+    // 徹底脫離一切戰鬥(remove_all_killer 連 killer 帶 enemy 一併清掉﹐見檔頭)。
+    if( fighting )
+        me->remove_all_killer();
+
+    // 隨機挑一出口竄房(鏡 vanish.c 的 escape 流程)。
+    dirs = keys(exits);
+    dir = dirs[random(sizeof(dirs))];
+    d = env->query("exits/" + dir);
+    if( stringp(d) ) {
+        if( catch(dest = load_object(d)) ) dest = 0;
+    } else if( objectp(d) ) {
+        dest = d;
+    }
+
+    if( objectp(dest) && me->move(dest) && environment(me) == dest ) {
+        // 竄房成功﹐斂息隱匿(set_temp("pending/hidden", N)﹐越高越難被察覺)。
+        hide = DIEPYING_HIDE_BASE + random(DIEPYING_HIDE_BASE)
+            + me->query_skill("sneak");
+        me->set_temp("pending/hidden", hide);
+        tell_object(me, HIC
+            "蝶影幻步既成﹐你已飄身竄入鄰處﹐就地斂息伏低﹐藏進暗影之中。\n" NOR);
+    } else {
+        // 出口壞/移動失敗：脫戰仍算數﹐退而原地藏身。
+        hide = DIEPYING_HIDE_BASE + random(DIEPYING_HIDE_BASE)
+            + me->query_skill("sneak");
+        me->set_temp("pending/hidden", hide);
+        tell_object(me, HIC
+            "你雖未能竄出此地﹐卻已自纏鬥中飄然抽身﹐就地屏息藏匿。\n" NOR);
+    }
+
+    tell_object(me, sprintf(HIW
+        "你施出蝶影幻步脫身﹗(耗 %d 點絕招點、神 %d、氣 %d)\n" NOR,
+        DIEPYING_COST, DIEPYING_SEN, DIEPYING_KEE));
+
+    if( userp(me) )
+        me->improve_skill("dodge", 1 + random(2));
     return 1;
 }
 

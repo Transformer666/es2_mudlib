@@ -81,7 +81,13 @@ int help(object me)
     hold       定人    ：點中對手大穴﹐令其短暫無法行動。
     combo      連擊    ：連環追擊對手數招﹐攻勢綿綿不絕。
 
+門派專屬絕招(僅該門弟子可施展)﹕
+
+    diepying   蝶影幻步：瑯夷派脫身絕技。身形如蝶影幻動﹐瞬間脫離當前一切
+                         纏鬥﹐竄入鄰處斂息藏匿(耗神、氣)。
+
 例如﹕ perform sword:ignoredef on guard
+      perform dodge:diepying          (瑯夷派以身法施展蝶影幻步脫身)
 
       就是以你所使用的劍法﹐對 guard 施展「無視防禦」絕招。
 

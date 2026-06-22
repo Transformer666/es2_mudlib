@@ -38,6 +38,10 @@ LONG
 		// 林子東北角一道隱蔽的窄石隙﹐側身鑽過便是與世隔絕、藥香盈谷的
 		// 百藥谷——尋丹材問煉丹的清靜去處(d/baiyao﹐以 southwest 接回此處)。
 		"northeast" : "/d/baiyao/entry",
+		// 林子西南那條沒入荒草的山道﹐一路通往平陽山山腳——一片群賊據山為患、
+		// 自成一格的高階獵場(承黑風山往上一級﹐不涉主線﹔d/pingyang﹐以山腳
+		// 小店的 east 接回此處)。
+		"southwest" : "/d/pingyang/store",
 	]));
 
 	setup();
