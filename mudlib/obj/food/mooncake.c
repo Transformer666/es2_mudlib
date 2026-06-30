@@ -14,6 +14,7 @@ void create()
 		set("food_stuff", 140);
 		set("long", "一個又圓又大的月餅，就像天上的月亮一樣。\n");
 	}
+	set_amount(1);   // 比照 medication COMBINED_ITEM 範式：clone 顯式設量，勿賴 setup() 條件式（見 eat 缺陷修正）
 	setup();
 }
 

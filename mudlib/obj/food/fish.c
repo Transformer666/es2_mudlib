@@ -18,6 +18,7 @@ void create()
 		set("food_stuff", 60);      // 生魚充飢有限，略低於饅頭（可調）
 		set("long", "一尾活蹦亂跳的小魚﹐方纔自港邊的水裡釣上來﹐鱗光閃閃。\n");
 	}
+	set_amount(1);   // 比照 medication COMBINED_ITEM 範式：clone 顯式設量，勿賴 setup() 條件式（見 eat 缺陷修正）
 	setup();
 }
 

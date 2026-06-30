@@ -15,6 +15,7 @@ void create()
 		set("long",
 			"米飯作成的糰子，裡面包著一些肉鬆、煎蛋、油條段兒的小菜。\n");
 	}
+	set_amount(1);   // 比照 medication COMBINED_ITEM 範式：clone 顯式設量，勿賴 setup() 條件式（見 eat 缺陷修正）
 	setup();
 }
 
