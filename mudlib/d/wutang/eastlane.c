@@ -8,8 +8,8 @@ void create()
 	set("long", @LONG
 這是一條僻靜的小巷﹐遠離了大街的喧鬧﹐兩側盡是住家的後牆﹐
 牆頭探出幾枝開得正盛的桃花。巷子盡頭一口老井邊﹐一個婦人正在浣
-洗衣裳﹐木杵敲打衣物的聲音在巷子裡迴盪。往西可以回到鎮中的十字
-路口。
+洗衣裳﹐木杵敲打衣物的聲音在巷子裡迴盪。巷子東頭一條雜草沒徑的
+小路通往鎮東荒僻的山坳﹐往西則可回到鎮中的十字路口。
 LONG
 	);
 	set("detail", ([
@@ -20,8 +20,9 @@ LONG
 		__DIR__"npc/washerwoman" : 1,
 	]));
 	set("outdoors", "wutang");
-	set("exits", ([ /* sizeof() == 1 */
+	set("exits", ([ /* sizeof() == 2 */
 		"west" : __DIR__"cross",
+		"east" : __DIR__"statue",
 	]));
 
 	setup();

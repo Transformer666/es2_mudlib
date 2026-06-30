@@ -19,6 +19,9 @@ LONG
 	set("objects", ([
 		__DIR__"npc/keeper" : 1,
 		__DIR__"npc/waiter" : 1,
+		// 海大富：內廷四廠錦衣衛，docs canonical「醇雨樓客棧四廠錦衣衛」即此五堂據點
+		// (docs 05:108)。say 實戰經驗→解官兵仇恨鏈(→風城榮府老大)，共用 quest/haidafu_trust。
+		__DIR__"npc/haidafu" : 1,
 	]));
 	set("detail", ([
 		"櫃臺" : "一座厚實的烏木櫃臺﹐臺面被磨得油亮﹐後頭的木架上擺著幾罈封了紅紙的好酒。\n",
