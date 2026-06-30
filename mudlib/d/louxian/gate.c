@@ -16,7 +16,8 @@ void create()
 人高的青石碑﹐碑上刻著「甘泉」兩個古拙的大字——這婁縣以一脈清
 冽的甘泉聞名﹐縣裡的甘泉茶館、甘泉客棧﹐用的都是這口好水。官道
 往南穿過田壟﹐逶迤接回喬陰縣城東邊的市集﹔進關往北﹐便是縣裡那
-條不甚熱鬧卻自有閒趣的街心了。
+條不甚熱鬧卻自有閒趣的街心了。關門西側一條田塍小道岔出官道﹐通往甘泉下游一帶
+浩淼的水澤蘆蕩﹐縣裡的漁戶常打那兒下澤撈魚﹐聽說水禽野物不少。
 LONG
 	);
 	set("detail", ([
@@ -28,9 +29,10 @@ LONG
 	]));
 	set("outdoors", "louxian");
 	set("no_fight", 1);
-	set("exits", ([ /* sizeof() == 2 */
+	set("exits", ([ /* sizeof() == 3 */
 		"south" : "/d/qiaoyin/market",
 		"north" : __DIR__"street",
+		"west" : "/d/louhunt/marshedge",
 	]));
 
 	setup();

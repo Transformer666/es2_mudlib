@@ -15,7 +15,8 @@ void create()
 一座斑駁的界碑﹐碑上「衛國」二字被風雨蝕得淺淡﹐底下一行小字記
 著「去鎮三里」。再往南﹐一帶低矮的夯土鎮牆已遙遙在望﹐牆頭那座
 舊關門便是衛國鎮門了。回頭北望﹐官道穿過一畦畦田壟﹐逶迤接回斐
-縣的縣衙前。
+縣的縣衙前。官道西側一道斷垣豁口外﹐是一片莽莽蒼蒼的邊塞荒坡﹐
+枯草連天﹐早年屯軍撤後便荒蕪了﹐聽說野狼沙狐時常出沒。
 LONG
 	);
 	set("detail", ([
@@ -26,9 +27,10 @@ LONG
 	]));
 	set("outdoors", "weiguo");
 	set("no_fight", 1);
-	set("exits", ([ /* sizeof() == 2 */
+	set("exits", ([ /* sizeof() == 3 */
 		"north" : "/d/feixian/yamen",
 		"south" : __DIR__"gate",
+		"west" : "/d/weihunt/steppe",
 	]));
 
 	setup();

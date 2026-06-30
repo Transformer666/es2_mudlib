@@ -17,7 +17,8 @@ void create()
 兩個遒勁的大字——這文國縣以一脈好筆好墨聞名﹐縣裡的制筆作坊、
 松煙墨坊﹐打的都是這「翰墨之鄉」的名號。商道往南穿過田壟﹐逶迤
 接回風城東邊那熱鬧的市集﹔進關往北﹐便是縣裡那條墨香盈巷、自有
-書卷氣的街心了。
+書卷氣的街心了。關門西側一條樵徑岔出官道﹐沒入西山一帶蒼翠的林
+麓﹐縣裡的樵夫獵戶常打那兒進山﹐聽說山裡野獸不少。
 LONG
 	);
 	set("detail", ([
@@ -29,9 +30,10 @@ LONG
 	]));
 	set("outdoors", "wenguo");
 	set("no_fight", 1);
-	set("exits", ([ /* sizeof() == 2 */
+	set("exits", ([ /* sizeof() == 3 */
 		"south" : "/d/fengcheng/market",
 		"north" : __DIR__"street",
+		"west" : "/d/wenhunt/forestfoot",
 	]));
 
 	setup();

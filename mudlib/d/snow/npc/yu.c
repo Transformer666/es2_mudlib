@@ -18,15 +18,22 @@ void create()
 ", 由於不知其性氏家源, 故從小在魚家長大且名為天. 魚家對其有愧, 而\n"
 "魚天又不好武藝, 便以魚家資源, 助其在此開設錢莊兼販雜貨。\n"
 	);
+	// 魚記錢莊兼販雜貨：衣帽器物之外，亦代售幾本坊間基礎書冊。
+	// docs 02/06「雪亭鎮 pot 2s-e 找魚天買書」之補完——複用喬陰書局既有書檔
+	//（蒙書/詩抄可 study 增進學識，話本供消遣），不另造新書。
 	set("merchandise", ([
 		"/d/snow/npc/obj/blue_jacket": 5,
 		"/obj/armor/fur_hat": 5,
 		"/obj/bottle": 5,
+		"/d/qiaoyin/obj/primer": 10,      // 三字蒙書（study 增 literate）
+		"/d/qiaoyin/obj/poetry": 5,       // 喬陰詩抄（study 增 literate）
+		"/d/qiaoyin/obj/storybook": 10,   // 江湖奇聞錄（話本消遣）
 	]));
 	set("chat_chance", 5);
 	set("chat_msg", ({
 		"魚天喃喃唸道: 嗯, 上個月的利息收了二百八十兩白銀, 不錯 不錯 !\n",
 		"魚天靠在左側的大櫃臺上, 低頭喃喃自語, 似乎正在算計著.\n",
+		"魚天拍了拍櫃上幾本書冊道: 客官也識字麼? 小店新進了幾本蒙書、詩抄、話本, 用 list 瞧瞧, 買去 study 解悶長學問都成.\n",
 	}));
 	setup();
 	carry_object(__DIR__"obj/blue_jacket")->wear();

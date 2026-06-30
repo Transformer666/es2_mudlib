@@ -21,6 +21,9 @@ LONG
 		"山道" : "一條青石鋪就的山道自寨門內蜿蜒而上﹐石階被往來的足跡磨得溜光﹐兩旁松柏夾道﹐愈往高處雲霧愈濃。\n",
 	]));
 	set("outdoors", "fonxan");
+	set("objects", ([
+		__DIR__"npc/zhi_yunsou" : 1,
+	]));
 	set("exits", ([
 		"west" : "/d/qiaoyin/market",
 		"east" : __DIR__"hall",

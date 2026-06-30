@@ -16,6 +16,7 @@ LONG
   set("no_clean_up", 0);
   set("objects", ([ /* sizeof() == 1 */
 	__DIR__"npc/guard" : 2,
+	"/d/snowmanor/npc/qiao_polang" : 1,
   ]));
   set("outdoors", "snow");
   set("exits", ([ /* sizeof() == 2 */

@@ -8,7 +8,11 @@ inherit F_DRINK;
 
 void create()
 {
-	set_name("龍安米酒", ({ "rice wine", "wine", "longan wine" }));
+	// id 含 "rice"：mudlib 的 buy 指令在 vendor.c::affirm_merchandise 內以
+	// sscanf(what,"%s %d",what,index) 解析數量﹐多字名(如 "rice wine")會被
+	// 截成首字 "rice"——故 buy 多字酒名﹐首字亦須是合法 id﹐"buy rice wine
+	// from barman" 方不致落空(否則玩家須改打 "buy wine")。
+	set_name("龍安米酒", ({ "rice wine", "rice", "wine", "longan wine" }));
 	if( !clonep() ) {
 		set("long",
 			"一甕龍安水鄉自釀的米酒﹐酒色微微泛著琥珀的暖黃﹐溫醇\n"

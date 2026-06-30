@@ -1,5 +1,22 @@
 // gammer.c
 
+// 「阿寶的心願」(quest/snow_abao) 情感向支線：
+//   瞎眼老太婆的亡夫趙丰（她口中的「死鬼」）三年多前死於非命，她口口聲聲怪
+//   柳東蘆害的；孫女阿寶卻仍蹲在廣場那株老榕樹上痴痴等著爺爺的消息。婆婆把
+//   貼身的青布手帕(abao_keepsake)託玩家帶去給樹上的阿寶，要玩家好生勸勸她
+//   ——婆婆已不再執著尋仇，只盼孫女回家。玩家把手帕(give)交給阿寶、傳達婆婆
+//   的心意，阿寶這才肯下樹回家，支線收束（給聲望/見聞）。
+//
+//   設計守則：docs 只給「阿寶在榕樹上等誰」之疑團、未給解答，故做成情感向、
+//   可完成的傳話支線（傳話＋信物＋旗標＋小獎勵），【不】把「殺柳東蘆復仇」
+//   硬綁進本支線（柳東蘆是 d/fonxan boss，玩家自行去殺與否與本支線無涉，僅在
+//   對白裡呼應）。本支線旗標 quest/snow_abao 與既有 try/fon 封山入派鏈互不相干，
+//   ask-path 與物件 id 皆獨立，不污染舊鏈。
+//
+//   鐵則遵循：#10 本檔信物交付／設旗標逕在 handler 內順序寫就，無 ::die()/
+//   destruct；#11 本檔為 NPC（非房間），不涉 replace_program；#14 do_ask
+//   handler 開頭已守衛 is_fighting()/is_chatting()。
+
 #include <npc.h>
 
 inherit F_VILLAGER;
@@ -211,10 +228,29 @@ int accept_object(object player, object ob)
 	}
 }
 
+// 「阿寶的心願」支線：把青布手帕(abao_keepsake)交到玩家手上。
+//   採同步交付（先 new 到自己身上再 give 給玩家），不走會因玩家離場而落空的
+//   延遲回呼。回傳 1＝手帕確實落在玩家身上，0＝沒交成（玩家離場/負荷過重）。
+//   弄丟了可再 ask gammer about 信物 討一方，杜絕 give-turn-in 軟鎖。
+private int give_keepsake(object who)
+{
+	object kp;
+
+	if( !who || environment(who) != environment() ) return 0;
+	kp = new(__DIR__"obj/abao_keepsake");
+	kp->move(this_object());
+	command("give keepsake to " + who->query("id"));
+	// 確認手帕真的到了玩家身上（give 失敗則手帕仍在婆婆身上，視為沒交成）。
+	return present("abao keepsake", who) ? 1 : 0;
+}
+
 // 主線伏筆 lore(純劇情，不給物)：瞎眼老太婆雖目不能視，卻聽得見常人聽不見的東西。
 //   她以一種半瘋半癲的預言口吻，零星吐露侮天鬼破封、十三靈、三百年災變的徵兆，
 //   替主線埋下隱晦伏筆。採 do_ask(ask gammer about <topic>)，與既有 relay_say
 //   (try/fon 趙丰/柳東蘆任務鏈)互不相干。handler 守衛 is_fighting()/is_chatting()。
+//
+// 另含「阿寶的心願」(quest/snow_abao) 情感支線之 ask-path（阿寶/心願/死鬼/趙丰/
+//   信物 等 topic）：與上述主線 lore、既有 try/fon 鏈互不相干，旗標獨立。
 int do_ask(string arg)
 {
 	if( !arg ) return notify_fail("你想問瞎眼老太婆甚麼？(試試 ask gammer about 侮天鬼)\n");
@@ -247,7 +283,93 @@ int do_ask(string arg)
 		}));
 		return 1;
 	}
-	return notify_fail("瞎眼老太婆側著耳朵：你問的是 ... 侮天鬼？十三靈？還是三百年前那場災變？\n");
+
+	// ── 「阿寶的心願」情感支線 ask-path ──────────────────────────────
+	// 問阿寶／死鬼／趙丰／心願：婆婆訴說亡夫趙丰之死與孫女阿寶痴等的苦楚，
+	//   把這樁心願託付給玩家（設 quest/snow_abao=1，指引玩家上樹勸阿寶回家）。
+	if( arg == "gammer about 阿寶" || arg == "gammer about arbao"
+	 || arg == "gammer about 心願" || arg == "gammer about 死鬼"
+	 || arg == "gammer about 趙丰" || arg == "gammer about 老頭子"
+	 || arg == "gammer about 孫女" ) {
+		object me = this_player();
+		int q;
+
+		if( !me || !interactive(me) )
+			return notify_fail("這裡沒人問你的話。\n");
+		q = me->query("quest/snow_abao");
+
+		// 已圓滿（旗標 2）：阿寶已下樹回家，婆婆只剩感念
+		if( q >= 2 ) {
+			do_chat(({
+				(: command, "say 多虧了你這好心的後生 ... 阿寶那孩子總算肯下樹回家了﹐這些日子﹐婆婆心裡踏實多嘍。" :),
+				(: command, "say 死鬼若泉下有知﹐見孫女平平安安的﹐也該瞑目了。" :),
+			}));
+			return 1;
+		}
+
+		// 已託付（旗標 1）：催玩家上樹去勸阿寶，弄丟手帕可再討
+		if( q == 1 ) {
+			if( present("abao keepsake", me) )
+				do_chat((: command,
+					"say 後生﹐手帕婆婆給你了﹐你且爬上廣場那株老榕樹﹐把這手帕拿給阿寶瞧瞧﹐"
+					"再好生勸勸她回家罷。" :));
+			else
+				do_chat(({
+					(: command, "say 咦﹖那方青布手帕呢﹖你莫不是給弄丟了﹖" :),
+					(: command, "say 罷了罷了﹐婆婆再尋一方給你——ask gammer about 信物 便是。" :),
+				}));
+			return 1;
+		}
+
+		// q==0：首次託付，設旗標 1，並當場把手帕交給玩家
+		me->set("quest/snow_abao", 1);
+		do_chat(({
+			"瞎眼老太婆渾濁的盲眼一下子紅了﹐枯瘦的手在懷裡摸索了半晌。\n",
+			(: command, "say 你問我那死鬼麼 ... 唉﹐他叫趙丰﹐江湖上喚他一聲丰爺﹐一身輕功本是天下無雙。三年多前﹐他不知教甚麼人暗算了﹐死在天邪國外郊 ..." :),
+			(: command, "say 婆婆嘴上罵他死鬼、罵那姓柳的害人﹐心裡頭其實 ... 哪一天不念著他。可仇恨這東西﹐越攥越苦﹐婆婆老啦﹐攥不動嘍。" :),
+			(: command, "say 真正放不下的﹐是我那苦命的孫女阿寶。那孩子打她爺爺沒了﹐就成天蹲在廣場那株老榕樹上﹐說是 ... 說是等爺爺回來。她不肯信丰爺已經不在了呀。" :),
+			(: give_keepsake, me :),
+			(: command, "say 這方青布手帕﹐是婆婆當年替阿寶縫的﹐角上那個歪歪的「寶」字﹐就是我繡的。後生﹐你替婆婆爬上樹去﹐把手帕拿給阿寶﹐告訴她﹕婆婆不尋仇了﹐只盼她下樹回家。" :),
+			(: command, "say 上了樹﹐你 ask arbao about 婆婆 ﹐再把手帕(give)交給她﹐這事便成了。婆婆 ... 多謝你了。" :),
+		}));
+		return 1;
+	}
+
+	// 問信物：補發青布手帕（旗標 1 且玩家手上沒手帕時）。防 give-turn-in 軟鎖。
+	if( arg == "gammer about 信物" || arg == "gammer about 手帕"
+	 || arg == "gammer about keepsake" ) {
+		object me = this_player();
+		int q;
+
+		if( !me || !interactive(me) )
+			return notify_fail("這裡沒人問你的話。\n");
+		q = me->query("quest/snow_abao");
+
+		if( q < 1 ) {
+			do_chat((: command,
+				"say 甚麼手帕﹖後生﹐你先 ask gammer about 阿寶 ﹐婆婆有樁心願要託你。" :));
+			return 1;
+		}
+		if( q >= 2 ) {
+			do_chat((: command,
+				"say 那手帕阿寶已收下了﹐這樁事早了啦﹐後生你不必再記掛。" :));
+			return 1;
+		}
+		if( present("abao keepsake", me) ) {
+			do_chat((: command,
+				"say 手帕不就在你身上麼﹖快上樹拿給阿寶瞧去罷。" :));
+			return 1;
+		}
+		// 旗標 1、手上無手帕：補發一方
+		do_chat(({
+			"瞎眼老太婆又自懷裡摸出一方一模一樣的青布手帕來。\n",
+			(: give_keepsake, me :),
+			(: command, "say 拿好嘍﹐這回可別再丟啦。拿給阿寶瞧﹐記得勸她下樹回家。" :),
+		}));
+		return 1;
+	}
+
+	return notify_fail("瞎眼老太婆側著耳朵：你問的是 ... 侮天鬼？十三靈？三百年前那場災變？還是 ... 阿寶那孩子的事？\n");
 }
 
 // vim: set ts=4 sw=4 syntax=lpc

@@ -1,5 +1,22 @@
 // child.c
 
+// 「阿寶的心願」(quest/snow_abao) 情感向支線——阿寶端：
+//   瞎眼老太婆把貼身的青布手帕(abao_keepsake)託玩家帶上樹給阿寶（婆婆端見
+//   d/snow/npc/gammer.c）。玩家 ask arbao about 婆婆 傾聽阿寶痴等爺爺的心事、
+//   傳達婆婆「不尋仇、盼她回家」的話，再把手帕(give)交給阿寶，阿寶這才肯接受
+//   爺爺已逝、願意下樹回家，支線收束（給聲望/見聞）。
+//
+//   設計守則：docs 只給「阿寶在榕樹上等誰」之疑團、未給解答，故做成情感向、
+//   可完成的傳話支線（傳話＋信物＋旗標＋小獎勵），【不】把「殺柳東蘆復仇」硬綁
+//   入本支線（柳東蘆是 d/fonxan boss，玩家去殺與否與本支線無涉，僅對白呼應）。
+//   本支線 quest/snow_abao 旗標、ask-path 與信物 id 皆獨立，與既有 try/fon
+//   封山入派鏈互不相干，不污染舊鏈、不動 hungry/try_fon 狀態。
+//
+//   鐵則遵循：#10 本檔信物收尾／設旗標／給賞逕在 accept_object handler 內
+//   順序寫就，【不】destruct 阿寶（舊 try/fon 鏈仍倚賴她在場）；#11 本檔為
+//   NPC（非房間）不涉 replace_program；#14 do_ask 開頭已守衛 is_fighting()/
+//   is_chatting()，且本支線 accept_object 分支不夾延遲交付閉包。
+
 #include <npc.h>
 
 inherit F_VILLAGER;
@@ -121,8 +138,45 @@ private void do_follow(object me,object ob)
 	me->set_temp("try/fon",43);
 }
 
+// 「阿寶的心願」支線給賞：一點市井聲望、一點行旅見聞——情感向小獎勵，
+//   不臆造大件戰利品，呼應 keeper/biaotou 之 gain_score 範式。
+private void abao_reward(object who)
+{
+	if( !who || environment(who) != environment() ) return;
+	who->gain_score("reputation", 15);
+	who->gain_score("explorer fame", 20);
+}
+
 int accept_object(object me, object ob)
 {
+	// ── 「阿寶的心願」支線：玩家把婆婆的青布手帕(give)交給阿寶 ──────────
+	//   置於 accept_object 最前，獨立於下方 try/fon 鏈，互不干擾。
+	if( ob->id("abao keepsake") ) {
+		// 非進行中本支線的玩家（沒接過、或已完成）：仍收下避免手帕卡在玩家身上，
+		//   但不重複給賞、不重複推進旗標。
+		if( me->query("quest/snow_abao") != 1 ) {
+			do_chat((: command, "say 這手帕 ... 是婆婆的呀。多謝你了。" :));
+			return 1;
+		}
+
+		// 進行中（旗標 1）：阿寶認出手帕，情感收束。
+		//   同步給賞、即記旗標（abao_reward 直接 gain_score，玩家此刻必在場），
+		//   不把給賞放進延遲 do_chat——免玩家於回呼前離場致賞沒領、旗標卻記完成。
+		abao_reward(me);
+		me->set("quest/snow_abao", 2);
+		do_chat(({
+			"阿寶接過那方青布手帕﹐指尖撫過角上那個歪歪扭扭的「寶」字﹐怔怔地出了神。\n",
+			(: command, "say 這 ... 這是奶奶替我縫的手帕呀 ... 她、她怎麼把這個給了你 ...？" :),
+			"你把婆婆的話一五一十地說與阿寶聽——婆婆不再尋仇了﹐只盼她下樹回家。\n",
+			(: command, "say 奶奶說 ... 爺爺他 ... 真的回不來了麼 ...？" :),
+			"阿寶抱著那方手帕﹐眼淚一顆顆滾落下來﹐哭了好一陣子。\n",
+			(: command, "say 我都曉得的 ... 我只是 ... 只是不肯信罷了。爺爺最疼我﹐他答應過要回來教我輕功的 ..." :),
+			(: command, "say 你說得對 ... 奶奶一個人在底下﹐才是真孤單。我這就 ... 這就下樹去陪她。多謝你﹐多謝你替奶奶傳話。" :),
+			(: command, "smile" :),
+		}));
+		return 1;
+	}
+
 	if(me->query_temp("try/fon")!=40){
 		if( !hungry || !inherits(F_FOOD, ob) ) {
 			do_chat((: command, "say 給我這個幹嘛﹖" :));
@@ -274,7 +328,55 @@ int do_ask(string arg)
 		}));
 		return 1;
 	}
-	return notify_fail("阿寶眨眨眼：這個阿寶可不曉得 ... 你問問侮天鬼、十三靈，或是三百年前那場災變？\n");
+
+	// ── 「阿寶的心願」情感支線 ask-path ──────────────────────────────
+	// 問婆婆／心願／爺爺／回家：傾聽阿寶痴等爺爺的心事，並由玩家代婆婆傳話。
+	//   此為「傳話」一步——傾聽＋對白，真正的收束在玩家 give 手帕(accept_object)。
+	if( arg == "arbao about 婆婆" || arg == "arbao about 奶奶"
+	 || arg == "arbao about 心願" || arg == "arbao about 爺爺"
+	 || arg == "arbao about 趙丰" || arg == "arbao about 回家"
+	 || arg == "arbao about granny" ) {
+		object me = this_player();
+		int q;
+
+		if( !me || !interactive(me) )
+			return notify_fail("這裡沒人問你的話。\n");
+		q = me->query("quest/snow_abao");
+
+		// 已圓滿（旗標 2）：阿寶已釋懷
+		if( q >= 2 ) {
+			do_chat((: command,
+				"say 奶奶的手帕我收好了。等會兒我便下樹去陪她——這些日子﹐倒是我不懂事﹐讓她一個人擔著心。多謝你呀。" :));
+			return 1;
+		}
+
+		// 進行中（旗標 1）：傾聽心事，催玩家把手帕交給她
+		if( q == 1 ) {
+			if( present("abao keepsake", me) )
+				do_chat(({
+					(: command, "say 你說 ... 奶奶託你帶了話給我﹖" :),
+					"阿寶望著你手上那方青布手帕﹐眼神一下子怔住了。\n",
+					(: command, "say 那 ... 那手帕 ...你快把它(give)交給我瞧瞧 ... 那真是奶奶的麼 ...？" :),
+				}));
+			else
+				do_chat(({
+					(: command, "say 奶奶要你帶話給我﹖她 ... 她還好麼﹖" :),
+					(: command, "say 你說奶奶給了你一方手帕﹖怎麼沒見著呀﹖你可別是哄我的 ...（ask gammer about 信物 向婆婆討回那方手帕罷）" :),
+				}));
+			return 1;
+		}
+
+		// q==0：尚未自婆婆處接下此心願——阿寶只痴痴吐露等爺爺的心事，
+		//   指引玩家先去問廣場上的瞎眼老太婆（她的奶奶）。
+		do_chat(({
+			(: command, "say 我在等我爺爺呀。爺爺說過要回來教我輕功的﹐他答應過的﹐他一定會回來 ..." :),
+			"阿寶說著﹐眼圈忽地紅了﹐卻又倔強地仰起臉。\n",
+			(: command, "say 你 ... 你若是見著我奶奶﹐廣場上那個瞎眼的老婆婆﹐替我問問她﹐爺爺到底甚麼時候回來呀﹖（ask gammer about 阿寶）" :),
+		}));
+		return 1;
+	}
+
+	return notify_fail("阿寶眨眨眼：這個阿寶可不曉得 ... 你問問侮天鬼、十三靈、三百年前那場災變，或是 ... 婆婆的事？\n");
 }
 
 // vim: set ts=4 sw=4 syntax=lpc

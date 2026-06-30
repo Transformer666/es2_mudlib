@@ -27,6 +27,7 @@ LONG
 	set("outdoors", "hudao");
 	set("objects", ([
 		__DIR__"npc/hunter" : 1,
+		__DIR__"npc/dao_laoba" : 1,
 	]));
 	set("exits", ([
 		"north" : "/d/snow/sgate",
